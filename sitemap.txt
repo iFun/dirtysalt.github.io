@@ -1088,6 +1088,7 @@ https://dirtysalt.github.io/html/the-healthy-programmer.html
 https://dirtysalt.github.io/html/the-hitchhikers-guide-to-the-galaxy.html
 https://dirtysalt.github.io/html/the-impl-lua5.html
 https://dirtysalt.github.io/html/the-instant-economist.html
+https://dirtysalt.github.io/html/the-job-work-and-its-future-in-a-time-of-radical-change.html
 https://dirtysalt.github.io/html/the-language-of-the-system.html
 https://dirtysalt.github.io/html/the-law-of-leaky-abstractions.html
 https://dirtysalt.github.io/html/the-linux-scheduler-decade-of-wasted-cores.html

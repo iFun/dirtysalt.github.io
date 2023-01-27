@@ -16,47 +16,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb35510d">1. 测试代码</a></li>
-<li><a href="#org3b0e003">2. 初步测试结果</a>
+<li><a href="#org70e682e">1. 测试代码</a></li>
+<li><a href="#org6d4f25d">2. 初步测试结果</a>
 <ul>
-<li><a href="#orgf1b3e43">2.1. 超小尺寸</a></li>
-<li><a href="#org5df412d">2.2. 小尺寸</a></li>
-<li><a href="#org204f2c5">2.3. 中尺寸</a></li>
-<li><a href="#org04ce8c1">2.4. 大尺寸</a></li>
-<li><a href="#org447ee3a">2.5. 初步总结</a></li>
+<li><a href="#orgcf419a9">2.1. 超小尺寸</a></li>
+<li><a href="#org8588817">2.2. 小尺寸</a></li>
+<li><a href="#org9cfe9fa">2.3. 中尺寸</a></li>
+<li><a href="#org7ef7755">2.4. 大尺寸</a></li>
+<li><a href="#orgaf68a9e">2.5. 初步总结</a></li>
 </ul>
 </li>
-<li><a href="#orgecec22b">3. 实现分析</a>
+<li><a href="#orgfbd157e">3. 实现分析</a>
 <ul>
-<li><a href="#org9c46703">3.1. memcpy_erms</a></li>
-<li><a href="#orgc8553bc">3.2. memcpy_AVX2</a></li>
-<li><a href="#orgbbb634e">3.3. memcpy_tiny</a></li>
-<li><a href="#orgd3e06fa">3.4. memcpy_my/my2</a>
+<li><a href="#org8cbf7d0">3.1. memcpy_erms</a></li>
+<li><a href="#org055688c">3.2. memcpy_AVX2</a></li>
+<li><a href="#org85aef48">3.3. memcpy_tiny</a></li>
+<li><a href="#org2546cdc">3.4. memcpy_my/my2</a>
 <ul>
-<li><a href="#orgf8ada3d">3.4.1. 16字节以内</a></li>
-<li><a href="#org6171c04">3.4.2. 32字节以内</a></li>
-<li><a href="#org521518c">3.4.3. 128/256字节以内</a></li>
-<li><a href="#orgfad0a73">3.4.4. 128/256字节以外</a></li>
+<li><a href="#org2d6da7d">3.4.1. 16字节以内</a></li>
+<li><a href="#orgbccf26f">3.4.2. 32字节以内</a></li>
+<li><a href="#org3ccb4eb">3.4.3. 128/256字节以内</a></li>
+<li><a href="#org9645a05">3.4.4. 128/256字节以外</a></li>
 </ul>
 </li>
-<li><a href="#orge193844">3.5. CK版本注释</a></li>
+<li><a href="#org11b9b82">3.5. CK版本注释</a></li>
 </ul>
 </li>
-<li><a href="#org247fc8a">4. FIX `memcpy_my`</a></li>
-<li><a href="#org83505c2">5. 改进方案设计</a></li>
-<li><a href="#orgdb429bf">6. 细粒度分析</a>
+<li><a href="#org6673571">4. FIX `memcpy_my`</a></li>
+<li><a href="#orgdd8e6d6">5. 改进方案设计</a></li>
+<li><a href="#org96d6ff7">6. 细粒度分析</a>
 <ul>
-<li><a href="#org116375c">6.1. 1KB~64KB</a></li>
-<li><a href="#org5c26bea">6.2. 32KB~2MB</a></li>
-<li><a href="#org6d83c20">6.3. 2MB~64MB</a></li>
+<li><a href="#org8e263a3">6.1. 1KB~64KB</a></li>
+<li><a href="#org6b5bca8">6.2. 32KB~2MB</a></li>
+<li><a href="#orgc8eeec2">6.3. 2MB~64MB</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgb35510d" class="outline-2">
-<h2 id="orgb35510d"><span class="section-number-2">1.</span> 测试代码</h2>
+<div id="outline-container-org70e682e" class="outline-2">
+<h2 id="org70e682e"><span class="section-number-2">1.</span> 测试代码</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 测试代码是在Clickhouse memcpy-bench基础上改造过来的  [ClickHouse/utils/memcpy-bench at master · ClickHouse/ClickHouse](<a href="https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench">https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench</a>)
@@ -114,12 +114,12 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-org3b0e003" class="outline-2">
-<h2 id="org3b0e003"><span class="section-number-2">2.</span> 初步测试结果</h2>
+<div id="outline-container-org6d4f25d" class="outline-2">
+<h2 id="org6d4f25d"><span class="section-number-2">2.</span> 初步测试结果</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf1b3e43" class="outline-3">
-<h3 id="orgf1b3e43"><span class="section-number-3">2.1.</span> 超小尺寸</h3>
+<div id="outline-container-orgcf419a9" class="outline-3">
+<h3 id="orgcf419a9"><span class="section-number-3">2.1.</span> 超小尺寸</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 超小尺寸包含下面几个尺寸：16, 64, 256, 1024.
@@ -135,25 +135,25 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org312ed25" class="figure">
+<div id="org90101c4" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
 </p>
 </div>
 
 
-<div id="orgee45a60" class="figure">
+<div id="org483a093" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
 </p>
 </div>
 
 
-<div id="orgf981ef3" class="figure">
+<div id="org238ed32" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
 </p>
 </div>
 
 
-<div id="org9893f4e" class="figure">
+<div id="org6e47ca8" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
 </p>
 </div>
@@ -161,8 +161,8 @@ VARIANT(5, memcpy_jart)
 </div>
 
 
-<div id="outline-container-org5df412d" class="outline-3">
-<h3 id="org5df412d"><span class="section-number-3">2.2.</span> 小尺寸</h3>
+<div id="outline-container-org8588817" class="outline-3">
+<h3 id="org8588817"><span class="section-number-3">2.2.</span> 小尺寸</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 小尺寸包含下面几个尺寸：4K, 16K, 64K
@@ -178,27 +178,27 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="orga66e495" class="figure">
+<div id="org58b3ea4" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
 </p>
 </div>
 
 
-<div id="orgc8b747d" class="figure">
+<div id="orgeeefeb6" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
 </p>
 </div>
 
 
-<div id="org77c69a5" class="figure">
+<div id="org8bc719f" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org204f2c5" class="outline-3">
-<h3 id="org204f2c5"><span class="section-number-3">2.3.</span> 中尺寸</h3>
+<div id="outline-container-org9cfe9fa" class="outline-3">
+<h3 id="org9cfe9fa"><span class="section-number-3">2.3.</span> 中尺寸</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 中尺寸包含下面几个尺寸：256K, 1MB, 4MB
@@ -214,27 +214,27 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org9e66b9d" class="figure">
+<div id="orge38e152" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
 </p>
 </div>
 
 
-<div id="org9b38c74" class="figure">
+<div id="orge9f3f74" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
 </p>
 </div>
 
 
-<div id="org4358b29" class="figure">
+<div id="orgf7356b7" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org04ce8c1" class="outline-3">
-<h3 id="org04ce8c1"><span class="section-number-3">2.4.</span> 大尺寸</h3>
+<div id="outline-container-org7ef7755" class="outline-3">
+<h3 id="org7ef7755"><span class="section-number-3">2.4.</span> 大尺寸</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 大尺寸包含下面几个尺寸：16MB, 32MB, 128MB
@@ -249,27 +249,27 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org2e385e0" class="figure">
+<div id="orgb7c8704" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
 </p>
 </div>
 
 
-<div id="orge99aa00" class="figure">
+<div id="orgf3e4bf4" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
 </p>
 </div>
 
 
-<div id="orgcee8da5" class="figure">
+<div id="orgf359ff9" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org447ee3a" class="outline-3">
-<h3 id="org447ee3a"><span class="section-number-3">2.5.</span> 初步总结</h3>
+<div id="outline-container-orgaf68a9e" class="outline-3">
+<h3 id="orgaf68a9e"><span class="section-number-3">2.5.</span> 初步总结</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 总结如下：
@@ -289,12 +289,12 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-orgecec22b" class="outline-2">
-<h2 id="orgecec22b"><span class="section-number-2">3.</span> 实现分析</h2>
+<div id="outline-container-orgfbd157e" class="outline-2">
+<h2 id="orgfbd157e"><span class="section-number-2">3.</span> 实现分析</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9c46703" class="outline-3">
-<h3 id="org9c46703"><span class="section-number-3">3.1.</span> memcpy_erms</h3>
+<div id="outline-container-org8cbf7d0" class="outline-3">
+<h3 id="org8cbf7d0"><span class="section-number-3">3.1.</span> memcpy_erms</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 这个实现比较简单，不过只是对于x86有效
@@ -310,8 +310,8 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-orgc8553bc" class="outline-3">
-<h3 id="orgc8553bc"><span class="section-number-3">3.2.</span> memcpy_AVX2</h3>
+<div id="outline-container-org055688c" class="outline-3">
+<h3 id="org055688c"><span class="section-number-3">3.2.</span> memcpy_AVX2</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 这个实现大致分为几个部分：
@@ -360,8 +360,8 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-orgbbb634e" class="outline-3">
-<h3 id="orgbbb634e"><span class="section-number-3">3.3.</span> memcpy_tiny</h3>
+<div id="outline-container-org85aef48" class="outline-3">
+<h3 id="org85aef48"><span class="section-number-3">3.3.</span> memcpy_tiny</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 这个函数其实是来自于 <a href="https://github.com/skywind3000/FastMemcpy">https://github.com/skywind3000/FastMemcpy</a>. 针对的1-128字节所有的可能，
@@ -438,8 +438,8 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-orgd3e06fa" class="outline-3">
-<h3 id="orgd3e06fa"><span class="section-number-3">3.4.</span> memcpy_my/my2</h3>
+<div id="outline-container-org2546cdc" class="outline-3">
+<h3 id="org2546cdc"><span class="section-number-3">3.4.</span> memcpy_my/my2</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 代码比较长，完整代码可以看这里 <a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308</a>. 两者实现逻辑非常接近，差别在于`memcpy_my2` 版本在
@@ -454,8 +454,8 @@ VARIANT(5, memcpy_jart)
 </p>
 </div>
 
-<div id="outline-container-orgf8ada3d" class="outline-4">
-<h4 id="orgf8ada3d"><span class="section-number-4">3.4.1.</span> 16字节以内</h4>
+<div id="outline-container-org2d6da7d" class="outline-4">
+<h4 id="org2d6da7d"><span class="section-number-4">3.4.1.</span> 16字节以内</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 16字节以内走下面这个逻辑，使用的是 `__builtin_memcpy` 感觉这个部分应该是足够高效了。
@@ -481,8 +481,8 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-org6171c04" class="outline-4">
-<h4 id="org6171c04"><span class="section-number-4">3.4.2.</span> 32字节以内</h4>
+<div id="outline-container-orgbccf26f" class="outline-4">
+<h4 id="orgbccf26f"><span class="section-number-4">3.4.2.</span> 32字节以内</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
 32字节以内先拷贝16字节，然后走上面的小于16字节的逻辑。但是这个部分并没有使用sse(m128i)
@@ -504,8 +504,8 @@ VARIANT(5, memcpy_jart)
 </div>
 </div>
 
-<div id="outline-container-org521518c" class="outline-4">
-<h4 id="org521518c"><span class="section-number-4">3.4.3.</span> 128/256字节以内</h4>
+<div id="outline-container-org3ccb4eb" class="outline-4">
+<h4 id="org3ccb4eb"><span class="section-number-4">3.4.3.</span> 128/256字节以内</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <p>
 avx版本是先对 `dst+size-32` 和 `src+size-32` 进行单独处理，然后分别按照32字节进行拷贝，这样会出现重复拷贝，但是没有tail bytes判断情况。
@@ -555,8 +555,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </div>
 </div>
 
-<div id="outline-container-orgfad0a73" class="outline-4">
-<h4 id="orgfad0a73"><span class="section-number-4">3.4.4.</span> 128/256字节以外</h4>
+<div id="outline-container-org9645a05" class="outline-4">
+<h4 id="org9645a05"><span class="section-number-4">3.4.4.</span> 128/256字节以外</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <p>
 这里就不粘贴avx版本了，大部分都是汇编代码，但是道理和sse2版本是差不多的:
@@ -612,8 +612,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </div>
 </div>
 
-<div id="outline-container-orge193844" class="outline-3">
-<h3 id="orge193844"><span class="section-number-3">3.5.</span> CK版本注释</h3>
+<div id="outline-container-org11b9b82" class="outline-3">
+<h3 id="org11b9b82"><span class="section-number-3">3.5.</span> CK版本注释</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 目前CK版本看上去像是 `memcpy_my` 这个版本，但是没有开启avx开关。 <a href="https://clickhouse.com/codebrowser/ClickHouse/base/glibc-compatibility/memcpy/memcpy.h.html">https://clickhouse.com/codebrowser/ClickHouse/base/glibc-compatibility/memcpy/memcpy.h.html</a>
@@ -629,7 +629,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="org61476a8">
+<pre class="example" id="orgb6df3d2">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="orgd00e88e">
+<pre class="example" id="org4bd970e">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -671,7 +671,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="orgceaaff2">
+<pre class="example" id="org04ad890">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="orgf030f4f">
+<pre class="example" id="org4ac5027">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -744,8 +744,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </div>
 </div>
 
-<div id="outline-container-org247fc8a" class="outline-2">
-<h2 id="org247fc8a"><span class="section-number-2">4.</span> FIX `memcpy_my`</h2>
+<div id="outline-container-org6673571" class="outline-2">
+<h2 id="org6673571"><span class="section-number-2">4.</span> FIX `memcpy_my`</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 测试的时候发现 `memcpy_my` 的AVX版本有正确行问题，问题在下面这段代码上
@@ -778,7 +778,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </p>
 
 
-<div id="orgff1d88c" class="figure">
+<div id="org84048fa" class="figure">
 <p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
 </p>
 </div>
@@ -788,15 +788,15 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </p>
 
 
-<div id="org88f4e9c" class="figure">
+<div id="org0df7024" class="figure">
 <p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org83505c2" class="outline-2">
-<h2 id="org83505c2"><span class="section-number-2">5.</span> 改进方案设计</h2>
+<div id="outline-container-orgdd8e6d6" class="outline-2">
+<h2 id="orgdd8e6d6"><span class="section-number-2">5.</span> 改进方案设计</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 个人觉得可以根据 `memcpy_my` 这个版本 ~~，然后在某些区间上使用erms特性来做改善~~。
@@ -822,8 +822,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </div>
 </div>
 
-<div id="outline-container-orgdb429bf" class="outline-2">
-<h2 id="orgdb429bf"><span class="section-number-2">6.</span> 细粒度分析</h2>
+<div id="outline-container-org96d6ff7" class="outline-2">
+<h2 id="org96d6ff7"><span class="section-number-2">6.</span> 细粒度分析</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 我针对下面几个实现做了细粒度的分析：
@@ -837,8 +837,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </ul>
 </div>
 
-<div id="outline-container-org116375c" class="outline-3">
-<h3 id="org116375c"><span class="section-number-3">6.1.</span> 1KB~64KB</h3>
+<div id="outline-container-org8e263a3" class="outline-3">
+<h3 id="org8e263a3"><span class="section-number-3">6.1.</span> 1KB~64KB</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 从1KB到64KB，按照1KB进行步长做分析，有这么几个发现：
@@ -850,21 +850,21 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </ul>
 
 
-<div id="org59b69fe" class="figure">
+<div id="orgf8b2122" class="figure">
 <p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
 </p>
 </div>
 
 
-<div id="orgbe3f443" class="figure">
+<div id="org5a6e953" class="figure">
 <p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5c26bea" class="outline-3">
-<h3 id="org5c26bea"><span class="section-number-3">6.2.</span> 32KB~2MB</h3>
+<div id="outline-container-org6b5bca8" class="outline-3">
+<h3 id="org6b5bca8"><span class="section-number-3">6.2.</span> 32KB~2MB</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 从32KB到2MB，按照32KB进行步长分析，有这么几个发现：
@@ -881,8 +881,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </div>
 </div>
 
-<div id="outline-container-org6d83c20" class="outline-3">
-<h3 id="org6d83c20"><span class="section-number-3">6.3.</span> 2MB~64MB</h3>
+<div id="outline-container-orgc8eeec2" class="outline-3">
+<h3 id="orgc8eeec2"><span class="section-number-3">6.3.</span> 2MB~64MB</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 从2MB到64MB，按照1MB进行步长分析，有这么几个发现：
