@@ -2,6 +2,8 @@
 
 这个功能我没有明白为什么没有加入默认的Java版本中，这个东西应该是很有用的东西。可能是效果不是特别好，也可能是存在某些明显的性能开销，以至于在代码中维护这些东西成本非常好而收益很低。
 
+UPDATE: 效率是真的低，我感觉可能是10x-20x差不多左右。
+
 https://runtimeverification.com/blog/detecting-popular-data-races-in-java-using-rv-predict/
 
 ----------
