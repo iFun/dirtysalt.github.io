@@ -1157,6 +1157,7 @@ https://dirtysalt.github.io/html/unp.html
 https://dirtysalt.github.io/html/unveil-google-app-engine.html
 https://dirtysalt.github.io/html/use-chrome-trace-viewe-to-observe-schedule.html
 https://dirtysalt.github.io/html/use-emacs-org-mode-to-build-site.html
+https://dirtysalt.github.io/html/use-java-thread-sanizitier-to-spot-data-race.html
 https://dirtysalt.github.io/html/use-random-forest-testing-179-classifiers-121-datasets.html
 https://dirtysalt.github.io/html/use-wifi-aps-to-identify-location.html
 https://dirtysalt.github.io/html/using-apache-arrow-caltice-parquet-to-build-relational-cache.html
