@@ -1091,3 +1091,4 @@
 - [[file:lc-2518-number-of-great-partitions.org][LC 2518. 好分区的数目]]
 - [[file:lc-2527-find-xor-beauty-of-array.org][LC 2527. 查询数组 Xor 美丽值]]
 - [[file:lc-2528-maximize-the-minimum-powered-city.org][LC 2528. 最大化城市的最小供电站数目]]
+- [[file:lc-6305-disconnect-path-in-a-binary-matrix-by-at-most-one-flip.org][LC 6305. 二进制矩阵中翻转最多一次使路径不连通]] 两次图遍历确保线路上没有交叉节点
