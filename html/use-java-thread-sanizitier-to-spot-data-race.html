@@ -17,6 +17,10 @@
 </p>
 
 <p>
+UPDATE: 效率是真的低，我感觉可能是10x-20x差不多左右。
+</p>
+
+<p>
 <a href="https://runtimeverification.com/blog/detecting-popular-data-races-in-java-using-rv-predict/">https://runtimeverification.com/blog/detecting-popular-data-races-in-java-using-rv-predict/</a>
 </p>
 
@@ -103,7 +107,7 @@ use-java13; unset CLASSPATH;  bash configure &#x2013;prefix=`pwd`/installed ; ma
 运行起来可以发现错误是：需要使用 `java -XX:+ThreadSanitizer` 来运行
 </p>
 
-<pre class="example" id="org7ce1e0b">
+<pre class="example" id="org72875f4">
 sandbox-cloud :: src/main/java ‹master*› » javac com/starrocks/lab/ThreadDataRaceCase.java
 sandbox-cloud :: src/main/java ‹master*› » java -XX:+ThreadSanitizer com/starrocks/lab/ThreadDataRaceCase
 Thread 1 started...
