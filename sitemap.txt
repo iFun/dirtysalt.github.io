@@ -39,6 +39,8 @@ https://dirtysalt.github.io/html/a-word-on-scalability.html
 https://dirtysalt.github.io/html/a-year-in-tokyo.html
 https://dirtysalt.github.io/html/abandoned-probabilistic-option.html
 https://dirtysalt.github.io/html/about-dna-sequencing.html
+https://dirtysalt.github.io/html/about-network-latency-and-bandwidth.html
+https://dirtysalt.github.io/html/about-storage-system-iops-and-performance.html
 https://dirtysalt.github.io/html/ace.html
 https://dirtysalt.github.io/html/achieving-rapid-response-times-in-large-online-services.html
 https://dirtysalt.github.io/html/advice-for-ambitious-19-years-olds.html
@@ -781,6 +783,7 @@ https://dirtysalt.github.io/html/numa-deep-dive-part2-system-architecture.html
 https://dirtysalt.github.io/html/numa-deep-dive-part3-cache-coherency.html
 https://dirtysalt.github.io/html/numa-deep-dive-part4-local-memory-optimization.html
 https://dirtysalt.github.io/html/numa.html
+https://dirtysalt.github.io/html/numbers-everyone-should-know.html
 https://dirtysalt.github.io/html/object-storage-on-craq.html
 https://dirtysalt.github.io/html/oh-i-have-seen-this-idea-before.html
 https://dirtysalt.github.io/html/old-summer-palace-travel.html
@@ -1195,6 +1198,7 @@ https://dirtysalt.github.io/html/what-the-dog-saw.html
 https://dirtysalt.github.io/html/what-we-talk-about-when-we-talk-about-running.html
 https://dirtysalt.github.io/html/what-would-it-take-to-prove-me-wrong.html
 https://dirtysalt.github.io/html/what-you-can-do-and-what-you-should-do.html
+https://dirtysalt.github.io/html/what-your-computer-does-while-you-wait.html
 https://dirtysalt.github.io/html/whats-a-senior-engineers-job.html
 https://dirtysalt.github.io/html/whats-the-largest-amount-of-bad-code-you-have-ever-seen-work.html
 https://dirtysalt.github.io/html/when-the-os-gets-in-the-way.html
