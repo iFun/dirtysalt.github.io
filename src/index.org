@@ -126,6 +126,7 @@
 + [[file:sv-wangchuan-investguru-v1.org][硅谷王川电子书第一卷]] by 硅谷王川
 - 202006 [[file:the-healthy-programmer.org][程序员健康指南(The Healthy Programmer)]] by Joe Kutner
 - 202102 [[file:the-almanack-of-naval-ravikant.org][The Almanack of Naval Ravikant]]
+- 202302 [[file:skip-in-the-game-book.org][非对称风险(Skip in The Game)]] by NNT
 
 *** 软件开发
 - [[file:design-reading.org][Design Reading]] 软件设计方面的一些文章
