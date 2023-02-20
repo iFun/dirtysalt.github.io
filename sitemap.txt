@@ -975,6 +975,7 @@ https://dirtysalt.github.io/html/simple-treap.html
 https://dirtysalt.github.io/html/sit-boost-your-tech-career.html
 https://dirtysalt.github.io/html/six-easy-pieces.html
 https://dirtysalt.github.io/html/skin-in-the-game-dedao.html
+https://dirtysalt.github.io/html/skip-in-the-game-book.html
 https://dirtysalt.github.io/html/sklearn.html
 https://dirtysalt.github.io/html/snappy.html
 https://dirtysalt.github.io/html/snowflake-paper.html
@@ -1178,6 +1179,7 @@ https://dirtysalt.github.io/html/voltnisky-string-search.html
 https://dirtysalt.github.io/html/vp-eng-vs-cto.html
 https://dirtysalt.github.io/html/vtune.html
 https://dirtysalt.github.io/html/wangdefeng-course-das-kapital.html
+https://dirtysalt.github.io/html/wangdefeng-lecture-on-wangyangming-philosophy-of-mind.html
 https://dirtysalt.github.io/html/wanming-war-declaration.html
 https://dirtysalt.github.io/html/watch-memory-ordering-effect.html
 https://dirtysalt.github.io/html/ways-of-paying-mortgage.html
