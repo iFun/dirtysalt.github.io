@@ -1141,6 +1141,7 @@ https://dirtysalt.github.io/html/throttle-in-python.html
 https://dirtysalt.github.io/html/tibet-travel.html
 https://dirtysalt.github.io/html/time-clocks-and-ordering-of-events-in-a-distributed-system.html
 https://dirtysalt.github.io/html/timeline-at-scale-in-twitter.html
+https://dirtysalt.github.io/html/timezone-offset-is-not-fixed.html
 https://dirtysalt.github.io/html/tinylfu-highly-efficient-cache-admission-policy.html
 https://dirtysalt.github.io/html/tips-for-optimizing-c-cpp-code.html
 https://dirtysalt.github.io/html/tips-for-work-life-balance.html

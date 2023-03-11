@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>时区偏移不是固定的</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">时区偏移不是固定的</h1>
+<p>
+问题来源是修复这个bug，Shanghai时区的日期问题
+</p>
+
+<p>
+<a href="https://github.com/StarRocks/starrocks/pull/18521">[BugFix] fix timestamp underflow for parquet format by dirtysalt · Pull Request #18521 · StarRocks/starrocks</a>
+</p>
+
+<p>
+如果我们预先计算好8个小时的话，那么对于1900年之前的日期，seconds会少计算了343s. 我当时不是特别理解这个问题，所以就直接+343s进行了修正。这个情况对于shanghai时区没有问题，但是对于其他时区就不行了。
+</p>
+
+<p>
+我的同事在review里面推荐我看两个帖子：
+</p>
+<ul class="org-ul">
+<li><a href="https://blog.csdn.net/weixin_39747049/article/details/114077173">java 1900年_JDK与1900年01月01日_weixin_39747049的博客-CSDN博客</a></li>
+<li><a href="https://stackoverflow.com/questions/67568883/why-does-the-time-package-have-different-behaviors-when-date-is-before-1900/67569074#67569074">go - Why does the time package have different behaviors when date is before 1900? - Stack Overflow</a></li>
+</ul>
+
+<p>
+大致意思就是说，Shanghai在1901-01-01 12:00:00 这个时间点上往回调整了343s. 所以在这个时间点之前的second其实就是减少343s的，但是我们在处理日期转换的时候需要考虑回来，不能直接+8处理完事。
+</p>
+
+<p>
+<a href="https://www.timeanddate.com/time/change/china/shanghai?year=1900">Daylight Saving Time Changes 1900 in Shanghai, Shanghai Municipality, China</a>
+</p>
+
+<p>
+所以处理offset的时候，其实还需要传入second绝对值，才能知道具体如何调整。
+</p>
+
+<p>
+C++程序可以参考下面的，需要google cctz实现 <a href="https://github.com/google/cctz">google/cctz: CCTZ is a C++ library for translating between absolute and civil times using the rules of a time zone.</a>
+</p>
+
+<pre class="example">
+void TimestampValue::from_unixtime(int64_t second, const cctz::time_zone&amp; ctz) {
+    static const cctz::time_point&lt;cctz::sys_seconds&gt; epoch =
+            std::chrono::time_point_cast&lt;cctz::sys_seconds&gt;(std::chrono::system_clock::from_time_t(0));
+    cctz::time_point&lt;cctz::sys_seconds&gt; t = epoch + cctz::seconds(second);
+    const auto tp = cctz::convert(t, ctz);
+    from_timestamp(tp.year(), tp.month(), tp.day(), tp.hour(), tp.minute(), tp.second(), 0);
+}
+</pre>
+
+
+<p>
+Java程序可以参考下面额：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-java">
+<span class="org-keyword">package</span> com.starrocks.<span class="org-constant">lab</span>;
+
+
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">Instant</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">LocalDateTime</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">ZoneId</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-constant">format</span>.<span class="org-type">DateTimeFormatter</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-constant">format</span>.<span class="org-type">DateTimeFormatterBuilder</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">ArrayList</span>;
+<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">List</span>;
+
+
+<span class="org-comment-delimiter">/*</span>
+<span class="org-comment">1900-01-01 00:00:00 ---&gt; -2209017943000000</span>
+<span class="org-comment">1910-01-01 00:00:00 ---&gt; -1893484800000000</span>
+<span class="org-comment">1920-01-01 00:00:00 ---&gt; -1577952000000000</span>
+<span class="org-comment">1930-01-01 00:00:00 ---&gt; -1262332800000000</span>
+<span class="org-comment">1940-01-01 00:00:00 ---&gt; -946800000000000</span>
+<span class="org-comment">1950-01-01 00:00:00 ---&gt; -631180800000000</span>
+<span class="org-comment">1960-01-01 00:00:00 ---&gt; -315648000000000</span>
+<span class="org-comment">1970-01-01 00:00:00 ---&gt; -28800000000</span>
+<span class="org-comment">1980-01-01 00:00:00 ---&gt; 315504000000000</span>
+<span class="org-comment">1990-01-01 00:00:00 ---&gt; 631123200000000</span>
+<span class="org-comment-delimiter"> */</span>
+<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">TimezoneOffsetTest</span> {
+    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
+        <span class="org-type">List</span>&lt;<span class="org-type">Long</span>&gt; <span class="org-variable-name">list</span> = <span class="org-keyword">new</span> <span class="org-type">ArrayList</span>&lt;&gt;();
+        list.add(-2209017943L);
+        list.add(-1893484800L);
+        list.add(-1577952000L);
+        list.add(-1262332800L);
+        list.add(-946800000L);
+        list.add(-631180800L);
+        list.add(-315648000L);
+        list.add(-28800L);
+        list.add(315504000L);
+        list.add(631123200L);
+
+
+        <span class="org-type">DateTimeFormatterBuilder</span> <span class="org-variable-name">builder</span> = <span class="org-keyword">new</span> <span class="org-type">DateTimeFormatterBuilder</span>();
+        builder.append(DateTimeFormatter.ofPattern(<span class="org-string">"yyyy-MM-dd HH:mm:ss"</span>));
+        <span class="org-type">DateTimeFormatter</span> <span class="org-variable-name">formatter</span> = builder.toFormatter();
+
+
+        <span class="org-type">ZoneId</span> <span class="org-variable-name">zone</span> = ZoneId.of(<span class="org-string">"Asia/Shanghai"</span>);
+        <span class="org-keyword">for</span> (<span class="org-type">Long</span> <span class="org-variable-name">sec</span> : list) {
+            <span class="org-type">LocalDateTime</span> <span class="org-variable-name">dt</span> = LocalDateTime.ofInstant(Instant.ofEpochSecond(sec, 0), zone);
+            System.out.printf(<span class="org-string">"sec = %d, date = %s\n"</span>, sec, dt.format(formatter));
+        }
+
+
+    }
+}
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/timezone-offset-is-not-fixed.html';this.page.identifier = 'timezone-offset-is-not-fixed.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
