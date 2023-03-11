@@ -36,8 +36,7 @@ def main():
             alreadyChecked = set(json.load(fh))
 
     imageFiles = []
-    imageFiles += glob("images/*.png") + glob("images/*.jpg")
-    # imageFiles += glob("images/media/*/*.png") + glob("images/media/*/*.jpg")
+    imageFiles += glob("images/*.png") + glob("images/*.jpg") + glob("images/*.jpeg")
     imageFiles = list(set(imageFiles))
     imageFiles.sort()
     outputDir = "./.compressed-images/"
