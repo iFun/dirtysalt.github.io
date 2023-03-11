@@ -70,7 +70,6 @@
 - 202301 [[file:the-job-work-and-its-future-in-a-time-of-radical-change.org][工作：巨变时代的现状、挑战与未来（The Job: Work and Its Future in a Time of Radical Change）]]
 
 
-
 *** 小说杂文
 - [[file:the-catcher-in-the-rye.org][麦田里的守望者(The Catcher in The Rye)]] by Jerome Salinger
 - [[file:god-father.org][教父(God Father)]] by Francis Coppola
@@ -1098,3 +1097,6 @@
 - [[file:lc-2527-find-xor-beauty-of-array.org][LC 2527. 查询数组 Xor 美丽值]]
 - [[file:lc-2528-maximize-the-minimum-powered-city.org][LC 2528. 最大化城市的最小供电站数目]]
 - [[file:lc-6305-disconnect-path-in-a-binary-matrix-by-at-most-one-flip.org][LC 6305. 二进制矩阵中翻转最多一次使路径不连通]] 两次图遍历确保线路上没有交叉节点
+- [[file:lc-2568-minimum-impossible-or.org][LC 2568. 最小无法得到的或值]] 推理
+- [[file:lc-2571-minimum-operations-to-reduce-an-integer-to-0.org][LC 2571. 将整数减少到零需要的最少操作数]] 贪心或者是递归搜索
+- [[file:lc-2573-find-the-string-with-lcp.org][LC 2573. 找出对应 LCP 矩阵的字符串]] 推理+验证
