@@ -4,6 +4,7 @@
 [[file:index.org][全部文件索引]]
 
 ** 2023
+- 202303 [[file:timezone-offset-is-not-fixed.org][时区偏移不是固定的]]
 - 202302 [[file:usa-trip-2023-feb.org][美国出差日记 - 2月]]
 - 202302 [[file:skin-in-the-game-book.org][非对称风险(Skin in The Game)]] by NNT
 - 202302 [[file:wangdefeng-lecture-on-wangyangming-philosophy-of-mind.org][【王德峰教授讲座】王阳明心学]]
