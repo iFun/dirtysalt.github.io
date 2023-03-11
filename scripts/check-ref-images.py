@@ -44,7 +44,7 @@ def main():
     for f in fs:
         check_images_path(f)
 
-    extensions = ['jpg', 'png', 'svg', 'gif', 'pdf', 'html', 'webp']
+    extensions = ['jpg', 'jpeg', 'png', 'svg', 'gif', 'pdf', 'html', 'webp']
     fs = []
     for ext in extensions:
         fs.extend(glob.glob(image_path + '*.' + ext))

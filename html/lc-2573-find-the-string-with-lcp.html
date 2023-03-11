@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2573. 找出对应 LCP 矩阵的字符串</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2573. 找出对应 LCP 矩阵的字符串</h1>
+<p>
+我最初想到的办法非常复杂，其实是去根据已有的条件尝试构建连通图
+</p>
+<ul class="org-ul">
+<li>构建的时候会验证对称性和grid[i][j]&gt;1的情况</li>
+<li>最后验证的时候会验证grid[i][j]=0的情况</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findTheString</span>(<span class="org-py-object-reference">self</span>, lcp: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">str</span>:
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(lcp)
+        <span class="org-comment"># quick check and build graph</span>
+        <span class="org-py-variable-name">grid</span> = [[] * n <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-keyword">if</span> lcp[i][i] != (n - i):
+                <span class="org-keyword">return</span> <span class="org-string">''</span>
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i + <span class="org-py-number">1</span>, n):
+                <span class="org-keyword">if</span> lcp[i][j] != lcp[j][i]:
+                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+                <span class="org-py-variable-name">d</span> = lcp[i][j]
+                <span class="org-keyword">if</span> d &gt; (n - <span class="org-py-builtins">max</span>(i, j)):
+                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+                <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
+                    <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">and</span> lcp[i + <span class="org-py-number">1</span>][j + <span class="org-py-number">1</span>] != (d - <span class="org-py-number">1</span>):
+                        <span class="org-keyword">return</span> <span class="org-string">''</span>
+                    grid[i].append(j)
+                    grid[j].append(i)
+
+        <span class="org-comment"># dfs and build connected graph.</span>
+        <span class="org-py-variable-name">ts</span> = [<span class="org-py-number">0</span>] * n
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(x, now):
+            <span class="org-keyword">if</span> ts[x] != <span class="org-py-number">0</span>:
+                <span class="org-keyword">return</span> <span class="org-py-variable-name">ts</span>[x] == now
+            <span class="org-py-variable-name">ts</span>[x] = now
+            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> grid[x]:
+                <span class="org-keyword">if</span> <span class="org-keyword">not</span> dfs(y, now):
+                    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+
+        <span class="org-py-variable-name">now</span> = <span class="org-py-number">1</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-keyword">if</span> ts[i]: <span class="org-keyword">continue</span>
+            <span class="org-comment"># too much connected graphs.</span>
+            <span class="org-keyword">if</span> now &gt; <span class="org-py-number">26</span>: <span class="org-keyword">return</span> <span class="org-string">''</span>
+            <span class="org-keyword">if</span> <span class="org-keyword">not</span> dfs(i, now):
+                <span class="org-keyword">return</span> <span class="org-string">''</span>
+            <span class="org-py-variable-name">now</span> += <span class="org-py-number">1</span>
+
+        <span class="org-py-variable-name">ans</span> = [<span class="org-string">''</span>] * n
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-py-variable-name">ans</span>[i] = <span class="org-py-builtins">chr</span>(ord(<span class="org-string">'a'</span>) + ts[i] - <span class="org-py-number">1</span>)
+        <span class="org-py-variable-name">ans</span> = <span class="org-string">''</span>.join(ans)
+
+        <span class="org-comment"># double check because we only looks for positive requirements.</span>
+        <span class="org-comment"># we need to take care of negative requirements.</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i + <span class="org-py-number">1</span>, n):
+                <span class="org-keyword">if</span> lcp[i][j] == <span class="org-py-number">0</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">ans</span>[i] == ans[j]:
+                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+
+        <span class="org-keyword">return</span> ans
+
+</pre>
+</div>
+
+<p>
+题解中的解法思路也差不多，但是构建方式不同，所以代码异常地简单：
+</p>
+<ul class="org-ul">
+<li>首先给 a[i] 分配一个目前还没有使用的字符</li>
+<li>然后根据 grid[i][j] &gt; 0 条件，将字符分配给 a[j]</li>
+<li>如果字符不够的话，那么直接返回</li>
+<li>但是根据这个条件构建的图，仅仅是满足 grid[i][j] &gt; 0的条件，并没有满足
+<ul class="org-ul">
+<li>长度&gt;1时候的条件</li>
+<li>以及grid[i][j] = 0的条件</li>
+</ul></li>
+<li>所有需要最后一步进行验证，包括矩阵是否对称。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findTheString</span>(<span class="org-py-object-reference">self</span>, lcp: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">str</span>:
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(lcp)
+        <span class="org-py-variable-name">ans</span> = [<span class="org-string">''</span>] * n
+
+        <span class="org-comment"># construct loosely answer.</span>
+        <span class="org-py-import-from">import</span> string
+        <span class="org-py-variable-name">i</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> c <span class="org-keyword">in</span> string.ascii_lowercase:
+            <span class="org-keyword">while</span> i &lt; n <span class="org-keyword">and</span> ans[i] != <span class="org-string">''</span>: <span class="org-py-variable-name">i</span> += <span class="org-py-number">1</span>
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == n: <span class="org-keyword">break</span>
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i, n):
+                <span class="org-keyword">if</span> lcp[i][j]: <span class="org-py-variable-name">ans</span>[j] = c
+        <span class="org-keyword">if</span> <span class="org-string">''</span> <span class="org-keyword">in</span> ans: <span class="org-keyword">return</span> <span class="org-string">''</span>
+
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(n)):
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(i, n)):
+                <span class="org-keyword">if</span> lcp[i][j] != lcp[j][i]: <span class="org-keyword">return</span> <span class="org-string">''</span>
+                <span class="org-py-variable-name">value</span> = <span class="org-py-number">0</span>
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">ans</span>[i] == ans[j]:
+                    <span class="org-py-variable-name">value</span> = lcp[i + <span class="org-py-number">1</span>][j + <span class="org-py-number">1</span>] <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">else</span> <span class="org-py-number">0</span>
+                    <span class="org-py-variable-name">value</span> += <span class="org-py-number">1</span>
+                <span class="org-keyword">if</span> lcp[i][j] != value:
+                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+
+        <span class="org-keyword">return</span> <span class="org-string">''</span>.join(ans)
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2573-find-the-string-with-lcp.html';this.page.identifier = 'lc-2573-find-the-string-with-lcp.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
