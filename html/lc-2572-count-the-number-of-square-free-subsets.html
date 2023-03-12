@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2572. 无平方子集计数</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2572. 无平方子集计数</h1>
+<p>
+<a href="https://leetcode.cn/problems/count-the-number-of-square-free-subsets/">https://leetcode.cn/problems/count-the-number-of-square-free-subsets/</a>
+</p>
+
+<p>
+这题很容易看出来是状态dp, 但是递推公式似乎不是那么直接。我最最开始的想法是
+</p>
+<ul class="org-ul">
+<li>如果当前数值是x，遍历st, 枚举每个bit上的内容</li>
+<li>如果 `(x &amp; (1 &lt;&lt; bit))` 并且 `(st &amp; (1 &lt;&lt; bit))`, 那么不能使用</li>
+</ul>
+
+<p>
+这种思路除了时间复杂度更高之外，还有就是对于1不太好处理，因为1可以放在所有的集合里面，1需要单独做处理。
+</p>
+
+<p>
+这样写来写出的代码就特别地长，比如下面这样
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">squareFreeSubsets</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">primes</span> = [<span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">5</span>, <span class="org-py-number">7</span>, <span class="org-py-number">11</span>, <span class="org-py-number">13</span>, <span class="org-py-number">17</span>, <span class="org-py-number">19</span>, <span class="org-py-number">23</span>, <span class="org-py-number">29</span>]
+        <span class="org-py-variable-name">dp</span> = [<span class="org-py-number">0</span>] * (<span class="org-py-number">1</span> &lt;&lt; <span class="org-py-builtins">len</span>(primes))
+        <span class="org-py-variable-name">dp</span>[<span class="org-py-number">0</span>] = <span class="org-py-number">1</span>
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">hasSquareFactor</span>(x):
+            <span class="org-keyword">for</span> p <span class="org-keyword">in</span> primes:
+                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
+                    <span class="org-py-variable-name">c</span> = <span class="org-py-number">0</span>
+                    <span class="org-keyword">while</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
+                        <span class="org-py-variable-name">x</span> = x // p
+                        <span class="org-py-variable-name">c</span> += <span class="org-py-number">1</span>
+                    <span class="org-keyword">if</span> c &gt;= <span class="org-py-number">2</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+
+        <span class="org-py-variable-name">tmp</span> = []
+        <span class="org-py-variable-name">ONE</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">x</span> == <span class="org-py-number">1</span>:
+                <span class="org-py-variable-name">ONE</span> += <span class="org-py-number">1</span>
+            <span class="org-keyword">elif</span> hasSquareFactor(x):
+                <span class="org-keyword">continue</span>
+            <span class="org-keyword">else</span>:
+                tmp.append(x)
+        <span class="org-py-variable-name">nums</span> = tmp
+
+        <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
+        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
+            <span class="org-py-variable-name">bits</span> = []
+            <span class="org-py-variable-name">st</span> = <span class="org-py-number">0</span>
+            <span class="org-keyword">for</span> idx, p <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(primes):
+                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
+                    <span class="org-py-variable-name">x</span> = x // p
+                    bits.append(idx)
+                    <span class="org-py-variable-name">st</span> = st | (<span class="org-py-number">1</span> &lt;&lt; idx)
+
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(len(dp))):
+                <span class="org-py-variable-name">match</span> = <span class="org-py-pseudo-keyword">True</span>
+                <span class="org-keyword">for</span> b <span class="org-keyword">in</span> bits:
+                    <span class="org-keyword">if</span> j &amp; (<span class="org-py-number">1</span> &lt;&lt; b):
+                        <span class="org-py-variable-name">match</span> = <span class="org-py-pseudo-keyword">False</span>
+                        <span class="org-keyword">break</span>
+                <span class="org-keyword">if</span> match:
+                    <span class="org-py-variable-name">dp</span>[j | st] = (dp[j | st] + dp[j]) % MOD
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">pow</span>(a, b):
+            <span class="org-py-variable-name">s</span> = <span class="org-py-number">1</span>
+            <span class="org-keyword">while</span> b:
+                <span class="org-keyword">if</span> b &amp; 0x1:
+                    <span class="org-py-variable-name">s</span> = s * a
+                    <span class="org-py-variable-name">s</span> = s % MOD
+                <span class="org-py-variable-name">b</span> = b // <span class="org-py-number">2</span>
+                <span class="org-py-variable-name">a</span> = (a * a) % MOD
+            <span class="org-keyword">return</span> s
+
+        <span class="org-py-variable-name">S</span> = <span class="org-py-builtins">pow</span>(<span class="org-py-number">2</span>, ONE)
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">sum</span>(dp[<span class="org-py-number">1</span>:])
+        <span class="org-py-variable-name">ans</span> = (ans + <span class="org-py-number">1</span>) * S - <span class="org-py-number">1</span>
+        <span class="org-py-variable-name">ans</span> = ans % MOD
+        <span class="org-keyword">return</span> ans
+
+</pre>
+</div>
+
+
+<hr />
+
+<p>
+题解中的解法就比较简单了，递推思路就不太一样，此外还可以做预处理。
+</p>
+<ul class="org-ul">
+<li>对于x的状态假设是m, 遍历所有的st状态</li>
+<li>如果 `(st | m) == st`, 那么说明全部包含bit, 那么两者只能选1个
+<ul class="org-ul">
+<li>选择状态st, 但是不选择m</li>
+<li>选择状态st ^ m, 同时选择m.</li>
+</ul></li>
+<li>可以看到其实这里就能把1选入进去了，因为 `mask[1] = 0`.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">squareFreeSubsets</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">primes</span> = [<span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">5</span>, <span class="org-py-number">7</span>, <span class="org-py-number">11</span>, <span class="org-py-number">13</span>, <span class="org-py-number">17</span>, <span class="org-py-number">19</span>, <span class="org-py-number">23</span>, <span class="org-py-number">29</span>]
+        <span class="org-py-variable-name">M</span> = <span class="org-py-number">1</span> &lt;&lt; <span class="org-py-builtins">len</span>(primes)
+        <span class="org-py-variable-name">mask</span> = [<span class="org-py-number">0</span>] * <span class="org-py-number">31</span>
+
+        <span class="org-comment"># preprocess.</span>
+        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, <span class="org-py-number">31</span>):
+            <span class="org-keyword">for</span> idx, p <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(primes):
+                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
+                    <span class="org-keyword">if</span> (x // p) % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
+                        <span class="org-py-variable-name">mask</span>[x] = -<span class="org-py-number">1</span>
+                    <span class="org-keyword">else</span>:
+                        <span class="org-py-variable-name">mask</span>[x] |= (<span class="org-py-number">1</span> &lt;&lt; idx)
+
+        <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
+        <span class="org-py-variable-name">dp</span> = [<span class="org-py-number">0</span>] * M
+        <span class="org-py-variable-name">dp</span>[<span class="org-py-number">0</span>] = <span class="org-py-number">1</span>
+        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
+            <span class="org-py-variable-name">m</span> = mask[x]
+            <span class="org-keyword">if</span> m &gt;= <span class="org-py-number">0</span>:  <span class="org-comment"># mask[1] = 0</span>
+                <span class="org-keyword">for</span> st <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(M)):
+                    <span class="org-keyword">if</span> (st | m) == st:
+                        <span class="org-comment"># &#36873;&#25321;st, &#19981;&#36873;&#25321;m. &#25110;&#32773;&#26159;&#36873;&#25321;st ^ m, &#36873;&#25321;m.</span>
+                        <span class="org-py-variable-name">dp</span>[st] = (dp[st] + dp[st ^ m]) % MOD
+
+        <span class="org-keyword">return</span> (sum(dp) - <span class="org-py-number">1</span>) % MOD
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2572-count-the-number-of-square-free-subsets.html';this.page.identifier = 'lc-2572-count-the-number-of-square-free-subsets.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

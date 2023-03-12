@@ -584,8 +584,10 @@ https://dirtysalt.github.io/html/lc-2527-find-xor-beauty-of-array.html
 https://dirtysalt.github.io/html/lc-2528-maximize-the-minimum-powered-city.html
 https://dirtysalt.github.io/html/lc-2568-minimum-impossible-or.html
 https://dirtysalt.github.io/html/lc-2571-minimum-operations-to-reduce-an-integer-to-0.html
+https://dirtysalt.github.io/html/lc-2572-count-the-number-of-square-free-subsets.html
 https://dirtysalt.github.io/html/lc-2573-find-the-string-with-lcp.html
 https://dirtysalt.github.io/html/lc-2576-find-the-maximum-number-of-marked-indices.html
+https://dirtysalt.github.io/html/lc-2584-split-the-array-to-make-coprime-products.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html
@@ -612,6 +614,7 @@ https://dirtysalt.github.io/html/lc-6260-maximum-number-of-points-from-grid-quer
 https://dirtysalt.github.io/html/lc-629-k-inverse-pairs-array.html
 https://dirtysalt.github.io/html/lc-630-course-schedule-iii.html
 https://dirtysalt.github.io/html/lc-6305-disconnect-path-in-a-binary-matrix-by-at-most-one-flip.html
+https://dirtysalt.github.io/html/lc-6318-minimum-time-to-complete-all-tasks.html
 https://dirtysalt.github.io/html/lc-664-strange-printer.html
 https://dirtysalt.github.io/html/lc-730-count-different-palindromic-subsequences.html
 https://dirtysalt.github.io/html/lc-754-reach-a-number.html

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 6318. 完成所有任务的最少时间</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 6318. 完成所有任务的最少时间</h1>
+<p>
+<a href="https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/">https://leetcode.cn/contest/weekly-contest-336/problems/minimum-time-to-complete-all-tasks/</a>
+</p>
+
+<p>
+这题我自己想的是一种很朴素的贪心算法：每次只考虑一个时间点，看这个时间点上有多少任务在上面，选择最对任务的时间点。
+</p>
+
+<p>
+代码写出来也不是很复杂，但是我不明白为什么这种贪心有问题。注意下面是错误的答案，这个是我认为正确的写法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findMinimumTime</span>(<span class="org-py-object-reference">self</span>, tasks: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">S</span> = <span class="org-py-builtins">min</span>((x[<span class="org-py-number">0</span>] <span class="org-keyword">for</span> x <span class="org-keyword">in</span> tasks))
+        <span class="org-py-variable-name">E</span> = <span class="org-py-builtins">max</span>((x[<span class="org-py-number">1</span>] <span class="org-keyword">for</span> x <span class="org-keyword">in</span> tasks))
+        <span class="org-py-variable-name">N</span> = (E - S + <span class="org-py-number">1</span>)
+
+        <span class="org-py-variable-name">TS</span> = <span class="org-py-builtins">set</span>(range(S, E + <span class="org-py-number">1</span>))
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">while</span> tasks:
+            <span class="org-py-variable-name">ev</span> = []
+            <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
+                ev.append((s, <span class="org-py-number">0</span>))
+                ev.append((e + <span class="org-py-number">1</span>, <span class="org-py-number">1</span>))
+            <span class="org-keyword">for</span> t <span class="org-keyword">in</span> TS:
+                ev.append((t, <span class="org-py-number">2</span>))
+            ev.sort()
+
+            <span class="org-py-variable-name">d</span> = <span class="org-py-number">0</span>
+            <span class="org-py-variable-name">dm</span>, <span class="org-py-variable-name">tm</span> = <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
+            <span class="org-keyword">for</span> ts, ty <span class="org-keyword">in</span> ev:
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">ty</span> == <span class="org-py-number">0</span>:
+                    <span class="org-py-variable-name">d</span> += <span class="org-py-number">1</span>
+                <span class="org-keyword">elif</span> <span class="org-py-variable-name">ty</span> == <span class="org-py-number">1</span>:
+                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
+                <span class="org-keyword">else</span>:
+                    <span class="org-keyword">if</span> d &gt; dm:
+                        <span class="org-py-variable-name">dm</span> = d
+                        <span class="org-py-variable-name">tm</span> = ts
+
+            <span class="org-comment"># print('use tm ', tm)</span>
+            TS.remove(tm)
+            <span class="org-py-variable-name">ans</span> += <span class="org-py-number">1</span>
+
+            <span class="org-py-variable-name">tmp</span> = []
+            <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
+                <span class="org-keyword">if</span> s &lt;= tm &lt;= e:
+                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
+                    <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
+                        tmp.append((s, e, d))
+                <span class="org-keyword">else</span>:
+                    tmp.append((s, e, d))
+            <span class="org-py-variable-name">tasks</span> = tmp
+
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+
+<p>
+看了讨论区里面的解法，还是针对右端进行排序，从最右侧开始安排任务。
+</p>
+
+<blockquote>
+<p>
+我们按照截止时间进行排序，那么我们依次考虑每个事件。为了让其更多地与其他任务共同执行，我们应该 贪心地拖延其完成时间，因为后面的任务截止时期必然比其更靠后，前面的任务只需要贪心往后取运行时间即可。
+</p>
+</blockquote>
+
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findMinimumTime</span>(<span class="org-py-object-reference">self</span>, tasks: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">run</span> = [<span class="org-py-pseudo-keyword">False</span>] * <span class="org-py-number">2001</span>
+        tasks.sort(<span class="org-py-variable-name">key</span>=<span class="org-keyword">lambda</span> x: x[<span class="org-py-number">1</span>])
+
+        <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
+            <span class="org-py-variable-name">d</span> -= <span class="org-py-builtins">sum</span>(run[s:e + <span class="org-py-number">1</span>])  <span class="org-comment"># &#36825;&#27573;&#26102;&#38388;&#20869;&#20043;&#21069;&#24050;&#32463;&#34987;&#23433;&#25490;&#20102;&#22810;&#23569;&#65292;&#36825;&#20010;&#21487;&#20197;&#38468;&#24102;&#19978;</span>
+            <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
+                <span class="org-keyword">for</span> t <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(s, e + <span class="org-py-number">1</span>)):  <span class="org-comment"># &#21097;&#20313;&#30340;&#26102;&#38388;&#20174;&#21518;&#24448;&#21069;&#23433;&#25490;</span>
+                    <span class="org-keyword">if</span> run[t]: <span class="org-keyword">continue</span>
+                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
+                    <span class="org-py-variable-name">run</span>[t] = <span class="org-py-pseudo-keyword">True</span>
+                    <span class="org-keyword">if</span> <span class="org-py-variable-name">d</span> == <span class="org-py-number">0</span>: <span class="org-keyword">break</span>
+
+        <span class="org-keyword">return</span> <span class="org-py-builtins">sum</span>(run)
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-6318-minimum-time-to-complete-all-tasks.html';this.page.identifier = 'lc-6318-minimum-time-to-complete-all-tasks.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
