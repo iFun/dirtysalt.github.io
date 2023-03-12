@@ -1101,3 +1101,6 @@
 - [[file:lc-2571-minimum-operations-to-reduce-an-integer-to-0.org][LC 2571. 将整数减少到零需要的最少操作数]] 贪心或者是递归搜索
 - [[file:lc-2573-find-the-string-with-lcp.org][LC 2573. 找出对应 LCP 矩阵的字符串]] 推理+验证
 - [[file:lc-2576-find-the-maximum-number-of-marked-indices.org][LC 2576. 求出最多标记下标]] 非典型的二分
+- [[file:lc-6318-minimum-time-to-complete-all-tasks.org][LC 6318. 完成所有任务的最少时间]] 难道这类区间贪心问题都是从右端排序？
+- [[file:lc-2572-count-the-number-of-square-free-subsets.org][LC 2572. 无平方子集计数]] 状态DP的另外一种归纳方法
+- [[file:lc-2584-split-the-array-to-make-coprime-products.org][LC 2584. 分割数组使乘积互质]]
