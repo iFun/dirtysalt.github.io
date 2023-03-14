@@ -1,0 +1,32 @@
+#+title: LC 2569. 更新数组后处理求和查询
+
+https://leetcode.cn/problems/handling-sum-queries-after-update/
+
+这题看题解中还有直接模拟超大数的bit count. 按照直觉来说这种办法其实并不容易work, 但是运行时间却比线段树要好很多。
+
+#+BEGIN_SRC python
+class Solution:
+    def handleQuery(self, nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
+        s = sum(nums2)
+        x = int(''.join(map(str, nums1[::-1])), 2)
+
+        ans = []
+        for op, l, r in queries:
+            if op == 1:
+                y = 1 << (r - l + 1) - 1
+                y <<= l
+                x = x ^ y
+            elif op == 2:
+                s += l * x.bit_count()
+            else:
+                ans.append(s)
+
+        return ans
+#+END_SRC
+
+
+----------
+
+[[https://leetcode.cn/problems/handling-sum-queries-after-update/solution/xian-duan-shu-by-endlesscheng-vx80/][题解]] 里面还给出了线段树的解法，我觉得这个是值得学习学习的。
+
+TODO:
