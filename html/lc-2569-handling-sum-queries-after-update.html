@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2569. 更新数组后处理求和查询</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2569. 更新数组后处理求和查询</h1>
+<p>
+<a href="https://leetcode.cn/problems/handling-sum-queries-after-update/">https://leetcode.cn/problems/handling-sum-queries-after-update/</a>
+</p>
+
+<p>
+这题看题解中还有直接模拟超大数的bit count. 按照直觉来说这种办法其实并不容易work, 但是运行时间却比线段树要好很多。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">handleQuery</span>(<span class="org-py-object-reference">self</span>, nums1: List[<span class="org-py-builtins">int</span>], nums2: List[<span class="org-py-builtins">int</span>], queries: List[List[<span class="org-py-builtins">int</span>]]) -&gt; List[<span class="org-py-builtins">int</span>]:
+        <span class="org-py-variable-name">s</span> = <span class="org-py-builtins">sum</span>(nums2)
+        <span class="org-py-variable-name">x</span> = <span class="org-py-builtins">int</span>(<span class="org-string">''</span>.join(map(str, nums1[::-<span class="org-py-number">1</span>])), <span class="org-py-number">2</span>)
+
+        <span class="org-py-variable-name">ans</span> = []
+        <span class="org-keyword">for</span> op, l, r <span class="org-keyword">in</span> queries:
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">op</span> == <span class="org-py-number">1</span>:
+                <span class="org-py-variable-name">y</span> = <span class="org-py-number">1</span> &lt;&lt; (r - l + <span class="org-py-number">1</span>) - <span class="org-py-number">1</span>
+                <span class="org-py-variable-name">y</span> &lt;&lt;= l
+                <span class="org-py-variable-name">x</span> = x ^ y
+            <span class="org-keyword">elif</span> <span class="org-py-variable-name">op</span> == <span class="org-py-number">2</span>:
+                <span class="org-py-variable-name">s</span> += l * x.bit_count()
+            <span class="org-keyword">else</span>:
+                ans.append(s)
+
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+
+
+<hr />
+
+<p>
+<a href="https://leetcode.cn/problems/handling-sum-queries-after-update/solution/xian-duan-shu-by-endlesscheng-vx80/">题解</a> 里面还给出了延迟线段树的解法，我觉得这个是值得学习学习的。
+</p>
+
+<p>
+延迟线段树有几个要点：
+</p>
+<ol class="org-ol">
+<li>树状数组的要点都是从1开始计算的，分隔点可以是 (l+r)//2</li>
+<li>递归的时候，想要更新的区间可以不进行分隔，但是作用区间需要分隔。</li>
+<li>延迟线段树需要设置 `lazy[i]`, 表示它的子树是否已经处理过。如果子树没有处理过的话，那么先处理两个子树。</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">handleQuery</span>(<span class="org-py-object-reference">self</span>, nums1: List[<span class="org-py-builtins">int</span>], nums2: List[<span class="org-py-builtins">int</span>], queries: List[List[<span class="org-py-builtins">int</span>]]) -&gt; List[<span class="org-py-builtins">int</span>]:
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(nums1)
+        <span class="org-py-variable-name">cnt</span> = [<span class="org-py-number">0</span>] * (<span class="org-py-number">4</span> * n)
+        <span class="org-py-variable-name">lazy</span> = [<span class="org-py-pseudo-keyword">False</span>] * (<span class="org-py-number">4</span> * n)
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">maintain</span>(i):
+            <span class="org-py-variable-name">cnt</span>[i] = cnt[<span class="org-py-number">2</span> * i] + cnt[<span class="org-py-number">2</span> * i + <span class="org-py-number">1</span>]
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">build</span>(i, l, r):
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">l</span> == r:
+                <span class="org-py-variable-name">cnt</span>[i] = nums1[l - <span class="org-py-number">1</span>]
+                <span class="org-keyword">return</span>
+
+            <span class="org-py-variable-name">m</span> = (l + r) // <span class="org-py-number">2</span>
+            build(<span class="org-py-number">2</span> * i, l, m)
+            build(<span class="org-py-number">2</span> * i + <span class="org-py-number">1</span>, m + <span class="org-py-number">1</span>, r)
+            maintain(i)
+            <span class="org-keyword">return</span>
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">flip</span>(i, l, r, L, R):
+            <span class="org-py-def-class">def</span> <span class="org-function-name">fix</span>(i, l, r):
+                <span class="org-py-variable-name">cnt</span>[i] = (r - l + <span class="org-py-number">1</span>) - cnt[i]
+                <span class="org-py-variable-name">lazy</span>[i] = <span class="org-keyword">not</span> lazy[i]
+                <span class="org-keyword">return</span>
+
+            <span class="org-keyword">if</span> l &lt;= L <span class="org-keyword">and</span> R &lt;= r:
+                fix(i, L, R)
+                <span class="org-keyword">return</span>
+
+            <span class="org-py-variable-name">M</span> = (L + R) // <span class="org-py-number">2</span>
+            <span class="org-keyword">if</span> lazy[i]: <span class="org-comment"># &#22914;&#26524;&#23376;&#26641;&#27809;&#26377;&#22788;&#29702;&#30340;&#35805;&#65292;&#37027;&#20040;&#38656;&#35201;&#22788;&#29702;&#23376;&#26641;&#20808;</span>
+                <span class="org-py-variable-name">lazy</span>[i] = <span class="org-py-pseudo-keyword">False</span>
+                fix(<span class="org-py-number">2</span> * i, L, M)
+                fix(<span class="org-py-number">2</span> * i + <span class="org-py-number">1</span>, M + <span class="org-py-number">1</span>, R)
+                maintain(i)
+
+            <span class="org-keyword">if</span> l &lt;= M: flip(<span class="org-py-number">2</span> * i, l, r, L, M) <span class="org-comment"># &#22788;&#29702;&#21306;&#38388;(l,r)&#19981;&#29992;&#25286;&#20998;</span>
+            <span class="org-keyword">if</span> (M + <span class="org-py-number">1</span>) &lt;= r: flip(<span class="org-py-number">2</span> * i + <span class="org-py-number">1</span>, l, r, M + <span class="org-py-number">1</span>, R) <span class="org-comment"># &#20294;&#26159;&#20316;&#29992;&#21306;&#38388;(L, R)&#38656;&#35201;&#25286;&#20998;</span>
+            maintain(i)
+
+        build(<span class="org-py-number">1</span>, <span class="org-py-number">1</span>, n) <span class="org-comment"># &#19979;&#26631;&#20174;1&#24320;&#22987;&#24456;&#20851;&#38190;&#65292;&#21542;&#21017;&#22788;&#29702;&#36215;&#26469;&#24456;&#40635;&#28902;</span>
+        <span class="org-py-variable-name">ans</span>, <span class="org-py-variable-name">base</span> = [], <span class="org-py-builtins">sum</span>(nums2)
+        <span class="org-keyword">for</span> op, l, r <span class="org-keyword">in</span> queries:
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">op</span> == <span class="org-py-number">1</span>:
+                flip(<span class="org-py-number">1</span>, l + <span class="org-py-number">1</span>, r + <span class="org-py-number">1</span>, <span class="org-py-number">1</span>, n)
+            <span class="org-keyword">elif</span> <span class="org-py-variable-name">op</span> == <span class="org-py-number">2</span>:
+                <span class="org-py-variable-name">base</span> += l * cnt[<span class="org-py-number">1</span>]
+            <span class="org-keyword">else</span>:
+                ans.append(base)
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2569-handling-sum-queries-after-update.html';this.page.identifier = 'lc-2569-handling-sum-queries-after-update.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

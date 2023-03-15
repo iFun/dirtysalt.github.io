@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2577. 在网格图中访问一个格子的最少时间</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2577. 在网格图中访问一个格子的最少时间</h1>
+<p>
+<a href="https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/">https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/</a>
+</p>
+
+<p>
+这题一个关键是，如果向相邻格子前进如果不满足条件的话，那么可以在过去路径上的两格来回走，每次+2.
+</p>
+
+<p>
+其实这个就是格点上的奇偶性问题，并且这个是可以归纳出来的：
+</p>
+<ul class="org-ul">
+<li>(0, 0) 上的奇偶性是0</li>
+<li>假设(x,y)上奇偶性是a的话，那么(x+1,y)或者是(x,y+1)就是1-a</li>
+<li>所以在(x,y)上需要round一下.</li>
+</ul>
+
+<p>
+想清楚这个思路的之后就是dijkstra最短路搜索了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">minimumTime</span>(<span class="org-py-object-reference">self</span>, grid: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">m</span> = <span class="org-py-builtins">len</span>(grid), <span class="org-py-builtins">len</span>(grid[<span class="org-py-number">0</span>])
+        <span class="org-keyword">if</span> grid[<span class="org-py-number">0</span>][<span class="org-py-number">1</span>] &gt; <span class="org-py-number">1</span> <span class="org-keyword">and</span> grid[<span class="org-py-number">1</span>][<span class="org-py-number">0</span>] &gt; <span class="org-py-number">1</span>:
+            <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+
+        <span class="org-py-variable-name">hp</span> = []
+        hp.append((<span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-number">0</span>))
+        <span class="org-py-variable-name">inf</span> = <span class="org-py-number">1</span> &lt;&lt; <span class="org-py-number">30</span>
+        <span class="org-py-variable-name">visit</span> = [[inf] * m <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+
+        <span class="org-py-import-from">import</span> heapq
+        <span class="org-keyword">while</span> hp:
+            (d, x, y) = heapq.heappop(hp)
+            <span class="org-keyword">if</span> (x, y) == (n - <span class="org-py-number">1</span>, m - <span class="org-py-number">1</span>):
+                <span class="org-keyword">return</span> d
+            <span class="org-keyword">for</span> dx, dy <span class="org-keyword">in</span> ((-<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">0</span>, -<span class="org-py-number">1</span>), (<span class="org-py-number">0</span>, <span class="org-py-number">1</span>)):
+                <span class="org-py-variable-name">x2</span>, <span class="org-py-variable-name">y2</span> = x + dx, y + dy
+                <span class="org-keyword">if</span> <span class="org-py-number">0</span> &lt;= x2 &lt; n <span class="org-keyword">and</span> <span class="org-py-number">0</span> &lt;= y2 &lt; m:
+                    <span class="org-py-variable-name">gap</span> = grid[x2][y2] - (d + <span class="org-py-number">1</span>)
+                    <span class="org-keyword">if</span> gap &lt;= <span class="org-py-number">0</span>:
+                        <span class="org-py-variable-name">value</span> = d + <span class="org-py-number">1</span>
+                    <span class="org-keyword">else</span>:
+                        <span class="org-py-variable-name">value0</span> = d + <span class="org-py-number">1</span> + (gap + <span class="org-py-number">1</span>) // <span class="org-py-number">2</span> * <span class="org-py-number">2</span>
+                        <span class="org-comment"># &#20063;&#21487;&#20197;&#26159;&#19979;&#38754;&#36825;&#31181;&#24418;&#24335;</span>
+                        <span class="org-py-variable-name">value1</span> = grid[x2][y2] + (grid[x2][y2] - x2 - y2) % <span class="org-py-number">2</span>
+                        <span class="org-py-variable-name">value</span> = value0
+                    <span class="org-keyword">if</span> visit[x2][y2] &gt; value:
+                        visit[x2][y2] = value
+                        heapq.heappush(hp, (value, x2, y2))
+        <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+</pre>
+</div>
+
+<hr />
+
+<p>
+我觉得这个 <a href="https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/solution/er-fen-da-an-bfspythonjavacgo-by-endless-j10w/">题解</a> 里面提到的二分方法也比较对，但是没有搞清楚为什么不work. 差别在于二分方式上，看上去需要确保解上有1个位置的空间 `left + 1 &lt;= right`. 然后选择right.
+</p>
+
+<p>
+我觉得这个解法里面vis特别巧妙，使用 `checktime` 来判断是否已经访问过，这样可以复用之前整个数组。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">minimumTime</span>(<span class="org-py-object-reference">self</span>, grid: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">m</span> = <span class="org-py-builtins">len</span>(grid), <span class="org-py-builtins">len</span>(grid[<span class="org-py-number">0</span>])
+        <span class="org-keyword">if</span> grid[<span class="org-py-number">0</span>][<span class="org-py-number">1</span>] &gt; <span class="org-py-number">1</span> <span class="org-keyword">and</span> grid[<span class="org-py-number">1</span>][<span class="org-py-number">0</span>] &gt; <span class="org-py-number">1</span>:
+            <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+
+        <span class="org-comment"># &#23558;vis&#25918;&#22312;&#22806;&#38754;&#29305;&#21035;&#22909;&#65292;&#22240;&#20026;&#27599;&#27425;vis time&#26159;&#19981;&#21516;&#30340;</span>
+        <span class="org-py-variable-name">vis</span> = [[<span class="org-py-number">0</span>] * m <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">test</span>(T):
+            vis[-<span class="org-py-number">1</span>][-<span class="org-py-number">1</span>] = T
+            <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
+            <span class="org-py-variable-name">dq</span> = deque()
+            dq.append((T, n - <span class="org-py-number">1</span>, m - <span class="org-py-number">1</span>))
+            <span class="org-keyword">while</span> dq:
+                (t, x, y) = dq.popleft()
+                <span class="org-keyword">if</span> (x, y) == (<span class="org-py-number">0</span>, <span class="org-py-number">0</span>):
+                    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+                <span class="org-keyword">for</span> dx, dy <span class="org-keyword">in</span> ((-<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">0</span>, -<span class="org-py-number">1</span>), (<span class="org-py-number">0</span>, <span class="org-py-number">1</span>)):
+                    <span class="org-py-variable-name">x2</span>, <span class="org-py-variable-name">y2</span> = x + dx, y + dy
+                    <span class="org-keyword">if</span> <span class="org-py-number">0</span> &lt;= x2 &lt; n <span class="org-keyword">and</span> <span class="org-py-number">0</span> &lt;= y2 &lt; m <span class="org-keyword">and</span> vis[x2][y2] != T <span class="org-keyword">and</span> grid[x2][y2] &lt;= (t - <span class="org-py-number">1</span>):
+                        vis[x2][y2] = T
+                        dq.append((t - <span class="org-py-number">1</span>, x2, y2))
+            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+
+        <span class="org-py-variable-name">left</span> = <span class="org-py-builtins">max</span>(grid[-<span class="org-py-number">1</span>][-<span class="org-py-number">1</span>], m + n - <span class="org-py-number">2</span>) - <span class="org-py-number">1</span>
+        <span class="org-py-variable-name">right</span> = <span class="org-py-builtins">max</span>(map(max, grid)) + m + n
+        <span class="org-keyword">while</span> (left + <span class="org-py-number">1</span>) &lt; right:
+            <span class="org-py-variable-name">t</span> = (left + right) // <span class="org-py-number">2</span>
+            <span class="org-keyword">if</span> test(t):
+                <span class="org-py-variable-name">right</span> = t
+            <span class="org-keyword">else</span>:
+                <span class="org-py-variable-name">left</span> = t + <span class="org-py-number">1</span>
+        <span class="org-py-variable-name">ans</span> = right
+        <span class="org-py-variable-name">ans</span> = ans + (ans - m - n) % <span class="org-py-number">2</span>
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2577-minimum-time-to-visit-a-cell-in-a-grid.html';this.page.identifier = 'lc-2577-minimum-time-to-visit-a-cell-in-a-grid.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
