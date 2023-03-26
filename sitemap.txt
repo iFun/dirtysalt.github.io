@@ -680,6 +680,7 @@ https://dirtysalt.github.io/html/lucky-to-have-someone-to-share.html
 https://dirtysalt.github.io/html/lz-vs-sz.html
 https://dirtysalt.github.io/html/lzf.html
 https://dirtysalt.github.io/html/lzma.html
+https://dirtysalt.github.io/html/lzo-algorithm-and-codec.html
 https://dirtysalt.github.io/html/lzw-algorithm-in-python.html
 https://dirtysalt.github.io/html/mac-root-certification.html
 https://dirtysalt.github.io/html/mac-talk.html
