@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2603. 收集树中金币</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2603. 收集树中金币</h1>
+<p>
+<a href="https://leetcode.cn/problems/collect-coins-in-a-tree/">https://leetcode.cn/problems/collect-coins-in-a-tree/</a>
+</p>
+
+<p>
+稍微有点难想到，看了 <a href="https://leetcode.cn/problems/collect-coins-in-a-tree/solution/tuo-bu-pai-xu-ji-lu-ru-dui-shi-jian-pyth-6uli/">题解</a> 之后才明白。
+</p>
+
+<p>
+最开始我的想法非常直接，就是枚举每个节点，去判断”如果以这个节点为根，至少需要move到哪些节点才行“。 但是这种算法的时间复杂度就是O(n^2).
+</p>
+
+<p>
+我也考虑过是否可以做换根DP，我看讨论区里面也给出了这个解法，但是稍微有点难理解。
+</p>
+
+<p>
+最后题解中给出的拓扑排序的算法算是看懂了。
+</p>
+<ul class="org-ul">
+<li>首先将coin=0的叶子节点不断地递归删除掉，这样留下来的叶子节点都是有coin的（拓扑排序）</li>
+<li>然后从这些叶子节点出发，判断至少需要到达那些节点(假设是X)，才能将这些叶子节点cover住</li>
+<li>集合X中的节点肯定都是相连接并且没有回路的，走遍这些节点然后回来的长度就是 `2*(|X|-1)`</li>
+</ul>
+
+<p>
+之前没有怎么写过无向图的拓扑排序，判断条件是 `ind[x]=1`. 然后在这种情况下面，可能ind[x]会变为负数，考虑0,1节点相连的情况。
+</p>
+
+<p>
+然后在第二次遍历的时候，我们依然可以说使用 `ind[x]=1` 判断条件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">collectTheCoins</span>(<span class="org-py-object-reference">self</span>, coins: List[<span class="org-py-builtins">int</span>], edges: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(edges) + <span class="org-py-number">1</span>
+        <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-py-variable-name">ind</span> = [<span class="org-py-number">0</span>] * n
+        <span class="org-keyword">for</span> x, y <span class="org-keyword">in</span> edges:
+            adj[x].append(y)
+            adj[y].append(x)
+            <span class="org-py-variable-name">ind</span>[x] += <span class="org-py-number">1</span>
+            <span class="org-py-variable-name">ind</span>[y] += <span class="org-py-number">1</span>
+
+        <span class="org-comment"># remove leaf node coin = 0</span>
+        <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
+        <span class="org-py-variable-name">q</span> = deque()
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[i] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">coins</span>[i] == <span class="org-py-number">0</span>:
+                q.append(i)
+        <span class="org-keyword">while</span> q:
+            <span class="org-py-variable-name">x</span> = q.popleft()
+            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> adj[x]:
+                <span class="org-py-variable-name">ind</span>[y] -= <span class="org-py-number">1</span>
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[y] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">coins</span>[y] == <span class="org-py-number">0</span>:
+                    q.append(y)
+
+        <span class="org-comment"># walk from leaf node to mark depth.</span>
+        <span class="org-py-variable-name">q</span> = deque()
+        <span class="org-py-variable-name">depth</span> = [<span class="org-py-number">0</span>] * n
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[i] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> coins[i]:
+                q.append(i)
+                <span class="org-py-variable-name">depth</span>[i] = <span class="org-py-number">0</span>
+
+        <span class="org-keyword">while</span> q:
+            <span class="org-py-variable-name">x</span> = q.popleft()
+            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> adj[x]:
+                <span class="org-py-variable-name">ind</span>[y] -= <span class="org-py-number">1</span>
+                <span class="org-comment"># won't lead to coins = 0 leaf.</span>
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[y] == <span class="org-py-number">1</span>:
+                    <span class="org-py-variable-name">depth</span>[y] = depth[x] + <span class="org-py-number">1</span>
+                    q.append(y)
+
+        <span class="org-py-variable-name">edge</span> = <span class="org-py-builtins">len</span>([x <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n) <span class="org-keyword">if</span> depth[x] &gt;= <span class="org-py-number">2</span>]) - <span class="org-py-number">1</span>
+        <span class="org-keyword">if</span> edge &lt; <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">2</span> * edge
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2603-collect-coins-in-a-tree.html';this.page.identifier = 'lc-2603-collect-coins-in-a-tree.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
