@@ -4,6 +4,7 @@
 [[file:index.org][全部文件索引]]
 
 ** 2023
+- 202303 [[file:usa-trip-2023-mar.org][美国出差日记 - 3月]]
 - 202303 [[file:lzo-algorithm-and-codec.org][lzo压缩算法和codec]]
 - 202303 [[file:timezone-offset-is-not-fixed.org][时区偏移不是固定的]]
 - 202302 [[file:usa-trip-2023-feb.org][美国出差日记 - 2月]]
