@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2612. 最少翻转操作数</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2612. 最少翻转操作数</h1>
+<p>
+<a href="https://leetcode.cn/problems/minimum-reverse-operations/">https://leetcode.cn/problems/minimum-reverse-operations/</a>
+</p>
+
+<p>
+这题最开始想到了使用BFS来搞，但是中间有两个问题：
+</p>
+<ol class="org-ol">
+<li>枚举从i可以置换到的位置，说实话这个有点绕</li>
+<li>如果k很大的话，那么每次i可以枚举的位置会很多，怎么进行剪枝。</li>
+</ol>
+
+<p>
+关于2，通常我们BFS的时候边不会太多，但是这个题目边会特别多。所以我们不能枚举点再去check, 而必须去筛选那些没有被选中的点。
+</p>
+
+<p>
+关于1，我一开始有过许多奇奇怪怪的枚举办法，但是都有各种各样的问题：
+</p>
+<ol class="org-ol">
+<li>首先可以置换位置必须满足奇偶性，(x + y + 1)% 2 == k % 2</li>
+<li>我们可以先求最低位，然后不断向上遍历，直到条件不满足位置。</li>
+<li>不满足的条件就是， 如果(x, y)交换，那么可以延展的范围必须在数组内。</li>
+<li>我们在筛选那些没有选中点的时候，必须也考虑到奇偶性，不然搜索空间就会很大了。</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">minReverseOperations</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, p: <span class="org-py-builtins">int</span>, banned: List[<span class="org-py-builtins">int</span>], k: <span class="org-py-builtins">int</span>) -&gt; List[<span class="org-py-builtins">int</span>]:
+        <span class="org-py-import-from">from</span> sortedcontainers <span class="org-py-import-from">import</span> SortedList
+        <span class="org-py-variable-name">opts</span> = [SortedList(), SortedList()]
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            opts[i % <span class="org-py-number">2</span>].add(i)
+        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> banned:
+            opts[x % <span class="org-py-number">2</span>].remove(x)
+
+        <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
+        <span class="org-py-variable-name">dq</span> = deque()
+        <span class="org-py-variable-name">ans</span> = [-<span class="org-py-number">1</span>] * n
+        dq.append(p)
+        <span class="org-py-variable-name">ans</span>[p] = <span class="org-py-number">0</span>
+        opts[p % <span class="org-py-number">2</span>].remove(p)
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(x):
+            <span class="org-py-variable-name">y</span> = <span class="org-py-builtins">max</span>(x + <span class="org-py-number">1</span> - k, k - x - <span class="org-py-number">1</span>, <span class="org-py-number">0</span>)
+            <span class="org-keyword">if</span> (x + y + <span class="org-py-number">1</span>) % <span class="org-py-number">2</span> != k % <span class="org-py-number">2</span>:
+                <span class="org-py-variable-name">y</span> += <span class="org-py-number">1</span>
+            <span class="org-py-variable-name">opt</span> = opts[y % <span class="org-py-number">2</span>]
+            <span class="org-py-variable-name">idx</span> = opt.bisect_left(y)
+            <span class="org-keyword">while</span> idx &lt; <span class="org-py-builtins">len</span>(opt):
+                <span class="org-py-variable-name">y</span> = opt[idx]
+                <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = x, y
+                <span class="org-keyword">if</span> a &gt; b:
+                    <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = b, a
+                <span class="org-py-variable-name">m</span> = (k - (b - a + <span class="org-py-number">1</span>)) // <span class="org-py-number">2</span>
+                <span class="org-keyword">if</span> m &gt;= <span class="org-py-number">0</span> <span class="org-keyword">and</span> (a - m) &gt;= <span class="org-py-number">0</span> <span class="org-keyword">and</span> (b + m) &lt; n:
+                    <span class="org-keyword">yield</span> a <span class="org-keyword">if</span> a != x <span class="org-keyword">else</span> b
+                <span class="org-keyword">else</span>:
+                    <span class="org-keyword">break</span>
+                <span class="org-py-variable-name">idx</span> += <span class="org-py-number">1</span>
+
+        <span class="org-keyword">while</span> dq:
+            <span class="org-py-variable-name">x</span> = dq.popleft()
+            <span class="org-py-variable-name">values</span> = []
+            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> search(x):
+                values.append(y)
+
+            <span class="org-keyword">print</span>(x, values)
+            <span class="org-keyword">for</span> v <span class="org-keyword">in</span> values:
+                opts[v % <span class="org-py-number">2</span>].remove(v)
+
+            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> values:
+                <span class="org-py-variable-name">ans</span>[y] = ans[x] + <span class="org-py-number">1</span>
+                dq.append(y)
+
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2612-minimum-reverse-operations.html';this.page.identifier = 'lc-2612-minimum-reverse-operations.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

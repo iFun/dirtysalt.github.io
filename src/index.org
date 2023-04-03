@@ -1108,3 +1108,5 @@
 - [[file:lc-2581-count-number-of-possible-root-nodes.org][LC 2581. 统计可能的树根数目]] 换根DP. 没有想到过还有这么用的
 - [[file:lc-2569-handling-sum-queries-after-update.org][LC 2569. 更新数组后处理求和查询]] 延迟线段树/超大数的bit count
 - [[file:lc-2603-collect-coins-in-a-tree.org][LC 2603. 收集树中金币]] 无向图的拓扑排序
+- [[file:lc-2608-shortest-cycle-in-a-graph.org][LC 2608. 图中的最短环]] 删边进行BFS
+- [[file:lc-2612-minimum-reverse-operations.org][LC 2612. 最少翻转操作数]] 奇偶性和BFS

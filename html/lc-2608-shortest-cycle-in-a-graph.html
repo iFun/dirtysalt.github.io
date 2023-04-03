@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2608. 图中的最短环</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2608. 图中的最短环</h1>
+<p>
+<a href="https://leetcode.cn/problems/shortest-cycle-in-a-graph/">https://leetcode.cn/problems/shortest-cycle-in-a-graph/</a>
+</p>
+
+<p>
+这题想了很久，原来突破口在于固定一条边。
+</p>
+
+<p>
+假设我们固定了(x, y)边的话，那么其实我们就需要寻找另外一条x/y之间的通路，但是这条通路不能使用(x,y)这条边
+</p>
+
+<p>
+那这个问题就相当是BFS，但是遍历的时候需要避开某些边。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findShortestCycle</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, edges: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
+
+        <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-keyword">for</span> x, y <span class="org-keyword">in</span> edges:
+            adj[x].append(y)
+            adj[y].append(x)
+
+        <span class="org-py-variable-name">INF</span> = <span class="org-py-number">1</span> &lt;&lt; <span class="org-py-number">30</span>
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">bfs</span>(src, dst):
+            <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
+            <span class="org-py-variable-name">dq</span> = deque()
+            <span class="org-py-variable-name">depth</span> = [-<span class="org-py-number">1</span>] * n
+            dq.append(src)
+            <span class="org-py-variable-name">depth</span>[src] = <span class="org-py-number">0</span>
+            <span class="org-keyword">while</span> dq:
+                <span class="org-py-variable-name">x</span> = dq.popleft()
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">x</span> == dst:
+                    <span class="org-keyword">return</span> depth[x] + <span class="org-py-number">1</span>
+                <span class="org-keyword">for</span> y <span class="org-keyword">in</span> adj[x]:
+                    <span class="org-keyword">if</span> depth[y] != -<span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
+                    <span class="org-comment"># exclude this edge.</span>
+                    <span class="org-keyword">if</span> (x, y) == (src, dst) <span class="org-keyword">or</span> (y, x) == (src, dst): <span class="org-keyword">continue</span>
+                    <span class="org-py-variable-name">depth</span>[y] = depth[x] + <span class="org-py-number">1</span>
+                    dq.append(y)
+            <span class="org-keyword">return</span> INF
+
+        <span class="org-py-variable-name">ans</span> = INF
+        <span class="org-keyword">for</span> (src, dst) <span class="org-keyword">in</span> edges:
+            <span class="org-py-variable-name">r</span> = bfs(src, dst)
+            <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">min</span>(ans, r)
+        <span class="org-keyword">if</span> <span class="org-py-variable-name">ans</span> == INF: <span class="org-py-variable-name">ans</span> = -<span class="org-py-number">1</span>
+
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2608-shortest-cycle-in-a-graph.html';this.page.identifier = 'lc-2608-shortest-cycle-in-a-graph.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
