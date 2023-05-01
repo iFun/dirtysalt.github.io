@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 6344. 字典序最小的美丽字符串</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 6344. 字典序最小的美丽字符串</h1>
+<p>
+<a href="https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/">https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/</a>
+</p>
+
+<p>
+最开始没有啥头绪，看了提示里面一点有点启发
+</p>
+
+<p>
+&gt; If the string does not contain any palindromic substrings of lengths 2 and 3, then the string does not contain any palindromic substrings at all.
+</p>
+
+<p>
+也就是说如果要确保没有任何回文的话，那么只需要保证长度2/3的串没有任何回文。
+</p>
+
+<p>
+然后我们可以从最低位开始尝试+1/+2/+3（前提是不存在任何进位），否则不如直接增加高位。一旦在某个位置上可以增加成功的话，然后将剩余位置清零。
+</p>
+
+<p>
+假设我们得到了 "abcdeaaaaa", 我们是在e这个位置上+1得到的，问题就是修正之后的aaaaa了，同样我们只需要确保不存在长度2/3的回文串就行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">smallestBeautifulString</span>(<span class="org-py-object-reference">self</span>, s: <span class="org-py-builtins">str</span>, k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">str</span>:
+        <span class="org-py-variable-name">CH</span> = [<span class="org-py-builtins">ord</span>(x) - <span class="org-py-builtins">ord</span>(<span class="org-string">'a'</span>) <span class="org-keyword">for</span> x <span class="org-keyword">in</span> s]
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(CH)
+
+        <span class="org-py-variable-name">P</span> = -<span class="org-py-number">1</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(n)):
+            <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span>, <span class="org-py-variable-name">c</span> = CH[i], CH[i - <span class="org-py-number">1</span>] <span class="org-keyword">if</span> i - <span class="org-py-number">1</span> &gt;= <span class="org-py-number">0</span> <span class="org-keyword">else</span> -<span class="org-py-number">1</span>, CH[i - <span class="org-py-number">2</span>] <span class="org-keyword">if</span> i - <span class="org-py-number">2</span> &gt;= <span class="org-py-number">0</span> <span class="org-keyword">else</span> -<span class="org-py-number">1</span>
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, k):
+                <span class="org-py-variable-name">a</span> = CH[i] + j
+                <span class="org-keyword">if</span> a &lt; k <span class="org-keyword">and</span> a != b <span class="org-keyword">and</span> a != c:
+                    <span class="org-py-variable-name">CH</span>[i] = a
+                    <span class="org-py-variable-name">P</span> = i
+                    <span class="org-keyword">break</span>
+                <span class="org-keyword">if</span> a &gt;= k: <span class="org-keyword">break</span>
+            <span class="org-keyword">if</span> P != -<span class="org-py-number">1</span>: <span class="org-keyword">break</span>
+
+        <span class="org-keyword">if</span> <span class="org-py-variable-name">P</span> == -<span class="org-py-number">1</span>: <span class="org-keyword">return</span> <span class="org-string">""</span>
+        <span class="org-comment"># print(CH, ''.join([chr(x + ord('a')) for x in CH]))</span>
+
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(P + <span class="org-py-number">1</span>, n):
+            <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = CH[i - <span class="org-py-number">2</span>] <span class="org-keyword">if</span> i - <span class="org-py-number">2</span> &gt;= <span class="org-py-number">0</span> <span class="org-keyword">else</span> -<span class="org-py-number">1</span>, CH[i - <span class="org-py-number">1</span>] <span class="org-keyword">if</span> i - <span class="org-py-number">1</span> &gt;= <span class="org-py-number">0</span> <span class="org-keyword">else</span> -<span class="org-py-number">1</span>
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(k):
+                <span class="org-keyword">if</span> j != a <span class="org-keyword">and</span> j != b:
+                    <span class="org-py-variable-name">CH</span>[i] = j
+                    <span class="org-keyword">break</span>
+        <span class="org-py-variable-name">ans</span> = <span class="org-string">''</span>.join([<span class="org-py-builtins">chr</span>(x + <span class="org-py-builtins">ord</span>(<span class="org-string">'a'</span>)) <span class="org-keyword">for</span> x <span class="org-keyword">in</span> CH])
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-6344-lexicographically-smallest-beautiful-string.html';this.page.identifier = 'lc-6344-lexicographically-smallest-beautiful-string.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

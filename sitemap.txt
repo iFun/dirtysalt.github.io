@@ -622,6 +622,7 @@ https://dirtysalt.github.io/html/lc-629-k-inverse-pairs-array.html
 https://dirtysalt.github.io/html/lc-630-course-schedule-iii.html
 https://dirtysalt.github.io/html/lc-6305-disconnect-path-in-a-binary-matrix-by-at-most-one-flip.html
 https://dirtysalt.github.io/html/lc-6318-minimum-time-to-complete-all-tasks.html
+https://dirtysalt.github.io/html/lc-6344-lexicographically-smallest-beautiful-string.html
 https://dirtysalt.github.io/html/lc-664-strange-printer.html
 https://dirtysalt.github.io/html/lc-730-count-different-palindromic-subsequences.html
 https://dirtysalt.github.io/html/lc-754-reach-a-number.html
