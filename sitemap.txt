@@ -242,6 +242,7 @@ https://dirtysalt.github.io/html/dbms-intro.html
 https://dirtysalt.github.io/html/dear-andreas.html
 https://dirtysalt.github.io/html/deconstructing-recommender-systems.html
 https://dirtysalt.github.io/html/deep-learning-material-recommendations.html
+https://dirtysalt.github.io/html/definition-of-meta-physics.html
 https://dirtysalt.github.io/html/delivering-happiness.html
 https://dirtysalt.github.io/html/delta-lake-paper.html
 https://dirtysalt.github.io/html/derangement-problem.html
@@ -983,6 +984,7 @@ https://dirtysalt.github.io/html/sfo-travel.html
 https://dirtysalt.github.io/html/shaodowsocks-under-kcptun.html
 https://dirtysalt.github.io/html/shoe-dog.html
 https://dirtysalt.github.io/html/short-termer-and-long-termer.html
+https://dirtysalt.github.io/html/showing-up-for-life.html
 https://dirtysalt.github.io/html/showstopper.html
 https://dirtysalt.github.io/html/sicp.html
 https://dirtysalt.github.io/html/silent-majority.html
