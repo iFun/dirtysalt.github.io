@@ -266,6 +266,7 @@ https://dirtysalt.github.io/html/distributed-operating-systems.html
 https://dirtysalt.github.io/html/distributed-system-reading.html
 https://dirtysalt.github.io/html/do-house-work-as-leisure.html
 https://dirtysalt.github.io/html/do-we-need-exercise.html
+https://dirtysalt.github.io/html/do-we-need-to-think-while-we-have-powerful-search-engine.html
 https://dirtysalt.github.io/html/do-you-think-you-have-gambling-problem.html
 https://dirtysalt.github.io/html/docker.html
 https://dirtysalt.github.io/html/dont-base-your-business-on-a-paid-app.html
@@ -1240,6 +1241,7 @@ https://dirtysalt.github.io/html/what-it-takes-to-run-stack-overflow.html
 https://dirtysalt.github.io/html/what-makes-a-great-software-engineer.html
 https://dirtysalt.github.io/html/what-more-8-bit-microcontrollers.html
 https://dirtysalt.github.io/html/what-the-dog-saw.html
+https://dirtysalt.github.io/html/what-we-gonna-do-when-parents-are-unreasoanble.html
 https://dirtysalt.github.io/html/what-we-talk-about-when-we-talk-about-running.html
 https://dirtysalt.github.io/html/what-would-it-take-to-prove-me-wrong.html
 https://dirtysalt.github.io/html/what-you-can-do-and-what-you-should-do.html
@@ -1252,6 +1254,7 @@ https://dirtysalt.github.io/html/why-cd-just-keeps-on-giving.html
 https://dirtysalt.github.io/html/why-chinese-people-anxious.html
 https://dirtysalt.github.io/html/why-did-so-many-startups-choose-nosql.html
 https://dirtysalt.github.io/html/why-google-stores-billions-of-lines-of-code-in-a-single-repository.html
+https://dirtysalt.github.io/html/why-heros-emerge-at-same-period.html
 https://dirtysalt.github.io/html/why-i-quit-google-to-work-for-myself.html
 https://dirtysalt.github.io/html/why-i-stopped-paying-attention-to-industry-news.html
 https://dirtysalt.github.io/html/why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity.html
