@@ -442,15 +442,18 @@
 - 201711 [[file:software-2.org][Software 2.0]] by Andrej Karpathy
 - 201711 [[file:getting-real-about-distributed-system-reliability.org][Getting Real About Distributed System Reliability]]
 - 201711 [[file:pypy-impl.org][PyPy实现方式]]
+- 201710 [[file:negative-feedback-and-trap-in-real-life.org][现实生活中的负反馈]]
 - 201710 [[file:few-tips-of-mongodb-best-practice.org][一些MongoDB的实践建议]]
 - 201710 [[file:mongodb34-perf-issue-checkpoint.org][升级到MongoDB 3.4出现的性能问题]]
 - 201710 [[file:make-startup-usb-stick-under-mac.org][在Mac下面制作USB启动盘]]
 - 201709 [[file:patch-oriented-software-development.org][补丁式的软件开发方法]]
 - 201709 [[file:how-to-build-your-personal-brand-as-a-new-developer.org][How to build your personal brand as a new developer]]
 - 201709 [[file:narrow-python-build.org][Narrow Python Build]]
+- 201709 [[file:lang-reflects-your-subconscious.org][语言文字反应你的潜意识]]
 - 201708 [[file:barely-friend-and-close-friend.org][朋友，益友，狐朋狗友]]
 - 201708 [[file:pain-think-and-change.org][痛苦，思考，改变]]
 - 201708 [[file:good-to-have-slack-time.org][珍惜空余时间]]
+- 201708 [[file:basic-cost-of-building-a-small-website.org][搭建一个小网站基本费用估算]]
 - 201708 [[file:the-feynman-technique-the-best-way-to-learn-anything.org][The Feynman Technique: The Best Way to Learn Anything]]
 - 201707 [[file:scaling-to-billions-on-top-of-digital-ocean.org][Scaling to Billions on Top of DigitalOcean]]
 - 201707 [[file:search-at-slack.org][Search at Slack]] Slack在搜索排序方面的工作
