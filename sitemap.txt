@@ -1060,6 +1060,7 @@ https://dirtysalt.github.io/html/t11-on-backpressure.html
 https://dirtysalt.github.io/html/tail-at-scale.html
 https://dirtysalt.github.io/html/take-wedding-photo.html
 https://dirtysalt.github.io/html/taking-php-seriously.html
+https://dirtysalt.github.io/html/tales-from-shakespeare.html
 https://dirtysalt.github.io/html/talk-with-lizhi-tech-team.html
 https://dirtysalt.github.io/html/talk-with-luoyan.html
 https://dirtysalt.github.io/html/talk-with-nenad.html
