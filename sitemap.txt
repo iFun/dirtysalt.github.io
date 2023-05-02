@@ -132,6 +132,7 @@ https://dirtysalt.github.io/html/boyer-moore-majority-vote-algorithm.html
 https://dirtysalt.github.io/html/bpf-performance-tools.html
 https://dirtysalt.github.io/html/brainfuck-jit-compiler.html
 https://dirtysalt.github.io/html/branchless-programming-in-cpp.html
+https://dirtysalt.github.io/html/break-it-and-absorb-everything-to-learn.html
 https://dirtysalt.github.io/html/bringing-spark-closer-to-bare-metal.html
 https://dirtysalt.github.io/html/build-nginx-from-source-on-ubuntu.html
 https://dirtysalt.github.io/html/build-system.html
@@ -211,6 +212,7 @@ https://dirtysalt.github.io/html/concurrency.html
 https://dirtysalt.github.io/html/confessions-of-an-advertising-man.html
 https://dirtysalt.github.io/html/config-cuda-env-on-linux.html
 https://dirtysalt.github.io/html/configure-topcoder-env.html
+https://dirtysalt.github.io/html/consultant-and-best-practice.html
 https://dirtysalt.github.io/html/continuation.html
 https://dirtysalt.github.io/html/convert-array-int64-to-int8.html
 https://dirtysalt.github.io/html/convict-conditioning.html
@@ -284,6 +286,7 @@ https://dirtysalt.github.io/html/earlybird-realtime-search-at-twitter.html
 https://dirtysalt.github.io/html/ebpf-rethinking-the-linux-kernel.html
 https://dirtysalt.github.io/html/effective-programming-more-than-writing-code.html
 https://dirtysalt.github.io/html/effective-scala.html
+https://dirtysalt.github.io/html/efficiency-is-a-fragile-game.html
 https://dirtysalt.github.io/html/efficient-bit-unpacking.html
 https://dirtysalt.github.io/html/efficiently-compiling-efficient-query-plans-for-modern-hardware.html
 https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-python.html
@@ -432,6 +435,7 @@ https://dirtysalt.github.io/html/how-the-economic-machine-works-by-ray-dalio.htm
 https://dirtysalt.github.io/html/how-to-apply-domain.html
 https://dirtysalt.github.io/html/how-to-be-a-programmer.html
 https://dirtysalt.github.io/html/how-to-beat-the-cap-theorem.html
+https://dirtysalt.github.io/html/how-to-build-behaviour.html
 https://dirtysalt.github.io/html/how-to-build-good-software.html
 https://dirtysalt.github.io/html/how-to-build-your-own-alpha-zero-ai.html
 https://dirtysalt.github.io/html/how-to-build-your-personal-brand-as-a-new-developer.html
@@ -502,6 +506,7 @@ https://dirtysalt.github.io/html/jobs.html
 https://dirtysalt.github.io/html/joe-duffy-software-leadership-series.html
 https://dirtysalt.github.io/html/jonathon-ive.html
 https://dirtysalt.github.io/html/journey-through-genius.html
+https://dirtysalt.github.io/html/just-pain-is-useless.html
 https://dirtysalt.github.io/html/jvm.html
 https://dirtysalt.github.io/html/kafka.html
 https://dirtysalt.github.io/html/kaggle-bike-sharing-demand.html
@@ -760,6 +765,7 @@ https://dirtysalt.github.io/html/monetdb-x100-hyper-pipelining-query-execution.h
 https://dirtysalt.github.io/html/money-doggy.html
 https://dirtysalt.github.io/html/mongodb.html
 https://dirtysalt.github.io/html/mongodb34-perf-issue-checkpoint.html
+https://dirtysalt.github.io/html/morality-of-surrogacy-and-what-we-concern.html
 https://dirtysalt.github.io/html/more-joel-on-software.html
 https://dirtysalt.github.io/html/morsel-driven-parallelism-framework.html
 https://dirtysalt.github.io/html/ms-interview-2.html
@@ -826,6 +832,7 @@ https://dirtysalt.github.io/html/on-working-remotely.html
 https://dirtysalt.github.io/html/one-hundred-years-of-solitude.html
 https://dirtysalt.github.io/html/only-the-paranoid-survive.html
 https://dirtysalt.github.io/html/open-life-the-philosophy-of-open-source.html
+https://dirtysalt.github.io/html/open-source-from-community-to-commercialization.html
 https://dirtysalt.github.io/html/openresty-best-practices-lua.html
 https://dirtysalt.github.io/html/opentsdb.html
 https://dirtysalt.github.io/html/oprofile.html
@@ -1009,10 +1016,12 @@ https://dirtysalt.github.io/html/so-good-they-can-not-ignore-you.html
 https://dirtysalt.github.io/html/socket-port-range-and-conn-limit.html
 https://dirtysalt.github.io/html/software-2.html
 https://dirtysalt.github.io/html/software-engineering-at-google.html
+https://dirtysalt.github.io/html/sold-my-soul-for-a-student-load.html
 https://dirtysalt.github.io/html/solid-state-revolution-in-depth-on-how-ssd-really-work.html
 https://dirtysalt.github.io/html/some-advice-from-jeff-bezos.html
 https://dirtysalt.github.io/html/some-non-casual-thoughts.html
 https://dirtysalt.github.io/html/some-thoughts-from-eval-and-apply.html
+https://dirtysalt.github.io/html/some-thoughts-on-open-source-product-market.html
 https://dirtysalt.github.io/html/sonos-streaming-basics.html
 https://dirtysalt.github.io/html/spam-from-apple.html
 https://dirtysalt.github.io/html/spanner.html
@@ -1226,6 +1235,7 @@ https://dirtysalt.github.io/html/what-does-it-take-to-make-google-work-at-scale.
 https://dirtysalt.github.io/html/what-every-eng-should-know-biggest-contributor-to-happiness.html
 https://dirtysalt.github.io/html/what-habits-make-a-programmer-great.html
 https://dirtysalt.github.io/html/what-happens-to-older-developers.html
+https://dirtysalt.github.io/html/what-is-addict-want-or-like.html
 https://dirtysalt.github.io/html/what-it-takes-to-run-stack-overflow.html
 https://dirtysalt.github.io/html/what-makes-a-great-software-engineer.html
 https://dirtysalt.github.io/html/what-more-8-bit-microcontrollers.html
@@ -1247,6 +1257,7 @@ https://dirtysalt.github.io/html/why-i-stopped-paying-attention-to-industry-news
 https://dirtysalt.github.io/html/why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity.html
 https://dirtysalt.github.io/html/why-lisp-failed.html
 https://dirtysalt.github.io/html/why-mit-stopped-teaching-SICP.html
+https://dirtysalt.github.io/html/why-no-good-news.html
 https://dirtysalt.github.io/html/why-not-raid0-in-hdfs.html
 https://dirtysalt.github.io/html/why-study-history.html
 https://dirtysalt.github.io/html/why-turing-is-master.html

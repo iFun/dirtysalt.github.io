@@ -133,6 +133,7 @@
 <url><loc>https://dirtysalt.github.io/html/bpf-performance-tools.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/brainfuck-jit-compiler.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/branchless-programming-in-cpp.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/break-it-and-absorb-everything-to-learn.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/bringing-spark-closer-to-bare-metal.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/build-nginx-from-source-on-ubuntu.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/build-system.html</loc></url>
@@ -212,6 +213,7 @@
 <url><loc>https://dirtysalt.github.io/html/confessions-of-an-advertising-man.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/config-cuda-env-on-linux.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/configure-topcoder-env.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/consultant-and-best-practice.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/continuation.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/convert-array-int64-to-int8.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/convict-conditioning.html</loc></url>
@@ -285,6 +287,7 @@
 <url><loc>https://dirtysalt.github.io/html/ebpf-rethinking-the-linux-kernel.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/effective-programming-more-than-writing-code.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/effective-scala.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/efficiency-is-a-fragile-game.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/efficient-bit-unpacking.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/efficiently-compiling-efficient-query-plans-for-modern-hardware.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-python.html</loc></url>
@@ -433,6 +436,7 @@
 <url><loc>https://dirtysalt.github.io/html/how-to-apply-domain.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/how-to-be-a-programmer.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/how-to-beat-the-cap-theorem.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/how-to-build-behaviour.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/how-to-build-good-software.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/how-to-build-your-own-alpha-zero-ai.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/how-to-build-your-personal-brand-as-a-new-developer.html</loc></url>
@@ -503,6 +507,7 @@
 <url><loc>https://dirtysalt.github.io/html/joe-duffy-software-leadership-series.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/jonathon-ive.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/journey-through-genius.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/just-pain-is-useless.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/jvm.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/kafka.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/kaggle-bike-sharing-demand.html</loc></url>
@@ -761,6 +766,7 @@
 <url><loc>https://dirtysalt.github.io/html/money-doggy.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/mongodb.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/mongodb34-perf-issue-checkpoint.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/morality-of-surrogacy-and-what-we-concern.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/more-joel-on-software.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/morsel-driven-parallelism-framework.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/ms-interview-2.html</loc></url>
@@ -827,6 +833,7 @@
 <url><loc>https://dirtysalt.github.io/html/one-hundred-years-of-solitude.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/only-the-paranoid-survive.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/open-life-the-philosophy-of-open-source.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/open-source-from-community-to-commercialization.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/openresty-best-practices-lua.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/opentsdb.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/oprofile.html</loc></url>
@@ -1010,10 +1017,12 @@
 <url><loc>https://dirtysalt.github.io/html/socket-port-range-and-conn-limit.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/software-2.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/software-engineering-at-google.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/sold-my-soul-for-a-student-load.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/solid-state-revolution-in-depth-on-how-ssd-really-work.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/some-advice-from-jeff-bezos.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/some-non-casual-thoughts.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/some-thoughts-from-eval-and-apply.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/some-thoughts-on-open-source-product-market.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/sonos-streaming-basics.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/spam-from-apple.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/spanner.html</loc></url>
@@ -1227,6 +1236,7 @@
 <url><loc>https://dirtysalt.github.io/html/what-every-eng-should-know-biggest-contributor-to-happiness.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/what-habits-make-a-programmer-great.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/what-happens-to-older-developers.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/what-is-addict-want-or-like.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/what-it-takes-to-run-stack-overflow.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/what-makes-a-great-software-engineer.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/what-more-8-bit-microcontrollers.html</loc></url>
@@ -1248,6 +1258,7 @@
 <url><loc>https://dirtysalt.github.io/html/why-i-work-remotely-hint-it-has-nothing-to-do-with-productivity.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/why-lisp-failed.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/why-mit-stopped-teaching-SICP.html</loc></url>
+<url><loc>https://dirtysalt.github.io/html/why-no-good-news.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/why-not-raid0-in-hdfs.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/why-study-history.html</loc></url>
 <url><loc>https://dirtysalt.github.io/html/why-turing-is-master.html</loc></url>
