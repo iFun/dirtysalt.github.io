@@ -97,6 +97,7 @@ https://dirtysalt.github.io/html/backblaze-storage-pod.html
 https://dirtysalt.github.io/html/baidu-bit-shanghai-route.html
 https://dirtysalt.github.io/html/barbarians-at-gateways.html
 https://dirtysalt.github.io/html/barely-friend-and-close-friend.html
+https://dirtysalt.github.io/html/basic-cost-of-building-a-small-website.html
 https://dirtysalt.github.io/html/basic-economics.html
 https://dirtysalt.github.io/html/bayesian-methods-for-hackers.html
 https://dirtysalt.github.io/html/bcc-tools-bpftrace.html
@@ -508,6 +509,7 @@ https://dirtysalt.github.io/html/klotski-or-sliding-puzzle-revised.html
 https://dirtysalt.github.io/html/klotski-solving.html
 https://dirtysalt.github.io/html/kylin.html
 https://dirtysalt.github.io/html/lang-detect-and-encoding-detect.html
+https://dirtysalt.github.io/html/lang-reflects-your-subconscious.html
 https://dirtysalt.github.io/html/large-scale-data-and-computation-chanllenges-and-opportunities.html
 https://dirtysalt.github.io/html/large-scale-deep-learning-for-intelligent-computer-systems.html
 https://dirtysalt.github.io/html/laws-of-performant-software.html
@@ -773,6 +775,7 @@ https://dirtysalt.github.io/html/mysterious-memcpy-assembly-code.html
 https://dirtysalt.github.io/html/nand2tetris-hardware-part.html
 https://dirtysalt.github.io/html/nand2tetris-software-part.html
 https://dirtysalt.github.io/html/narrow-python-build.html
+https://dirtysalt.github.io/html/negative-feedback-and-trap-in-real-life.html
 https://dirtysalt.github.io/html/netty.html
 https://dirtysalt.github.io/html/neural-networks-and-deep-learning.html
 https://dirtysalt.github.io/html/neuralnets.html
