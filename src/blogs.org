@@ -11,13 +11,17 @@
 - 202303 [[file:usa-trip-2023-mar.org][美国出差日记 - 3月]]
 - 202303 [[file:lzo-algorithm-and-codec.org][lzo压缩算法和codec]]
 - 202303 [[file:timezone-offset-is-not-fixed.org][时区偏移不是固定的]]
+- 202303 [[file:some-thoughts-on-open-source-product-market.org][基于开源项目构建产品的思考]]
+- 202303 [[file:open-source-from-community-to-commercialization.org][开源：从社区到商业化]]
 - 202302 [[file:usa-trip-2023-feb.org][美国出差日记 - 2月]]
 - 202302 [[file:skin-in-the-game-book.org][非对称风险(Skin in The Game)]] by NNT
+- 202302 [[file:how-to-build-behaviour.org][如何塑造他人行为]] by 《精英日课》
 - 202302 [[file:wangdefeng-lecture-on-wangyangming-philosophy-of-mind.org][【王德峰教授讲座】王阳明心学]]
 - 202302 [[file:about-network-latency-and-bandwidth.org][对于网络延迟和带宽的理解]]
 - 202302 [[file:about-storage-system-iops-and-performance.org][对于存储系统IOPS和性能的理解]]
 - 202302 [[file:numbers-everyone-should-know.org][Numbers Everyone Should Know]]
 - 202302 [[file:what-your-computer-does-while-you-wait.org][What Your Computer Does While You Wait]]
+- 202302 [[file:efficiency-is-a-fragile-game.org][效率是一种脆弱游戏]] by 《精英日课》
 - 202301 [[file:use-java-thread-sanizitier-to-spot-data-race.org][使用Java ThreadSanitizer发现data race]]
 - 202301 [[file:the-job-work-and-its-future-in-a-time-of-radical-change.org][工作：巨变时代的现状、挑战与未来（The Job: Work and Its Future in a Time of Radical Change）]]
 - 202301 [[file:management-behaviour-in-chinese-way.org][中国式管理行为 - 结语]] 曾仕强
@@ -220,6 +224,7 @@
 - 202102 [[file:the-simplest-things-in-investment.org][投资中最简单的事]] by 邱国鹭
 - 202102 [[file:perf-analysis-and-tuning-on-modern-cpus.org][Performance Analysis and Tuning on Modern CPUs]]
 - 202102 [[file:doris-hash-index.org][Doris Hash Index 分析]]
+- 202102 [[file:sold-my-soul-for-a-student-load.org][出卖了我的灵魂，换得了学生贷款]]
 - 202102 [[file:few-simd-code-snippets.org][SIMD代码片段分析]]
 - 202101 [[file:beautiful-code.org][代码之美(Beautiful Code)]] by Grey Wilson
 - 202101 [[file:few-blogs-of-elite-course.org][近期《精英日课》的几篇文章]] 关于苦，上瘾，代孕
@@ -236,6 +241,10 @@
 - 202101 [[file:a-man-for-all-markets.org][战胜一切市场的人(A Man for All Markest)]] 爱德华夏普自传
 - 202101 [[file:from-running-to-life.org][从跑步想到生活]]
 - 202101 [[file:firstday-at-china-microsoft.org][微软中国入职当天]]
+- 202101 [[file:why-no-good-news.org][为什么新闻没有好消息？]] 《精英日课》
+- 202101 [[file:what-is-addict-want-or-like.org][“想要”还是“喜欢”：什么是上瘾]] 《精英日课》
+- 202101 [[file:just-pain-is-useless.org][“苦”没有价值]] 《精英日课》
+- 202101 [[file:morality-of-surrogacy-and-what-we-concern.org][代孕的伦理：我们担心的到底是什么？]] 《精英日课》
 
 ** 2020
 - 202012 [[file:leaving-from-china-amazon.org][从国内亚马逊离职]]
@@ -250,6 +259,7 @@
 - 202012 [[file:basic-economics.org][经济学的思维方式(Basic Economics : A Common Sense Guide to the Economy)]] by 托马斯索维尔
 - 202012 [[file:the-passionate-programmer.org][我编程，我快乐(The Passionate Programmer)]] by Chad Fowler
 - 202012 [[file:programmer-self-cultivation.org][程序员的自我修养]] by 陈逸鹤
+- 202011 [[file:consultant-and-best-practice.org][咨询行业和Best Practice]]
 - 202011 [[file:love-money-and-parenting.org][爱，金钱和孩子（Love, Money, and Parenting）]]
 - 202011 [[file:forces-of-habit.org][上瘾五百年(Forces of Habit)]] by 戴维·考特莱特
 - 202011 [[file:a-mathematician-plays-the-stock-market.org][数学家妙谈股市(A Mathematician Plays the Stock Market)]] by John Allen Paulos
@@ -298,6 +308,7 @@
 - 202001 [[file:serialization-and-design-tradeoff.org][序列化和设计权衡]] 摘自 [[http://zguide.zeromq.org/page:all][ZeroMQ Guide]]
 - 202001 [[file:throttle-in-python.org][Throttle的Python实现]] (aka. rate-limiter)
 - 202001 [[file:lottery-and-exp-dist.org][10 连抽保底的概率模型]] 问题来自 [[https://blog.codingnow.com/2017/01/exponential_distribution.html][云风的 BLOG: 10 连抽保底的概率模型]]
+- 202001 [[file:break-it-and-absorb-everything-to-learn.org][各个击破，取众家之精华]]
 
 ** 2019
 - 201912 [[file:xor-doubly-linked-list.org][XOR双向链表]]
