@@ -840,21 +840,6 @@ https://weibo.com/3235040884/I60C7D9cM
 弟弟参加伯克利的Math Circle。老师应该是伯克利数学系来自俄国的研究生。今天周末在家里辅导他做老师留的家庭作业。其中一道题是我最近见到过的最clever的代数题。只是给小学二年级的学生好像难了一点：“A store sells letter magnets. The same letters cost the same, and different letters might cost not the same. The word ONE costs 1 dollar, the word TWO costs 2 dollars, and the word ELEVEN costs 11 dollars. What is the cost of the word TWELVE?” 代数问题、英文文字、一语双关，无不巧到极点。这个例子也足以说明，明白、明白自己不明白、不明白自己不明白的巨大差别。还有出题老师那种让不明白的自以为明白的居心，很值得玩味。另外，这道题可以考考号称要参加高考的人工智能计算机。当然要求写出中间结果。
 
 -----
-为了进一步理解模型，我们考虑一个认知上的金字塔。
-
-[[../images/from-data-to-wisdom-pyramid.png]]
-
-金字塔的最底层是数据。数据代表各种事件和现象，比如你出门看见下雨了，这就是一个数据。数据本身没有组织和结构，也没有意义。数据只能告诉你发生了什么，并不能让你理解为什么会发生。
-
-数据的上一层是信息。信息是结构化的数据。你看见下雨只是数据，但如果有人统计哈尔滨市在2019年7月份这一个月总共下了多少雨，这就不是简单的数据了，而是信息。信息是很有用的，可以用来做分析和解读。
-
-信息再往上一层是知识。知识能把信息组织起来，告诉我们事件之间的逻辑联系。有云导致下雨，因为下雨所以天气变得凉快，这都是知识。成语典故和思维套路都是知识。模型，则可以说是一种高级知识，能解释一些事情，还能做预测。
-
-认知金字塔的最上一层，是智慧。智慧是识别和选择相关知识的能力。
-
-你可能掌握很多模型，但是具体到这个问题到底该用哪个模型，敢不敢用这个模型，则是智慧。
-
------
 老地主死前问他儿子：”猪抱怨饲料差，牛抱怨活太重，鸡抱怨鸡窝太脏，怎么办？”
 
 他儿子说: ”喂好饲料，活轻点，清理鸡窝。“
@@ -905,9 +890,9 @@ https://weibo.com/6375760521/HuJ2BzAa3
 Awesome, interesting和smart就不要来了，在加州马上要不算职场夸人的词了
 
 -----
-https://github.com/oldratlee/translations/blob/master/codehaus-manifesto/README.md
+*Codehaus Manifesto*
 
-Codehaus Manifesto
+https://github.com/oldratlee/translations/blob/master/codehaus-manifesto/README.md
 
 - The Codehaus recognizes that some committers, based upon metrics, longevity and appointed management, have greater say on a project than others. （谁贡献的多，谁说了算）
 - The Codehaus is a place where people are encouraged to get on with code rather than tie their projects up with bureaucracy. （代码甚于流程）

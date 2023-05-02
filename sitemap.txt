@@ -235,6 +235,7 @@ https://dirtysalt.github.io/html/cv.html
 https://dirtysalt.github.io/html/dapper.html
 https://dirtysalt.github.io/html/dark-time.html
 https://dirtysalt.github.io/html/data-center-computers-modern-challenges-in-cpu-design.html
+https://dirtysalt.github.io/html/data-info-knowledge-and-wisdom.html
 https://dirtysalt.github.io/html/data-infra-at-airbnb.html
 https://dirtysalt.github.io/html/data-processing-at-the-speed-of-100gbps-using-apache-crail.html
 https://dirtysalt.github.io/html/data-structure-size-and-cache-line-accesses.html
