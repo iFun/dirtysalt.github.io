@@ -4,6 +4,7 @@
 [[file:index.org][全部文件索引]]
 
 ** 2023
+- 202305 [[file:enlightment-of-civilization.org][文明之光]] by 吴军
 - 202304 [[file:usa-trip-2023-apr.org][美国出差日记 - 4月]]
 - 202304 [[file:an-adaptive-io-tasks-implementation-based-on-speculation.org][一种基于探测的自适应IO并发实现]]
 - 202303 [[file:usa-trip-2023-mar.org][美国出差日记 - 3月]]
