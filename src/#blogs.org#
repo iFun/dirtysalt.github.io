@@ -115,7 +115,7 @@
 - 202202 [[file:chn-24-season-times.org][中国24节气]]
 - 202202 [[file:install-compiled-bcc-bpftrace.org][编译和安装bcc/bpftrace]]
 - 202202 [[file:1024-cores-lock-free-section.org][1024cores.net lock-free section]]
-- 202202 [[file:wanming-war-declaration.org][晚明 - 檄文]]
+- 202202 [[file:wanming-war-declaration.org][晚明 - 檄文]] （附《出军歌》）
 - 202202 [[file:diff-lock-free-and-wait-free.org][Lock-Based/Lock-Free/Wait-Free之间区别]]
 - 202202 [[file:presto-sql-on-everything.org][Presto: SQL on Everything]] @ 2019
 - 202202 [[file:apache-calcite-paper.org][Apache Calcite: A Foundational Framework for Optimized Query Processing Over Heterogeneous Data Sources]] @ 2018
@@ -323,6 +323,7 @@
 - 201911 [[file:socket-port-range-and-conn-limit.org][socket的端口范围和链接数量限制]]
 - 201911 [[file:math-mul-div-sqrt-impl.org][乘法，除法，开方的简单实现]]
 - 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
+- 201910 [[file:did-you-ever-try-your-best.org][你尽力了吗？]]
 - 201909 [[file:little-prolog-code.org][一些Prolog代码]]
 - 201909 [[file:true-quality-of-software.org][软件的真实质量]] by Joel Spolsky
 - 201909 [[file:how-to-build-good-software.org][How To Build Good Software]] by [[https://www.linkedin.com/in/hongyi-li-16183230/][Li HongYi]] 李鸿毅，李显龙的儿子

@@ -115,7 +115,7 @@
 - 202202 [[file:chn-24-season-times.org][中国24节气]]
 - 202202 [[file:install-compiled-bcc-bpftrace.org][编译和安装bcc/bpftrace]]
 - 202202 [[file:1024-cores-lock-free-section.org][1024cores.net lock-free section]]
-- 202202 [[file:wanming-war-declaration.org][晚明 - 檄文]]
+- 202202 [[file:wanming-war-declaration.org][晚明 - 檄文]] （附《出军歌》）
 - 202202 [[file:diff-lock-free-and-wait-free.org][Lock-Based/Lock-Free/Wait-Free之间区别]]
 - 202202 [[file:presto-sql-on-everything.org][Presto: SQL on Everything]] @ 2019
 - 202202 [[file:apache-calcite-paper.org][Apache Calcite: A Foundational Framework for Optimized Query Processing Over Heterogeneous Data Sources]] @ 2018
@@ -124,6 +124,10 @@
 - 202202 [[file:cpp-atomics-basic-to-advanced.org][CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced. What do they really do?”]] by Fedor Pikus
 - 202201 [[file:test-aliyun-network-capacity.org][阿里云带宽测试]]
 - 202201 [[file:thriving-in-crowded-and-changing-world-cpp.org][现代C++白皮书(C++ 2006-2020)]]
+- 202201 [[file:do-we-need-to-think-while-we-have-powerful-search-engine.org][搜索引擎很强大，还需要自己思考答案吗？]] 《硅谷来信》
+- 202201 [[file:what-we-gonna-do-when-parents-are-unreasoanble.org][父母没有办法讲通道理，应该怎么办？]] 《硅谷来信》
+- 202201 [[file:why-heros-emerge-at-same-period.org][为什么某个领域的英雄人物总是在某一个时期一起涌现呢？]] 《精英日课》
+- 202201 [[file:data-info-knowledge-and-wisdom.org][数据/信息/知识/智慧]] 《精英日课》
 
 ** 2021
 - 202112 [[file:apps-survive-on-bad-alloc.org][Examining applications that do not terminate on std::bad_alloc]]
