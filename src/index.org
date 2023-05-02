@@ -213,7 +213,7 @@
 - [[file:yahoo-and-freebsd.org][Yahoo! and FreeBSD]]
 - [[file:linux-kernel-development.org][Linux内核设计与实现(Linux Kernel Development)]] by Robert Love
 - [[file:earlybird-realtime-search-at-twitter.org][Earlybird: Real-Time Search at Twitter]] twitter实时检索系统
-- [[http://www.amazon.com/UNIX-Systems-Modern-Architectures-Multiprocessing/dp/0201633388][现代体系结构上的UNIX系统]] [[http://book.douban.com/subject/1229889/][(内核程序员的SMP和Caching技术)]]
+- [[file:unix-systems-for-modern-arch-smp-and-caching-for-kernel-programmers.org][现代体系结构上的UNIX系统]] (内核程序员的SMP和Caching技术)
 - [[http://warsus.github.io/lions-/][第六版莱昂斯 Unix 操作系统评述(A COMMENTARY ON THE SIXTH EDITION UNIX OPERATING SYSTEM)]]
 - [[file:tcp-on-linux.org][TCP Implementation in Linux: A Brief Tutorial]]
 - [[file:simd.org][SIMD]] Single Instruction Muitple Data 单指令多数据
@@ -730,7 +730,9 @@
   - [[file:maven.org][Maven]] 用来管理Java项目
   - [[file:jni.org][JNI]] Java Native Interface
   - [[file:jvm.org][JVM]] Java Virtual Machine
+  - 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
   - 202301 [[file:best-practices-for-using-the-jni.org][Best practices for using the Java Native Interface]]
+
 
 - [[file:clojure.org][Clojure]]
 - [[file:python.org][Python]]

@@ -198,6 +198,7 @@
 - 202104 [[file:cmudb-hash-index.org][CMU DB: Hash Index]]
 - 202104 [[file:firstday-ddb.org][DDB入职当天]]
 - 202104 [[file:c-switch-table-in-asm.org][C语言switch表格跳转的汇编实现]]
+- 202104 [[file:gcc-10-optimzation-bug-on-type-based-aliasing.org][GCC-10.3.0优化器在处理类型强转时的bug]]
 - 202104 [[file:fast-inverse-sqrt-quake.org][快速平方根倒数(Fast Inverse Square Root)]]
 - 202104 [[file:cmudb-buffer-pools.org][CMU DB: Buffer Pools]]
 - 202103 [[file:cmudb-query-planning.org][CMU DB: Query Planning]]
@@ -234,8 +235,10 @@
 - 202101 [[file:short-termer-and-long-termer.org][短期主义者和长期主义者]] 万维刚《精英日课》
 - 202101 [[file:a-man-for-all-markets.org][战胜一切市场的人(A Man for All Markest)]] 爱德华夏普自传
 - 202101 [[file:from-running-to-life.org][从跑步想到生活]]
+- 202101 [[file:firstday-at-china-microsoft.org][微软中国入职当天]]
 
 ** 2020
+- 202012 [[file:leaving-from-china-amazon.org][从国内亚马逊离职]]
 - 202012 [[file:msr-farm.org][MSR FaRM: distributed transactions with consistency, availability, and performance]] @ 2015
 - 202012 [[file:amazon-aurora-paper.org][Amazon Aurora: Design Considerations for High Throughput Cloud-Native Relational Databases]] @ 2017
 - 202012 [[file:writing-a-simple-os-from-scratch.org][Writing a simple os from scratch]] 看了个大概没有上手
@@ -284,6 +287,7 @@
 - 202002 [[file:rolling-hash-in-two-ways.org][rolling hashsh的两种实现]]
 - 202002 [[file:extended-gcd.org][使用扩展欧几里得算法求解整数二元一次不定方程]] 经典算法
 - 202002 [[file:some-thoughts-from-eval-and-apply.org][来自eval/apply的启发]]
+- 202002 [[file:balance-of-solving-problem-and-learn-knowledge.org][解决问题和学习底层知识的平衡]]
 - 202001 [[file:a-guide-to-making-your-science-matter.org][A Guide to Making Your Science Matter]]
 - 202001 [[file:a-better-way-to-learn-math.org][一种更好的学习数学的方式]]
 - 202001 [[file:regexp-in-python.org][正则表达式的Python实现]]
@@ -303,6 +307,7 @@
 - 201911 [[file:performance-degradation-by-denormal-floating-point.org][非规格浮点数带来的性能下降]] and [[https://www.toutiao.com/a6763437360362291723][一个有趣的实验，用0.1f替换0，性能提升7倍]]
 - 201911 [[file:socket-port-range-and-conn-limit.org][socket的端口范围和链接数量限制]]
 - 201911 [[file:math-mul-div-sqrt-impl.org][乘法，除法，开方的简单实现]]
+- 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
 - 201909 [[file:little-prolog-code.org][一些Prolog代码]]
 - 201909 [[file:true-quality-of-software.org][软件的真实质量]] by Joel Spolsky
 - 201909 [[file:how-to-build-good-software.org][How To Build Good Software]] by [[https://www.linkedin.com/in/hongyi-li-16183230/][Li HongYi]] 李鸿毅，李显龙的儿子

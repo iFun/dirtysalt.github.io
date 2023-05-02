@@ -1,1 +1,5 @@
 #+title: sysperf
+
+** Not all CPU Operations are created equal
+
+[[../images/not-all-cpu-ops-are-created-equal.jpg]]
