@@ -15,6 +15,7 @@
 - [[file:great-mathematicians.org][大数学家]] by 陈诗谷 / 葛孟曾
 - [[file:journey-through-genius.org][天才引导的历程(Journey through Genius)]] by William Dunham
 - [[file:six-easy-pieces.org][费曼讲物理-入门(Six Easy Pieces)]] by Richard P. Feynman
+- 201906 [[file:showing-up-for-life.org][盖茨是这样培养的]]
 - 202012 [[file:what-we-talk-about-when-we-talk-about-running.org][当我谈跑步时我谈些什么]] by 村上春树
 - 202012 [[file:claude-shannon-autobiography-a-mind-at-play.org][香农传(A Mind at Play)]]
 - 202012 [[file:rms-autobiography-free-as-in-freedom.org][若为自由故(Free as in Freedom)]] RMS自传
