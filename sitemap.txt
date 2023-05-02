@@ -287,6 +287,7 @@ https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-pyth
 https://dirtysalt.github.io/html/elastic-search.html
 https://dirtysalt.github.io/html/employee-equity.html
 https://dirtysalt.github.io/html/engineering-management.html
+https://dirtysalt.github.io/html/enlightment-of-civilization.html
 https://dirtysalt.github.io/html/equipped-with-ssd.html
 https://dirtysalt.github.io/html/erlang-prog-lang-book.html
 https://dirtysalt.github.io/html/erlang.html
