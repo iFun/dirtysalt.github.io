@@ -1195,6 +1195,7 @@ https://dirtysalt.github.io/html/tinylfu-highly-efficient-cache-admission-policy
 https://dirtysalt.github.io/html/tips-for-optimizing-c-cpp-code.html
 https://dirtysalt.github.io/html/tips-for-work-life-balance.html
 https://dirtysalt.github.io/html/to-death.html
+https://dirtysalt.github.io/html/tombkeeper-on-career.html
 https://dirtysalt.github.io/html/tool-is-to-free-people.html
 https://dirtysalt.github.io/html/tools-of-titans.html
 https://dirtysalt.github.io/html/top-10-things-that-makes-you-a-good-programmer.html
