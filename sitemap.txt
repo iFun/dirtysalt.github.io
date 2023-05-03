@@ -258,6 +258,7 @@ https://dirtysalt.github.io/html/design-reading.html
 https://dirtysalt.github.io/html/designing-userspace-diskio-scheduler-scylladb-example.html
 https://dirtysalt.github.io/html/designs-lessons-and-advice-from-building-large-distributed-systems.html
 https://dirtysalt.github.io/html/developers-who-can-build-things-from-scratch.html
+https://dirtysalt.github.io/html/did-you-ever-try-your-best.html
 https://dirtysalt.github.io/html/diff-lock-free-and-wait-free.html
 https://dirtysalt.github.io/html/difference-between-poor-rich-on-zhihu.html
 https://dirtysalt.github.io/html/discussion-on-rs.html
