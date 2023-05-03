@@ -1,6 +1,17 @@
 #+title: Paste
 
 ----------
+*为什么要消灭中产阶级-江南愤青*
+
+[[../images/why-to-eliminate-middle-class.png]]
+
+
+----------
+*我对投资的理解-江南愤青*
+
+[[../images/my-thoughts-on-investment.png]]
+
+----------
 *当心社会矛盾带来的暴力 - 江南愤青*
 
 刚发的那段话，一堆人来问我说:江南，你每天在微博朋友圈里骂人，是不是在线下也这么骂人么？！我说，怎么会，我又不是傻逼，线下骂人不被打死才怪。我线下特别温和低调，还很腼腆，不打架，不骂人，不喝酒，不抽烟。绝对社会主义四好青年
@@ -2380,7 +2391,7 @@ System design is that whatever solution you come up with during the interview is
 
 [[../images/physicist-party.jpg]]
 
-update@201509: 海森堡居然是...老白:0
+update@201509: 海森堡被改成了老白
 
 -----
 「我们这一代最聪明的人竟然都在这里思考着怎样让人们去大量的点击广告。」By Jeff Hammerbacher.
@@ -2388,7 +2399,8 @@ update@201509: 海森堡居然是...老白:0
 让人们点击广告比让机器点击广告有趣得多：前者是艺术，后者是技术。By Hai Fang
 
 ----------
-独立的6个策略:
+*独立的6个策略*
+
 1. 上大学尽量选择不在家所在的省市，
 2. 坚持自己选择的学校和专业，不折不挠地与父母坚持，
 3. 大学时代多实习和社会实践，建立自己独立的社会关系，
@@ -2402,9 +2414,9 @@ update@201509: 海森堡居然是...老白:0
 以上所言对刚毕业的应届生有一定的参考意义。但是，如果你真是韩信，那么先向汉王要个大将军的待遇也是必须的。
 
 -----
-Bre Pettis | I Make Things - Bre Pettis Blog - The Cult of Done Manifesto : http://www.brepettis.com/blog/2009/3/3/the-cult-of-done-manifesto.html
+*The Cult of Done Manifesto*
 
-The Cult of Done Manifesto
+http://www.brepettis.com/blog/2009/3/3/the-cult-of-done-manifesto.html
 
 - There are three states of being. Not knowing, action and completion.
 - Accept that everything is a draft. It helps to get it done.
@@ -2469,7 +2481,7 @@ From this experience,I learned about the importance of being endorsed by an infl
 领悟：真正的友谊，不是花言巧语，而是关键时候拉你的那只手。那些整日围在你身边，让你有些许小欢喜的朋友，不一定是真正的朋友。而那些看似远离，实际上时刻关注着你的人，在你快乐的时候，不去奉承你；你在你需要的时候，默默为你做事的人，才是真正的朋友
 
 -----
-眼见他起高楼，眼见他宴宾客，眼见他楼将塌
+眼见他起高楼，眼见他宴宾客，眼见他楼坍塌
 
 -----
 If you can't explain it simply, you don't understand it well enough. - Albert Einstein
@@ -2496,7 +2508,7 @@ If you can't explain it simply, you don't understand it well enough. - Albert Ei
 你想的越多，遇到的麻烦就会越多；什么都不想，反倒一点麻烦没有。你怕的越多，欺负你的人就越多；什么都不怕了，反倒没人敢欺负你。这世界就这样，你人品好，别人就来占你的便宜。你横一点，反倒是都来讨好你。别一味地退让，当你受到委屈时，要勇敢地说No！
 
 -----
-A君和B君的故事
+*A君和B君的故事*
 
 https://github.com/lifesinger/lifesinger.github.com/issues/107
 
@@ -2539,7 +2551,7 @@ B君还在老公司，依旧风起云涌、惊心动魄地做着各种项目，�
 我们每个人几乎都在说不快乐的事，事业成功的说工作压力大，工作清闲的说这行没前途，没成家的说遇不到适合的人，遇到的却说不合适。幸福像足球一样踢来踢去，烦恼像奖杯一样不可撒手。其实我们拥有的才是自己的幸福，争取的既是希望，失去的只是记忆，而快乐是源自内心...
 
 -----
-温柔对待亲爱的人
+*温柔对待亲爱的人*
 
 对待家人，我们习惯成自然地不懂礼貌，不会温柔，不是大呼小叫，就是懒得搭理。因为太过熟悉了，而不知珍惜。“你快点行不行！？大男人这么会磨蹭，像个老婆子！”
 
@@ -2558,7 +2570,8 @@ B君还在老公司，依旧风起云涌、惊心动魄地做着各种项目，�
 与家人的关系，是这世上最该珍惜的情感！许多人却忽略了。
 
 -----
-Google给毕业生的忠告
+*Google给毕业生的忠告*
+
 1. 住在公司附近，准备随时去公司；
 2. 了解产品的每一个细节，力求完美；
 3. 强化说服力，培养气场；
@@ -2664,7 +2677,7 @@ Google给毕业生的忠告
 【关键人】副总准备跳槽到竞争对手那，他掌握大量客户资源。老板得知后，马上带二十万给他老婆，强调这钱是给她个人的，不会告诉副总，并表示不希望副总跳槽。结果，副总一直干到现在--启示：找对人包括找对直接关键人和间接关键人，间接关键人是能影响直接关键人的人，更关键！
 
 -----
-本福德定律(Benford’s Law)
+*本福德定律(Benford’s Law)*
 
 Pick a random financial transaction from the ledger of a typical business and there is about a 30% chance that the first non-zero digit of the amount of money involved is a 1. This counter-intuitive fact is a result of Benford’s Law, discovered by astronomer Simon Newcomb in the late 1800′s and rediscovered by physicist Frank Benford in the early 1900′s. They found that real world data are not evenly distributed. Instead, given a random number related to some natural or social phenomenon satisfying certain conditions, the probability that the first non-zero digit of the number is D is log10(1 + 1/D).
 
@@ -2675,6 +2688,8 @@ Increasingly, financial auditors are using Benford’s Law to detect possible fr
 使用上面本福德定律(Benford’s Law)我们就可以检测一些可能的欺诈。给定一个公司关于金融交易记录，如果交易记录的涉及金额第一位非零数字不满足本福德定律(Benford’s Law)的话，那么很可能说明记录中存在欺诈而值得进一步的调查。
 
 -----
+*Never to be a in-house programmer*
+
 毕业以后，Joel先在微软公司干了一段日子，然后回到纽约，进入维亚康母公司[Viacom]，为这家巨型的娱乐传播公司编写软件，成为IT部门里一个程序员[in-house programmer]。后来，Joel回忆起来，认为这是他一生中最痛苦的日子，并且劝告计算机系的学生尽可能不要去做”in-house programmer”。原因有三个:
 1. 首先，你永远没有办法正确地编写软件，你不得不用最方便的方法编写软件。因为软件支出非常高昂，所以公司会要求尽可能节省成本，你不可能试用新技术，只能使用现有的最成熟、最保守的技术。
 2. 其次，你没有办法将一个项目做到尽善尽美。一旦程序可以正常运行，你的工作也就结束了，可以接下去干公司的下一个项目了。你的作用是解决问题，而不是将软件写得尽可能好。如果你是在一个专业的技术性公司，比如Google或Facebook，情况就完全不一样，你的软件写得越好，公司就会越成功，所以公司会支持你在一个项目上不断做下去。
@@ -2682,21 +2697,21 @@ Increasingly, financial auditors are using Benford’s Law to detect possible fr
 不幸的是，80%的程序员属于这一类，年复一年，很多人的生命就是这样被耗干的。[it’s frightening because this is what probably 80% of programming jobs are like, and if you’re not very, very careful when you graduate, you might find yourself working on in-house software, by accident, and let me tell you, it can drain the life out of you...]
 
 -----
-世界上最难听的音乐
+*世界上最难听的音乐*
 
 http://science.solidot.org/article.pl?sid=11/11/07/1010207
 
 Scott Rickard尝试了音乐家从未尝试过的事情--谱写[[http://tedxtalks.ted.com/video/TEDxMIAMI-Scott-Rickard-The-Wor][世界最难听的音乐]]。 Scott Rickard 在MIT获得数学、计算机科学和电机工程学位，在普林斯顿大学获得计算数学的硕士和博士学位。他在TEDxMIA大会上讨论了创造最丑音乐背后的数学和科学原理，他利用了法国数学家伽罗瓦（Évariste Galois）的数学理论创造无模式的声纳响声，将响声映射为钢琴上的音符，然后用无节奏的哥隆尺演奏。
 
 -----
-世界上最轻松的音乐
+*世界上最轻松的音乐*
 
 http://science.solidot.org/article.pl?sid=11/10/19/0323218
 
 知名音乐治疗师Lyz Cooper和曼切斯特乐队Marconi Union联合发布了号称有史以来最放松的轻音乐。 他们声称，八分钟长的乐曲“[[http://soundcloud.com/justmusiclabel/marconi-union-weightless/s-kttxT#play][ Weightless]] ”镇静效果不是主观想象，而是基于科学实证。音乐被发现能让脑电波和心率与节奏同步，降低血压和压力荷尔蒙皮质醇的水平。科学家给40名妇女播放了各种轻音乐，显示Weightless放松的效率比恩雅(Enya)、爱黛儿（Adele）、莫扎特和酷玩乐队（Coldplay）的歌曲高出11%。音乐能诱导睡眠，司机已经被警告在驾驶时不要听该乐曲。
 
 -----
-美国优秀学生的五大特点
+*美国优秀学生的五大特点*
 
 美国波士顿大学青少年教育专家曾考察了伊里诺依州81名优秀学生的生活和学习，并采访了他们的家长，在最近发表的一份研究报告中，专家们总结出了这些学生的五大特点:
 
@@ -2719,7 +2734,7 @@ HP的主机首先到达温度的临界值，自动关机，耗电量下降，UPS
 火车上教授与农夫相对而坐。教授说：我出一道题你若不知，给我五元；你出一题，我若不知，给你五百元，如何？农夫同意。教授：月亮距地球多远？农夫摇头递给教授五元钱。农夫问：上山三条腿下山四条腿，什么动物？教授苦思无解给五百元。农夫收钱欲睡觉。教授追问：啥动物？农夫递给教授五块遂去睡觉。
 
 -----
-关于狮子管理狼群的方法
+*关于狮子管理狼群的方法*
 
 狮子管理狼群，这是一则笑话，一则寓言，但也是一则经典的团队管理案例。这个故事虽然很简短，但可以从中汲取很多价值的管理方法论，比如绩效工资、末位淘汰法、竞争上岗等，不愧是经营管理中的经典案例。
 
@@ -2734,7 +2749,7 @@ HP的主机首先到达温度的临界值，自动关机，耗电量下降，UPS
 【最后一天 和谐社会】 最后一天狮子把肉全占了，然后让狼去吃草。因为之前的竞争，狼群已经无力再战了。最后豹子钦佩的问狮子，这是什么办法? 狮子微微一笑，听说过和谐社会吗?
 
 -----
-如何让孩子学会接受批评
+*如何让孩子学会接受批评*
 
 和许多成年人一样，孩子们往往也喜欢听表扬而反感批评。法国心理学家高顿教授通过一项专题研究证实，那些难以接受批评的孩子长大后，也大多会对批评持“避而远之”或干脆“拒之门外”的态度。由此看来，让孩子在幼儿时代就学会接受批评无论对一个人完整人格的塑造，还是对促成其事业的成功，都具有相当积极的意义。那么，年轻的爸爸妈妈们该如何让孩子学会接受批评呢？法国的一些儿童教育专家为此提出以下建议：
 - 教育孩子不必对他人的批评大惊小怪。教育孩子，当然应该坚持表扬为主，但不妨在孩子呀呀学语或学步时，就有意识地让孩子既听到正面的肯定，也听到反面的批评。此时，须注意对幼儿的批评一定要语气温和，分析中肯，且以更多的表扬为前提，如：宝宝学说“喝水”很清楚，但学说“吃饭”还不清楚时，妈妈可以说：“你说的话不够清楚，再说一遍，好吗？”或“宝宝昨天学走路一点不怕累，怎么今天就怕累了？”有意识地早早“引进”批评可以帮他下意识体会到：批评和表扬同样常见！事实上，在幼儿时期就能适应批评的孩子，长大后往往也较能适应社会，其中也包括拥有正确对待来自他人的批评乃至非议的平和心态，以及较强的承受挫折能力。
