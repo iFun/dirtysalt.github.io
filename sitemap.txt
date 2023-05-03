@@ -35,6 +35,7 @@ https://dirtysalt.github.io/html/a-star-to-find-shortest-path.html
 https://dirtysalt.github.io/html/a-tour-inside-cloudflare-latest-generation-servers.html
 https://dirtysalt.github.io/html/a-tour-of-machine-learning-algorithms.html
 https://dirtysalt.github.io/html/a-typical-data-processing-system.html
+https://dirtysalt.github.io/html/a-way-to-learn-history.html
 https://dirtysalt.github.io/html/a-word-on-scalability.html
 https://dirtysalt.github.io/html/a-year-in-tokyo.html
 https://dirtysalt.github.io/html/abandoned-probabilistic-option.html
@@ -81,6 +82,7 @@ https://dirtysalt.github.io/html/apue-v2.html
 https://dirtysalt.github.io/html/arch-of-dbms.html
 https://dirtysalt.github.io/html/area-of-triangle.html
 https://dirtysalt.github.io/html/as-a-software-engineer-why-did-you-receive-a-promotion.html
+https://dirtysalt.github.io/html/ascii-hex-codes.html
 https://dirtysalt.github.io/html/atlassian-user-onboarding-magic.html
 https://dirtysalt.github.io/html/authority-and-merit.html
 https://dirtysalt.github.io/html/automate-to-save-mental-energy-not-time.html
@@ -91,6 +93,7 @@ https://dirtysalt.github.io/html/avoiding-burnout.html
 https://dirtysalt.github.io/html/aws-ec2-instances.html
 https://dirtysalt.github.io/html/aws-overview.html
 https://dirtysalt.github.io/html/aws-products.html
+https://dirtysalt.github.io/html/aws-region-code-explain.html
 https://dirtysalt.github.io/html/baby-sleep-training.html
 https://dirtysalt.github.io/html/back-fuzhou-take-care-aunt.html
 https://dirtysalt.github.io/html/backblaze-storage-pod.html
@@ -303,6 +306,7 @@ https://dirtysalt.github.io/html/erlang.html
 https://dirtysalt.github.io/html/etsy-activity-feeds-architecture.html
 https://dirtysalt.github.io/html/euler-and-fermat-little-theorem.html
 https://dirtysalt.github.io/html/eureka-on-career.html
+https://dirtysalt.github.io/html/experience-of-research-from-outsider.html
 https://dirtysalt.github.io/html/experience-of-running-coffee-shop-for-40-years.html
 https://dirtysalt.github.io/html/extended-gcd.html
 https://dirtysalt.github.io/html/f1-query-declarative-quqey-at-scale.html
@@ -313,6 +317,7 @@ https://dirtysalt.github.io/html/facebook-cachelib-document-overview.html
 https://dirtysalt.github.io/html/fallacies-of-distributed-computing-explained.html
 https://dirtysalt.github.io/html/fast-inverse-sqrt-quake.html
 https://dirtysalt.github.io/html/fast-memcmp-and-memcpy-simd.html
+https://dirtysalt.github.io/html/feels-like-faster-and-actually-faster.html
 https://dirtysalt.github.io/html/few-blogs-of-elite-course.html
 https://dirtysalt.github.io/html/few-simd-code-snippets.html
 https://dirtysalt.github.io/html/few-tips-of-mongodb-best-practice.html
@@ -455,6 +460,7 @@ https://dirtysalt.github.io/html/how-to-receive-a-million-packets-per-second.htm
 https://dirtysalt.github.io/html/how-to-sign-extend.html
 https://dirtysalt.github.io/html/how-to-solve-it-a-new-apsect-of-math-method.html
 https://dirtysalt.github.io/html/how-to-stop-worring-and-start-living.html
+https://dirtysalt.github.io/html/how-to-study-stem-efficiently.html
 https://dirtysalt.github.io/html/how-to-use-medicine-properly-in-china.html
 https://dirtysalt.github.io/html/how-to-win-friends-and-influence-people.html
 https://dirtysalt.github.io/html/how-to-write-a-good-software-design-doc.html
@@ -519,6 +525,7 @@ https://dirtysalt.github.io/html/keras-author-on-software-engineering.html
 https://dirtysalt.github.io/html/keynes-vs-hayek.html
 https://dirtysalt.github.io/html/klotski-or-sliding-puzzle-revised.html
 https://dirtysalt.github.io/html/klotski-solving.html
+https://dirtysalt.github.io/html/know-how-to-show-weakness.html
 https://dirtysalt.github.io/html/kylin.html
 https://dirtysalt.github.io/html/lang-detect-and-encoding-detect.html
 https://dirtysalt.github.io/html/lang-reflects-your-subconscious.html
@@ -807,6 +814,7 @@ https://dirtysalt.github.io/html/nnt-words-archive.html
 https://dirtysalt.github.io/html/nobody-ever-got-fired-for-buying-a-cluster.html
 https://dirtysalt.github.io/html/nolearn.html
 https://dirtysalt.github.io/html/nosql-back-to-the-feature-or-yet-another-db-feature.html
+https://dirtysalt.github.io/html/nosql-database-notes.html
 https://dirtysalt.github.io/html/not-easy-as-you-think.html
 https://dirtysalt.github.io/html/notes-on-distributed-systems-for-young-bloods.html
 https://dirtysalt.github.io/html/notes-on-programming.html
@@ -1023,6 +1031,8 @@ https://dirtysalt.github.io/html/sold-my-soul-for-a-student-load.html
 https://dirtysalt.github.io/html/solid-state-revolution-in-depth-on-how-ssd-really-work.html
 https://dirtysalt.github.io/html/some-advice-from-jeff-bezos.html
 https://dirtysalt.github.io/html/some-non-casual-thoughts.html
+https://dirtysalt.github.io/html/some-thoughts-about-child-education.html
+https://dirtysalt.github.io/html/some-thoughts-during-review-resumes.html
 https://dirtysalt.github.io/html/some-thoughts-from-eval-and-apply.html
 https://dirtysalt.github.io/html/some-thoughts-on-open-source-product-market.html
 https://dirtysalt.github.io/html/sonos-streaming-basics.html
@@ -1086,6 +1096,7 @@ https://dirtysalt.github.io/html/talk-with-lizhi-tech-team.html
 https://dirtysalt.github.io/html/talk-with-luoyan.html
 https://dirtysalt.github.io/html/talk-with-nenad.html
 https://dirtysalt.github.io/html/talking-to-c-programmers-about-cpp-dan-saks.html
+https://dirtysalt.github.io/html/task-scheduling-strategies.html
 https://dirtysalt.github.io/html/tcmalloc.html
 https://dirtysalt.github.io/html/tcp-on-linux.html
 https://dirtysalt.github.io/html/teach-yourself-programming-in-ten-years.html
@@ -1100,6 +1111,7 @@ https://dirtysalt.github.io/html/test-aliyun-network-capacity.html
 https://dirtysalt.github.io/html/that-man-looks-like-a-dog.html
 https://dirtysalt.github.io/html/the-algorithm-design-manual.html
 https://dirtysalt.github.io/html/the-almanack-of-naval-ravikant.html
+https://dirtysalt.github.io/html/the-american-trap-notes.html
 https://dirtysalt.github.io/html/the-anatomy-of-the-google-architecture.html
 https://dirtysalt.github.io/html/the-anatomy-of-the-perfect-technical-interview-from-a-former-amazon-vp.html
 https://dirtysalt.github.io/html/the-art-of-readable-code.html
@@ -1122,6 +1134,7 @@ https://dirtysalt.github.io/html/the-facebook-effect.html
 https://dirtysalt.github.io/html/the-feynman-technique-the-best-way-to-learn-anything.html
 https://dirtysalt.github.io/html/the-five-minute-rule-1987.html
 https://dirtysalt.github.io/html/the-five-minute-rule-1997.html
+https://dirtysalt.github.io/html/the-future-of-hongkong.html
 https://dirtysalt.github.io/html/the-future-of-programming.html
 https://dirtysalt.github.io/html/the-golden-circle.html
 https://dirtysalt.github.io/html/the-good-side-of-java-lang.html
@@ -1293,6 +1306,7 @@ https://dirtysalt.github.io/html/youtube-scalability.html
 https://dirtysalt.github.io/html/youtube-steve-chen-bio.html
 https://dirtysalt.github.io/html/zen-and-the-arts-of-motorcycle-maintenance.html
 https://dirtysalt.github.io/html/zen-of-assembly-language.html
+https://dirtysalt.github.io/html/zengguofan-six-rules.html
 https://dirtysalt.github.io/html/zeromq.html
 https://dirtysalt.github.io/html/zhihu-daily-economy.html
 https://dirtysalt.github.io/html/zookeeper-getting-started.html

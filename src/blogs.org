@@ -112,11 +112,14 @@
 - 202203 [[file:delta-lake-paper.org][Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores]] @ 2020
 - 202203 [[file:bpf-performance-tools.org][BPF Performance Tools]] @ Brendan Gregg
 - 202203 [[file:ucb-cloud-programming-simplified.org][Cloud Programming Simplified: A Berkeley View on Serverless Computing]] @ 2019
+- 202203 [[file:ascii-hex-codes.org][ASCII & Hex codes]]
 - 202202 [[file:chn-24-season-times.org][中国24节气]]
 - 202202 [[file:install-compiled-bcc-bpftrace.org][编译和安装bcc/bpftrace]]
 - 202202 [[file:1024-cores-lock-free-section.org][1024cores.net lock-free section]]
+- 202202 [[file:feels-like-faster-and-actually-faster.org][Feels Like Faster vs. Is Actually Faster]] （看上去很快 vs. 实际真的很快）
 - 202202 [[file:wanming-war-declaration.org][晚明 - 檄文]] （附《出军歌》）
 - 202202 [[file:diff-lock-free-and-wait-free.org][Lock-Based/Lock-Free/Wait-Free之间区别]]
+- 202202 [[file:task-scheduling-strategies.org][Task Scheduling Strategies]] by 1024cores.net
 - 202202 [[file:presto-sql-on-everything.org][Presto: SQL on Everything]] @ 2019
 - 202202 [[file:apache-calcite-paper.org][Apache Calcite: A Foundational Framework for Optimized Query Processing Over Heterogeneous Data Sources]] @ 2018
 - 202202 [[file:rcu-for-non-kernel-programmers.org][CppCon 2017: Fedor Pikus “Read, Copy, Update, then what? RCU for non-kernel programmers”]] by Fedor Pikus
@@ -224,6 +227,7 @@
 - 202103 [[file:apache-kudu-paper.org][Kudu: Storage for Fast Analytics on Fast Data]] @ 2015
 - 202103 [[file:google-mesa.org][Mesa: Geo-Replicated, Near Real-Time, Scalable Data Warehousing]] by Google @ 2014
 - 202102 [[file:why-we-think-when-we-have-search-engine.org][搜索引擎很强大，还需要自己思考答案吗？]] by 吴军《硅谷来信》
+- 202103 [[file:some-thoughts-about-child-education.org][杨樾老师的育儿直播]]
 - 202102 [[file:the-almanack-of-naval-ravikant.org][The Almanack of Naval Ravikant]]
 - 202102 [[file:the-simplest-things-in-investment.org][投资中最简单的事]] by 邱国鹭
 - 202102 [[file:perf-analysis-and-tuning-on-modern-cpus.org][Performance Analysis and Tuning on Modern CPUs]]
@@ -263,10 +267,12 @@
 - 202012 [[file:basic-economics.org][经济学的思维方式(Basic Economics : A Common Sense Guide to the Economy)]] by 托马斯索维尔
 - 202012 [[file:the-passionate-programmer.org][我编程，我快乐(The Passionate Programmer)]] by Chad Fowler
 - 202012 [[file:programmer-self-cultivation.org][程序员的自我修养]] by 陈逸鹤
+- 202011 [[file:zengguofan-six-rules.org][曾国藩的六戒！]]
 - 202011 [[file:consultant-and-best-practice.org][咨询行业和Best Practice]]
 - 202011 [[file:love-money-and-parenting.org][爱，金钱和孩子（Love, Money, and Parenting）]]
 - 202011 [[file:forces-of-habit.org][上瘾五百年(Forces of Habit)]] by 戴维·考特莱特
 - 202011 [[file:a-mathematician-plays-the-stock-market.org][数学家妙谈股市(A Mathematician Plays the Stock Market)]] by John Allen Paulos
+- 202010 [[file:nosql-database-notes.org][NoSQL数据库笔谈]]
 - 202010 [[file:sre-how-google-runs-production-systems.org][SRE Google运维解密(SRE: How Google Runs Production Systems)]]
 - 202010 [[file:thinking-strategically.org][策略思维(Thinking Strategically)]] by 迪克西特，奈尔伯夫
 - 202010 [[file:systems-performance-enterprise-and-the-cloud.org][系统性能：企业与云计算(Systems Performance: Enterprise and the Cloud)]]
@@ -302,6 +308,7 @@
 - 202002 [[file:extended-gcd.org][使用扩展欧几里得算法求解整数二元一次不定方程]] 经典算法
 - 202002 [[file:some-thoughts-from-eval-and-apply.org][来自eval/apply的启发]]
 - 202002 [[file:balance-of-solving-problem-and-learn-knowledge.org][解决问题和学习底层知识的平衡]]
+- 202002 [[file:a-way-to-learn-history.org][学习历史的一种方法]]
 - 202001 [[file:a-guide-to-making-your-science-matter.org][A Guide to Making Your Science Matter]]
 - 202001 [[file:a-better-way-to-learn-math.org][一种更好的学习数学的方式]]
 - 202001 [[file:regexp-in-python.org][正则表达式的Python实现]]
@@ -362,6 +369,7 @@
 - 201905 [[file:keynes-vs-hayek.org][凯恩斯大战哈耶克]]
 - 201905 [[file:codehaus-manifesto.org][Codehaus宣言]]
 - 201905 [[file:logrotate-conf-for-nginx.org][nginx正确的logrotate配置]]
+- 201905 [[file:the-american-trap-notes.org][法国阿尔斯通高管皮耶鲁齐写的《美国陷阱》]]
 - 201904 [[file:poission-distribution-in-bitcoin-mining.org][比特币挖矿的泊松分布问题(指数分布)]]
 - 201904 [[file:image-decompression-bomb.org][图片解压缩炸弹问题(image decompression bomb)]]
 - 201904 [[file:polyglot-persistence.org][Polyplot Persistence]] 混合使用各种存储系统
@@ -397,13 +405,17 @@
 - 201810 [[file:pros-and-cons-in-tech-monopoly.org][去大公司的各种考虑]]
 - 201810 [[file:find-lca-using-rmq.org][Find LCA using RMQ]]
 - 201810 [[file:sudoku-solving.org][数独程序求解(Sudoku)]] 经典算法
+- 201809 [[file:know-how-to-show-weakness.org][学会示弱 - 职场和做人的道理]]
 - 201809 [[file:segment-tree-for-rmq.org][求解RMQ的线段树实现]] 数据结构
 - 201809 [[file:klotski-solving.org][华容道程序求解]] (klotski / sliding-puzzle)
 - 201809 [[file:configure-topcoder-env.org][配置TopCoder环境]]
+- 201809 [[file:experience-of-research-from-outsider.org][业余做研究的经验]] by 田渊栋
+- 201809 [[file:how-to-study-stem-efficiently.org][如何学习理工科]] by 田渊栋
 - 201808 [[file:etsy-activity-feeds-architecture.org][Etsy Activity Feeds Architecture]]
 - 201808 [[file:protobuf-encoding.org][Protobuf Encoding]] Protobuf编码方式
 - 201808 [[file:youtube-scalability.org][YouTube Scalability]] on youtube
 - 201808 [[file:sit-boost-your-tech-career.org][SIT / Boost your tech career]]
+- 201808 [[file:some-thoughts-during-review-resumes.org][[职场感言] [周末码字时间]审简历得到的一点成长小心得]]
 - 201807 [[file:algorithm-design-steps-in-interview.org][如何进行算法设计面试]] in Hired in Tech
 - 201807 [[file:system-design-steps-in-interview.org][如何进行系统设计面试]] in Hired in Tech
 - 201807 [[file:lang-detect-and-encoding-detect.org][语言检测和编码检测]] 一种利用语言检测来做编码检测的可能方法
@@ -412,7 +424,9 @@
 - 201807 [[file:5-lessons-we-have-learned-using-aws.org][5 Lessons We’ve Learned Using AWS]] Netflix TechBlog
 - 201807 [[file:how-to-write-a-good-software-design-doc.org][How to write a good software design doc]]
 - 201807 [[file:oh-i-have-seen-this-idea-before.org][oh, I’ve seen this idea before]] 如何回答这个问题
+- 201806 [[file:aws-region-code-explain.org][aws region code]]
 - 201806 [[file:aws-products.org][AWS Products]]
+- 201806 [[file:the-future-of-hongkong.org][香港的未来-江南愤青]]
 - 201806 [[file:binary-indexed-tree.org][Binary Indexed Tree(Fenwick Tree)]] 数据结构
 - 201806 [[file:interview-psychological-tricks.org][面试心理技巧(Psychological Tricks)]]
 - 201805 [[file:write-the-code-for-run.org][为运行而生的代码]]

@@ -125,7 +125,9 @@
 + [[file:tools-of-titans.org][Tools of Titans(巨人的工具)]] by Tim Ferriss
 + [[file:intuition-pumps-and-other-tools-for-thinking.org][Intuition Pumps and Other Tools for Thinking(直觉泵和其他思考工具)]] by 丹尼尔 丹尼特 ( Daniel C. Dennett)
 + [[file:sv-wangchuan-investguru-v1.org][硅谷王川电子书第一卷]] by 硅谷王川
+- 201809 [[file:know-how-to-show-weakness.org][学会示弱 - 职场和做人的道理]]
 - 202006 [[file:the-healthy-programmer.org][程序员健康指南(The Healthy Programmer)]] by Joe Kutner
+- 202011 [[file:zengguofan-six-rules.org][曾国藩的六戒！]]
 - 202102 [[file:the-almanack-of-naval-ravikant.org][The Almanack of Naval Ravikant]]
 - 202302 [[file:skin-in-the-game-book.org][非对称风险(Skin in The Game)]] by NNT
 
