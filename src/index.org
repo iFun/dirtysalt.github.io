@@ -229,6 +229,7 @@
 - [[file:nand2tetris-software-part.org][Nand2Tetris 计算机系统要素 软件篇]]
 - [[file:char-encoding.org][几种常见的字符编码解析]]
 - [[file:comp-arch-readings-princeton-review-superscalar-vliw.org][Computer Architecture Readings - Princeton - Review/Superscalar/VLIW]]
+- [[file:comp-arch-readings-princeton-branch-pred-addr-trans-gpu.org][Computer Architecture Readings - Princeton - Branch Predication/Address Translation/GPU]]
 - 202012 [[file:writing-a-simple-os-from-scratch.org][Writing a simple os from scratch]] 看了个大概没有上手
 - 202104 [[file:fast-inverse-sqrt-quake.org][快速平方根倒数(Fast Inverse Square Root)]]
 - 202104 [[file:c-switch-table-in-asm.org][C语言switch表格跳转的汇编实现]]
