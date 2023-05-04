@@ -1,7 +1,8 @@
 #+title: An Amateur Programmer's Blogs
 #+keywords: 海南省临高县电信局临时工
 
-[[file:index.org][全部文件索引]]
+- [[file:index.org][文件索引]]
+- [[file:paste.org][网络剪切板]]
 
 ** 2023
 - 202305 [[file:tales-from-shakespeare.org][莎士比亚戏剧集]]
