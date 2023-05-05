@@ -1,4 +1,4 @@
-#+title: An Amateur Programmer's Blogs
+[#+title: An Amateur Programmer's Blogs
 #+keywords: 海南省临高县电信局临时工
 
 - [[file:index.org][文件索引]]
