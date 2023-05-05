@@ -22,6 +22,7 @@ JVM GC方面文章
 - Understanding JVM Internals, from Basic Structure to Java SE 7 Features | Architects Zone http://architects.dzone.com/articles/understanding-jvm-internals
 - Garbage Collection Optimization for High-Throughput and Low-Latency Java Applications | LinkedIn Engineering : http://engineering.linkedin.com/garbage-collection/garbage-collection-optimization-high-throughput-and-low-latency-java-applications
 - Java Garbage Collection Introduction http://javapapers.com/java/java-garbage-collection-introduction/
+- [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/24%20%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90%EF%BC%9A%E5%A4%A7%E5%9E%8B%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E7%93%B6%E9%A2%88%E8%B0%83%E4%BC%98%EF%BC%9F.md][24 案例分析：大型项目如何进行性能瓶颈调优？.md]]
 
 为了监控GC情况添加如下参数 `-verbose:gc -XX:-PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCApplicationConcurrentTime`
 - `-XX:+PrintGCDetails` 关于GC更详细的细节
@@ -171,6 +172,8 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 
 [[../images/jvm-gc-options-and-effects.jpg]]
 
+----------
+
 有这么多垃圾回收器和参数，那我们到底用什么？在什么地方优化呢？
 
 目前，虽然 Java 的版本比较高，但是使用最多的还是 Java8。从 Java8 升级到高版本的 Java 体系，是有一定成本的，所以 CMS 垃圾回收器还会持续一段时间。
@@ -182,3 +185,30 @@ CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。
 #+END_EXAMPLE
+
+现在用的最多的，就是 Java 8 版本。如果你的服务器用的这个，那么用的最多的垃圾回收器就是 CMS，或者 G1。随着 ZGC 越来越稳定，CMS 终将会成为过去式。
+
+目前，最先进的垃圾回收器，叫做 ZGC，它有 3 个 flag：
+- 支持 TB 级堆内存（最大 4T）
+- 最大 GC 停顿 10ms
+- 对吞吐量影响最大，不超过 15%
+
+* JVM 杂项内容
+
+synchronized [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/20%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8E%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.md][20 动手实践：从字节码看并发编程的底层实现.md]]
+
+#+BEGIN_QUOTE
+synchronized 在 JDK，包括一些框架代码中的应用是非常广泛的。在一些不需要同步的场景中，即使加上了 synchronized 关键字，由于锁升级的原因，效率也不会太差。
+#+END_QUOTE
+
+
+java agent [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/22%20%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%20Java%20Agent%20%E6%8A%80%E6%9C%AF%E5%AF%B9%E5%AD%97%E8%8A%82%E7%A0%81%E8%BF%9B%E8%A1%8C%E4%BF%AE%E6%94%B9.md][22 深入剖析：如何使用 Java Agent 技术对字节码进行修改.md]]
+
+#+BEGIN_QUOTE
+Java 5 版本以后，JDK 有一个包叫做 instrument ，能够实现一些非常酷的功能，市面上一些 APM 工具，就是通过它来进行的增强，这个功能对于业务开发者来说，是比较偏门的。但你可能在无意中已经用到它了，比如 Jrebel 酷炫的热部署功能（这个工具能够显著增加开发效率）。
+
+我们上面说的这些工具的基础，就是 Java Agent 技术，可以利用它来构建一个附加的代理程序，用来协助检测性能，还可以替换一些现有功能，甚至 JDK 的一些类我们也能修改，有点像 JVM 级别的 AOP 功能。
+#+END_QUOTE
+
+
+jit配置 [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/23%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9AJIT%20%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%EF%BC%9F.md][23 动手实践：JIT 参数配置如何影响程序运行？.md]]
