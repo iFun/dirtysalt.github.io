@@ -353,7 +353,7 @@
 *** 单机软件
 - [[file:ubuntu.org][ubuntu]] 如何更好地使用Ubuntu. [[file:struggle-with-ubuntu.org][之前使用Ubuntu有段痛苦的经历]]。
 - [[file:mac.org][macosx]] 如何更好地使用Mac. 以前使用Windows，后来转向Ubuntu，再后来买了个MBA.
-- [[file:docker.org][docker]] 基于lxc(linux container)的分发应用工具。
+- [[file:docker.org][docker]] 基于lxc(linux container)的分发应用工具。 ([[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%AE%B9%E5%99%A8%E5%AE%9E%E6%88%98%E9%AB%98%E6%89%8B%E8%AF%BE/][容器实战高手课]])
 - [[file:vagrant.org][vagrant]] 用来构件虚拟开发环境的工具，底层可以使用多种虚拟化技术。现在支持相对比较好的是VirtualBox
 - [[file:sphinx-search.org][sphinx]] C++实现的全文检索引擎，可以很容易地替换掉MySQL内置的全文检索(FTS)实现
 - [[file:graphite.org][graphite]] 和 [[file:opentsdb.org][OpenTSDB]] 类似, 时间序列(time series)数据库, 但是主要用于监控。
