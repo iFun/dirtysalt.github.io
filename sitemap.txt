@@ -137,6 +137,7 @@ https://dirtysalt.github.io/html/brainfuck-jit-compiler.html
 https://dirtysalt.github.io/html/branchless-programming-in-cpp.html
 https://dirtysalt.github.io/html/break-it-and-absorb-everything-to-learn.html
 https://dirtysalt.github.io/html/bringing-spark-closer-to-bare-metal.html
+https://dirtysalt.github.io/html/build-ask-system-on-gpt.html
 https://dirtysalt.github.io/html/build-nginx-from-source-on-ubuntu.html
 https://dirtysalt.github.io/html/build-system.html
 https://dirtysalt.github.io/html/building-a-career-in-technology.html
