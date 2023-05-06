@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:build-ask-system-on-gpt.org][用GPT搭建问答系统]]
 - 202305 [[file:tales-from-shakespeare.org][莎士比亚戏剧集]]
 - 202305 [[file:enlightment-of-civilization.org][文明之光]] by 吴军
 - 202304 [[file:usa-trip-2023-apr.org][美国出差日记 - 4月]]
