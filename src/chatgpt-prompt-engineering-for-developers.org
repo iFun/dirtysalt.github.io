@@ -17,6 +17,8 @@
 The number of tokens processed in a given API request depends on the length of both your inputs and outputs. As a rough rule of thumb, 1 token is approximately 4 characters or 0.75 words for English text. One limitation to keep in mind is that your text prompt and generated completion combined must be no more than the model's maximum context length (for most models this is 2048 tokens, or about 1500 words). Check out our tokenizer tool to learn more about how text translates to tokens.
 #+END_QUOTE
 
+关于各种模型区别和解释 [[https://platform.openai.com/docs/models][Models - OpenAI API]]
+
 ----------
 
 通用代码

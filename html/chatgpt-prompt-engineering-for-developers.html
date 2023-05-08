@@ -28,6 +28,18 @@
 </ol>
 
 <p>
+另外看了一下openai doc网站，里面写到了如何计算token一些基本问题。<a href="https://platform.openai.com/docs/introduction/overview">Introduction - OpenAI API</a>
+</p>
+
+<blockquote>
+<p>
+The number of tokens processed in a given API request depends on the length of both your inputs and outputs. As a rough rule of thumb, 1 token is approximately 4 characters or 0.75 words for English text. One limitation to keep in mind is that your text prompt and generated completion combined must be no more than the model's maximum context length (for most models this is 2048 tokens, or about 1500 words). Check out our tokenizer tool to learn more about how text translates to tokens.
+</p>
+</blockquote>
+
+<hr />
+
+<p>
 通用代码
 </p>
 
@@ -60,6 +72,8 @@
 </pre>
 </div>
 
+<hr />
+
 <p>
 常见技巧有下面这些：
 </p>
@@ -72,7 +86,7 @@
 可以使用这些任意分隔符 ```, """, &lt; &gt;, \&lt;tag\&gt;, \&lt;/tag\&gt;.
 </p>
 
-<pre class="example" id="orgffbf343">
+<pre class="example" id="org1e71873">
 the TEXT is delimited by ```
 
 TEXT: ```{text}```
@@ -82,7 +96,7 @@ TEXT: ```{text}```
 <b><b>生成格式</b></b>
 </p>
 
-<pre class="example" id="org2872306">
+<pre class="example" id="orgbb1e4ad">
 Provide them in JSON format with the following keys:
 book_id, title, author, genre.
 
@@ -98,7 +112,7 @@ Output JSON: &lt;json with summary and num_names&gt;
 <b><b>条件判断</b></b>
 </p>
 
-<pre class="example" id="orgc1731e9">
+<pre class="example" id="orgb3e6202">
 If it contains a sequence of instructions, then
 </pre>
 
@@ -106,7 +120,7 @@ If it contains a sequence of instructions, then
 <b><b>场景模拟</b></b>
 </p>
 
-<pre class="example" id="org6cb01d0">
+<pre class="example" id="orgcf5b96e">
 Your task is to answer in a consistent style.
 
 &lt;child&gt;: Teach me about patience.
@@ -136,7 +150,7 @@ the most intricate tapestry begins with a solitary thread.
 然后告诉chatgpt之前完整的对话是什么样子的
 </p>
 
-<pre class="example" id="orgc248713">
+<pre class="example" id="orge42ee54">
 messages =  [
 {'role':'system', 'content':'You are an assistant that speaks like Shakespeare.'},
 {'role':'user', 'content':'tell me a joke'},
@@ -153,12 +167,35 @@ print(response)
 <b><b>长篇内容</b></b>
 </p>
 
-<pre class="example" id="org0e178f6">
+<p>
+将长篇内容拆分成为多段，并且告诉gpt有这么多段。
+</p>
+
+<pre class="example" id="org7fcfe41">
 You are LongTextAnalyzerGPT. I will submit you a long text divided in 35 parts.
 
 Each part will start by Part X. After each part I submit, ask me for the next part. Don't do any analysis before all the parts are submitted.
 
 Part 1. XXX
+</pre>
+
+<p>
+<b><b>few-shot learning</b></b>
+</p>
+
+<p>
+在内容里面提供几个参考实例，这样可以现场学习。
+</p>
+
+<pre class="example" id="org6e5401c">
+Suggest three names for an animal that is a superhero.
+
+Animal: Cat
+Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
+Animal: Dog
+Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
+Animal: Horse
+Names:
 </pre>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/chatgpt-prompt-engineering-for-developers.html';this.page.identifier = 'chatgpt-prompt-engineering-for-developers.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
