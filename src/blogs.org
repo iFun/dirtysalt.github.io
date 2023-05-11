@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:chatgpt-prompt-design-doc.org][ChatGPT Prompt Design Doc]]
 - 202305 [[file:chatgpt-prompt-engineering-for-developers.org][ChatGPT Prompt Engineering for Developers]]
 - 202305 [[file:build-ask-system-on-gpt.org][用GPT搭建问答系统]]
 - 202305 [[file:tales-from-shakespeare.org][莎士比亚戏剧集]]
