@@ -37,6 +37,10 @@ The number of tokens processed in a given API request depends on the length of b
 </p>
 </blockquote>
 
+<p>
+关于各种模型区别和解释 <a href="https://platform.openai.com/docs/models">Models - OpenAI API</a>
+</p>
+
 <hr />
 
 <p>
@@ -86,7 +90,7 @@ The number of tokens processed in a given API request depends on the length of b
 可以使用这些任意分隔符 ```, """, &lt; &gt;, \&lt;tag\&gt;, \&lt;/tag\&gt;.
 </p>
 
-<pre class="example" id="org1e71873">
+<pre class="example" id="org00ea85b">
 the TEXT is delimited by ```
 
 TEXT: ```{text}```
@@ -96,7 +100,7 @@ TEXT: ```{text}```
 <b><b>生成格式</b></b>
 </p>
 
-<pre class="example" id="orgbb1e4ad">
+<pre class="example" id="org7d3d458">
 Provide them in JSON format with the following keys:
 book_id, title, author, genre.
 
@@ -112,7 +116,7 @@ Output JSON: &lt;json with summary and num_names&gt;
 <b><b>条件判断</b></b>
 </p>
 
-<pre class="example" id="orgb3e6202">
+<pre class="example" id="orgcdb1104">
 If it contains a sequence of instructions, then
 </pre>
 
@@ -120,7 +124,7 @@ If it contains a sequence of instructions, then
 <b><b>场景模拟</b></b>
 </p>
 
-<pre class="example" id="orgcf5b96e">
+<pre class="example" id="org72cb8c1">
 Your task is to answer in a consistent style.
 
 &lt;child&gt;: Teach me about patience.
@@ -150,7 +154,7 @@ the most intricate tapestry begins with a solitary thread.
 然后告诉chatgpt之前完整的对话是什么样子的
 </p>
 
-<pre class="example" id="orge42ee54">
+<pre class="example" id="org7e20a91">
 messages =  [
 {'role':'system', 'content':'You are an assistant that speaks like Shakespeare.'},
 {'role':'user', 'content':'tell me a joke'},
@@ -171,7 +175,7 @@ print(response)
 将长篇内容拆分成为多段，并且告诉gpt有这么多段。
 </p>
 
-<pre class="example" id="org7fcfe41">
+<pre class="example" id="orga38e673">
 You are LongTextAnalyzerGPT. I will submit you a long text divided in 35 parts.
 
 Each part will start by Part X. After each part I submit, ask me for the next part. Don't do any analysis before all the parts are submitted.
@@ -187,7 +191,7 @@ Part 1. XXX
 在内容里面提供几个参考实例，这样可以现场学习。
 </p>
 
-<pre class="example" id="org6e5401c">
+<pre class="example" id="org786a2a2">
 Suggest three names for an animal that is a superhero.
 
 Animal: Cat
