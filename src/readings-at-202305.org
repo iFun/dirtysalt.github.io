@@ -1,0 +1,99 @@
+#+title: 网络文章@202305
+
+# 网络文章@202305
+
+-----
+
+[[https://world.hey.com/dhh/even-amazon-can-t-make-sense-of-serverless-or-microservices-59625580][Even Amazon can't make sense of serverless or microservices]]
+
+[[https://world.hey.com/dhh/how-to-recover-from-microservices-ce3803cc][How to recover from microservices]]
+
+aws prime video 自己给 "microservices/serverless" 的檄文
+
+以及如何正确地使用 "microservices/serverless". 不要觉得这个就是灵丹妙药
+
+-----
+
+[[https://world.hey.com/dhh/it-s-not-just-cloud-costs-that-are-out-of-control-efcd098c][It's not just cloud costs that are out of control]]
+
+这个这没有想到datadog可以这么赚钱，一个搞加密货币的客户付费65M。
+
+> At the risk of invoking a tired cliche, this kind of outlay for a performance and monitoring service sounds like a 0% interest rate phenomenon. There's just no universe I can imagine where that's a reasonable commitment. One that couldn't be more than adequately replaced by open-source alternatives. Even if you needed a fair bit of in-house development on top for tailoring.
+
+-----
+
+[[https://world.hey.com/dhh/the-misallocation-of-tech-talent-6c3b4403][The misallocation of tech talent]]
+
+感觉每天DHH都在写文章，而且还挺有深度的。
+
+裁员可以让做狗屁事情的人才资源被更加合理地利用，但是为了还房贷做狗屁事情也不丢人。
+
+> Now arguing what is or isn't best for the individual is tricky business. I'm sure there are plenty of laid off tech workers who'd say they'd happily hold that bullshit job if it meant paying the mortgage. I get that. So let's return to the group perspective.
+
+-----
+
+[[https://lemire.me/blog/2023/04/21/will-emerging-artificial-intelligence-boost-research-productivity/][Will emerging artificial intelligence boost research productivity? – Daniel Lemire's blog]]
+
+看上去大部分的文章都是灌水工作
+
+> The problem, as pointed out by Caplan, is that nobody cares about these research articles. In fact, if you asked engineers to pay the authors to access their research articles, they almost certainly would not be willing to pay.
+
+-----
+
+[[https://lemire.me/blog/2023/04/27/hotspot-performance-engineering-fails/][Hotspot performance engineering fails – Daniel Lemire's blog]]
+
+youtube: https://youtu.be/x2EOOJg8FkA
+
+为什么按照"hotspot驱动进行优化"的方式是不work的？
+
+因为这种方式工作的前提是有个正确架构，然后才能在里面找hotspot, 否则处处都是hotspot.
+
+这也是为什么许多优化项目最后只能被重写：房子地基不行只能拆掉重盖。
+
+-----
+
+[【李自然说】《富人思维》解读，千倍回报投资人养成攻略 - YouTube](https://www.youtube.com/watch?v=zMhCnb-TcUs&list=WL&index=9)
+
+1. 富人思维与穷人思维最重要的是参与，不能旁观，打嘴炮。
+2. 大部分对自己的能力都是高估的，如果你觉得他跟你一样厉害，大概率就是他比你厉害很多。
+3. 投资与创业，都是想占用一个赚钱机器的股份。
+
+-----
+
+[【李自然说】人生如逆旅，我亦是行人 - YouTube](https://www.youtube.com/watch?v=JGHTcNmCcLU)
+
+帮大家总结下：
+1. 要敢于表达自己
+2. 不要给自己设置障碍
+3. 想办法接近牛人
+4. 帮补一条，认知决定人生，性格和习惯都可以改变。
+
+-----
+
+[【李自然说】如何获得更好前途？CEO的职场建议 - YouTube](https://www.youtube.com/watch?v=_JFQEPYmQ9I)
+
+1. 不要向平庸者要建議幾十年工人的建議也許對現代產業無效，不屬於這時代的經驗也往往是錯的，要向最優秀的人且願意幫助你的人請益，不要問身邊的人。 有兩種人是最值得請教的 1.成功的人或是說視角更高的 2.專業的人。
+2. 不要同時打幾份工應該把時間投注學習，而不是用勞力去換取單位低的收入。
+3. 錢少，就別搞理財了賺賠都是那點錢，還是把心力放在提高自己專業上，也不要走邪路去賺沒有過程的錢。
+4. 公司不是學校沒有球員加入職業球隊說是來學習的，要從加入的第一天就為球隊創造更好的成績，在賽場上證明自己的價值。
+5. 把看書的時間拿來研究同行。
+6. 工作選擇看好壞也看大小 好的大公司>好的小公司>還好的小公司>差的大公司。
+7. 可由公司前員工出路銷路判別公司好壞
+8. 公司好壞的指標1.有沒有拿到好的融資2.有沒有厲害的高手或是值得追隨的人
+9. 進優秀小公司是改變命運的途徑
+10. 上司來指出你工作的問題時，通常代表對你還帶有希望
+11. 不要沒搞懂隨便貿然給公司提建議
+12. 如果同事或上司跟你說的話，從來不用再說第二次，你已經在職場中佔有很強的優勢
+13. 及時匯報進度以及適時展現自己
+14. 匯報工作談辛苦事非常不專業的展現，努力不努力沒有必要說
+15. 不要硬撐該問就要問，但問題也要慎選，一邊培養獨當一面的能力
+16. 外表非常重要，別太不修篇幅
+
+-----
+
+[Scylla 的容器化成本 | 通过 ScyllaDB | 中等的](https://scylladb.medium.com/the-cost-of-containerization-for-your-scylla-a24559d17d01)
+
+如何修改docker配置来减少容器化带来的性能影响：
+- 绑定cpu core, 之后相差10%
+- 绕过容器化网络, 之后相差3%
+- 安全配置检查, 之后就非常接近
