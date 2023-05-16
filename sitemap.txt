@@ -1224,6 +1224,7 @@ https://dirtysalt.github.io/html/unveil-google-app-engine.html
 https://dirtysalt.github.io/html/usa-trip-2023-apr.html
 https://dirtysalt.github.io/html/usa-trip-2023-feb.html
 https://dirtysalt.github.io/html/usa-trip-2023-mar.html
+https://dirtysalt.github.io/html/usa-trip-2023-may.html
 https://dirtysalt.github.io/html/use-chrome-trace-viewe-to-observe-schedule.html
 https://dirtysalt.github.io/html/use-emacs-org-mode-to-build-site.html
 https://dirtysalt.github.io/html/use-java-thread-sanizitier-to-spot-data-race.html
