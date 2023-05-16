@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:usa-trip-2023-may.org][美国出差日记 - 5月]]
 - 202305 [[file:readings-at-202305.org][网络文章@202305]]
 - 202305 [[file:chatgpt-prompt-design-doc.org][ChatGPT Prompt Design Doc]]
 - 202305 [[file:chatgpt-prompt-engineering-for-developers.org][ChatGPT Prompt Engineering for Developers]]
