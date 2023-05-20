@@ -1,7 +1,5 @@
 #+title: 网络文章@202305
 
-# 网络文章@202305
-
 -----
 
 [[https://www.youtube.com/watch?v=oxj5mUYUqDk][(2) How to Learn a Language On Your Own - YouTube]]
@@ -17,8 +15,8 @@
 - 挑选自己感兴趣的主题
 - 设置目标不断驱动自己
 
-提高阶段：找更多的人进行交流，这个时候你基本上已经掌握了这门语言。
 
+提高阶段：找更多的人进行交流，这个时候你基本上已经掌握了这门语言。
 -----
 
 [[https://surma.dev/things/c-to-webassembly/index.html?continueFlag=713ef5f04016ab5f5772f45827d51233][Compiling C to WebAssembly without Emscripten — surma.dev]]
