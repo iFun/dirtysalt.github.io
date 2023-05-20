@@ -35,6 +35,8 @@ Specialties:
 
 StarRocks Committer
 
+Query Team:
+
 - Implement the function of reading ORC format files and optimize ORC data scanning with information such as zonemap and dict. StarRocks has 3-5X the performance of Presto/Trino on TPCH-100G ORC data set.
 
 - Implement Global Runtime Filter (shuffle awareness runtime filter) function. Unlike other traditional implementations, it can be used in a wider range of scenarios without tuning parameters. On the TPCH-100 data set, some queries can achieve a 3-7X performance improvement.
@@ -44,6 +46,8 @@ StarRocks Committer
 - Optimize the performance of "group by" for multi-column short strings. By encoding multi-column short strings as int64/int128 to improve the efficiency of hashmap query and insertion, we finally improve the query performance by 30%~100%.
 
 - Optimize the query performance of predicates containing complex expressions. By simplifying complex expressions and analyzing the monotonicity of complex expressions, we can make better use of zonemap and dict data, and the predicate can play a greater role in data pruning, with performance improvement in the range of 10% to 300%.
+
+Data Lake Team:
 
 - Implement the lazy materialization on reading ORC/Parquet file. By reading the columns in predicates first and then the rest columns, the amount of data read can be effectively reduced. The implementation of lazy materialization does not have any performance degradation problem, and the amount of data read can be reduced to 10%~30%.
 
@@ -145,6 +149,8 @@ Optimize cluster recovery process regarding data center outage case, and reduce 
 
 StarRocks Committer
 
+Query Team:
+
 - 实现读取ORC格式文件功能，并且利用zonemap和dict等信息优化ORC数据扫描。在TPCH-100G ORC数据集合上，StarRocks在性能上是Presto/Trino的3-5X.
 
 - 实现Global Runtime Filter(shuffle awareness runtime filter)功能. 有别于其他传统实现，可以不用调整参数就在更广泛的场景下面使用。在TPCH-100数据集合上，部分查询可以达到3-7X的性能提升。
@@ -154,6 +160,9 @@ StarRocks Committer
 - 优化多列短字符串的group by性能。通过将多列短字符串编码成为int64/int128，来提升hashmap查询和插入效率，最终将查询性能提升30%~100%.
 
 - 优化包含复杂表达式的谓词的查询性能。通过简化复杂表达式，以及分析复杂表达式的单调性，可以更好地利用zonemap和dict数据，谓词在数据裁剪上可以发挥更大的能力，性能提升在10%~300%.
+
+
+Data Lake Team:
 
 - 实现ORC/Parquet文件读取上的延迟物化功能。通过先读取谓词列然后读取非谓词列的方式，可以有效地减少数据读取量。延迟物化不存在任何性能退化问题，而数据读取量节省到原来的10%~30%.
 
