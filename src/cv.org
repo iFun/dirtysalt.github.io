@@ -72,6 +72,8 @@ Develop UX Guardrails, which works in the CI/CD pipelines, and is to ensure the 
 
 ** Software Engineer, Head of Backend Development, [[http://castbox.fm/][CastBox.FM]], 2016.4 - 2020.6
 
+Version1:
+
 - crawler system. It crawls podcasts available on the internet and notifies uses once new episodes are available. The software stacks include Python, Requests, Beautifulsoup, FeedParser, Squid, Redis, MongoDB etc. By collecting RSS feeds submitted by users and search query, the number of podcasts in the database has been increased from 200K to 600K, and the number of episodes has been increased from 20M to 40M. By applying machine learning algorithm on the released date of episodes in the past, we predict the future released date and increase responsiveness, that new episodes can be fetched by our crawler in 5 minutes after they are released by podcasters, and users on the app will be notified just in time. Meanwhile, we optimize images of episodes by compression and cropping, reduce the size of images from MB to less than 300KB without much loss on image quality, which saves network traffic and reduces image loading time on the mobile app.
 
 - search system. Users can search for podcasts and episodes by keywords and be provided keyword suggestions. It's developed on ElasticSearch and supports up to 12 languages including English, Portuguese, Spanish, German, Dutch, CJK etc. Data shows us more than 1/3 users subscription comes from the search system, so we put many efforts on improving and optimizing search system from following aspects.
@@ -81,12 +83,20 @@ Develop UX Guardrails, which works in the CI/CD pipelines, and is to ensure the 
 
 - recommender system. By analysis user subscription data and applying collaborative filtering algorithm, we can recommend users podcasts that they may like and find similar podcasts. We use LightFM python library and apply WARP algorithm on user subscription data in recent 3 months. With fine tuning of parameters and A/B Testing, we raise CTR of user recommended podcasts from 2.16% to 4.52%, and CTR of similar podcasts from 1.90% to 3.19%.
 
+
+Version2:
+
+- Design and implement a crawler system. This crawler system constantly synchronizes all publicly available podcasts on the Internet and pushes the latest episodes to users in a timely manner. The technologies used include MongoDB, Python, Nginx, AWS etc. By leveraging RSS submitted by users and user search terms, we have increased the number of podcasts included in the platform from 200K to 600K, and the number of single episodes from 20M to 40M, far exceeding the completeness of our competitors. We use machine learning algorithms to predict the future release of single episodes based on the historical release time of the podcast single episodes, so that we can discover the latest single episodes of popular podcasts within 5 minutes, and users can receive podcast update push and listen to these episodes at the very first time. Meanwhile, we compress and crop the images of podcasts and episodes from 3MB down to less than 300KB, which greatly saves image download traffic and reduces image loading time.
+
+- Design and implementation of a podcast search system. This search system is based on ElasticSearch, which allows users to search for podcasts and episodes in our platform, and currently supports up to 12 languages, including English, Portuguese, Spanish, German, Chinese, Japanese and Korean. Data shows that more than 1/3 of user subscriptions come from search, so we improve the search system in three aspects: indexing timeliness, search speed and relevance ranking. In terms of indexing timeliness, the crawler system checks for changes in podcast or episode data and notifies the search system of indexing through Message Queue once there are updates. The pipeline runs within 10s, and more than 200K documents are re-indexed every day. In terms of search speed, the keyword search latency is reduced to less than 200ms through caching and tuning of ElasticSearch; in terms of sorting relevance, in addition to using the document relevance scores returned by ElasticSearch, many factors like the total number of subscriptions and plays of podcasts and episodes, the number of subscriptions and plays in the last 1 and 7 days, and other indicators are considered, which are combined as the relevance scores to give users a better better search experience.
+
 ** Software Engineer, [[http://logzilla.net/][Logzilla]], 2015.4 - 2015.8 (Remote, as Consultant)
 
 A real-time event analytical platform.
 
 - performance tuning to support ~200K eps(event per second).
 - implement a new event storage engine to support ~1M eps(event per second).
+
 
 ** Software Engineer, [[http://galeracluster.com/][Galera]], 2014.4 - 2014.11 (Remote, as Consultant)
 
@@ -183,9 +193,9 @@ Data Lake Team:
 参与开发UX Guardrails系统，该系统工作在CI/CD中，用于确保电商搜索页面中网页元素符合内部UX设计准则。
 
 *** 后端服务技术负责人, [[http://castbox.fm/][CastBox]], 2016.4 - 2020.6
-- 爬虫系统，抓取互联网上所有公开的播客，并且能够及时地将最新内容推送给用户。使用技术有 Python, Requests, BeautifulSoup, Squid. 考虑到播客数据不太容易结构化，使用MongoDB做存储系统。通过收集用户提交的RSS和用户搜索词，将平台收录的播客数量从20w提高到60w，单集数量从2000w提高到4000w，收录完整性上远超竞品。使用机器学习算法，根据播客单集历史发布时间预测未来单集的发布时间，我们对头部播客的检查更新延迟可以降低到5分钟以内接近于实时，用户可以在第一时间收到播客更新的推送。同时我们对播客和单集的图片进行压缩和裁剪优化，将MB级别的图片缩小至300KB以内，让客户端节省下载流量和减少加载时间。
+- 设计和实现爬虫系统。这个爬虫系统不断同步互联网上所有公开的播客，并且及时地将最新单集推送给用户。使用技术包括 MongoDB, Python, Nginx, AWS等. 通过收集用户提交的RSS和用户搜索词，将平台收录的播客数量从20w提高到60w，单集数量从2000w提高到4000w，收录完整性上远超竞品。我们使用机器学习算法，根据播客单集历史发布时间预测未来单集的发布时间，可以5分钟以内发现热门播客的最新单集，用户可以在第一时间收到播客更新推送并且收听这些单集。同时我们对播客和单集的图片进行压缩和裁剪优化，将图片尺寸从3MB压缩至300KB以内，极大地节省用户图片下载流量和减少图片加载时间。
 
-- 搜索系统，通过关键词来查询平台上收录的播客和单集，支持联想词提示功能。系统基于ElasticSearch开发，支持的语言多达12种，包括英语，葡语，西语，德语，中日韩等。后台数据显示用户订阅有超过1/3来自于搜索，为此我们从索引及时性，检索速度和相关性排序三个方面改进搜索系统。索引及时性方面，爬虫系统检查到播客或者是单集数据发生变化，通过Message Queue的方式通知检索系统进行索引，这个pipeline延迟在10s以内，平均每天有超过2w个文档被重新索引；检索速度方面，通过缓存和对ElasticSearch的调优，将关键词检索延迟减低到200ms以内，联想词提示在10ms以内；在排序相关性上，除了使用ElasticSearch返回的文档相关性分数外，还使用了播客和单集的总订阅量和播放量，最近1天和7天的订阅量和播放量等特征，综合起来作为相关性分数。
+- 设计和实现播客搜索系统。这个搜索系统基于ElasticSearch开发，用户可以搜索到平台收录的播客和单集，目前支持的语言多达12种，包括英语，葡语，西语，德语，中日韩等。数据显示有超过1/3的用户订阅来自于搜索，因此我们从索引及时性，检索速度和相关性排序三个方面改进搜索系统。索引及时性方面，爬虫系统一旦检查到播客或者是单集数据发生变化，通过Message Queue的方式通知检索系统进行索引，整个pipeline延迟在10s以内，平均每天有超过2w个文档被重新索引；检索速度方面，通过缓存和对ElasticSearch的调优，将关键词检索延迟减低到200ms以内；在排序相关性上，除了使用ElasticSearch返回的文档相关性分数外，还使用了播客和单集的总订阅量和播放量，最近1天和7天的订阅量和播放量等特征，综合起来作为相关性分数，给用户更好的搜索体验。
 
 - 推荐系统，通过分析用户的订阅数据，来给用户推荐播客和找到相似播客。用户的数据量大约在1000w左右，有订阅的播客数据量大约在13w，矩阵稀疏度在0.86左右。考虑到如果使用单集作为item的话，那么矩阵可能会更加稀疏，协同过滤算法的有效性会下降，并且计算量也会大很多，所以没有实现单集级别的推荐。使用LightFM的WARP算法训练用户在最近3个月内的订阅数据，将相似播客推荐的CTR从原来的2.16%提升到4.52%, 将给用户推荐播客的CTR则从原来的1.90%提升到3.19%.
 
