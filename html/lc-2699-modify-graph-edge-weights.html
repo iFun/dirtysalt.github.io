@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2699. 修改图中的边权</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2699. 修改图中的边权</h1>
+<p>
+<a href="https://leetcode.cn/problems/modify-graph-edge-weights/">https://leetcode.cn/problems/modify-graph-edge-weights/</a>
+</p>
+
+<p>
+完全没有啥思路，看了题目的几个提示之后想到了一个解法，也是这个 <a href="https://leetcode.cn/problems/modify-graph-edge-weights/solution/xiang-xi-fen-xi-liang-ci-dijkstrachou-mi-gv1m/">题解</a> 里面提到的错误解法。
+</p>
+
+<p>
+大致思路就是要做两边最短路：
+</p>
+
+<p>
+第一次找destionation -&gt; x的最短路，这里面记录为D1
+</p>
+
+<p>
+第二次找source -&gt; x的最短路，并且期间需要使用D1的结果
+</p>
+<ul class="org-ul">
+<li>假设当前找到了x, 长度是d, 并且有个(x,y)是不固定边</li>
+<li>我们现在可以尝试去修改这个(x,y), 让它成为最短路</li>
+<li>因为D1[y] = dest -&gt; y的最短路径，所以我们可以把(x,y)改为 target - d - D1[y]</li>
+</ul>
+
+<p>
+但是上面的修改并不一定保证，最后的最短路是 src -&gt; x -&gt; y -&gt; dest. 因为在第一次最短路里面dest-&gt;src并不一定经过(x,y)这个节点。
+</p>
+
+<p>
+我觉得可能这题最关键就是这里，题解里面提到的：
+</p>
+
+<blockquote>
+<p>
+如果 y 不在最短路上，修改 x - y 并不会对最短路产生影响，所以代码中并没有判断 y 是否在最短路上。
+</p>
+</blockquote>
+
+<p>
+我们每次发现这些边的时候直接去修改就好了，不用判断是否在最短路上。我们假设在最短路上，修改完成之后做一次检查，判断是否满足target就好。
+</p>
+
+<p>
+这种两次最短路的算法直接没有看过，比较新鲜。我的代码里面不好直接测试样例，所以增加了一个 `DOCHECK` 标记。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">modifiedGraphEdges</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, edges: List[List[<span class="org-py-builtins">int</span>]], source: <span class="org-py-builtins">int</span>, destination: <span class="org-py-builtins">int</span>, target: <span class="org-py-builtins">int</span>) -&gt; List[
+        List[<span class="org-py-builtins">int</span>]]:
+
+        <span class="org-comment"># build adj on fixed cost</span>
+        <span class="org-comment"># assign varied cost with 1.</span>
+        <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-py-variable-name">disconnect</span> = <span class="org-py-builtins">set</span>()
+        <span class="org-keyword">for</span> a, b, w <span class="org-keyword">in</span> edges:
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">w</span> == -<span class="org-py-number">1</span>:
+                disconnect.add((a, b))
+                disconnect.add((b, a))
+                <span class="org-py-variable-name">w</span> = <span class="org-py-number">1</span>
+            adj[a].append((b, w))
+            adj[b].append((a, w))
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">shortest</span>(s, e, adj):
+            <span class="org-py-variable-name">visit</span> = [-<span class="org-py-number">1</span>] * n
+            <span class="org-py-import-from">import</span> heapq
+            <span class="org-py-variable-name">hp</span> = []
+            hp.append((<span class="org-py-number">0</span>, s, -<span class="org-py-number">1</span>))
+            <span class="org-keyword">while</span> hp:
+                (d, x, p) = heapq.heappop(hp)
+                <span class="org-keyword">if</span> visit[x] != -<span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
+                <span class="org-py-variable-name">visit</span>[x] = d
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">x</span> == e: <span class="org-keyword">break</span>
+                <span class="org-keyword">for</span> y, w <span class="org-keyword">in</span> adj[x]:
+                    <span class="org-keyword">if</span> visit[y] != -<span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
+                    heapq.heappush(hp, (d + w, y, x))
+            <span class="org-keyword">return</span> visit
+
+        <span class="org-keyword">if</span> <span class="org-py-pseudo-keyword">True</span>:
+            <span class="org-py-variable-name">D1</span> = shortest(destination, source, adj)
+            <span class="org-py-variable-name">d</span> = D1[source]
+            <span class="org-keyword">if</span> d &gt; target:
+                <span class="org-keyword">return</span> []
+
+        <span class="org-comment"># dijkstra again with deterministic order.</span>
+        <span class="org-py-def-class">def</span> <span class="org-function-name">fixedWeight</span>(s, e, adj, D):
+            <span class="org-py-variable-name">visit</span> = [-<span class="org-py-number">1</span>] * n
+            <span class="org-py-variable-name">hp</span> = []
+            hp.append((<span class="org-py-number">0</span>, s, -<span class="org-py-number">1</span>, <span class="org-py-number">0</span>))
+            <span class="org-py-variable-name">weight</span> = {}
+            <span class="org-keyword">while</span> hp:
+                (d, x, p, w) = heapq.heappop(hp)
+                <span class="org-keyword">if</span> visit[x] != -<span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
+                <span class="org-py-variable-name">visit</span>[x] = d
+                <span class="org-keyword">if</span> p != -<span class="org-py-number">1</span>:
+                    <span class="org-py-variable-name">weight</span>[(x, p)] = w
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">x</span> == e: <span class="org-keyword">break</span>
+                <span class="org-keyword">for</span> y, w <span class="org-keyword">in</span> adj[x]:
+                    <span class="org-keyword">if</span> (x, y) <span class="org-keyword">in</span> disconnect:
+                        <span class="org-keyword">if</span> D[y] != -<span class="org-py-number">1</span> <span class="org-keyword">and</span> (d + D[y] + w) &lt;= target:
+                            <span class="org-py-variable-name">w</span> = target - d - D[y]
+                        <span class="org-keyword">else</span>:
+                            <span class="org-py-variable-name">w</span> = target + <span class="org-py-number">1</span>
+                    <span class="org-keyword">if</span> visit[y] != -<span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
+                    heapq.heappush(hp, (d + w, y, x, w))
+            <span class="org-keyword">return</span> visit, weight
+
+        <span class="org-py-variable-name">D2</span>, <span class="org-py-variable-name">W</span> = fixedWeight(source, destination, adj, D1)
+        <span class="org-keyword">if</span> D2[destination] != target:
+            <span class="org-keyword">return</span> []
+
+        <span class="org-py-variable-name">output</span> = []
+        <span class="org-keyword">for</span> a, b, w <span class="org-keyword">in</span> edges:
+            <span class="org-keyword">if</span> w != -<span class="org-py-number">1</span>:
+                output.append((a, b, w))
+                <span class="org-keyword">continue</span>
+
+            <span class="org-py-variable-name">w</span> = W.get((a, b)) <span class="org-keyword">or</span> W.get((b, a)) <span class="org-keyword">or</span> w
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">w</span> == -<span class="org-py-number">1</span>:
+                <span class="org-py-variable-name">w</span> = target + <span class="org-py-number">1</span>
+            output.append((a, b, w))
+        <span class="org-py-variable-name">output</span> = [<span class="org-py-builtins">list</span>(x) <span class="org-keyword">for</span> x <span class="org-keyword">in</span> output]
+
+        <span class="org-py-variable-name">DOCHECK</span> = <span class="org-py-pseudo-keyword">False</span>
+        <span class="org-keyword">if</span> os.environ.get(<span class="org-string">'USER'</span>) == <span class="org-string">'dirlt'</span>:
+            <span class="org-comment"># print('mother')</span>
+            <span class="org-py-variable-name">DOCHECK</span> = <span class="org-py-pseudo-keyword">True</span>
+
+        <span class="org-keyword">if</span> DOCHECK:
+            <span class="org-py-def-class">def</span> <span class="org-function-name">check</span>(edges):
+                <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+                <span class="org-keyword">for</span> a, b, w <span class="org-keyword">in</span> edges:
+                    adj[a].append((b, w))
+                    adj[b].append((a, w))
+                <span class="org-py-variable-name">D</span> = shortest(source, destination, adj)
+                <span class="org-keyword">if</span> D[destination] != target:
+                    <span class="org-keyword">print</span>(<span class="org-string">'FAILED'</span>, D[destination], target)
+
+            check(output)
+
+        <span class="org-keyword">return</span> output
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2699-modify-graph-edge-weights.html';this.page.identifier = 'lc-2699-modify-graph-edge-weights.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
