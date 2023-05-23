@@ -1121,3 +1121,4 @@
 - [[file:lc-2608-shortest-cycle-in-a-graph.org][LC 2608. 图中的最短环]] 删边进行BFS
 - [[file:lc-2612-minimum-reverse-operations.org][LC 2612. 最少翻转操作数]] 奇偶性和BFS
 - [[file:lc-6344-lexicographically-smallest-beautiful-string.org][LC 6344. 字典序最小的美丽字符串]] 回文特性
+- 202306 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
