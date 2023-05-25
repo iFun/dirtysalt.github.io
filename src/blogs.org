@@ -5,7 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
-- 202306 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
+- 202305 [[file:build-an-unorthodox-guide-to-making-things-worth-making.org][创造(Build: An Unorthodox Guide to Making Things Worth Making)]] by Tony Fadell
+- 202305 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
 - 202305 [[file:usa-trip-2023-may.org][美国出差日记 - 5月]]
 - 202305 [[file:readings-at-202305.org][网络文章@202305]]
 - 202305 [[file:chatgpt-prompt-design-doc.org][ChatGPT Prompt Design Doc]]

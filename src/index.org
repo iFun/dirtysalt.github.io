@@ -21,6 +21,7 @@
 - 202012 [[file:rms-autobiography-free-as-in-freedom.org][若为自由故(Free as in Freedom)]] RMS自传
 - 202012 [[file:hit-refresh.org][刷新(Hit Refresh)]]
 - 202101 [[file:a-man-for-all-markets.org][战胜一切市场的人(A Man for All Markest)]] 爱德华夏普自传
+- 202305 [[file:build-an-unorthodox-guide-to-making-things-worth-making.org][创造(Build: An Unorthodox Guide to Making Things Worth Making)]] by Tony Fadell
 
 *** 历史社会
 - [[file:amsuing-ourselves-to-death.org][娱乐至死(Amusing Ourselves to Death)]] by Neil Postman
@@ -1121,4 +1122,4 @@
 - [[file:lc-2608-shortest-cycle-in-a-graph.org][LC 2608. 图中的最短环]] 删边进行BFS
 - [[file:lc-2612-minimum-reverse-operations.org][LC 2612. 最少翻转操作数]] 奇偶性和BFS
 - [[file:lc-6344-lexicographically-smallest-beautiful-string.org][LC 6344. 字典序最小的美丽字符串]] 回文特性
-- 202306 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
+- 202305 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
