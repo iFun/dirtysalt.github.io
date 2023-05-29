@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:think-like-a-rocket-scientist.org][像火箭科学家一样思考（Think Like a Rocket Scientist）]] by Ozan Varol
 - 202305 [[file:build-an-unorthodox-guide-to-making-things-worth-making.org][创造(Build: An Unorthodox Guide to Making Things Worth Making)]] by Tony Fadell
 - 202305 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
 - 202305 [[file:usa-trip-2023-may.org][美国出差日记 - 5月]]
