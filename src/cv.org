@@ -37,7 +37,7 @@ StarRocks Committer
 
 Query Team:
 
-- Implement the function of reading ORC format files and optimize ORC data scanning with information such as zonemap and dict. StarRocks has 3-5X the performance of Presto/Trino on TPCH-100G ORC data set.
+- Implement the function of reading ORC format files and optimize ORC data scanning with information such as zone maps and dictionaries. StarRocks has 3-5X the performance of Presto/Trino on the TPCH-100G ORC data set.
 
 - Implement Global Runtime Filter (shuffle awareness runtime filter) function. Unlike other traditional implementations, it can be used in a wider range of scenarios without tuning parameters. On the TPCH-100 data set, some queries can achieve a 3-7X performance improvement.
 
@@ -45,15 +45,15 @@ Query Team:
 
 - Optimize the performance of "group by" for multi-column short strings. By encoding multi-column short strings as int64/int128 to improve the efficiency of hashmap query and insertion, we finally improve the query performance by 30%~100%.
 
-- Optimize the query performance of predicates containing complex expressions. By simplifying complex expressions and analyzing the monotonicity of complex expressions, we can make better use of zonemap and dict data, and the predicate can play a greater role in data pruning, with performance improvement in the range of 10% to 300%.
+- Optimize the query performance of predicates containing complex expressions. By simplifying complex expressions and analyzing the monotonicity of complex expressions, we can make better use of zone maps and dictionaries, and the predicate can play a greater role in data pruning, with performance improvement in the range of 10% to 300%.
 
 Data Lake Team:
 
-- Implement the lazy materialization on reading ORC/Parquet file. By reading the columns in predicates first and then the rest columns, the amount of data read can be effectively reduced. The implementation of lazy materialization does not have any performance degradation problem, and the amount of data read can be reduced to 10%~30%.
+- Implement the lazy materialization on reading ORC/Parquet file. Reading the columns in predicates first and then the rest columns can effectively reduce the amount of data read. The implementation of lazy materialization does not have any performance degradation problem, and the amount of data read can be reduced to 10%~30%.
 
 - Implement IO coalescence on reading ORC/Parquet file. By merging some consecutive or spatially separated but very close columns for reading, the number of IO requests initiated to the storage system can be effectively reduced, which can avoid triggering the IOPS limit and being throttled. In some production scenarios, IOPS can be reduced to 10%~20%, and performance can be improved by 3~7X.
 
-- Implement the Block Cache feature, which can speed up query analysis by caching files locally while reading them on external storage systems (e.g. S3). This feature is the basis of StarRocks Lake Warehouse Fusion. With Block Cache enabled on TPCH/SSB data collections, the data lake can achieve query performance close to that of data warehouse.
+- Implement the Block Cache feature, which can speed up query analysis by caching files locally while reading them on external storage systems (e.g. S3). This feature is the basis of StarRocks Lake Warehouse Fusion. With Block Cache enabled on TPCH/SSB data collections, the data lake can achieve query performance close to the data warehouses.
 
 *** Senior Software Engineer, Microsoft.com, 2020.12 - 2021.4
 
@@ -69,16 +69,15 @@ Develop UX Guardrails tool. It ensures the rendered web elements on the search p
 
 *** Software Engineer, Head of Backend Development, CastBox.FM, 2016.4 - 2020.6
 
-- Design and implement a crawler system. This crawler system constantly synchronizes all publicly available podcasts on the Internet and pushes the latest episodes to users in a timely manner. The technologies used include MongoDB, Python, Nginx, AWS etc. By leveraging RSS submitted by users and user search terms, we have increased the number of podcasts included in the platform from 200K to 600K, and the number of single episodes from 20M to 40M, far exceeding the completeness of our competitors. We use machine learning algorithms to predict the future release of single episodes based on the historical release time of the podcast single episodes, so that we can discover the latest single episodes of popular podcasts within 5 minutes, and users can receive podcast update push and listen to these episodes at the very first time. Meanwhile, we compress and crop the images of podcasts and episodes from 3MB down to less than 300KB, which greatly saves image download traffic and reduces image loading time.
+- Design and implement a crawler system. This crawler system constantly synchronizes all publicly available podcasts on the Internet and pushes the latest episodes to users in a timely manner. The technologies used include MongoDB, Python, Nginx, AWS, etc. By leveraging RSS submitted by users and user search terms, we have increased the number of podcasts included in the platform from 200K to 600K, and the number of episodes from 20M to 40M, far exceeding the completeness of our competitors. We use machine learning algorithms to predict the future release of episodes based on the historical release time of the episodes, so that we can discover the latest episodes of popular podcasts within 5 minutes, and users can receive podcast update push and listen to these episodes at the very first time. Meanwhile, we compress and crop the images of podcasts and episodes from 3MB down to less than 300KB, which greatly saves image download traffic and reduces image loading time.
 
-- Design and implementation of a podcast search system. This search system is based on ElasticSearch and we improve the search system in three aspects: indexing timeliness, search speed and relevance ranking. In terms of indexing timeliness, the crawler system checks for changes in podcast or episode data and notifies the search system of indexing through message queue once there are updates. The pipeline runs within 10s, and more than 200K documents are re-indexed every day. In terms of search speed, the keyword search latency is reduced to less than 200ms through caching and tuning of ElasticSearch; in terms of sorting relevance, in addition to using the document relevance scores returned by ElasticSearch, many factors like the total number of subscriptions, the number of plays in the last 1 and 7 days, and other indicators are considered, which are combined as the relevance scores to give users a better better search experience.
-
+- Design and implementation of a podcast search system. This search system is based on ElasticSearch and we improve the search system in three aspects: indexing timeliness, search speed, and relevance ranking. In terms of indexing timeliness, the crawler system checks for changes in the podcast or episode data and notifies the search system of indexing through the message queue once there are updates. The pipeline runs within 10s, and more than 200K documents are re-indexed every day. In terms of search speed, the keyword search latency is reduced to less than 200ms through caching and tuning of ElasticSearch; in terms of sorting relevance, in addition to using the document relevance scores returned by ElasticSearch, many factors like the total number of subscriptions, the number of plays in the last 1 and 7 days, and other indicators are considered, which are combined as the relevance scores to give users a better search experience.
 
 *** Software Engineer, [[http://logzilla.net/][Logzilla]], 2015.4 - 2015.8 (Remote, as Consultant)
 
 A real-time event analytical platform.
 
-Implement a new event storage engine to support 1M event per second on HDD disk, and 3M event per second on SSD disk.
+Implement a new event storage engine to support 1M events per second on HDD disk, and 3M events per second on SSD disk.
 
 *** Software Engineer, [[http://galeracluster.com/][Galera]], 2014.4 - 2014.11 (Remote, as Consultant)
 
@@ -88,15 +87,15 @@ Optimize cluster recovery process regarding data center outage case, and reduce 
 
 *** Software Architect, Data Platform, [[https://www.umeng.com/][Umeng]], 2012.6 - 2016.4
 
-- Apply optimizations on Hadoop cluster usage includes: a) Using lzma compression algorithm to compress cold data which saves more than 60% of storage space. b) Using MapReduce tasks to generate HBase file directly and then Bulk Loading those files, which leads to good cluster stability comparing with direct use of HBase API to write data. c) Redesign HBase key prefix so that there is no overheated Region Server.
+- Apply optimizations on Hadoop cluster usage includes: a) Using LZMA compression algorithm to compress cold data which saves more than 60% of storage space. b) Using MapReduce tasks to generate HBase files directly and then Bulk-Loading those files, which leads to good cluster stability compared with direct use of HBase API to write data. c) Redesign the HBase key prefix so that there is no overheated Region Server.
 
-- Design and implement FastHBaseRest. It is a high performance service for accessing HBase based on HTTP/Protobuf, using asynchbase for asynchronous access to hbase to improve throughput, using google guava written at the application level LRU cache to reduce access latency. The service is modular and easily extensible, and supports rewrite request/response functionality. Compared to hbase/rest, access latency is reduced by 20%-70%, and traffic data is reduced by 40%-60%.
+- Design and implement FastHBaseRest. It is a high-performance service for accessing HBase based on HTTP/protobuf, using asynchbase for asynchronous access to HBase to improve throughput, using google guava written at the application level LRU cache to reduce access latency. The service is modular and easily extensible, and supports rewrite request/response functionality. Compared to HBase/rest, access latency is reduced by 20%-70%, and traffic data is reduced by 40%-60%.
 
 *** [[../images/baidu-inf-com-2010q4.jpg][Senior Software Engineer]], [[https://www.baidu.com/][Baidu]], 2008.7 - 2012.6
 
-- Design and implement the internal build system comake2. In principle this system is very similar to maven in the Java ecosystem: you can use it to build projects and use it to manage internal dependencies. comake2 is written in Python and is very extensible, with over dozens of plugins contributed by several departments, and is widely used within the company.
+- Design and implement the internal build system comake2. In principle this system is very similar to maven in the Java ecosystem: you can use it to build projects and use it to manage internal dependencies. comake2 is written in Python and is very extensible, with dozens of plugins contributed by several departments, and is widely used within the company.
 
-- Develop and maintain various generic components including generic data structures, lock-free B-Trees, HTTP client, URL encoding and decoding, character encoding and conversion, regular expressions, signature algorithms, memory allocators, data exchange formats, IDL compilers etc.
+- Develop and maintain various generic components including generic data structures, lock-free B-Trees, HTTP client, URL encoding and decoding, character encoding and conversion, regular expressions, signature algorithms, memory allocators, data exchange formats, IDL compilers, etc.
 
 ** Education
 - MS. Computer Science. [[http://www.sdu.edu.cn/][Shandong University]]
