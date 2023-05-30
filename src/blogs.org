@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:seize-mind-and-market.org][抢占心智]] by 江南春
 - 202305 [[file:think-like-a-rocket-scientist.org][像火箭科学家一样思考（Think Like a Rocket Scientist）]] by Ozan Varol
 - 202305 [[file:build-an-unorthodox-guide-to-making-things-worth-making.org][创造(Build: An Unorthodox Guide to Making Things Worth Making)]] by Tony Fadell
 - 202305 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra

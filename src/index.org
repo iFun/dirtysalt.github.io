@@ -71,6 +71,7 @@
 - 202301 [[file:management-behaviour-in-chinese-way.org][中国式管理行为 - 结语]] 曾仕强
 - 202301 [[file:the-job-work-and-its-future-in-a-time-of-radical-change.org][工作：巨变时代的现状、挑战与未来（The Job: Work and Its Future in a Time of Radical Change）]]
 - 202305 [[file:enlightment-of-civilization.org][文明之光]] by 吴军
+- 202305 [[file:seize-mind-and-market.org][抢占心智]] by 江南春
 
 *** 小说杂文
 - [[file:the-catcher-in-the-rye.org][麦田里的守望者(The Catcher in The Rye)]] by Jerome Salinger
