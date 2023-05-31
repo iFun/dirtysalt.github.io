@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202305 [[file:think-real-hard.org][Think real hard]]
 - 202305 [[file:how-to-be-successful.org][How To Be Successful]] by Sam Altman
 - 202305 [[file:you-dont-need-to-work-on-hard-problems.org][You don’t need to work on hard problems]] 你不需要解决困难的问题 **推荐**
 - 202305 [[file:myth-10x-engineer-context-paris.org][10x (engineer, context) pairs]]
