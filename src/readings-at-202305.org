@@ -2,6 +2,29 @@
 
 -----
 
+[[https://www.benkuhn.net/blub/][In defense of blub studies | benkuhn.net]]
+
+blub是指那些没有太多思想内容，但是却有助于完成我们日常任务的知识。
+
+学习这些知识可以解决掉真正研究中出现的阻碍，提高工作效率甚至完成某些“不可能”的任务。
+
+它似乎是某种“通行证”：如果你没有它，那么可能都没有办法展开non-blub study.
+
+-----
+
+[[https://www.benkuhn.net/rha/][Readability, hackability, and abstraction | benkuhn.net]]
+
+复制粘贴代码具有可读性和可破解性，但抽象性差。
+
+大型函数树是可读和抽象的，但很难破解。
+
+有状态对象和虚拟调度都是可破解的和抽象的，但很难理解。
+
+我还没有找到任何模式可以同时完成所有这三个。
+
+
+-----
+
 [[https://world.hey.com/dhh/the-luxury-of-working-without-metrics-02e5dbac][The luxury of working without metrics]]
 
 数据驱动和直觉驱动，感觉就是理性和感性。我理解DHH的意思就是，不要太依赖于数据驱动/理性来打造在错误的方向上打造产品，如果方向错了，那么更加完善的数据驱动只会让这艘船在错误的方向上越走越远，最后迷失在海洋中。
