@@ -447,6 +447,7 @@ https://dirtysalt.github.io/html/how-not-to-measure-latency.html
 https://dirtysalt.github.io/html/how-the-economic-machine-works-by-ray-dalio.html
 https://dirtysalt.github.io/html/how-to-apply-domain.html
 https://dirtysalt.github.io/html/how-to-be-a-programmer.html
+https://dirtysalt.github.io/html/how-to-be-successful.html
 https://dirtysalt.github.io/html/how-to-beat-the-cap-theorem.html
 https://dirtysalt.github.io/html/how-to-build-behaviour.html
 https://dirtysalt.github.io/html/how-to-build-good-software.html
@@ -770,6 +771,7 @@ https://dirtysalt.github.io/html/microservices-not-a-free-lunch.html
 https://dirtysalt.github.io/html/millwheel.html
 https://dirtysalt.github.io/html/minimal-wsgi-app-in-python.html
 https://dirtysalt.github.io/html/mining-massive-datasets.html
+https://dirtysalt.github.io/html/mistakess-as-new-manager.html
 https://dirtysalt.github.io/html/ml-class.html
 https://dirtysalt.github.io/html/ml-foundations.html
 https://dirtysalt.github.io/html/ml-reading.html
@@ -799,6 +801,7 @@ https://dirtysalt.github.io/html/my-thoughts-on-startup.html
 https://dirtysalt.github.io/html/my-without-wife-wedding.html
 https://dirtysalt.github.io/html/mysql.html
 https://dirtysalt.github.io/html/mysterious-memcpy-assembly-code.html
+https://dirtysalt.github.io/html/myth-10x-engineer-context-paris.html
 https://dirtysalt.github.io/html/nand2tetris-hardware-part.html
 https://dirtysalt.github.io/html/nand2tetris-software-part.html
 https://dirtysalt.github.io/html/narrow-python-build.html
@@ -1309,6 +1312,7 @@ https://dirtysalt.github.io/html/xor-filters-paper.html
 https://dirtysalt.github.io/html/yahoo-and-freebsd.html
 https://dirtysalt.github.io/html/you-can-not-sacrifice-partition-tolerance.html
 https://dirtysalt.github.io/html/you-cant-read-all-books.html
+https://dirtysalt.github.io/html/you-dont-need-to-work-on-hard-problems.html
 https://dirtysalt.github.io/html/you-know-so-little.html
 https://dirtysalt.github.io/html/you-should-be-with-ambitious-people.html
 https://dirtysalt.github.io/html/your-server-as-a-function.html
