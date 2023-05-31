@@ -1188,6 +1188,7 @@ https://dirtysalt.github.io/html/the-tyranny-of-the-clock.html
 https://dirtysalt.github.io/html/the-vertica-analytic-database.html
 https://dirtysalt.github.io/html/things-you-should-never-do-part1.html
 https://dirtysalt.github.io/html/think-like-a-rocket-scientist.html
+https://dirtysalt.github.io/html/think-real-hard.html
 https://dirtysalt.github.io/html/think-stats.html
 https://dirtysalt.github.io/html/thinking-clearly-about-performance.html
 https://dirtysalt.github.io/html/thinking-fast-and-slow.html
