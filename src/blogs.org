@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202306 [[file:information-dilution-effect.org][从摄像想到信息稀释效应]]
 - 202306 [[file:usa-trip-2023-jun.org][美国出差日记 - 6月]]
 - 202306 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]
 - 202306 [[file:think-real-hard.org][Think real hard]]
