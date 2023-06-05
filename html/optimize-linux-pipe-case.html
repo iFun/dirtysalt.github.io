@@ -24,7 +24,7 @@
 下面数据是我在开发机器上得到的，绝对数值上看差不多是作者得到的一半，从sysbench测试得到的memory read bandwidth数值也是文章中的一半。
 </p>
 
-<pre class="example" id="org3b18291">
+<pre class="example" id="org8f7dce8">
 sandbox-cloud :: ~/repo/pipes-speed-test ‹master*› » sudo ./write| ./read
 2.5GiB/s, 256KiB buffer, 40960 iterations (10GiB piped)
 sandbox-cloud :: ~/repo/pipes-speed-test ‹master*› » sudo ./write --write_with_vmsplice | ./read
@@ -48,7 +48,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="orgc7b41ec" class="figure">
+<div id="org0aa123e" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-0.svg" alt="optimize-linux-pipe-case-0.svg" class="org-svg" />
 </p>
 </div>
@@ -62,7 +62,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="orgda8e4c1" class="figure">
+<div id="org29f53a5" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-1.png" alt="optimize-linux-pipe-case-1.png" />
 </p>
 </div>
@@ -79,7 +79,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="org3a2bd49" class="figure">
+<div id="orge997b64" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-2.png" alt="optimize-linux-pipe-case-2.png" />
 </p>
 </div>
@@ -89,7 +89,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="org4f51a58" class="figure">
+<div id="org0dd1903" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-3.svg" alt="optimize-linux-pipe-case-3.svg" class="org-svg" />
 </p>
 </div>
@@ -113,7 +113,7 @@ So to represent 2MiB huge page we’ll have 1 “head” struct page, and up to 
 </p>
 
 
-<div id="orgfa1e7f7" class="figure">
+<div id="org88dd62c" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-4.png" alt="optimize-linux-pipe-case-4.png" />
 </p>
 </div>

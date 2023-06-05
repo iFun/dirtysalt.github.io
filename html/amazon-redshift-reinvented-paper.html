@@ -16,17 +16,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8aeebbb">1. 几个角度</a></li>
-<li><a href="#orgadb56d2">2. 单机性能</a></li>
-<li><a href="#org498ffbd">3. 存储扩展</a></li>
-<li><a href="#org8f49ab4">4. 自动化调优和运维</a></li>
-<li><a href="#orgd767976">5. 生态系统</a></li>
+<li><a href="#orgd6fa3d0">1. 几个角度</a></li>
+<li><a href="#orga06fdbd">2. 单机性能</a></li>
+<li><a href="#org9371fab">3. 存储扩展</a></li>
+<li><a href="#org924d191">4. 自动化调优和运维</a></li>
+<li><a href="#org90f1af0">5. 生态系统</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org8aeebbb" class="outline-2">
-<h2 id="org8aeebbb"><span class="section-number-2">1.</span> 几个角度</h2>
+<div id="outline-container-orgd6fa3d0" class="outline-2">
+<h2 id="orgd6fa3d0"><span class="section-number-2">1.</span> 几个角度</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这篇文章很粗略地概括了一下Redshift的实现和功能，每个点都比较零碎，从几个角度进行说明：
@@ -44,15 +44,15 @@
 </p>
 
 
-<div id="orgce8ed7e" class="figure">
+<div id="orgc1f2a01" class="figure">
 <p><img src="../images/amazon-redshift-reinvented-paper-0.png" alt="amazon-redshift-reinvented-paper-0.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgadb56d2" class="outline-2">
-<h2 id="orgadb56d2"><span class="section-number-2">2.</span> 单机性能</h2>
+<div id="outline-container-orga06fdbd" class="outline-2">
+<h2 id="orga06fdbd"><span class="section-number-2">2.</span> 单机性能</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 单机性能
@@ -85,8 +85,8 @@ Second, QRF is used for creating scripts for incremental mate- rialized view mai
 </div>
 </div>
 
-<div id="outline-container-org498ffbd" class="outline-2">
-<h2 id="org498ffbd"><span class="section-number-2">3.</span> 存储扩展</h2>
+<div id="outline-container-org9371fab" class="outline-2">
+<h2 id="org9371fab"><span class="section-number-2">3.</span> 存储扩展</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 RMS架构和说明如下:
@@ -98,7 +98,7 @@ RMS架构和说明如下:
 </ul>
 
 
-<div id="org4a84ff2" class="figure">
+<div id="orga75edcd" class="figure">
 <p><img src="../images/amazon-redshift-reinvented-paper-1.png" alt="amazon-redshift-reinvented-paper-1.png" />
 </p>
 </div>
@@ -164,8 +164,8 @@ Finally, to boost performance, Redshift utilizes a dynamic disk- cache on top of
 </div>
 </div>
 
-<div id="outline-container-org8f49ab4" class="outline-2">
-<h2 id="org8f49ab4"><span class="section-number-2">4.</span> 自动化调优和运维</h2>
+<div id="outline-container-org924d191" class="outline-2">
+<h2 id="org924d191"><span class="section-number-2">4.</span> 自动化调优和运维</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 ATO(Automatic Table Optimizations)可以优化分区键和排序键
@@ -220,8 +220,8 @@ While fail-stop failures are relatively easy to detect, the gray failures are wa
 </div>
 </div>
 
-<div id="outline-container-orgd767976" class="outline-2">
-<h2 id="orgd767976"><span class="section-number-2">5.</span> 生态系统</h2>
+<div id="outline-container-org90f1af0" class="outline-2">
+<h2 id="org90f1af0"><span class="section-number-2">5.</span> 生态系统</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 在综述部分大致介绍了一下生态系统：
@@ -255,7 +255,7 @@ ML SageMaker 可以将数据dump到S3上并且触发SageMaker, 生成模型之�
 </p>
 
 
-<div id="org69c8311" class="figure">
+<div id="org3ce1549" class="figure">
 <p><img src="../images/amazon-redshift-reinvented-paper-2.png" alt="amazon-redshift-reinvented-paper-2.png" />
 </p>
 </div>

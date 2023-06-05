@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org635875a">1. create connection</a></li>
-<li><a href="#org339009a">2. packet reception</a></li>
-<li><a href="#org3422027">3. packet transmission</a></li>
-<li><a href="#orgd5f71dd">4. congestion control</a></li>
+<li><a href="#org90f97fd">1. create connection</a></li>
+<li><a href="#orgd47e02e">2. packet reception</a></li>
+<li><a href="#orgc361eab">3. packet transmission</a></li>
+<li><a href="#orga62f8ba">4. congestion control</a></li>
 </ul>
 </div>
 </div>
@@ -27,15 +27,15 @@
 <a href="http://www.ece.virginia.edu/cheetah/documents/papers/TCPlinux.pdf">http://www.ece.virginia.edu/cheetah/documents/papers/TCPlinux.pdf</a>
 </p>
 
-<div id="outline-container-org635875a" class="outline-2">
-<h2 id="org635875a"><span class="section-number-2">1.</span> create connection</h2>
+<div id="outline-container-org90f97fd" class="outline-2">
+<h2 id="org90f97fd"><span class="section-number-2">1.</span> create connection</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 下面摘自 "<a href="http://blog.sina.com.cn/s/blog_e59371cc0102vg4n.html">Linux TCP队列相关参数的总结</a>":
 </p>
 
 
-<div id="orgc3d8bcd" class="figure">
+<div id="org74e680e" class="figure">
 <p><img src="../images/tcp-create-connection.png" alt="tcp-create-connection.png" />
 </p>
 </div>
@@ -54,11 +54,11 @@
 </div>
 </div>
 
-<div id="outline-container-org339009a" class="outline-2">
-<h2 id="org339009a"><span class="section-number-2">2.</span> packet reception</h2>
+<div id="outline-container-orgd47e02e" class="outline-2">
+<h2 id="orgd47e02e"><span class="section-number-2">2.</span> packet reception</h2>
 <div class="outline-text-2" id="text-2">
 
-<div id="org8f429b5" class="figure">
+<div id="orgb9bc48c" class="figure">
 <p><img src="../images/tcp-packet-reception.png" alt="tcp-packet-reception.png" />
 </p>
 </div>
@@ -109,11 +109,11 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 </div>
 </div>
 
-<div id="outline-container-org3422027" class="outline-2">
-<h2 id="org3422027"><span class="section-number-2">3.</span> packet transmission</h2>
+<div id="outline-container-orgc361eab" class="outline-2">
+<h2 id="orgc361eab"><span class="section-number-2">3.</span> packet transmission</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="org1414461" class="figure">
+<div id="org39c9f00" class="figure">
 <p><img src="../images/tcp-packet-transmission.png" alt="tcp-packet-transmission.png" />
 </p>
 </div>
@@ -136,7 +136,7 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 <p>
 在wangyx的帮助下, qdisc队列长度参数txqueuelen这个配置在ifconfig下面找到了. txqueuelen = 1000.
 </p>
-<pre class="example" id="org711f2fc">
+<pre class="example" id="orgb8d06b5">
 ➜  ~  ifconfig
 eth0      Link encap:Ethernet  HWaddr 12:31:40:00:49:d1
           inet addr:10.170.78.31  Bcast:10.170.79.255  Mask:255.255.254.0
@@ -164,11 +164,11 @@ QDisc的队列长度由txqueuelen设置，和接收数据包的队列长度由�
 </div>
 </div>
 
-<div id="outline-container-orgd5f71dd" class="outline-2">
-<h2 id="orgd5f71dd"><span class="section-number-2">4.</span> congestion control</h2>
+<div id="outline-container-orga62f8ba" class="outline-2">
+<h2 id="orga62f8ba"><span class="section-number-2">4.</span> congestion control</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="org1c40d6b" class="figure">
+<div id="orgc1f3484" class="figure">
 <p><img src="../images/tcp-congestion-control.png" alt="tcp-congestion-control.png" />
 </p>
 </div>

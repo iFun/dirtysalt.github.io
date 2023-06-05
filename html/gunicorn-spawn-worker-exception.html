@@ -16,14 +16,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org210aec6">1. 事故现场</a></li>
-<li><a href="#orgfe2aa50">2. 事故分析</a></li>
+<li><a href="#org98fb92e">1. 事故现场</a></li>
+<li><a href="#orgec25589">2. 事故分析</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org210aec6" class="outline-2">
-<h2 id="org210aec6"><span class="section-number-2">1.</span> 事故现场</h2>
+<div id="outline-container-org98fb92e" class="outline-2">
+<h2 id="org98fb92e"><span class="section-number-2">1.</span> 事故现场</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 @2019-08-13T10:40:41
@@ -81,15 +81,15 @@ Traceback (most recent call last):
 从这个错误日志看出现了加载模块的错误 config 里面增加属性 APP_RUNNING_REGION. 但是当时我的操作只是更新代码，而没有进行重启。下面可以看到push_rpc_server一直在运行。
 </p>
 
-<pre class="example" id="orgd8776c3">
+<pre class="example" id="orgaf526a2">
 [ec2-user@host pulsar]$ supervisorctl
 push_rpc_server                  RUNNING   pid 37526, uptime 28 days, 8:28:01
 </pre>
 </div>
 </div>
 
-<div id="outline-container-orgfe2aa50" class="outline-2">
-<h2 id="orgfe2aa50"><span class="section-number-2">2.</span> 事故分析</h2>
+<div id="outline-container-orgec25589" class="outline-2">
+<h2 id="orgec25589"><span class="section-number-2">2.</span> 事故分析</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这个和gunicorn运行机制有关系：

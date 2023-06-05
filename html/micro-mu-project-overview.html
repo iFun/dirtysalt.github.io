@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org409b91d">1. 整体结构</a></li>
-<li><a href="#org8b75fb5">2. 三个部分</a></li>
-<li><a href="#orge6cc4e0">3. 组件规范</a></li>
-<li><a href="#org83007a5">4. 编写服务</a></li>
+<li><a href="#org7080fc9">1. 整体结构</a></li>
+<li><a href="#org28e62c0">2. 三个部分</a></li>
+<li><a href="#org729ecfb">3. 组件规范</a></li>
+<li><a href="#org0eacb6c">4. 编写服务</a></li>
 </ul>
 </div>
 </div>
@@ -28,8 +28,8 @@
 开发文档在 <a href="https://micro.github.io/development/">https://micro.github.io/development/</a>
 </p>
 
-<div id="outline-container-org409b91d" class="outline-2">
-<h2 id="org409b91d"><span class="section-number-2">1.</span> 整体结构</h2>
+<div id="outline-container-org7080fc9" class="outline-2">
+<h2 id="org7080fc9"><span class="section-number-2">1.</span> 整体结构</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这个项目的目标是方便微服务的开发和部署，分为这么几层：
@@ -78,15 +78,15 @@
 </p>
 
 
-<div id="org94103df" class="figure">
+<div id="org2fec336" class="figure">
 <p><img src="../images/micro-mu-project-overview-0.svg" alt="micro-mu-project-overview-0.svg" class="org-svg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org8b75fb5" class="outline-2">
-<h2 id="org8b75fb5"><span class="section-number-2">2.</span> 三个部分</h2>
+<div id="outline-container-org28e62c0" class="outline-2">
+<h2 id="org28e62c0"><span class="section-number-2">2.</span> 三个部分</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 接上篇继续写，之前说了micro.mu项目分成3个部分:
@@ -112,7 +112,7 @@
 </ol>
 
 
-<div id="org122e268" class="figure">
+<div id="orgaef588c" class="figure">
 <p><img src="../images/micro-mu-project-overview-1.svg" alt="micro-mu-project-overview-1.svg" class="org-svg" />
 </p>
 </div>
@@ -179,28 +179,28 @@ API Gateway入下图，对外暴露的HTTP协议，可以将这些请求转发�
 </p>
 
 
-<div id="org1c1ce3e" class="figure">
+<div id="org8a449d0" class="figure">
 <p><img src="../images/micro-mu-project-overview-2.png" alt="micro-mu-project-overview-2.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orge6cc4e0" class="outline-2">
-<h2 id="orge6cc4e0"><span class="section-number-2">3.</span> 组件规范</h2>
+<div id="outline-container-org729ecfb" class="outline-2">
+<h2 id="org729ecfb"><span class="section-number-2">3.</span> 组件规范</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 这个项目代码非常规范，上面提到的每个模块都可以在这里找到对应的目录，然后每个目录下面有具体的各种实现，以及两个文件 &lt;组件名&gt;.go 和 options.go
 </p>
 
 
-<div id="orgef8fea2" class="figure">
+<div id="orgbcdb63b" class="figure">
 <p><img src="../images/micro-mu-project-overview-3.png" alt="micro-mu-project-overview-3.png" />
 </p>
 </div>
 
 
-<div id="org6dcc5e5" class="figure">
+<div id="orgd28d590" class="figure">
 <p><img src="../images/micro-mu-project-overview-4.png" alt="micro-mu-project-overview-4.png" />
 </p>
 </div>
@@ -353,15 +353,15 @@ trace.DefaultTracer = memTrace.<span class="org-function-name">NewTracer</span>(
 </div>
 </div>
 
-<div id="outline-container-org83007a5" class="outline-2">
-<h2 id="org83007a5"><span class="section-number-2">4.</span> 编写服务</h2>
+<div id="outline-container-org0eacb6c" class="outline-2">
+<h2 id="org0eacb6c"><span class="section-number-2">4.</span> 编写服务</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 调用一个服务，是通过service name + method name 来确定的，对于内部功能也是这样。比如我们想查看某个服务的统计耗时情况，我在server里面增加了一个端点。可以看到这个service name是 "go.micro.api.greeter", method name 是 "Debug.Stats"
 </p>
 
 
-<div id="org1158fa9" class="figure">
+<div id="orgc2c6841" class="figure">
 <p><img src="../images/micro-mu-project-overview-5.png" alt="micro-mu-project-overview-5.png" />
 </p>
 </div>
@@ -375,7 +375,7 @@ trace.DefaultTracer = memTrace.<span class="org-function-name">NewTracer</span>(
 </p>
 
 
-<div id="org0e681bd" class="figure">
+<div id="orgf8e3808" class="figure">
 <p><img src="../images/micro-mu-project-overview-6.png" alt="micro-mu-project-overview-6.png" />
 </p>
 </div>

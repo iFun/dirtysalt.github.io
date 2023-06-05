@@ -16,11 +16,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org265447d">1. 开始</a></li>
-<li><a href="#org0aac3f0">2. 优化</a></li>
-<li><a href="#org8f92cc7">3. JIT</a></li>
-<li><a href="#org1a18a1a">4. 后续</a></li>
-<li><a href="#orgb36359b">5. 使用</a></li>
+<li><a href="#org557cb8e">1. 开始</a></li>
+<li><a href="#orga4f2c49">2. 优化</a></li>
+<li><a href="#orgb8a94c5">3. JIT</a></li>
+<li><a href="#org712360b">4. 后续</a></li>
+<li><a href="#org3bf7394">5. 使用</a></li>
 </ul>
 </div>
 </div>
@@ -32,8 +32,8 @@
 <li><a href="https://stackoverflow.com/questions/2591879/pypy-how-can-it-possibly-beat-cpython">https://stackoverflow.com/questions/2591879/pypy-how-can-it-possibly-beat-cpython</a></li>
 </ul>
 
-<div id="outline-container-org265447d" class="outline-2">
-<h2 id="org265447d"><span class="section-number-2">1.</span> 开始</h2>
+<div id="outline-container-org557cb8e" class="outline-2">
+<h2 id="org557cb8e"><span class="section-number-2">1.</span> 开始</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 使用CPython运行方式是：CPython.run(user-code)
@@ -53,8 +53,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0aac3f0" class="outline-2">
-<h2 id="org0aac3f0"><span class="section-number-2">2.</span> 优化</h2>
+<div id="outline-container-orga4f2c49" class="outline-2">
+<h2 id="orga4f2c49"><span class="section-number-2">2.</span> 优化</h2>
 <div class="outline-text-2" id="text-2">
 <p class="verse">
 CPython(2).run(Python(1).run(user-code))<br />
@@ -79,8 +79,8 @@ PyPyC.run(RPython.run(user-code))<br />
 </div>
 </div>
 
-<div id="outline-container-org8f92cc7" class="outline-2">
-<h2 id="org8f92cc7"><span class="section-number-2">3.</span> JIT</h2>
+<div id="outline-container-orgb8a94c5" class="outline-2">
+<h2 id="orgb8a94c5"><span class="section-number-2">3.</span> JIT</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 普通的JIT编译器是根据user-code来做优化。用户代码那个部分比较热并且耗时，那么就把这个部分的代码编译成为native code. 而PyPyC的JIT编译器不是直接去JIT编译用户的代码，而是JIT编译 <b>RPython解释器</b> 的热代码。根据RPython解释器在运行user-code时候得到的profile数据，直接对RPython解释器某个部分（结合user-code）编译成为native code.
@@ -97,8 +97,8 @@ PyPyC.run(RPython.run(user-code))<br />
 </div>
 </div>
 
-<div id="outline-container-org1a18a1a" class="outline-2">
-<h2 id="org1a18a1a"><span class="section-number-2">4.</span> 后续</h2>
+<div id="outline-container-org712360b" class="outline-2">
+<h2 id="org712360b"><span class="section-number-2">4.</span> 后续</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 如果细看的话，PyPyC这个部分的代码是固定的，之和RPython的解释以及JIT编译有关，这个组件是可以复用的。所以理论上我们只要用RPython编写一个语言的解释器，就可以得到这个语言的高效的解释器附带JIT编译器的实现。PHP, Ruby都有这类实现。
@@ -106,8 +106,8 @@ PyPyC.run(RPython.run(user-code))<br />
 </div>
 </div>
 
-<div id="outline-container-orgb36359b" class="outline-2">
-<h2 id="orgb36359b"><span class="section-number-2">5.</span> 使用</h2>
+<div id="outline-container-org3bf7394" class="outline-2">
+<h2 id="org3bf7394"><span class="section-number-2">5.</span> 使用</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 使用起来还是蛮方便的，整个Python环境放在一个目录下面就行。因为使用virutalenv来管理packages, 所以只要使用pypy安装好了pip, virtualenv之后，进入了virtual env下面，就还是按照CPython使用方式来搞就行。

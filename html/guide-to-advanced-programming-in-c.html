@@ -16,12 +16,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc768ffc">1. Integer Overflows and Promotions</a></li>
-<li><a href="#org8882543">2. Memory Allocation and Management</a></li>
-<li><a href="#orgd6c86d2">3. Pointers and Arrays</a></li>
-<li><a href="#org6f550ff">4. Interpositioning</a></li>
-<li><a href="#org58a29f0">5. Explicit Inlining</a></li>
-<li><a href="#orgf0160fa">6. Vector Extensions</a></li>
+<li><a href="#orge058429">1. Integer Overflows and Promotions</a></li>
+<li><a href="#orga494e99">2. Memory Allocation and Management</a></li>
+<li><a href="#orgcb31c5e">3. Pointers and Arrays</a></li>
+<li><a href="#org5220574">4. Interpositioning</a></li>
+<li><a href="#org00c23de">5. Explicit Inlining</a></li>
+<li><a href="#orgdb7a256">6. Vector Extensions</a></li>
 </ul>
 </div>
 </div>
@@ -29,11 +29,11 @@
 <a href="http://pfacka.binaryparadise.com/articles/guide-to-advanced-programming-in-C.html">http://pfacka.binaryparadise.com/articles/guide-to-advanced-programming-in-C.html</a>
 </p>
 
-<div id="outline-container-orgc768ffc" class="outline-2">
-<h2 id="orgc768ffc"><span class="section-number-2">1.</span> Integer Overflows and Promotions</h2>
+<div id="outline-container-orge058429" class="outline-2">
+<h2 id="orge058429"><span class="section-number-2">1.</span> Integer Overflows and Promotions</h2>
 </div>
-<div id="outline-container-org8882543" class="outline-2">
-<h2 id="org8882543"><span class="section-number-2">2.</span> Memory Allocation and Management</h2>
+<div id="outline-container-orga494e99" class="outline-2">
+<h2 id="orga494e99"><span class="section-number-2">2.</span> Memory Allocation and Management</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Many operating systems provide interface to control access over memory regions to protect memory against unintended read/write operations such as Posix <a href="http://pubs.opengroup.org/onlinepubs/9699919799/functions/mprotect.html">mprotect</a> . These mechanisms usually apply to whole memory pages. (mprotect以page为单位）
@@ -42,7 +42,7 @@ Many operating systems provide interface to control access over memory regions t
 <p>
 <a href="http://www.cs.nyu.edu/exact/core/doc/stackOverflow.txt">http://www.cs.nyu.edu/exact/core/doc/stackOverflow.txt</a> 给出了每个平台默认stack大小以及修改方法
 </p>
-<pre class="example" id="org42999dc">
+<pre class="example" id="org66bd78a">
 Stack Overflow Problems
 =======================
 This file gives some hints on addressing this problem on different platforms.
@@ -110,11 +110,11 @@ the "size of stack reserve" information in "optional header values".  Run
 </div>
 </div>
 
-<div id="outline-container-orgd6c86d2" class="outline-2">
-<h2 id="orgd6c86d2"><span class="section-number-2">3.</span> Pointers and Arrays</h2>
+<div id="outline-container-orgcb31c5e" class="outline-2">
+<h2 id="orgcb31c5e"><span class="section-number-2">3.</span> Pointers and Arrays</h2>
 </div>
-<div id="outline-container-org6f550ff" class="outline-2">
-<h2 id="org6f550ff"><span class="section-number-2">4.</span> Interpositioning</h2>
+<div id="outline-container-org5220574" class="outline-2">
+<h2 id="org5220574"><span class="section-number-2">4.</span> Interpositioning</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 __attribute__ ((visibility (&lt;value&gt;))) 可以用来控制符号可见域，其中value可以指定为
@@ -129,8 +129,8 @@ __attribute__ ((visibility (&lt;value&gt;))) 可以用来控制符号可见域�
 </div>
 </div>
 
-<div id="outline-container-org58a29f0" class="outline-2">
-<h2 id="org58a29f0"><span class="section-number-2">5.</span> Explicit Inlining</h2>
+<div id="outline-container-org00c23de" class="outline-2">
+<h2 id="org00c23de"><span class="section-number-2">5.</span> Explicit Inlining</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 inline __attribute__((always _inline)) 可以强制inline.
@@ -138,8 +138,8 @@ inline __attribute__((always _inline)) 可以强制inline.
 </div>
 </div>
 
-<div id="outline-container-orgf0160fa" class="outline-2">
-<h2 id="orgf0160fa"><span class="section-number-2">6.</span> Vector Extensions</h2>
+<div id="outline-container-orgdb7a256" class="outline-2">
+<h2 id="orgdb7a256"><span class="section-number-2">6.</span> Vector Extensions</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 通常编译器都会提供对应的头文件（提供指令以及数据类型）
@@ -157,7 +157,7 @@ inline __attribute__((always _inline)) 可以强制inline.
 <p>
 SIMD指令操作参数通常要求字节对齐（比如16字节），头文件里面应该都会定义这些数据类型
 </p>
-<pre class="example" id="orgad0e188">
+<pre class="example" id="org6b888fe">
 /* SSE2 */
 typedef double __v2df __attribute__ ((__vector_size__ (16)));
 typedef long long __v2di __attribute__ ((__vector_size__ (16)));

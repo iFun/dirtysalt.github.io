@@ -16,26 +16,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgca0d6c4">1. base</a></li>
-<li><a href="#org9eb40f1">2. Buffer</a></li>
-<li><a href="#orgb47c07a">3. Channel</a></li>
-<li><a href="#orgaf4307d">4. Poller</a></li>
-<li><a href="#orgf488254">5. EventLoop</a>
+<li><a href="#orgd700f30">1. base</a></li>
+<li><a href="#orgc6e1134">2. Buffer</a></li>
+<li><a href="#org879098e">3. Channel</a></li>
+<li><a href="#orgd3452fe">4. Poller</a></li>
+<li><a href="#org186bcf0">5. EventLoop</a>
 <ul>
-<li><a href="#org4040801">5.1. 单线程单EventLoop</a></li>
-<li><a href="#org35897aa">5.2. 跨线程激活</a></li>
-<li><a href="#orgd7a1af6">5.3. 跨线程任务</a></li>
-<li><a href="#org1c17fc9">5.4. 定时器任务</a></li>
-<li><a href="#orgbdc1e9f">5.5. How it works</a></li>
+<li><a href="#org7ae214d">5.1. 单线程单EventLoop</a></li>
+<li><a href="#org1b33c82">5.2. 跨线程激活</a></li>
+<li><a href="#orgdf7ba50">5.3. 跨线程任务</a></li>
+<li><a href="#orgfddcdea">5.4. 定时器任务</a></li>
+<li><a href="#org9e24ad8">5.5. How it works</a></li>
 </ul>
 </li>
-<li><a href="#org39e218d">6. TimerQueue</a></li>
-<li><a href="#org1025224">7. EventLoopThread</a></li>
-<li><a href="#org2e1c8f8">8. Acceptor</a></li>
-<li><a href="#org376df77">9. Connector</a></li>
-<li><a href="#orga64ce20">10. TcpConnection</a></li>
-<li><a href="#org34d3db3">11. TcpClient</a></li>
-<li><a href="#org4453973">12. TcpServer</a></li>
+<li><a href="#org1587f99">6. TimerQueue</a></li>
+<li><a href="#org9cf60ec">7. EventLoopThread</a></li>
+<li><a href="#orgb475c16">8. Acceptor</a></li>
+<li><a href="#org77e016a">9. Connector</a></li>
+<li><a href="#org56dab09">10. TcpConnection</a></li>
+<li><a href="#org87dfbd3">11. TcpClient</a></li>
+<li><a href="#orge5e2731">12. TcpServer</a></li>
 </ul>
 </div>
 </div>
@@ -68,8 +68,8 @@ muduo使用了很多新的Linux内核特性，包括使用signalfd和timerfd来�
 muduo将hpserver下面的event item和event handler以及handle都在一起，称之为Channel.而Reactor在这里称为EventLoop.所以可以认为相对于hpserver,类层次结构好理解多了。
 </p>
 
-<div id="outline-container-orgca0d6c4" class="outline-2">
-<h2 id="orgca0d6c4"><span class="section-number-2">1.</span> base</h2>
+<div id="outline-container-orgd700f30" class="outline-2">
+<h2 id="orgd700f30"><span class="section-number-2">1.</span> base</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 base下面都是一些关于多线程编程方面需要使用的组件
@@ -173,13 +173,13 @@ base下面都是一些关于多线程编程方面需要使用的组件
 </div>
 </div>
 
-<div id="outline-container-org9eb40f1" class="outline-2">
-<h2 id="org9eb40f1"><span class="section-number-2">2.</span> Buffer</h2>
+<div id="outline-container-orgc6e1134" class="outline-2">
+<h2 id="orgc6e1134"><span class="section-number-2">2.</span> Buffer</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表示的，逻辑上结构是这样的
 </p>
-<pre class="example" id="org51642ee">
+<pre class="example" id="orgf05f8cd">
 /// @code
 /// +-------------------+------------------+------------------+
 /// | prependable bytes |  readable bytes  |  writable bytes  |
@@ -220,8 +220,8 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表�
 </div>
 </div>
 
-<div id="outline-container-orgb47c07a" class="outline-2">
-<h2 id="orgb47c07a"><span class="section-number-2">3.</span> Channel</h2>
+<div id="outline-container-org879098e" class="outline-2">
+<h2 id="org879098e"><span class="section-number-2">3.</span> Channel</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Channel</span> : <span class="org-constant">boost</span>::<span class="org-type">noncopyable</span>
@@ -283,8 +283,8 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector&lt;char*&gt;表�
 </div>
 </div>
 
-<div id="outline-container-orgaf4307d" class="outline-2">
-<h2 id="orgaf4307d"><span class="section-number-2">4.</span> Poller</h2>
+<div id="outline-container-orgd3452fe" class="outline-2">
+<h2 id="orgd3452fe"><span class="section-number-2">4.</span> Poller</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Poller本身也是一个抽象类，然后底层支持poll和epoll.
@@ -315,8 +315,8 @@ poll操作的timeoutMs就是epoll_wait超时时间，而activeChannels就是活�
 </div>
 </div>
 
-<div id="outline-container-orgf488254" class="outline-2">
-<h2 id="orgf488254"><span class="section-number-2">5.</span> EventLoop</h2>
+<div id="outline-container-org186bcf0" class="outline-2">
+<h2 id="org186bcf0"><span class="section-number-2">5.</span> EventLoop</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 和之前一样，我们还是看看EventLoop有哪些结构。对于EventLoop结构比较复杂，我们列出主要的接口和成员。
@@ -389,8 +389,8 @@ pipe来完成。然后我们还允许向EventLoop里面添加定时器任务，�
 </div>
 </div>
 
-<div id="outline-container-org4040801" class="outline-3">
-<h3 id="org4040801"><span class="section-number-3">5.1.</span> 单线程单EventLoop</h3>
+<div id="outline-container-org7ae214d" class="outline-3">
+<h3 id="org7ae214d"><span class="section-number-3">5.1.</span> 单线程单EventLoop</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 作者建议一个线程绑定一个EventLoop,这个实现呢？其实还是使用线程局部变量。首先定义线程局部变量
@@ -406,8 +406,8 @@ pipe来完成。然后我们还允许向EventLoop里面添加定时器任务，�
 </div>
 </div>
 
-<div id="outline-container-org35897aa" class="outline-3">
-<h3 id="org35897aa"><span class="section-number-3">5.2.</span> 跨线程激活</h3>
+<div id="outline-container-org1b33c82" class="outline-3">
+<h3 id="org1b33c82"><span class="section-number-3">5.2.</span> 跨线程激活</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 首先我们看看跨线程激活是怎么操作的。在EventLoop的初始化函数内部初始化了wakeupFd并且创建了channel.但是如果不仔细阅读，
@@ -448,8 +448,8 @@ pipe来完成。然后我们还允许向EventLoop里面添加定时器任务，�
 </div>
 </div>
 
-<div id="outline-container-orgd7a1af6" class="outline-3">
-<h3 id="orgd7a1af6"><span class="section-number-3">5.3.</span> 跨线程任务</h3>
+<div id="outline-container-orgdf7ba50" class="outline-3">
+<h3 id="orgdf7ba50"><span class="section-number-3">5.3.</span> 跨线程任务</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 runInLoop和queueInLoop就是跨线程任务。内容非常简单
@@ -479,8 +479,8 @@ runInLoop和queueInLoop就是跨线程任务。内容非常简单
 </div>
 </div>
 
-<div id="outline-container-org1c17fc9" class="outline-3">
-<h3 id="org1c17fc9"><span class="section-number-3">5.4.</span> 定时器任务</h3>
+<div id="outline-container-orgfddcdea" class="outline-3">
+<h3 id="orgfddcdea"><span class="section-number-3">5.4.</span> 定时器任务</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 定时器任务都是交给了TimerQueue来处理的，在TimerQueue这个部分我们会简要地分析一下
@@ -495,8 +495,8 @@ runInLoop和queueInLoop就是跨线程任务。内容非常简单
 </div>
 </div>
 
-<div id="outline-container-orgbdc1e9f" class="outline-3">
-<h3 id="orgbdc1e9f"><span class="section-number-3">5.5.</span> How it works</h3>
+<div id="outline-container-org9e24ad8" class="outline-3">
+<h3 id="org9e24ad8"><span class="section-number-3">5.5.</span> How it works</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 基本上和hpserver非常相似，不断地调用poller::poll方法，然后在外层不断地查看是否需要quit.poll之后会得到activeChannels.和hpserver不同的是，
@@ -507,8 +507,8 @@ muduo没有调用器(其实也不需要，本来就没有优先级概念)，仅�
 </div>
 </div>
 
-<div id="outline-container-org39e218d" class="outline-2">
-<h2 id="org39e218d"><span class="section-number-2">6.</span> TimerQueue</h2>
+<div id="outline-container-org1587f99" class="outline-2">
+<h2 id="org1587f99"><span class="section-number-2">6.</span> TimerQueue</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做了哪些事情，整个过程有点绕
@@ -558,8 +558,8 @@ TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做�
 </div>
 </div>
 
-<div id="outline-container-org1025224" class="outline-2">
-<h2 id="org1025224"><span class="section-number-2">7.</span> EventLoopThread</h2>
+<div id="outline-container-org9cf60ec" class="outline-2">
+<h2 id="org9cf60ec"><span class="section-number-2">7.</span> EventLoopThread</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 EventLoopThread就是将一个EventLoop和Thread包装在一起的对象。这个内容到没有什么，不过觉得代码方面有点技巧。
@@ -595,8 +595,8 @@ EventLoopThread就是将一个EventLoop和Thread包装在一起的对象。这�
 </div>
 </div>
 
-<div id="outline-container-org2e1c8f8" class="outline-2">
-<h2 id="org2e1c8f8"><span class="section-number-2">8.</span> Acceptor</h2>
+<div id="outline-container-orgb475c16" class="outline-2">
+<h2 id="orgb475c16"><span class="section-number-2">8.</span> Acceptor</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Acceptor帮助简化了搭建服务器accept这个部分的逻辑。通常这个逻辑是在单个线程里面完成的，所以抽取出来蛮有必要的。
@@ -613,8 +613,8 @@ Acceptor帮助简化了搭建服务器accept这个部分的逻辑。通常这个
 </div>
 </div>
 
-<div id="outline-container-org376df77" class="outline-2">
-<h2 id="org376df77"><span class="section-number-2">9.</span> Connector</h2>
+<div id="outline-container-org77e016a" class="outline-2">
+<h2 id="org77e016a"><span class="section-number-2">9.</span> Connector</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Connector也是为了简化客户端编写，用户只需要提供这个逻辑即可，这个回调函数在建立链接成功的时候使用
@@ -631,8 +631,8 @@ Connector初始化以EventLoop和服务器地址初始化，然后在start的时
 </div>
 </div>
 
-<div id="outline-container-orga64ce20" class="outline-2">
-<h2 id="orga64ce20"><span class="section-number-2">10.</span> TcpConnection</h2>
+<div id="outline-container-org56dab09" class="outline-2">
+<h2 id="org56dab09"><span class="section-number-2">10.</span> TcpConnection</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 TcpConnection完成的工作就是当TCP连接建立之后处理socket的读写以及关闭。同样我们看看TcpConnection的结构
@@ -695,8 +695,8 @@ TcpConnection一次最多读取64K字节的内容，然后交给上层。上层�
 </div>
 </div>
 
-<div id="outline-container-org34d3db3" class="outline-2">
-<h2 id="org34d3db3"><span class="section-number-2">11.</span> TcpClient</h2>
+<div id="outline-container-org87dfbd3" class="outline-2">
+<h2 id="org87dfbd3"><span class="section-number-2">11.</span> TcpClient</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 一旦我们了解了TcpConnection之后的话，这个托管了建立好连接之后所需要的处理的所有事情，那么我们对于client关心的重点就是如果触发连接的建立以及连接是如何断开的。
@@ -729,8 +729,8 @@ TcpConnection::connectEstablished,之后的所有操作都交给TcpConnection了
 </div>
 </div>
 
-<div id="outline-container-org4453973" class="outline-2">
-<h2 id="org4453973"><span class="section-number-2">12.</span> TcpServer</h2>
+<div id="outline-container-orge5e2731" class="outline-2">
+<h2 id="orge5e2731"><span class="section-number-2">12.</span> TcpServer</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 从分析上我们和TcpClient一样只是关心连接是如何建立这个过程。

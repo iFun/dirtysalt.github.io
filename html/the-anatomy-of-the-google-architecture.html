@@ -16,26 +16,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7b3f5e2">1. The Google Philosophy</a></li>
-<li><a href="#orga9db78e">2. The Basic Glue</a>
+<li><a href="#orgeed08b0">1. The Google Philosophy</a></li>
+<li><a href="#orga2e602c">2. The Basic Glue</a>
 <ul>
-<li><a href="#orgc419b26">2.1. Exterior Network</a></li>
-<li><a href="#org1720aaf">2.2. Data Centre</a></li>
-<li><a href="#org9dc3b2d">2.3. Rack</a></li>
-<li><a href="#org2c49e5e">2.4. Hardware</a></li>
-<li><a href="#org62ef68d">2.5. Operating System</a></li>
-<li><a href="#orge4aee64">2.6. Interior Network</a></li>
+<li><a href="#org977a064">2.1. Exterior Network</a></li>
+<li><a href="#orgaee0f25">2.2. Data Centre</a></li>
+<li><a href="#orgad8c7f9">2.3. Rack</a></li>
+<li><a href="#org4ae7c60">2.4. Hardware</a></li>
+<li><a href="#orgdeadcff">2.5. Operating System</a></li>
+<li><a href="#org2481feb">2.6. Interior Network</a></li>
 </ul>
 </li>
-<li><a href="#orgfdd610b">3. The Major Glue</a>
+<li><a href="#orgc6eebb8">3. The Major Glue</a>
 <ul>
-<li><a href="#orga74c8ec">3.1. GOOGLE FILE SYSTEM</a></li>
-<li><a href="#org0fe641e">3.2. GOOGLE DATABASE</a></li>
-<li><a href="#orgb5243c3">3.3. GOOGLE MAPREDUCE</a></li>
-<li><a href="#org5922eca">3.4. GOOGLE WORKQUEUE</a></li>
+<li><a href="#org060ba2d">3.1. GOOGLE FILE SYSTEM</a></li>
+<li><a href="#orgd120923">3.2. GOOGLE DATABASE</a></li>
+<li><a href="#orgcb3445b">3.3. GOOGLE MAPREDUCE</a></li>
+<li><a href="#orgaa900a0">3.4. GOOGLE WORKQUEUE</a></li>
 </ul>
 </li>
-<li><a href="#org7493dd8">4. BUILD YOUR OWN GOOGLE</a></li>
+<li><a href="#org5067f1e">4. BUILD YOUR OWN GOOGLE</a></li>
 </ul>
 </div>
 </div>
@@ -43,8 +43,8 @@
 <a href="http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-fina-lv11">http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-fina-lv11</a> @ 2009.12
 </p>
 
-<div id="outline-container-org7b3f5e2" class="outline-2">
-<h2 id="org7b3f5e2"><span class="section-number-2">1.</span> The Google Philosophy</h2>
+<div id="outline-container-orgeed08b0" class="outline-2">
+<h2 id="orgeed08b0"><span class="section-number-2">1.</span> The Google Philosophy</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Jedis build their own lightsabres (the MS Eat your own Dog Food)</li>
@@ -59,11 +59,11 @@
 </div>
 </div>
 
-<div id="outline-container-orga9db78e" class="outline-2">
-<h2 id="orga9db78e"><span class="section-number-2">2.</span> The Basic Glue</h2>
+<div id="outline-container-orga2e602c" class="outline-2">
+<h2 id="orga2e602c"><span class="section-number-2">2.</span> The Basic Glue</h2>
 <div class="outline-text-2" id="text-2">
 
-<div id="org1ad9d8c" class="figure">
+<div id="orgd98ad38" class="figure">
 <p><img src="../images/the-anatomy-of-google-architecture-basic-glue.png" alt="the-anatomy-of-google-architecture-basic-glue.png" />
 </p>
 </div>
@@ -78,11 +78,11 @@
 </ol>
 </div>
 
-<div id="outline-container-orgc419b26" class="outline-3">
-<h3 id="orgc419b26"><span class="section-number-3">2.1.</span> Exterior Network</h3>
+<div id="outline-container-org977a064" class="outline-3">
+<h3 id="org977a064"><span class="section-number-3">2.1.</span> Exterior Network</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="org5f38787" class="figure">
+<div id="org9a1ffa6" class="figure">
 <p><img src="../images/google-architecture-exterior-network.png" alt="google-architecture-exterior-network.png" />
 </p>
 </div>
@@ -103,8 +103,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1720aaf" class="outline-3">
-<h3 id="org1720aaf"><span class="section-number-3">2.2.</span> Data Centre</h3>
+<div id="outline-container-orgaee0f25" class="outline-3">
+<h3 id="orgaee0f25"><span class="section-number-3">2.2.</span> Data Centre</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Last estimated were 36 Data Centers, 300+ GFSII Clusters and upwards of 800K machines.（36个数据中心，300+ GFS2集群， <b>80万机器</b> ）</li>
@@ -119,11 +119,11 @@
 </div>
 </div>
 
-<div id="outline-container-org9dc3b2d" class="outline-3">
-<h3 id="org9dc3b2d"><span class="section-number-3">2.3.</span> Rack</h3>
+<div id="outline-container-orgad8c7f9" class="outline-3">
+<h3 id="orgad8c7f9"><span class="section-number-3">2.3.</span> Rack</h3>
 <div class="outline-text-3" id="text-2-3">
 
-<div id="org70ea106" class="figure">
+<div id="orgf6ee7ee" class="figure">
 <p><img src="../images/google-architecture-rack.png" alt="google-architecture-rack.png" />
 </p>
 </div>
@@ -150,8 +150,8 @@
 </div>
 </div>
 
-<div id="outline-container-org2c49e5e" class="outline-3">
-<h3 id="org2c49e5e"><span class="section-number-3">2.4.</span> Hardware</h3>
+<div id="outline-container-org4ae7c60" class="outline-3">
+<h3 id="org4ae7c60"><span class="section-number-3">2.4.</span> Hardware</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 #note: 配置都非常普通
@@ -210,8 +210,8 @@
 </div>
 </div>
 
-<div id="outline-container-org62ef68d" class="outline-3">
-<h3 id="org62ef68d"><span class="section-number-3">2.5.</span> Operating System</h3>
+<div id="outline-container-orgdeadcff" class="outline-3">
+<h3 id="orgdeadcff"><span class="section-number-3">2.5.</span> Operating System</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>100% Redhat Linux Based since 1998 inception
@@ -241,8 +241,8 @@
 </div>
 </div>
 
-<div id="outline-container-orge4aee64" class="outline-3">
-<h3 id="orge4aee64"><span class="section-number-3">2.6.</span> Interior Network</h3>
+<div id="outline-container-org2481feb" class="outline-3">
+<h3 id="org2481feb"><span class="section-number-3">2.6.</span> Interior Network</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Routing Protocol：
@@ -272,11 +272,11 @@ Software:
 </div>
 </div>
 
-<div id="outline-container-orgfdd610b" class="outline-2">
-<h2 id="orgfdd610b"><span class="section-number-2">3.</span> The Major Glue</h2>
+<div id="outline-container-orgc6eebb8" class="outline-2">
+<h2 id="orgc6eebb8"><span class="section-number-2">3.</span> The Major Glue</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="org5ddb87e" class="figure">
+<div id="org8558c69" class="figure">
 <p><img src="../images/the-anatomy-of-google-architecture-major-glue.png" alt="the-anatomy-of-google-architecture-major-glue.png" />
 </p>
 </div>
@@ -289,8 +289,8 @@ Software:
 </ul>
 </div>
 
-<div id="outline-container-orga74c8ec" class="outline-3">
-<h3 id="orga74c8ec"><span class="section-number-3">3.1.</span> GOOGLE FILE SYSTEM</h3>
+<div id="outline-container-org060ba2d" class="outline-3">
+<h3 id="org060ba2d"><span class="section-number-3">3.1.</span> GOOGLE FILE SYSTEM</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>GFS II “Colossus“ Version 2 improves in many ways (is a complete rewrite)</li>
@@ -301,8 +301,8 @@ Software:
 </div>
 </div>
 
-<div id="outline-container-org0fe641e" class="outline-3">
-<h3 id="org0fe641e"><span class="section-number-3">3.2.</span> GOOGLE DATABASE</h3>
+<div id="outline-container-orgd120923" class="outline-3">
+<h3 id="orgd120923"><span class="section-number-3">3.2.</span> GOOGLE DATABASE</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Increased Scalability (across Namespace/Datacenters)
@@ -320,8 +320,8 @@ Software:
 </div>
 </div>
 
-<div id="outline-container-orgb5243c3" class="outline-3">
-<h3 id="orgb5243c3"><span class="section-number-3">3.3.</span> GOOGLE MAPREDUCE</h3>
+<div id="outline-container-orgcb3445b" class="outline-3">
+<h3 id="orgcb3445b"><span class="section-number-3">3.3.</span> GOOGLE MAPREDUCE</h3>
 <div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li>STATISTICS
@@ -333,8 +333,8 @@ Software:
 </div>
 </div>
 
-<div id="outline-container-org5922eca" class="outline-3">
-<h3 id="org5922eca"><span class="section-number-3">3.4.</span> GOOGLE WORKQUEUE</h3>
+<div id="outline-container-orgaa900a0" class="outline-3">
+<h3 id="orgaa900a0"><span class="section-number-3">3.4.</span> GOOGLE WORKQUEUE</h3>
 <div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Batch Submission/Scheduler System 批量提交和调度系统</li>
@@ -342,7 +342,7 @@ Software:
 <li>Workqueue can manage many tens of thousands of machines <b>管理上万机器</b></li>
 <li>Launched via API or command line (sawzall example shown)</li>
 </ul>
-<pre class="example" id="org60056ed">
+<pre class="example" id="orgc6f9e21">
 saw --program code.szl --workqueue testing
 --input_files /gfs/cluster1/2005-02-0[1-7]/submits.* \
 --destination /gfs/cluster2/$USER/output@100
@@ -351,11 +351,11 @@ saw --program code.szl --workqueue testing
 </div>
 </div>
 
-<div id="outline-container-org7493dd8" class="outline-2">
-<h2 id="org7493dd8"><span class="section-number-2">4.</span> BUILD YOUR OWN GOOGLE</h2>
+<div id="outline-container-org5067f1e" class="outline-2">
+<h2 id="org5067f1e"><span class="section-number-2">4.</span> BUILD YOUR OWN GOOGLE</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="org28ee58c" class="figure">
+<div id="orgecb5534" class="figure">
 <p><img src="../images/the-open-source-google-stack.png" alt="the-open-source-google-stack.png" />
 </p>
 </div>

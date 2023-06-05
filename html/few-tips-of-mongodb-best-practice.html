@@ -16,12 +16,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb08903a">1. 执行计划</a></li>
-<li><a href="#orgbdc1fd6">2. 网络传输</a></li>
-<li><a href="#orgdb75bb2">3. 索引选择</a></li>
-<li><a href="#org9db81d6">4. 磁盘读写</a></li>
-<li><a href="#orgd66d7f6">5. 杀掉慢查询</a></li>
-<li><a href="#org8ed4473">6. 文档频繁更新</a></li>
+<li><a href="#org13b0c42">1. 执行计划</a></li>
+<li><a href="#org3aa1c44">2. 网络传输</a></li>
+<li><a href="#orgf3117de">3. 索引选择</a></li>
+<li><a href="#orge7f9082">4. 磁盘读写</a></li>
+<li><a href="#org4e01d87">5. 杀掉慢查询</a></li>
+<li><a href="#orgc451ace">6. 文档频繁更新</a></li>
 </ul>
 </div>
 </div>
@@ -30,8 +30,8 @@
 </p>
 
 
-<div id="outline-container-orgb08903a" class="outline-2">
-<h2 id="orgb08903a"><span class="section-number-2">1.</span> 执行计划</h2>
+<div id="outline-container-org13b0c42" class="outline-2">
+<h2 id="org13b0c42"><span class="section-number-2">1.</span> 执行计划</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="https://docs.mongodb.com/manual/core/query-plans/">https://docs.mongodb.com/manual/core/query-plans/</a></li>
@@ -74,8 +74,8 @@ Test every query in your application with explain().MongoDB provides an explain 
 </div>
 </div>
 
-<div id="outline-container-orgbdc1fd6" class="outline-2">
-<h2 id="orgbdc1fd6"><span class="section-number-2">2.</span> 网络传输</h2>
+<div id="outline-container-org3aa1c44" class="outline-2">
+<h2 id="org3aa1c44"><span class="section-number-2">2.</span> 网络传输</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 network 传输之间的压缩，可以节省70%的开销
@@ -90,8 +90,8 @@ Compression is off by default, but can be enabled by setting networkMessageCompr
 </div>
 </div>
 
-<div id="outline-container-orgdb75bb2" class="outline-2">
-<h2 id="orgdb75bb2"><span class="section-number-2">3.</span> 索引选择</h2>
+<div id="outline-container-orgf3117de" class="outline-2">
+<h2 id="orgf3117de"><span class="section-number-2">3.</span> 索引选择</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 索引分布不均衡的情况下可能会导致扫描全表。
@@ -128,8 +128,8 @@ Covered Query是一种特殊查询，query和filters的字段完全相同，并�
 </div>
 
 
-<div id="outline-container-org9db81d6" class="outline-2">
-<h2 id="org9db81d6"><span class="section-number-2">4.</span> 磁盘读写</h2>
+<div id="outline-container-orge7f9082" class="outline-2">
+<h2 id="orge7f9082"><span class="section-number-2">4.</span> 磁盘读写</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 wt的index/data分开存储，减少磁盘压力和冲突。甚至index, journal, db 最好分开目录进行，这样每个目录可以很容易地映射到不同的volume 上面
@@ -165,8 +165,8 @@ Readahead size should be set to 0 for WiredTiger. Usethe blockdev &#x2013;setra 
 </div>
 </div>
 
-<div id="outline-container-orgd66d7f6" class="outline-2">
-<h2 id="orgd66d7f6"><span class="section-number-2">5.</span> 杀掉慢查询</h2>
+<div id="outline-container-org4e01d87" class="outline-2">
+<h2 id="org4e01d87"><span class="section-number-2">5.</span> 杀掉慢查询</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 如果出现慢查询的话，列举和杀掉长时间运行的操作
@@ -203,8 +203,8 @@ listRunningOps = <span class="org-keyword">function</span> (<span class="org-var
 </div>
 </div>
 
-<div id="outline-container-org8ed4473" class="outline-2">
-<h2 id="org8ed4473"><span class="section-number-2">6.</span> 文档频繁更新</h2>
+<div id="outline-container-orgc451ace" class="outline-2">
+<h2 id="orgc451ace"><span class="section-number-2">6.</span> 文档频繁更新</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 查看collection更新情况
