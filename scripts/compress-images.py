@@ -33,7 +33,9 @@ def main():
     alreadyChecked = set()
     if os.path.exists(cacheFile):
         with open(cacheFile) as fh:
-            alreadyChecked = set(json.load(fh))
+            for x in fh:
+                x = x.strip()
+                alreadyChecked.add(x)
 
     imageFiles = []
     imageFiles += glob("images/*.png") + glob("images/*.jpg") + glob("images/*.jpeg")
@@ -46,18 +48,20 @@ def main():
     for fi in imageFiles:
         if fi in alreadyChecked: continue
         fo = outputDir + fi.replace("images/", '').replace('/', '_').replace('png', 'jpg')
-        # print(fi, fo)
+        print(fi, fo)
         ok = compressImageFile(fi, fo)
         if not ok: continue
         if isCompressGood(fi, fo):
             actions.append((fo, fi))
             pass
+
     for fo, fi in actions:
         print('copy %s -> %s' % (fo, fi))
         shutil.copyfile(fo, fi)
 
     with open(cacheFile, 'w') as fh:
-        json.dump(imageFiles, fh)
+        for f in imageFiles:
+            fh.write(f + '\n')
 
 
 if __name__ == "__main__":
