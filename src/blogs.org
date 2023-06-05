@@ -5,12 +5,13 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
-- 202305 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]
-- 202305 [[file:think-real-hard.org][Think real hard]]
-- 202305 [[file:how-to-be-successful.org][How To Be Successful]] by Sam Altman
-- 202305 [[file:you-dont-need-to-work-on-hard-problems.org][You don’t need to work on hard problems]] 你不需要解决困难的问题 **推荐**
-- 202305 [[file:myth-10x-engineer-context-paris.org][10x (engineer, context) pairs]]
-- 202305 [[file:mistakess-as-new-manager.org][Some mistakes I made as a new manager]] 我作为新经理犯的一些错误
+- 202306 [[file:usa-trip-2023-jun.org][美国出差日记 - 6月]]
+- 202306 [[file:joe-duffy-software-leadership-series.org][Joe Duffy's Software Leadership Series]]
+- 202306 [[file:think-real-hard.org][Think real hard]]
+- 202306 [[file:how-to-be-successful.org][How To Be Successful]] by Sam Altman
+- 202306 [[file:you-dont-need-to-work-on-hard-problems.org][You don’t need to work on hard problems]] 你不需要解决困难的问题 **推荐**
+- 202306 [[file:myth-10x-engineer-context-paris.org][10x (engineer, context) pairs]]
+- 202306 [[file:mistakess-as-new-manager.org][Some mistakes I made as a new manager]] 我作为新经理犯的一些错误
 - 202305 [[file:seize-mind-and-market.org][抢占心智]] by 江南春
 - 202305 [[file:think-like-a-rocket-scientist.org][像火箭科学家一样思考（Think Like a Rocket Scientist）]] by Ozan Varol
 - 202305 [[file:build-an-unorthodox-guide-to-making-things-worth-making.org][创造(Build: An Unorthodox Guide to Making Things Worth Making)]] by Tony Fadell
