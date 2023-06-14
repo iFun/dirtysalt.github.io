@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202306 [[file:readings-at-202306.org][网络文章@202306]]
 - 202306 [[file:lc-2719-count-of-integers.org][LC 2719. 统计整数数目]]  数位 dp
 - 202306 [[file:information-dilution-effect.org][从摄像想到信息稀释效应]]
 - 202306 [[file:usa-trip-2023-jun.org][美国出差日记 - 6月]]

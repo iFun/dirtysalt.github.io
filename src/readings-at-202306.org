@@ -1,0 +1,62 @@
+#+title: 网络文章@202305
+
+# 网络文章@202306
+
+-----
+
+[[https://world.hey.com/dhh/we-need-not-all-be-connected-all-the-time-a4633c0e][We need not all be connected, all the time --- 我们不需要一直保持联系]]
+
+看来 DHH 也被学校和家长之间这种即时通讯搞得怕了。
+
+
+But what these wretched apps have wrought is a constant stream of needless communication and updates about life at school. Worse still, it's facilitated endless threads amongst parents on this thing or the other. And you're essentially obliged to partake in these non-stop chain mails, lest you miss a truly important or urgent message.
+
+但是，这些可怜的应用程序造成的是源源不断的不必要的交流和关于学校生活的更新。更糟糕的是，它促进了父母之间关于这件事或另一件事的无休止的线索。你基本上有义务参与这些不间断的连锁邮件，以免错过真正重要或紧急的信息。
+
+
+Not all connections benefit from having the friction removed by digital systems. Some barriers to interaction are good, actually. The fundamental premise that everything will be wonderful if we could just all be linked together everywhere, all the time is false.
+
+并非所有连接都能从数字系统消除摩擦中受益。实际上，互动的一些障碍是好的。如果我们能随时随地联系在一起，一切都会变得美好的基本前提是错误的。
+
+-----
+
+[[https://world.hey.com/dhh/when-promotions-become-punishment-b1cc1430][When promotions become punishment --- 当升职成为惩罚]]
+
+To be an effective manager, you have to be empathetic, but not too empathetic. Because if you can't separate yourself emotionally from the process, at least in part, you can't make the difficult-but-necessary decisions required to service the broader team. And it's really hard to know whether you have this in you until you're faced with the reality of a tough situation.
+
+要成为一名有效的管理者，你必须善解人意，但不要太善解人意。因为如果你不能在情感上将自己与流程分开，至少部分地，你就无法做出为更广泛的团队服务所需的困难但必要的决定。在你面对艰难处境的现实之前，很难知道你是否拥有这种能力。
+
+This is one of the key reasons to pursue minimalist management. By setting up processes that handle much of the mechanics of reporting, and clearly reveals someone's progress for all to see, as well as distributing the human elements, like mentorship, you can reap much of the benefit of letting senior people provide parts of the management work without the dreaded promotion into management per se.
+
+这是追求极简主义管理的关键原因之一。通过建立处理大部分报告机制的流程，并清楚地揭示某人的进步供所有人看到，以及分配人为因素，如指导，你可以获得让高级人员提供部分管理工作的大部分好处，而不必被提升到管理层本身。
+
+
+-----
+
+[[https://www.inc.com/jeff-haden/37-years-ago-steve-jobs-said-best-managers-never-want-to-be-a-manager-science-says-he-was-right.html][37 Years Ago, Steve Jobs Said the Best Managers Never Actually Want to Be Managers. Science Says He Was Right | Inc.com --- 37年前，史蒂夫·乔布斯（Steve Jobs）说过，最好的经理人从来都不想成为经理。科学说他是对的 |Inc.com]]
+
+[[https://www.youtube.com/watch?v=fj0hpsJvrko][Steve Jobs On Recruiting People - YouTube]]
+
+You know who the best managers are? They're the great individual contributors who never, ever want to be a manager, but decide they want to be a manager, because no one else is going to be able to do as good a job as them.
+
+你知道谁是最好的经理吗？他们是伟大的个人贡献者，他们从来不想成为经理，但决定要成为一名经理，因为没有人能像他们一样做好工作。
+
+The next time you make a promotion decision, make sure you consider the great individual contributor who may not want to be a manager, but desperately wants to get things done.
+
+下次你做出晋升决定时，一定要考虑那些伟大的个人贡献者，他们可能不想成为经理，但迫切地想把事情做好。
+
+Because success always comes down to what your business accomplishes.
+
+因为成功总是归结为您的业务所取得的成就。
+
+Not what it manages. 不是它管理的东西。
+
+-----
+
+[Start them in the deep end](https://world.hey.com/dhh/start-them-in-the-deep-end-8c9c77fe)
+
+因此，新员工在进入需要完成的实际工作的深渊之前，很少花超过一周的时间来熟悉环境。我一直很高兴看到，只要有机会，经常有人一开始就表现出自己是个优秀的游泳者。
+
+不是每个人都会立即让你眼花缭乱，这也没关系。有些人确实需要更长的时间来适应，才能向你展示他们最好的一面。但这仍然是一个接触的功能。接触的挑战越多，大多数人就会越快发现自己熟悉对他们的要求。
+
+你能对一个新员工做的最糟糕的事情就是让他们在组织的大厅里徘徊，没有充实的、有意义的、令人着迷的事情可做。每个值得聘用的人都想尽快地做出贡献。让他们来吧!
