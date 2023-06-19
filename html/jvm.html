@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7ea8b90">1. JVM GC基本知识和配置选项</a></li>
-<li><a href="#orgd0091ca">2. Java Memory Model(JMM)</a></li>
-<li><a href="#orgfae9886">3. 几种Java GC算法介绍</a></li>
-<li><a href="#org2ab556e">4. JVM 杂项内容</a></li>
+<li><a href="#org6121047">1. JVM GC基本知识和配置选项</a></li>
+<li><a href="#org6b8c852">2. Java Memory Model(JMM)</a></li>
+<li><a href="#org6d0bacb">3. 几种Java GC算法介绍</a></li>
+<li><a href="#org4df4217">4. JVM 杂项内容</a></li>
 </ul>
 </div>
 </div>
@@ -32,8 +32,8 @@
 </p>
 
 
-<div id="outline-container-org7ea8b90" class="outline-2">
-<h2 id="org7ea8b90"><span class="section-number-2">1.</span> JVM GC基本知识和配置选项</h2>
+<div id="outline-container-org6121047" class="outline-2">
+<h2 id="org6121047"><span class="section-number-2">1.</span> JVM GC基本知识和配置选项</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 JVM GC方面文章
@@ -103,7 +103,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </ul>
 
 
-<div id="orge78412e" class="figure">
+<div id="org7dd1b56" class="figure">
 <p><img src="../images/java-gc-gen.png" alt="java-gc-gen.png" />
 </p>
 </div>
@@ -120,8 +120,8 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </div>
 
 
-<div id="outline-container-orgd0091ca" class="outline-2">
-<h2 id="orgd0091ca"><span class="section-number-2">2.</span> Java Memory Model(JMM)</h2>
+<div id="outline-container-org6b8c852" class="outline-2">
+<h2 id="org6b8c852"><span class="section-number-2">2.</span> Java Memory Model(JMM)</h2>
 <div class="outline-text-2" id="text-2">
 <hr />
 
@@ -167,8 +167,8 @@ JMM(Java Memory Model)的主要规则如下：
 </div>
 </div>
 
-<div id="outline-container-orgfae9886" class="outline-2">
-<h2 id="orgfae9886"><span class="section-number-2">3.</span> 几种Java GC算法介绍</h2>
+<div id="outline-container-org6d0bacb" class="outline-2">
+<h2 id="org6d0bacb"><span class="section-number-2">3.</span> 几种Java GC算法介绍</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/06%20%E6%B7%B1%E5%85%A5%E5%89%96%E6%9E%90%EF%BC%9A%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E4%BD%A0%E7%9C%9F%E7%9A%84%E4%BA%86%E8%A7%A3%E5%90%97%EF%BC%9F%EF%BC%88%E4%B8%8A%EF%BC%89.md">06 深入剖析：垃圾回收你真的了解吗？（上）.md</a></li>
@@ -304,7 +304,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 以下是一些配置参数：
 </p>
 
-<pre class="example" id="org874bd00">
+<pre class="example" id="orgcd57379">
 -XX:+UseSerialGC 年轻代和老年代都用串行收集器
 -XX:+UseParNewGC 年轻代使用 ParNew，老年代使用 Serial Old
 -XX:+UseParallelGC 年轻代使用 ParallerGC，老年代使用 Serial Old
@@ -315,7 +315,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 </pre>
 
 
-<div id="org468ebc1" class="figure">
+<div id="org005d4c6" class="figure">
 <p><img src="../images/jvm-gc-options-and-effects.jpg" alt="jvm-gc-options-and-effects.jpg" />
 </p>
 </div>
@@ -334,7 +334,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 线上使用最多的垃圾回收器，就有 CMS 和 G1，以及 Java8 默认的 Parallel Scavenge。
 </p>
 
-<pre class="example" id="orgb413648">
+<pre class="example" id="org3eea751">
 CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。
@@ -355,8 +355,8 @@ Java13 的默认参数：-XX:+UseG1GC。
 </div>
 </div>
 
-<div id="outline-container-org2ab556e" class="outline-2">
-<h2 id="org2ab556e"><span class="section-number-2">4.</span> JVM 杂项内容</h2>
+<div id="outline-container-org4df4217" class="outline-2">
+<h2 id="org4df4217"><span class="section-number-2">4.</span> JVM 杂项内容</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 synchronized <a href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/20%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9A%E4%BB%8E%E5%AD%97%E8%8A%82%E7%A0%81%E7%9C%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0.md">20 动手实践：从字节码看并发编程的底层实现.md</a>

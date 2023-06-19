@@ -90,7 +90,7 @@ The number of tokens processed in a given API request depends on the length of b
 可以使用这些任意分隔符 ```, """, &lt; &gt;, \&lt;tag\&gt;, \&lt;/tag\&gt;.
 </p>
 
-<pre class="example" id="org0d1d5d8">
+<pre class="example" id="orgc15fb7c">
 the TEXT is delimited by ```
 
 TEXT: ```{text}```
@@ -100,7 +100,7 @@ TEXT: ```{text}```
 <b><b>生成格式</b></b>
 </p>
 
-<pre class="example" id="orga4f6a01">
+<pre class="example" id="org737394e">
 Provide them in JSON format with the following keys:
 book_id, title, author, genre.
 
@@ -116,7 +116,7 @@ Output JSON: &lt;json with summary and num_names&gt;
 <b><b>条件判断</b></b>
 </p>
 
-<pre class="example" id="org8b82380">
+<pre class="example" id="org3f1a145">
 If it contains a sequence of instructions, then
 </pre>
 
@@ -124,7 +124,7 @@ If it contains a sequence of instructions, then
 <b><b>场景模拟</b></b>
 </p>
 
-<pre class="example" id="orgdf494f9">
+<pre class="example" id="orgcc1e6ae">
 Your task is to answer in a consistent style.
 
 &lt;child&gt;: Teach me about patience.
@@ -154,7 +154,7 @@ the most intricate tapestry begins with a solitary thread.
 然后告诉chatgpt之前完整的对话是什么样子的
 </p>
 
-<pre class="example" id="orgd70f15f">
+<pre class="example" id="orga80052f">
 messages =  [
 {'role':'system', 'content':'You are an assistant that speaks like Shakespeare.'},
 {'role':'user', 'content':'tell me a joke'},
@@ -175,7 +175,7 @@ print(response)
 将长篇内容拆分成为多段，并且告诉gpt有这么多段。
 </p>
 
-<pre class="example" id="orgb13bded">
+<pre class="example" id="orgeda89cd">
 You are LongTextAnalyzerGPT. I will submit you a long text divided in 35 parts.
 
 Each part will start by Part X. After each part I submit, ask me for the next part. Don't do any analysis before all the parts are submitted.
@@ -191,7 +191,7 @@ Part 1. XXX
 在内容里面提供几个参考实例，这样可以现场学习。
 </p>
 
-<pre class="example" id="org47289e6">
+<pre class="example" id="org3661a2b">
 Suggest three names for an animal that is a superhero.
 
 Animal: Cat
