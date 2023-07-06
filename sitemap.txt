@@ -952,6 +952,7 @@ https://dirtysalt.github.io/html/rcu-for-non-kernel-programmers.html
 https://dirtysalt.github.io/html/reading-excel-in-python.html
 https://dirtysalt.github.io/html/readings-at-202305.html
 https://dirtysalt.github.io/html/readings-at-202306.html
+https://dirtysalt.github.io/html/readings-at-202307.html
 https://dirtysalt.github.io/html/readings-dbms-fifth-edition.html
 https://dirtysalt.github.io/html/real-life-of-startup-with-baby.html
 https://dirtysalt.github.io/html/realtime-big-data-analytics-emerging-architecture.html
@@ -1176,6 +1177,7 @@ https://dirtysalt.github.io/html/the-passionate-programmer.html
 https://dirtysalt.github.io/html/the-paypal-wars.html
 https://dirtysalt.github.io/html/the-practice-of-programming.html
 https://dirtysalt.github.io/html/the-pragmatic-programmer.html
+https://dirtysalt.github.io/html/the-product-minded-engineer.html
 https://dirtysalt.github.io/html/the-scientist.html
 https://dirtysalt.github.io/html/the-seasoned-schemer.html
 https://dirtysalt.github.io/html/the-secret-to-10-million-concurrent-connections.html
