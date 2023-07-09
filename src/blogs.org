@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202307 [[file:understanding-cost-models.org][Understanding Cost Models]] 理解优化器的成本模型
 - 202307 [[file:the-product-minded-engineer.org][The Product-Minded Software Engineer 以产品为中心的软件工程师]]
 - 202307 [[file:readings-at-202307.org][网络文章@202307]]
 - 202306 [[file:wild-problems.org][野生问题]] by 《精英日课》
