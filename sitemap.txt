@@ -1231,6 +1231,7 @@ https://dirtysalt.github.io/html/ubuntu.html
 https://dirtysalt.github.io/html/ucb-cloud-programming-simplified.html
 https://dirtysalt.github.io/html/umbra-disk-based-system-with-in-memory-performance.html
 https://dirtysalt.github.io/html/understanding-compiler-optimization-in-llvm.html
+https://dirtysalt.github.io/html/understanding-cost-models.html
 https://dirtysalt.github.io/html/unecessary-hurry-up.html
 https://dirtysalt.github.io/html/unix-systems-for-modern-arch-smp-and-caching-for-kernel-programmers.html
 https://dirtysalt.github.io/html/unp.html
