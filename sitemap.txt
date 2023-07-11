@@ -303,6 +303,7 @@ https://dirtysalt.github.io/html/efficiently-compiling-efficient-query-plans-for
 https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-python.html
 https://dirtysalt.github.io/html/elastic-search.html
 https://dirtysalt.github.io/html/employee-equity.html
+https://dirtysalt.github.io/html/enchiridion-by-epictetus.html
 https://dirtysalt.github.io/html/engineering-management.html
 https://dirtysalt.github.io/html/enlightment-of-civilization.html
 https://dirtysalt.github.io/html/equipped-with-ssd.html
