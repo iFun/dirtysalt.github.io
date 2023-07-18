@@ -15,6 +15,52 @@
 <hr />
 
 <p>
+<a href="https://mp.weixin.qq.com/s/7YXSO3n7Y-SgZxgcpbQtoQ">黄东旭：我对数据库如何Serverless 化的一些思考</a>(<a href="https://mp.weixin.qq.com/s/7YXSO3n7Y-SgZxgcpbQtoQ">https://mp.weixin.qq.com/s/7YXSO3n7Y-SgZxgcpbQtoQ</a>)
+</p>
+
+<p>
+对于关系型数据库市场来说，OLTP 仍然是主流， <b><b>OLAP 最重要的是弹性和低成本（其实并非性能）。另外一个容易被忽略的场景是轻量的 data transformation（一个好的例子是 dbt），频繁在不同的数据服务商之间移动数据并不是好体验。</b></b> 大量冷数据、少量热数据，但是常常没有办法很清楚地划分冷热边界（就像你不能突然阻止我在 3 年前的朋友圈上回复某个对话一样）。
+</p>
+
+<p>
+在云上，一切资源都是需要付费的，而且不同的服务定价差别巨大，对比一下 S3 / RDS / DynamoDB 的定价即可看到很大的区别，而且相比服务费用和存储成本， <b><b>大家很容易忽略流量的费用（有时候你看账单会发现其实比起存储成本，流量会是更大的开销）。节省成本有几个关键：</b></b>
+</p>
+<ul class="org-ul">
+<li>利用 S3 进行跨 AZ 的数据移动和共享，节省跨 AZ 流量费用。</li>
+<li>利用 Spot Instances ，进行离线任务。离线任务定义：无状态（持久化在 S3 上）、可重入。典型的离线任务是 LSM-Tree 的 compaction 或者备份恢复什么的。</li>
+</ul>
+
+<hr />
+
+<p>
+<a href="https://www.youtube.com/watch?v=qCn3WRG36Sc">聊聊英国首富 ｜Dyson的故事 - YouTube</a>(<a href="https://www.youtube.com/watch?v=qCn3WRG36Sc">https://www.youtube.com/watch?v=qCn3WRG36Sc</a>)
+</p>
+
+<p>
+也是一个能折腾的首富，关键是啥事情都自己掏钱，信念非常非常强。
+</p>
+
+<hr />
+
+<p>
+<a href="https://www.youtube.com/watch?v=J-RzMenh1Qg">公視演講廳：讓改變看得見 張忠謀 - YouTube</a>(<a href="https://www.youtube.com/watch?v=J-RzMenh1Qg">https://www.youtube.com/watch?v=J-RzMenh1Qg</a>)
+</p>
+
+<p>
+全才教育和通识教育有很大的不同：
+</p>
+<ul class="org-ul">
+<li>通识教育是你对什么有兴趣，那就去学习，不要求你成为未来某方面的领导人</li>
+<li>全才教育在通识教育上有所限制。他在南开中学的时候，就每天被提醒将来要成为领导人，美国 harvard 也同样如此。</li>
+</ul>
+
+<p>
+在MIT学习的是机械工程，但是在未来这些知识一点都没有用上。反倒是平时学习的东西，对世界的了解，对世界的观察，如何做人做事，对自己未来的帮助比较大些。
+</p>
+
+<hr />
+
+<p>
 <a href="https://www.youtube.com/watch?v=Xn1EsFe7snQ">Jen-Hsun Huang: Stanford student and Entrepreneur, co-founder and CEO of NVIDIA - YouTube</a>(<a href="https://www.youtube.com/watch?v=Xn1EsFe7snQ">https://www.youtube.com/watch?v=Xn1EsFe7snQ</a>)
 </p>
 
