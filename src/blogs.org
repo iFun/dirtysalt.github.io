@@ -1,4 +1,4 @@
-#+title: An Amateur Alchemist's Blogs
+#+title: An Amateur Alchemist's Adventure
 #+keywords: 海南省临高县电信局临时工
 
 - [[file:index.org][文件索引]]
