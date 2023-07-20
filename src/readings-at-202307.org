@@ -2,6 +2,94 @@
 
 -----
 
+[[https://blog.samaltman.com/productivity][Productivity - Sam Altman --- 生产力 - Sam Altman]](https://blog.samaltman.com/productivity)
+
+The most impressive people I know have strong beliefs about the world, which is rare in the general population.  If you find yourself always agreeing with whomever you last spoke with, that’s bad.  You will of course be wrong sometimes, but develop the confidence to stick with your convictions.  It will let you be courageous when you’re right about something important that most people don’t see.
+
+我认识的最令人印象深刻的人对世界都有坚定的信念，这在普通人群中是罕见的。如果你发现自己总是同意上次谈话的人的观点，那就糟糕了。当然，有时你会犯错，但要培养坚持自己信念的信心。当你对大多数人看不到的重要事情做出正确的判断时，它会让你变得勇敢。
+
+
+I’ve learned that I can’t be very productive working on things I don’t care about or don’t like.  So I just try not to put myself in a position where I have to do them (by delegating, avoiding, or something else).  Stuff that you don’t like is a painful drag on morale and momentum.
+
+我了解到，我无法在自己不关心或不喜欢的事情上高效工作。所以我只是尽量不让自己处于必须做这些事情的境地（通过委派、回避或其他方式）。你不喜欢的事情会严重影响士气和动力。
+
+By the way, here is an important lesson about delegation: remember that everyone else is also most productive when they’re doing what they like, and do what you’d want other people to do for you—try to figure out who likes (and is good at) doing what, and delegate that way.
+
+顺便说一句，这是关于授权的一个重要教训：请记住，其他人在做自己喜欢做的​​事情时也是最有生产力的，并且做你希望其他人为你做的事情 - 尝试找出谁喜欢（并擅长）做什么，并以这种方式委派。
+
+Doing great work usually requires colleagues of some sort.  Try to be around smart, productive, happy, and positive people that don’t belittle your ambitions.  I love being around people who push me and inspire me to be better.  To the degree you able to, avoid the opposite kind of people—the cost of letting them take up your mental cycles is horrific.
+
+出色的工作通常需要某种同事。尝试与聪明、高效、快乐、积极的人在一起，他们不会贬低你的抱负。我喜欢和那些推动我、激励我变得更好的人在一起。在你能做到的范围内，避开相反类型的人——让他们占据你的心理周期的代价是可怕的。
+
+You have to both pick the right problem and do the work.  There aren’t many shortcuts.  If you’re going to do something really important, you are very likely going to work both smart and hard.  The biggest prizes are heavily competed for.  This isn’t true in every field (there are great mathematicians who never spend that many hours a week working) but it is in most.
+
+你必须选择正确的问题并完成工作。没有太多捷径。如果你要做一些真正重要的事情，你很可能会既聪明又努力地工作。最高奖项的争夺十分激烈。并非在每个领域都是如此（有些伟大的数学家从来不会每周花那么多时间工作），但在大多数领域都是如此。
+
+Don’t neglect your family and friends for the sake of productivity—that’s a very stupid tradeoff (and very likely a net productivity loss, because you’ll be less happy).  Don’t neglect doing things you love or that clear your head either.
+
+不要为了生产力而忽视你的家人和朋友——这是一个非常愚蠢的权衡（而且很可能是净生产力损失，因为你会不那么快乐）。不要忽视做你喜欢做的事情或者让你头脑清醒的事情。
+
+Finally, to repeat one more time: productivity in the wrong direction isn’t worth anything at all.  Think more about what to work on.
+
+最后，再重复一遍：方向错误的生产力根本没有任何价值。多考虑一下要做什么工作。
+
+-----
+
+
+[[https://blog.samaltman.com/hard-startups][Hard Startups - Sam Altman --- 艰难的创业公司——山姆·奥尔特曼]](https://blog.samaltman.com/hard-startups)
+
+Easy startups are easy to start but hard to make successful.  The most precious commodity in the startup ecosystem right now is talented people, and for the most part talented people want to work on something they find meaningful.
+
+简单的创业公司起步容易，但成功却很难。目前创业生态系统中最宝贵的商品是人才，而大多数人才都希望从事他们认为有意义的事情。
+
+Few recruiting messages are as powerful (when true) as “the world needs this, it won’t happen any time soon if we don’t do it, and we are much less likely to succeed if you don’t join.”
+
+很少有招聘信息像“世界需要这个，如果我们不这样做，它不会很快发生，如果你不加入，我们成功的可能性就会大大降低”这样强大（如果是真的）。
+
+An easy startup is a headwind; a hard startup is a tailwind.  If people care about your success because you seem committed to doing something significant, it’s a background force helping you with hiring, advice, partnerships, fundraising, etc.
+
+轻松的创业是逆风；艰难的启动是顺风顺水。如果人们关心你的成功是因为你似乎致力于做一些重要的事情，那么这是一种背景力量在招聘、建议、合作、筹款等方面帮助你。
+
+Part of the magic of Silicon Valley is that people default to taking you seriously if you’re willing to be serious—they’ve learned it’s a very expensive mistake, in aggregate, not to.  If you want to start a company working on a better way to build homes, gene editing, artificial general intelligence, a new education system, or carbon sequestration, you may actually be able to get it funded, even if you don’t have a degree or much experience.
+
+硅谷的神奇之处在于，如果你愿意认真对待，人们就会默认认真对待你——他们已经知道，如果你不认真对待，那么总的来说，这是一个非常昂贵的错误。如果你想创办一家公司，致力于以更好的方式建造房屋、基因编辑、通用人工智能、新的教育体系或碳封存，你实际上可能能够获得资金，即使你没有资金学位或丰富的经验。
+
+
+-----
+
+[[https://blog.samaltman.com/idea-generation][Idea Generation - Sam Altman --- 创意生成 - 山姆·奥尔特曼]](https://blog.samaltman.com/idea-generation)
+
+It’s important to be in the right kind of environment, and around the right kind of people. You want to be around people who have a good feel for the future, will entertain improbable plans, are optimistic, are smart in a creative way, and have a very high idea flux. These sorts of people tend to think without the constraints most people have, not have a lot of filters, and not care too much what other people think.
+
+处于合适的环境中，周围有合适的人，这一点很重要。你希望周围的人对未来有良好的预感，会考虑不可能的计划，乐观，聪明，有创造力，并且有非常高的想法流动。这类人的思维往往不受大多数​​人的限制，没有太多的过滤器，也不太关心别人的想法。
+
+The best ideas are fragile; most people don’t even start talking about them at all because they sound silly. Perhaps most of all, you want to be around people who don’t make you feel stupid for mentioning a bad idea, and who certainly never feel stupid for doing so themselves.
+
+最好的想法都是脆弱的；大多数人甚至根本不会开始谈论它们，因为它们听起来很愚蠢。也许最重要的是，你希望周围的人不会因为提到坏主意而让你觉得自己很愚蠢，而且他们自己也绝对不会因为自己这样做而感到愚蠢。
+
+-----
+
+[[https://blog.samaltman.com/pg-and-jessica][PG and Jessica - Sam Altman --- PG 和杰西卡 - 山姆·奥尔特曼]](https://blog.samaltman.com/pg-and-jessica)
+
+What did they do? They took bets on unknown people and believed in them more than anyone had before. They set strong norms and fought back hard against bad behavior towards YC founders. They trusted their own convictions, were willing to do things their way, and were willing to be disliked by the existing power structures. They focused on the most important things, they worked hard, and they spent a huge amount of time 1:1 with people. They understood the value of community and long-term orientation. When YC was very small, it felt like a family.
+
+他们做了什么？他们把赌注押在了未知的人身上，并且比以前任何人都更加相信他们。他们制定了强有力的规范，并严厉反击针对 YC 创始人的不良行为。他们相信自己的信念，愿意按照自己的方式做事，并且愿意被现有的权力结构所讨厌。他们专注于最重要的事情，他们努力工作，并且花费了大量的时间与人们进行一对一的交流。他们了解社区的价值和长期定位。当 YC 很小的时候，感觉就像一个家庭。
+
+
+-----
+
+[[https://blog.samaltman.com/the-strength-of-being-misunderstood][The Strength of Being Misunderstood - Sam Altman --- 被误解的力量——萨姆·奥尔特曼]](https://blog.samaltman.com/the-strength-of-being-misunderstood)
+
+The most impressive people I know care a lot about what people think, even people whose opinions they really shouldn’t value (a surprising numbers of them do something like keeping a folder of screenshots of tweets from haters). But what makes them unusual is that they generally care about other people’s opinions on a very long time horizon—as long as the history books get it right, they take some pride in letting the newspapers get it wrong.
+
+我认识的最令人印象深刻的人非常关心人们的想法，甚至是那些他们确实不应该重视的人的想法（其中令人惊讶的数量会做一些事情，比如保留仇恨者推文屏幕截图的文件夹）。但他们的不同寻常之处在于，他们通常会在很长一段时间内关心别人的观点——只要历史书上的观点是正确的，他们就会为报纸上的错误而感到自豪。
+
+You should trade being short-term low-status for being long-term high-status, which most people seem unwilling to do. A common way this happens is by eventually being right about an important but deeply non-consensus bet. But there are lots of other ways–the key observation is that as long as you are right, being misunderstood by most people is a strength not a weakness. You and a small group of rebels get the space to solve an important problem that might otherwise not get solved.
+
+你应该放弃短期的低地位，换取长期的高地位，但大多数人似乎不愿意这样做。发生这种情况的一种常见方式是最终对一个重要但非共识的赌注做出正确的判断。但还有很多其他方法——关键的观察是，只要你是对的，被大多数人误解就是一种优势而不是劣势。你和一小群反叛者获得了解决一个重要问题的空间，否则这个问题可能无法解决。
+
+-----
+
 [[https://www.youtube.com/watch?v=Mde2q7GFCrw][Yuval Noah Harari: Human Nature, Intelligence, Power, and Conspiracies | Lex Fridman Podcast #390 - YouTube]](https://www.youtube.com/watch?v=Mde2q7GFCrw)
 
 感觉赫拉利思想还是深刻的。里面谈到了智能和意识，痛苦, 希特勒，警惕对纳粹和法西斯主义的痛恨（痛恨意味着自己的优越性）
