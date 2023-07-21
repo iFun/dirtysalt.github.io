@@ -60,6 +60,7 @@ https://dirtysalt.github.io/html/amazon-redshift-reinvented-paper.html
 https://dirtysalt.github.io/html/america-alone-talk.html
 https://dirtysalt.github.io/html/amsuing-ourselves-to-death.html
 https://dirtysalt.github.io/html/an-adaptive-io-tasks-implementation-based-on-speculation.html
+https://dirtysalt.github.io/html/an-example-of-java-class-loading-chaos.html
 https://dirtysalt.github.io/html/an-impact-guide-for-engineers.html
 https://dirtysalt.github.io/html/an-incremental-approach-to-compiler-construction.html
 https://dirtysalt.github.io/html/an-interview-with-edw.html
