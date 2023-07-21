@@ -6,7 +6,7 @@
 - uid 表示用户id
 - date 表示用户在这天活跃
 
- 然后我们要计算，T这天活跃的用户，在T+1, T+2, T+3 后面几天的活跃数量。
+然后我们要计算，T这天活跃的用户，在T+1, T+2, T+3 后面几天的活跃数量。
 
 #+BEGIN_SRC sql
 create table user_activity (uid int, date string)
