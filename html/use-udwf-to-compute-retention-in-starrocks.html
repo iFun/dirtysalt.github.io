@@ -33,14 +33,12 @@
 </p>
 <ul class="org-ul">
 <li>uid 表示用户id</li>
-<li><p>
-date 表示用户在这天活跃
-</p>
+<li>date 表示用户在这天活跃</li>
+</ul>
 
 <p>
 然后我们要计算，T这天活跃的用户，在T+1, T+2, T+3 后面几天的活跃数量。
-</p></li>
-</ul>
+</p>
 
 <div class="org-src-container">
 <pre class="src src-sql"><span class="org-keyword">create</span> <span class="org-keyword">table</span> <span class="org-function-name">user_activity</span> (uid <span class="org-type">int</span>, <span class="org-type">date</span> string)
@@ -98,7 +96,7 @@ main()
 大概数就就是这样的
 </p>
 
-<pre class="example" id="orgd78bd02">
+<pre class="example" id="orgba8c475">
 MySQL [zya]&gt; select * from user_activity;
 +------+------------+
 | uid  | date       |
@@ -189,7 +187,7 @@ properties
 然后我们看一下 1，2 天的留存情况
 </p>
 
-<pre class="example" id="org83018df">
+<pre class="example" id="org974217e">
 MySQL [zya]&gt; select * from user_activity;
 +------+------------+
 | uid  | date       |
