@@ -1,5 +1,26 @@
 #+title: 网络文章@202307
 
+
+-----
+
+[[https://www.youtube.com/watch?v=x6tMLAjPVyo&list=WL&index=1][(22) The 2 Most Important Skills For the Rest Of Your Life | Yuval Noah Harari on Impact Theory - YouTube]](https://www.youtube.com/watch?v=x6tMLAjPVyo&list=WL&index=1)
+
+Emotional Intelligence & Mental balance
+
+未来技术发展会不断加速，在不同阶段需要不同的角色，人们为了适应社会需要不断地适应这些角色。在这个过程中，需要不断地学习不同的知识，如何保持自己的感情理智以及精神平衡非常重要。
+
+-----
+
+[[https://mp.weixin.qq.com/s/9_lSIFSw5o8sFC8foEtA7w][Presto在B站的实践]](https://mp.weixin.qq.com/s/9_lSIFSw5o8sFC8foEtA7w)
+
+相对Hive、Spark引擎，Presto存在不少优势：
+1. shuffle数据不落地
+2. 流式任务执行而不是按stage级别执行
+3. split为线程级别的调度
+4. 数据源插件化
+
+这使Presto 特别适合交互式跨源数据查询，Presto也并不是完美的，比如因为其流式pipeline执行方式的设计，使其丧失了task级别的recovery机制，所以Presto目前不是特别适合用来做大规模的ETL查询，当然目前社区也在通过对presto进行各种优化来使其适应更大规模的查询，比如Presto Ulimited和Presto on Spark项目。
+
 -----
 
 [[https://blog.samaltman.com/productivity][Productivity - Sam Altman --- 生产力 - Sam Altman]](https://blog.samaltman.com/productivity)
