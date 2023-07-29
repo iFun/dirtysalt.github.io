@@ -1148,6 +1148,7 @@ https://dirtysalt.github.io/html/the-economic-naturalist.html
 https://dirtysalt.github.io/html/the-economics-of-getting-hired-as-a-data-scientist.html
 https://dirtysalt.github.io/html/the-economist.html
 https://dirtysalt.github.io/html/the-effective-engineer-by-edmond-lau.html
+https://dirtysalt.github.io/html/the-essays-of-warren-buffett.html
 https://dirtysalt.github.io/html/the-evolution-of-code-deploys-at-reddit.html
 https://dirtysalt.github.io/html/the-facebook-effect.html
 https://dirtysalt.github.io/html/the-feynman-technique-the-best-way-to-learn-anything.html
