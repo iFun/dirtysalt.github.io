@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202308 [[file:homo-deus-brief-history-of-tomorrow.org][Homo Deus：A Brief History of Tomorrow(未来简史)]]
 - 202308 [[file:the-essays-of-warren-buffett.org][巴菲特致股东的信(The Essays of Warren Buffett)]]
 - 202307 [[file:an-example-of-java-class-loading-chaos.org][Java Class 加载乱象一例]]
 - 202307 [[file:use-udwf-to-compute-retention-in-starrocks.org][在StarRocks中使用UDWF计算用户留存]]
