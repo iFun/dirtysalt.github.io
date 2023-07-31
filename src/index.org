@@ -1129,3 +1129,4 @@
 - 202305 [[file:lc-2699-modify-graph-edge-weights.org][LC 2699. 修改图中的边权]] 两遍dijkstra
 - 202306 [[file:lc-2719-count-of-integers.org][LC 2719. 统计整数数目]]  数位 dp
 - 202307 [[file:lc-6919-apply-operations-to-make-all-array-elements-equal-to-zero.org][LC 6919. 使数组中的所有元素都等于零]] 差分数组
+- 202308 [[file:lc-6957-count-stepping-numbers-in-range.org][LC 6957. 统计范围内的步进数字数目]] 数位dp

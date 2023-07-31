@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202308 [[file:lc-6957-count-stepping-numbers-in-range.org][LC 6957. 统计范围内的步进数字数目]] 数位dp
 - 202308 [[file:readings-at-202308.org][网络文章@202308]]
 - 202308 [[file:homo-deus-brief-history-of-tomorrow.org][Homo Deus：A Brief History of Tomorrow(未来简史)]]
 - 202308 [[file:the-essays-of-warren-buffett.org][巴菲特致股东的信(The Essays of Warren Buffett)]]
