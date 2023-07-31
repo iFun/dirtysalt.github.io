@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 6957. 统计范围内的步进数字数目</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 6957. 统计范围内的步进数字数目</h1>
+<p>
+<a href="https://leetcode.cn/problems/count-stepping-numbers-in-range/">https://leetcode.cn/problems/count-stepping-numbers-in-range/</a>
+</p>
+
+<p>
+6月份有道数位dp的题目，当时看了有点似懂非懂的，今天正好试试，看看自己能不能做出来。
+</p>
+
+<p>
+其中 `F(s)` 是计算小于等于s的，并且满足条件的数的个数。
+</p>
+<ul class="org-ul">
+<li>i 表示寻找第几位</li>
+<li>last 表示上一位选择的数字，可以是0. 但是需要判断这个0是不是第一个，由 `isFirst` 来判断</li>
+<li>isLimit 表示之前选择的数字，已经确保可以小于s了。如果已经确保的话，那么在选择上空间不同。</li>
+<li>isFirst 表示目前选择是不是第一个数字。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">def</span> <span class="org-function-name">F</span>(s):
+    <span class="org-py-decorators">@functools.cache</span>
+    <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(i, last, isLimit, isFirst):
+        <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == <span class="org-py-builtins">len</span>(s):
+            <span class="org-keyword">return</span> <span class="org-py-number">0</span> <span class="org-keyword">if</span> isFirst <span class="org-keyword">else</span> <span class="org-py-number">1</span>
+
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+        <span class="org-py-variable-name">h</span> = <span class="org-py-builtins">int</span>(s[i])
+        <span class="org-keyword">if</span> isFirst:
+            <span class="org-py-variable-name">h2</span> = <span class="org-py-number">9</span> <span class="org-keyword">if</span> isLimit <span class="org-keyword">else</span> h
+            <span class="org-keyword">for</span> d <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">0</span>, h2 + <span class="org-py-number">1</span>):
+                <span class="org-py-variable-name">ans</span> += search(i + <span class="org-py-number">1</span>, d, isLimit <span class="org-keyword">or</span> d &lt; h, <span class="org-py-variable-name">d</span> == <span class="org-py-number">0</span>)
+        <span class="org-keyword">else</span>:
+            <span class="org-keyword">for</span> d <span class="org-keyword">in</span> (last - <span class="org-py-number">1</span>, last + <span class="org-py-number">1</span>):
+                <span class="org-keyword">if</span> d &lt; <span class="org-py-number">0</span> <span class="org-keyword">or</span> d &gt; <span class="org-py-number">9</span> <span class="org-keyword">or</span> (<span class="org-keyword">not</span> isLimit <span class="org-keyword">and</span> d &gt; h): <span class="org-keyword">continue</span>
+                <span class="org-py-variable-name">ans</span> += search(i + <span class="org-py-number">1</span>, d, isLimit <span class="org-keyword">or</span> d &lt; h, <span class="org-py-pseudo-keyword">False</span>)
+        <span class="org-keyword">return</span> ans
+
+    <span class="org-keyword">return</span> search(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">True</span>)
+
+
+<span class="org-py-def-class">def</span> <span class="org-function-name">check</span>(s):
+    <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, <span class="org-py-builtins">len</span>(s)):
+        <span class="org-py-variable-name">d</span> = <span class="org-py-builtins">ord</span>(s[i]) - <span class="org-py-builtins">ord</span>(s[i - <span class="org-py-number">1</span>])
+        <span class="org-keyword">if</span> <span class="org-keyword">not</span> (<span class="org-py-variable-name">d</span> == <span class="org-py-number">1</span> <span class="org-keyword">or</span> <span class="org-py-variable-name">d</span> == -<span class="org-py-number">1</span>):
+            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+
+
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">countSteppingNumbers</span>(<span class="org-py-object-reference">self</span>, low: <span class="org-py-builtins">str</span>, high: <span class="org-py-builtins">str</span>) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
+        <span class="org-py-variable-name">h</span> = F(high)
+        <span class="org-py-variable-name">l</span> = F(low)
+        <span class="org-py-variable-name">ans</span> = h - l
+        <span class="org-keyword">if</span> check(low):
+            <span class="org-py-variable-name">ans</span> += <span class="org-py-number">1</span>
+        <span class="org-keyword">return</span> ans % MOD
+
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-6957-count-stepping-numbers-in-range.html';this.page.identifier = 'lc-6957-count-stepping-numbers-in-range.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

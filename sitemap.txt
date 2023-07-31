@@ -305,6 +305,7 @@ https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-pyth
 https://dirtysalt.github.io/html/elastic-search.html
 https://dirtysalt.github.io/html/employee-equity.html
 https://dirtysalt.github.io/html/enchiridion-by-epictetus.html
+https://dirtysalt.github.io/html/ending-of-ming-dynasty.html
 https://dirtysalt.github.io/html/engineering-management.html
 https://dirtysalt.github.io/html/enlightment-of-civilization.html
 https://dirtysalt.github.io/html/equipped-with-ssd.html
@@ -660,6 +661,7 @@ https://dirtysalt.github.io/html/lc-6318-minimum-time-to-complete-all-tasks.html
 https://dirtysalt.github.io/html/lc-6344-lexicographically-smallest-beautiful-string.html
 https://dirtysalt.github.io/html/lc-664-strange-printer.html
 https://dirtysalt.github.io/html/lc-6919-apply-operations-to-make-all-array-elements-equal-to-zero.html
+https://dirtysalt.github.io/html/lc-6957-count-stepping-numbers-in-range.html
 https://dirtysalt.github.io/html/lc-730-count-different-palindromic-subsequences.html
 https://dirtysalt.github.io/html/lc-754-reach-a-number.html
 https://dirtysalt.github.io/html/lc-805-split-array-with-same-average.html
@@ -957,6 +959,7 @@ https://dirtysalt.github.io/html/reading-excel-in-python.html
 https://dirtysalt.github.io/html/readings-at-202305.html
 https://dirtysalt.github.io/html/readings-at-202306.html
 https://dirtysalt.github.io/html/readings-at-202307.html
+https://dirtysalt.github.io/html/readings-at-202308.html
 https://dirtysalt.github.io/html/readings-dbms-fifth-edition.html
 https://dirtysalt.github.io/html/real-life-of-startup-with-baby.html
 https://dirtysalt.github.io/html/realtime-big-data-analytics-emerging-architecture.html
