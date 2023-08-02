@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202808 [[file:lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.org][LC 2791. 树中可以形成回文的路径数]] 树状图通常都是DFS
 - 202308 [[file:ending-of-ming-dynasty.org][晚明]] by 柯山梦
 - 202308 [[file:lc-6957-count-stepping-numbers-in-range.org][LC 6957. 统计范围内的步进数字数目]] 数位dp
 - 202308 [[file:readings-at-202308.org][网络文章@202308]]
