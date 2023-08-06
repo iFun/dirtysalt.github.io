@@ -72,6 +72,9 @@
 - 202301 [[file:the-job-work-and-its-future-in-a-time-of-radical-change.org][工作：巨变时代的现状、挑战与未来（The Job: Work and Its Future in a Time of Radical Change）]]
 - 202305 [[file:enlightment-of-civilization.org][文明之光]] by 吴军
 - 202305 [[file:seize-mind-and-market.org][抢占心智]] by 江南春
+- 202308 [[file:homo-deus-brief-history-of-tomorrow.org][Homo Deus：A Brief History of Tomorrow(未来简史)]]
+- 202308 [[file:the-essays-of-warren-buffett.org][巴菲特致股东的信(The Essays of Warren Buffett)]]
+- 202308 [[file:sapiens-a-brief-history-of-humankind.org][Sapiens: A Brief History of Humankind(人类简史)]]
 
 *** 小说杂文
 - [[file:the-catcher-in-the-rye.org][麦田里的守望者(The Catcher in The Rye)]] by Jerome Salinger
@@ -91,6 +94,7 @@
 - 202006 [[file:zen-and-the-arts-of-motorcycle-maintenance.org][禅与摩托车维修艺术(Zen and the Arts of Motorcycle Maintenance)]] by Robert Pirsig
 - 202101 [[file:one-hundred-years-of-solitude.org][百年孤独(Cien años de soledad)]] 加西亚马尔克斯 / 范晔
 - 202305 [[file:tales-from-shakespeare.org][莎士比亚戏剧集]]
+- 202308 [[file:ending-of-ming-dynasty.org][晚明]] by 柯山梦
 
 *** 个人管理
 + [[file:influence.org][影响力(Influence: The Psychology of Persuasion)]] by [美] 罗伯特·西奥迪尼
