@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2791. 树中可以形成回文的路径数</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2791. 树中可以形成回文的路径数</h1>
+<p>
+<a href="https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/">https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/</a>
+</p>
+
+<p>
+这题现在想起来不是很难，感觉对于这类树状的图形使用DFS似乎是唯一的选择，尤其是对于这些n&gt;=10^5的case.
+</p>
+
+<p>
+我第一次写法会在每个节点上，逐个比较每个孩子可以产生的匹配，但是这样容易产生特别高的时间复杂度，或者是不太容易控制的时间复杂度。 <a href="https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/submissions/452163269/">https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/submissions/452163269/</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">countPalindromePaths</span>(<span class="org-py-object-reference">self</span>, parent: List[<span class="org-py-builtins">int</span>], s: <span class="org-py-builtins">str</span>) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(parent)
+        <span class="org-py-variable-name">child</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, n):
+            <span class="org-py-variable-name">p</span> = parent[i]
+            child[p].append(i)
+
+        <span class="org-py-variable-name">cnt</span> = Counter([<span class="org-py-number">0</span>])
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(root, now):
+            <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+            <span class="org-keyword">for</span> c <span class="org-keyword">in</span> child[root]:
+                <span class="org-py-variable-name">bit</span> = (<span class="org-py-number">1</span> &lt;&lt; (ord(s[c]) - <span class="org-py-builtins">ord</span>(<span class="org-string">'a'</span>)))
+                <span class="org-py-variable-name">x</span> = now ^ bit
+                <span class="org-py-variable-name">ans</span> += cnt[x]
+                <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">26</span>):
+                    <span class="org-py-variable-name">ans</span> += cnt[x ^ (<span class="org-py-number">1</span> &lt;&lt; i)]
+                <span class="org-py-variable-name">cnt</span>[x] += <span class="org-py-number">1</span>
+                <span class="org-py-variable-name">ans</span> += search(c, x)
+            <span class="org-keyword">return</span> ans
+
+        <span class="org-py-variable-name">ans</span> = search(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>)
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.html';this.page.identifier = 'lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>

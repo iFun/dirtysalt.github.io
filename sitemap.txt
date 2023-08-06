@@ -631,6 +631,7 @@ https://dirtysalt.github.io/html/lc-2608-shortest-cycle-in-a-graph.html
 https://dirtysalt.github.io/html/lc-2612-minimum-reverse-operations.html
 https://dirtysalt.github.io/html/lc-2699-modify-graph-edge-weights.html
 https://dirtysalt.github.io/html/lc-2719-count-of-integers.html
+https://dirtysalt.github.io/html/lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html
@@ -1006,6 +1007,7 @@ https://dirtysalt.github.io/html/run-vtune-in-linux-remote-desktop.html
 https://dirtysalt.github.io/html/run-wordpress-in-fast-way.html
 https://dirtysalt.github.io/html/running-sentry-on-ec2.html
 https://dirtysalt.github.io/html/sanitizer.html
+https://dirtysalt.github.io/html/sapiens-a-brief-history-of-humankind.html
 https://dirtysalt.github.io/html/sayings.html
 https://dirtysalt.github.io/html/scala-prog-lang-book.html
 https://dirtysalt.github.io/html/scala.html
