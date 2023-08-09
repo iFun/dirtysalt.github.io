@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2813. 子序列最大优雅度</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2813. 子序列最大优雅度</h1>
+<p>
+这题看了题解，写的真好 <a href="https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/solutions/2375128/fan-hui-tan-xin-pythonjavacgo-by-endless-v2w1/">https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/solutions/2375128/fan-hui-tan-xin-pythonjavacgo-by-endless-v2w1/</a>
+</p>
+
+<p>
+他把这个算法称为”反悔贪心“，或者说这个贪心是可以撤销的。另外这题一个亮点就是有多个目标，profile和category^2.
+</p>
+
+<p>
+题解给的算法非常巧妙：
+</p>
+<ul class="org-ul">
+<li>首先控制住一个目标作为基准（前面K个元素）</li>
+<li>然后看之后序列的时候，考虑一些是否可以将之前某个item给去掉（保证category数量只能增加）</li>
+<li>同时考虑去掉这个item之后cost的改变。（减去去掉item的profile, 并且更新category数量）</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">findMaximumElegance</span>(<span class="org-py-object-reference">self</span>, items: List[List[<span class="org-py-builtins">int</span>]], k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
+        items.sort(<span class="org-py-variable-name">key</span>=<span class="org-keyword">lambda</span> x: -x[<span class="org-py-number">0</span>])
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+        <span class="org-py-variable-name">total</span> = <span class="org-py-number">0</span>
+
+        <span class="org-py-variable-name">vis</span> = <span class="org-py-builtins">set</span>()
+        <span class="org-py-variable-name">dup</span> = []
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(len(items)):
+            <span class="org-py-variable-name">profit</span>, <span class="org-py-variable-name">category</span> = items[i]
+            <span class="org-keyword">if</span> i &lt; k:
+                <span class="org-py-variable-name">total</span> += profit
+                <span class="org-keyword">if</span> category <span class="org-keyword">not</span> <span class="org-keyword">in</span> vis:
+                    vis.add(category)
+                <span class="org-keyword">else</span>:
+                    dup.append(profit)
+            <span class="org-keyword">elif</span> dup <span class="org-keyword">and</span> category <span class="org-keyword">not</span> <span class="org-keyword">in</span> vis:
+                vis.add(category)
+                <span class="org-py-variable-name">total</span> += profit - dup.pop()
+
+            <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">max</span>(ans, total + <span class="org-py-builtins">len</span>(vis) ** <span class="org-py-number">2</span>)
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2813-maximum-elegance-of-a-k-length-subsequence.html';this.page.identifier = 'lc-2813-maximum-elegance-of-a-k-length-subsequence.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
