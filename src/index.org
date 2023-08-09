@@ -1135,3 +1135,5 @@
 - 202307 [[file:lc-6919-apply-operations-to-make-all-array-elements-equal-to-zero.org][LC 6919. 使数组中的所有元素都等于零]] 差分数组
 - 202308 [[file:lc-6957-count-stepping-numbers-in-range.org][LC 6957. 统计范围内的步进数字数目]] 数位dp
 - 202808 [[file:lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.org][LC 2791. 树中可以形成回文的路径数]] 树状图通常都是DFS
+- 202308 [[file:lc-2790-maximum-number-of-groups-with-increasing-length.org][LC 2790. 长度递增组的最大数目]] 挪位贪心
+- 202308 [[file:lc-2813-maximum-elegance-of-a-k-length-subsequence.org][LC 2813. 子序列最大优雅度]] 反悔贪心（贪心是可以撤销的），多目标优化

@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202308 [[file:lc-2813-maximum-elegance-of-a-k-length-subsequence.org][LC 2813. 子序列最大优雅度]] 反悔贪心（贪心是可以撤销的），多目标优化
+- 202308 [[file:lc-2790-maximum-number-of-groups-with-increasing-length.org][LC 2790. 长度递增组的最大数目]] 挪位贪心
 - 202308 [[file:sapiens-a-brief-history-of-humankind.org][Sapiens: A Brief History of Humankind(人类简史)]]
 - 202308 [[file:lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.org][LC 2791. 树中可以形成回文的路径数]] 树状图通常都是DFS
 - 202308 [[file:ending-of-ming-dynasty.org][晚明]] by 柯山梦
