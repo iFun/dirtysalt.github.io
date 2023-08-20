@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 8013. 范围中美丽整数的数目</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 8013. 范围中美丽整数的数目</h1>
+<p>
+<a href="https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/description/">https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/description/</a>
+</p>
+
+<p>
+这次算是自己琢磨出来怎么写数位dp的，实现中有两个点，分别都是和isStart有关系的：
+</p>
+<ol class="org-ol">
+<li>只有isStart=False,的时候，才可以继续以isStart=False递归下去，否则就要开始枚举具体数字了。</li>
+<li>只有isStart=True的时候，才能枚举left被用于odd/even. 如果isStart=False,那么只能粗略判断(odd + left) &lt; even</li>
+</ol>
+
+<p>
+然后就是这个状态中value必须取模k, 否则这个状态数量就太大了。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">numberOfBeautifulIntegers</span>(<span class="org-py-object-reference">self</span>, low: <span class="org-py-builtins">int</span>, high: <span class="org-py-builtins">int</span>, k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-def-class">def</span> <span class="org-function-name">OkOddEven</span>(isStart, odd, even, left):
+            <span class="org-keyword">if</span> isStart:
+                <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">0</span>, left + <span class="org-py-number">1</span>):
+                    <span class="org-keyword">if</span> (odd + x) == (even + left - x):
+                        <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+                <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+            <span class="org-keyword">else</span>:
+                <span class="org-keyword">if</span> (odd + left) &lt; even <span class="org-keyword">or</span> (even + left) &lt; odd:
+                    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+                <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(ss):
+            <span class="org-py-import-from">import</span> functools
+            <span class="org-py-decorators">@functools.cache</span>
+            <span class="org-py-def-class">def</span> <span class="org-function-name">f</span>(i, isLimit, isStart, odd, even, value):
+                <span class="org-comment"># print(i, isLimit, isStart, odd, even, value)</span>
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == <span class="org-py-builtins">len</span>(ss):
+                    <span class="org-keyword">if</span> <span class="org-keyword">not</span> isStart: <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+                    <span class="org-keyword">if</span> <span class="org-py-variable-name">odd</span> == even <span class="org-keyword">and</span> value % <span class="org-py-variable-name">k</span> == <span class="org-py-number">0</span>:
+                        <span class="org-comment"># print(value)</span>
+                        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
+                    <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+
+                <span class="org-py-variable-name">left</span> = <span class="org-py-builtins">len</span>(ss) - i
+                <span class="org-keyword">if</span> <span class="org-keyword">not</span> OkOddEven(isStart, odd, even, left):
+                    <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+
+                <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+                <span class="org-keyword">if</span> <span class="org-keyword">not</span> isStart:
+                    <span class="org-py-variable-name">ans</span> += f(i + <span class="org-py-number">1</span>, <span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">False</span>, odd, even, value)
+
+                <span class="org-py-variable-name">from_value</span> = <span class="org-py-number">1</span> <span class="org-keyword">if</span> <span class="org-keyword">not</span> isStart <span class="org-keyword">else</span> <span class="org-py-number">0</span>
+                <span class="org-py-variable-name">to_value</span> = <span class="org-py-builtins">int</span>(ss[i]) <span class="org-keyword">if</span> <span class="org-keyword">not</span> isLimit <span class="org-keyword">else</span> <span class="org-py-number">9</span>
+                <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(from_value, to_value + <span class="org-py-number">1</span>):
+                    <span class="org-py-variable-name">ans</span> += f(i + <span class="org-py-number">1</span>, isLimit <span class="org-keyword">or</span> x &lt; <span class="org-py-builtins">int</span>(ss[i]), isStart <span class="org-keyword">or</span> x != <span class="org-py-number">0</span>,
+                             odd + (x % <span class="org-py-number">2</span>), even + (x + <span class="org-py-number">1</span>) % <span class="org-py-number">2</span>,
+                             <span class="org-comment"># value * 10 + x)</span>
+                             (value * <span class="org-py-number">10</span> + x) % k)
+                <span class="org-keyword">return</span> ans
+
+            <span class="org-keyword">return</span> f(<span class="org-py-number">0</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-number">0</span>)
+
+        <span class="org-py-variable-name">h</span> = search(str(high))
+        <span class="org-py-variable-name">l</span> = search(str(low - <span class="org-py-number">1</span>))
+        <span class="org-py-variable-name">ans</span> = h - l
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-8013-number-of-beautiful-integers-in-the-range.html';this.page.identifier = 'lc-8013-number-of-beautiful-integers-in-the-range.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
