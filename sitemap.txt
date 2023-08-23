@@ -218,6 +218,7 @@ https://dirtysalt.github.io/html/computer-system-reading.html
 https://dirtysalt.github.io/html/computing-performance-2021-whats-on-the-horizon.html
 https://dirtysalt.github.io/html/concurrency-hazards.html
 https://dirtysalt.github.io/html/concurrency.html
+https://dirtysalt.github.io/html/confession-of-a-advertising-man.html
 https://dirtysalt.github.io/html/confessions-of-an-advertising-man.html
 https://dirtysalt.github.io/html/config-cuda-env-on-linux.html
 https://dirtysalt.github.io/html/configure-topcoder-env.html
