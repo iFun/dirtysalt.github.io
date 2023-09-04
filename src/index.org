@@ -1141,3 +1141,4 @@
 - 202308 [[file:lc-2809-minimum-time-to-make-array-sum-at-most-x.org][LC 2809. 使数组和小于等于 x 的最少时间]] 排序不等式+DP
 - 202308 [[file:lc-8013-number-of-beautiful-integers-in-the-range.org][LC 8013. 范围中美丽整数的数目]] 数位DP
 - 202309 [[file:lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.org][LC 2846. 边权重均等查询]] Tarjan LCA + 树拆分
+- 202309 [[file:lc-2836-maximize-value-of-function-in-a-ball-passing-game.org][LC 2836. 在传球游戏中最大化函数值]] 倍增算法 / 前向DFS
