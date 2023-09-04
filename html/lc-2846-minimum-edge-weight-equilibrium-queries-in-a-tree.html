@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 2846. 边权重均等查询</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 2846. 边权重均等查询</h1>
+<p>
+<a href="https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/">https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/</a>
+</p>
+
+<p>
+这个问题就是，A-&gt;B这个路径上，排除most common weight之外的其他weight的和，所以我们要记录A-&gt;B路径上权重的分布。
+</p>
+
+<p>
+有个关键的提示是 w&lt;=26. 所以这个权重分布可以非常简单，最后直接 `sum(w) - max(w)` 就好了。
+</p>
+
+<p>
+难点估计在于怎么表示A-&gt;B的权重分布，直接表示肯定是不行的，所以需要使用类似树拆分的方式：
+</p>
+<ul class="org-ul">
+<li>我们计算root-&gt;A和root-&gt;B的权重分布，假设分别是Wa, Wb. 这个直接一个dfs就可以计算出来。</li>
+<li>然后我们找到A, B的最小公共祖先假设是X, 并且假设root-&gt;X也是 Wx</li>
+<li>那么从A-&gt;B的权重分布应该是 (Wa - Wx) + (Wb - Wx).</li>
+</ul>
+
+<p>
+所以一个新问题就是如何计算LCA. 这个有个tarjan-lca算法可以参考，可以根据queries进行离线计算，时间复杂度大约就是在O(n+q)上。
+</p>
+
+<p>
+这个tarjan-lca的算法大致思路就是，某个点的parent会随着dfs不断地修改，这个点的parent始终是在最近一次访问的root上。
+为了更好更快递修改点的parent, 就需要使用union find set结构，具体说应该是find结构就行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">
+
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">UnionFindSet</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">__init__</span>(<span class="org-py-object-reference">self</span>, n):
+        <span class="org-py-object-reference">self</span>.ps = [<span class="org-py-number">0</span>] * n
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+            <span class="org-py-object-reference">self</span>.ps[i] = i
+
+    <span class="org-py-def-class">def</span> <span class="org-function-name">find</span>(<span class="org-py-object-reference">self</span>, x):
+        <span class="org-py-variable-name">p</span> = x
+        <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[p] != p:
+            <span class="org-py-variable-name">p</span> = <span class="org-py-object-reference">self</span>.ps[p]
+
+        <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[x] != x:
+            <span class="org-py-variable-name">up</span> = <span class="org-py-object-reference">self</span>.ps[x]
+            <span class="org-py-object-reference">self</span>.ps[x] = p
+            <span class="org-py-variable-name">x</span> = up
+        <span class="org-keyword">return</span> p
+
+    <span class="org-py-def-class">def</span> <span class="org-function-name">set</span>(<span class="org-py-object-reference">self</span>, x, p):
+        <span class="org-py-object-reference">self</span>.ps[x] = p
+
+
+<span class="org-py-def-class">def</span> <span class="org-function-name">tarjan_lca</span>(graph, root, queries):
+    <span class="org-py-variable-name">query_index</span> = defaultdict(list)
+    <span class="org-py-variable-name">ans</span> = [-<span class="org-py-number">1</span>] * <span class="org-py-builtins">len</span>(queries)
+    <span class="org-keyword">for</span> idx, (u, v) <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(queries):
+        query_index[u].append((v, idx))
+        query_index[v].append((u, idx))
+
+    <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(graph)
+    <span class="org-py-variable-name">ufs</span> = UnionFindSet(n)
+
+    <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(root, parent):
+
+        <span class="org-comment"># answer queries.</span>
+        <span class="org-py-variable-name">query</span> = query_index[root]
+        <span class="org-keyword">for</span> v, idx <span class="org-keyword">in</span> query:
+            <span class="org-comment"># &#22914;&#26524;&#26377;&#23545;&#24212;&#30340;&#26597;&#35810;&#33410;&#28857;v, &#24182;&#19988;&#36825;&#20010;&#33410;&#28857;&#20043;&#21069;&#35775;&#38382;&#36807;</span>
+            <span class="org-comment"># &#37027;&#20040;&#20351;&#29992;&#36825;&#20010;&#33410;&#28857;&#30340;parent.</span>
+            <span class="org-comment"># &#22914;&#26524;v&#26159;root&#30340;&#31062;&#20808;&#33410;&#28857;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#26159;v</span>
+            <span class="org-comment"># &#22914;&#26524;v&#22312;&#21478;&#22806;&#19968;&#20010;&#26641;&#19978;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#26159;&#26368;&#26089;&#20132;&#27719;&#30340;&#33410;&#28857;</span>
+            <span class="org-py-variable-name">p</span> = ufs.find(v)
+            <span class="org-keyword">if</span> p != -<span class="org-py-number">1</span>:
+                <span class="org-py-variable-name">ans</span>[idx] = p
+
+        <span class="org-comment"># continue to dfs.</span>
+        <span class="org-keyword">for</span> v, <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> graph[root]:
+            <span class="org-keyword">if</span> v != parent:
+                dfs(v, root)
+                <span class="org-comment"># &#36941;&#21382;&#23376;&#33410;&#28857;&#20043;&#21518;&#65292;&#23558;&#23376;&#33410;&#28857;&#30340;&#29238;&#33410;&#28857;&#35774;&#32622;&#20026;&#33258;&#24049;</span>
+                ufs.set(v, root)
+
+    dfs(root, -<span class="org-py-number">1</span>)
+    <span class="org-keyword">return</span> ans
+
+
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">minOperationsQueries</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, edges: List[List[<span class="org-py-builtins">int</span>]], queries: List[List[<span class="org-py-builtins">int</span>]]) -&gt; List[<span class="org-py-builtins">int</span>]:
+        <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        <span class="org-keyword">for</span> (u, v, w) <span class="org-keyword">in</span> edges:
+            adj[u].append((v, w))
+            adj[v].append((u, w))
+        <span class="org-py-variable-name">W</span> = {}
+
+        <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(root, parent, weight):
+            <span class="org-py-variable-name">W</span>[root] = <span class="org-py-builtins">tuple</span>(weight)
+            <span class="org-keyword">for</span> v, w <span class="org-keyword">in</span> adj[root]:
+                <span class="org-keyword">if</span> <span class="org-py-variable-name">v</span> == parent: <span class="org-keyword">continue</span>
+                <span class="org-py-variable-name">weight</span>[w] += <span class="org-py-number">1</span>
+                dfs(v, root, weight)
+                <span class="org-py-variable-name">weight</span>[w] -= <span class="org-py-number">1</span>
+
+        dfs(<span class="org-py-number">0</span>, -<span class="org-py-number">1</span>, [<span class="org-py-number">0</span>] * <span class="org-py-number">27</span>)
+        <span class="org-py-variable-name">lca</span> = tarjan_lca(adj, <span class="org-py-number">0</span>, queries)
+        <span class="org-py-variable-name">ans</span> = []
+        <span class="org-keyword">for</span> (u, v), r <span class="org-keyword">in</span> <span class="org-py-builtins">zip</span>(queries, lca):
+            <span class="org-py-variable-name">w1</span> = <span class="org-py-builtins">list</span>(W[u])
+            <span class="org-py-variable-name">w2</span> = <span class="org-py-builtins">list</span>(W[v])
+            <span class="org-py-variable-name">w3</span> = <span class="org-py-builtins">list</span>(W[r])
+            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">27</span>):
+                <span class="org-py-variable-name">w1</span>[i] -= w3[i]
+                <span class="org-py-variable-name">w2</span>[i] -= w3[i]
+                <span class="org-py-variable-name">w1</span>[i] += w2[i]
+            <span class="org-py-variable-name">c</span> = <span class="org-py-builtins">sum</span>(w1) - <span class="org-py-builtins">max</span>(w1)
+            ans.append(c)
+        <span class="org-keyword">return</span> ans
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.html';this.page.identifier = 'lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
