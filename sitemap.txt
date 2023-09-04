@@ -636,6 +636,7 @@ https://dirtysalt.github.io/html/lc-2790-maximum-number-of-groups-with-increasin
 https://dirtysalt.github.io/html/lc-2791-count-paths-that-can-form-a-palindrome-in-a-tree.html
 https://dirtysalt.github.io/html/lc-2809-minimum-time-to-make-array-sum-at-most-x.html
 https://dirtysalt.github.io/html/lc-2813-maximum-elegance-of-a-k-length-subsequence.html
+https://dirtysalt.github.io/html/lc-2836-maximize-value-of-function-in-a-ball-passing-game.html
 https://dirtysalt.github.io/html/lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
