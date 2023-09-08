@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202309 [[file:readings-at-202309.org][网络文章@202309]]
 - 202309 [[file:lc-2836-maximize-value-of-function-in-a-ball-passing-game.org][LC 2836. 在传球游戏中最大化函数值]] 倍增算法 / 前向DFS
 - 202309 [[file:lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.org][LC 2846. 边权重均等查询]] Tarjan LCA + 树拆分
 - 202308 [[file:confession-of-a-advertising-man.org][Confessions of a Advertising Man(一个广告人的自白)]] by 大卫奥维格
