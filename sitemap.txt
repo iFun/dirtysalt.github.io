@@ -672,6 +672,7 @@ https://dirtysalt.github.io/html/lc-6957-count-stepping-numbers-in-range.html
 https://dirtysalt.github.io/html/lc-730-count-different-palindromic-subsequences.html
 https://dirtysalt.github.io/html/lc-754-reach-a-number.html
 https://dirtysalt.github.io/html/lc-8013-number-of-beautiful-integers-in-the-range.html
+https://dirtysalt.github.io/html/lc-8020-string-transformation.html
 https://dirtysalt.github.io/html/lc-805-split-array-with-same-average.html
 https://dirtysalt.github.io/html/lc-810-chalkboard-xor-game.html
 https://dirtysalt.github.io/html/lc-858-mirror-reflection.html

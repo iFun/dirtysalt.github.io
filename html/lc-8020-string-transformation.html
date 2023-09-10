@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LC 8020. 字符串转换</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">LC 8020. 字符串转换</h1>
+<p>
+<a href="https://leetcode.cn/problems/string-transformation/description/">https://leetcode.cn/problems/string-transformation/description/</a>
+</p>
+
+<p>
+这题最开始我拆解问题思路是没有问题的：找出循环切分点，并且动态规划计算总数。但是两个子问题的求解方式都有点问题。
+</p>
+
+<p>
+题解写的非常好 <a href="https://leetcode.cn/problems/string-transformation/solutions/2435348/kmp-ju-zhen-kuai-su-mi-you-hua-dp-by-end-vypf/">https://leetcode.cn/problems/string-transformation/solutions/2435348/kmp-ju-zhen-kuai-su-mi-you-hua-dp-by-end-vypf/</a>
+</p>
+
+<p>
+找出循环切分点我想使用hash算法来减少字符串匹配。但是hash算法只能快速过滤掉不一致的情况，如果hash value相同的话还需要做一次比较。最坏情况下类似 "aaa&#x2026;aaa" 和 "aaaa..aaa" 这样的话就有大量的字符串匹配。 正确的方法是使用KMP来加速匹配（这个好像也是我遇到过的少有的题目，必须使用KMP算法来匹配字符串的）
+</p>
+
+<p>
+动态规划计算这个想的就更偏了。我最开始尝试的算法是，假设起始点是i, 每次挪动距离可以是[1,n], 需要挪动k次，那么最终点落在0这个位置上有多少种方法。但是显然这种方法计算量巨大，因为这个转移状态太大了。
+</p>
+
+<p>
+其实这个状态有点想的太细了，太细了才会导致计算量巨大。如果可以把整个状态做更大的抽象（或者是统一的话），那么这个状态就特别小。
+</p>
+
+<ul class="org-ul">
+<li>dp[i][0] 表示 i次操作之后s <code>= t的方案数, dp[i][1] 表示 s !</code> t.</li>
+<li>后面C表示有多少个切分点可以导致一次循环之后s == t.</li>
+<li>dp[i][0] = dp[i-1][0] * (C-1) + dp[i-1][1] * C. 其中C-1是因为上次相同的话，我们必须挪动一次</li>
+<li>dp[i][1] = dp[i-1][0] * (n-C) + d[i-1][1] * (n-1-C). 如果前一次相同的话，我们有C-1中可能造成相同，因为一共有n-1种挪动方式，所以有n-C种变为不同。</li>
+<li>可以看到这里的状态转移，完全就是考虑之前是相同还是不同，到现在这个状态是相同还是不同。转移粒度更粗，状态空间也更小了。</li>
+</ul>
+
+<p>
+很早之前看过课本上的kmp算法，感觉有点不太好理解，因为里面构建状态是类似backoff的状态，而不是上次match的状态。我觉得题解里面给出的模板挺好的，可以按照这个方式去理解一下。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-function-name">mat_mul</span>(a, b, MOD):
+    <span class="org-py-variable-name">R</span>, <span class="org-py-variable-name">K</span>, <span class="org-py-variable-name">C</span> = <span class="org-py-builtins">len</span>(a), <span class="org-py-builtins">len</span>(a[<span class="org-py-number">0</span>]), <span class="org-py-builtins">len</span>(b[<span class="org-py-number">0</span>])
+    <span class="org-py-variable-name">res</span> = [[<span class="org-py-number">0</span>] * C <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(R)]
+    <span class="org-keyword">for</span> k <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(K):
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(R):
+            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(C):
+                res[i][j] += (a[i][k] * b[k][j]) % MOD
+                res[i][j] %= MOD
+    <span class="org-keyword">return</span> res
+
+
+<span class="org-py-def-class">def</span> <span class="org-function-name">FindCutByKMP</span>(s, t):
+    <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(s)
+    <span class="org-py-def-class">def</span> <span class="org-function-name">compute_max_match</span>(pattern):
+        <span class="org-py-variable-name">match</span> = [<span class="org-py-number">0</span>] * <span class="org-py-builtins">len</span>(pattern)
+        <span class="org-py-variable-name">c</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, <span class="org-py-builtins">len</span>(pattern)):
+            <span class="org-py-variable-name">v</span> = pattern[i]
+            <span class="org-keyword">while</span> c <span class="org-keyword">and</span> pattern[c] != v:
+                <span class="org-py-variable-name">c</span> = match[c - <span class="org-py-number">1</span>]
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">pattern</span>[c] == v:
+                <span class="org-py-variable-name">c</span> += <span class="org-py-number">1</span>
+            <span class="org-py-variable-name">match</span>[i] = c
+        <span class="org-keyword">return</span> match
+
+    <span class="org-py-def-class">def</span> <span class="org-function-name">kmp_search</span>(text, pattern):
+        <span class="org-py-variable-name">match</span> = compute_max_match(pattern)
+        <span class="org-py-variable-name">match_count</span> = <span class="org-py-variable-name">c</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> i, v <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(text):
+            <span class="org-py-variable-name">v</span> = text[i]
+            <span class="org-keyword">while</span> c <span class="org-keyword">and</span> pattern[c] != v:
+                <span class="org-py-variable-name">c</span> = match[c - <span class="org-py-number">1</span>]
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">pattern</span>[c] == v:
+                <span class="org-py-variable-name">c</span> += <span class="org-py-number">1</span>
+            <span class="org-keyword">if</span> <span class="org-py-variable-name">c</span> == <span class="org-py-builtins">len</span>(pattern):
+                <span class="org-py-variable-name">match_count</span> += <span class="org-py-number">1</span>
+                <span class="org-py-variable-name">c</span> = match[c - <span class="org-py-number">1</span>]
+        <span class="org-keyword">return</span> match_count
+
+    <span class="org-py-variable-name">cuts</span> = kmp_search(s + s[:-<span class="org-py-number">1</span>], t)
+    <span class="org-keyword">return</span> cuts
+
+
+<span class="org-py-def-class">def</span> <span class="org-function-name">ComputeMM</span>(c, k, s, t):
+    <span class="org-comment"># f[i][0] after i operations, s == t</span>
+    <span class="org-comment"># f[i][1] after i operations, s!= t</span>
+
+    <span class="org-comment"># f[i][0] = f[i-1][0] * (c-1) + f[i-1][1] * c</span>
+    <span class="org-comment"># f[i][1] = f[i-1][0] * (n-c) * f[i-1][1] * (n-1-c)</span>
+
+    <span class="org-comment"># f[0][0] = 1 if s == t</span>
+    <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
+    <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(s)
+    <span class="org-py-variable-name">base</span> = [[c - <span class="org-py-number">1</span>, c], [n - c, n - <span class="org-py-number">1</span> - c]]
+    <span class="org-py-variable-name">eq</span> = <span class="org-py-number">1</span> <span class="org-keyword">if</span> (<span class="org-py-variable-name">s</span> == t) <span class="org-keyword">else</span> <span class="org-py-number">0</span>
+    <span class="org-py-variable-name">T</span> = [[eq], [<span class="org-py-number">1</span> - eq]]
+    <span class="org-keyword">while</span> k:
+        <span class="org-keyword">if</span> k &amp; 0x1:
+            <span class="org-py-variable-name">T</span> = mat_mul(base, T, MOD)
+        <span class="org-py-variable-name">base</span> = mat_mul(base, base, MOD)
+        <span class="org-py-variable-name">k</span> = k &gt;&gt; <span class="org-py-number">1</span>
+    <span class="org-keyword">return</span> T[<span class="org-py-number">0</span>][<span class="org-py-number">0</span>]
+
+
+<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">numberOfWays</span>(<span class="org-py-object-reference">self</span>, s: <span class="org-py-builtins">str</span>, t: <span class="org-py-builtins">str</span>, k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">cuts</span> = FindCutByKMP(s, t)
+        <span class="org-keyword">if</span> <span class="org-py-variable-name">cuts</span> == <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+        <span class="org-keyword">return</span> ComputeMM(cuts, k, s, t)
+</pre>
+</div>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-8020-string-transformation.html';this.page.identifier = 'lc-8020-string-transformation.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
