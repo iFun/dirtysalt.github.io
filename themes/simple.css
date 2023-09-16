@@ -27,3 +27,7 @@ pre.src {
     padding-left: 30px;
     padding-top: 1.2em;
 }
+
+li {
+    line-height: 150%
+}
