@@ -64,24 +64,25 @@
 <li>在结尾时，如果C&gt;0的话，那么说明P就是majority元素.</li>
 </ul>
 
-<pre class="example">
-def majority_vote(a):
-    p, c = None, 0
-    for x in a:
-        if c == 0:
-            p = x
-            c = 1
-        elif x == p:
-            c += 1
-        else:
-            c -= 1
-    if c == 0: return None
-    return p
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-function-name">majority_vote</span>(a):
+    <span class="org-py-variable-name">p</span>, <span class="org-py-variable-name">c</span> = <span class="org-py-pseudo-keyword">None</span>, <span class="org-py-number">0</span>
+    <span class="org-keyword">for</span> x <span class="org-keyword">in</span> a:
+        <span class="org-keyword">if</span> <span class="org-py-variable-name">c</span> == <span class="org-py-number">0</span>:
+            <span class="org-py-variable-name">p</span> = x
+            <span class="org-py-variable-name">c</span> = <span class="org-py-number">1</span>
+        <span class="org-keyword">elif</span> <span class="org-py-variable-name">x</span> == p:
+            <span class="org-py-variable-name">c</span> += <span class="org-py-number">1</span>
+        <span class="org-keyword">else</span>:
+            <span class="org-py-variable-name">c</span> -= <span class="org-py-number">1</span>
+    <span class="org-keyword">if</span> <span class="org-py-variable-name">c</span> == <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">None</span>
+    <span class="org-keyword">return</span> p
 
-print(majority_vote([1,2,1,1,2]))
-print(majority_vote([1,2,1,1,2,2]))
+<span class="org-keyword">print</span>(majority_vote([<span class="org-py-number">1</span>,<span class="org-py-number">2</span>,<span class="org-py-number">1</span>,<span class="org-py-number">1</span>,<span class="org-py-number">2</span>]))
+<span class="org-keyword">print</span>(majority_vote([<span class="org-py-number">1</span>,<span class="org-py-number">2</span>,<span class="org-py-number">1</span>,<span class="org-py-number">1</span>,<span class="org-py-number">2</span>,<span class="org-py-number">2</span>]))
 
 </pre>
+</div>
 
 <hr />
 <p>

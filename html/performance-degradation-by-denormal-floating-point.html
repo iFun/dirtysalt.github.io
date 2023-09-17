@@ -57,7 +57,7 @@ The IEEE 754 standard specifies a binary32 as having:
 </ul>
 
 
-<div id="org432bd4e" class="figure">
+<div id="org3111f2b" class="figure">
 <p><img src="../images/single-precision-floating-point-repr.png" alt="single-precision-floating-point-repr.png" />
 </p>
 </div>
@@ -260,7 +260,7 @@ Compiler switches. -ffast-math, -msse or -mfpmath=sse will disable denormals and
 <li>STEP = 0.1f（浮点版本）</li>
 </ol>
 
-<pre class="example">
+<pre class="example" id="orgc793382">
 
 rm -rf a.out
 gcc -O2 -Wall -DSTEP=0 temp.c -S -o int.s
@@ -298,7 +298,7 @@ echo "float version: "; time ./a.out
 <li>整数版本</li>
 </ol>
 
-<pre class="example" id="org9016592">
+<pre class="example" id="orga4d90bb">
 ➜  playbook ./exp.sh
 int version:
 0.00
@@ -393,7 +393,7 @@ y变成了 normal number, 并且就是 0.1f（更准确的说是0.1f的规格浮
     <span class="org-keyword">mulss</span>   <span class="org-variable-name">%xmm0</span>, <span class="org-variable-name">%xmm4</span>
     <span class="org-keyword">divss</span>   <span class="org-variable-name">%xmm1</span>, <span class="org-variable-name">%xmm4</span>
     <span class="org-keyword">addss</span>   <span class="org-variable-name">%xmm2</span>, <span class="org-variable-name">%xmm4</span>
-    <span class="org-keyword">addss</span>   <span class="org-variable-name">%xmm3</span>, <span class="org-variable-name">%xmm4</span>
+<span class="org-function-name">x</span>   <span class="org-keyword">addss</span>   <span class="org-variable-name">%xmm3</span>, <span class="org-variable-name">%xmm4</span>
     <span class="org-keyword">addl</span>    $-3, <span class="org-variable-name">%eax</span>
     <span class="org-keyword">jne</span> LBB0_1
 </pre>

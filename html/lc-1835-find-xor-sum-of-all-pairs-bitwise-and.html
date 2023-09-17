@@ -38,34 +38,35 @@
 一个优化点就是判断最多有多少个bits.
 </p>
 
-<pre class="example">
-class Solution:
-    def getXORSum(self, arr1: List[int], arr2: List[int]) -&gt; int:
-        maxv = max(max(arr1), max(arr2))
-        maxbits = 0
-        for i in reversed(range(32)):
-            if maxv &amp; (1 &lt;&lt; i):
-                maxbits = i + 1
-                break
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
+    <span class="org-py-def-class">def</span> <span class="org-function-name">getXORSum</span>(<span class="org-py-object-reference">self</span>, arr1: List[<span class="org-py-builtins">int</span>], arr2: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
+        <span class="org-py-variable-name">maxv</span> = <span class="org-py-builtins">max</span>(max(arr1), <span class="org-py-builtins">max</span>(arr2))
+        <span class="org-py-variable-name">maxbits</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(<span class="org-py-number">32</span>)):
+            <span class="org-keyword">if</span> maxv &amp; (<span class="org-py-number">1</span> &lt;&lt; i):
+                <span class="org-py-variable-name">maxbits</span> = i + <span class="org-py-number">1</span>
+                <span class="org-keyword">break</span>
 
-        def count(arr):
-            ones = [0] * 32
-            for i in range(maxbits):
-                mask = 1 &lt;&lt; i
-                for x in arr:
-                    if x &amp; mask:
-                        ones[i] += 1
-            return ones
+        <span class="org-py-def-class">def</span> <span class="org-function-name">count</span>(arr):
+            <span class="org-py-variable-name">ones</span> = [<span class="org-py-number">0</span>] * <span class="org-py-number">32</span>
+            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(maxbits):
+                <span class="org-py-variable-name">mask</span> = <span class="org-py-number">1</span> &lt;&lt; i
+                <span class="org-keyword">for</span> x <span class="org-keyword">in</span> arr:
+                    <span class="org-keyword">if</span> x &amp; mask:
+                        <span class="org-py-variable-name">ones</span>[i] += <span class="org-py-number">1</span>
+            <span class="org-keyword">return</span> ones
 
-        a = count(arr1)
-        b = count(arr2)
-        ans = 0
-        for i in range(32):
-            c = a[i] * b[i]
-            if c % 2:
-                ans = ans | (1 &lt;&lt; i)
-        return ans
+        <span class="org-py-variable-name">a</span> = count(arr1)
+        <span class="org-py-variable-name">b</span> = count(arr2)
+        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
+        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">32</span>):
+            <span class="org-py-variable-name">c</span> = a[i] * b[i]
+            <span class="org-keyword">if</span> c % <span class="org-py-number">2</span>:
+                <span class="org-py-variable-name">ans</span> = ans | (<span class="org-py-number">1</span> &lt;&lt; i)
+        <span class="org-keyword">return</span> ans
 </pre>
+</div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/lc-1835-find-xor-sum-of-all-pairs-bitwise-and.html';this.page.identifier = 'lc-1835-find-xor-sum-of-all-pairs-bitwise-and.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

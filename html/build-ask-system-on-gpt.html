@@ -36,7 +36,7 @@
 我们在得到许多小段之后，可以重新拼接成为一个prompt来问chatgpt，比如下面这样的格式
 </p>
 
-<pre class="example" id="org74c9e97">
+<pre class="example" id="org3e5ff6d">
 Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
 
 &lt;&lt;PARAGRAPHS&gt;&gt;
@@ -68,7 +68,7 @@ map_reduce: 这个方式会先将每个 document 进行总结，最后将所有 
 </p>
 
 
-<div id="orga5e8901" class="figure">
+<div id="org936c5ed" class="figure">
 <p><img src="../images/build-ask-system-on-gpt-0.jpg" alt="build-ask-system-on-gpt-0.jpg" />
 </p>
 </div>
@@ -78,7 +78,7 @@ refine: 这种方式会先总结第一个 document，然后在将第一个 docum
 </p>
 
 
-<div id="org405fbef" class="figure">
+<div id="org54dc6b4" class="figure">
 <p><img src="../images/build-ask-system-on-gpt-1.jpg" alt="build-ask-system-on-gpt-1.jpg" />
 </p>
 </div>
@@ -92,53 +92,54 @@ map_rerank: 这种一般不会用在总结的 chain 上，而是会用在问答�
 我也照着github那个参考教程写了一个，就是勉强能跑起来，但是效果不好。我选择的语料是starrocks/docs下面的md文件，同时购买gpt plus得到的效果是还可以的。
 </p>
 
-<pre class="example">
-#!/usr/bin/env python
-# coding: utf-8
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-comment-delimiter">#</span><span class="org-comment">!/usr/bin/env python</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">coding: utf-8</span>
 
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
-from langchain.text_splitter import CharacterTextSplitter
-from langchain import OpenAI,VectorDBQA
-from langchain.document_loaders import DirectoryLoader
-from langchain.chains import RetrievalQA
-from langchain.chains.question_answering import load_qa_chain
+<span class="org-py-import-from">from</span> langchain.embeddings.openai <span class="org-py-import-from">import</span> OpenAIEmbeddings
+<span class="org-py-import-from">from</span> langchain.vectorstores <span class="org-py-import-from">import</span> Chroma
+<span class="org-py-import-from">from</span> langchain.text_splitter <span class="org-py-import-from">import</span> CharacterTextSplitter
+<span class="org-py-import-from">from</span> langchain <span class="org-py-import-from">import</span> OpenAI,VectorDBQA
+<span class="org-py-import-from">from</span> langchain.document_loaders <span class="org-py-import-from">import</span> DirectoryLoader
+<span class="org-py-import-from">from</span> langchain.chains <span class="org-py-import-from">import</span> RetrievalQA
+<span class="org-py-import-from">from</span> langchain.chains.question_answering <span class="org-py-import-from">import</span> load_qa_chain
 
-# 加载文件夹中的所有txt类型的文件
-loader = DirectoryLoader('docs', glob='*.md')
-# 将数据转成 document 对象，每个文件会作为一个 document
-documents = loader.load()
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#21152;&#36733;&#25991;&#20214;&#22841;&#20013;&#30340;&#25152;&#26377;txt&#31867;&#22411;&#30340;&#25991;&#20214;</span>
+<span class="org-py-variable-name">loader</span> = DirectoryLoader(<span class="org-string">'docs'</span>, <span class="org-py-variable-name">glob</span>=<span class="org-string">'*.md'</span>)
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#23558;&#25968;&#25454;&#36716;&#25104; document &#23545;&#35937;&#65292;&#27599;&#20010;&#25991;&#20214;&#20250;&#20316;&#20026;&#19968;&#20010; document</span>
+<span class="org-py-variable-name">documents</span> = loader.load()
 
-# 初始化加载器
-text_splitter = CharacterTextSplitter(chunk_size=100, chunk_overlap=0)
-# 切割加载的 document
-split_docs = text_splitter.split_documents(documents)
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#21021;&#22987;&#21270;&#21152;&#36733;&#22120;</span>
+<span class="org-py-variable-name">text_splitter</span> = CharacterTextSplitter(<span class="org-py-variable-name">chunk_size</span>=<span class="org-py-number">100</span>, <span class="org-py-variable-name">chunk_overlap</span>=<span class="org-py-number">0</span>)
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#20999;&#21106;&#21152;&#36733;&#30340; document</span>
+<span class="org-py-variable-name">split_docs</span> = text_splitter.split_documents(documents)
 
-# 初始化 openai 的 embeddings 对象
-embeddings = OpenAIEmbeddings()train = False
-if train:
-    # 将 document 通过 openai 的 embeddings 对象计算 embedding 向量信息并临时存入 Chroma 向量数据库，用于后续匹配查询
-    docsearch = Chroma.from_documents(split_docs, embeddings, persist_directory="vector_store")
+<span class="org-comment-delimiter"># </span><span class="org-comment">&#21021;&#22987;&#21270; openai &#30340; embeddings &#23545;&#35937;</span>
+<span class="org-py-variable-name">embeddings</span> = OpenAIEmbeddings()<span class="org-py-variable-name">train</span> = <span class="org-py-pseudo-keyword">False</span>
+<span class="org-keyword">if</span> train:
+    <span class="org-comment"># &#23558; document &#36890;&#36807; openai &#30340; embeddings &#23545;&#35937;&#35745;&#31639; embedding &#21521;&#37327;&#20449;&#24687;&#24182;&#20020;&#26102;&#23384;&#20837; Chroma &#21521;&#37327;&#25968;&#25454;&#24211;&#65292;&#29992;&#20110;&#21518;&#32493;&#21305;&#37197;&#26597;&#35810;</span>
+    <span class="org-py-variable-name">docsearch</span> = Chroma.from_documents(split_docs, embeddings, <span class="org-py-variable-name">persist_directory</span>=<span class="org-string">"vector_store"</span>)
     docsearch.persist()
-else:
-    docsearch = Chroma(persist_directory="vector_store", embedding_function=embeddings)
+<span class="org-keyword">else</span>:
+    <span class="org-py-variable-name">docsearch</span> = Chroma(<span class="org-py-variable-name">persist_directory</span>=<span class="org-string">"vector_store"</span>, <span class="org-py-variable-name">embedding_function</span>=embeddings)
 
-def ask(query):
-    # 创建问答对象
-    qa = VectorDBQA.from_chain_type(llm=OpenAI(), chain_type="stuff", vectorstore=docsearch, verbose = False) # return_source_documents=True)
-    # 进行问答
-    result = qa({"query": query})
-    print('===== query =====')
-    print(result['query'])
-    print('====== result =====')
-    print(result['result'])
+<span class="org-py-def-class">def</span> <span class="org-function-name">ask</span>(query):
+    <span class="org-comment"># &#21019;&#24314;&#38382;&#31572;&#23545;&#35937;</span>
+    <span class="org-py-variable-name">qa</span> = VectorDBQA.from_chain_type(<span class="org-py-variable-name">llm</span>=OpenAI(), <span class="org-py-variable-name">chain_type</span>=<span class="org-string">"stuff"</span>, <span class="org-py-variable-name">vectorstore</span>=docsearch, <span class="org-py-variable-name">verbose</span> = <span class="org-py-pseudo-keyword">False</span>) <span class="org-comment"># return_source_documents=True)</span>
+    <span class="org-comment"># &#36827;&#34892;&#38382;&#31572;</span>
+    <span class="org-py-variable-name">result</span> = qa({<span class="org-string">"query"</span>: query})
+    <span class="org-keyword">print</span>(<span class="org-string">'===== query ====='</span>)
+    <span class="org-keyword">print</span>(result[<span class="org-string">'query'</span>])
+    <span class="org-keyword">print</span>(<span class="org-string">'====== result ====='</span>)
+    <span class="org-keyword">print</span>(result[<span class="org-string">'result'</span>])
 
-ask("can you give me an sql example of creating primary key table and insert into sql stmt")
-ask("how to stop all routine loads for a database")
-ask("how many joins are supported by starrocks and explain them")
-ask("primary key模型和duplicate key模型有什么差别？")
-ask("什么时候应该使用主键模型?")
+ask(<span class="org-string">"can you give me an sql example of creating primary key table and insert into sql stmt"</span>)
+ask(<span class="org-string">"how to stop all routine loads for a database"</span>)
+ask(<span class="org-string">"how many joins are supported by starrocks and explain them"</span>)
+ask(<span class="org-string">"primary key&#27169;&#22411;&#21644;duplicate key&#27169;&#22411;&#26377;&#20160;&#20040;&#24046;&#21035;&#65311;"</span>)
+ask(<span class="org-string">"&#20160;&#20040;&#26102;&#20505;&#24212;&#35813;&#20351;&#29992;&#20027;&#38190;&#27169;&#22411;?"</span>)
 </pre>
+</div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/build-ask-system-on-gpt.html';this.page.identifier = 'build-ask-system-on-gpt.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>
