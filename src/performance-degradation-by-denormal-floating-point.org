@@ -136,7 +136,7 @@ int main() {
 3. STEP = 0, -ffast-math 打开（数学运算优化版本）
 4. STEP = 0.1f（浮点版本）
 
-#+BEGIN_SRC
+#+BEGIN_EXAMPLE
 
 rm -rf a.out
 gcc -O2 -Wall -DSTEP=0 temp.c -S -o int.s
@@ -162,7 +162,7 @@ echo "float version: "; time ./a.out
 # echo "diff int.s float.s"
 # diff int.s float.s
 
-#+END_SRC
+#+END_EXAMPLE
 
 运行结果如下，可以看到运行效率从高到低是：
 1. 数学库优化版本
@@ -244,7 +244,7 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 	mulss	%xmm0, %xmm4
 	divss	%xmm1, %xmm4
 	addss	%xmm2, %xmm4
-	addss	%xmm3, %xmm4
+x	addss	%xmm3, %xmm4
 	addl	$-3, %eax
 	jne	LBB0_1
 #+END_SRC

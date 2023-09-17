@@ -39,7 +39,7 @@ print(majority_vote([1,2,1,1,2,2]))
 - 如果 x==P, 那么 C++. 如果 x!=P, 那么 C--.
 - 在结尾时，如果C>0的话，那么说明P就是majority元素.
 
-#+BEGIN_SRC
+#+BEGIN_SRC python
 def majority_vote(a):
     p, c = None, 0
     for x in a:
