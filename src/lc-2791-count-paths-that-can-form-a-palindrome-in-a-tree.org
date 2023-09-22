@@ -6,7 +6,7 @@ https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/
 
 我第一次写法会在每个节点上，逐个比较每个孩子可以产生的匹配，但是这样容易产生特别高的时间复杂度，或者是不太容易控制的时间复杂度。 https://leetcode.cn/problems/count-paths-that-can-form-a-palindrome-in-a-tree/submissions/452163269/
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def countPalindromePaths(self, parent: List[int], s: str) -> int:
         n = len(parent)

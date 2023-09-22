@@ -10,8 +10,7 @@ https://leetcode.cn/problems/count-stepping-numbers-in-range/
 - isLimit 表示之前选择的数字，已经确保可以小于s了。如果已经确保的话，那么在选择上空间不同。
 - isFirst 表示目前选择是不是第一个数字。
 
-#+BEGIN_SRC python
-
+#+BEGIN_SRC Python
 def F(s):
     @functools.cache
     def search(i, last, isLimit, isFirst):
