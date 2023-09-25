@@ -1142,3 +1142,6 @@
 - 202308 [[file:lc-8013-number-of-beautiful-integers-in-the-range.org][LC 8013. 范围中美丽整数的数目]] 数位DP
 - 202309 [[file:lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.org][LC 2846. 边权重均等查询]] Tarjan LCA + 树拆分
 - 202309 [[file:lc-2836-maximize-value-of-function-in-a-ball-passing-game.org][LC 2836. 在传球游戏中最大化函数值]] 倍增算法 / 前向DFS
+- 202309 [[file:lc-8020-string-transformation.org][LC 8020. 字符串转换]] KMP + 矩阵求幂
+- 202309 [[file:lc-2867-count-valid-paths-in-a-tree.org][LC 2867. 统计树中的合法路径数目]] 简单的树遍历
+- 202309 [[file:lc-2866-beautiful-towers-ii.org][LC 2866. 美丽塔 II]] 寻找最近的不大于自己的点（二叉树是不行的）
