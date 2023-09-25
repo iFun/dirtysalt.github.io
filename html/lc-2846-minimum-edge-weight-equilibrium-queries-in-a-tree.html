@@ -43,30 +43,28 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-function-name">tarjan_lca</span>(graph, root, queries):
+    <span class="org-py-def-class">class</span> <span class="org-py-class-name">UnionFindSet</span>:
+        <span class="org-py-def-class">def</span> <span class="org-function-name">__init__</span>(<span class="org-py-object-reference">self</span>, n):
+            <span class="org-py-object-reference">self</span>.ps = [<span class="org-py-number">0</span>] * n
+            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
+                <span class="org-py-object-reference">self</span>.ps[i] = i
 
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">UnionFindSet</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">__init__</span>(<span class="org-py-object-reference">self</span>, n):
-        <span class="org-py-object-reference">self</span>.ps = [<span class="org-py-number">0</span>] * n
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-object-reference">self</span>.ps[i] = i
+        <span class="org-py-def-class">def</span> <span class="org-function-name">find</span>(<span class="org-py-object-reference">self</span>, x):
+            <span class="org-py-variable-name">p</span> = x
+            <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[p] != p:
+                <span class="org-py-variable-name">p</span> = <span class="org-py-object-reference">self</span>.ps[p]
 
-    <span class="org-py-def-class">def</span> <span class="org-function-name">find</span>(<span class="org-py-object-reference">self</span>, x):
-        <span class="org-py-variable-name">p</span> = x
-        <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[p] != p:
-            <span class="org-py-variable-name">p</span> = <span class="org-py-object-reference">self</span>.ps[p]
+            <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[x] != x:
+                <span class="org-py-variable-name">up</span> = <span class="org-py-object-reference">self</span>.ps[x]
+                <span class="org-py-object-reference">self</span>.ps[x] = p
+                <span class="org-py-variable-name">x</span> = up
+            <span class="org-keyword">return</span> p
 
-        <span class="org-keyword">while</span> <span class="org-py-object-reference">self</span>.ps[x] != x:
-            <span class="org-py-variable-name">up</span> = <span class="org-py-object-reference">self</span>.ps[x]
+        <span class="org-py-def-class">def</span> <span class="org-function-name">set</span>(<span class="org-py-object-reference">self</span>, x, p):
             <span class="org-py-object-reference">self</span>.ps[x] = p
-            <span class="org-py-variable-name">x</span> = up
-        <span class="org-keyword">return</span> p
 
-    <span class="org-py-def-class">def</span> <span class="org-function-name">set</span>(<span class="org-py-object-reference">self</span>, x, p):
-        <span class="org-py-object-reference">self</span>.ps[x] = p
-
-
-<span class="org-py-def-class">def</span> <span class="org-function-name">tarjan_lca</span>(graph, root, queries):
+    <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> defaultdict
     <span class="org-py-variable-name">query_index</span> = defaultdict(list)
     <span class="org-py-variable-name">ans</span> = [-<span class="org-py-number">1</span>] * <span class="org-py-builtins">len</span>(queries)
     <span class="org-keyword">for</span> idx, (u, v) <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(queries):
@@ -75,19 +73,21 @@
 
     <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(graph)
     <span class="org-py-variable-name">ufs</span> = UnionFindSet(n)
+    <span class="org-py-variable-name">visited</span> = [<span class="org-py-number">0</span>] * n
 
     <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(root, parent):
-
         <span class="org-comment"># answer queries.</span>
+        <span class="org-py-variable-name">visited</span>[root] = <span class="org-py-number">1</span>
         <span class="org-py-variable-name">query</span> = query_index[root]
         <span class="org-keyword">for</span> v, idx <span class="org-keyword">in</span> query:
+            <span class="org-comment"># &#22914;&#26524;&#36825;&#20010;&#33410;&#28857;&#20043;&#21069;&#27809;&#26377;&#34987;&#35775;&#38382;&#36807;&#65292;&#37027;&#20040;&#26159;&#19981;&#30693;&#36947;LCA&#30340;</span>
+            <span class="org-keyword">if</span> <span class="org-keyword">not</span> visited[v]: <span class="org-keyword">continue</span>
             <span class="org-comment"># &#22914;&#26524;&#26377;&#23545;&#24212;&#30340;&#26597;&#35810;&#33410;&#28857;v, &#24182;&#19988;&#36825;&#20010;&#33410;&#28857;&#20043;&#21069;&#35775;&#38382;&#36807;</span>
             <span class="org-comment"># &#37027;&#20040;&#20351;&#29992;&#36825;&#20010;&#33410;&#28857;&#30340;parent.</span>
             <span class="org-comment"># &#22914;&#26524;v&#26159;root&#30340;&#31062;&#20808;&#33410;&#28857;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#26159;v</span>
             <span class="org-comment"># &#22914;&#26524;v&#22312;&#21478;&#22806;&#19968;&#20010;&#26641;&#19978;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#26159;&#26368;&#26089;&#20132;&#27719;&#30340;&#33410;&#28857;</span>
             <span class="org-py-variable-name">p</span> = ufs.find(v)
-            <span class="org-keyword">if</span> p != -<span class="org-py-number">1</span>:
-                <span class="org-py-variable-name">ans</span>[idx] = p
+            <span class="org-py-variable-name">ans</span>[idx] = p
 
         <span class="org-comment"># continue to dfs.</span>
         <span class="org-keyword">for</span> v, <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> graph[root]:
@@ -98,7 +98,6 @@
 
     dfs(root, -<span class="org-py-number">1</span>)
     <span class="org-keyword">return</span> ans
-
 
 <span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
     <span class="org-py-def-class">def</span> <span class="org-function-name">minOperationsQueries</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, edges: List[List[<span class="org-py-builtins">int</span>]], queries: List[List[<span class="org-py-builtins">int</span>]]) -&gt; List[<span class="org-py-builtins">int</span>]:

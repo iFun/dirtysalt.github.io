@@ -236,6 +236,7 @@ https://dirtysalt.github.io/html/coroutine.html
 https://dirtysalt.github.io/html/counting-number-of-matching-chars-in-ascii-strings.html
 https://dirtysalt.github.io/html/cpp-atomics-basic-to-advanced.html
 https://dirtysalt.github.io/html/cpp.html
+https://dirtysalt.github.io/html/cracking-the-coding-interview.html
 https://dirtysalt.github.io/html/crash-course-in-modern-hardware.html
 https://dirtysalt.github.io/html/cross-ocean.html
 https://dirtysalt.github.io/html/crystal-unified-cache-storage-system-for-analytical-databases.html
@@ -638,6 +639,8 @@ https://dirtysalt.github.io/html/lc-2809-minimum-time-to-make-array-sum-at-most-
 https://dirtysalt.github.io/html/lc-2813-maximum-elegance-of-a-k-length-subsequence.html
 https://dirtysalt.github.io/html/lc-2836-maximize-value-of-function-in-a-ball-passing-game.html
 https://dirtysalt.github.io/html/lc-2846-minimum-edge-weight-equilibrium-queries-in-a-tree.html
+https://dirtysalt.github.io/html/lc-2866-beautiful-towers-ii.html
+https://dirtysalt.github.io/html/lc-2867-count-valid-paths-in-a-tree.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html

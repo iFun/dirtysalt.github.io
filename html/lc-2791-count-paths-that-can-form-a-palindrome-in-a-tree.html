@@ -25,30 +25,30 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">countPalindromePaths</span>(<span class="org-py-object-reference">self</span>, parent: List[<span class="org-py-builtins">int</span>], s: <span class="org-py-builtins">str</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(parent)
-        <span class="org-py-variable-name">child</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, n):
-            <span class="org-py-variable-name">p</span> = parent[i]
+<pre class="src src-Python">class Solution:
+    def countPalindromePaths(self, parent: List[int], s: str) -&gt; int:
+        n = len(parent)
+        child = [[] for _ in range(n)]
+        for i in range(1, n):
+            p = parent[i]
             child[p].append(i)
 
-        <span class="org-py-variable-name">cnt</span> = Counter([<span class="org-py-number">0</span>])
+        cnt = Counter([0])
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(root, now):
-            <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
-            <span class="org-keyword">for</span> c <span class="org-keyword">in</span> child[root]:
-                <span class="org-py-variable-name">bit</span> = (<span class="org-py-number">1</span> &lt;&lt; (ord(s[c]) - <span class="org-py-builtins">ord</span>(<span class="org-string">'a'</span>)))
-                <span class="org-py-variable-name">x</span> = now ^ bit
-                <span class="org-py-variable-name">ans</span> += cnt[x]
-                <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">26</span>):
-                    <span class="org-py-variable-name">ans</span> += cnt[x ^ (<span class="org-py-number">1</span> &lt;&lt; i)]
-                <span class="org-py-variable-name">cnt</span>[x] += <span class="org-py-number">1</span>
-                <span class="org-py-variable-name">ans</span> += search(c, x)
-            <span class="org-keyword">return</span> ans
+        def search(root, now):
+            ans = 0
+            for c in child[root]:
+                bit = (1 &lt;&lt; (ord(s[c]) - ord('a')))
+                x = now ^ bit
+                ans += cnt[x]
+                for i in range(26):
+                    ans += cnt[x ^ (1 &lt;&lt; i)]
+                cnt[x] += 1
+                ans += search(c, x)
+            return ans
 
-        <span class="org-py-variable-name">ans</span> = search(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>)
-        <span class="org-keyword">return</span> ans
+        ans = search(0, 0)
+        return ans
 </pre>
 </div>
 </div>
