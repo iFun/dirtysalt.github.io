@@ -448,6 +448,7 @@ https://dirtysalt.github.io/html/how-did-you-learn-so-much-stuff.html
 https://dirtysalt.github.io/html/how-env-impacts-on-person.html
 https://dirtysalt.github.io/html/how-gfw-discovers-hidden-circumvention-servers.html
 https://dirtysalt.github.io/html/how-google-works.html
+https://dirtysalt.github.io/html/how-investment-make-money.html
 https://dirtysalt.github.io/html/how-long-does-it-take-to-make-context-switch.html
 https://dirtysalt.github.io/html/how-math-important-to-ml.html
 https://dirtysalt.github.io/html/how-not-to-measure-latency.html
@@ -732,7 +733,6 @@ https://dirtysalt.github.io/html/love-your-bugs.html
 https://dirtysalt.github.io/html/low-latency-compilation-of-sql-queries-to-machine-code.html
 https://dirtysalt.github.io/html/lua-applicaiton-programming.html
 https://dirtysalt.github.io/html/lua-prog-lang-book.html
-https://dirtysalt.github.io/html/lucky-to-have-someone-to-share.html
 https://dirtysalt.github.io/html/lz-vs-sz.html
 https://dirtysalt.github.io/html/lzf.html
 https://dirtysalt.github.io/html/lzma.html
