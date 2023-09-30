@@ -427,7 +427,6 @@
 - 201903 [[file:instagram-under-the-hood.org][Instagram Under the Hood]]
 - 201903 [[file:running-sentry-on-ec2.org][在AWS EC2上启动Sentry]]
 - 201902 [[file:tour-of-forbidden-city-on-festival-day.org][春节逛圈故宫]]
-- 201902 [[file:lucky-to-have-someone-to-share.org][能找到一个人分享是多么难得的事情]]
 - 201901 [[file:instagram-engineering-3-rules-to-a-scalable-cloud-application-architecture.org][Instagram Engineering’s 3 rules to a scalable cloud application architecture]]
 - 201901 [[file:geekbang-tech-and-business-cases.org][极客时间|技术与商业案例解读 文章目录]]
 - 201901 [[file:geekbang-ai-internal-reference.org][极客时间|AI技术内参 文章目录]]
