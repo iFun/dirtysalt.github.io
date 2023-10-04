@@ -608,7 +608,7 @@
 - 201606 [[file:republic-and-democracy.org][共和和民主的差别]] on zhihu
 - 201606 [[file:religulous.org][Religulous]] by Bill Maher
 - 201606 [[file:how-gfw-discovers-hidden-circumvention-servers.org][32c3-7196-en-How_the_Great_Firewall_discovers_hidden_circumvention_servers]] GFW如何发现代理服务器
-- 201606 [[file:a-person-of-fidget.org][心中的邪火]] 关于自己的心态失衡
+- 201606 [[file:fidgety-mind-and-thought.org][心中的邪火]] 关于自己的心态失衡
 - 201606 [[file:anaconda-high-perf-solution.org][Anacoda High Performance Solution]]
 - 201605 [[file:work-efficiently-in-facebook.org][Facebook公司内部PPT分享:如何高效工作]]
 - 201605 [[file:on-career-and-management.org][关于工作年限和管理的问题]] by nullgate
