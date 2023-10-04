@@ -32,4 +32,4 @@ access a particular page. Thus, system data and code are set to a higher
 level of protection than user data and code; an attempted access to such
 information from user code will generate a trap into the OS, and (you
 guessed it) the likely termination of the offending process
-```
+#+BEGIN_QUOTE

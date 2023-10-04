@@ -35,10 +35,10 @@ https://cmake.org/cmake/help/latest/envvar/CXXFLAGS.html
 
 这个环境变量会影响到cmake里面c/c++默认编译参数
 
-```
+#+BEGIN_QUOTE
 export CXXFLAGS="-fno-omit-frame-pointer ${CXXFLAGS}"
 export CFLAGS="-fno-omit-frame-pointer ${CFLAGS}"
-```
+#+END_QUOTE
 
 When introducing thirdparty, make sure compiler option `-fno-omit-frame-pointer` is enabled. By default it's disabled, which makes profiling hard.  https://gcc.gnu.org/onlinedocs/gcc-10.3.0/gcc/Optimize-Options.html. The ovehead of it can be offset by observablity.
 

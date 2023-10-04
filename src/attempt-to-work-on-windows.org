@@ -8,7 +8,7 @@
 
 为了解决ssh tunnel这个问题，可以安装一个 [MSYS2](https://www.msys2.org/) 。这个东西和cygwin很像，可以在windows环境下面提供linux环境，以及提供各种linux命令等等。最常用的就是git/ssh这类。安装完了之后可以在windows terminal里面配置这个shell，可以配置使用zsh作为默认的shell.
 
-```
+#+BEGIN_SRC Json
 {
 	"commandline": "C:/msys64/msys2_shell.cmd -defterm -here -no-start -ucrt64 -shell zsh",
 	"guid": "{17da3cac-b318-431e-8a3e-7fcdefe6d114}",
@@ -16,20 +16,20 @@
 	"name": "UCRT64 / MSYS2",
 	"startingDirectory": "C:/msys64/home/%USERNAME%"
 }
-```
+#+END_SRC
 
 为了在msys2里面使用linux软链接，需要稍微修改一下msys2_shell.cmd里面的内容。
 
-```
+#+BEGIN_SRC Bat
 rem To activate windows native symlinks uncomment next line
 set MSYS=winsymlinks:nativestrict
-```
+#+END_SRC
 
 另外需要在shell下面增加一个环境变量
 
-```
+#+BEGIN_SRC Bat
 export MSYS=winsymlinks:lnk
-```
+#+END_SRC
 
 这个东西确实好，在下面使用ssh以及git没有啥问题，然后用obsidian也可以打开下面的工程。一个大问题就是使用zsh的时候，在某个git仓库下面操作会卡住，不知道是为什么，在bash下面就没有这个问题。考虑到后面再这个环境下工作时间不多（大部分应该都是在WSL下面），或许可能用bash还是好点。
 
@@ -48,7 +48,7 @@ WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 
 在Windows下面安装Python环境，最简单的方法估计就是使用miniconda3了。安装好了之后，PyCharm就可以自动发现这个python sdk, 并且可以在pycharm下面创建virtualenv.   然后为了方便切换到某个环境，可以在windows terminal下面配置profile, 这样可以方便地切换环境。
 
-```
+#+BEGIN_SRC Json
 {
 	"commandline": "powershell.exe -ExecutionPolicy ByPass -NoExit -Command \"& '%USERPROFILE%\\miniconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate '%USERPROFILE%\\miniconda3' \" ",
 	"guid": "{2daaf818-fbab-47e8-b8ba-2f82eb89de40}",
@@ -65,7 +65,7 @@ WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 	"name": "Anaconda Prompt -> Project",
 	"startingDirectory": "%USERPROFILE%"
 }
-```
+#+END_SRC
 
 ** 快捷键冲突
 
