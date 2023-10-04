@@ -753,12 +753,12 @@ To write fast code you just need to:
 
 Hyrum's law is important for anybody building software that is using or is used by other software (which of course means: for everybody building software). The law is as following:
 
-#+BEGIN_VERSE
+#+BEGIN_QUOTE
 With a sufficient number of users of an API,
 it does not matter what you promise in the contract:
 all observable behaviors of your system
 will be depended on by somebody.
-#+END_VERSE
+#+END_QUOTE
 
 ----------
 
@@ -2040,7 +2040,7 @@ A: 其实忙是自己给自己找的借口，真比我更忙的人恐怕比例�
 
 -----
 To My Baby
-#+BEGIN_VERSE
+#+BEGIN_QUOTE
 You are my baby
 I love you deeply
 You make my day full of joy
@@ -2065,7 +2065,7 @@ You light up my nights
 I can see and grow
 The world is your wonderland
 Together we will go
-#+END_VERSE
+#+END_QUOTE
 
 -----
 这正应了茨威格的话：“在命运降临的伟大瞬间，市民的一切美德 - 小心，顺从，勤勉，谨慎，都无济于事，它始终只要求天才人物，并且将他造就成不朽的形象。命运鄙视地把畏首畏尾的人拒之门外，命运 - 这世上的另一位神，只愿意用热烈的双臂把勇敢者高高举起，送上英雄们的天堂”。（人类群星闪耀时）

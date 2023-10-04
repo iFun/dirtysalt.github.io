@@ -2090,7 +2090,7 @@ http://abcnews.go.com/International/taliban-accidentally-reveal-identities-maili
 今夏巨星扎堆发片，乐坛型男潮叔包青天携新专《Judge Bao》空降本周华语榜中榜：1.你永远不懂爷的黑(Black Forever) 2.看我脸色72变(Poker Face) 3.本府是碳，黑到忧伤(Black Tragedy) 4.开封府之夏(Summer in KaiFeng) 5.升堂（RAP）6.王朝马汉今何在(Pray for My Soldiers) (via 谁允许你直视本蜀黍)
 
 -----
-#+BEGIN_VERSE
+#+BEGIN_QUOTE
 冰清玉洁武藤兰，三贞九烈小泽圆。
 不近女色陈冠希，天生丽质金喜善。
 坚持原创郭小四，低调沉稳数韩寒。
@@ -2125,7 +2125,7 @@ http://abcnews.go.com/International/taliban-accidentally-reveal-identities-maili
 强身健体俯卧撑，安全游戏躲猫猫。
 爱管闲事酱油党，不明真相老百姓。
 水深火热蛮夷众，欢欣鼓舞天朝民。
-#+END_VERSE
+#+END_QUOTE
 
 -----
 都说骂人要文明，于是某同学把"真TMD不爽"译为"诚其母之不悦！"
