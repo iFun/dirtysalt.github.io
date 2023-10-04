@@ -319,7 +319,7 @@ def search_path_2(source: State, dest: State):
 运行下来速度差别还是蛮大的，方法1是1.492s, 方法2是0.026s, 时间缩短了差不多98%.
 </p>
 
-<pre class="example" id="org2cc1f20">
+<pre class="example" id="org94229af">
 ➜  misc git:(master) ✗ python klotski.py
 naive BFS ...
 size = 23
@@ -339,45 +339,45 @@ timer = 0.026241064071655273
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">def</span> <span class="org-function-name">test_case</span>(source_matrix):
-    <span class="org-keyword">print</span>(<span class="org-string">'=============================='</span>)
-    <span class="org-keyword">print</span>(<span class="org-string">'source_matrix = {}'</span>.format(source_matrix))
-    <span class="org-py-variable-name">dest_matrix</span> = [
-        [<span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>],
-        [<span class="org-py-number">4</span>, <span class="org-py-number">5</span>, <span class="org-py-number">6</span>],
-        [<span class="org-py-number">7</span>, <span class="org-py-number">8</span>, <span class="org-py-number">0</span>]
+<pre class="src src-Python">
+def test_case(source_matrix):
+    print('==============================')
+    print('source_matrix = {}'.format(source_matrix))
+    dest_matrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 0]
     ]
-    <span class="org-py-variable-name">source</span> = State(source_matrix)
-    <span class="org-py-variable-name">dest</span> = State(dest_matrix)
+    source = State(source_matrix)
+    dest = State(dest_matrix)
 
-    <span class="org-py-variable-name">start</span> = time.time()
-    <span class="org-py-variable-name">paths1</span> = search_path_1(source, dest)
-    <span class="org-keyword">print</span>(<span class="org-string">'naive BFS ...'</span>)
-    <span class="org-comment"># print_paths(paths1)</span>
-    <span class="org-keyword">print</span>(<span class="org-string">'size = {}'</span>.format(len(paths1)))
-    <span class="org-py-variable-name">end</span> = time.time()
-    <span class="org-keyword">print</span>(<span class="org-string">'timer = {}'</span>.format(end - start))
+    start = time.time()
+    paths1 = search_path_1(source, dest)
+    print('naive BFS ...')
+    # print_paths(paths1)
+    print('size = {}'.format(len(paths1)))
+    end = time.time()
+    print('timer = {}'.format(end - start))
 
-    <span class="org-py-variable-name">start</span> = time.time()
-    <span class="org-py-variable-name">paths2</span> = search_path_2(source, dest)
-    <span class="org-keyword">print</span>(<span class="org-string">'bidirectional BFS ...'</span>)
-    <span class="org-comment"># print_paths(paths2)</span>
-    <span class="org-keyword">print</span>(<span class="org-string">'size = {}'</span>.format(len(paths2)))
-    <span class="org-py-variable-name">end</span> = time.time()
-    <span class="org-keyword">print</span>(<span class="org-string">'timer = {}'</span>.format(end - start))
+    start = time.time()
+    paths2 = search_path_2(source, dest)
+    print('bidirectional BFS ...')
+    # print_paths(paths2)
+    print('size = {}'.format(len(paths2)))
+    end = time.time()
+    print('timer = {}'.format(end - start))
 
-<span class="org-py-def-class">def</span> <span class="org-function-name">main</span>():
-    <span class="org-comment"># simple one</span>
-    <span class="org-py-variable-name">source_matrix</span> = [[<span class="org-py-number">0</span>, <span class="org-py-number">1</span>, <span class="org-py-number">2</span>], [<span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span>], [<span class="org-py-number">6</span>, <span class="org-py-number">7</span>, <span class="org-py-number">8</span>]]
+def main():
+    # simple one
+    source_matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
     test_case(source_matrix)
 
-    <span class="org-comment"># http://w01fe.com/blog/2009/01/the-hardest-eight-puzzle-instances-take-31-moves-to-solve/</span>
-    <span class="org-comment"># hard one.</span>
-    <span class="org-py-variable-name">source_matrix</span> = [[<span class="org-py-number">8</span>, <span class="org-py-number">6</span>, <span class="org-py-number">7</span>], [<span class="org-py-number">2</span>, <span class="org-py-number">5</span>, <span class="org-py-number">4</span>], [<span class="org-py-number">3</span>, <span class="org-py-number">0</span>, <span class="org-py-number">1</span>]]
+    # http://w01fe.com/blog/2009/01/the-hardest-eight-puzzle-instances-take-31-moves-to-solve/
+    # hard one.
+    source_matrix = [[8, 6, 7], [2, 5, 4], [3, 0, 1]]
     test_case(source_matrix)
 
-    <span class="org-py-variable-name">source_matrix</span> = [[<span class="org-py-number">6</span>,<span class="org-py-number">4</span>,<span class="org-py-number">7</span>], [<span class="org-py-number">8</span>,<span class="org-py-number">5</span>,<span class="org-py-number">0</span>],[<span class="org-py-number">3</span>,<span class="org-py-number">2</span>,<span class="org-py-number">1</span>]]
+    source_matrix = [[6,4,7], [8,5,0],[3,2,1]]
     test_case(source_matrix)
 </pre>
 </div>
@@ -386,7 +386,7 @@ timer = 0.026241064071655273
 可以看到在复杂例子的情况下面，两者的时间差距就更大了，但是相对耗时比例是减少了。
 </p>
 
-<pre class="example" id="org1a416a7">
+<pre class="example" id="org9763d7c">
 ➜  misc git:(master) ✗ python3 klotski.py
 ==============================
 source_matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
@@ -415,8 +415,7 @@ timer = 0.5001683235168457
 </pre>
 
 <p>
-今天之所以把这道题目拿出来，是因为发现其实这道题目使用A*算法可以比较好的解决。双向BFS算法本身是没有什么问题的，不过代码比较复杂写起来容易出错，但是这的确是一个很好的思路。
-</p>
+今天之所以把这道题目拿出来，是因为发现其实这道题目使用A*算法可以比较好的解决。双向BFS算法本身是没有什么问题的，不过代码比较复杂写起来容易出错，但是这的确是一个很好的思路。</p>
 </div>
 </div>
 </div>

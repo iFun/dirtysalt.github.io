@@ -98,14 +98,14 @@ Assume we have a beautiful array A with length N
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">beautifulArray</span>(<span class="org-py-object-reference">self</span>, N: <span class="org-py-builtins">int</span>) -&gt; List[<span class="org-py-builtins">int</span>]:
-        <span class="org-py-variable-name">res</span> = [<span class="org-py-number">1</span>]
-        <span class="org-keyword">while</span> <span class="org-py-builtins">len</span>(res) &lt; N:
-            <span class="org-py-variable-name">a</span> = [<span class="org-py-number">2</span> * x - <span class="org-py-number">1</span> <span class="org-keyword">for</span> x <span class="org-keyword">in</span> res <span class="org-keyword">if</span> (<span class="org-py-number">2</span> * x - <span class="org-py-number">1</span>) &lt;= N]
-            <span class="org-py-variable-name">b</span> = [<span class="org-py-number">2</span> * x <span class="org-keyword">for</span> x <span class="org-keyword">in</span> res <span class="org-keyword">if</span> (<span class="org-py-number">2</span> * x) &lt;= N]
-            <span class="org-py-variable-name">res</span> = a + b
-        <span class="org-keyword">return</span> res
+<pre class="src src-Python">class Solution:
+    def beautifulArray(self, N: int) -&gt; List[int]:
+        res = [1]
+        while len(res) &lt; N:
+            a = [2 * x - 1 for x in res if (2 * x - 1) &lt;= N]
+            b = [2 * x for x in res if (2 * x) &lt;= N]
+            res = a + b
+        return res
 </pre>
 </div>
 </div>

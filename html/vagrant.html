@@ -71,7 +71,7 @@
 启动多个虚拟机，并且每个虚拟机使用不同的环境
 </p>
 
-<pre class="example" id="org82f56a5">
+<pre class="example" id="orge41e101">
 # Every Vagrant virtual environment requires a box to build off of.
 config.vm.define "centos" do |m|
   m.vm.box = "centos"
@@ -97,7 +97,7 @@ end
 添加box时候出现如下错误
 </p>
 
-<pre class="example" id="orgcea3c3a">
+<pre class="example" id="org8f21904">
 ➜  vm.centos  vagrant box add centos ~/utils/centos65-x86_64-20140116.box
 ==&gt; box: Adding box 'centos' (v0) for provider:
     box: Downloading: file:///home/dirlt/utils/centos65-x86_64-20140116.box
@@ -151,7 +151,7 @@ end
 启动box时候出现如下错误，说明虚拟机一直没有成功启动
 </p>
 
-<pre class="example" id="orgf66a1af">
+<pre class="example" id="orgf2332e7">
 ==&gt; default: Waiting for machine to boot. This may take a few minutes...
     default: SSH address: 127.0.0.1:2222
     default: SSH username: vagrant
@@ -174,7 +174,7 @@ end
 <p>
 可以将virtualbox的GUI打开，看看具体是什么错误导致没有正常启动。在Vagrantfile里面添加
 </p>
-<pre class="example" id="orgae2e873">
+<pre class="example" id="orgb7c9094">
 config.vm.provider :virtualbox do |vb|
   vb.gui = true
 end

@@ -110,7 +110,7 @@
 </ul>
 
 
-<div id="org44aa444" class="figure">
+<div id="org1ba9518" class="figure">
 <p><img src="../images/hdfs-data-flow.png" alt="hdfs-data-flow.png" />
 </p>
 </div>
@@ -187,7 +187,7 @@
 <li>After data are written to an HDFS file, HDFS does not pro-vide any guarantee that data are visible to a new reader until the file is closed. If a user application needs the visibility guaran-tee, it can explicitly call the hflush operation. Then the current packet is immediately pushed to the pipeline, and the hflush operation will wait until all DataNodes in the pipeline ac-knowledge the successful transmission of the packet. (写入的数据并不一定保证就可以被看到，除非这个文件关闭了。如果希望可以立刻可见的话，那么可以使用hflush调用。hflush调用的话会等待到所有的datanodes都确认所有的消息才会返回）</li>
 </ul>
 
-<div id="orgb08421c" class="figure">
+<div id="orgfeaf9e3" class="figure">
 <p><img src="../images/hdfs-data-pipeline.png" alt="hdfs-data-pipeline.png" />
 </p>
 </div>
@@ -207,7 +207,7 @@
 </ul>
 
 
-<div id="org7f47a62" class="figure">
+<div id="orgde7a7c2" class="figure">
 <p><img src="../images/hdfs-cluster-topology-example.png" alt="hdfs-cluster-topology-example.png" />
 </p>
 </div>

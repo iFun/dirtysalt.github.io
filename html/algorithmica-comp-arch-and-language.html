@@ -23,7 +23,7 @@ Die shot of a Zen CPU core by AMD (~1,400,000,000 transistors)
 </p>
 
 
-<div id="orgbe0db6e" class="figure">
+<div id="orgf85724f" class="figure">
 <p><img src="../images/algorithmica-comp-arch-and-lang-0.png" alt="algorithmica-comp-arch-and-lang-0.png" />
 </p>
 </div>
@@ -65,22 +65,22 @@ Compilers use this technique when the values are densely packed together (not ne
 </blockquote>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">weather_in_russia</span>(<span class="org-type">int</span> <span class="org-variable-name">season</span>) {
-    <span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">table</span>[] = {&amp;&amp;winter, &amp;&amp;spring, &amp;&amp;summer, &amp;&amp;fall};
-    <span class="org-keyword">goto</span> *table[season];
+<pre class="src src-Cpp">void weather_in_russia(int season) {
+    static const void* table[] = {&amp;&amp;winter, &amp;&amp;spring, &amp;&amp;summer, &amp;&amp;fall};
+    goto *table[season];
 
-    <span class="org-constant">winter</span>:
-        printf(<span class="org-string">"Freezing\n"</span>);
-        <span class="org-keyword">return</span>;
-    <span class="org-constant">spring</span>:
-        printf(<span class="org-string">"Dirty\n"</span>);
-        <span class="org-keyword">return</span>;
-    <span class="org-constant">summer</span>:
-        printf(<span class="org-string">"Dry\n"</span>);
-        <span class="org-keyword">return</span>;
-    <span class="org-constant">fall</span>:
-        printf(<span class="org-string">"Windy\n"</span>);
-        <span class="org-keyword">return</span>;
+    winter:
+        printf("Freezing\n");
+        return;
+    spring:
+        printf("Dirty\n");
+        return;
+    summer:
+        printf("Dry\n");
+        return;
+    fall:
+        printf("Windy\n");
+        return;
 }
 </pre>
 </div>
@@ -172,7 +172,7 @@ Instruction Tables 主要是分析每个指令的延迟和吞吐
 </ol>
 
 
-<div id="org11942ab" class="figure">
+<div id="org619590b" class="figure">
 <p><img src="../images/algorithmica-comp-arch-and-lang-1.png" alt="algorithmica-comp-arch-and-lang-1.png" />
 </p>
 </div>

@@ -69,7 +69,7 @@ Staging alone does not provide many benefits; however, it facili- ties two optim
 </blockquote>
 
 
-<div id="orgcbcfcd5" class="figure">
+<div id="orgcad7c36" class="figure">
 <p><img src="../images/relaxed-operator-fusion-for-in-memory-databases-0.png" alt="relaxed-operator-fusion-for-in-memory-databases-0.png" />
 </p>
 </div>
@@ -91,7 +91,7 @@ Given this, we greedily force a stage boundary on all SIMD operator outputs. The
 </blockquote>
 
 
-<div id="orgee9fa24" class="figure">
+<div id="orgbdbe082" class="figure">
 <p><img src="../images/relaxed-operator-fusion-for-in-memory-databases-1.png" alt="relaxed-operator-fusion-for-in-memory-databases-1.png" />
 </p>
 </div>
@@ -141,7 +141,7 @@ The planner can also employ prefetching optimizations using two methods. In the 
 <li>f_simd_compose_noalloc_av （使用auto vectorization)</li>
 </ul>
 
-<pre class="example" id="org005d7b8">
+<pre class="example" id="org08ed54f">
 -------------------------------------------------------------------------
 Benchmark                               Time             CPU   Iterations
 -------------------------------------------------------------------------
@@ -172,38 +172,38 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;benchmark/benchmark.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;immintrin.h&gt;</span>
+<pre class="src src-Cpp">#include &lt;benchmark/benchmark.h&gt;
+#include &lt;immintrin.h&gt;
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;random&gt;</span>
+#include &lt;random&gt;
 
-<span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-function-name">ConstructRandomSet</span>(<span class="org-type">int64_t</span> <span class="org-variable-name">size</span>, <span class="org-type">int32_t</span> <span class="org-variable-name">seed</span>) {
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">a</span>;
+std::vector&lt;int32_t&gt; ConstructRandomSet(int64_t size, int32_t seed) {
+    std::vector&lt;int32_t&gt; a;
     a.reserve(size);
-    <span class="org-constant">std</span>::<span class="org-type">mt19937_64</span> <span class="org-variable-name">rng</span>;
+    std::mt19937_64 rng;
     rng.seed(seed);
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i) {
+    for (size_t i = 0; i &lt; size; ++i) {
         a.emplace_back(i);
     }
-    <span class="org-keyword">return</span> a;
+    return a;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_codegen</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">a</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">b</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">c</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">d</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
+void f_codegen(int32_t* a, int32_t* b, int32_t* c, int32_t* d, int n) {
+    for (int i = 0; i &lt; n; i++) {
         d[i] = 3 * a[i] + 4 * b[i] + 5 * c[i];
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_simd_fusion</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">a</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">b</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">c</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">d</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-type">__m512i</span> <span class="org-variable-name">c0</span> = _mm512_set1_epi32(3);
-    <span class="org-type">__m512i</span> <span class="org-variable-name">c1</span> = _mm512_set1_epi32(4);
-    <span class="org-type">__m512i</span> <span class="org-variable-name">c2</span> = _mm512_set1_epi32(5);
+void f_simd_fusion(int32_t* a, int32_t* b, int32_t* c, int32_t* d, int n) {
+    __m512i c0 = _mm512_set1_epi32(3);
+    __m512i c1 = _mm512_set1_epi32(4);
+    __m512i c2 = _mm512_set1_epi32(5);
 
-    <span class="org-type">int</span> <span class="org-variable-name">i</span> = 0;
-    <span class="org-keyword">for</span> (i = 0; (i + 16) &lt; n; i += 16) {
-        <span class="org-type">__m512i</span> <span class="org-variable-name">x</span> = _mm512_loadu_epi32(a + i);
-        <span class="org-type">__m512i</span> <span class="org-variable-name">y</span> = _mm512_loadu_epi32(b + i);
-        <span class="org-type">__m512i</span> <span class="org-variable-name">z</span> = _mm512_loadu_epi32(c + i);
+    int i = 0;
+    for (i = 0; (i + 16) &lt; n; i += 16) {
+        __m512i x = _mm512_loadu_epi32(a + i);
+        __m512i y = _mm512_loadu_epi32(b + i);
+        __m512i z = _mm512_loadu_epi32(c + i);
         x = _mm512_mul_epi32(x, c0);
         y = _mm512_mul_epi32(y, c1);
         x = _mm512_add_epi32(x, y);
@@ -212,58 +212,58 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
         _mm512_storeu_epi32(d + i, x);
     }
 
-    <span class="org-keyword">while</span> (i &lt; n) {
+    while (i &lt; n) {
         d[i] = 3 * a[i] + 4 * b[i] + 5 * c[i];
         i += 1;
     }
 }
 
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">RE</span> __restrict__
+#define RE __restrict__
 
-<span class="org-type">void</span> <span class="org-function-name">f_add</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> a, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> b, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> c, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">i</span> = 0;
-    <span class="org-keyword">for</span> (i = 0; (i + 16) &lt; n; i += 16) {
-        <span class="org-type">__m512i</span> <span class="org-variable-name">x</span> = _mm512_loadu_epi32(a + i);
-        <span class="org-type">__m512i</span> <span class="org-variable-name">y</span> = _mm512_loadu_epi32(b + i);
+void f_add(int32_t* RE a, int32_t* RE b, int32_t* RE c, int n) {
+    int i = 0;
+    for (i = 0; (i + 16) &lt; n; i += 16) {
+        __m512i x = _mm512_loadu_epi32(a + i);
+        __m512i y = _mm512_loadu_epi32(b + i);
         x = _mm512_add_epi32(x, y);
         _mm512_storeu_epi32(c + i, x);
     }
 
-    <span class="org-keyword">while</span> (i &lt; n) {
+    while (i &lt; n) {
         c[i] = a[i] + b[i];
         i += 1;
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_mul</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> a, <span class="org-type">int32_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> c, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">i</span> = 0;
-    <span class="org-type">__m512i</span> <span class="org-variable-name">c0</span> = _mm512_set1_epi32(b);
-    <span class="org-keyword">for</span> (i = 0; (i + 16) &lt; n; i += 16) {
-        <span class="org-type">__m512i</span> <span class="org-variable-name">x</span> = _mm512_loadu_epi32(a + i);
+void f_mul(int32_t* RE a, int32_t b, int32_t* RE c, int n) {
+    int i = 0;
+    __m512i c0 = _mm512_set1_epi32(b);
+    for (i = 0; (i + 16) &lt; n; i += 16) {
+        __m512i x = _mm512_loadu_epi32(a + i);
         x = _mm512_mul_epi32(x, c0);
         _mm512_storeu_epi32(c + i, x);
     }
 
-    <span class="org-keyword">while</span> (i &lt; n) {
+    while (i &lt; n) {
         c[i] = a[i] * b;
         i += 1;
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_add_autovec</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> a, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> b, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> c, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
+void f_add_autovec(int32_t* RE a, int32_t* RE b, int32_t* RE c, int n) {
+    for (int i = 0; i &lt; n; i++) {
         c[i] = a[i] + b[i];
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_mul_autovec</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> a, <span class="org-type">int32_t</span> <span class="org-variable-name">b</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">RE</span> c, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
+void f_mul_autovec(int32_t* RE a, int32_t b, int32_t* RE c, int n) {
+    for (int i = 0; i &lt; n; i++) {
         c[i] = a[i] * b;
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">f_simd_compose</span>(<span class="org-type">int32_t</span>* <span class="org-variable-name">a</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">b</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">c</span>, <span class="org-type">int32_t</span>* <span class="org-variable-name">d</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">t0</span>(n), <span class="org-variable-name">t1</span>(n), <span class="org-variable-name">t2</span>(n), <span class="org-variable-name">t3</span>(n), <span class="org-variable-name">t4</span>(n);
+void f_simd_compose(int32_t* a, int32_t* b, int32_t* c, int32_t* d, int n) {
+    std::vector&lt;int32_t&gt; t0(n), t1(n), t2(n), t3(n), t4(n);
     f_mul(a, 3, t0.data(), n);
     f_mul(b, 4, t1.data(), n);
     f_mul(c, 5, t2.data(), n);
@@ -271,15 +271,15 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     f_add(t2.data(), t3.data(), d, n);
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">codegen</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = state.range(0);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">a</span> = ConstructRandomSet(n, 10);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">b</span> = ConstructRandomSet(n, 20);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">c</span> = ConstructRandomSet(n, 30);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">d</span>(n);
+static void codegen(benchmark::State&amp; state) {
+    size_t n = state.range(0);
+    auto a = ConstructRandomSet(n, 10);
+    auto b = ConstructRandomSet(n, 20);
+    auto c = ConstructRandomSet(n, 30);
+    std::vector&lt;int32_t&gt; d(n);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
         state.PauseTiming();
         d.assign(n, 0);
         state.ResumeTiming();
@@ -287,15 +287,15 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">simd_fusion</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = state.range(0);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">a</span> = ConstructRandomSet(n, 10);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">b</span> = ConstructRandomSet(n, 20);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">c</span> = ConstructRandomSet(n, 30);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">d</span>(n);
+static void simd_fusion(benchmark::State&amp; state) {
+    size_t n = state.range(0);
+    auto a = ConstructRandomSet(n, 10);
+    auto b = ConstructRandomSet(n, 20);
+    auto c = ConstructRandomSet(n, 30);
+    std::vector&lt;int32_t&gt; d(n);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
         state.PauseTiming();
         d.assign(n, 0);
         state.ResumeTiming();
@@ -303,15 +303,15 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">simd_compose</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = state.range(0);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">a</span> = ConstructRandomSet(n, 10);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">b</span> = ConstructRandomSet(n, 20);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">c</span> = ConstructRandomSet(n, 30);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">d</span>(n);
+static void simd_compose(benchmark::State&amp; state) {
+    size_t n = state.range(0);
+    auto a = ConstructRandomSet(n, 10);
+    auto b = ConstructRandomSet(n, 20);
+    auto c = ConstructRandomSet(n, 30);
+    std::vector&lt;int32_t&gt; d(n);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
         state.PauseTiming();
         d.assign(n, 0);
         state.ResumeTiming();
@@ -319,18 +319,18 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">simd_compose_noalloc</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = state.range(0);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">a</span> = ConstructRandomSet(n, 10);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">b</span> = ConstructRandomSet(n, 20);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">c</span> = ConstructRandomSet(n, 30);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">d</span>(n);
+static void simd_compose_noalloc(benchmark::State&amp; state) {
+    size_t n = state.range(0);
+    auto a = ConstructRandomSet(n, 10);
+    auto b = ConstructRandomSet(n, 20);
+    auto c = ConstructRandomSet(n, 30);
+    std::vector&lt;int32_t&gt; d(n);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
         state.PauseTiming();
         d.assign(n, 0);
-        <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">t0</span>(n), <span class="org-variable-name">t1</span>(n), <span class="org-variable-name">t2</span>(n), <span class="org-variable-name">t3</span>(n), <span class="org-variable-name">t4</span>(n);
+        std::vector&lt;int32_t&gt; t0(n), t1(n), t2(n), t3(n), t4(n);
         state.ResumeTiming();
         f_mul(a.data(), 3, t0.data(), n);
         f_mul(b.data(), 4, t1.data(), n);
@@ -340,18 +340,18 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">simd_compose_noalloc_av</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = state.range(0);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">a</span> = ConstructRandomSet(n, 10);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">b</span> = ConstructRandomSet(n, 20);
-    <span class="org-keyword">auto</span> <span class="org-variable-name">c</span> = ConstructRandomSet(n, 30);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">d</span>(n);
+static void simd_compose_noalloc_av(benchmark::State&amp; state) {
+    size_t n = state.range(0);
+    auto a = ConstructRandomSet(n, 10);
+    auto b = ConstructRandomSet(n, 20);
+    auto c = ConstructRandomSet(n, 30);
+    std::vector&lt;int32_t&gt; d(n);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
+    // Code inside this loop is measured repeatedly
+    for (auto _ : state) {
         state.PauseTiming();
         d.assign(n, 0);
-        <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int32_t</span>&gt; <span class="org-variable-name">t0</span>(n), <span class="org-variable-name">t1</span>(n), <span class="org-variable-name">t2</span>(n), <span class="org-variable-name">t3</span>(n), <span class="org-variable-name">t4</span>(n);
+        std::vector&lt;int32_t&gt; t0(n), t1(n), t2(n), t3(n), t4(n);
         state.ResumeTiming();
         f_mul_autovec(a.data(), 3, t0.data(), n);
         f_mul_autovec(b.data(), 4, t1.data(), n);
@@ -361,10 +361,10 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
     }
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Register the function as a benchmark</span>
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N0</span> = 4096;
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N1</span> = 40960;
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N2</span> = 409600;
+// Register the function as a benchmark
+static const int N0 = 4096;
+static const int N1 = 40960;
+static const int N2 = 409600;
 
 BENCHMARK(codegen)-&gt;Arg(N0)-&gt;Arg(N1)-&gt;Arg(N2);
 BENCHMARK(simd_fusion)-&gt;Arg(N0)-&gt;Arg(N1)-&gt;Arg(N2);

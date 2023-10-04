@@ -163,7 +163,7 @@ Linux调度器是以模块方式提供的, 这种模块化结构被成为调度�
 <p>
 /proc/interrupts存放了系统中与中断相关的统计信息. 第一列是IRQ, 之后是各个CPU响应中断的次数, 第三列是中断控制器, 第四列是中断相关的设备名字
 </p>
-<pre class="example" id="org0eeaae8">
+<pre class="example" id="org6b7d30c">
 ➜  ~  cat /proc/interrupts
            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7
   0:         15          0          0          0          0          0          0          0   IO-APIC-edge      timer
@@ -220,12 +220,12 @@ MIS:          0
 软中断(soft irq)相对应的应该是硬中断(hard irq, 那些来自硬件设备触发的中断), 和系统调用软件中断(software interrupt)是两个不同概念. 软中断是在编译期静态分配的, 最多只能有32个软中断.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">softirq_action</span> {
-    <span class="org-type">void</span> (*<span class="org-function-name">action</span>)(<span class="org-keyword">struct</span> <span class="org-type">softirq_action</span>*);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#35843;&#29992;&#26041;&#24335; my_softirq-&gt;action(my_softirq);</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#20197;&#22312;softirq_action&#32467;&#26500;&#21518;&#38754;&#24102;&#19978;&#33258;&#23450;&#20041;&#25968;&#25454;</span>
+<pre class="src src-Cpp">struct softirq_action {
+    void (*action)(struct softirq_action*);
+    // 调用方式 my_softirq-&gt;action(my_softirq);
+    // 可以在softirq_action结构后面带上自定义数据
 };
-<span class="org-keyword">static</span> <span class="org-keyword">struct</span> <span class="org-type">softirq_action</span> <span class="org-variable-name">softirq_vec</span>[NR_SOFTIRQS]; <span class="org-comment-delimiter">// </span><span class="org-comment">NR_SOFTIRQS == 32</span>
+static struct softirq_action softirq_vec[NR_SOFTIRQS]; // NR_SOFTIRQS == 32
 </pre>
 </div>
 <p>
@@ -294,7 +294,7 @@ MIS:          0
 动态定时器的引入是为了延迟执行. 假设我们想sleep 1s, 如果只是忙等的话那么纯粹就是在无谓地消耗CPU, 而这1s如果分配给其他进程则可以做许多事情. 更加合理的方式应该是设置一个定时器, 将自己yield出去, 等1s过去之后再回来. 但是如果我们只想等待很短一段时间(比如100us)的话, 动态定时器是做不到的, 因为时钟精度达不到. 比如重新设置网卡的以太模式需要花费2ms, 所以在设定网卡速度后, 驱动程序必须等待2ms才能运行. 此时我们只能通过消耗CPU来等待这段短时间. 问题来了, 假设我们想等待100us, 那么代码应该怎么实现. 为了精度, 代码应该使用汇编编写并且屏蔽本地CPU中断以及禁止抢占.
 </p>
 <div class="org-src-container">
-<pre class="src src-ASM">movl %rcx, &lt;loop-times&gt;
+<pre class="src src-Asm">movl %rcx, &lt;loop-times&gt;
 loop:
 addl %rdx, 1
 subl %rcx, 1
@@ -304,7 +304,7 @@ jnz loop
 <p>
 接下来问题就是这个loop-times应该设置多少呢? 我们就有了BogoMIPS. BogoMIPS可以在dmesg中看到. 它记录处理器在给定时间内忙循环执行的次数, 在内核启动时利用calibrate_delay计算出, 存放在loops_per_jiffy中可以从/proc/cpuinfo中读取.
 </p>
-<pre class="example" id="orgb92ba7b">
+<pre class="example" id="org336c72b">
 [    0.004000] tsc: Detected 3491.869 MHz processor
 [    0.000002] Calibrating delay loop (skipped), value calculated using timer frequency.. 6983.73 BogoMIPS (lpj=13967476)
 
@@ -503,7 +503,7 @@ IO调度程序管理块设备的请求队列, 决定队列中请求排列顺序�
 <p>
 /proc/&lt;pid&gt;/maps以及pmap工具可以查看进程地址空间. pmap输出字段分别是起始地址, 区域大小, 权限, 以及二进制文件. proc输出还包括主次设备号和inode节点.
 </p>
-<pre class="example" id="orgd6955b7">
+<pre class="example" id="orgb8fba06">
 ➜  notes git:(master) ✗ pmap 3252
 3252:   python -m SimpleHTTPServer 8080
 0000000000400000   2804K r-x-- python2.7
@@ -544,7 +544,7 @@ Linux使用三级页表完成虚拟地址到物理地址的转换. 为了加快�
 <p>
 页高速缓存(page cache)和块缓冲区(block cache, block buffer)之间的关系非常微妙. C14中提到了, 在2.6之前, 所以IO操作都是通过提交块缓冲区来执行的. 也就是说, 用户态写文件, 首先会写page cache, 同时也会写入block cache来发起IO操作. 一个磁盘块数据可以同时存于两个缓存中, 不仅浪费内存, 还需要考虑同步两个缓存中的数据. 2.6之后使用通过bio来管理IO请求, block cache就可以不再参与文件读写. 但是block cache依然有一些作用 a. 读写inode节点 b. 直接操作块底层(O_DIRECT). block cache和page cache大小可以从`free -t`命令中看到. 其中`buffers`对应block cache, `cached`对应page cache.
 </p>
-<pre class="example" id="org2a022e8">
+<pre class="example" id="org0de354d">
 ➜  notes git:(master) ✗ free -t
              total       used       free     shared    buffers     cached
 Mem:       8047140    3786604    4260536     393104     334472    1405072

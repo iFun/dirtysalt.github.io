@@ -25,17 +25,17 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minOperations</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-import-from">import</span> functools
-        <span class="org-py-decorators">@functools.cache</span>
-        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(x):
-            <span class="org-keyword">if</span> x &amp; (x - <span class="org-py-number">1</span>) == <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-number">1</span>
-            <span class="org-comment"># to get the lowest bit.</span>
-            <span class="org-py-variable-name">lb</span> = x &amp; -x
-            <span class="org-keyword">return</span> <span class="org-py-number">1</span> + <span class="org-py-builtins">min</span>(search(x + lb), search(x - lb))
+<pre class="src src-Python">class Solution:
+    def minOperations(self, n: int) -&gt; int:
+        import functools
+        @functools.cache
+        def search(x):
+            if x &amp; (x - 1) == 0: return 1
+            # to get the lowest bit.
+            lb = x &amp; -x
+            return 1 + min(search(x + lb), search(x - lb))
 
-        <span class="org-keyword">return</span> search(n)
+        return search(n)
 </pre>
 </div>
 
@@ -52,17 +52,17 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minOperations</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">1</span>
+<pre class="src src-Python">class Solution:
+    def minOperations(self, n: int) -&gt; int:
+        ans = 1
 
-        <span class="org-keyword">while</span> n &amp; (n-<span class="org-py-number">1</span>) != <span class="org-py-number">0</span>:
-            <span class="org-py-variable-name">lb</span> = n &amp; (-n) <span class="org-comment"># (1 &lt;&lt; lowbit)</span>
-            <span class="org-keyword">if</span> (n &amp; (lb &lt;&lt; <span class="org-py-number">1</span>)): <span class="org-py-variable-name">n</span> += lb <span class="org-comment"># &#22914;&#26524;&#36830;&#32493;&#30340;1&#65292;&#37027;&#20040;&#30452;&#25509;&#21152;&#19978;&#65292;&#21487;&#33021;&#36896;&#25104;&#36830;&#32493;&#36827;&#20301;</span>
-            <span class="org-keyword">else</span>: <span class="org-py-variable-name">n</span>-=lb <span class="org-comment"># &#21024;&#38500;&#36825;&#20010;&#20301;&#19978;&#30340;1</span>
-            <span class="org-py-variable-name">ans</span> += <span class="org-py-number">1</span>
+        while n &amp; (n-1) != 0:
+            lb = n &amp; (-n) # (1 &lt;&lt; lowbit)
+            if (n &amp; (lb &lt;&lt; 1)): n += lb # 如果连续的1，那么直接加上，可能造成连续进位
+            else: n-=lb # 删除这个位上的1
+            ans += 1
 
-        <span class="org-keyword">return</span> ans
+        return ans
 </pre>
 </div>
 </div>

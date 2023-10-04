@@ -92,28 +92,28 @@ StreamBase本身是使用Java编写的，IDE称为StreamBase Studuo.IDE是基于
 我们这里不打算试图使用一个框图来表现StreamBase框架，使用代码的话可能会更好一些。注意我们启动的就是StreamBaseServer进程。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">StreamBaseServer</span>{
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#19968;&#20010;StreamBaseServer&#26469;&#35828;&#30340;&#35805;&#21253;&#21547;&#20102;&#19968;&#31995;&#21015;Container</span>
-    <span class="org-type">Collection</span>&lt; Container &gt; <span class="org-variable-name">containers</span>;
+<pre class="src src-Cpp">class StreamBaseServer{
+    // 对于一个StreamBaseServer来说的话包含了一系列Container
+    Collection&lt; Container &gt; containers;
 };
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;Container&#25105;&#20204;&#25163;&#24037;&#25351;&#23450;&#20102;&#36755;&#20837;&#21644;&#36755;&#20986;</span>
-<span class="org-keyword">class</span> <span class="org-type">Container</span>{
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#27599;&#20010;Container&#21253;&#21547;&#19979;&#38754;&#36825;&#20123;&#35201;&#32032;</span>
-    <span class="org-type">string</span> <span class="org-variable-name">uri</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">container&#36164;&#28304;&#23450;&#20301;&#65292;&#38656;&#35201;&#25163;&#21160;&#22635;&#20889;</span>
+// 对于Container我们手工指定了输入和输出
+class Container{
+    // 每个Container包含下面这些要素
+    string uri; // container资源定位，需要手动填写
 
-    <span class="org-type">Application</span> <span class="org-variable-name">app</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">container application.&#27599;&#19968;&#20010;container&#23545;&#24212;&#19968;&#20010;application</span>
+    Application app; // container application.每一个container对应一个application
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#27599;&#19968;&#20010;application&#20063;&#24517;&#39035;&#22312;&#19968;&#20010;container&#19979;&#38754;&#36816;&#34892;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#20294;&#26159;&#29992;&#25143;&#19981;care&#36825;&#20010;&#37096;&#20998;&#65292;&#21482;care&#33258;&#24049;&#30340;app</span>
-    <span class="org-type">InputStream</span> <span class="org-variable-name">input</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36755;&#20837;&#27969;&#65292;&#20132;&#32473;application&#22788;&#29702;</span>
-    <span class="org-type">OutputStream</span> <span class="org-variable-name">output</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36755;&#20986;&#27969;&#65292;application&#36755;&#20986;&#20043;&#21518;&#25918;&#22312;&#36825;&#20010;&#22320;&#26041;</span>
+    // 每一个application也必须在一个container下面运行
+    // 但是用户不care这个部分，只care自己的app
+    InputStream input; // 输入流，交给application处理
+    OutputStream output; // 输出流，application输出之后放在这个地方
 };
 </pre>
 </div>
 
 
-<div id="org1f25bc6" class="figure">
+<div id="orge217b9c" class="figure">
 <p><img src="../images/streambase-arch.png" alt="streambase-arch.png" />
 </p>
 </div>
@@ -123,7 +123,7 @@ StreamBase本身是使用Java编写的，IDE称为StreamBase Studuo.IDE是基于
 </p>
 
 
-<div id="org085a901" class="figure">
+<div id="orgb274f20" class="figure">
 <p><img src="../images/streambase-container-connection.png" alt="streambase-container-connection.png" />
 </p>
 </div>
@@ -196,7 +196,7 @@ StreamBase本身是使用Java编写的，IDE称为StreamBase Studuo.IDE是基于
 <p>
 StreamBase的URI相对来说比较简单而且也很好理解，格式如下：
 </p>
-<pre class="example" id="orgc8f771f">
+<pre class="example" id="org6a4e582">
 sb://[host][:port][/container][;user=xxx;password=yyy]
 </pre>
 <p>
@@ -324,7 +324,7 @@ QueryTable可以用来存储接收到的tuple并且允许在多个container之�
 QueryTable也支持进行Replication. <a href="http://streambase.com/developers/docs/latest/authoring/querytab-replication.html">http://streambase.com/developers/docs/latest/authoring/querytab-replication.html</a> 我们阅读一下replication的配置，似乎每一个QueryTable只允许配置一个replication(但是不确定)
 </p>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;table-replication&gt;
+<pre class="src src-Xml">&lt;table-replication&gt;
   &lt;param name="HB_OTHER_SERVER"
     value="name_of_other_server"/&gt;
   &lt;param name="REPL_OTHER_SERVER_PORT"
@@ -372,7 +372,7 @@ QueryTable也支持进行Replication. <a href="http://streambase.com/developers/
 </p>
 
 
-<div id="orgc5182fb" class="figure">
+<div id="org8f89bcf" class="figure">
 <p><img src="../images/streambase-hot-hot-server-pair-template.png" alt="streambase-hot-hot-server-pair-template.png" />
 </p>
 </div>
@@ -387,7 +387,7 @@ QueryTable也支持进行Replication. <a href="http://streambase.com/developers/
 </p>
 
 
-<div id="orgb057a5d" class="figure">
+<div id="orgd11018a" class="figure">
 <p><img src="../images/streambase-hot-warm-server-pair-template.png" alt="streambase-hot-warm-server-pair-template.png" />
 </p>
 </div>
@@ -402,7 +402,7 @@ QueryTable也支持进行Replication. <a href="http://streambase.com/developers/
 </p>
 
 
-<div id="org88a7259" class="figure">
+<div id="org4b5a517" class="figure">
 <p><img src="../images/streambase-shared-disk-template.png" alt="streambase-shared-disk-template.png" />
 </p>
 </div>
@@ -417,7 +417,7 @@ QueryTable也支持进行Replication. <a href="http://streambase.com/developers/
 </p>
 
 
-<div id="org3b67d22" class="figure">
+<div id="orgc35a0bb" class="figure">
 <p><img src="../images/streambase-fast-restart-template.png" alt="streambase-fast-restart-template.png" />
 </p>
 </div>
@@ -433,7 +433,7 @@ To implement a disaster recover scenario, an offsite implementation can combine 
 </p>
 
 
-<div id="org88d2c31" class="figure">
+<div id="org26f472f" class="figure">
 <p><img src="../images/streambase-disaster-recovery-scenario.png" alt="streambase-disaster-recovery-scenario.png" />
 </p>
 </div>
@@ -448,9 +448,8 @@ You can use clustering techniques to implement scaling of your StreamBase Server
 </p>
 
 
-<div id="orgb247709" class="figure">
-<p><img src="../images/streambase-scalability-scenario.png" alt="streambase-scalability-scenario.png" />
-</p>
+<div id="org460e5df" class="figure">
+<p><img src="../images/streambase-scalability-scenario.png" alt="streambase-scalability-scenario.png" /></p>
 </div>
 </div>
 </div>

@@ -34,38 +34,38 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minimumTime</span>(<span class="org-py-object-reference">self</span>, grid: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">m</span> = <span class="org-py-builtins">len</span>(grid), <span class="org-py-builtins">len</span>(grid[<span class="org-py-number">0</span>])
-        <span class="org-keyword">if</span> grid[<span class="org-py-number">0</span>][<span class="org-py-number">1</span>] &gt; <span class="org-py-number">1</span> <span class="org-keyword">and</span> grid[<span class="org-py-number">1</span>][<span class="org-py-number">0</span>] &gt; <span class="org-py-number">1</span>:
-            <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+<pre class="src src-Python">
+class Solution:
+    def minimumTime(self, grid: List[List[int]]) -&gt; int:
+        n, m = len(grid), len(grid[0])
+        if grid[0][1] &gt; 1 and grid[1][0] &gt; 1:
+            return -1
 
-        <span class="org-py-variable-name">hp</span> = []
-        hp.append((<span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-number">0</span>))
-        <span class="org-py-variable-name">inf</span> = <span class="org-py-number">1</span> &lt;&lt; <span class="org-py-number">30</span>
-        <span class="org-py-variable-name">visit</span> = [[inf] * m <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        hp = []
+        hp.append((0, 0, 0))
+        inf = 1 &lt;&lt; 30
+        visit = [[inf] * m for _ in range(n)]
 
-        <span class="org-py-import-from">import</span> heapq
-        <span class="org-keyword">while</span> hp:
+        import heapq
+        while hp:
             (d, x, y) = heapq.heappop(hp)
-            <span class="org-keyword">if</span> (x, y) == (n - <span class="org-py-number">1</span>, m - <span class="org-py-number">1</span>):
-                <span class="org-keyword">return</span> d
-            <span class="org-keyword">for</span> dx, dy <span class="org-keyword">in</span> ((-<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">0</span>, -<span class="org-py-number">1</span>), (<span class="org-py-number">0</span>, <span class="org-py-number">1</span>)):
-                <span class="org-py-variable-name">x2</span>, <span class="org-py-variable-name">y2</span> = x + dx, y + dy
-                <span class="org-keyword">if</span> <span class="org-py-number">0</span> &lt;= x2 &lt; n <span class="org-keyword">and</span> <span class="org-py-number">0</span> &lt;= y2 &lt; m:
-                    <span class="org-py-variable-name">gap</span> = grid[x2][y2] - (d + <span class="org-py-number">1</span>)
-                    <span class="org-keyword">if</span> gap &lt;= <span class="org-py-number">0</span>:
-                        <span class="org-py-variable-name">value</span> = d + <span class="org-py-number">1</span>
-                    <span class="org-keyword">else</span>:
-                        <span class="org-py-variable-name">value0</span> = d + <span class="org-py-number">1</span> + (gap + <span class="org-py-number">1</span>) // <span class="org-py-number">2</span> * <span class="org-py-number">2</span>
-                        <span class="org-comment"># &#20063;&#21487;&#20197;&#26159;&#19979;&#38754;&#36825;&#31181;&#24418;&#24335;</span>
-                        <span class="org-py-variable-name">value1</span> = grid[x2][y2] + (grid[x2][y2] - x2 - y2) % <span class="org-py-number">2</span>
-                        <span class="org-py-variable-name">value</span> = value0
-                    <span class="org-keyword">if</span> visit[x2][y2] &gt; value:
+            if (x, y) == (n - 1, m - 1):
+                return d
+            for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                x2, y2 = x + dx, y + dy
+                if 0 &lt;= x2 &lt; n and 0 &lt;= y2 &lt; m:
+                    gap = grid[x2][y2] - (d + 1)
+                    if gap &lt;= 0:
+                        value = d + 1
+                    else:
+                        value0 = d + 1 + (gap + 1) // 2 * 2
+                        # 也可以是下面这种形式
+                        value1 = grid[x2][y2] + (grid[x2][y2] - x2 - y2) % 2
+                        value = value0
+                    if visit[x2][y2] &gt; value:
                         visit[x2][y2] = value
                         heapq.heappush(hp, (value, x2, y2))
-        <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+        return -1
 </pre>
 </div>
 
@@ -80,42 +80,42 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minimumTime</span>(<span class="org-py-object-reference">self</span>, grid: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">m</span> = <span class="org-py-builtins">len</span>(grid), <span class="org-py-builtins">len</span>(grid[<span class="org-py-number">0</span>])
-        <span class="org-keyword">if</span> grid[<span class="org-py-number">0</span>][<span class="org-py-number">1</span>] &gt; <span class="org-py-number">1</span> <span class="org-keyword">and</span> grid[<span class="org-py-number">1</span>][<span class="org-py-number">0</span>] &gt; <span class="org-py-number">1</span>:
-            <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+<pre class="src src-Python">class Solution:
+    def minimumTime(self, grid: List[List[int]]) -&gt; int:
+        n, m = len(grid), len(grid[0])
+        if grid[0][1] &gt; 1 and grid[1][0] &gt; 1:
+            return -1
 
-        <span class="org-comment"># &#23558;vis&#25918;&#22312;&#22806;&#38754;&#29305;&#21035;&#22909;&#65292;&#22240;&#20026;&#27599;&#27425;vis time&#26159;&#19981;&#21516;&#30340;</span>
-        <span class="org-py-variable-name">vis</span> = [[<span class="org-py-number">0</span>] * m <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
+        # 将vis放在外面特别好，因为每次vis time是不同的
+        vis = [[0] * m for _ in range(n)]
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">test</span>(T):
-            vis[-<span class="org-py-number">1</span>][-<span class="org-py-number">1</span>] = T
-            <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
-            <span class="org-py-variable-name">dq</span> = deque()
-            dq.append((T, n - <span class="org-py-number">1</span>, m - <span class="org-py-number">1</span>))
-            <span class="org-keyword">while</span> dq:
+        def test(T):
+            vis[-1][-1] = T
+            from collections import deque
+            dq = deque()
+            dq.append((T, n - 1, m - 1))
+            while dq:
                 (t, x, y) = dq.popleft()
-                <span class="org-keyword">if</span> (x, y) == (<span class="org-py-number">0</span>, <span class="org-py-number">0</span>):
-                    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
-                <span class="org-keyword">for</span> dx, dy <span class="org-keyword">in</span> ((-<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">1</span>, <span class="org-py-number">0</span>), (<span class="org-py-number">0</span>, -<span class="org-py-number">1</span>), (<span class="org-py-number">0</span>, <span class="org-py-number">1</span>)):
-                    <span class="org-py-variable-name">x2</span>, <span class="org-py-variable-name">y2</span> = x + dx, y + dy
-                    <span class="org-keyword">if</span> <span class="org-py-number">0</span> &lt;= x2 &lt; n <span class="org-keyword">and</span> <span class="org-py-number">0</span> &lt;= y2 &lt; m <span class="org-keyword">and</span> vis[x2][y2] != T <span class="org-keyword">and</span> grid[x2][y2] &lt;= (t - <span class="org-py-number">1</span>):
+                if (x, y) == (0, 0):
+                    return True
+                for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                    x2, y2 = x + dx, y + dy
+                    if 0 &lt;= x2 &lt; n and 0 &lt;= y2 &lt; m and vis[x2][y2] != T and grid[x2][y2] &lt;= (t - 1):
                         vis[x2][y2] = T
-                        dq.append((t - <span class="org-py-number">1</span>, x2, y2))
-            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+                        dq.append((t - 1, x2, y2))
+            return False
 
-        <span class="org-py-variable-name">left</span> = <span class="org-py-builtins">max</span>(grid[-<span class="org-py-number">1</span>][-<span class="org-py-number">1</span>], m + n - <span class="org-py-number">2</span>) - <span class="org-py-number">1</span>
-        <span class="org-py-variable-name">right</span> = <span class="org-py-builtins">max</span>(map(max, grid)) + m + n
-        <span class="org-keyword">while</span> (left + <span class="org-py-number">1</span>) &lt; right:
-            <span class="org-py-variable-name">t</span> = (left + right) // <span class="org-py-number">2</span>
-            <span class="org-keyword">if</span> test(t):
-                <span class="org-py-variable-name">right</span> = t
-            <span class="org-keyword">else</span>:
-                <span class="org-py-variable-name">left</span> = t + <span class="org-py-number">1</span>
-        <span class="org-py-variable-name">ans</span> = right
-        <span class="org-py-variable-name">ans</span> = ans + (ans - m - n) % <span class="org-py-number">2</span>
-        <span class="org-keyword">return</span> ans
+        left = max(grid[-1][-1], m + n - 2) - 1
+        right = max(map(max, grid)) + m + n
+        while (left + 1) &lt; right:
+            t = (left + right) // 2
+            if test(t):
+                right = t
+            else:
+                left = t + 1
+        ans = right
+        ans = ans + (ans - m - n) % 2
+        return ans
 </pre>
 </div>
 </div>

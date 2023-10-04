@@ -34,20 +34,20 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-function-name">organizingContainers</span>(container):
-    <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(container)
-    <span class="org-py-variable-name">a</span> = [<span class="org-py-number">0</span>] * n
-    <span class="org-py-variable-name">b</span> = [<span class="org-py-number">0</span>] * n
-    <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-        <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">a</span>[i] += container[i][j]
-            <span class="org-py-variable-name">b</span>[j] += container[i][j]
+<pre class="src src-Python">def organizingContainers(container):
+    n = len(container)
+    a = [0] * n
+    b = [0] * n
+    for i in range(n):
+        for j in range(n):
+            a[i] += container[i][j]
+            b[j] += container[i][j]
 
     a.sort()
     b.sort()
-    <span class="org-py-variable-name">ok</span> = (<span class="org-py-variable-name">a</span> == b)
-    <span class="org-py-variable-name">ans</span> = <span class="org-string">'Possible'</span> <span class="org-keyword">if</span> ok <span class="org-keyword">else</span> <span class="org-string">'Impossible'</span>
-    <span class="org-keyword">return</span> ans
+    ok = (a == b)
+    ans = 'Possible' if ok else 'Impossible'
+    return ans
 </pre>
 </div>
 </div>

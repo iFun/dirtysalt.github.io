@@ -50,7 +50,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="org23a514d" class="figure">
+<div id="org13a2691" class="figure">
 <p><img src="../images/storm-cluster.png" alt="storm-cluster.png" />
 </p>
 </div>
@@ -60,7 +60,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="org0e2efb5" class="figure">
+<div id="orga20f9cd" class="figure">
 <p><img src="../images/storm-topology.png" alt="storm-topology.png" />
 </p>
 </div>
@@ -91,7 +91,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="orgce6f54a" class="figure">
+<div id="orgc5cf08b" class="figure">
 <p><img src="../images/storm-drpc-workflow.png" alt="storm-drpc-workflow.png" />
 </p>
 </div>
@@ -106,7 +106,7 @@ storm parallelism有三个概念 1) worker process 2) executor 3) task. 下面�
 </p>
 
 
-<div id="orgdf9e7bb" class="figure">
+<div id="org44051bf" class="figure">
 <p><img src="../images/storm-parallelism.png" alt="storm-parallelism.png" />
 </p>
 </div>
@@ -127,7 +127,7 @@ storm parallelism有三个概念 1) worker process 2) executor 3) task. 下面�
 </p>
 
 
-<div id="org0ba82ca" class="figure">
+<div id="orgbcf3bfc" class="figure">
 <p><img src="../images/storm-tuple-tree.png" alt="storm-tuple-tree.png" />
 </p>
 </div>
@@ -163,7 +163,7 @@ storm如何实现消息确认? storm会为每个output-tuple分配一个random 6
 <p>
 我们这里举个例子, 假设topology T如下:
 </p>
-<pre class="example" id="org529befa">
+<pre class="example" id="orgdbdee17">
 A -&gt; B -&gt; D
   -&gt; C
 </pre>
@@ -179,8 +179,7 @@ A -&gt; B -&gt; D
 </ul>
 
 <p>
-默认storm是启动1个acker服务来进行追踪. 但是如果消息量非常大的话那么可以启动多个acker服务来进行追踪. 一旦acker服务发现某个tuple需要重传的话, 会根据hashmap里面的spout-task-id来通知对应的spout.
-</p>
+默认storm是启动1个acker服务来进行追踪. 但是如果消息量非常大的话那么可以启动多个acker服务来进行追踪. 一旦acker服务发现某个tuple需要重传的话, 会根据hashmap里面的spout-task-id来通知对应的spout.</p>
 </div>
 </div>
 </div>

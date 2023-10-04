@@ -36,24 +36,24 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">deckRevealedIncreasing</span>(<span class="org-py-object-reference">self</span>, deck: List[<span class="org-py-builtins">int</span>]) -&gt; List[<span class="org-py-builtins">int</span>]:
-        <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
-        <span class="org-py-variable-name">dq</span> = deque()
+<pre class="src src-Python">
+class Solution:
+    def deckRevealedIncreasing(self, deck: List[int]) -&gt; List[int]:
+        from collections import deque
+        dq = deque()
 
-        <span class="org-py-variable-name">deck</span> = <span class="org-py-builtins">sorted</span>(deck)
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(deck)
+        deck = sorted(deck)
+        n = len(deck)
 
-        dq.append(deck[-<span class="org-py-number">1</span>])
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(n - <span class="org-py-number">1</span>)):
-            <span class="org-py-variable-name">v</span> = deck[i]
-            <span class="org-py-variable-name">x</span> = dq.pop()
+        dq.append(deck[-1])
+        for i in reversed(range(n - 1)):
+            v = deck[i]
+            x = dq.pop()
             dq.appendleft(x)
             dq.appendleft(v)
 
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">list</span>(dq)
-        <span class="org-keyword">return</span> ans
+        ans = list(dq)
+        return ans
 </pre>
 </div>
 </div>

@@ -48,12 +48,12 @@ X[i]只是对 `x[j] | x[k]` 做个mask, 所以其实可以把xor算子放在里�
 <hr />
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">xorBeauty</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
-            <span class="org-py-variable-name">ans</span> = ans ^ x
-        <span class="org-keyword">return</span> ans
+<pre class="src src-Python">class Solution:
+    def xorBeauty(self, nums: List[int]) -&gt; int:
+        ans = 0
+        for x in nums:
+            ans = ans ^ x
+        return ans
 </pre>
 </div>
 </div>

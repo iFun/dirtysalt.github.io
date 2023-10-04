@@ -29,25 +29,25 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">minimumDeviation</span>(<span class="org-type">int</span>[] <span class="org-variable-name">nums</span>) {
-        <span class="org-type">TreeSet</span>&lt;<span class="org-type">Integer</span>&gt; <span class="org-variable-name">ts</span> = <span class="org-keyword">new</span> <span class="org-type">TreeSet</span>&lt;&gt;();
-        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">x</span> : nums) {
-            <span class="org-keyword">if</span> (x % 2 == 0) {
+<pre class="src src-Java">class Solution {
+    public int minimumDeviation(int[] nums) {
+        TreeSet&lt;Integer&gt; ts = new TreeSet&lt;&gt;();
+        for (int x : nums) {
+            if (x % 2 == 0) {
                 ts.add(x);
-            } <span class="org-keyword">else</span> {
+            } else {
                 ts.add(2 * x);
             }
         }
-        <span class="org-type">int</span> <span class="org-variable-name">ans</span> = ts.last() - ts.first();
-        <span class="org-keyword">while</span> (ans &gt; 0 &amp;&amp; ts.last() % 2 == 0) {
-            <span class="org-type">int</span> <span class="org-variable-name">t</span> = ts.last();
+        int ans = ts.last() - ts.first();
+        while (ans &gt; 0 &amp;&amp; ts.last() % 2 == 0) {
+            int t = ts.last();
             ts.remove(t);
             ts.add(t / 2);
-            <span class="org-type">int</span> <span class="org-variable-name">off</span> = ts.last() - ts.first();
+            int off = ts.last() - ts.first();
             ans = Math.min(ans, off);
         }
-        <span class="org-keyword">return</span> ans;
+        return ans;
     }
 }
 </pre>

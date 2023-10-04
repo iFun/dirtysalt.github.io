@@ -259,7 +259,7 @@ server
 如果占用内存过多的话，那么会开始将部分redisObject swap到disk上面去直到满足条件。对于这个object会扫描整个keyspace，权重按照下面公式
 </p>
 <div class="org-src-container">
-<pre class="src src-C++">swappability = age*log(size_in_memory)
+<pre class="src src-Cpp">swappability = age*log(size_in_memory)
 </pre>
 </div>
 <p>
@@ -329,7 +329,7 @@ AOF则类似于redo-log的工作方式，所有对于server数据的修改都会
 2)每秒都会将收集的log进行fsync. 3)不调用fsync让OS操作。不同的策略在crash情况下面会造成不同比率数据的丢失，作者推荐使用2方法。
 AOF都会写到appendonly.aof文件里面，我们可以看看一个aof的example.很显然这是一个human-readable的格式(但是我没有兴趣分析其格式).
 </p>
-<pre class="example" id="orgdd756d2">
+<pre class="example" id="org1d07c8b">
 dirlt@dirlt-virtual-machine:~/utils/redis/bin$ cat appendonly.aof
 *2
 $6
@@ -412,8 +412,7 @@ sentinel功能是为了解决redis在分布式使用场景中主从automatic fai
 </ul>
 
 <p>
-#todo: 考虑到redis的代码质量比较高，对于redis的automatic failover实现机制可以好好分析并且阅读代码。
-</p>
+#todo: 考虑到redis的代码质量比较高，对于redis的automatic failover实现机制可以好好分析并且阅读代码。</p>
 </div>
 </div>
 </div>

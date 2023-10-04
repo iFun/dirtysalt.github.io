@@ -119,7 +119,7 @@ k = y
 table constructor(table构造式）很有趣，同时兼容key/value和array的构造。
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">days = {'Sun', 'Mon', 'Tue'} -- 数组构造，下标从1开始
+<pre class="src src-Lua">days = {'Sun', 'Mon', 'Tue'} -- 数组构造，下标从1开始
 point = {x = 10, y = 20} -- 字典构造
 days_and_point = {'Sun', 'Mon', 'Tue', x = 10, y = 20} -- 混合构造，毕竟数组下标只是一个key而已
 
@@ -160,7 +160,7 @@ days = {[ 0 ] = 20} -- days[0] 来引用
 函数调用形参和实参的绑定和多变量赋值很像：如果实参不够，那么以nil代替；如果实参太多，那么就被丢弃。
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">function hello(a, b)
+<pre class="src src-Lua">function hello(a, b)
    print("a = " .. tostring(a) .. ", b = " .. tostring(b))
 end
 
@@ -196,7 +196,7 @@ print(a, b)
 我们可以用 `table.unpack` 函数将列表拆分成为多值，然后传入到函数。这里我们模拟 `table.unpack` 给出了一个自己的unpack实现.
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">function hello(a, b)
+<pre class="src src-Lua">function hello(a, b)
    print("a = " .. tostring(a) .. ", b = " .. tostring(b))
 end
 
@@ -218,7 +218,7 @@ hello(unpack(params))
 变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。`&#x2026;` 都被复制给了arg, 其中arg.n表示参数个数
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">
+<pre class="src src-Lua">
 function test_vargs(a, b, ...)
    print('a = ' .. a .. " , b = " .. b)
    for i = 1, select('#', ...) do
@@ -258,7 +258,7 @@ get_named_args({height = 100, width = 200, depth = 50})
 table.sort支持对table进行排序，可以传入一个匿名参数比较两个key. 对于数组默认就是升序排序。
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">nums = {5,4,3,2,1}
+<pre class="src src-Lua">nums = {5,4,3,2,1}
 table.sort(nums, function(a,b)
               return a &lt; b
 end)
@@ -272,7 +272,7 @@ end
 变量可以是局部的，那么函数也可以是局部的。局部函数有一些限制，但是可以通过提前声明来解决
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">do
+<pre class="src src-Lua">do
    local fact;
    fact = function(n)
          if (n == 0) then
@@ -310,7 +310,7 @@ end
 </blockquote>
 
 <div class="org-src-container">
-<pre class="src src-lua">for var_1, ..., var_n in explist do block end
+<pre class="src src-Lua">for var_1, ..., var_n in explist do block end
 
 -- 等价于下面这样的形式
 
@@ -341,7 +341,7 @@ end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">function values(t)
+<pre class="src src-Lua">function values(t)
    local i = 0
    return function()
       i = i + 1
@@ -389,7 +389,7 @@ end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">f = loadstring("i = i + 1")
+<pre class="src src-Lua">f = loadstring("i = i + 1")
 
 -- 等价于下面的形式
 
@@ -402,7 +402,7 @@ f = function() i = i + 1 end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">i = 10
+<pre class="src src-Lua">i = 10
 
 function f()
    local i = 20
@@ -447,7 +447,7 @@ global i = 11
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">printf=function (fmt, ...) print(string.format(fmt, ...)) end
+<pre class="src src-Lua">printf=function (fmt, ...) print(string.format(fmt, ...)) end
 
 function my_func(v)
    if v == 10 then
@@ -557,7 +557,7 @@ lua coroutine应该是stackful coroutine, coroutine.yield只能返回caller. sta
 为了能让"quit"能最后一次回显，producer不能立即退出，必须等待consumer再次请求，并且上次command=="quit"的时候才能退出。
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">
+<pre class="src src-Lua">
 producer = coroutine.create(
    function()
       local send = function(x)
@@ -614,7 +614,7 @@ lua在函数单参数调用的时候不要求加上(), 这样可以非常适合D
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">-- main.lua
+<pre class="src src-Lua">-- main.lua
 function Entry(t)
    fields = {"author", "book_name", "publisher", "year"}
    print("----- Entry -----")
@@ -753,7 +753,7 @@ Set数据结构的启发性是：
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-lua">Set = {} -- 数据结构类
+<pre class="src src-Lua">Set = {} -- 数据结构类
 Set.mt = {} -- 类的metatable
 -- 类字段
 Set.version = "1.0.0"
@@ -803,7 +803,7 @@ print("c = " .. tostring(c))
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">local pk = function () end -- 使用函数对象可以作为key.
+<pre class="src src-Lua">local pk = function () end -- 使用函数对象可以作为key.
 -- local pk = {} -- 或者是空表（空表地址）
 
 function track(t)
@@ -874,7 +874,7 @@ C模块对应的路径分别是 `package.cpath` 和 `LUA_CPATH`.
 模块在编写上有许多技巧，似乎都比较复杂。下面我汇编了个可以work的boilerplate (copy from <a href="https://moonbingbing.gitbooks.io/openresty-best-practices/lua/not_use_module.html">here</a>)
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">-- /usr/bin/env lua
+<pre class="src src-Lua">-- /usr/bin/env lua
 -- coding:utf-8
 -- Copyright (C) dirlt
 
@@ -903,7 +903,7 @@ return _M
 在调用的时候如下
 </p>
 <div class="org-src-container">
-<pre class="src src-lua">local rect = require 'kv' -- 上面module命名为kv.lua
+<pre class="src src-Lua">local rect = require 'kv' -- 上面module命名为kv.lua
 
 obj = rect:new(10, 20)
 print(obj:get_square(), obj:get_circumference())
@@ -933,7 +933,7 @@ end
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-lua">Account = {balance = 0}
+<pre class="src src-Lua">Account = {balance = 0}
 
 function Account:new (o) -- same as Account.new(self, o), self = Account
   o = o or {}
@@ -967,7 +967,7 @@ print(account.balance)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">SubAccount = Account:new()
+<pre class="src src-Lua">SubAccount = Account:new()
 
 function SubAccount:add_level(value)
    self.level = self.level + value
@@ -1031,7 +1031,7 @@ end
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua">t = {}
+<pre class="src src-Lua">t = {}
 mt = getmetatable(t)
 if mt == nil then
    mt = {}
@@ -1147,7 +1147,7 @@ API用索引来访问栈中的元素。在栈中的第一个元素（也就是�
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;lualib.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;lauxlib.h&gt;</span>
@@ -1177,10 +1177,10 @@ API用索引来访问栈中的元素。在栈中的第一个元素（也就是�
 </div>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span class="org-variable-name">SRC</span>=$(<span class="org-variable-name">HOME</span>)/utils/lua-5.3.5/src
+<pre class="src src-Makefile">SRC=$(HOME)/utils/lua-5.3.5/src
 
-<span class="org-makefile-targets">test_lua</span>:test_lua.c
-    gcc test_lua.c -I$(<span class="org-variable-name">SRC</span>) -L$(<span class="org-variable-name">SRC</span>) -llua
+test_lua:test_lua.c
+    gcc test_lua.c -I$(SRC) -L$(SRC) -llua
 </pre>
 </div>
 
@@ -1188,7 +1188,7 @@ API用索引来访问栈中的元素。在栈中的第一个元素（也就是�
 如果运行出错的话，那么会出现类似下面这样的错误
 </p>
 
-<pre class="example" id="orgbd3c6fd">
+<pre class="example" id="orgcd3fad4">
 ➜  playbook ./a.out
 [string "test_lua::"]:1: attempt to call a nil value (field 'sinx')
 </pre>
@@ -1198,7 +1198,7 @@ API用索引来访问栈中的元素。在栈中的第一个元素（也就是�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<pre class="src src-C"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
 <span class="org-preprocessor">#include</span> <span class="org-string">&lt;lauxlib.h&gt;</span>
 
@@ -1225,16 +1225,16 @@ API用索引来访问栈中的元素。在栈中的第一个元素（也就是�
 </div>
 
 <div class="org-src-container">
-<pre class="src src-makefile"><span class="org-variable-name">SRC</span>=$(<span class="org-variable-name">HOME</span>)/utils/lua-5.3.5/src
+<pre class="src src-Makefile">SRC=$(HOME)/utils/lua-5.3.5/src
 
-<span class="org-makefile-targets">test_lua.so</span>:test_lua.c
-    gcc test_lua.c -I$(<span class="org-variable-name">SRC</span>) -L$(<span class="org-variable-name">SRC</span>) -fPIC -shared -o <span class="org-makefile-targets">$</span><span class="org-makefile-targets"><span class="org-constant">@</span></span> -llua
+test_lua.so:test_lua.c
+    gcc test_lua.c -I$(SRC) -L$(SRC) -fPIC -shared -o $@ -llua
 
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-lua">local open_mylib, err = package.loadlib("test_lua.so", "luaopen_mylib");
+<pre class="src src-Lua">local open_mylib, err = package.loadlib("test_lua.so", "luaopen_mylib");
 
 if (err ~= nil) then
    print(err)
@@ -1281,7 +1281,7 @@ Lua在5.1之后开始使用增量式的收集器：GCSTEP就是增量收集器�
 </p>
 
 <p>
-#+BEGIN_SRC c
+#+BEGIN_SRC C
 /*
 </p>
 </div>
@@ -1310,8 +1310,7 @@ LUA_API int (lua_gc) (lua_State *L, int what, int data);
 </p>
 
 <p>
-#+END_SRC
-</p>
+#+END_SRC</p>
 </div>
 </div>
 </div>

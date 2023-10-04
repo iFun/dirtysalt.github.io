@@ -33,90 +33,90 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">getMaxFunctionValue</span>(<span class="org-py-object-reference">self</span>, receiver: List[<span class="org-py-builtins">int</span>], k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(receiver)
-        <span class="org-py-variable-name">parent</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">x</span> = receiver[i]
+<pre class="src src-Python">
+class Solution:
+    def getMaxFunctionValue(self, receiver: List[int], k: int) -&gt; int:
+        n = len(receiver)
+        parent = [[] for _ in range(n)]
+        for i in range(n):
+            x = receiver[i]
             parent[x].append(i)
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">findRoot</span>():
-            <span class="org-py-variable-name">root</span> = []
-            <span class="org-py-variable-name">visited</span> = <span class="org-py-builtins">set</span>()
-            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-                <span class="org-py-variable-name">loop</span> = <span class="org-py-builtins">set</span>()
-                <span class="org-keyword">while</span> i <span class="org-keyword">not</span> <span class="org-keyword">in</span> visited:
+        def findRoot():
+            root = []
+            visited = set()
+            for i in range(n):
+                loop = set()
+                while i not in visited:
                     visited.add(i)
                     loop.add(i)
-                    <span class="org-py-variable-name">i</span> = receiver[i]
-                <span class="org-keyword">if</span> i <span class="org-keyword">in</span> loop:
+                    i = receiver[i]
+                if i in loop:
                     root.append(i)
-            <span class="org-keyword">return</span> root
+            return root
 
-        <span class="org-py-def-class">class</span> <span class="org-py-class-name">State</span>:
-            <span class="org-py-def-class">def</span> <span class="org-function-name">__init__</span>(<span class="org-py-object-reference">self</span>, loop, k):
-                <span class="org-py-object-reference">self</span>.loop = loop
-                <span class="org-py-object-reference">self</span>.history = []
+        class State:
+            def __init__(self, loop, k):
+                self.loop = loop
+                self.history = []
 
-                <span class="org-py-variable-name">rep</span> = k // <span class="org-py-builtins">len</span>(<span class="org-py-object-reference">self</span>.loop)
-                <span class="org-py-variable-name">rem</span> = k % <span class="org-py-builtins">len</span>(<span class="org-py-object-reference">self</span>.loop)
-                <span class="org-py-object-reference">self</span>.value = <span class="org-py-builtins">sum</span>(<span class="org-py-object-reference">self</span>.loop) * rep
-                <span class="org-py-object-reference">self</span>.value += <span class="org-py-builtins">sum</span>(<span class="org-py-object-reference">self</span>.loop[:rem])
-                <span class="org-py-object-reference">self</span>.loopIdx = (k - <span class="org-py-number">1</span> + <span class="org-py-builtins">len</span>(<span class="org-py-object-reference">self</span>.loop)) % <span class="org-py-builtins">len</span>(<span class="org-py-object-reference">self</span>.loop)
-                <span class="org-py-object-reference">self</span>.loopK = k
-                <span class="org-py-object-reference">self</span>.hisIdx = -<span class="org-py-number">1</span>
+                rep = k // len(self.loop)
+                rem = k % len(self.loop)
+                self.value = sum(self.loop) * rep
+                self.value += sum(self.loop[:rem])
+                self.loopIdx = (k - 1 + len(self.loop)) % len(self.loop)
+                self.loopK = k
+                self.hisIdx = -1
 
-            <span class="org-py-def-class">def</span> <span class="org-function-name">push</span>(<span class="org-py-object-reference">self</span>, x):
-                <span class="org-py-object-reference">self</span>.history.append(x)
-                <span class="org-py-variable-name">saved</span> = (<span class="org-py-object-reference">self</span>.loopIdx, <span class="org-py-object-reference">self</span>.loopK, <span class="org-py-object-reference">self</span>.hisIdx, <span class="org-py-object-reference">self</span>.value)
+            def push(self, x):
+                self.history.append(x)
+                saved = (self.loopIdx, self.loopK, self.hisIdx, self.value)
 
-                <span class="org-py-object-reference">self</span>.value += x
-                <span class="org-keyword">if</span> <span class="org-py-object-reference">self</span>.hisIdx != -<span class="org-py-number">1</span>:
-                    <span class="org-py-object-reference">self</span>.value -= <span class="org-py-object-reference">self</span>.history[<span class="org-py-object-reference">self</span>.hisIdx]
-                    <span class="org-py-object-reference">self</span>.hisIdx += <span class="org-py-number">1</span>
-                <span class="org-keyword">else</span>:
-                    <span class="org-py-object-reference">self</span>.value -= <span class="org-py-object-reference">self</span>.loop[<span class="org-py-object-reference">self</span>.loopIdx]
-                    <span class="org-py-object-reference">self</span>.loopIdx -= <span class="org-py-number">1</span>
-                    <span class="org-py-object-reference">self</span>.loopK -= <span class="org-py-number">1</span>
-                    <span class="org-keyword">if</span> <span class="org-py-object-reference">self</span>.loopIdx &lt; <span class="org-py-number">0</span> <span class="org-keyword">and</span> <span class="org-py-object-reference">self</span>.loopK &gt; <span class="org-py-number">0</span>:
-                        <span class="org-py-object-reference">self</span>.loopIdx += <span class="org-py-builtins">len</span>(<span class="org-py-object-reference">self</span>.loop)
-                    <span class="org-keyword">if</span> <span class="org-py-object-reference">self</span>.loopK == <span class="org-py-number">0</span>:
-                        <span class="org-py-object-reference">self</span>.hisIdx = <span class="org-py-number">0</span>
-                <span class="org-keyword">return</span> saved
+                self.value += x
+                if self.hisIdx != -1:
+                    self.value -= self.history[self.hisIdx]
+                    self.hisIdx += 1
+                else:
+                    self.value -= self.loop[self.loopIdx]
+                    self.loopIdx -= 1
+                    self.loopK -= 1
+                    if self.loopIdx &lt; 0 and self.loopK &gt; 0:
+                        self.loopIdx += len(self.loop)
+                    if self.loopK == 0:
+                        self.hisIdx = 0
+                return saved
 
-            <span class="org-py-def-class">def</span> <span class="org-function-name">pop</span>(<span class="org-py-object-reference">self</span>, saved):
-                <span class="org-py-object-reference">self</span>.loopIdx, <span class="org-py-object-reference">self</span>.loopK, <span class="org-py-object-reference">self</span>.hisIdx, <span class="org-py-object-reference">self</span>.value = saved
-                <span class="org-py-object-reference">self</span>.history.pop()
+            def pop(self, saved):
+                self.loopIdx, self.loopK, self.hisIdx, self.value = saved
+                self.history.pop()
 
-        <span class="org-py-variable-name">root</span> = findRoot()
-        <span class="org-py-variable-name">ans</span> = [-<span class="org-py-number">1</span>] * n
+        root = findRoot()
+        ans = [-1] * n
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">visitRoot</span>(r):
-            <span class="org-py-variable-name">loop</span> = []
-            <span class="org-py-variable-name">visit</span> = <span class="org-py-builtins">set</span>()
-            <span class="org-py-variable-name">x</span> = r
-            <span class="org-keyword">while</span> x <span class="org-keyword">not</span> <span class="org-keyword">in</span> visit:
+        def visitRoot(r):
+            loop = []
+            visit = set()
+            x = r
+            while x not in visit:
                 loop.append(x)
                 visit.add(x)
-                <span class="org-py-variable-name">x</span> = receiver[x]
-            <span class="org-py-variable-name">st</span> = State(loop, k + <span class="org-py-number">1</span>)
+                x = receiver[x]
+            st = State(loop, k + 1)
 
-            <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(r, st: State):
-                <span class="org-py-variable-name">ans</span>[r] = st.value
-                <span class="org-keyword">for</span> p <span class="org-keyword">in</span> parent[r]:
-                    <span class="org-keyword">if</span> <span class="org-py-variable-name">ans</span>[p] == -<span class="org-py-number">1</span>:
-                        <span class="org-py-variable-name">saved</span> = st.push(p)
+            def dfs(r, st: State):
+                ans[r] = st.value
+                for p in parent[r]:
+                    if ans[p] == -1:
+                        saved = st.push(p)
                         dfs(p, st)
                         st.pop(saved)
 
             dfs(r, st)
 
-        <span class="org-keyword">for</span> r <span class="org-keyword">in</span> root:
+        for r in root:
             visitRoot(r)
-        <span class="org-comment"># print(ans)</span>
-        <span class="org-keyword">return</span> <span class="org-py-builtins">max</span>(ans)
+        # print(ans)
+        return max(ans)
 </pre>
 </div>
 
@@ -127,35 +127,35 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">getMaxFunctionValue</span>(<span class="org-py-object-reference">self</span>, receiver: List[<span class="org-py-builtins">int</span>], k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(receiver)
-        <span class="org-py-variable-name">N</span> = <span class="org-py-number">36</span>
+<pre class="src src-Python">
+class Solution:
+    def getMaxFunctionValue(self, receiver: List[int], k: int) -&gt; int:
+        n = len(receiver)
+        N = 36
 
-        <span class="org-py-variable-name">f</span> = [[-<span class="org-py-number">1</span>] * N <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-py-variable-name">w</span> = [[-<span class="org-py-number">1</span>] * N <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">x</span> = receiver[i]
-            f[i][<span class="org-py-number">0</span>] = x
-            w[i][<span class="org-py-number">0</span>] = x
+        f = [[-1] * N for _ in range(n)]
+        w = [[-1] * N for _ in range(n)]
+        for i in range(n):
+            x = receiver[i]
+            f[i][0] = x
+            w[i][0] = x
 
-        <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, N):
-            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-                f[i][j] = f[f[i][j - <span class="org-py-number">1</span>]][j - <span class="org-py-number">1</span>]
-                w[i][j] = w[i][j - <span class="org-py-number">1</span>] + w[f[i][j - <span class="org-py-number">1</span>]][j - <span class="org-py-number">1</span>]
+        for j in range(1, N):
+            for i in range(n):
+                f[i][j] = f[f[i][j - 1]][j - 1]
+                w[i][j] = w[i][j - 1] + w[f[i][j - 1]][j - 1]
 
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">c</span> = i
-            <span class="org-py-variable-name">x</span> = i
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(N):
-                <span class="org-keyword">if</span> k &amp; (<span class="org-py-number">1</span> &lt;&lt; j):
-                    <span class="org-py-variable-name">y</span> = f[x][j]
-                    <span class="org-py-variable-name">c</span> += w[x][j]
-                    <span class="org-py-variable-name">x</span> = y
-            <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">max</span>(ans, c)
-        <span class="org-keyword">return</span> ans
+        ans = 0
+        for i in range(n):
+            c = i
+            x = i
+            for j in range(N):
+                if k &amp; (1 &lt;&lt; j):
+                    y = f[x][j]
+                    c += w[x][j]
+                    x = y
+            ans = max(ans, c)
+        return ans
 </pre>
 </div>
 </div>

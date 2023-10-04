@@ -45,59 +45,59 @@ use-java13; unset CLASSPATH;  bash configure &#x2013;prefix=`pwd`/installed ; ma
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span class="org-keyword">package</span> com.starrocks.<span class="org-constant">lab</span>;
+<pre class="src src-Java">package com.starrocks.lab;
 
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-constant">concurrent</span>.<span class="org-type">ExecutorService</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-constant">concurrent</span>.<span class="org-type">Executors</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-constant">concurrent</span>.<span class="org-type">TimeUnit</span>;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">ThreadDataRaceCase</span> {
-    <span class="org-type">int</span> <span class="org-variable-name">value</span>;
+public class ThreadDataRaceCase {
+    int value;
 
-    <span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Adder</span> <span class="org-keyword">implements</span> <span class="org-type">Runnable</span> {
-        <span class="org-type">int</span> <span class="org-variable-name">index</span>;
-        <span class="org-type">int</span> <span class="org-variable-name">duration</span>;
-        <span class="org-type">int</span> <span class="org-variable-name">tick</span>;
+    public class Adder implements Runnable {
+        int index;
+        int duration;
+        int tick;
 
-        <span class="org-keyword">public</span> Adder(<span class="org-type">int</span> <span class="org-variable-name">index</span>, <span class="org-type">int</span> <span class="org-variable-name">duration</span>) {
-            <span class="org-keyword">this</span>.index = index;
-            <span class="org-keyword">this</span>.duration = duration;
-            <span class="org-keyword">this</span>.tick = 0;
+        public Adder(int index, int duration) {
+            this.index = index;
+            this.duration = duration;
+            this.tick = 0;
         }
 
-        <span class="org-c-annotation">@Override</span>
-        <span class="org-keyword">public</span> <span class="org-type">void</span> <span class="org-function-name">run</span>() {
-            System.out.println(<span class="org-string">"Thread "</span> + index + <span class="org-string">" started..."</span>);
-            <span class="org-type">long</span> <span class="org-variable-name">begin</span> = System.currentTimeMillis();
-            <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
+        @Override
+        public void run() {
+            System.out.println("Thread " + index + " started...");
+            long begin = System.currentTimeMillis();
+            while (true) {
                 value += 1;
                 tick += 1;
-                <span class="org-keyword">if</span> (tick % 100 == 0) {
-                    <span class="org-type">long</span> <span class="org-variable-name">now</span> = System.currentTimeMillis();
-                    <span class="org-keyword">if</span> ((now - begin) &gt; duration * 1000) {
-                        <span class="org-keyword">break</span>;
+                if (tick % 100 == 0) {
+                    long now = System.currentTimeMillis();
+                    if ((now - begin) &gt; duration * 1000) {
+                        break;
                     }
                 }
             }
-            System.out.println(<span class="org-string">"Thread "</span> + index + <span class="org-string">" stopped..."</span>);
+            System.out.println("Thread " + index + " stopped...");
         }
     }
 
-    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) <span class="org-keyword">throws</span> <span class="org-type">InterruptedException</span> {
-        <span class="org-type">ThreadDataRaceCase</span> <span class="org-variable-name">t</span> = <span class="org-keyword">new</span> <span class="org-type">ThreadDataRaceCase</span>();
+    public static void main(String[] args) throws InterruptedException {
+        ThreadDataRaceCase t = new ThreadDataRaceCase();
         t.value = 0;
 
-        <span class="org-type">int</span> <span class="org-variable-name">number</span> = 16;
-        <span class="org-type">int</span> <span class="org-variable-name">duration</span> = 10;
-        <span class="org-type">Adder</span> <span class="org-variable-name">adder</span>[] = <span class="org-keyword">new</span> <span class="org-type">Adder</span>[number];
-        <span class="org-type">ExecutorService</span> <span class="org-variable-name">executor</span> = Executors.newFixedThreadPool(number);
-        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; <span class="org-type">number</span>; i++) {
-            adder[i] = t.<span class="org-keyword">new</span> <span class="org-type">Adder</span>(i, duration);
+        int number = 16;
+        int duration = 10;
+        Adder adder[] = new Adder[number];
+        ExecutorService executor = Executors.newFixedThreadPool(number);
+        for (int i = 0; i &lt; number; i++) {
+            adder[i] = t.new Adder(i, duration);
             executor.submit(adder[i]);
         }
 
         executor.shutdown();
-        executor.awaitTermination(2 * duration, <span class="org-constant">TimeUnit</span>.SECONDS);
+        executor.awaitTermination(2 * duration, TimeUnit.SECONDS);
     }
 }
 </pre>
@@ -107,7 +107,7 @@ use-java13; unset CLASSPATH;  bash configure &#x2013;prefix=`pwd`/installed ; ma
 运行起来可以发现错误是：需要使用 `java -XX:+ThreadSanitizer` 来运行
 </p>
 
-<pre class="example" id="orgdac2e26">
+<pre class="example" id="org626976d">
 sandbox-cloud :: src/main/java ‹master*› » javac com/starrocks/lab/ThreadDataRaceCase.java
 sandbox-cloud :: src/main/java ‹master*› » java -XX:+ThreadSanitizer com/starrocks/lab/ThreadDataRaceCase
 Thread 1 started...

@@ -29,24 +29,24 @@ ORC文件使用了bit-packing技术来对整数进行编码 <a href="https://orc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c++"><span class="org-comment-delimiter">// </span><span class="org-comment">in: input</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">fb: fixed bit</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">data: output</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">nums: how many values to be unpacked.</span>
-<span class="org-type">void</span> <span class="org-function-name">bit_unpack_tail</span>(<span class="org-keyword">const</span> <span class="org-type">uint8_t</span>* <span class="org-variable-name">in</span>, <span class="org-type">int</span> <span class="org-variable-name">fb</span>, <span class="org-type">int64_t</span>* <span class="org-variable-name">data</span>, <span class="org-type">int</span> <span class="org-variable-name">nums</span>) {
-    <span class="org-keyword">if</span> (nums == 0) <span class="org-keyword">return</span>;
-    <span class="org-type">int64_t</span> <span class="org-variable-name">t</span> = 0;
-    <span class="org-type">uint8_t</span> <span class="org-variable-name">c</span> = 0;
-    <span class="org-type">int</span> <span class="org-variable-name">cb</span> = 0;
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; nums; i++) {
-        <span class="org-type">int</span> <span class="org-variable-name">bits</span> = fb;
+<pre class="src src-Cpp">// in: input
+// fb: fixed bit
+// data: output
+// nums: how many values to be unpacked.
+void bit_unpack_tail(const uint8_t* in, int fb, int64_t* data, int nums) {
+    if (nums == 0) return;
+    int64_t t = 0;
+    uint8_t c = 0;
+    int cb = 0;
+    for (int i = 0; i &lt; nums; i++) {
+        int bits = fb;
         t = 0;
-        <span class="org-keyword">while</span> (bits) {
-            <span class="org-keyword">if</span> (cb == 0) {
+        while (bits) {
+            if (cb == 0) {
                 c = (*in++);
                 cb = 8;
             }
-            <span class="org-type">int</span> <span class="org-variable-name">lb</span> = <span class="org-constant">std</span>::min(cb, bits);
+            int lb = std::min(cb, bits);
             t = (t &lt;&lt; lb) | ((c &gt;&gt; (cb - lb)) &amp; ((1 &lt;&lt; lb) - 1));
             bits -= lb;
             cb -= lb;
@@ -71,62 +71,62 @@ ORC文件使用了bit-packing技术来对整数进行编码 <a href="https://orc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">fbs</span> = [<span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span>, <span class="org-py-number">6</span>, <span class="org-py-number">7</span>, <span class="org-py-number">8</span>, <span class="org-py-number">9</span>, <span class="org-py-number">10</span>, <span class="org-py-number">11</span>,
-       <span class="org-py-number">12</span>, <span class="org-py-number">13</span>, <span class="org-py-number">14</span>, <span class="org-py-number">15</span>, <span class="org-py-number">16</span>, <span class="org-py-number">17</span>, <span class="org-py-number">18</span>, <span class="org-py-number">19</span>, <span class="org-py-number">20</span>, <span class="org-py-number">21</span>, <span class="org-py-number">22</span>,
-       <span class="org-py-number">23</span>, <span class="org-py-number">24</span>, <span class="org-py-number">26</span>, <span class="org-py-number">28</span>, <span class="org-py-number">30</span>, <span class="org-py-number">32</span>, <span class="org-py-number">40</span>, <span class="org-py-number">48</span>, <span class="org-py-number">56</span>, <span class="org-py-number">64</span>]
+<pre class="src src-Python">fbs = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+       12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+       23, 24, 26, 28, 30, 32, 40, 48, 56, 64]
 
-<span class="org-py-def-class">def</span> <span class="org-function-name">gen_unpack_bit</span>(fb):
-    <span class="org-py-variable-name">oss</span> = MyStringIO()
-    oss.emit(<span class="org-string">'const uint8_t* _unpack64_{fb}(const uint8_t *__restrict__ in, int64_t *__restrict__ out)'</span>.format(
-        <span class="org-py-variable-name">fb</span>=fb))
-    oss.emit(<span class="org-string">'{'</span>)
-    oss.emit(<span class="org-string">'int64_t t = 0;'</span>)
-    oss.emit(<span class="org-string">'uint8_t c = 0;'</span>)
-    <span class="org-comment"># how many bits in cb</span>
-    <span class="org-py-variable-name">cb</span> = <span class="org-py-number">0</span>
+def gen_unpack_bit(fb):
+    oss = MyStringIO()
+    oss.emit('const uint8_t* _unpack64_{fb}(const uint8_t *__restrict__ in, int64_t *__restrict__ out)'.format(
+        fb=fb))
+    oss.emit('{')
+    oss.emit('int64_t t = 0;')
+    oss.emit('uint8_t c = 0;')
+    # how many bits in cb
+    cb = 0
 
-    <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">64</span>):
-        oss.emit(<span class="org-string">'t = 0;'</span>)
-        <span class="org-py-variable-name">exp</span> = fb
-        <span class="org-keyword">while</span> exp:
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">cb</span> == <span class="org-py-number">0</span>:
-                oss.emit(<span class="org-string">'c = (*in++);'</span>)
-                <span class="org-py-variable-name">cb</span> = <span class="org-py-number">8</span>
+    for i in range(64):
+        oss.emit('t = 0;')
+        exp = fb
+        while exp:
+            if cb == 0:
+                oss.emit('c = (*in++);')
+                cb = 8
 
-            <span class="org-py-variable-name">lb</span> = <span class="org-py-builtins">min</span>(exp, cb)
-            oss.emit(<span class="org-string">'t = (t &lt;&lt; {lb}) | ((c &gt;&gt; {x}) &amp; ((1 &lt;&lt; {lb}) - 1));'</span>.format(<span class="org-py-variable-name">lb</span>=lb, <span class="org-py-variable-name">x</span>=cb - lb))
-            <span class="org-py-variable-name">exp</span> -= lb
-            <span class="org-py-variable-name">cb</span> -= lb
+            lb = min(exp, cb)
+            oss.emit('t = (t &lt;&lt; {lb}) | ((c &gt;&gt; {x}) &amp; ((1 &lt;&lt; {lb}) - 1));'.format(lb=lb, x=cb - lb))
+            exp -= lb
+            cb -= lb
 
-        oss.emit(<span class="org-string">'*out = t;'</span>)
-        oss.emit(<span class="org-string">'out++;'</span>)
-    oss.emit(<span class="org-string">'return in;'</span>)
-    oss.emit(<span class="org-string">'}'</span>)
-    <span class="org-keyword">return</span> oss.get()
+        oss.emit('*out = t;')
+        oss.emit('out++;')
+    oss.emit('return in;')
+    oss.emit('}')
+    return oss.get()
 
 
-<span class="org-py-def-class">def</span> <span class="org-function-name">gen_unpack_driver</span>():
-    <span class="org-py-variable-name">oss</span> = MyStringIO()
-    <span class="org-keyword">for</span> fb <span class="org-keyword">in</span> fbs:
-        oss.emit(<span class="org-string">'void bit_unpack64_{fb}(const uint8_t* __restrict in, int64_t* __restrict__ out, int nums)'</span>.format(
-            <span class="org-py-variable-name">fb</span>=fb))
-        oss.emit(<span class="org-string">"""{{</span>
-<span class="org-string">        int run = nums / 64;</span>
-<span class="org-string">        for(int i=0;i&lt;run;i++) {{</span>
-<span class="org-string">        in = _unpack64_{fb}(in, out);</span>
-<span class="org-string">        out += 64;</span>
-<span class="org-string">        }}</span>
-<span class="org-string">        bit_unpack_tail(in, {fb}, out, nums % 64);</span>
-<span class="org-string">        }}"""</span>.format(<span class="org-py-variable-name">fb</span>=fb))
+def gen_unpack_driver():
+    oss = MyStringIO()
+    for fb in fbs:
+        oss.emit('void bit_unpack64_{fb}(const uint8_t* __restrict in, int64_t* __restrict__ out, int nums)'.format(
+            fb=fb))
+        oss.emit("""{{
+        int run = nums / 64;
+        for(int i=0;i&lt;run;i++) {{
+        in = _unpack64_{fb}(in, out);
+        out += 64;
+        }}
+        bit_unpack_tail(in, {fb}, out, nums % 64);
+        }}""".format(fb=fb))
 
-    oss.emit(<span class="org-string">'void bit_unpack(const uint8_t* in, int fb, int64_t* data, int nums) {'</span>)
-    oss.emit(<span class="org-string">'switch (fb) {'</span>)
-    <span class="org-keyword">for</span> fb <span class="org-keyword">in</span> fbs:
-        oss.emit(<span class="org-string">'case {fb}:'</span>.format(<span class="org-py-variable-name">fb</span>=fb))
-        oss.emit(<span class="org-string">'return bit_unpack64_{fb}(in, data, nums);'</span>.format(<span class="org-py-variable-name">fb</span>=fb))
-    oss.emit(<span class="org-string">'}'</span>)
-    oss.emit(<span class="org-string">'}'</span>)
-    <span class="org-keyword">return</span> oss.get()
+    oss.emit('void bit_unpack(const uint8_t* in, int fb, int64_t* data, int nums) {')
+    oss.emit('switch (fb) {')
+    for fb in fbs:
+        oss.emit('case {fb}:'.format(fb=fb))
+        oss.emit('return bit_unpack64_{fb}(in, data, nums);'.format(fb=fb))
+    oss.emit('}')
+    oss.emit('}')
+    return oss.get()
 
 
 </pre>
@@ -138,7 +138,7 @@ ORC文件使用了bit-packing技术来对整数进行编码 <a href="https://orc
 当然某些case可以继续手工优化。
 </p>
 
-<pre class="example" id="org2caa8ab">
+<pre class="example" id="orge7262f9">
 unpack fb: 1. fast = 63 ms, avg = 0.600815 ns. tail = 329 ms, avg = 3.13759 ns. speedup = 5.22222
 unpack fb: 2. fast = 63 ms, avg = 0.600815 ns. tail = 329 ms, avg = 3.13759 ns. speedup = 5.22222
 unpack fb: 3. fast = 55 ms, avg = 0.524521 ns. tail = 403 ms, avg = 3.84331 ns. speedup = 7.32727

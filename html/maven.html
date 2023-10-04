@@ -267,7 +267,7 @@ Maven 2 仓库存储 Maven 在一个项目的依赖项解析中使用过的工�
 下面是JUnit依赖项的Maven坐标：
 </p>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;dependencies&gt;
+<pre class="src src-Xml">&lt;dependencies&gt;
    &lt;dependency&gt;
       &lt;groupId&gt;junit&lt;/groupId&gt;
       &lt;artifactId&gt;junit&lt;/artifactId&gt;
@@ -303,7 +303,7 @@ Maven 2 仓库存储 Maven 在一个项目的依赖项解析中使用过的工�
 <p>
 maven默认设置~/.m2/repository为本地仓库。将项目所需要的依赖全部都缓存下来，这样不用每次都重新下载依赖。
 </p>
-<pre class="example" id="org32aa411">
+<pre class="example" id="orgabd37fb">
 dirlt@dirlt-virtual-machine:~/.m2/repository$ ls -l
 total 68
 drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 antlr
@@ -329,7 +329,7 @@ drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 xml-apis
 我们可以通过修改~/.m2/setting.xml来配置本地仓库位置。但是似乎没有太大必要=D
 </p>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;settings&gt;
+<pre class="src src-Xml">&lt;settings&gt;
 &lt;localRepository&gt;D:\java\repository&lt;/localRepository&gt;
 &lt;/settings&gt;
 </pre>
@@ -348,7 +348,7 @@ drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 xml-apis
 如果本地仓库没有某个工件的话，那么就会尝试从远程仓库下载。在{M2_HOME}/lib/maven-2.0.10-uber.jar能够找到\org\apache\maven\project\pom-4.0.0.xml,它是所有Maven POM的父POM,所有Maven项目继承该配置，你可以在这个POM中发现如下配置：
 </p>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;repositories&gt;
+<pre class="src src-Xml">&lt;repositories&gt;
   &lt;repository&gt;
     &lt;id&gt;central&lt;/id&gt;
     &lt;name&gt;Maven Repository Switchboard&lt;/name&gt;
@@ -394,7 +394,7 @@ drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 xml-apis
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;project&gt;
+<pre class="src src-Xml">&lt;project&gt;
   ...
   &lt;repositories&gt;
     &lt;repository&gt;
@@ -445,7 +445,7 @@ drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 xml-apis
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-XML">&lt;settings&gt;
+<pre class="src src-Xml">&lt;settings&gt;
   ...
   &lt;profiles&gt;
     &lt;profile&gt;
@@ -477,7 +477,7 @@ drwxrwxr-x 3 dirlt dirlt 4096  6月 24 22:36 xml-apis
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;settings&gt;
+<pre class="src src-Xml">&lt;settings&gt;
   ...
   &lt;mirrors&gt;
     &lt;mirror&gt;
@@ -530,7 +530,7 @@ mvn install 会将项目生成的构件安装到本地Maven仓库，mvn deploy �
 </ul></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-XML">&lt;project&gt;
+<pre class="src src-Xml">&lt;project&gt;
   ...
   &lt;distributionManagement&gt;
     &lt;repository&gt;
@@ -572,7 +572,7 @@ mvn install 会将项目生成的构件安装到本地Maven仓库，mvn deploy �
 <p>
 之后我们只需要在我们自己项目里面填写
 </p>
-<pre class="example" id="org811ba20">
+<pre class="example" id="orgce65e11">
 &lt;parent&gt;
   &lt;groupId&gt;X.Y&lt;/groupId&gt;
   &lt;artifactId&gt;Z&lt;/artifactId&gt;

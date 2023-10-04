@@ -25,50 +25,50 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findMinimumTime</span>(<span class="org-py-object-reference">self</span>, tasks: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">S</span> = <span class="org-py-builtins">min</span>((x[<span class="org-py-number">0</span>] <span class="org-keyword">for</span> x <span class="org-keyword">in</span> tasks))
-        <span class="org-py-variable-name">E</span> = <span class="org-py-builtins">max</span>((x[<span class="org-py-number">1</span>] <span class="org-keyword">for</span> x <span class="org-keyword">in</span> tasks))
-        <span class="org-py-variable-name">N</span> = (E - S + <span class="org-py-number">1</span>)
+<pre class="src src-Python">class Solution:
+    def findMinimumTime(self, tasks: List[List[int]]) -&gt; int:
+        S = min((x[0] for x in tasks))
+        E = max((x[1] for x in tasks))
+        N = (E - S + 1)
 
-        <span class="org-py-variable-name">TS</span> = <span class="org-py-builtins">set</span>(range(S, E + <span class="org-py-number">1</span>))
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">while</span> tasks:
-            <span class="org-py-variable-name">ev</span> = []
-            <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
-                ev.append((s, <span class="org-py-number">0</span>))
-                ev.append((e + <span class="org-py-number">1</span>, <span class="org-py-number">1</span>))
-            <span class="org-keyword">for</span> t <span class="org-keyword">in</span> TS:
-                ev.append((t, <span class="org-py-number">2</span>))
+        TS = set(range(S, E + 1))
+        ans = 0
+        while tasks:
+            ev = []
+            for s, e, d in tasks:
+                ev.append((s, 0))
+                ev.append((e + 1, 1))
+            for t in TS:
+                ev.append((t, 2))
             ev.sort()
 
-            <span class="org-py-variable-name">d</span> = <span class="org-py-number">0</span>
-            <span class="org-py-variable-name">dm</span>, <span class="org-py-variable-name">tm</span> = <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
-            <span class="org-keyword">for</span> ts, ty <span class="org-keyword">in</span> ev:
-                <span class="org-keyword">if</span> <span class="org-py-variable-name">ty</span> == <span class="org-py-number">0</span>:
-                    <span class="org-py-variable-name">d</span> += <span class="org-py-number">1</span>
-                <span class="org-keyword">elif</span> <span class="org-py-variable-name">ty</span> == <span class="org-py-number">1</span>:
-                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
-                <span class="org-keyword">else</span>:
-                    <span class="org-keyword">if</span> d &gt; dm:
-                        <span class="org-py-variable-name">dm</span> = d
-                        <span class="org-py-variable-name">tm</span> = ts
+            d = 0
+            dm, tm = 0, 0
+            for ts, ty in ev:
+                if ty == 0:
+                    d += 1
+                elif ty == 1:
+                    d -= 1
+                else:
+                    if d &gt; dm:
+                        dm = d
+                        tm = ts
 
-            <span class="org-comment"># print('use tm ', tm)</span>
+            # print('use tm ', tm)
             TS.remove(tm)
-            <span class="org-py-variable-name">ans</span> += <span class="org-py-number">1</span>
+            ans += 1
 
-            <span class="org-py-variable-name">tmp</span> = []
-            <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
-                <span class="org-keyword">if</span> s &lt;= tm &lt;= e:
-                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
-                    <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
+            tmp = []
+            for s, e, d in tasks:
+                if s &lt;= tm &lt;= e:
+                    d -= 1
+                    if d &gt; 0:
                         tmp.append((s, e, d))
-                <span class="org-keyword">else</span>:
+                else:
                     tmp.append((s, e, d))
-            <span class="org-py-variable-name">tasks</span> = tmp
+            tasks = tmp
 
-        <span class="org-keyword">return</span> ans
+        return ans
 </pre>
 </div>
 
@@ -84,22 +84,22 @@
 
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findMinimumTime</span>(<span class="org-py-object-reference">self</span>, tasks: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">run</span> = [<span class="org-py-pseudo-keyword">False</span>] * <span class="org-py-number">2001</span>
-        tasks.sort(<span class="org-py-variable-name">key</span>=<span class="org-keyword">lambda</span> x: x[<span class="org-py-number">1</span>])
+<pre class="src src-Python">
+class Solution:
+    def findMinimumTime(self, tasks: List[List[int]]) -&gt; int:
+        run = [False] * 2001
+        tasks.sort(key=lambda x: x[1])
 
-        <span class="org-keyword">for</span> s, e, d <span class="org-keyword">in</span> tasks:
-            <span class="org-py-variable-name">d</span> -= <span class="org-py-builtins">sum</span>(run[s:e + <span class="org-py-number">1</span>])  <span class="org-comment"># &#36825;&#27573;&#26102;&#38388;&#20869;&#20043;&#21069;&#24050;&#32463;&#34987;&#23433;&#25490;&#20102;&#22810;&#23569;&#65292;&#36825;&#20010;&#21487;&#20197;&#38468;&#24102;&#19978;</span>
-            <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
-                <span class="org-keyword">for</span> t <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(s, e + <span class="org-py-number">1</span>)):  <span class="org-comment"># &#21097;&#20313;&#30340;&#26102;&#38388;&#20174;&#21518;&#24448;&#21069;&#23433;&#25490;</span>
-                    <span class="org-keyword">if</span> run[t]: <span class="org-keyword">continue</span>
-                    <span class="org-py-variable-name">d</span> -= <span class="org-py-number">1</span>
-                    <span class="org-py-variable-name">run</span>[t] = <span class="org-py-pseudo-keyword">True</span>
-                    <span class="org-keyword">if</span> <span class="org-py-variable-name">d</span> == <span class="org-py-number">0</span>: <span class="org-keyword">break</span>
+        for s, e, d in tasks:
+            d -= sum(run[s:e + 1])  # 这段时间内之前已经被安排了多少，这个可以附带上
+            if d &gt; 0:
+                for t in reversed(range(s, e + 1)):  # 剩余的时间从后往前安排
+                    if run[t]: continue
+                    d -= 1
+                    run[t] = True
+                    if d == 0: break
 
-        <span class="org-keyword">return</span> <span class="org-py-builtins">sum</span>(run)
+        return sum(run)
 </pre>
 </div>
 </div>

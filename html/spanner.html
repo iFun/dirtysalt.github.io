@@ -25,13 +25,13 @@
 <li><a href="#org770a2d1">3.3. Data Model</a></li>
 </ul>
 </li>
-<li><a href="#org7683c80">4. TrueTime</a></li>
+<li><a href="#org805efe6">4. TrueTime</a></li>
 <li><a href="#org95757cc">5. Concurrency Control</a></li>
 <li><a href="#org43f9e20">6. Evaluation</a>
 <ul>
 <li><a href="#org142068e">6.1. Microbenchmarks</a></li>
 <li><a href="#orgb008b43">6.2. Availability</a></li>
-<li><a href="#org805efe6">6.3. TrueTime</a></li>
+<li><a href="#org4f059f0">6.3. TrueTime</a></li>
 <li><a href="#org101a5ca">6.4. F1</a></li>
 </ul>
 </li>
@@ -99,7 +99,7 @@
 </ul>
 
 
-<div id="org456ad87" class="figure">
+<div id="org16a639e" class="figure">
 <p><img src="../images/design-goals-for-spanner.png" alt="design-goals-for-spanner.png" />
 </p>
 </div>
@@ -122,7 +122,7 @@
 <hr />
 
 
-<div id="org123f29a" class="figure">
+<div id="org66e2c14" class="figure">
 <p><img src="../images/spanner-server-organization.png" alt="spanner-server-organization.png" />
 </p>
 </div>
@@ -144,7 +144,7 @@
 <h3 id="org5d6985e"><span class="section-number-3">3.1.</span> Spanserver Software Stack</h3>
 <div class="outline-text-3" id="text-3-1">
 
-<div id="orge03c5ce" class="figure">
+<div id="orgb2812ca" class="figure">
 <p><img src="../images/spanserver-software-stack.png" alt="spanserver-software-stack.png" />
 </p>
 </div>
@@ -180,7 +180,7 @@
 <h3 id="org9d12793"><span class="section-number-3">3.2.</span> Directories and Placement</h3>
 <div class="outline-text-3" id="text-3-2">
 
-<div id="orgef63265" class="figure">
+<div id="org56f1f8e" class="figure">
 <p><img src="../images/spanner-directory-movement.png" alt="spanner-directory-movement.png" />
 </p>
 </div>
@@ -223,7 +223,7 @@
 </ul>
 
 
-<div id="org30e21bb" class="figure">
+<div id="orgc7ae3b8" class="figure">
 <p><img src="../images/spanner-data-model-example.png" alt="spanner-data-model-example.png" />
 </p>
 </div>
@@ -235,11 +235,11 @@
 </div>
 </div>
 
-<div id="outline-container-org7683c80" class="outline-2">
-<h2 id="org7683c80"><span class="section-number-2">4.</span> TrueTime</h2>
+<div id="outline-container-org805efe6" class="outline-2">
+<h2 id="org805efe6"><span class="section-number-2">4.</span> TrueTime</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="org116e947" class="figure">
+<div id="org5974048" class="figure">
 <p><img src="../images/spanner-true-time-api.png" alt="spanner-true-time-api.png" />
 </p>
 </div>
@@ -309,8 +309,8 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 <div id="outline-container-orgb008b43" class="outline-3">
 <h3 id="orgb008b43"><span class="section-number-3">6.2.</span> Availability</h3>
 </div>
-<div id="outline-container-org805efe6" class="outline-3">
-<h3 id="org805efe6"><span class="section-number-3">6.3.</span> TrueTime</h3>
+<div id="outline-container-org4f059f0" class="outline-3">
+<h3 id="org4f059f0"><span class="section-number-3">6.3.</span> TrueTime</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Two questions must be answered with respect to True- Time: is e truly a bound on clock uncertainty, and how bad e does get?（两个关键的问题就是偏移是否可以按照我们估算范围给出上界，另外就是偏移最坏能到什么情况）</li>
@@ -323,7 +323,7 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 </ul>
 
 
-<div id="org2036258" class="figure">
+<div id="orgd903755" class="figure">
 <p><img src="../images/spanner-true-time-benchmark.png" alt="spanner-true-time-benchmark.png" />
 </p>
 </div>

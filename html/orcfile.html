@@ -65,7 +65,7 @@ An ORC file contains groups of row data called stripes, along with auxiliary inf
 </ul>
 
 
-<div id="org8ff6b79" class="figure">
+<div id="orgc35a99e" class="figure">
 <p><img src="../images/orcfile-layout.png" alt="orcfile-layout.png" />
 </p>
 </div>
@@ -94,7 +94,7 @@ As shown in the diagram, each stripe in an ORC file holds index data, row data, 
 Let's take a ORC file from lineitem table(TPCH-100G compressed in zlib) for example.
 </p>
 
-<pre class="example" id="orgbee3891">
+<pre class="example" id="org2940a21">
 java -jar ~/installed/orc-tools-1.7.0-SNAPSHOT-uber.jar meta hdfs://172.26.194.238:9000/user/hive/warehouse/tpch_100g_zlib.db/lineitem/000000_0`
 </pre>
 
@@ -106,7 +106,7 @@ The `File Footer` section takes 700-800 bytes. We discussed if we can cache this
 And this ORC file has 10 stripes, one stripe information is following:
 </p>
 
-<pre class="example" id="org743560a">
+<pre class="example" id="orge2ceff8">
 Stripe: offset: 304806283 data: 24542859 rows: 827152 tail: 267 index: 19678
 </pre>
 

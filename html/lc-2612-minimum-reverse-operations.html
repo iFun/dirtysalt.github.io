@@ -39,55 +39,55 @@
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minReverseOperations</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>, p: <span class="org-py-builtins">int</span>, banned: List[<span class="org-py-builtins">int</span>], k: <span class="org-py-builtins">int</span>) -&gt; List[<span class="org-py-builtins">int</span>]:
-        <span class="org-py-import-from">from</span> sortedcontainers <span class="org-py-import-from">import</span> SortedList
-        <span class="org-py-variable-name">opts</span> = [SortedList(), SortedList()]
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            opts[i % <span class="org-py-number">2</span>].add(i)
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> banned:
-            opts[x % <span class="org-py-number">2</span>].remove(x)
+<pre class="src src-Python">class Solution:
+    def minReverseOperations(self, n: int, p: int, banned: List[int], k: int) -&gt; List[int]:
+        from sortedcontainers import SortedList
+        opts = [SortedList(), SortedList()]
+        for i in range(n):
+            opts[i % 2].add(i)
+        for x in banned:
+            opts[x % 2].remove(x)
 
-        <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
-        <span class="org-py-variable-name">dq</span> = deque()
-        <span class="org-py-variable-name">ans</span> = [-<span class="org-py-number">1</span>] * n
+        from collections import deque
+        dq = deque()
+        ans = [-1] * n
         dq.append(p)
-        <span class="org-py-variable-name">ans</span>[p] = <span class="org-py-number">0</span>
-        opts[p % <span class="org-py-number">2</span>].remove(p)
+        ans[p] = 0
+        opts[p % 2].remove(p)
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(x):
-            <span class="org-py-variable-name">y</span> = <span class="org-py-builtins">max</span>(x + <span class="org-py-number">1</span> - k, k - x - <span class="org-py-number">1</span>, <span class="org-py-number">0</span>)
-            <span class="org-keyword">if</span> (x + y + <span class="org-py-number">1</span>) % <span class="org-py-number">2</span> != k % <span class="org-py-number">2</span>:
-                <span class="org-py-variable-name">y</span> += <span class="org-py-number">1</span>
-            <span class="org-py-variable-name">opt</span> = opts[y % <span class="org-py-number">2</span>]
-            <span class="org-py-variable-name">idx</span> = opt.bisect_left(y)
-            <span class="org-keyword">while</span> idx &lt; <span class="org-py-builtins">len</span>(opt):
-                <span class="org-py-variable-name">y</span> = opt[idx]
-                <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = x, y
-                <span class="org-keyword">if</span> a &gt; b:
-                    <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = b, a
-                <span class="org-py-variable-name">m</span> = (k - (b - a + <span class="org-py-number">1</span>)) // <span class="org-py-number">2</span>
-                <span class="org-keyword">if</span> m &gt;= <span class="org-py-number">0</span> <span class="org-keyword">and</span> (a - m) &gt;= <span class="org-py-number">0</span> <span class="org-keyword">and</span> (b + m) &lt; n:
-                    <span class="org-keyword">yield</span> a <span class="org-keyword">if</span> a != x <span class="org-keyword">else</span> b
-                <span class="org-keyword">else</span>:
-                    <span class="org-keyword">break</span>
-                <span class="org-py-variable-name">idx</span> += <span class="org-py-number">1</span>
+        def search(x):
+            y = max(x + 1 - k, k - x - 1, 0)
+            if (x + y + 1) % 2 != k % 2:
+                y += 1
+            opt = opts[y % 2]
+            idx = opt.bisect_left(y)
+            while idx &lt; len(opt):
+                y = opt[idx]
+                a, b = x, y
+                if a &gt; b:
+                    a, b = b, a
+                m = (k - (b - a + 1)) // 2
+                if m &gt;= 0 and (a - m) &gt;= 0 and (b + m) &lt; n:
+                    yield a if a != x else b
+                else:
+                    break
+                idx += 1
 
-        <span class="org-keyword">while</span> dq:
-            <span class="org-py-variable-name">x</span> = dq.popleft()
-            <span class="org-py-variable-name">values</span> = []
-            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> search(x):
+        while dq:
+            x = dq.popleft()
+            values = []
+            for y in search(x):
                 values.append(y)
 
-            <span class="org-keyword">print</span>(x, values)
-            <span class="org-keyword">for</span> v <span class="org-keyword">in</span> values:
-                opts[v % <span class="org-py-number">2</span>].remove(v)
+            print(x, values)
+            for v in values:
+                opts[v % 2].remove(v)
 
-            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> values:
-                <span class="org-py-variable-name">ans</span>[y] = ans[x] + <span class="org-py-number">1</span>
+            for y in values:
+                ans[y] = ans[x] + 1
                 dq.append(y)
 
-        <span class="org-keyword">return</span> ans
+        return ans
 </pre>
 </div>
 </div>

@@ -33,7 +33,7 @@ Horizontal Row-store (水平基于行存储) pros(1,4) cons(2,3)
 </p>
 
 
-<div id="org6849d5e" class="figure">
+<div id="org8eef537" class="figure">
 <p><img src="../images/rcfile-row-store.png" alt="rcfile-row-store.png" />
 </p>
 </div>
@@ -43,7 +43,7 @@ Vertical Column-store (垂直基于列存储) 如果确定访问模式的话那�
 </p>
 
 
-<div id="orgeb350fb" class="figure">
+<div id="orgaa53246" class="figure">
 <p><img src="../images/rcfile-column-store.png" alt="rcfile-column-store.png" />
 </p>
 </div>
@@ -70,7 +70,7 @@ RCFile is designed and implemented on top of the Hadoop Distributed File System 
 </ul>
 
 
-<div id="org5e4069d" class="figure">
+<div id="orgc45548b" class="figure">
 <p><img src="../images/rcfile-format.png" alt="rcfile-format.png" />
 </p>
 </div>
@@ -93,14 +93,13 @@ I/O performance is a major concern of RCFile. Therefore, RCFile needs to use a l
 </ul>
 
 
-<div id="orgf77026a" class="figure">
+<div id="org6569b38" class="figure">
 <p><img src="../images/rcfile-row-group-size.png" alt="rcfile-row-group-size.png" />
 </p>
 </div>
 
 <p>
-Users should choose the row group size to consider both the storage space and query execution requirements. Currently, RCFile adapted in Facebook uses 4MB as the default row group size. The RCFile library provides a parameter to allow users to select a size for their own table.
-</p>
+Users should choose the row group size to consider both the storage space and query execution requirements. Currently, RCFile adapted in Facebook uses 4MB as the default row group size. The RCFile library provides a parameter to allow users to select a size for their own table.</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/rcfile.html';this.page.identifier = 'rcfile.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -98,12 +98,12 @@ sudo argdist -d 10 -i 10 -p `doris-find-process` -H 'p:/home/disk2/zy/DorisDB/ou
 这个环境变量会影响到cmake里面c/c++默认编译参数
 </p>
 
+<blockquote>
 <p>
-```
 export CXXFLAGS="-fno-omit-frame-pointer ${CXXFLAGS}"
 export CFLAGS="-fno-omit-frame-pointer ${CFLAGS}"
-```
 </p>
+</blockquote>
 
 <p>
 When introducing thirdparty, make sure compiler option `-fno-omit-frame-pointer` is enabled. By default it's disabled, which makes profiling hard.  <a href="https://gcc.gnu.org/onlinedocs/gcc-10.3.0/gcc/Optimize-Options.html">https://gcc.gnu.org/onlinedocs/gcc-10.3.0/gcc/Optimize-Options.html</a>. The ovehead of it can be offset by observablity.
@@ -135,8 +135,7 @@ perf_events has JIT support to solve this, which requires the VM to maintain a /
 </p>
 
 <p>
-Note that Java may not show full stacks to begin with, due to hotspot on x86 omitting the frame pointer (just like gcc). On newer versions (JDK 8u60+), you can use the -XX:+PreserveFramePointer option to fix this behavior, and profile fully using perf. See my Netflix Tech Blog post, Java in Flames, for a full writeup, and my Java flame graphs section, which links to an older patch and includes an example resulting flame graph. I also summarized the latest in my JavaOne 2016 talk Java Performance Analysis on Linux with Flame Graphs.
-</p>
+Note that Java may not show full stacks to begin with, due to hotspot on x86 omitting the frame pointer (just like gcc). On newer versions (JDK 8u60+), you can use the -XX:+PreserveFramePointer option to fix this behavior, and profile fully using perf. See my Netflix Tech Blog post, Java in Flames, for a full writeup, and my Java flame graphs section, which links to an older patch and includes an example resulting flame graph. I also summarized the latest in my JavaOne 2016 talk Java Performance Analysis on Linux with Flame Graphs.</p>
 </div>
 </div>
 </div>

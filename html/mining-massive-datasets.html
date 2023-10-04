@@ -104,7 +104,7 @@ shingles是将文档进行字符切分：k-shingle(k-gram)指将文档内连续k
 </p>
 
 
-<div id="org344616a" class="figure">
+<div id="orgc96cb24" class="figure">
 <p><img src="../images/mmds-minhashing-example.png" alt="mmds-minhashing-example.png" />
 </p>
 </div>
@@ -114,7 +114,7 @@ shingles是将文档进行字符切分：k-shingle(k-gram)指将文档内连续k
 </p>
 
 
-<div id="org5be7a7c" class="figure">
+<div id="orgc12eec1" class="figure">
 <p><img src="../images/mmds-minhashing-impl.png" alt="mmds-minhashing-impl.png" />
 </p>
 </div>
@@ -225,7 +225,7 @@ SVD的几何意义就是要将原来数据通过线性模型方式映射到topic
 </p>
 
 
-<div id="org790f726" class="figure">
+<div id="orgfeeb86a" class="figure">
 <p><img src="../images/mmds-svd-and-eigen-decomp.png" alt="mmds-svd-and-eigen-decomp.png" />
 </p>
 </div>
@@ -235,7 +235,7 @@ SVD计算复杂度在O(n^2 * m) / O(m^2 * n). 如果输入矩阵是稀疏的话�
 </p>
 
 
-<div id="org79348b0" class="figure">
+<div id="org23a9bba" class="figure">
 <p><img src="../images/mmds-cur-approx-to-svd.png" alt="mmds-cur-approx-to-svd.png" />
 </p>
 </div>
@@ -288,8 +288,7 @@ k-means一个变种是BFR算法，这种算法假设数据点在各个维度上�
 <h2 id="org3e2b332"><span class="section-number-2">9.</span> Bipartite Graph Matching</h2>
 <div class="outline-text-2" id="text-9">
 <p>
-Bipartite Graph Matching(二部图匹配)问题是说：有两个子图G1,G2之间有若干edges相连，我们如何选择选择部分edges(matching), 同时确保两个图中任意一个点只能在一个edge上。如果一个matching选择了k条边的话，那么称C(M) = cardinality of matching = k. 如果k等于min(# of G1, # of G2)的话那么则称为完美匹配(perfect matching). 当然有些图可能不存在完美匹配，那么我们就需要寻找最大匹配(maximum matching). 对于离线二部图最大匹配问题已经有多项式的算法，但是没有在线的方法。不过可以证明，对于在线问题如果我们使用greedy算法的话，competitive ratio = C(greedy algoirhtm matching) / C(optimal algorithm matching) &gt;= 0.5. 这个competitive ration是对于所有可能的input cases而言的。
-</p>
+Bipartite Graph Matching(二部图匹配)问题是说：有两个子图G1,G2之间有若干edges相连，我们如何选择选择部分edges(matching), 同时确保两个图中任意一个点只能在一个edge上。如果一个matching选择了k条边的话，那么称C(M) = cardinality of matching = k. 如果k等于min(# of G1, # of G2)的话那么则称为完美匹配(perfect matching). 当然有些图可能不存在完美匹配，那么我们就需要寻找最大匹配(maximum matching). 对于离线二部图最大匹配问题已经有多项式的算法，但是没有在线的方法。不过可以证明，对于在线问题如果我们使用greedy算法的话，competitive ratio = C(greedy algoirhtm matching) / C(optimal algorithm matching) &gt;= 0.5. 这个competitive ration是对于所有可能的input cases而言的。</p>
 </div>
 </div>
 </div>

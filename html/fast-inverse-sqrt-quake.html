@@ -43,7 +43,7 @@ IEEE 754 的float表示包括三个部分：
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-c"><span class="org-type">float</span> <span class="org-function-name">Q_rsqrt</span>( <span class="org-type">float</span> <span class="org-variable-name">number</span> )
+<pre class="src src-C"><span class="org-type">float</span> <span class="org-function-name">Q_rsqrt</span>( <span class="org-type">float</span> <span class="org-variable-name">number</span> )
 {
     <span class="org-type">long</span> <span class="org-variable-name">i</span>;
     <span class="org-type">float</span> <span class="org-variable-name">x2</span>, <span class="org-variable-name">y</span>;
@@ -67,7 +67,7 @@ IEEE 754 的float表示包括三个部分：
 </p>
 
 
-<div id="org36f5959" class="figure">
+<div id="orgb01b91d" class="figure">
 <p><img src="../images/fast-inverse-sqrt-equation.png" alt="fast-inverse-sqrt-equation.png" />
 </p>
 </div>
@@ -77,7 +77,7 @@ IEEE 754 的float表示包括三个部分：
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ipython">In [56]: a = (1&lt;&lt; 23) * 1.5  * (127)
+<pre class="src src-Ipython">In [56]: a = (1&lt;&lt; 23) * 1.5  * (127)
 
 In [57]: b = 0x5f3759df
 
@@ -91,7 +91,7 @@ Out[60]: (1598029824.0, 1597463007, 566817.0, 0.06756985187530518)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-ipython">In [11]: def test():
+<pre class="src src-Ipython">In [11]: def test():
     ...:     data = []
     ...:     import math
     ...:     for x2 in range(100):
@@ -117,7 +117,7 @@ Out[60]: (1598029824.0, 1597463007, 566817.0, 0.06756985187530518)
 至于 0x5f3759df 这个魔数，对应的u是 0.0450466.
 </p>
 
-<pre class="example" id="org45650de">
+<pre class="example" id="org4098981">
 ====top10=====
 (0.81, 0.046, 0.0014)
 (0.82, 0.0439, 0.0017)
@@ -140,7 +140,7 @@ avg u = 0.0573, number = 0x5f34ff97
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"><span class="org-type">float</span> <span class="org-function-name">Q_sqrt</span>( <span class="org-type">float</span> <span class="org-variable-name">number</span> )
+<pre class="src src-C"><span class="org-type">float</span> <span class="org-function-name">Q_sqrt</span>( <span class="org-type">float</span> <span class="org-variable-name">number</span> )
 {
     <span class="org-type">long</span> <span class="org-variable-name">i</span>;
     <span class="org-type">float</span> <span class="org-variable-name">y</span>;

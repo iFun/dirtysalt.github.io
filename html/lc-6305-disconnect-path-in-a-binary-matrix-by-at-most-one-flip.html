@@ -33,44 +33,44 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">isPossibleToCutPath</span>(<span class="org-py-object-reference">self</span>, grid: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">bool</span>:
-        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">m</span> = <span class="org-py-builtins">len</span>(grid), <span class="org-py-builtins">len</span>(grid[<span class="org-py-number">0</span>])
+<pre class="src src-Python">
+class Solution:
+    def isPossibleToCutPath(self, grid: List[List[int]]) -&gt; bool:
+        n, m = len(grid), len(grid[0])
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">search</span>():
-            <span class="org-py-variable-name">dp</span> = [[<span class="org-py-number">0</span>] * m <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-            dp[-<span class="org-py-number">1</span>][-<span class="org-py-number">1</span>] = <span class="org-py-number">1</span>
-            <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(n)):
-                <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(m)):
-                    <span class="org-keyword">if</span> grid[i][j] == <span class="org-py-number">0</span>: <span class="org-keyword">continue</span>
-                    <span class="org-keyword">if</span> (i + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">and</span> dp[i + <span class="org-py-number">1</span>][j] == <span class="org-py-number">1</span>:
-                        dp[i][j] = <span class="org-py-number">1</span>
-                    <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; m <span class="org-keyword">and</span> dp[i][j + <span class="org-py-number">1</span>] == <span class="org-py-number">1</span>:
-                        dp[i][j] = <span class="org-py-number">1</span>
+        def search():
+            dp = [[0] * m for _ in range(n)]
+            dp[-1][-1] = 1
+            for i in reversed(range(n)):
+                for j in reversed(range(m)):
+                    if grid[i][j] == 0: continue
+                    if (i + 1) &lt; n and dp[i + 1][j] == 1:
+                        dp[i][j] = 1
+                    if (j + 1) &lt; m and dp[i][j + 1] == 1:
+                        dp[i][j] = 1
 
-            <span class="org-keyword">if</span> dp[<span class="org-py-number">0</span>][<span class="org-py-number">0</span>] == <span class="org-py-number">0</span>: <span class="org-keyword">return</span> []
-            <span class="org-py-variable-name">path</span> = [(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>)]
-            <span class="org-keyword">while</span> <span class="org-py-pseudo-keyword">True</span>:
-                (i, j) = path[-<span class="org-py-number">1</span>]
-                <span class="org-keyword">if</span> (i, j) == (n - <span class="org-py-number">1</span>, m - <span class="org-py-number">1</span>): <span class="org-keyword">break</span>
-                <span class="org-keyword">if</span> (i + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">and</span> dp[i + <span class="org-py-number">1</span>][j] == <span class="org-py-number">1</span>:
-                    path.append((i + <span class="org-py-number">1</span>, j))
-                    <span class="org-keyword">continue</span>
-                <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; m <span class="org-keyword">and</span> dp[i][j + <span class="org-py-number">1</span>] == <span class="org-py-number">1</span>:
-                    path.append((i, j + <span class="org-py-number">1</span>))
-                    <span class="org-keyword">continue</span>
-            <span class="org-keyword">return</span> path
+            if dp[0][0] == 0: return []
+            path = [(0, 0)]
+            while True:
+                (i, j) = path[-1]
+                if (i, j) == (n - 1, m - 1): break
+                if (i + 1) &lt; n and dp[i + 1][j] == 1:
+                    path.append((i + 1, j))
+                    continue
+                if (j + 1) &lt; m and dp[i][j + 1] == 1:
+                    path.append((i, j + 1))
+                    continue
+            return path
 
-        <span class="org-py-variable-name">path</span> = search()
-        <span class="org-comment"># print(path)</span>
-        <span class="org-keyword">if</span> <span class="org-keyword">not</span> path: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
-        <span class="org-keyword">for</span> x, y <span class="org-keyword">in</span> path[<span class="org-py-number">1</span>:-<span class="org-py-number">1</span>]:
-            grid[x][y] = <span class="org-py-number">0</span>
-        <span class="org-comment"># print(grid)</span>
-        <span class="org-py-variable-name">path</span> = search()
-        <span class="org-keyword">if</span> <span class="org-keyword">not</span> path: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
-        <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+        path = search()
+        # print(path)
+        if not path: return True
+        for x, y in path[1:-1]:
+            grid[x][y] = 0
+        # print(grid)
+        path = search()
+        if not path: return True
+        return False
 </pre>
 </div>
 </div>

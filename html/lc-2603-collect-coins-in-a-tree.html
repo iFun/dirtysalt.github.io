@@ -46,51 +46,51 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">collectTheCoins</span>(<span class="org-py-object-reference">self</span>, coins: List[<span class="org-py-builtins">int</span>], edges: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(edges) + <span class="org-py-number">1</span>
-        <span class="org-py-variable-name">adj</span> = [[] <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-py-variable-name">ind</span> = [<span class="org-py-number">0</span>] * n
-        <span class="org-keyword">for</span> x, y <span class="org-keyword">in</span> edges:
+<pre class="src src-Python">class Solution:
+    def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -&gt; int:
+        n = len(edges) + 1
+        adj = [[] for _ in range(n)]
+        ind = [0] * n
+        for x, y in edges:
             adj[x].append(y)
             adj[y].append(x)
-            <span class="org-py-variable-name">ind</span>[x] += <span class="org-py-number">1</span>
-            <span class="org-py-variable-name">ind</span>[y] += <span class="org-py-number">1</span>
+            ind[x] += 1
+            ind[y] += 1
 
-        <span class="org-comment"># remove leaf node coin = 0</span>
-        <span class="org-py-import-from">from</span> collections <span class="org-py-import-from">import</span> deque
-        <span class="org-py-variable-name">q</span> = deque()
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[i] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">coins</span>[i] == <span class="org-py-number">0</span>:
+        # remove leaf node coin = 0
+        from collections import deque
+        q = deque()
+        for i in range(n):
+            if ind[i] == 1 and coins[i] == 0:
                 q.append(i)
-        <span class="org-keyword">while</span> q:
-            <span class="org-py-variable-name">x</span> = q.popleft()
-            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> adj[x]:
-                <span class="org-py-variable-name">ind</span>[y] -= <span class="org-py-number">1</span>
-                <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[y] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">coins</span>[y] == <span class="org-py-number">0</span>:
+        while q:
+            x = q.popleft()
+            for y in adj[x]:
+                ind[y] -= 1
+                if ind[y] == 1 and coins[y] == 0:
                     q.append(y)
 
-        <span class="org-comment"># walk from leaf node to mark depth.</span>
-        <span class="org-py-variable-name">q</span> = deque()
-        <span class="org-py-variable-name">depth</span> = [<span class="org-py-number">0</span>] * n
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[i] == <span class="org-py-number">1</span> <span class="org-keyword">and</span> coins[i]:
+        # walk from leaf node to mark depth.
+        q = deque()
+        depth = [0] * n
+        for i in range(n):
+            if ind[i] == 1 and coins[i]:
                 q.append(i)
-                <span class="org-py-variable-name">depth</span>[i] = <span class="org-py-number">0</span>
+                depth[i] = 0
 
-        <span class="org-keyword">while</span> q:
-            <span class="org-py-variable-name">x</span> = q.popleft()
-            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> adj[x]:
-                <span class="org-py-variable-name">ind</span>[y] -= <span class="org-py-number">1</span>
-                <span class="org-comment"># won't lead to coins = 0 leaf.</span>
-                <span class="org-keyword">if</span> <span class="org-py-variable-name">ind</span>[y] == <span class="org-py-number">1</span>:
-                    <span class="org-py-variable-name">depth</span>[y] = depth[x] + <span class="org-py-number">1</span>
+        while q:
+            x = q.popleft()
+            for y in adj[x]:
+                ind[y] -= 1
+                # won't lead to coins = 0 leaf.
+                if ind[y] == 1:
+                    depth[y] = depth[x] + 1
                     q.append(y)
 
-        <span class="org-py-variable-name">edge</span> = <span class="org-py-builtins">len</span>([x <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n) <span class="org-keyword">if</span> depth[x] &gt;= <span class="org-py-number">2</span>]) - <span class="org-py-number">1</span>
-        <span class="org-keyword">if</span> edge &lt; <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-number">0</span>
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">2</span> * edge
-        <span class="org-keyword">return</span> ans
+        edge = len([x for x in range(n) if depth[x] &gt;= 2]) - 1
+        if edge &lt; 0: return 0
+        ans = 2 * edge
+        return ans
 </pre>
 </div>
 </div>

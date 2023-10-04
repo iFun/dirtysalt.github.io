@@ -39,34 +39,34 @@
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">addNegabinary</span>(<span class="org-py-object-reference">self</span>, arr1: List[<span class="org-py-builtins">int</span>], arr2: List[<span class="org-py-builtins">int</span>]) -&gt; List[<span class="org-py-builtins">int</span>]:
-        <span class="org-py-variable-name">st</span> = []
-        <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
+<pre class="src src-Python">class Solution:
+    def addNegabinary(self, arr1: List[int], arr2: List[int]) -&gt; List[int]:
+        st = []
+        a, b = 0, 0
 
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">max</span>(len(arr1), <span class="org-py-builtins">len</span>(arr2))
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">x</span> = <span class="org-py-number">0</span>
-            <span class="org-keyword">if</span> i &lt; <span class="org-py-builtins">len</span>(arr1):
-                <span class="org-py-variable-name">x</span> += arr1[<span class="org-py-builtins">len</span>(arr1) - <span class="org-py-number">1</span> - i]
-            <span class="org-keyword">if</span> i &lt; <span class="org-py-builtins">len</span>(arr2):
-                <span class="org-py-variable-name">x</span> += arr2[<span class="org-py-builtins">len</span>(arr2) - <span class="org-py-number">1</span> - i]
+        n = max(len(arr1), len(arr2))
+        for i in range(n):
+            x = 0
+            if i &lt; len(arr1):
+                x += arr1[len(arr1) - 1 - i]
+            if i &lt; len(arr2):
+                x += arr2[len(arr2) - 1 - i]
 
-            <span class="org-py-variable-name">a</span> += x
-            st.append(a % <span class="org-py-number">2</span>)
-            <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = b + a // <span class="org-py-number">2</span>, a // <span class="org-py-number">2</span>
+            a += x
+            st.append(a % 2)
+            a, b = b + a // 2, a // 2
 
-        <span class="org-keyword">while</span> a != <span class="org-py-number">2</span> * b:
-            st.append(a % <span class="org-py-number">2</span>)
-            <span class="org-py-variable-name">a</span>, <span class="org-py-variable-name">b</span> = b + a // <span class="org-py-number">2</span>, a // <span class="org-py-number">2</span>
+        while a != 2 * b:
+            st.append(a % 2)
+            a, b = b + a // 2, a // 2
 
-        <span class="org-keyword">while</span> st <span class="org-keyword">and</span> <span class="org-py-variable-name">st</span>[-<span class="org-py-number">1</span>] == <span class="org-py-number">0</span>:
+        while st and st[-1] == 0:
             st.pop()
 
-        <span class="org-keyword">if</span> <span class="org-keyword">not</span> st:
-            <span class="org-keyword">return</span> [<span class="org-py-number">0</span>]
-        <span class="org-py-variable-name">ans</span> = st[::-<span class="org-py-number">1</span>]
-        <span class="org-keyword">return</span> ans
+        if not st:
+            return [0]
+        ans = st[::-1]
+        return ans
 </pre>
 </div>
 </div>

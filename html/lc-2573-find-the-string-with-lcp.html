@@ -21,60 +21,60 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findTheString</span>(<span class="org-py-object-reference">self</span>, lcp: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">str</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(lcp)
-        <span class="org-comment"># quick check and build graph</span>
-        <span class="org-py-variable-name">grid</span> = [[] * n <span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n)]
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">if</span> lcp[i][i] != (n - i):
-                <span class="org-keyword">return</span> <span class="org-string">''</span>
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i + <span class="org-py-number">1</span>, n):
-                <span class="org-keyword">if</span> lcp[i][j] != lcp[j][i]:
-                    <span class="org-keyword">return</span> <span class="org-string">''</span>
-                <span class="org-py-variable-name">d</span> = lcp[i][j]
-                <span class="org-keyword">if</span> d &gt; (n - <span class="org-py-builtins">max</span>(i, j)):
-                    <span class="org-keyword">return</span> <span class="org-string">''</span>
-                <span class="org-keyword">if</span> d &gt; <span class="org-py-number">0</span>:
-                    <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">and</span> lcp[i + <span class="org-py-number">1</span>][j + <span class="org-py-number">1</span>] != (d - <span class="org-py-number">1</span>):
-                        <span class="org-keyword">return</span> <span class="org-string">''</span>
+<pre class="src src-Python">class Solution:
+    def findTheString(self, lcp: List[List[int]]) -&gt; str:
+        n = len(lcp)
+        # quick check and build graph
+        grid = [[] * n for _ in range(n)]
+        for i in range(n):
+            if lcp[i][i] != (n - i):
+                return ''
+            for j in range(i + 1, n):
+                if lcp[i][j] != lcp[j][i]:
+                    return ''
+                d = lcp[i][j]
+                if d &gt; (n - max(i, j)):
+                    return ''
+                if d &gt; 0:
+                    if (j + 1) &lt; n and lcp[i + 1][j + 1] != (d - 1):
+                        return ''
                     grid[i].append(j)
                     grid[j].append(i)
 
-        <span class="org-comment"># dfs and build connected graph.</span>
-        <span class="org-py-variable-name">ts</span> = [<span class="org-py-number">0</span>] * n
+        # dfs and build connected graph.
+        ts = [0] * n
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">dfs</span>(x, now):
-            <span class="org-keyword">if</span> ts[x] != <span class="org-py-number">0</span>:
-                <span class="org-keyword">return</span> <span class="org-py-variable-name">ts</span>[x] == now
-            <span class="org-py-variable-name">ts</span>[x] = now
-            <span class="org-keyword">for</span> y <span class="org-keyword">in</span> grid[x]:
-                <span class="org-keyword">if</span> <span class="org-keyword">not</span> dfs(y, now):
-                    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
-            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+        def dfs(x, now):
+            if ts[x] != 0:
+                return ts[x] == now
+            ts[x] = now
+            for y in grid[x]:
+                if not dfs(y, now):
+                    return False
+            return True
 
-        <span class="org-py-variable-name">now</span> = <span class="org-py-number">1</span>
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">if</span> ts[i]: <span class="org-keyword">continue</span>
-            <span class="org-comment"># too much connected graphs.</span>
-            <span class="org-keyword">if</span> now &gt; <span class="org-py-number">26</span>: <span class="org-keyword">return</span> <span class="org-string">''</span>
-            <span class="org-keyword">if</span> <span class="org-keyword">not</span> dfs(i, now):
-                <span class="org-keyword">return</span> <span class="org-string">''</span>
-            <span class="org-py-variable-name">now</span> += <span class="org-py-number">1</span>
+        now = 1
+        for i in range(n):
+            if ts[i]: continue
+            # too much connected graphs.
+            if now &gt; 26: return ''
+            if not dfs(i, now):
+                return ''
+            now += 1
 
-        <span class="org-py-variable-name">ans</span> = [<span class="org-string">''</span>] * n
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">ans</span>[i] = <span class="org-py-builtins">chr</span>(ord(<span class="org-string">'a'</span>) + ts[i] - <span class="org-py-number">1</span>)
-        <span class="org-py-variable-name">ans</span> = <span class="org-string">''</span>.join(ans)
+        ans = [''] * n
+        for i in range(n):
+            ans[i] = chr(ord('a') + ts[i] - 1)
+        ans = ''.join(ans)
 
-        <span class="org-comment"># double check because we only looks for positive requirements.</span>
-        <span class="org-comment"># we need to take care of negative requirements.</span>
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i + <span class="org-py-number">1</span>, n):
-                <span class="org-keyword">if</span> lcp[i][j] == <span class="org-py-number">0</span> <span class="org-keyword">and</span> <span class="org-py-variable-name">ans</span>[i] == ans[j]:
-                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+        # double check because we only looks for positive requirements.
+        # we need to take care of negative requirements.
+        for i in range(n):
+            for j in range(i + 1, n):
+                if lcp[i][j] == 0 and ans[i] == ans[j]:
+                    return ''
 
-        <span class="org-keyword">return</span> ans
+        return ans
 
 </pre>
 </div>
@@ -95,32 +95,32 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findTheString</span>(<span class="org-py-object-reference">self</span>, lcp: List[List[<span class="org-py-builtins">int</span>]]) -&gt; <span class="org-py-builtins">str</span>:
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(lcp)
-        <span class="org-py-variable-name">ans</span> = [<span class="org-string">''</span>] * n
+<pre class="src src-Python">class Solution:
+    def findTheString(self, lcp: List[List[int]]) -&gt; str:
+        n = len(lcp)
+        ans = [''] * n
 
-        <span class="org-comment"># construct loosely answer.</span>
-        <span class="org-py-import-from">import</span> string
-        <span class="org-py-variable-name">i</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> c <span class="org-keyword">in</span> string.ascii_lowercase:
-            <span class="org-keyword">while</span> i &lt; n <span class="org-keyword">and</span> ans[i] != <span class="org-string">''</span>: <span class="org-py-variable-name">i</span> += <span class="org-py-number">1</span>
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == n: <span class="org-keyword">break</span>
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(i, n):
-                <span class="org-keyword">if</span> lcp[i][j]: <span class="org-py-variable-name">ans</span>[j] = c
-        <span class="org-keyword">if</span> <span class="org-string">''</span> <span class="org-keyword">in</span> ans: <span class="org-keyword">return</span> <span class="org-string">''</span>
+        # construct loosely answer.
+        import string
+        i = 0
+        for c in string.ascii_lowercase:
+            while i &lt; n and ans[i] != '': i += 1
+            if i == n: break
+            for j in range(i, n):
+                if lcp[i][j]: ans[j] = c
+        if '' in ans: return ''
 
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(n)):
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(i, n)):
-                <span class="org-keyword">if</span> lcp[i][j] != lcp[j][i]: <span class="org-keyword">return</span> <span class="org-string">''</span>
-                <span class="org-py-variable-name">value</span> = <span class="org-py-number">0</span>
-                <span class="org-keyword">if</span> <span class="org-py-variable-name">ans</span>[i] == ans[j]:
-                    <span class="org-py-variable-name">value</span> = lcp[i + <span class="org-py-number">1</span>][j + <span class="org-py-number">1</span>] <span class="org-keyword">if</span> (j + <span class="org-py-number">1</span>) &lt; n <span class="org-keyword">else</span> <span class="org-py-number">0</span>
-                    <span class="org-py-variable-name">value</span> += <span class="org-py-number">1</span>
-                <span class="org-keyword">if</span> lcp[i][j] != value:
-                    <span class="org-keyword">return</span> <span class="org-string">''</span>
+        for i in reversed(range(n)):
+            for j in reversed(range(i, n)):
+                if lcp[i][j] != lcp[j][i]: return ''
+                value = 0
+                if ans[i] == ans[j]:
+                    value = lcp[i + 1][j + 1] if (j + 1) &lt; n else 0
+                    value += 1
+                if lcp[i][j] != value:
+                    return ''
 
-        <span class="org-keyword">return</span> <span class="org-string">''</span>.join(ans)
+        return ''.join(ans)
 </pre>
 </div>
 </div>

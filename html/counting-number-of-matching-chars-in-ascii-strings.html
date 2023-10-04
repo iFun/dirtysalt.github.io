@@ -29,12 +29,12 @@
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-c++"><span class="org-type">uint64_t</span> <span class="org-function-name">matching_bytes_in_word</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">x</span>, <span class="org-type">uint64_t</span> <span class="org-variable-name">y</span>) {
-  <span class="org-type">uint64_t</span> <span class="org-variable-name">xor_xy</span> = x ^ y;
-  <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">t0</span> = (~xor_xy &amp; 0x7f7f7f7f7f7f7f7fllu) + 0x0101010101010101llu;
-  <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">t1</span> = (~xor_xy &amp; 0x8080808080808080llu);
-  <span class="org-type">uint64_t</span> <span class="org-variable-name">zeros</span> = t0 &amp; t1;
-  <span class="org-keyword">return</span> ((zeros &gt;&gt; 7) * 0x0101010101010101ULL) &gt;&gt; 56;
+<pre class="src src-Cpp">uint64_t matching_bytes_in_word(uint64_t x, uint64_t y) {
+  uint64_t xor_xy = x ^ y;
+  const uint64_t t0 = (~xor_xy &amp; 0x7f7f7f7f7f7f7f7fllu) + 0x0101010101010101llu;
+  const uint64_t t1 = (~xor_xy &amp; 0x8080808080808080llu);
+  uint64_t zeros = t0 &amp; t1;
+  return ((zeros &gt;&gt; 7) * 0x0101010101010101ULL) &gt;&gt; 56;
 }
 </pre>
 </div>

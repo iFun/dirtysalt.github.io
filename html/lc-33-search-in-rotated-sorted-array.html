@@ -24,7 +24,7 @@
 <p>
 一个有序数组旋转之后，样子大致是这样的
 </p>
-<pre class="example" id="orga9add3c">
+<pre class="example" id="org9aaa9a8">
    2
   t
  1
@@ -60,23 +60,23 @@ s
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-function-name">search</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>], target: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-    <span class="org-py-variable-name">s</span>, <span class="org-py-variable-name">e</span> = <span class="org-py-number">0</span>, <span class="org-py-builtins">len</span>(nums) - <span class="org-py-number">1</span>
-    <span class="org-keyword">while</span> s &lt;= e:
-        <span class="org-py-variable-name">m</span> = (s + e) // <span class="org-py-number">2</span>
-        <span class="org-keyword">if</span> <span class="org-py-variable-name">nums</span>[m] == target:
-            <span class="org-keyword">return</span> m
-        <span class="org-keyword">if</span> nums[m] &gt; target:
-            <span class="org-keyword">if</span> target &lt;= nums[e] &lt;= nums[s] &lt;= nums[m]:
-                <span class="org-py-variable-name">s</span> = m + <span class="org-py-number">1</span>
-            <span class="org-keyword">else</span>:
-                <span class="org-py-variable-name">e</span> = m - <span class="org-py-number">1</span>
-        <span class="org-keyword">else</span>:
-            <span class="org-keyword">if</span> nums[m] &lt;= nums[e] &lt;= nums[s] &lt;= target:
-                <span class="org-py-variable-name">e</span> = m - <span class="org-py-number">1</span>
-            <span class="org-keyword">else</span>:
-                <span class="org-py-variable-name">s</span> = m + <span class="org-py-number">1</span>
-    <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+<pre class="src src-Python">def search(self, nums: List[int], target: int) -&gt; int:
+    s, e = 0, len(nums) - 1
+    while s &lt;= e:
+        m = (s + e) // 2
+        if nums[m] == target:
+            return m
+        if nums[m] &gt; target:
+            if target &lt;= nums[e] &lt;= nums[s] &lt;= nums[m]:
+                s = m + 1
+            else:
+                e = m - 1
+        else:
+            if nums[m] &lt;= nums[e] &lt;= nums[s] &lt;= target:
+                e = m - 1
+            else:
+                s = m + 1
+    return -1
 </pre>
 </div>
 </div>

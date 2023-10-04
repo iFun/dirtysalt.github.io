@@ -17,7 +17,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#define</span> <span class="org-function-name">SEXT</span>(<span class="org-variable-name">x</span>, <span class="org-variable-name">len</span>) ({ <span class="org-keyword">struct</span> { <span class="org-type">int64_t</span> <span class="org-variable-name">n</span> : len; } <span class="org-variable-name">__x</span> = { .n = x }; (<span class="org-type">int64_t</span>)__x.n; })
+<pre class="src src-Cpp">#define SEXT(x, len) ({ struct { int64_t n : len; } __x = { .n = x }; (int64_t)__x.n; })
 </pre>
 </div>
 
@@ -26,7 +26,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#define</span> <span class="org-function-name">SIGNEX</span>(<span class="org-variable-name">v</span>, <span class="org-variable-name">sb</span>) ((v) | (((v) &amp; ((<span class="org-type">uint64_t</span>)1 &lt;&lt; (sb))) ? ~(((<span class="org-type">uint64_t</span>)1 &lt;&lt; (sb)) - 1) : 0))
+<pre class="src src-Cpp">#define SIGNEX(v, sb) ((v) | (((v) &amp; ((uint64_t)1 &lt;&lt; (sb))) ? ~(((uint64_t)1 &lt;&lt; (sb)) - 1) : 0))
 </pre>
 </div>
 
@@ -42,18 +42,18 @@
 如果bits超过64也是可以的，因为 `((uint64_t)1 &lt;&lt; sb)` 会回绕过来(或者是&gt;&gt;)，这个非常有趣。我这里做了一个验证。
 </p>
 <div class="org-src-container">
-<pre class="src src-cpp">
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 32; i++) {
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">a</span> = (<span class="org-type">uint64_t</span>)1 &lt;&lt; (i);
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">b</span> = (<span class="org-type">uint64_t</span>)1 &lt;&lt; (i + 64);
-        printf(<span class="org-string">"a = 0x%llx, b = 0x%llx\n"</span>, a, b);
+<pre class="src src-Cpp">
+int main() {
+    for (int i = 0; i &lt; 32; i++) {
+        uint64_t a = (uint64_t)1 &lt;&lt; (i);
+        uint64_t b = (uint64_t)1 &lt;&lt; (i + 64);
+        printf("a = 0x%llx, b = 0x%llx\n", a, b);
         assert(a == b);
     }
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 32; i++) {
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">a</span> = (<span class="org-type">uint64_t</span>)0x8000000000000000 &gt;&gt; (i);
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">b</span> = (<span class="org-type">uint64_t</span>)0x8000000000000000 &gt;&gt; (i + 64);
-        printf(<span class="org-string">"a = 0x%llx, b = 0x%llx\n"</span>, a, b);
+    for (int i = 0; i &lt; 32; i++) {
+        uint64_t a = (uint64_t)0x8000000000000000 &gt;&gt; (i);
+        uint64_t b = (uint64_t)0x8000000000000000 &gt;&gt; (i + 64);
+        printf("a = 0x%llx, b = 0x%llx\n", a, b);
         assert(a == b);
     }
 }
@@ -73,18 +73,18 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">uint64_t</span> <span class="org-function-name">signext</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">value</span>, <span class="org-type">int</span> <span class="org-variable-name">width</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">shift</span> = (<span class="org-keyword">sizeof</span>(uint64_t) - width) * 8;
-    <span class="org-type">int64_t</span> <span class="org-variable-name">ans</span> = ((<span class="org-type">int64_t</span>)value &lt;&lt; shift) &gt;&gt; shift;
-    <span class="org-keyword">return</span> ans;
+<pre class="src src-Cpp">uint64_t signext(uint64_t value, int width) {
+    int shift = (sizeof(uint64_t) - width) * 8;
+    int64_t ans = ((int64_t)value &lt;&lt; shift) &gt;&gt; shift;
+    return ans;
 }
-<span class="org-type">uint64_t</span> <span class="org-function-name">zeroext</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">value</span>, <span class="org-type">int</span> <span class="org-variable-name">width</span>) {
-    <span class="org-type">int</span> <span class="org-variable-name">shift</span> = (<span class="org-keyword">sizeof</span>(uint64_t) - width) * 8;
-    <span class="org-keyword">return</span> (value &lt;&lt; shift) &gt;&gt; shift;
+uint64_t zeroext(uint64_t value, int width) {
+    int shift = (sizeof(uint64_t) - width) * 8;
+    return (value &lt;&lt; shift) &gt;&gt; shift;
 }
-<span class="org-type">uint64_t</span> <span class="org-function-name">zeroext2</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">value</span>, <span class="org-type">int</span> <span class="org-variable-name">width</span>) {
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">mask</span> = (1ULL &lt;&lt; mask) - 1;
-    <span class="org-keyword">return</span> value &amp; mask;
+uint64_t zeroext2(uint64_t value, int width) {
+    uint64_t mask = (1ULL &lt;&lt; mask) - 1;
+    return value &amp; mask;
 }
 </pre>
 </div>
@@ -94,27 +94,27 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">
+<pre class="src src-Cpp">
 
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-keyword">struct</span> <span class="org-type">Case</span> {
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">value</span>;
-        <span class="org-type">int</span> <span class="org-variable-name">width</span>;
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">exp</span>;
-    } <span class="org-variable-name">cases</span>[] = {
-            {0x0ff, 1, (<span class="org-type">uint64_t</span>)-1},
+int main() {
+    struct Case {
+        uint64_t value;
+        int width;
+        uint64_t exp;
+    } cases[] = {
+            {0x0ff, 1, (uint64_t)-1},
             {0x07f, 1, 0x07f},
             {0, 0, 0},
     };
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; cases[i].value; i++) {
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">ans</span> = signext(cases[i].value, cases[i].width);
-        printf(<span class="org-string">"case %d, ans = 0x%llx, exp = 0x%llx\n"</span>, i, ans, cases[i].exp);
+    for (int i = 0; cases[i].value; i++) {
+        uint64_t ans = signext(cases[i].value, cases[i].width);
+        printf("case %d, ans = 0x%llx, exp = 0x%llx\n", i, ans, cases[i].exp);
         ans = signext(cases[i].value, cases[i].width + 64);
-        printf(<span class="org-string">"case %d, width + 64, ans = 0x%llx, exp = 0x%llx\n"</span>, i, ans, cases[i].exp);
+        printf("case %d, width + 64, ans = 0x%llx, exp = 0x%llx\n", i, ans, cases[i].exp);
         assert(ans == cases[i].exp);
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">zext</span> = zeroext(cases[i].value, cases[i].width);
+        uint64_t zext = zeroext(cases[i].value, cases[i].width);
         assert(zext == cases[i].value);
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">zext2</span> = zeroext2(cases[i].value, cases[i].width);
+        uint64_t zext2 = zeroext2(cases[i].value, cases[i].width);
         assert(zext2 == cases[i].value);
 
     }

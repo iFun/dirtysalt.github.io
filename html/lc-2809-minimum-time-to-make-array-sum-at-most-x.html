@@ -33,25 +33,25 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minimumTime</span>(<span class="org-py-object-reference">self</span>, nums1: List[<span class="org-py-builtins">int</span>], nums2: List[<span class="org-py-builtins">int</span>], x: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">xs</span> = <span class="org-py-builtins">list</span>(zip(nums1, nums2))
-        xs.sort(<span class="org-py-variable-name">key</span>=<span class="org-keyword">lambda</span> x: x[<span class="org-py-number">1</span>])
+<pre class="src src-Python">class Solution:
+    def minimumTime(self, nums1: List[int], nums2: List[int], x: int) -&gt; int:
+        xs = list(zip(nums1, nums2))
+        xs.sort(key=lambda x: x[1])
 
-        <span class="org-py-variable-name">s1</span> = <span class="org-py-builtins">sum</span>(nums1)
-        <span class="org-py-variable-name">s2</span> = <span class="org-py-builtins">sum</span>(nums2)
+        s1 = sum(nums1)
+        s2 = sum(nums2)
 
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(nums1)
-        <span class="org-py-variable-name">f</span> = [<span class="org-py-number">0</span>] * (n + <span class="org-py-number">1</span>)
-        <span class="org-py-variable-name">f</span>[<span class="org-py-number">0</span>] = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> a, b <span class="org-keyword">in</span> xs:
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(<span class="org-py-number">1</span>, n + <span class="org-py-number">1</span>)):
-                <span class="org-py-variable-name">f</span>[j] = <span class="org-py-builtins">max</span>(f[j], f[j - <span class="org-py-number">1</span>] + a + b * j)
+        n = len(nums1)
+        f = [0] * (n + 1)
+        f[0] = 0
+        for a, b in xs:
+            for j in reversed(range(1, n + 1)):
+                f[j] = max(f[j], f[j - 1] + a + b * j)
 
-        <span class="org-keyword">for</span> t <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n + <span class="org-py-number">1</span>):
-            <span class="org-keyword">if</span> (s1 + s2 * t - f[t]) &lt;= x:
-                <span class="org-keyword">return</span> t
-        <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+        for t in range(n + 1):
+            if (s1 + s2 * t - f[t]) &lt;= x:
+                return t
+        return -1
 </pre>
 </div>
 </div>

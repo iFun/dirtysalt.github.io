@@ -28,7 +28,7 @@ NGINX有一个主进程（master process）（执行特权操作，如读取配�
 </p>
 
 
-<div id="org5ae25f0" class="figure">
+<div id="orgfd20433" class="figure">
 <p><img src="../images/nginx-process-model.png" alt="nginx-process-model.png" />
 </p>
 </div>
@@ -37,7 +37,7 @@ NGINX有一个主进程（master process）（执行特权操作，如读取配�
 这个四核服务器内，NGINX主进程创建了4个工作进程和2个缓存辅助进程（cachehelper processes）来管理磁盘内容缓存（on-disk content cache）。
 </p>
 
-<pre class="example" id="orgb4fae22">
+<pre class="example" id="org702adfe">
 # service nginx restart
 # ps -ef --forest | grep nginx
 root     32475     1  0 13:36 ?        00:00:00 nginx: master process /usr/sbin/nginx \
@@ -68,7 +68,7 @@ NGINX使用一个了可预见式的（predictable）进程模型，调度可用�
 </p>
 
 
-<div id="org123ff4e" class="figure">
+<div id="orgd35c34f" class="figure">
 <p><img src="../images/nginx-worker-process.png" alt="nginx-worker-process.png" />
 </p>
 </div>
@@ -78,7 +78,7 @@ NGINX使用一个了可预见式的（predictable）进程模型，调度可用�
 </p>
 
 
-<div id="orgd8318e3" class="figure">
+<div id="org6f7f060" class="figure">
 <p><img src="../images/nginx-state-machine.png" alt="nginx-state-machine.png" />
 </p>
 </div>
@@ -107,7 +107,7 @@ NGINX的规模可以很好地支持每个工作进程上数以万计的连接。
 </p>
 
 
-<div id="org3369566" class="figure">
+<div id="org7b225d5" class="figure">
 <p><img src="../images/nginx-update-configuration.png" alt="nginx-update-configuration.png" />
 </p>
 </div>
@@ -117,9 +117,8 @@ NGINX的二进制升级过程更加神奇——你可以飞速地升级NGINX本�
 </p>
 
 
-<div id="org04347c0" class="figure">
-<p><img src="../images/nginx-update-binary.png" alt="nginx-update-binary.png" />
-</p>
+<div id="orgd4477a6" class="figure">
+<p><img src="../images/nginx-update-binary.png" alt="nginx-update-binary.png" /></p>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/inside-nginx-how-we-designed-for-performance-scale.html';this.page.identifier = 'inside-nginx-how-we-designed-for-performance-scale.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

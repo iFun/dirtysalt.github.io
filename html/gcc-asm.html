@@ -70,29 +70,29 @@
 <h2 id="org944e8de"><span class="section-number-2">1.</span> 基本形式</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__(
-    <span class="org-string">"xorps %%xmm0,%%xmm1\n\t"</span>
-    <span class="org-string">"1:\n\t"</span>
-    <span class="org-string">"movdqa %%xmm0,%%xmm1\n\t"</span>
-    <span class="org-string">"pcmpgtd (%1),%%xmm1\n\t"</span>
-    <span class="org-string">"andps %%xmm1,%%xmm0\n\t"</span>
-    <span class="org-string">"andnps (%1),%%xmm1\n\t"</span>
-    <span class="org-string">"orps %%xmm1,%%xmm0\n\t"</span>
-    <span class="org-string">"addq $16,%1\n\t"</span>
-    <span class="org-string">"subq $4,%2\n\t"</span>
-    <span class="org-string">"jnz 1b\n\t"</span>
-    <span class="org-string">"movdqu %%xmm0,(%3)\n\t"</span>
-    <span class="org-string">"movl (%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 4(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 4(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 8(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 8(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmpl 12(%3),%%eax\n\t"</span>
-    <span class="org-string">"cmovll 12(%3),%%eax\n\t"</span>
-    <span class="org-string">"movl %%eax,%0\n\t"</span>
-    :<span class="org-string">"=m"</span>(mx)
-    :<span class="org-string">"r"</span>(a),<span class="org-string">"r"</span>((<span class="org-type">long</span> <span class="org-type">long</span>)N),<span class="org-string">"r"</span>(tmp)
-    :<span class="org-string">"eax"</span>);
+<pre class="src src-Cpp">__asm__ __volatile__(
+    "xorps %%xmm0,%%xmm1\n\t"
+    "1:\n\t"
+    "movdqa %%xmm0,%%xmm1\n\t"
+    "pcmpgtd (%1),%%xmm1\n\t"
+    "andps %%xmm1,%%xmm0\n\t"
+    "andnps (%1),%%xmm1\n\t"
+    "orps %%xmm1,%%xmm0\n\t"
+    "addq $16,%1\n\t"
+    "subq $4,%2\n\t"
+    "jnz 1b\n\t"
+    "movdqu %%xmm0,(%3)\n\t"
+    "movl (%3),%%eax\n\t"
+    "cmpl 4(%3),%%eax\n\t"
+    "cmovll 4(%3),%%eax\n\t"
+    "cmpl 8(%3),%%eax\n\t"
+    "cmovll 8(%3),%%eax\n\t"
+    "cmpl 12(%3),%%eax\n\t"
+    "cmovll 12(%3),%%eax\n\t"
+    "movl %%eax,%0\n\t"
+    :"=m"(mx)
+    :"r"(a),"r"((long long)N),"r"(tmp)
+    :"eax");
 </pre>
 </div>
 <p>
@@ -190,7 +190,7 @@
 <li>&amp; 常用于输出限定符,表示某个寄存器不会被输入所使用.</li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"call func\n\tmovl %%ebx,%1"</span>,<span class="org-string">"=a"</span>(foo),<span class="org-string">"r"</span>(bar));
+<pre class="src src-Cpp">__asm__ __volatile__ ("call func\n\tmovl %%ebx,%1","=a"(foo),"r"(bar));
 </pre>
 </div>
 <p>
@@ -198,7 +198,7 @@
 所以foo最终是ebx寄存器结果.为了避免这个问题,我们可以使用&amp;修饰符.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"call func\n\tmovl %%ebx,%1"</span>,<span class="org-string">"=&amp;a"</span>(foo),<span class="org-string">"r"</span>(bar));
+<pre class="src src-Cpp">__asm__ __volatile__ ("call func\n\tmovl %%ebx,%1","=&amp;a"(foo),"r"(bar));
 </pre>
 </div>
 </div>
@@ -237,8 +237,8 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 如果想输入和输出使用同一个寄存器的话,存在两种方式.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"cpuid"</span>:<span class="org-string">"+r"</span>(a)::)
-<span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">"cpuid"</span>:<span class="org-string">"=r"</span>(a):<span class="org-string">"0"</span>(a):)
+<pre class="src src-Cpp">__asm__ __volatile__ ("cpuid":"+r"(a)::)
+__asm__ __volatile__ ("cpuid":"=r"(a):"0"(a):)
 </pre>
 </div>
 <p>
@@ -268,7 +268,7 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 内存状态.内存的状态可能发生修改,如果需要操作的话,需要重新把内存内容载入寄存器.比如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">__asm__</span> __volatile__ (<span class="org-string">""</span>:::<span class="org-string">"memory"</span>)
+<pre class="src src-Cpp">__asm__ __volatile__ ("":::"memory")
 </pre>
 </div>
 </div>
@@ -314,7 +314,7 @@ asm大小计算错误,影响产生的代码.
 <div id="outline-container-org2d770c5" class="outline-3">
 <h3 id="org2d770c5"><span class="section-number-3">5.1.</span> gcc内嵌汇编码1</h3>
 <div class="outline-text-3" id="text-5-1">
-<pre class="example" id="orga5e31d0">
+<pre class="example" id="org7b015ed">
 信件标题： [转贴]gcc内嵌汇编码
 发 信 人： Yong_Q@bbs.ustc.edu.cn (小忍)
 信    区： Linux视图M[997/7721]
@@ -712,7 +712,7 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 <div id="outline-container-org7a1fd24" class="outline-3">
 <h3 id="org7a1fd24"><span class="section-number-3">5.2.</span> gcc内嵌汇编码2</h3>
 <div class="outline-text-3" id="text-5-2">
-<pre class="example" id="org2256f43">
+<pre class="example" id="org6f16199">
 信件标题： [Forward]对 《gcc中的内嵌汇编语言》一文的补充说明
 发 信 人： Yong_Q@bbs.ustc.edu.cn (小忍)
 信    区： Linux视图M[998/7721]
@@ -874,7 +874,7 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 <div id="outline-container-org32fc1f6" class="outline-3">
 <h3 id="org32fc1f6"><span class="section-number-3">5.3.</span> 关于gcc的行内汇编(1)</h3>
 <div class="outline-text-3" id="text-5-3">
-<pre class="example" id="org2b8bf33">
+<pre class="example" id="org55fd21d">
 信件标题： :关于gcc的行内汇编(1)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[699/7721]
@@ -947,7 +947,7 @@ Intel:        [ebx + eax*8 + _array]
 <div id="outline-container-org255cd3e" class="outline-3">
 <h3 id="org255cd3e"><span class="section-number-3">5.4.</span> 关于gcc的行内汇编(2)</h3>
 <div class="outline-text-3" id="text-5-4">
-<pre class="example" id="orgc4017f0">
+<pre class="example" id="orgbfb9e38">
 信件标题： 关于gcc的行内汇编(2)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[700/7721]
@@ -992,7 +992,7 @@ asm("movl $0,_booga);
 <div id="outline-container-org1859da8" class="outline-3">
 <h3 id="org1859da8"><span class="section-number-3">5.5.</span> 关于gcc的行内汇编(3)</h3>
 <div class="outline-text-3" id="text-5-5">
-<pre class="example" id="orgc302252">
+<pre class="example" id="orga66f370">
 信件标题： 关于gcc的行内汇编(3)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[701/7721]
@@ -1086,7 +1086,7 @@ asm("leal (%%ebx,%%ebx,4),%0"
 <div id="outline-container-org8163f57" class="outline-3">
 <h3 id="org8163f57"><span class="section-number-3">5.6.</span> 关于gcc的行内汇编(4)</h3>
 <div class="outline-text-3" id="text-5-6">
-<pre class="example" id="org7edc2c4">
+<pre class="example" id="orgf046c15">
 信件标题： 关于gcc的行内汇编(4)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[702/7721]
@@ -1156,7 +1156,7 @@ return -1; \
 </p>
 
 <div class="org-src-container">
-<pre class="src src-c"><span class="org-type">int</span> <span class="org-function-name">f</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) { <span class="org-keyword">return</span> x + y; }
+<pre class="src src-C"><span class="org-type">int</span> <span class="org-function-name">f</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) { <span class="org-keyword">return</span> x + y; }
 <span class="org-type">int</span> <span class="org-function-name">main</span>() {
   <span class="org-type">int</span> <span class="org-variable-name">i</span> = 77;
   i = f(i, 8);
@@ -1170,9 +1170,9 @@ return -1; \
 在调用函数f的时候（使用cdecl call convention），我们同时执行下面这些指令为执行f做准备(prologue)：
 </p>
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">pushl</span> <span class="org-keyword">%ebp</span>
-<span class="org-function-name">movl</span> <span class="org-keyword">%esp</span> <span class="org-variable-name">%ebp</span> # &#35843;&#25972;&#22522;&#22336;
-<span class="org-function-name">%subs</span> <span class="org-keyword">$8</span> <span class="org-variable-name">%esp</span> # &#24320;&#36767;f&#20869;&#37096;&#31354;&#38388;
+<pre class="src src-Asm">pushl %ebp
+movl %esp %ebp # 调整基址
+%subs $8 %esp # 开辟f内部空间
 </pre>
 </div>
 
@@ -1181,7 +1181,7 @@ return -1; \
 </p>
 
 
-<div id="org49b87e5" class="figure">
+<div id="orge234212" class="figure">
 <p><img src="../images/cdecl-call-convention-stack.png" alt="cdecl-call-convention-stack.png" />
 </p>
 </div>
@@ -1190,9 +1190,9 @@ return -1; \
 当我们执行完成f之后我们还需要执行一些指令来清空状态(epilogue):
 </p>
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">movl</span> <span class="org-keyword">%ebp</span> <span class="org-variable-name">%esp</span>
-<span class="org-function-name">popl</span> <span class="org-keyword">%ebp</span>
-<span class="org-function-name">ret</span>
+<pre class="src src-Asm">movl %ebp %esp
+popl %ebp
+ret
 </pre>
 </div>
 
@@ -1206,9 +1206,8 @@ return -1; \
 </ol>
 
 
-<div id="org36d3feb" class="figure">
-<p><img src="../images/cdecl-return-struct-union.png" alt="cdecl-return-struct-union.png" />
-</p>
+<div id="orgd88f3e9" class="figure">
+<p><img src="../images/cdecl-return-struct-union.png" alt="cdecl-return-struct-union.png" /></p>
 </div>
 </div>
 </div>

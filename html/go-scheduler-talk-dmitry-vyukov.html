@@ -77,26 +77,25 @@
 </p>
 
 
-<div id="org44d5a57" class="figure">
+<div id="org1180e42" class="figure">
 <p><img src="../images/go-scheduler-talk-dmitry-vyukov-4.png" alt="go-scheduler-talk-dmitry-vyukov-4.png" />
 </p>
 </div>
 
 
-<div id="org14291ee" class="figure">
+<div id="org13de0c2" class="figure">
 <p><img src="../images/go-scheduler-talk-dmitry-vyukov-5.png" alt="go-scheduler-talk-dmitry-vyukov-5.png" />
 </p>
 </div>
 
 
-<div id="org7a6ea5c" class="figure">
+<div id="orgac3dd0b" class="figure">
 <p><img src="../images/go-scheduler-talk-dmitry-vyukov-6.png" alt="go-scheduler-talk-dmitry-vyukov-6.png" />
 </p>
 </div>
 
 <p>
-现在没有抢占式策略，完全是co-operative的策略，实现起来非常取巧。上面不是有inifinite stack检查吗？将stack limit修改小一些，但是在函数调用入口必然会进行 `morestack` 的检查逻辑中，在这个检查中判断时间片超时情况。
-</p>
+现在没有抢占式策略，完全是co-operative的策略，实现起来非常取巧。上面不是有inifinite stack检查吗？将stack limit修改小一些，但是在函数调用入口必然会进行 `morestack` 的检查逻辑中，在这个检查中判断时间片超时情况。</p>
 </div>
 </div>
 </div>

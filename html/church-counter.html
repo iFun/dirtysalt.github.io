@@ -13,15 +13,15 @@
 <div id="content" class="content">
 <h1 class="title">Church Counter(邱奇计数)</h1>
 <div class="org-src-container">
-<pre class="src src-scheme">(<span class="org-keyword">define</span> <span class="org-function-name">zero</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) x)))
-(<span class="org-keyword">define</span> (<span class="org-function-name">add-1</span> n) (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f ((n f) x)))))
+<pre class="src src-Scheme">(define zero (lambda (f) (lambda (x) x)))
+(define (add-1 n) (lambda (f) (lambda (x) (f ((n f) x)))))
 </pre>
 </div>
 
 <p>
 我们把zero带入add-1
 </p>
-<pre class="example" id="org2fd5b7c">
+<pre class="example" id="org5ccfe63">
 (lambda (f) (lambda (x) (f ((lambda (f) (lambda (x) x)) f) x)))
  =&gt; (lambda (f) (lambda (x) (f ((lambda (x) x) x))))
  =&gt; (lambda (f) (lambda (x) (f x)))
@@ -34,8 +34,8 @@
 one, two可以写为
 </p>
 <div class="org-src-container">
-<pre class="src src-scheme">(<span class="org-keyword">define</span> <span class="org-function-name">one</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f x))))
-(<span class="org-keyword">define</span> <span class="org-function-name">two</span> (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) (f (f x)))))
+<pre class="src src-Scheme">(define one (lambda (f) (lambda (x) (f x))))
+(define two (lambda (f) (lambda (x) (f (f x)))))
 </pre>
 </div>
 
@@ -43,7 +43,7 @@ one, two可以写为
 (add m n)可以写为
 </p>
 <div class="org-src-container">
-<pre class="src src-scheme">(<span class="org-keyword">define</span> (<span class="org-function-name">add</span> m n) (<span class="org-keyword">lambda</span> (f) (<span class="org-keyword">lambda</span> (x) ((m f) ((n f) x)))))
+<pre class="src src-Scheme">(define (add m n) (lambda (f) (lambda (x) ((m f) ((n f) x)))))
 </pre>
 </div>
 

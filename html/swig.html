@@ -47,7 +47,7 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 <div id="outline-container-orgcabd189" class="outline-2">
 <h2 id="orgcabd189"><span class="section-number-2">2.</span> a simple example</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="orgd9e1f67">
+<pre class="example" id="orge863b04">
 %module pycompack_  // 生成pycompack_.py和pycompack_wrap.cxx.
 // 其中pycompack_.py是包装python代码，而pycompack_wrap.cxx是包装的C++代码。
 %include "std_string.i" // 使用std::string返回二进制，我们通常会使用
@@ -60,57 +60,57 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 然后我们看看pycompack.h内部的片段代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#22312;SWIG&#39044;&#22788;&#29702;&#19979;&#38754;&#30340;&#35805;&#37027;&#20040;&#21253;&#21547;&#22836;&#25991;&#20214;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">"compack/compack.h"</span>
-<span class="org-preprocessor">#endif</span>
+<pre class="src src-Cpp">#ifndef SWIG // 如果没有在SWIG预处理下面的话那么包含头文件
+#include "compack/compack.h"
+#endif
 
-<span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> __STDC_LIMIT_MACROS
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">__STDC_LIMIT_MACROS</span>
-<span class="org-preprocessor">#endif</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">we have to include this one</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">unless the SWIG doesn't know int8_t  ...</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdint.h&gt;</span>
+#ifndef __STDC_LIMIT_MACROS
+#define __STDC_LIMIT_MACROS
+#endif
+//we have to include this one
+//unless the SWIG doesn't know int8_t  ...
+#include &lt;stdint.h&gt;
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">thin wrapper class</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">because we want the UI simple.</span>
+//thin wrapper class
+//because we want the UI simple.
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">exception</span>
-<span class="org-preprocessor">#ifdef</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#25105;&#20204;&#21487;&#20197;&#23450;&#20041;&#24322;&#24120;&#65292;&#23558;std::exception&#37325;&#21629;&#21517;&#20026;std_exception</span>
-%rename(std_exception) <span class="org-constant">std</span>::exception;
-%rename(bsl_exception) <span class="org-constant">bsl</span>::Exception;
-<span class="org-keyword">namespace</span> <span class="org-constant">std</span>{
-<span class="org-keyword">class</span> <span class="org-type">exception</span>{ <span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#24322;&#24120;&#30340;&#35805;&#25105;&#20204;&#24517;&#39035;&#20889;&#28165;&#26970;&#26500;&#36896;&#21644;&#26512;&#26500;&#20989;&#25968;&#65292;&#19981;&#28982;&#20869;&#23384;&#20250;&#23384;&#22312;&#27844;&#28431;&#24773;&#20917;</span>
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">exception</span>(){}
-    ~<span class="org-function-name">exception</span>(){}
+//exception
+#ifdef SWIG // 我们可以定义异常，将std::exception重命名为std_exception
+%rename(std_exception) std::exception;
+%rename(bsl_exception) bsl::Exception;
+namespace std{
+class exception{ // 对于异常的话我们必须写清楚构造和析构函数，不然内存会存在泄漏情况
+  public:
+    exception(){}
+    ~exception(){}
 };
 }
-<span class="org-keyword">namespace</span> <span class="org-constant">bsl</span>{
-<span class="org-keyword">class</span> <span class="org-type">Exception</span>{
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">Exception</span>(){}
-    ~<span class="org-function-name">Exception</span>(){}
+namespace bsl{
+class Exception{
+  public:
+    Exception(){}
+    ~Exception(){}
 };
 }
-<span class="org-preprocessor">#endif</span> <span class="org-comment-delimiter">// </span><span class="org-comment">SWIG</span>
-<span class="org-preprocessor">#define</span> <span class="org-variable-name">PYCOMPACK_THROW</span> <span class="org-keyword">throw</span>(<span class="org-constant">bsl</span>::<span class="org-type">Exception</span>,<span class="org-constant">std</span>::<span class="org-type">exception</span>)
-<span class="org-preprocessor">#define</span> <span class="org-function-name">PYCOMPACK_TRY</span>()
-<span class="org-preprocessor">#define</span> <span class="org-function-name">PYCOMPACK_CATCH</span>()
+#endif // SWIG
+#define PYCOMPACK_THROW throw(bsl::Exception,std::exception)
+#define PYCOMPACK_TRY()
+#define PYCOMPACK_CATCH()
 
 
-<span class="org-comment-delimiter">//</span><span class="org-comment">to wrapper the binary data</span>
-<span class="org-preprocessor">#ifdef</span> SWIG <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;&#23545;&#20110;const char* bin,unsigned int binlen&#36825;&#26679;&#30340;&#35805;&#23601;&#20250;&#20256;&#36882;python&#30340;&#20108;&#36827;&#21046;</span>
-%apply (<span class="org-type">char</span> *<span class="org-variable-name">STRING</span>, <span class="org-type">size_t</span> <span class="org-variable-name">LENGTH</span>) { (<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">bin</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">binlen</span>) };
-<span class="org-preprocessor">#endif</span>
+//to wrapper the binary data
+#ifdef SWIG // 这样对于const char* bin,unsigned int binlen这样的话就会传递python的二进制
+%apply (char *STRING, size_t LENGTH) { (const char* bin, unsigned int binlen) };
+#endif
 
-<span class="org-keyword">class</span> <span class="org-type">Stream</span>{
-  <span class="org-keyword">public</span>:
-<span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> SWIG
-    <span class="org-constant">compack</span>::<span class="org-type">AutoBuffer</span> <span class="org-variable-name">_buffer</span>;
-<span class="org-preprocessor">#endif</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-function-name">content</span>(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>) PYCOMPACK_THROW{ <span class="org-comment-delimiter">// </span><span class="org-comment">&#22312;&#36825;&#37324;&#25105;&#20204;&#21487;&#20197;&#25243;&#24322;&#24120;</span>
+class Stream{
+  public:
+#ifndef SWIG
+    compack::AutoBuffer _buffer;
+#endif
+    std::string content(size_t size) PYCOMPACK_THROW{ // 在这里我们可以抛异常
         PYCOMPACK_TRY();
-        <span class="org-keyword">return</span> <span class="org-constant">std</span>::string(<span class="org-keyword">static_cast</span>&lt;<span class="org-type">char</span>*&gt;(_buffer.buffer()),size);
+        return std::string(static_cast&lt;char*&gt;(_buffer.buffer()),size);
         PYCOMPACK_CATCH();
     }
 };
@@ -120,7 +120,7 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 <p>
 然后我们看看如何使用swig这个工具
 </p>
-<pre class="example" id="orgff8c3de">
+<pre class="example" id="orgf1c7b2c">
 // -python 表示为python扩展
 // -c++ 表示我们使用c++语言
 // -I 和编译器相同
@@ -163,7 +163,7 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 我们使用int64_t这样的类型，但是SWIG认为这个是一个pointer.当然我们可以使用typedef来进行类型定义，显示地告诉SWIG这个是一个基本类型，比如
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-type">long</span> <span class="org-type">long</span> <span class="org-type">int64_t</span>;
+<pre class="src src-Cpp">typedef long long int64_t;
 </pre>
 </div>
 <p>
@@ -175,7 +175,7 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 <p>
 二进制参数. 传入二进制的话我们可以使用swig的typemap搞定
 </p>
-<pre class="example" id="org7a70216">
+<pre class="example" id="orgdb4b355">
 // 这样只要参数中含有const char* bin,unsigned int binlen这样形参的话
 // 那么就认为这个部分接收的就是二进制数据
 %apply (char *STRING, size_t LENGTH) { (const char* bin, unsigned int binlen) };
@@ -184,7 +184,7 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 <p>
 传出二进制的话我们可以使用std::string传出，然后再我们的swg描述文件里面加上
 </p>
-<pre class="example" id="org4a24cf3">
+<pre class="example" id="orgab1a80e">
 %include "std_string.i" // 使用std::string返回二进制，我们通常会使用
 </pre>
 
@@ -194,17 +194,17 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 然后使用异常的时候只需要在函数声明部分加上throw即可。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-preprocessor">#ifdef</span> SWIG
-%rename(bsl_exception) <span class="org-constant">bsl</span>::Exception;
-<span class="org-keyword">namespace</span> <span class="org-constant">bsl</span>{
-<span class="org-keyword">class</span> <span class="org-type">Exception</span>{
-  <span class="org-keyword">public</span>:
-    <span class="org-function-name">Exception</span>(){}
-    ~<span class="org-function-name">Exception</span>(){}
+<pre class="src src-Cpp">#ifdef SWIG
+%rename(bsl_exception) bsl::Exception;
+namespace bsl{
+class Exception{
+  public:
+    Exception(){}
+    ~Exception(){}
 };
 }
-<span class="org-preprocessor">#endif</span> <span class="org-comment-delimiter">// </span><span class="org-comment">SWIG</span>
-<span class="org-type">void</span> <span class="org-function-name">foo</span>() <span class="org-keyword">throw</span> (<span class="org-constant">bsl</span>::<span class="org-type">Excption</span>);
+#endif // SWIG
+void foo() throw (bsl::Excption);
 </pre>
 </div>
 </div>
@@ -242,8 +242,7 @@ setup(name='pycompack', # 模块名称
 </pre>
 </div>
 <p>
-然后我们使用python setup.py build/install进行构建和安装了。
-</p>
+然后我们使用python setup.py build/install进行构建和安装了。</p>
 </div>
 </div>
 </div>

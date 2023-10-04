@@ -26,14 +26,14 @@ UPDATE: 文章最后增加了性能对比，包括了 `__builtin_popcount` 的�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">
-<span class="org-type">uint32_t</span> <span class="org-function-name">popcount11</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>) {
-    <span class="org-type">uint32_t</span> <span class="org-variable-name">ans</span> = 0;
-    <span class="org-keyword">while</span> (x) {
+<pre class="src src-Cpp">
+uint32_t popcount11(uint32_t x) {
+    uint32_t ans = 0;
+    while (x) {
         ans += x &amp; 0x1;
         x = x &gt;&gt; 1;
     }
-    <span class="org-keyword">return</span> ans;
+    return ans;
 }
 
 </pre>
@@ -44,16 +44,16 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">/*</span>
-<span class="org-comment">data = []</span>
-<span class="org-comment">for i in range(0,256,8):</span>
-<span class="org-comment">    value = 0</span>
-<span class="org-comment">    for j in reversed(range(8)):</span>
-<span class="org-comment">        value = (value &lt;&lt; 4) | popcount(i+j)</span>
-<span class="org-comment">    data.append(value)</span>
-<span class="org-comment-delimiter">*/</span>
+<pre class="src src-Cpp">/*
+data = []
+for i in range(0,256,8):
+    value = 0
+    for j in reversed(range(8)):
+        value = (value &lt;&lt; 4) | popcount(i+j)
+    data.append(value)
+*/
 
-<span class="org-type">uint32_t</span> <span class="org-variable-name">TABLE</span>[] = {841031952,  1127363105, 1127363105, 1413694258, 1127363105,
+uint32_t TABLE[] = {841031952,  1127363105, 1127363105, 1413694258, 1127363105,
                     1413694258, 1413694258, 1700025411, 1127363105, 1413694258,
                     1413694258, 1700025411, 1413694258, 1700025411, 1700025411,
                     1986356564, 1127363105, 1413694258, 1413694258, 1700025411,
@@ -61,12 +61,12 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
                     1700025411, 1700025411, 1986356564, 1700025411, 1986356564,
                     1986356564, 2272687717};
 
-<span class="org-keyword">inline</span> <span class="org-type">uint32_t</span> <span class="org-function-name">GET8</span>(<span class="org-type">unsigned</span> <span class="org-type">char</span> <span class="org-variable-name">x</span>) {
-    <span class="org-keyword">return</span> (TABLE[x &gt;&gt; 3] &gt;&gt; ((x &amp; 0x7) &lt;&lt; 2)) &amp; 0xf;
+inline uint32_t GET8(unsigned char x) {
+    return (TABLE[x &gt;&gt; 3] &gt;&gt; ((x &amp; 0x7) &lt;&lt; 2)) &amp; 0xf;
 }
 
-<span class="org-type">uint32_t</span> <span class="org-function-name">popcount01</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>) {
-    <span class="org-keyword">return</span> GET8(x &amp; 0xff) + GET8((x &gt;&gt; 8) &amp; 0xff) + GET8((x &gt;&gt; 16) &amp; 0xff) +
+uint32_t popcount01(uint32_t x) {
+    return GET8(x &amp; 0xff) + GET8((x &gt;&gt; 8) &amp; 0xff) + GET8((x &gt;&gt; 16) &amp; 0xff) +
            GET8((x &gt;&gt; 24) &amp; 0xff);
 }
 </pre>
@@ -78,13 +78,13 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">uint32_t</span> <span class="org-function-name">_popcount21</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>) {
+<pre class="src src-Cpp">uint32_t _popcount21(uint32_t x) {
     x = (x &amp; 0x55555555) + ((x &amp; 0xaaaaaaaa) &gt;&gt; 1);
     x = (x &amp; 0x33333333) + ((x &amp; 0xcccccccc) &gt;&gt; 2);
     x = (x &amp; 0x0f0f0f0f) + ((x &amp; 0xf0f0f0f0) &gt;&gt; 4);
     x = (x &amp; 0x00ff00ff) + ((x &amp; 0xff00ff00) &gt;&gt; 8);
     x = (x &amp; 0x0000ffff) + ((x &amp; 0xffff0000) &gt;&gt; 16);
-    <span class="org-keyword">return</span> x;
+    return x;
 }
 </pre>
 </div>
@@ -94,13 +94,13 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">uint32_t</span> <span class="org-function-name">popcount21</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>) {
+<pre class="src src-Cpp">uint32_t popcount21(uint32_t x) {
     x = (x &amp; 0x55555555) + ((x &gt;&gt; 1) &amp; 0x55555555);
     x = (x &amp; 0x33333333) + ((x &gt;&gt; 2) &amp; 0x33333333);
     x = (x &amp; 0x0f0f0f0f) + ((x &gt;&gt; 4) &amp; 0x0f0f0f0f);
     x = (x &amp; 0x00ff00ff) + ((x &gt;&gt; 8) &amp; 0x00ff00ff);
     x = (x &amp; 0x0000ffff) + ((x &gt;&gt; 16) &amp; 0x0000ffff);
-    <span class="org-keyword">return</span> x;
+    return x;
 }
 </pre>
 </div>
@@ -111,21 +111,21 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">
-<span class="org-type">uint32_t</span> <span class="org-function-name">__popcount21</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#21487;&#20197;&#20551;&#35774;&#20998;&#21035;&#26159;0&#65292;1&#30340;&#24773;&#20917;</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;11&#30340;&#35805;&#65292;&#37027;&#20040;11-01 = 10 = 2</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">10 - 01 = 01 = 1</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">0x &#36825;&#20010;&#23601;&#26159; x</span>
+<pre class="src src-Cpp">
+uint32_t __popcount21(uint32_t x) {
+    // 这里可以假设分别是0，1的情况
+    // 如果是11的话，那么11-01 = 10 = 2
+    // 10 - 01 = 01 = 1
+    // 0x 这个就是 x
     x = x - ((x &gt;&gt; 1) &amp; 0x55555555);
     x = (x &amp; 0x33333333) + ((x &amp; 0xcccccccc) &gt;&gt; 2);
     x = (x + (x &gt;&gt; 4)) &amp; 0x0f0f0f0f;
     x = x + (x &gt;&gt; 8);
     x = x + (x &gt;&gt; 16);
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#26368;&#21518;&#19968;&#27425; low bits &#26368;&#22810; 16, &#23601;&#26159; 10000</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">high bits &#26368;&#22810; 16&#65292;&#20063;&#26159; 10000</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#20197;&#26368;&#22810;&#23601;&#26159; 100000</span>
-    <span class="org-keyword">return</span> x &amp; 0x3f;
+    // 最后一次 low bits 最多 16, 就是 10000
+    // high bits 最多 16，也是 10000
+    // 所以最多就是 100000
+    return x &amp; 0x3f;
 }
 </pre>
 </div>
@@ -137,7 +137,7 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">uint32_t</span> <span class="org-function-name">popcount22</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">y</span>) {
+<pre class="src src-Cpp">uint32_t popcount22(uint32_t x, uint32_t y) {
     x = (x &amp; 0x55555555) + ((x &amp; 0xaaaaaaaa) &gt;&gt; 1);
     x = (x &amp; 0x33333333) + ((x &amp; 0xcccccccc) &gt;&gt; 2);
 
@@ -148,10 +148,10 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
     x = (x &amp; 0x0f0f0f0f) + ((x &amp; 0xf0f0f0f0) &gt;&gt; 4);
     x = (x &amp; 0x00ff00ff) + ((x &amp; 0xff00ff00) &gt;&gt; 8);
     x = (x &amp; 0x0000ffff) + ((x &amp; 0xffff0000) &gt;&gt; 16);
-    <span class="org-keyword">return</span> x;
+    return x;
 }
 
-<span class="org-type">uint32_t</span> <span class="org-function-name">popcount24</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">y</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">a</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">b</span>) {
+uint32_t popcount24(uint32_t x, uint32_t y, uint32_t a, uint32_t b) {
     x = (x &amp; 0x55555555) + ((x &amp; 0xaaaaaaaa) &gt;&gt; 1);
     y = (y &amp; 0x55555555) + ((y &amp; 0xaaaaaaaa) &gt;&gt; 1);
     a = (a &amp; 0x55555555) + ((a &amp; 0xaaaaaaaa) &gt;&gt; 1);
@@ -170,7 +170,7 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
     x += a;
     x = (x &amp; 0x00ff00ff) + ((x &amp; 0xff00ff00) &gt;&gt; 8);
     x = (x &amp; 0x0000ffff) + ((x &amp; 0xffff0000) &gt;&gt; 16);
-    <span class="org-keyword">return</span> x;
+    return x;
 }
 
 </pre>
@@ -181,8 +181,8 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">// </span><span class="org-comment">pop(x) - pop(y) = pop(x) - (32 - pop(~y)) = pop(x) + pop(y) - 32</span>
-<span class="org-type">int</span> <span class="org-function-name">popDiff</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">x</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">y</span>) {
+<pre class="src src-Cpp">// pop(x) - pop(y) = pop(x) - (32 - pop(~y)) = pop(x) + pop(y) - 32
+int popDiff(uint32_t x, uint32_t y) {
     x = x - ((x &gt;&gt; 1) &amp; 0x55555555);
     x = (x &amp; 0x33333333) + ((x &gt;&gt; 2) &amp; 0x33333333);
     y = ~y;
@@ -193,7 +193,7 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
     x = (x + (x &gt;&gt; 4)) &amp; 0x0f0f0f0f;
     x = (x + (x &gt;&gt; 8));
     x = (x + (x &gt;&gt; 16));
-    <span class="org-keyword">return</span> x &amp; 0x0000007f - 32;
+    return x &amp; 0x0000007f - 32;
 }
 </pre>
 </div>
@@ -203,16 +203,16 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">int</span> <span class="org-function-name">popCompare</span>(<span class="org-type">uint32_t</span> <span class="org-variable-name">xp</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">yp</span>) {
-    <span class="org-type">unsigned</span> <span class="org-variable-name">x</span>, <span class="org-variable-name">y</span>;
+<pre class="src src-Cpp">int popCompare(uint32_t xp, uint32_t yp) {
+    unsigned x, y;
     x = xp &amp; ~yp;
     y = yp &amp; ~xp;
-    <span class="org-keyword">while</span> (1) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">if y == 0 then 0</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">else &lt; 0</span>
-        <span class="org-keyword">if</span> (x == 0) <span class="org-keyword">return</span> y | -y;
-        <span class="org-keyword">if</span> (y == 0) <span class="org-keyword">return</span> 1;
-        x = x &amp; (x - 1);  <span class="org-comment-delimiter">// </span><span class="org-comment">clear lsb</span>
+    while (1) {
+        // if y == 0 then 0
+        // else &lt; 0
+        if (x == 0) return y | -y;
+        if (y == 0) return 1;
+        x = x &amp; (x - 1);  // clear lsb
         y = y &amp; (y - 1);
     }
 }
@@ -226,47 +226,47 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">// </span><span class="org-comment">don't use it. I don't have any cpu support avx512 vpopcnt dq.</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">g++ mm.cpp -g -W -Wall -mavx512f -mavx512vpopcntdq</span>
-<span class="org-type">uint32_t</span> <span class="org-function-name">avx512_vpopcnt</span>(<span class="org-keyword">const</span> <span class="org-type">uint32_t</span>* <span class="org-variable-name">data</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
-    <span class="org-type">uint32_t</span> <span class="org-variable-name">ans</span> = 0;
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">start</span> = (<span class="org-type">uint64_t</span>)data;
-    <span class="org-keyword">if</span> ((start % 64) != 0) {
-        <span class="org-type">size_t</span> <span class="org-variable-name">rem</span> = (start % 64) / 4;
+<pre class="src src-Cpp">// don't use it. I don't have any cpu support avx512 vpopcnt dq.
+// https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
+// g++ mm.cpp -g -W -Wall -mavx512f -mavx512vpopcntdq
+uint32_t avx512_vpopcnt(const uint32_t* data, size_t size) {
+    uint32_t ans = 0;
+    uint64_t start = (uint64_t)data;
+    if ((start % 64) != 0) {
+        size_t rem = (start % 64) / 4;
         start = (start + 63) / 64 * 64;
         size -= rem;
         FORI(i, rem) ans += popcount21(data[i]);
     }
 
-    <span class="org-keyword">const</span> <span class="org-type">uint8_t</span>* <span class="org-variable-name">ptr</span> = (<span class="org-type">uint8_t</span>*)start;
-    <span class="org-keyword">const</span> <span class="org-type">uint8_t</span>* <span class="org-variable-name">end</span> = ptr + size;
-    <span class="org-keyword">const</span> <span class="org-type">size_t</span> <span class="org-variable-name">chunks</span> = size / 64;
+    const uint8_t* ptr = (uint8_t*)start;
+    const uint8_t* end = ptr + size;
+    const size_t chunks = size / 64;
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">count using AVX512 registers</span>
-    <span class="org-type">__m512i</span> <span class="org-variable-name">accumulator</span> = _mm512_setzero_si512();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; chunks; i++, ptr += 64) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">Note: a short chain of dependencies, likely unrolling will be needed.</span>
-        <span class="org-keyword">const</span> <span class="org-type">__m512i</span> <span class="org-variable-name">v</span> = _mm512_loadu_si512((<span class="org-keyword">const</span> <span class="org-type">__m512i</span>*)ptr);
-        <span class="org-keyword">const</span> <span class="org-type">__m512i</span> <span class="org-variable-name">p</span> = _mm512_popcnt_epi64(v);
+    // count using AVX512 registers
+    __m512i accumulator = _mm512_setzero_si512();
+    for (size_t i = 0; i &lt; chunks; i++, ptr += 64) {
+        // Note: a short chain of dependencies, likely unrolling will be needed.
+        const __m512i v = _mm512_loadu_si512((const __m512i*)ptr);
+        const __m512i p = _mm512_popcnt_epi64(v);
 
         accumulator = _mm512_add_epi64(accumulator, p);
     }
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">horizontal sum of a register</span>
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">tmp</span>[8] <span class="org-keyword">__attribute__</span>((aligned(64)));
-    _mm512_store_si512((<span class="org-type">__m512i</span>*)tmp, accumulator);
+    // horizontal sum of a register
+    uint64_t tmp[8] __attribute__((aligned(64)));
+    _mm512_store_si512((__m512i*)tmp, accumulator);
 
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; 8; i++) {
-        ans += (<span class="org-type">uint32_t</span>)tmp[i];
+    for (size_t i = 0; i &lt; 8; i++) {
+        ans += (uint32_t)tmp[i];
     }
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">popcount the tail</span>
-    <span class="org-keyword">while</span> (ptr + 4 &lt; end) {
-        ans += popcount21(*(<span class="org-type">uint32_t</span>*)(ptr));
+    // popcount the tail
+    while (ptr + 4 &lt; end) {
+        ans += popcount21(*(uint32_t*)(ptr));
         ptr += 4;
     }
-    <span class="org-keyword">return</span> ans;
+    return ans;
 }
 </pre>
 </div>
@@ -288,7 +288,7 @@ UPDATE: 其实可以换成 `x=x&amp;(x-1)` 这样会更快，另外一个方式�
 可以看到分治实现比内置实现效率还要高点
 </p>
 
-<pre class="example" id="org13e460b">
+<pre class="example" id="org691c85d">
 [level-2] N = 1000, took: 82ms, avg 82ns/N, ans = 443894796
 [level-1] N = 1000, took: 106ms, avg 106ns/N, ans = 443894796
 [level0] N = 1000, took: 337ms, avg 337ns/N, ans = 443894796

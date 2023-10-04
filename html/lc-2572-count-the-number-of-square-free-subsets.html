@@ -33,68 +33,68 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">squareFreeSubsets</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">primes</span> = [<span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">5</span>, <span class="org-py-number">7</span>, <span class="org-py-number">11</span>, <span class="org-py-number">13</span>, <span class="org-py-number">17</span>, <span class="org-py-number">19</span>, <span class="org-py-number">23</span>, <span class="org-py-number">29</span>]
-        <span class="org-py-variable-name">dp</span> = [<span class="org-py-number">0</span>] * (<span class="org-py-number">1</span> &lt;&lt; <span class="org-py-builtins">len</span>(primes))
-        <span class="org-py-variable-name">dp</span>[<span class="org-py-number">0</span>] = <span class="org-py-number">1</span>
+<pre class="src src-Python">
+class Solution:
+    def squareFreeSubsets(self, nums: List[int]) -&gt; int:
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+        dp = [0] * (1 &lt;&lt; len(primes))
+        dp[0] = 1
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">hasSquareFactor</span>(x):
-            <span class="org-keyword">for</span> p <span class="org-keyword">in</span> primes:
-                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                    <span class="org-py-variable-name">c</span> = <span class="org-py-number">0</span>
-                    <span class="org-keyword">while</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                        <span class="org-py-variable-name">x</span> = x // p
-                        <span class="org-py-variable-name">c</span> += <span class="org-py-number">1</span>
-                    <span class="org-keyword">if</span> c &gt;= <span class="org-py-number">2</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
-            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+        def hasSquareFactor(x):
+            for p in primes:
+                if x % p == 0:
+                    c = 0
+                    while x % p == 0:
+                        x = x // p
+                        c += 1
+                    if c &gt;= 2: return True
+            return False
 
-        <span class="org-py-variable-name">tmp</span> = []
-        <span class="org-py-variable-name">ONE</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">x</span> == <span class="org-py-number">1</span>:
-                <span class="org-py-variable-name">ONE</span> += <span class="org-py-number">1</span>
-            <span class="org-keyword">elif</span> hasSquareFactor(x):
-                <span class="org-keyword">continue</span>
-            <span class="org-keyword">else</span>:
+        tmp = []
+        ONE = 0
+        for x in nums:
+            if x == 1:
+                ONE += 1
+            elif hasSquareFactor(x):
+                continue
+            else:
                 tmp.append(x)
-        <span class="org-py-variable-name">nums</span> = tmp
+        nums = tmp
 
-        <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
-            <span class="org-py-variable-name">bits</span> = []
-            <span class="org-py-variable-name">st</span> = <span class="org-py-number">0</span>
-            <span class="org-keyword">for</span> idx, p <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(primes):
-                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                    <span class="org-py-variable-name">x</span> = x // p
+        MOD = 10 ** 9 + 7
+        for x in nums:
+            bits = []
+            st = 0
+            for idx, p in enumerate(primes):
+                if x % p == 0:
+                    x = x // p
                     bits.append(idx)
-                    <span class="org-py-variable-name">st</span> = st | (<span class="org-py-number">1</span> &lt;&lt; idx)
+                    st = st | (1 &lt;&lt; idx)
 
-            <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(len(dp))):
-                <span class="org-py-variable-name">match</span> = <span class="org-py-pseudo-keyword">True</span>
-                <span class="org-keyword">for</span> b <span class="org-keyword">in</span> bits:
-                    <span class="org-keyword">if</span> j &amp; (<span class="org-py-number">1</span> &lt;&lt; b):
-                        <span class="org-py-variable-name">match</span> = <span class="org-py-pseudo-keyword">False</span>
-                        <span class="org-keyword">break</span>
-                <span class="org-keyword">if</span> match:
-                    <span class="org-py-variable-name">dp</span>[j | st] = (dp[j | st] + dp[j]) % MOD
+            for j in reversed(range(len(dp))):
+                match = True
+                for b in bits:
+                    if j &amp; (1 &lt;&lt; b):
+                        match = False
+                        break
+                if match:
+                    dp[j | st] = (dp[j | st] + dp[j]) % MOD
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">pow</span>(a, b):
-            <span class="org-py-variable-name">s</span> = <span class="org-py-number">1</span>
-            <span class="org-keyword">while</span> b:
-                <span class="org-keyword">if</span> b &amp; 0x1:
-                    <span class="org-py-variable-name">s</span> = s * a
-                    <span class="org-py-variable-name">s</span> = s % MOD
-                <span class="org-py-variable-name">b</span> = b // <span class="org-py-number">2</span>
-                <span class="org-py-variable-name">a</span> = (a * a) % MOD
-            <span class="org-keyword">return</span> s
+        def pow(a, b):
+            s = 1
+            while b:
+                if b &amp; 0x1:
+                    s = s * a
+                    s = s % MOD
+                b = b // 2
+                a = (a * a) % MOD
+            return s
 
-        <span class="org-py-variable-name">S</span> = <span class="org-py-builtins">pow</span>(<span class="org-py-number">2</span>, ONE)
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">sum</span>(dp[<span class="org-py-number">1</span>:])
-        <span class="org-py-variable-name">ans</span> = (ans + <span class="org-py-number">1</span>) * S - <span class="org-py-number">1</span>
-        <span class="org-py-variable-name">ans</span> = ans % MOD
-        <span class="org-keyword">return</span> ans
+        S = pow(2, ONE)
+        ans = sum(dp[1:])
+        ans = (ans + 1) * S - 1
+        ans = ans % MOD
+        return ans
 
 </pre>
 </div>
@@ -116,33 +116,33 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">squareFreeSubsets</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">primes</span> = [<span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">5</span>, <span class="org-py-number">7</span>, <span class="org-py-number">11</span>, <span class="org-py-number">13</span>, <span class="org-py-number">17</span>, <span class="org-py-number">19</span>, <span class="org-py-number">23</span>, <span class="org-py-number">29</span>]
-        <span class="org-py-variable-name">M</span> = <span class="org-py-number">1</span> &lt;&lt; <span class="org-py-builtins">len</span>(primes)
-        <span class="org-py-variable-name">mask</span> = [<span class="org-py-number">0</span>] * <span class="org-py-number">31</span>
+<pre class="src src-Python">class Solution:
+    def squareFreeSubsets(self, nums: List[int]) -&gt; int:
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+        M = 1 &lt;&lt; len(primes)
+        mask = [0] * 31
 
-        <span class="org-comment"># preprocess.</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">1</span>, <span class="org-py-number">31</span>):
-            <span class="org-keyword">for</span> idx, p <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(primes):
-                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                    <span class="org-keyword">if</span> (x // p) % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                        <span class="org-py-variable-name">mask</span>[x] = -<span class="org-py-number">1</span>
-                    <span class="org-keyword">else</span>:
-                        <span class="org-py-variable-name">mask</span>[x] |= (<span class="org-py-number">1</span> &lt;&lt; idx)
+        # preprocess.
+        for x in range(1, 31):
+            for idx, p in enumerate(primes):
+                if x % p == 0:
+                    if (x // p) % p == 0:
+                        mask[x] = -1
+                    else:
+                        mask[x] |= (1 &lt;&lt; idx)
 
-        <span class="org-py-variable-name">MOD</span> = <span class="org-py-number">10</span> ** <span class="org-py-number">9</span> + <span class="org-py-number">7</span>
-        <span class="org-py-variable-name">dp</span> = [<span class="org-py-number">0</span>] * M
-        <span class="org-py-variable-name">dp</span>[<span class="org-py-number">0</span>] = <span class="org-py-number">1</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
-            <span class="org-py-variable-name">m</span> = mask[x]
-            <span class="org-keyword">if</span> m &gt;= <span class="org-py-number">0</span>:  <span class="org-comment"># mask[1] = 0</span>
-                <span class="org-keyword">for</span> st <span class="org-keyword">in</span> <span class="org-py-builtins">reversed</span>(range(M)):
-                    <span class="org-keyword">if</span> (st | m) == st:
-                        <span class="org-comment"># &#36873;&#25321;st, &#19981;&#36873;&#25321;m. &#25110;&#32773;&#26159;&#36873;&#25321;st ^ m, &#36873;&#25321;m.</span>
-                        <span class="org-py-variable-name">dp</span>[st] = (dp[st] + dp[st ^ m]) % MOD
+        MOD = 10 ** 9 + 7
+        dp = [0] * M
+        dp[0] = 1
+        for x in nums:
+            m = mask[x]
+            if m &gt;= 0:  # mask[1] = 0
+                for st in reversed(range(M)):
+                    if (st | m) == st:
+                        # 选择st, 不选择m. 或者是选择st ^ m, 选择m.
+                        dp[st] = (dp[st] + dp[st ^ m]) % MOD
 
-        <span class="org-keyword">return</span> (sum(dp) - <span class="org-py-number">1</span>) % MOD
+        return (sum(dp) - 1) % MOD
 </pre>
 </div>
 </div>

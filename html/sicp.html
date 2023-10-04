@@ -246,7 +246,7 @@ car = Contents of Address part of Register. cdr = Contents of Decrement part of 
 </p>
 
 
-<div id="org284a5fc" class="figure">
+<div id="org95896db" class="figure">
 <p><img src="../images/sicp-eval-apply.png" alt="sicp-eval-apply.png" />
 </p>
 </div>
@@ -464,42 +464,42 @@ Scheme的变形：非确定性计算
 使用机器指令给出了一个停止-复制GC实现。感觉使用机器指令来描述这个过程就有点琐碎了，所以在这里就用C语言来描述一下。我们假设在老内存区域使用的内存都可以使用root追踪到。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span> {
-    <span class="org-type">char</span> <span class="org-variable-name">mark</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">if it's already moved.</span>
-    <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span>* <span class="org-variable-name">back</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">if moved, what's the new cell.</span>
-    <span class="org-type">T</span> <span class="org-variable-name">value</span>;
-    <span class="org-keyword">struct</span> <span class="org-type">memory_cell</span>* <span class="org-variable-name">refs</span>[10]; <span class="org-comment-delimiter">// </span><span class="org-comment">references.</span>
-} <span class="org-type">memory_cell_t</span>;
+<pre class="src src-Cpp">typedef struct memory_cell {
+    char mark; // if it's already moved.
+    struct memory_cell* back; // if moved, what's the new cell.
+    T value;
+    struct memory_cell* refs[10]; // references.
+} memory_cell_t;
 
-<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">memory</span> {
-    <span class="org-type">int</span> <span class="org-variable-name">free</span>;
-    <span class="org-type">int</span> <span class="org-variable-name">scan</span>;
-    <span class="org-type">memory_cell_t</span> <span class="org-variable-name">array</span>[10000];
-} <span class="org-type">memory_t</span>;
+typedef struct memory {
+    int free;
+    int scan;
+    memory_cell_t array[10000];
+} memory_t;
 
-<span class="org-type">memory_cell_t</span>* <span class="org-function-name">do_copy</span>(<span class="org-type">memory_t</span>* <span class="org-variable-name">mem</span>, <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">mc</span>) {
-    <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">av</span> = mem-&gt;array + mem-&gt;free;
-    mempcy(av, mc, <span class="org-keyword">sizeof</span>(*mc));
-    mc-&gt;mark = 1; <span class="org-comment-delimiter">// </span><span class="org-comment">mark moved already.</span>
-    mc-&gt;back = av; <span class="org-comment-delimiter">// </span><span class="org-comment">store new memory cell.</span>
-    mem-&gt;free += 1; <span class="org-comment-delimiter">// </span><span class="org-comment">increase free pointer.</span>
-    <span class="org-keyword">return</span> av;
+memory_cell_t* do_copy(memory_t* mem, memory_cell_t* mc) {
+    memory_cell_t* av = mem-&gt;array + mem-&gt;free;
+    mempcy(av, mc, sizeof(*mc));
+    mc-&gt;mark = 1; // mark moved already.
+    mc-&gt;back = av; // store new memory cell.
+    mem-&gt;free += 1; // increase free pointer.
+    return av;
 }
 
-<span class="org-type">void</span> <span class="org-function-name">stop_and_copy</span>(<span class="org-type">memory_t</span>* <span class="org-variable-name">new_mem</span>, <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">root</span>) {
+void stop_and_copy(memory_t* new_mem, memory_cell_t* root) {
     new_mem-&gt;free = new_mem-&gt;scan = 0;
     do_copy(new_mem, root);
 
-    <span class="org-keyword">while</span> (new_mem-&gt;scan &lt; new_mem-&gt;free) {
-        <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">mc</span> = new_mem-&gt;array + mew_mem-&gt;scan;
-        <span class="org-comment-delimiter">// </span><span class="org-comment">mc is in new arena, but we are not sure if its references are.</span>
-        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 10; i++) {
-            <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">ref</span> = mc-&gt;refs[i];
-            <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>ref) <span class="org-keyword">break</span>;
-            <span class="org-type">memory_cell_t</span>* <span class="org-variable-name">nref</span> = 0;
-            <span class="org-keyword">if</span> (ref-&gt;mark == 1) { <span class="org-comment-delimiter">// </span><span class="org-comment">already copied.</span>
+    while (new_mem-&gt;scan &lt; new_mem-&gt;free) {
+        memory_cell_t* mc = new_mem-&gt;array + mew_mem-&gt;scan;
+        // mc is in new arena, but we are not sure if its references are.
+        for(int i = 0; i &lt; 10; i++) {
+            memory_cell_t* ref = mc-&gt;refs[i];
+            if (!ref) break;
+            memory_cell_t* nref = 0;
+            if (ref-&gt;mark == 1) { // already copied.
                 nref = ref-&gt;back;
-            } <span class="org-keyword">else</span> {
+            } else {
                 nref = do_copy(new_mem, ref);
             }
             mc-&gt;refs[i] = nref;
@@ -520,7 +520,7 @@ Scheme的变形：非确定性计算
 </p>
 
 
-<div id="org34635a9" class="figure">
+<div id="org43ad39f" class="figure">
 <p><img src="../images/sicp-scheme-chip.png" alt="sicp-scheme-chip.png" />
 </p>
 </div>

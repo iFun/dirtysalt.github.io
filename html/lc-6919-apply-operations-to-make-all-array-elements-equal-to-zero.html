@@ -40,22 +40,22 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">checkArray</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>], k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">bool</span>:
-        <span class="org-keyword">if</span> <span class="org-py-variable-name">k</span> == <span class="org-py-number">1</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(nums)
-        <span class="org-py-variable-name">C</span> = [<span class="org-py-number">0</span>] * (n + k)
+<pre class="src src-Python">class Solution:
+    def checkArray(self, nums: List[int], k: int) -&gt; bool:
+        if k == 1: return True
+        n = len(nums)
+        C = [0] * (n + k)
 
-        <span class="org-py-variable-name">c</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-py-variable-name">c</span> -= C[i]
-            <span class="org-py-variable-name">v</span> = nums[i] - c
-            <span class="org-keyword">if</span> v &lt; <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
-            <span class="org-py-variable-name">C</span>[i + k] = v
-            <span class="org-py-variable-name">c</span> += v
+        c = 0
+        for i in range(n):
+            c -= C[i]
+            v = nums[i] - c
+            if v &lt; 0: return False
+            C[i + k] = v
+            c += v
 
-        <span class="org-keyword">if</span> <span class="org-py-builtins">sum</span>(C[-(k - <span class="org-py-number">1</span>):]) != <span class="org-py-number">0</span>: <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
-        <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+        if sum(C[-(k - 1):]) != 0: return False
+        return True
 </pre>
 </div>
 </div>

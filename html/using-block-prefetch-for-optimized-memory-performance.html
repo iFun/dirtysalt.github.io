@@ -25,7 +25,7 @@ Significantly, the MOV instruction is used, rather than the software prefetch in
 </p>
 
 
-<div id="orgcc3369b" class="figure">
+<div id="orgc57a255" class="figure">
 <p><img src="../images/block-prefetch-memcpy.png" alt="block-prefetch-memcpy.png" />
 </p>
 </div>
@@ -88,13 +88,13 @@ Aligning “hot” branch targets to 16 byte boundaries can improve speed, by ma
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">align</span> <span class="org-keyword">16</span>
-<span class="org-function-name">prefetchloop</span>:
-  <span class="org-keyword">mov</span> ebx, [esi+ecx*8-64]
-  <span class="org-keyword">mov</span> ebx, [esi+ecx*8-128]
-  <span class="org-keyword">sub</span> ecx, 16
-  <span class="org-keyword">dec</span> eax
-  <span class="org-keyword">jnz</span>  prefetchloop
+<pre class="src src-Asm">align 16
+prefetchloop:
+  mov ebx, [esi+ecx*8-64]
+  mov ebx, [esi+ecx*8-128]
+  sub ecx, 16
+  dec eax
+  jnz  prefetchloop
 </pre>
 </div>
 </div>

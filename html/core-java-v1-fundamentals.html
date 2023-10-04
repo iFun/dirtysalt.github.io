@@ -210,7 +210,7 @@ Java有下面4个访问修饰符可以用来控制可见性：
 <p>
 所谓静态导入，就是可以导入某个类下面的静态方法以及静态域，通常来说这样可以使得代码更容易阅读，比如
 </p>
-<pre class="example" id="org577f2d8">
+<pre class="example" id="org6cfb00a">
 import static java.lang.Math.*;
 class App {
   public static void main(String[] args){
@@ -763,18 +763,18 @@ public class CyclicBarrierTest {
 考虑单链表节点的泛型类。因为T没有设置上界，那么在Java编译器会用Object代替T.
 </p>
 <div class="org-src-container">
-<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Node</span>&lt;<span class="org-type">T</span>&gt; {
+<pre class="src src-Java">public class Node&lt;T&gt; {
 
-    <span class="org-keyword">private</span> <span class="org-type">T</span> <span class="org-variable-name">data</span>;
-    <span class="org-keyword">private</span> <span class="org-type">Node</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">next</span>;
+    private T data;
+    private Node&lt;T&gt; next;
 
-    <span class="org-keyword">public</span> Node(<span class="org-type">T</span> <span class="org-variable-name">data</span>, <span class="org-type">Node</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">next</span>) {
-        <span class="org-keyword">this</span>.data = data;
-        <span class="org-keyword">this</span>.next = next;
+    public Node(T data, Node&lt;T&gt; next) {
+        this.data = data;
+        this.next = next;
     }
 
-    <span class="org-keyword">public</span> <span class="org-type">T</span> <span class="org-function-name">getData</span>() { <span class="org-keyword">return</span> data; }
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
+    public T getData() { return data; }
+    // ...
 }
 </pre>
 </div>
@@ -784,18 +784,18 @@ public class CyclicBarrierTest {
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">Node</span>&lt;<span class="org-type">T</span> <span class="org-keyword">extends</span> <span class="org-type">Comparable</span>&lt;<span class="org-type">T</span>&gt;&gt; {
+<pre class="src src-Java">public class Node&lt;T extends Comparable&lt;T&gt;&gt; {
 
-    <span class="org-keyword">private</span> <span class="org-type">T</span> <span class="org-variable-name">data</span>;
-    <span class="org-keyword">private</span> <span class="org-type">Node</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">next</span>;
+    private T data;
+    private Node&lt;T&gt; next;
 
-    <span class="org-keyword">public</span> Node(<span class="org-type">T</span> <span class="org-variable-name">data</span>, <span class="org-type">Node</span>&lt;<span class="org-type">T</span>&gt; <span class="org-variable-name">next</span>) {
-        <span class="org-keyword">this</span>.data = data;
-        <span class="org-keyword">this</span>.next = next;
+    public Node(T data, Node&lt;T&gt; next) {
+        this.data = data;
+        this.next = next;
     }
 
-    <span class="org-keyword">public</span> <span class="org-type">T</span> <span class="org-function-name">getData</span>() { <span class="org-keyword">return</span> data; }
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
+    public T getData() { return data; }
+    // ...
 }
 </pre>
 </div>

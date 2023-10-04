@@ -37,7 +37,7 @@
 </p>
 
 
-<div id="org2fa89e2" class="figure">
+<div id="orgd24c675" class="figure">
 <p><img src="../images/xor-filters-mapping-step.png" alt="xor-filters-mapping-step.png" />
 </p>
 </div>
@@ -62,11 +62,11 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-builtins">input</span>: key x, seed s
-h &#8592; x+s
-h &#8592; (h xor (h &gt;&gt; <span class="org-py-number">33</span>)) &#8727; 0xff51afd7ed558ccd
-h &#8592; (h xor (h &gt;&gt; <span class="org-py-number">33</span>)) &#8727; 0xc4ceb9fe1a85ec53
-<span class="org-keyword">return</span> h xor (h &gt;&gt; <span class="org-py-number">33</span>)
+<pre class="src src-Python">input: key x, seed s
+h ← x+s
+h ← (h xor (h &gt;&gt; 33)) ∗ 0xff51afd7ed558ccd
+h ← (h xor (h &gt;&gt; 33)) ∗ 0xc4ceb9fe1a85ec53
+return h xor (h &gt;&gt; 33)
 </pre>
 </div>
 
@@ -75,15 +75,14 @@ h &#8592; (h xor (h &gt;&gt; <span class="org-py-number">33</span>)) &#8727; 0xc
 </p>
 
 
-<div id="orga72cbc9" class="figure">
+<div id="org110eeb4" class="figure">
 <p><img src="../images/xor-filters-perf-insert.png" alt="xor-filters-perf-insert.png" />
 </p>
 </div>
 
 
-<div id="org11bb81a" class="figure">
-<p><img src="../images/xor-filters-perf-lookup.png" alt="xor-filters-perf-lookup.png" />
-</p>
+<div id="org0a053ea" class="figure">
+<p><img src="../images/xor-filters-perf-lookup.png" alt="xor-filters-perf-lookup.png" /></p>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/xor-filters-paper.html';this.page.identifier = 'xor-filters-paper.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

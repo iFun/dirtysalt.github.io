@@ -105,7 +105,7 @@ mongodb采用一个线程处理一个请求的模型，不太确定mongodb是否
 文件组织上每个database使用一个文件前缀，每个databses里面可以存在多个namespace.然后在多个namespace下面可以有多个collection.
 对于一个collection而言的话就是一个bson文档。
 </p>
-<pre class="example" id="orgc8b9174">
+<pre class="example" id="orgb5f0dc1">
 dirlt@dirlt-virtual-machine:~/utils/mongodb/data/db$ ll -h
 total 209M
 drwxrwxr-x 4 dirlt dirlt 4.0K  6月  1 11:48 ./
@@ -125,9 +125,9 @@ drwxrwxr-x 2 dirlt dirlt 4.0K  6月  1 11:48 _tmp/
 关于位置信息都是通过DiskLoc数据结构进行存储，存储了数据文件编号和块在文件中的位置。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">DiskLoc</span> {
-  <span class="org-type">int</span> <span class="org-variable-name">fileNum</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25991;&#20214;&#32534;&#21495;</span>
-  <span class="org-type">int</span> <span class="org-variable-name">offset</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25991;&#20214;&#20559;&#31227;</span>
+<pre class="src src-Cpp">struct DiskLoc {
+  int fileNum; // 文件编号
+  int offset; // 文件偏移
 };
 </pre>
 </div>
@@ -152,7 +152,7 @@ mongodb所有的数据修改都是in-place的，这样的random write对于普�
 mdb引入journal机制来做system crash recovery.如果不适用journal的话那么如果databases出现crash的话，那么需要适用database repairs(类似于fsck)或者是数据全copy.
 journal机制就是redo log.启动之后如果发现存在journal的话那么就会做redo,期间所有的操作都是journal.当mdb正常退出的话，会将这些journal删除。journal功能会预分配3G文件。
 </p>
-<pre class="example" id="orga062e00">
+<pre class="example" id="org67d1d11">
 dirlt@dirlt-virtual-machine:~/utils/mongodb/data/db/journal$ ll -h
 total 3.1G
 drwxrwxr-x 2 dirlt dirlt 4.0K  6月  1 11:47 ./
@@ -280,8 +280,7 @@ Within the replica set, members are interconnected with each other to exchange h
 </blockquote>
 <p>
 也就是说，replicas之间都会和相互检测对方的心跳，这是一个全连接图。如果节点超过一定数量的话，那么心跳处理的延迟可能会非常长，同时选举的时间也会非常长，
-最终造成如果发生切换的话，切换时间会非常长。
-</p>
+最终造成如果发生切换的话，切换时间会非常长。</p>
 </div>
 </div>
 </div>

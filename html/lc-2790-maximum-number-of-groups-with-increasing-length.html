@@ -34,40 +34,40 @@
 </ul>
 
 
-<div id="org355b407" class="figure">
+<div id="orgd8a18e3" class="figure">
 <p><img src="../images/maximum-number-of-groups-with-increasing-length-0.png" alt="maximum-number-of-groups-with-increasing-length-0.png" />
 </p>
 </div>
 
 
-<div id="orgd0537d7" class="figure">
+<div id="orgf7b2d53" class="figure">
 <p><img src="../images/maximum-number-of-groups-with-increasing-length-1.png" alt="maximum-number-of-groups-with-increasing-length-1.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">maxIncreasingGroups</span>(<span class="org-py-object-reference">self</span>, usageLimits: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        usageLimits.sort(<span class="org-py-variable-name">reverse</span>=<span class="org-py-pseudo-keyword">True</span>)
+<pre class="src src-Python">
+class Solution:
+    def maxIncreasingGroups(self, usageLimits: List[int]) -&gt; int:
+        usageLimits.sort(reverse=True)
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">test</span>(K):
-            <span class="org-py-variable-name">gap</span> = <span class="org-py-number">0</span>
-            <span class="org-keyword">for</span> x <span class="org-keyword">in</span> usageLimits:
-                <span class="org-py-variable-name">gap</span> = <span class="org-py-builtins">min</span>(gap + x - K, <span class="org-py-number">0</span>) <span class="org-comment"># &#21482;&#20351;&#29992;&#24403;&#21069;&#20540;&#21435;&#22635;&#20805;&#65292;&#20043;&#21069;&#22810;&#20986;&#26469;&#30340;&#20250;&#22238;&#22635;&#21040;&#20043;&#21069;&#30340;&#31354;&#22788;&#12290;</span>
-                <span class="org-comment"># &#22240;&#20026;&#25105;&#20204;&#36825;&#37324;&#26159;&#20174;&#22823;&#21040;&#23567;&#22635;&#20805;&#65292;&#25152;&#20197;&#32943;&#23450;&#19981;&#20250;&#20986;&#29616;&#37325;&#21472;&#30340;&#24773;&#20917;&#12290;</span>
-                <span class="org-keyword">if</span> K &gt; <span class="org-py-number">0</span>:
-                    <span class="org-py-variable-name">K</span> -= <span class="org-py-number">1</span>
-            <span class="org-keyword">return</span> gap &gt;= <span class="org-py-number">0</span>
+        def test(K):
+            gap = 0
+            for x in usageLimits:
+                gap = min(gap + x - K, 0) # 只使用当前值去填充，之前多出来的会回填到之前的空处。
+                # 因为我们这里是从大到小填充，所以肯定不会出现重叠的情况。
+                if K &gt; 0:
+                    K -= 1
+            return gap &gt;= 0
 
-        <span class="org-py-variable-name">s</span>, <span class="org-py-variable-name">e</span> = <span class="org-py-number">1</span>, <span class="org-py-builtins">len</span>(usageLimits)
-        <span class="org-keyword">while</span> s &lt;= e:
-            <span class="org-py-variable-name">k</span> = (s + e) // <span class="org-py-number">2</span>
-            <span class="org-keyword">if</span> test(k):
-                <span class="org-py-variable-name">s</span> = k + <span class="org-py-number">1</span>
-            <span class="org-keyword">else</span>:
-                <span class="org-py-variable-name">e</span> = k - <span class="org-py-number">1</span>
-        <span class="org-keyword">return</span> e
+        s, e = 1, len(usageLimits)
+        while s &lt;= e:
+            k = (s + e) // 2
+            if test(k):
+                s = k + 1
+            else:
+                e = k - 1
+        return e
 </pre>
 </div>
 
@@ -80,20 +80,20 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">maxIncreasingGroups</span>(<span class="org-py-object-reference">self</span>, usageLimits: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
+<pre class="src src-Python">class Solution:
+    def maxIncreasingGroups(self, usageLimits: List[int]) -&gt; int:
         usageLimits.sort()
-        <span class="org-py-variable-name">xs</span> = usageLimits.copy()
-        <span class="org-py-variable-name">n</span> = <span class="org-py-builtins">len</span>(xs)
-        xs.append(<span class="org-py-number">0</span>)
+        xs = usageLimits.copy()
+        n = len(xs)
+        xs.append(0)
 
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">1</span>
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(n):
-            <span class="org-keyword">if</span> xs[i] &gt;= ans:
-                <span class="org-py-variable-name">xs</span>[i] -= ans
-                <span class="org-py-variable-name">ans</span> += <span class="org-py-number">1</span>
-            <span class="org-py-variable-name">xs</span>[i + <span class="org-py-number">1</span>] += xs[i]
-        <span class="org-keyword">return</span> ans - <span class="org-py-number">1</span>
+        ans = 1
+        for i in range(n):
+            if xs[i] &gt;= ans:
+                xs[i] -= ans
+                ans += 1
+            xs[i + 1] += xs[i]
+        return ans - 1
 </pre>
 </div>
 </div>

@@ -16,7 +16,7 @@
 下面代码使用-O2和-O3编译会得到不同的结果
 </p>
 
-<pre class="example" id="org20cb2f1">
+<pre class="example" id="orgb6ce3d8">
 doris-sandbox04 :: ~/public » /home/disk1/doris-deps/toolchain/installed/gcc-10.3.0/bin/g++  -std=gnu++17  -O3  -msse4.2 -mavx2  -fopt-info-vec-optimized test.cpp -o opt3.s
 test.cpp:63:23: optimized: loop vectorized using 32 byte vectors
 /home/disk1/doris-deps/toolchain/installed/gcc-10.3.0/include/c++/10.3.0/ext/new_allocator.h:115:41: optimized: basic block part vectorized using 32 byte vectors
@@ -40,38 +40,38 @@ doris-sandbox04 :: ~/public » ./opt2.s
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdint&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<pre class="src src-Cpp">
+#include &lt;cstdint&gt;
+#include &lt;vector&gt;
+#include &lt;iostream&gt;
 
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">MURMUR_PRIME</span> = 0xc6a4a7935bd1e995ULL;
-<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">uint32_t</span> <span class="org-variable-name">MURMUR_SEED</span> = 0xadc83b19ULL;
+static const uint64_t MURMUR_PRIME = 0xc6a4a7935bd1e995ULL;
+static const uint32_t MURMUR_SEED = 0xadc83b19ULL;
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">Our hash function is MurmurHash2, 64 bit version.</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">It was modified in order to provide the same result in</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">big and little endian archs (endian neutral).</span>
-<span class="org-type">uint64_t</span> <span class="org-function-name">murmur_hash64A</span> (<span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">key</span>, <span class="org-type">int32_t</span> <span class="org-variable-name">len</span>, <span class="org-type">unsigned</span> <span class="org-type">int</span> <span class="org-variable-name">seed</span>) {
-    <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">m</span> = MURMUR_PRIME;
-    <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">r</span> = 47;
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">h</span> = seed ^ (len * m);
-    <span class="org-keyword">const</span> <span class="org-type">uint8_t</span> *<span class="org-variable-name">data</span> = (<span class="org-keyword">const</span> <span class="org-type">uint8_t</span> *)key;
-    <span class="org-keyword">const</span> <span class="org-type">uint8_t</span> *<span class="org-variable-name">end</span> = data + (len-(len&amp;7));
+// Our hash function is MurmurHash2, 64 bit version.
+// It was modified in order to provide the same result in
+// big and little endian archs (endian neutral).
+uint64_t murmur_hash64A (const void* key, int32_t len, unsigned int seed) {
+    const uint64_t m = MURMUR_PRIME;
+    const int r = 47;
+    uint64_t h = seed ^ (len * m);
+    const uint8_t *data = (const uint8_t *)key;
+    const uint8_t *end = data + (len-(len&amp;7));
 
-    <span class="org-keyword">while</span>(data != end) {
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">k</span>;
-<span class="org-preprocessor">#if</span> (BYTE_ORDER == BIG_ENDIAN)
-        k = (<span class="org-type">uint64_t</span>) data[0];
-        k |= (<span class="org-type">uint64_t</span>) data[1] &lt;&lt; 8;
-        k |= (<span class="org-type">uint64_t</span>) data[2] &lt;&lt; 16;
-        k |= (<span class="org-type">uint64_t</span>) data[3] &lt;&lt; 24;
-        k |= (<span class="org-type">uint64_t</span>) data[4] &lt;&lt; 32;
-        k |= (<span class="org-type">uint64_t</span>) data[5] &lt;&lt; 40;
-        k |= (<span class="org-type">uint64_t</span>) data[6] &lt;&lt; 48;
-        k |= (<span class="org-type">uint64_t</span>) data[7] &lt;&lt; 56;
-<span class="org-preprocessor">#else</span>
-        k = *((<span class="org-type">uint64_t</span>*)data);
-<span class="org-preprocessor">#endif</span>
+    while(data != end) {
+        uint64_t k;
+#if (BYTE_ORDER == BIG_ENDIAN)
+        k = (uint64_t) data[0];
+        k |= (uint64_t) data[1] &lt;&lt; 8;
+        k |= (uint64_t) data[2] &lt;&lt; 16;
+        k |= (uint64_t) data[3] &lt;&lt; 24;
+        k |= (uint64_t) data[4] &lt;&lt; 32;
+        k |= (uint64_t) data[5] &lt;&lt; 40;
+        k |= (uint64_t) data[6] &lt;&lt; 48;
+        k |= (uint64_t) data[7] &lt;&lt; 56;
+#else
+        k = *((uint64_t*)data);
+#endif
 
         k *= m;
         k ^= k &gt;&gt; r;
@@ -81,52 +81,52 @@ doris-sandbox04 :: ~/public » ./opt2.s
         data += 8;
     }
 
-    <span class="org-keyword">switch</span>(len &amp; 7) {
-    <span class="org-keyword">case</span> 7: h ^= (<span class="org-type">uint64_t</span>)data[6] &lt;&lt; 48;
-    <span class="org-keyword">case</span> 6: h ^= (<span class="org-type">uint64_t</span>)data[5] &lt;&lt; 40;
-    <span class="org-keyword">case</span> 5: h ^= (<span class="org-type">uint64_t</span>)data[4] &lt;&lt; 32;
-    <span class="org-keyword">case</span> 4: h ^= (<span class="org-type">uint64_t</span>)data[3] &lt;&lt; 24;
-    <span class="org-keyword">case</span> 3: h ^= (<span class="org-type">uint64_t</span>)data[2] &lt;&lt; 16;
-    <span class="org-keyword">case</span> 2: h ^= (<span class="org-type">uint64_t</span>)data[1] &lt;&lt; 8;
-    <span class="org-keyword">case</span> 1: h ^= (<span class="org-type">uint64_t</span>)data[0];
+    switch(len &amp; 7) {
+    case 7: h ^= (uint64_t)data[6] &lt;&lt; 48;
+    case 6: h ^= (uint64_t)data[5] &lt;&lt; 40;
+    case 5: h ^= (uint64_t)data[4] &lt;&lt; 32;
+    case 4: h ^= (uint64_t)data[3] &lt;&lt; 24;
+    case 3: h ^= (uint64_t)data[2] &lt;&lt; 16;
+    case 2: h ^= (uint64_t)data[1] &lt;&lt; 8;
+    case 1: h ^= (uint64_t)data[0];
             h *= m;
     };
 
     h ^= h &gt;&gt; r;
     h *= m;
     h ^= h &gt;&gt; r;
-    <span class="org-keyword">return</span> h;
+    return h;
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">static const uint32_t MURMUR_SEED = 0xadc83b19ULL;</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">uint64_t murmur_hash64A (const void* key, int32_t len, unsigned int seed);</span>
+// static const uint32_t MURMUR_SEED = 0xadc83b19ULL;
+// uint64_t murmur_hash64A (const void* key, int32_t len, unsigned int seed);
 
-<span class="org-type">void</span> <span class="org-function-name">update_double</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">double</span>&gt;&amp; <span class="org-variable-name">values</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">uint64_t</span>&gt;&amp; <span class="org-variable-name">hashes</span>) {
-    <span class="org-keyword">auto</span> <span class="org-variable-name">size</span> = values.size();
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; size; ++i) {
-        <span class="org-keyword">auto</span> <span class="org-variable-name">v</span> = values[i];
-        <span class="org-type">uint64_t</span> <span class="org-variable-name">value</span> = murmur_hash64A(&amp;v, <span class="org-keyword">sizeof</span>(v), MURMUR_SEED);
+void update_double(const std::vector&lt;double&gt;&amp; values, std::vector&lt;uint64_t&gt;&amp; hashes) {
+    auto size = values.size();
+    for (int i = 0; i &lt; size; ++i) {
+        auto v = values[i];
+        uint64_t value = murmur_hash64A(&amp;v, sizeof(v), MURMUR_SEED);
         hashes[i] = value;
     }
 }
 
-<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N</span> = 3;
-<span class="org-type">int</span> <span class="org-function-name">main</span>() {
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">x</span> = 0;
-    <span class="org-type">uint64_t</span> <span class="org-variable-name">xv</span> = murmur_hash64A(&amp;x, <span class="org-keyword">sizeof</span>(x), MURMUR_SEED);
-    printf(<span class="org-string">"%llu\n"</span>, xv);
+const int N = 3;
+int main() {
+    uint64_t x = 0;
+    uint64_t xv = murmur_hash64A(&amp;x, sizeof(x), MURMUR_SEED);
+    printf("%llu\n", xv);
 
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">double</span>&gt; <span class="org-variable-name">values</span>(N);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">uint64_t</span>&gt; <span class="org-variable-name">hashes</span>(N);
+    std::vector&lt;double&gt; values(N);
+    std::vector&lt;uint64_t&gt; hashes(N);
 
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; ++i) {
+    for (int i = 0; i &lt; N; ++i) {
         values[i] = i + 1;
     }
     update_double(values, hashes);
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">hash</span> : hashes) {
-        <span class="org-constant">std</span>::cout &lt;&lt; hash &lt;&lt; <span class="org-constant">std</span>::endl;
+    for (auto hash : hashes) {
+        std::cout &lt;&lt; hash &lt;&lt; std::endl;
     }
-    <span class="org-keyword">return</span> 0;
+    return 0;
 }
 </pre>
 </div>
@@ -177,8 +177,7 @@ movabsq $4138674677912027985, %rdi
 </p>
 
 <p>
-gcc 编译参数 -fno-strict-aliasing - 云+社区 - 腾讯云 <a href="https://cloud.tencent.com/developer/article/1159055">https://cloud.tencent.com/developer/article/1159055</a>. 这篇文章里面说-O2就会把 -fstrict-aliasing 打开，但是我们开了-O2也没有遇到过着问题，也是比较奇怪。
-</p>
+gcc 编译参数 -fno-strict-aliasing - 云+社区 - 腾讯云 <a href="https://cloud.tencent.com/developer/article/1159055">https://cloud.tencent.com/developer/article/1159055</a>. 这篇文章里面说-O2就会把 -fstrict-aliasing 打开，但是我们开了-O2也没有遇到过着问题，也是比较奇怪。</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/gcc-10-optimzation-bug-on-type-based-aliasing.html';this.page.identifier = 'gcc-10-optimzation-bug-on-type-based-aliasing.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

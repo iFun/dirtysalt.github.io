@@ -55,7 +55,7 @@
 <h2 id="org392c554"><span class="section-number-2">1.</span> ten commandments</h2>
 <div class="outline-text-2" id="text-1">
 
-<div id="orga92260a" class="figure">
+<div id="org96d0094" class="figure">
 <p><img src="../images/the-little-schemer-ten-commandments.jpg" alt="the-little-schemer-ten-commandments.jpg" />
 </p>
 </div>
@@ -160,8 +160,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scheme">(<span class="org-keyword">define</span> <span class="org-function-name">eternity</span>
-  (<span class="org-keyword">lambda</span> (x)
+<pre class="src src-Scheme">(define eternity
+  (lambda (x)
     (eternity x)))
 </pre>
 </div>
@@ -171,22 +171,22 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </p>
 
 <div class="org-src-container">
-<pre class="src src-scheme">(<span class="org-keyword">define</span> (<span class="org-function-name">nth</span> n l)
-  (<span class="org-keyword">if</span> (<span class="org-keyword">or</span> (&gt; n (length l)) (&lt; n 0))
-    (error <span class="org-string">"Index out of bounds."</span>)
-    (<span class="org-keyword">if</span> (eq? n 0)
+<pre class="src src-Scheme">(define (nth n l)
+  (if (or (&gt; n (length l)) (&lt; n 0))
+    (error "Index out of bounds.")
+    (if (eq? n 0)
       (car l)
       (nth (- n 1) (cdr l)))))
 
-(<span class="org-keyword">define</span> (<span class="org-function-name">jump</span> a p vec)
-  (<span class="org-keyword">let</span> ((x (nth p vec)))
-    (print <span class="org-string">"trying "</span> x)
-    (<span class="org-keyword">cond</span>
+(define (jump a p vec)
+  (let ((x (nth p vec)))
+    (print "trying " x)
+    (cond
      ((eq? x a) a)
-     (<span class="org-keyword">else</span>
+     (else
       (jump a x vec)))))
 
-(<span class="org-keyword">define</span> <span class="org-function-name">vec</span> '(7 0 3 4 5 6 7 1))
+(define vec '(7 0 3 4 5 6 7 1))
 (print (jump 5 2 vec))
 
 </pre>
@@ -449,8 +449,7 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 
 <p>
-注意fun函数只允许接收一个参数。
-</p>
+注意fun函数只允许接收一个参数。</p>
 </div>
 </div>
 </div>

@@ -222,7 +222,7 @@ C++ Libraries:
 lsb_release -a
 </p>
 
-<pre class="example" id="orgda5087a">
+<pre class="example" id="orga7e61b2">
 ➜  note git:(master) ✗ lsb_release -a
 No LSB modules are available.
 Distributor ID: Ubuntu
@@ -235,7 +235,7 @@ Codename:       precise
 #note@2014-11-17: upgrade to 'trusty'
 </p>
 
-<pre class="example" id="orgf41c7a7">
+<pre class="example" id="org2925da1">
 ➜  ~  lsb_release -a
 No LSB modules are available.
 Distributor ID:	Ubuntu
@@ -294,7 +294,7 @@ unity restart &amp;
 <p>
 修改/etc/network/interfaces
 </p>
-<pre class="example" id="org6c32226">
+<pre class="example" id="org5f67263">
 auto eth0
 iface eth0 inet static
 address 10.18.102.200
@@ -305,7 +305,7 @@ gateway 10.18.102.254
 <p>
 修改/etc/nsswitch.conf
 </p>
-<pre class="example" id="orgcb1022a">
+<pre class="example" id="org4c634af">
 hosts:          files dns
 networks:       files
 </pre>
@@ -313,7 +313,7 @@ networks:       files
 <p>
 然后重启网络
 </p>
-<pre class="example" id="org4e27134">
+<pre class="example" id="org2fd4d69">
 sudo /etc/init.d/networking restart
 </pre>
 </div>
@@ -388,7 +388,7 @@ doc存放位置通常在/usr/share/doc/&lt;package&gt;/下面。
 <p>
 使用apt-cache depends &lt;package&gt;可以查看&lt;package&gt;的依赖，rdepends则可是查看反向依赖
 </p>
-<pre class="example" id="org45b2169">
+<pre class="example" id="org2a60f33">
 ➜  debs git:(devel-yan) ✗ apt-cache rdepends tcpdump
 tcpdump
 Reverse Depends:
@@ -458,7 +458,7 @@ Update Manager -&gt; Settings -&gt; Ubuntu Software -&gt; Download from Other -&
 这个命令会在chkconfig(用于配置是否自动启动)里面用到.
 </p>
 
-<pre class="example" id="org31493e2">
+<pre class="example" id="org4b0caef">
 ➜  nginx  sudo chkconfig lighttpd off
 /sbin/insserv: No such file or directory
 </pre>
@@ -479,7 +479,7 @@ chkconfig可以用来配置服务是否自动启动 sudo chkconfig &lt;service&g
 <p>
 另外使用chkconfig还可以用来查看当前服务自动启动情况
 </p>
-<pre class="example" id="org3587abd">
+<pre class="example" id="org6d5b041">
 ➜  nginx  chkconfig
 distcc                   on
 docker                   off
@@ -512,7 +512,7 @@ virtualbox-guest-x11     on
 <p>
 #note@2014-11-30: ubuntu后期版本移除了这个组件,使用sysv-rc-conf来代替. 使用&#x2013;list可以列出所有当前服务
 </p>
-<pre class="example" id="org63585dd">
+<pre class="example" id="org02047ce">
 ➜  .private  sudo sysv-rc-conf --list
 collectl     0:off1:off2:on3:on4:on5:on6:off
 distcc       0:off1:off2:on3:on4:on5:on6:off
@@ -553,7 +553,7 @@ virtualbox-g 0:off1:off2:on3:on4:on5:on6:off
 <p>
 我们可以手工编辑/etc/fstab来更正，可以使用blkid查看各个设备的UUID
 </p>
-<pre class="example" id="org10e0919">
+<pre class="example" id="org683a2b2">
 ➜  ~  blkid
 /dev/sda1: UUID="26971214-3b4d-455c-ab3d-cefae2d8cfd8" TYPE="ext4"
 /dev/sda5: LABEL="swap" UUID="cd6de3d9-6a98-46c2-9875-de12251fe82e" TYPE="swap"
@@ -645,7 +645,7 @@ Ubuntu Software Center -&gt; Edit -&gt; Software Sources -&gt; Ubuntu Sofware(Do
 System Settings =》 Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
 </p>
 <div class="org-src-container">
-<pre class="src src-elisp">(<span class="org-keyword">setq</span> browse-url-generic-program (executable-find <span class="org-string">"chromium-browser"</span>)
+<pre class="src src-Elisp">(setq browse-url-generic-program (executable-find "chromium-browser")
       browse-url-browser-function 'browse-url-generic)
 </pre>
 </div>
@@ -815,14 +815,14 @@ Tools -&gt; Preferences -&gt; Subtitles &amp; OSD
 <p>
 对于服务器的话可以修改/etc/ssh/sshd_config
 </p>
-<pre class="example" id="org1fc8aed">
+<pre class="example" id="orgf81c3cd">
 UseDNS no
 
 </pre>
 <p>
 对于客户端的话可以修改/etc/ssh/ssh_config
 </p>
-<pre class="example" id="org49cddeb">
+<pre class="example" id="org051d2f1">
 GSSAPIAuthentication no
 GSSAPIDelegateCredentials no
 </pre>
@@ -865,7 +865,7 @@ GSSAPIDelegateCredentials no
 <p>
 如果登陆过程中出现 "Agent admitted failure to sign using the key" 的话，可以尝试下面的命令
 </p>
-<pre class="example" id="orgf9ff755">
+<pre class="example" id="org2106bc0">
 ssh-add   ~/.ssh/id_rsa
 </pre>
 </div>
@@ -881,7 +881,7 @@ ssh-add   ~/.ssh/id_rsa
 <p>
 简化ssh登陆第二个方式就是可以针对hostname,user以及port做别名，这个可以在~/.ssh/config里面配置
 </p>
-<pre class="example" id="org2248381">
+<pre class="example" id="org68a5746">
 dirlt@dirlt-virtual-machine:~/.ssh$ cat config
 Host git
 Port 16024
@@ -930,7 +930,7 @@ How to disable SSH host key checking <a href="http://linuxcommando.blogspot.com/
 <p>
 查看所配置的identity files很简单'ssh-add -l'. 使用选项-d可以删除某个file(-D可以删除所有)
 </p>
-<pre class="example" id="org529460b">
+<pre class="example" id="orgcc9ac60">
 ➜  repo  ssh-add -l
 2048 37:0d:f1:91:c8:96:97:9a:54:8b:da:66:41:19:9f:a3 /home/dirlt/.ssh/id_rsa (RSA)
 2048 b9:56:e7:7d:83:d4:04:70:c4:bb:0b:9e:3d:05:63:a6 /home/dirlt/.ssh/github (RSA)
@@ -954,7 +954,7 @@ Identity removed: /home/dirlt/.ssh/id_rsa ( dirlt@ubuntu)
 <p>
 通常是因为对应的locale没有找到
 </p>
-<pre class="example" id="orgd9f4b93">
+<pre class="example" id="orgebe82f2">
 bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
 bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
 bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
@@ -963,7 +963,7 @@ bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
 <p>
 可以通过生成对应locale文件来解决这个问题
 </p>
-<pre class="example" id="org8ef6827">
+<pre class="example" id="orgc6deb88">
 ➜  bin  sudo locale-gen zh_CN.UTF-8
 [sudo] password for dirlt:
 /bin/bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)
@@ -1010,7 +1010,7 @@ Generation complete.
 <p>
 之后为了自动挂载，修改/etc/fstab
 </p>
-<pre class="example" id="org408d647">
+<pre class="example" id="orgdd8bcde">
 /dev/sdb1 $HOME ext4 defaults 0 0
 </pre>
 </div>
@@ -1077,8 +1077,7 @@ Generation complete.
 </p>
 
 <p>
-接着Settings =》 USB里面添加那些已经识别的设备，接着启动windows虚拟机就可以使用U盾了。
-</p>
+接着Settings =》 USB里面添加那些已经识别的设备，接着启动windows虚拟机就可以使用U盾了。</p>
 </div>
 </div>
 </div>

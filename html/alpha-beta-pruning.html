@@ -35,7 +35,7 @@ AB剪枝是基于min-max搜索策略的优化方法，原理就是根据上层�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-algol">function alphabeta(node, depth, α, β, maximizingPlayer) is
+<pre class="src src-Algol">function alphabeta(node, depth, α, β, maximizingPlayer) is
     if depth = 0 or node is a terminal node then
         return the heuristic value of node
     if maximizingPlayer then
@@ -66,7 +66,7 @@ alphabeta(origin, depth, −∞, +∞, TRUE)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-algol">
+<pre class="src src-Algol">
 function alphabeta(node, depth, threshold, maximizingPlayer) is
     if depth = 0 or node is a terminal node then
         return the heuristic value of node

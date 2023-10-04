@@ -27,7 +27,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="orgb0eac30" class="figure">
+<div id="org6463d3f" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-0.jpg" alt="mongodb34-perf-issue-checkpoint-0.jpg" />
 </p>
 </div>
@@ -51,7 +51,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org26828f4" class="figure">
+<div id="org3344b17" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-1.jpg" alt="mongodb34-perf-issue-checkpoint-1.jpg" />
 </p>
 </div>
@@ -71,7 +71,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org486e27a" class="figure">
+<div id="orga5bbdf0" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-2.jpg" alt="mongodb34-perf-issue-checkpoint-2.jpg" />
 </p>
 </div>
@@ -81,7 +81,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org9163e45" class="figure">
+<div id="org14f276d" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-3.jpg" alt="mongodb34-perf-issue-checkpoint-3.jpg" />
 </p>
 </div>
@@ -91,7 +91,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 为了确认这些数据是mongodb写入的，我们还运行了一个 `iotop` 来观察记录当时的情况
 </p>
 
-<pre class="example" id="orgc86d341">
+<pre class="example" id="org8c250aa">
 09:35:46  2979 be/3 root        0.00 B/s   64.93 K/s  0.00 %  1.58 % [jbd2/xvdb-8]
 09:35:46  2505 be/3 root        0.00 B/s    0.00 B/s  0.00 %  0.12 % [jbd2/xvda1-8]
 09:35:46  6964 be/4 ec2-user    2.63 M/s  104.81 M/s  0.00 %  0.01 % mongod --storageEngine wiredTiger --port 27017 --dbpath /srv/mongodb --wiredTigerCacheSizeGB 30 --logpath /srv/mongodb/log --pidfilepath /home/ec2-user/nova/deploy/mongod-27017.pid --fork --journal --replSet rs0 --setParameter replWriterThreadCount=1
@@ -181,7 +181,7 @@ while True:
 </p>
 
 
-<div id="org56fc44a" class="figure">
+<div id="org9b015ee" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-4.jpg" alt="mongodb34-perf-issue-checkpoint-4.jpg" />
 </p>
 </div>
@@ -204,7 +204,7 @@ while True:
 如果对比mongodb 3.0 和 3.4 的wiredtiger默认参数的话，其实差别非常小，checkpoint wait 值完全一样。所以猜测 wiredtiger 3.4 生成的checkpoint 体积相比3.0要大很多，才造成升级之后会感知到磁盘的瞬间写入。
 </p>
 
-<pre class="example" id="orgbca70b6">
+<pre class="example" id="org7ad9d26">
 mongodb 3.0
 
 2017-08-20T13:51:13.516+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=2G,session_max=20000,eviction=(threads_max=4),statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),

@@ -23,7 +23,7 @@
 <p>
 zookeeper需要java.下载好zookeeper的package解压之后的话，在zookeeper目录下面建立data和dataLog文件夹。然后如果自己是server1的话，在data下面建立文件myid内容为1（echo "1" &gt; data/myid)(不同实例使用不同id）.对于其他机器的话也是同样的操作。然后进行conf目录（cp zoo_sample.cfg zoo.cfg)，然后修改文件
 </p>
-<pre class="example" id="orge6b84e1">
+<pre class="example" id="org27a41bc">
 TickTime=2000
 initLimit=5
 syncLimit=2
@@ -36,8 +36,7 @@ server.3=127.0.0.1:2890:3890
 
 </pre>
 <p>
-然后在bin目录下面使用zkServer.sh restart即可。zookeeper也配置了zkCli.sh.通过zkCli.sh -server 127.0.0.1:2181即可进行交互式的界面来查看zookeeper上面的数据。
-</p>
+然后在bin目录下面使用zkServer.sh restart即可。zookeeper也配置了zkCli.sh.通过zkCli.sh -server 127.0.0.1:2181即可进行交互式的界面来查看zookeeper上面的数据。</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/zookeeper-getting-started.html';this.page.identifier = 'zookeeper-getting-started.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

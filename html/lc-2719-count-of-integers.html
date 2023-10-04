@@ -33,34 +33,34 @@
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">count</span>(<span class="org-py-object-reference">self</span>, num1: <span class="org-py-builtins">str</span>, num2: <span class="org-py-builtins">str</span>, min_sum: <span class="org-py-builtins">int</span>, max_sum: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
+<pre class="src src-Python">class Solution:
+    def count(self, num1: str, num2: str, min_sum: int, max_sum: int) -&gt; int:
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">doCount</span>(num):
-            <span class="org-py-variable-name">s</span> = <span class="org-py-builtins">str</span>(num)
-            <span class="org-py-import-from">from</span> functools <span class="org-py-import-from">import</span> cache
-            <span class="org-py-decorators">@cache</span>
-            <span class="org-py-def-class">def</span> <span class="org-function-name">f</span>(i, <span class="org-py-builtins">sum</span>, isNum, isLimit):
-                <span class="org-keyword">if</span> <span class="org-py-builtins">sum</span> &gt; max_sum:
-                    <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+        def doCount(num):
+            s = str(num)
+            from functools import cache
+            @cache
+            def f(i, sum, isNum, isLimit):
+                if sum &gt; max_sum:
+                    return 0
 
-                <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == <span class="org-py-builtins">len</span>(s):
-                    <span class="org-keyword">return</span> <span class="org-py-builtins">sum</span> &gt;= min_sum <span class="org-keyword">and</span> isNum
+                if i == len(s):
+                    return sum &gt;= min_sum and isNum
 
-                <span class="org-py-variable-name">res</span> = <span class="org-py-number">0</span>
-                <span class="org-py-variable-name">down</span> = <span class="org-py-number">0</span> <span class="org-keyword">if</span> isNum <span class="org-keyword">else</span> <span class="org-py-number">1</span>
-                <span class="org-py-variable-name">up</span> = <span class="org-py-builtins">int</span>(s[i]) <span class="org-keyword">if</span> isLimit <span class="org-keyword">else</span> <span class="org-py-number">9</span>
-                <span class="org-keyword">for</span> d <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(down, up + <span class="org-py-number">1</span>):
-                    <span class="org-py-variable-name">res</span> += f(i + <span class="org-py-number">1</span>, <span class="org-py-builtins">sum</span> + d, <span class="org-py-pseudo-keyword">True</span>, isLimit <span class="org-keyword">and</span> <span class="org-py-variable-name">d</span> == up)
-                <span class="org-keyword">return</span> res
+                res = 0
+                down = 0 if isNum else 1
+                up = int(s[i]) if isLimit else 9
+                for d in range(down, up + 1):
+                    res += f(i + 1, sum + d, True, isLimit and d == up)
+                return res
 
-            <span class="org-keyword">return</span> f(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span>)
+            return f(0, 0, True, True)
 
-        <span class="org-py-variable-name">a</span> = doCount(num2)
-        <span class="org-py-variable-name">b</span> = doCount(num1)
-        <span class="org-py-variable-name">c</span> = (min_sum &lt;= <span class="org-py-builtins">sum</span>(map(int, num1)) &lt;= max_sum)
-        <span class="org-py-variable-name">ans</span> = (a - b) + c
-        <span class="org-keyword">return</span> ans
+        a = doCount(num2)
+        b = doCount(num1)
+        c = (min_sum &lt;= sum(map(int, num1)) &lt;= max_sum)
+        ans = (a - b) + c
+        return ans
 </pre>
 </div>
 
@@ -75,31 +75,31 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python">
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">numDupDigitsAtMostN</span>(<span class="org-py-object-reference">self</span>, n: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">s</span> = <span class="org-py-builtins">str</span>(n)
+<pre class="src src-Python">
+class Solution:
+    def numDupDigitsAtMostN(self, n: int) -&gt; int:
+        s = str(n)
 
-        <span class="org-py-import-from">from</span> functools <span class="org-py-import-from">import</span> cache
-        <span class="org-py-decorators">@cache</span>
-        <span class="org-py-def-class">def</span> <span class="org-function-name">f</span>(i, mask, isNum, isLimit):
-            <span class="org-keyword">if</span> <span class="org-py-variable-name">i</span> == <span class="org-py-builtins">len</span>(s):
-                <span class="org-keyword">return</span> isNum
+        from functools import cache
+        @cache
+        def f(i, mask, isNum, isLimit):
+            if i == len(s):
+                return isNum
 
-            <span class="org-py-variable-name">res</span> = <span class="org-py-number">0</span>
-            <span class="org-keyword">if</span> <span class="org-keyword">not</span> isNum:
-                <span class="org-py-variable-name">res</span> += f(i + <span class="org-py-number">1</span>, mask, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">False</span>)
+            res = 0
+            if not isNum:
+                res += f(i + 1, mask, False, False)
 
-            <span class="org-py-variable-name">down</span> = <span class="org-py-number">0</span> <span class="org-keyword">if</span> isNum <span class="org-keyword">else</span> <span class="org-py-number">1</span>
-            <span class="org-py-variable-name">up</span> = <span class="org-py-builtins">int</span>(s[i]) <span class="org-keyword">if</span> isLimit <span class="org-keyword">else</span> <span class="org-py-number">9</span>
-            <span class="org-keyword">for</span> d <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(down, up + <span class="org-py-number">1</span>):
-                <span class="org-keyword">if</span> <span class="org-keyword">not</span> (mask &amp; (<span class="org-py-number">1</span> &lt;&lt; d)):
-                    <span class="org-py-variable-name">res</span> += f(i + <span class="org-py-number">1</span>, mask | (<span class="org-py-number">1</span> &lt;&lt; d), <span class="org-py-pseudo-keyword">True</span>, isLimit <span class="org-keyword">and</span> <span class="org-py-variable-name">d</span> == up)
-            <span class="org-keyword">return</span> res
+            down = 0 if isNum else 1
+            up = int(s[i]) if isLimit else 9
+            for d in range(down, up + 1):
+                if not (mask &amp; (1 &lt;&lt; d)):
+                    res += f(i + 1, mask | (1 &lt;&lt; d), True, isLimit and d == up)
+            return res
 
-        <span class="org-py-variable-name">a</span> = f(<span class="org-py-number">0</span>, <span class="org-py-number">0</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">True</span>)
-        <span class="org-py-variable-name">ans</span> = n - a
-        <span class="org-keyword">return</span> ans
+        a = f(0, 0, False, True)
+        ans = n - a
+        return ans
 </pre>
 </div>
 </div>

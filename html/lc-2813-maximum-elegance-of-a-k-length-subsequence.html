@@ -30,28 +30,28 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findMaximumElegance</span>(<span class="org-py-object-reference">self</span>, items: List[List[<span class="org-py-builtins">int</span>]], k: <span class="org-py-builtins">int</span>) -&gt; <span class="org-py-builtins">int</span>:
-        items.sort(<span class="org-py-variable-name">key</span>=<span class="org-keyword">lambda</span> x: -x[<span class="org-py-number">0</span>])
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span>
-        <span class="org-py-variable-name">total</span> = <span class="org-py-number">0</span>
+<pre class="src src-Python">class Solution:
+    def findMaximumElegance(self, items: List[List[int]], k: int) -&gt; int:
+        items.sort(key=lambda x: -x[0])
+        ans = 0
+        total = 0
 
-        <span class="org-py-variable-name">vis</span> = <span class="org-py-builtins">set</span>()
-        <span class="org-py-variable-name">dup</span> = []
-        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(len(items)):
-            <span class="org-py-variable-name">profit</span>, <span class="org-py-variable-name">category</span> = items[i]
-            <span class="org-keyword">if</span> i &lt; k:
-                <span class="org-py-variable-name">total</span> += profit
-                <span class="org-keyword">if</span> category <span class="org-keyword">not</span> <span class="org-keyword">in</span> vis:
+        vis = set()
+        dup = []
+        for i in range(len(items)):
+            profit, category = items[i]
+            if i &lt; k:
+                total += profit
+                if category not in vis:
                     vis.add(category)
-                <span class="org-keyword">else</span>:
+                else:
                     dup.append(profit)
-            <span class="org-keyword">elif</span> dup <span class="org-keyword">and</span> category <span class="org-keyword">not</span> <span class="org-keyword">in</span> vis:
+            elif dup and category not in vis:
                 vis.add(category)
-                <span class="org-py-variable-name">total</span> += profit - dup.pop()
+                total += profit - dup.pop()
 
-            <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">max</span>(ans, total + <span class="org-py-builtins">len</span>(vis) ** <span class="org-py-number">2</span>)
-        <span class="org-keyword">return</span> ans
+            ans = max(ans, total + len(vis) ** 2)
+        return ans
 </pre>
 </div>
 </div>

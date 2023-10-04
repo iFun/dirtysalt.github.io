@@ -24,7 +24,7 @@
 虽然这个解答很好，但总觉得这个方法不是特别显而易见的。这是一个贪心算法，但是需要证明。
 </p>
 
-<pre class="example" id="orgc692594">
+<pre class="example" id="orgaa1b2aa">
 Intuition:
 For each integer A[i],
 we may choose either x = -K or x = K.
@@ -54,18 +54,18 @@ Update the res = min(res, mx - mn)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java"><span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.*;
+<pre class="src src-Java">import java.util.*;
 
-<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
-    <span class="org-keyword">public</span> <span class="org-type">int</span> <span class="org-function-name">smallestRangeII</span>(<span class="org-type">int</span>[] <span class="org-variable-name">A</span>, <span class="org-type">int</span> <span class="org-variable-name">K</span>) {
+class Solution {
+    public int smallestRangeII(int[] A, int K) {
         Arrays.sort(A);
-        <span class="org-type">int</span> <span class="org-variable-name">ans</span> = A[A.length - 1] - A[0];
-        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; A.<span class="org-type">length</span> - 1; i++) {
-            <span class="org-type">int</span> <span class="org-variable-name">minx</span> = Math.min(A[0] + 2 * K, A[i + 1]);
-            <span class="org-type">int</span> <span class="org-variable-name">maxx</span> = Math.max(A[i] + 2 * K, A[A.length - 1]);
+        int ans = A[A.length - 1] - A[0];
+        for (int i = 0; i &lt; A.length - 1; i++) {
+            int minx = Math.min(A[0] + 2 * K, A[i + 1]);
+            int maxx = Math.max(A[i] + 2 * K, A[A.length - 1]);
             ans = Math.min(ans, maxx - minx);
         }
-        <span class="org-keyword">return</span> ans;
+        return ans;
     }
 }
 

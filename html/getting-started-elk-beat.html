@@ -41,7 +41,7 @@ Beat可以即可以输出到logstash（可以用来做parse &amp; transform) 然
 </p>
 
 
-<div id="orgc2e490c" class="figure">
+<div id="org383b47d" class="figure">
 <p><img src="../images/elk_beat_dashboard.png" alt="elk_beat_dashboard.png" />
 </p>
 </div>
@@ -88,7 +88,7 @@ output {
 <p>
 在output不断可以通过fields.type或者是type判断是不是metricbeat. 如果希望通过fields.type判断的话，为此我们需要在metric beat配置里面增加下面配置片段
 </p>
-<pre class="example" id="orgfb3d89f">
+<pre class="example" id="org9d4d3ac">
 fields:
   type: metricbeat
 </pre>
@@ -100,7 +100,7 @@ fields:
 file beat相比就更容易配置一些。file beat会记录所有文件最后读取的偏移，存储到本地的data/registry里面。所以如果希望重新灌文件的话，可以将这个文件删除掉
 </p>
 
-<pre class="example" id="orgedec490">
+<pre class="example" id="orgb3c2c53">
 ➜  data ls
 meta.json registry
 ➜  data cat registry
@@ -114,14 +114,13 @@ meta.json registry
 </p>
 
 
-<div id="org3672305" class="figure">
+<div id="org1ee2c3c" class="figure">
 <p><img src="../images/elk_beat_discovery.png" alt="elk_beat_discovery.png" />
 </p>
 </div>
 
 <p>
-总的来说，ELK对于指标数据可以美观地展现出来，对于日志数据可以很容易地检索出来，而且安装也相对简单，值得试试。
-</p>
+总的来说，ELK对于指标数据可以美观地展现出来，对于日志数据可以很容易地检索出来，而且安装也相对简单，值得试试。</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/getting-started-elk-beat.html';this.page.identifier = 'getting-started-elk-beat.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

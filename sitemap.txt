@@ -85,6 +85,7 @@ https://dirtysalt.github.io/html/area-of-triangle.html
 https://dirtysalt.github.io/html/as-a-software-engineer-why-did-you-receive-a-promotion.html
 https://dirtysalt.github.io/html/ascii-hex-codes.html
 https://dirtysalt.github.io/html/atlassian-user-onboarding-magic.html
+https://dirtysalt.github.io/html/attempt-to-work-on-windows.html
 https://dirtysalt.github.io/html/authority-and-merit.html
 https://dirtysalt.github.io/html/automate-to-save-mental-energy-not-time.html
 https://dirtysalt.github.io/html/automated-locality-opt-based-on-reuse-dist-of-string-ops.html

@@ -37,7 +37,7 @@
 </p>
 
 
-<div id="orgcfa291c" class="figure">
+<div id="org016a636" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-0.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-0.jpg" />
 </p>
 </div>
@@ -46,7 +46,7 @@
 这个函数是KVM在处理page fault. [KVM async page fault](<a href="https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault">https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault</a>) 因为整个dataset其实都是放在内存里面的，所以这些page fault都是minor page fault, 物理内存分配速度跟不上导致的。
 </p>
 
-<pre class="example" id="orgff47036">
+<pre class="example" id="org3432f91">
 sr@dla-cache01 ~]$ systemd-detect-virt
 kvm
 </pre>
@@ -134,7 +134,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="orgd7b5506" class="figure">
+<div id="org6b5f1e5" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-1.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-1.jpg" />
 </p>
 </div>
@@ -144,7 +144,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="org941b027" class="figure">
+<div id="org9c38463" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-2.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-2.jpg" />
 </p>
 </div>
@@ -163,7 +163,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 因为运行的时候没有办法确定cpu cores, 会出现如下错误：
 </p>
 
-<pre class="example" id="org62e1c80">
+<pre class="example" id="org3eb61ba">
 === jemalloc: percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:5000,dirty_decay_ms:5000,metadata_thp:auto,background_thread:true ===
 &lt;jemalloc&gt;: Number of CPUs detected is not deterministic. Per-CPU arena disabled.
 </pre>
@@ -201,7 +201,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="orgeed0102" class="figure">
+<div id="org667f115" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-3.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-3.jpg" />
 </p>
 </div>
@@ -211,7 +211,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="org1febbfd" class="figure">
+<div id="org84ccb83" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-4.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-4.jpg" />
 </p>
 </div>
@@ -222,7 +222,7 @@ UDPATE: 64线程下面增加mimalloc
 </p>
 
 
-<div id="org609e935" class="figure">
+<div id="org2890592" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-5.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-5.jpg" />
 </p>
 </div>
@@ -242,8 +242,7 @@ UDPATE: 64线程下面增加mimalloc
 </p>
 
 <p>
-<a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/run_malloc_suite.sh">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/run_malloc_suite.sh</a>
-</p>
+<a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/run_malloc_suite.sh">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/run_malloc_suite.sh</a></p>
 </div>
 </div>
 </div>

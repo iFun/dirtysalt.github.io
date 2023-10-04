@@ -29,7 +29,7 @@
 </p>
 
 
-<div id="org4274f5c" class="figure">
+<div id="org7394a75" class="figure">
 <p><img src="../images/cops-arch.png" alt="cops-arch.png" />
 </p>
 </div>
@@ -48,7 +48,7 @@
 </p>
 
 
-<div id="org796b0a9" class="figure">
+<div id="org665d924" class="figure">
 <p><img src="../images/cops-deps.png" alt="cops-deps.png" />
 </p>
 </div>
@@ -69,8 +69,7 @@ Client API是上面那样，但是内部接口只有两个：
 </p>
 
 <p>
-COPS-GT在存储上overhead会比较大，一个key需要存储多个版本，并且每个版本里面还带上了deps. 为了尽量减少这个overhead, 所以需要不断地进行GC，删除某些已经没有用的版本。至于删除的依据，就是要确保 `get_trans` 可以被正确实现。COPS/COPS-GT在context在运行一段时间之后all deps也会比较多，在确保安全的情况下满，也可以将某些deps删除。
-</p>
+COPS-GT在存储上overhead会比较大，一个key需要存储多个版本，并且每个版本里面还带上了deps. 为了尽量减少这个overhead, 所以需要不断地进行GC，删除某些已经没有用的版本。至于删除的依据，就是要确保 `get_trans` 可以被正确实现。COPS/COPS-GT在context在运行一段时间之后all deps也会比较多，在确保安全的情况下满，也可以将某些deps删除。</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/cops-causal-consistency.html';this.page.identifier = 'cops-causal-consistency.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

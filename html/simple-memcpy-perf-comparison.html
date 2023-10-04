@@ -71,27 +71,27 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#define</span> <span class="org-function-name">BM</span>(<span class="org-variable-name">IMPL</span>)                                                                                \
-    <span class="org-type">void</span> <span class="org-variable-name">BM</span>**IMPL(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {                                                    \
-        <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = state.range(0);                                                           \
-        <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">uint8_t</span>&gt; <span class="org-variable-name">vec_dst</span>(size), <span class="org-variable-name">vec_src</span>(size);                                      \
-        <span class="org-type">uint8_t</span>* <span class="org-variable-name">dst</span> = vec_dst.data();                                                          \
-        <span class="org-type">uint8_t</span>* <span class="org-variable-name">src</span> = vec_src.data();                                                          \
+<pre class="src src-Cpp">#define BM(IMPL)                                                                                \
+    void BM**IMPL(benchmark::State&amp; state) {                                                    \
+        size_t size = state.range(0);                                                           \
+        std::vector&lt;uint8_t&gt; vec_dst(size), vec_src(size);                                      \
+        uint8_t* dst = vec_dst.data();                                                          \
+        uint8_t* src = vec_src.data();                                                          \
         memset(src, 0x3f, size);                                                                \
-        <span class="org-constant">std</span>::<span class="org-type">mt19937</span> <span class="org-variable-name">gen32</span>(0);                                                                  \
-        <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {                                                                  \
-            <span class="org-comment-delimiter">/* </span><span class="org-comment">(1-(x)/2048) * size. x in [0, 256]</span><span class="org-comment-delimiter"> */</span>                                            \
-            <span class="org-type">size_t</span> <span class="org-variable-name">copy_size</span> = (1 - (gen32() &amp; 0x0ff) * 0.000488281) * size;                    \
+        std::mt19937 gen32(0);                                                                  \
+        for (auto _ : state) {                                                                  \
+            /* (1-(x)/2048) * size. x in [0, 256] */                                            \
+            size_t copy_size = (1 - (gen32() &amp; 0x0ff) * 0.000488281) * size;                    \
             IMPL(dst, src, size);                                                               \
-            <span class="org-comment-delimiter">/* </span><span class="org-comment">/// Execute at least one SSE instruction as a penalty after running AVX code.</span><span class="org-comment-delimiter"> */</span> \
-            <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"pxor %%xmm15, %%xmm15"</span> ::: <span class="org-string">"xmm15"</span>);                          \
+            /* /// Execute at least one SSE instruction as a penalty after running AVX code. */ \
+            __asm__ __volatile__("pxor %%xmm15, %%xmm15" ::: "xmm15");                          \
         }                                                                                       \
     }
 
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">size_t</span> <span class="org-variable-name">N</span> = 1000000;
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">size_t</span> <span class="org-variable-name">KB</span> = 1024;
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">size_t</span> <span class="org-variable-name">MB</span> = 1024 * 1024;
-<span class="org-preprocessor">#define</span> <span class="org-function-name">VARIANT</span>(<span class="org-variable-name">N</span>, <span class="org-variable-name">NAME</span>) \
+static constexpr size_t N = 1000000;
+static constexpr size_t KB = 1024;
+static constexpr size_t MB = 1024 * 1024;
+#define VARIANT(N, NAME) \
     BM(NAME)             \
     BENCHMARK(BM**NAME)-&gt;Name(#NAME)-&gt;RangeMultiplier(4)-&gt;Range(16, 128 * MB)-&gt;Threads(1)-&gt;Threads(8);
 </pre>
@@ -102,7 +102,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp">VARIANT(21, __memcpy_erms)
+<pre class="src src-Cpp">VARIANT(21, __memcpy_erms)
 VARIANT(22, __memcpy_sse2_unaligned)
 VARIANT(23, __memcpy_ssse3)
 VARIANT(24, __memcpy_ssse3_back)
@@ -135,25 +135,25 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="orgafaf79e" class="figure">
+<div id="orgf643666" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
 </p>
 </div>
 
 
-<div id="org1891eb8" class="figure">
+<div id="org1c57a1a" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
 </p>
 </div>
 
 
-<div id="org4de4726" class="figure">
+<div id="org9601b9d" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
 </p>
 </div>
 
 
-<div id="orgb8c5ee3" class="figure">
+<div id="org53e0d4a" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
 </p>
 </div>
@@ -178,19 +178,19 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="org51428a1" class="figure">
+<div id="org581b964" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
 </p>
 </div>
 
 
-<div id="org673bf4f" class="figure">
+<div id="orgf35bafd" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
 </p>
 </div>
 
 
-<div id="org3278c94" class="figure">
+<div id="org703f592" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
 </p>
 </div>
@@ -214,19 +214,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org6c8b625" class="figure">
+<div id="org48531eb" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
 </p>
 </div>
 
 
-<div id="org467e07d" class="figure">
+<div id="org7949bea" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
 </p>
 </div>
 
 
-<div id="orgb1f9b84" class="figure">
+<div id="org49301e9" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
 </p>
 </div>
@@ -249,19 +249,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org22b4b9f" class="figure">
+<div id="org0e12d8b" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
 </p>
 </div>
 
 
-<div id="org31f38ce" class="figure">
+<div id="org06f769f" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
 </p>
 </div>
 
 
-<div id="org49ea192" class="figure">
+<div id="org03a49bc" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
 </p>
 </div>
@@ -301,9 +301,9 @@ VARIANT(5, memcpy_jart)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">static</span> <span class="org-type">void</span>* <span class="org-function-name">memcpy_erms</span>(<span class="org-type">void</span>* <span class="org-variable-name">dst</span>, <span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
-    <span class="org-keyword">asm</span> <span class="org-keyword">volatile</span>(<span class="org-string">"rep movsb"</span> : <span class="org-string">"=D"</span>(dst), <span class="org-string">"=S"</span>(src), <span class="org-string">"=c"</span>(size) : <span class="org-string">"0"</span>(dst), <span class="org-string">"1"</span>(src), <span class="org-string">"2"</span>(size) : <span class="org-string">"memory"</span>);
-    <span class="org-keyword">return</span> dst;
+<pre class="src src-Cpp">static void* memcpy_erms(void* dst, const void* src, size_t size) {
+    asm volatile("rep movsb" : "=D"(dst), "=S"(src), "=c"(size) : "0"(dst), "1"(src), "2"(size) : "memory");
+    return dst;
 }
 </pre>
 </div>
@@ -323,37 +323,37 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">static</span> <span class="org-type">void</span>* <span class="org-function-name">memcpyAVX2</span>(<span class="org-type">void</span>* <span class="org-variable-name">__restrict</span> destination, <span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">__restrict</span> source, <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
-    <span class="org-type">unsigned</span> <span class="org-type">char</span>* <span class="org-variable-name">dst</span> = <span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">unsigned</span> <span class="org-type">char</span>*&gt;(destination);
-    <span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>* <span class="org-variable-name">src</span> = <span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>*&gt;(source);
-    <span class="org-type">size_t</span> <span class="org-variable-name">padding</span>;
+<pre class="src src-Cpp">static void* memcpyAVX2(void* __restrict destination, const void* __restrict source, size_t size) {
+    unsigned char* dst = reinterpret_cast&lt;unsigned char*&gt;(destination);
+    const unsigned char* src = reinterpret_cast&lt;const unsigned char*&gt;(source);
+    size_t padding;
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">small memory copy</span>
-    <span class="org-keyword">if</span> (size &lt;= 32) <span class="org-keyword">return</span> memcpy_tiny(dst, src, size);
+    // small memory copy
+    if (size &lt;= 32) return memcpy_tiny(dst, src, size);
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">align destination to 16 bytes boundary</span>
-    padding = (32 - (<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">size_t</span>&gt;(dst) &amp; 31)) &amp; 31;
+    // align destination to 16 bytes boundary
+    padding = (32 - (reinterpret_cast&lt;size_t&gt;(dst) &amp; 31)) &amp; 31;
 
-    <span class="org-keyword">if</span> (padding &gt; 0) {
-        <span class="org-type">__m256i</span> <span class="org-variable-name">head</span> = _mm256_loadu_si256(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m256i</span>*&gt;(src));
-        _mm256_storeu_si256(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m256i</span>*&gt;(dst), head);
+    if (padding &gt; 0) {
+        __m256i head = _mm256_loadu_si256(reinterpret_cast&lt;const __m256i*&gt;(src));
+        _mm256_storeu_si256(reinterpret_cast&lt;__m256i*&gt;(dst), head);
         dst += padding;
         src += padding;
         size -= padding;
     }
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">medium size copy</span>
-    <span class="org-type">__m256i</span> <span class="org-variable-name">c0</span>;
+    // medium size copy
+    __m256i c0;
 
-    <span class="org-keyword">for</span> (; size &gt;= 32; size -= 32) {
-        c0 = _mm256_loadu_si256(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m256i</span>*&gt;(src));
+    for (; size &gt;= 32; size -= 32) {
+        c0 = _mm256_loadu_si256(reinterpret_cast&lt;const __m256i*&gt;(src));
         src += 32;
-        _mm256_store_si256((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m256i</span>*&gt;(dst)), c0);
+        _mm256_store_si256((reinterpret_cast&lt;__m256i*&gt;(dst)), c0);
         dst += 32;
     }
 
     memcpy_tiny(dst, src, size);
-    <span class="org-keyword">return</span> destination;
+    return destination;
 }
 </pre>
 </div>
@@ -374,64 +374,64 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">//</span><span class="org-comment">---------------------------------------------------------------------</span>
-<span class="org-comment-delimiter">// </span><span class="org-comment">tiny memory copy with jump table optimized</span>
-<span class="org-comment-delimiter">//</span><span class="org-comment">---------------------------------------------------------------------</span>
-<span class="org-comment-delimiter">/// </span><span class="org-comment">Attribute is used to avoid an error with undefined behaviour sanitizer</span>
-<span class="org-comment-delimiter">/// </span><span class="org-comment">../contrib/FastMemcpy/FastMemcpy.h:91:56: runtime error: applying zero offset to null pointer</span>
-<span class="org-comment-delimiter">/// </span><span class="org-comment">Found by 01307_orc_output_format.sh, cause - ORCBlockInputFormat and external ORC library.</span>
-<span class="org-keyword">__attribute__</span>((__no_sanitize__(<span class="org-string">"undefined"</span>))) <span class="org-keyword">inline</span> <span class="org-type">void</span>* <span class="org-function-name">memcpy_tiny</span>(<span class="org-type">void</span>* <span class="org-variable-name">__restrict</span> dst, <span class="org-keyword">const</span> <span class="org-type">void</span>* <span class="org-variable-name">__restrict</span> src,
-                                                                       <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
-    <span class="org-type">unsigned</span> <span class="org-type">char</span>* <span class="org-variable-name">dd</span> = ((<span class="org-type">unsigned</span> <span class="org-type">char</span>*)dst) + size;
-    <span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>* <span class="org-variable-name">ss</span> = ((<span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>*)src) + size;
+<pre class="src src-Cpp">//---------------------------------------------------------------------
+// tiny memory copy with jump table optimized
+//---------------------------------------------------------------------
+/// Attribute is used to avoid an error with undefined behaviour sanitizer
+/// ../contrib/FastMemcpy/FastMemcpy.h:91:56: runtime error: applying zero offset to null pointer
+/// Found by 01307_orc_output_format.sh, cause - ORCBlockInputFormat and external ORC library.
+__attribute__((__no_sanitize__("undefined"))) inline void* memcpy_tiny(void* __restrict dst, const void* __restrict src,
+                                                                       size_t size) {
+    unsigned char* dd = ((unsigned char*)dst) + size;
+    const unsigned char* ss = ((const unsigned char*)src) + size;
 
-    <span class="org-keyword">switch</span> (size) {
-    <span class="org-keyword">case</span> 64:
+    switch (size) {
+    case 64:
         memcpy_sse2_64(dd - 64, ss - 64);
         [[fallthrough]];
-    <span class="org-keyword">case</span> 0:
-        <span class="org-keyword">break</span>;
+    case 0:
+        break;
 
-    <span class="org-keyword">case</span> 65:
+    case 65:
         memcpy_sse2_64(dd - 65, ss - 65);
         [[fallthrough]];
-    <span class="org-keyword">case</span> 1:
+    case 1:
         dd[-1] = ss[-1];
-        <span class="org-keyword">break</span>;
-    <span class="org-keyword">case</span> 66:
+        break;
+    case 66:
         memcpy_sse2_64(dd - 66, ss - 66);
         [[fallthrough]];
-    <span class="org-keyword">case</span> 2:
-        *((<span class="org-type">uint16_unaligned_t</span>*)(dd - 2)) = *((<span class="org-keyword">const</span> <span class="org-type">uint16_unaligned_t</span>*)(ss - 2));
-        <span class="org-keyword">break</span>;
+    case 2:
+        *((uint16_unaligned_t*)(dd - 2)) = *((const uint16_unaligned_t*)(ss - 2));
+        break;
 
-    <span class="org-keyword">case</span> 67:
+    case 67:
         memcpy_sse2_64(dd - 67, ss - 67);
         [[fallthrough]];
-    <span class="org-keyword">case</span> 3:
-        *((<span class="org-type">uint16_unaligned_t</span>*)(dd - 3)) = *((<span class="org-keyword">const</span> <span class="org-type">uint16_unaligned_t</span>*)(ss - 3));
+    case 3:
+        *((uint16_unaligned_t*)(dd - 3)) = *((const uint16_unaligned_t*)(ss - 3));
         dd[-1] = ss[-1];
-        <span class="org-keyword">break</span>;
+        break;
 
-    <span class="org-keyword">case</span> 68:
+    case 68:
         memcpy_sse2_64(dd - 68, ss - 68);
         [[fallthrough]];
-    <span class="org-keyword">case</span> 4:
-        *((<span class="org-type">uint32_unaligned_t</span>*)(dd - 4)) = *((<span class="org-keyword">const</span> <span class="org-type">uint32_unaligned_t</span>*)(ss - 4));
-        <span class="org-keyword">break</span>;
+    case 4:
+        *((uint32_unaligned_t*)(dd - 4)) = *((const uint32_unaligned_t*)(ss - 4));
+        break;
     ...
 }
 
-<span class="org-keyword">static</span> INLINE <span class="org-type">void</span> <span class="org-variable-name">memcpy_sse2_16</span>(<span class="org-type">void</span>* __restrict dst, <span class="org-keyword">const</span> <span class="org-type">void</span>* __restrict src) {
-    <span class="org-type">__m128i</span> <span class="org-variable-name">m0</span> = _mm_loadu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src)) + 0);
-    _mm_storeu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst)) + 0, m0);
+static INLINE void memcpy_sse2_16(void* __restrict dst, const void* __restrict src) {
+    __m128i m0 = _mm_loadu_si128((reinterpret_cast&lt;const __m128i*&gt;(src)) + 0);
+    _mm_storeu_si128((reinterpret_cast&lt;__m128i*&gt;(dst)) + 0, m0);
 }
 
-<span class="org-keyword">static</span> INLINE <span class="org-type">void</span> <span class="org-variable-name">memcpy_sse2_32</span>(<span class="org-type">void</span>* __restrict dst, <span class="org-keyword">const</span> <span class="org-type">void</span>* __restrict src) {
-    <span class="org-type">__m128i</span> <span class="org-variable-name">m0</span> = _mm_loadu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src)) + 0);
-    <span class="org-type">__m128i</span> <span class="org-variable-name">m1</span> = _mm_loadu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src)) + 1);
-    _mm_storeu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst)) + 0, m0);
-    _mm_storeu_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst)) + 1, m1);
+static INLINE void memcpy_sse2_32(void* __restrict dst, const void* __restrict src) {
+    __m128i m0 = _mm_loadu_si128((reinterpret_cast&lt;const __m128i*&gt;(src)) + 0);
+    __m128i m1 = _mm_loadu_si128((reinterpret_cast&lt;const __m128i*&gt;(src)) + 1);
+    _mm_storeu_si128((reinterpret_cast&lt;__m128i*&gt;(dst)) + 0, m0);
+    _mm_storeu_si128((reinterpret_cast&lt;__m128i*&gt;(dst)) + 1, m1);
 }
 </pre>
 </div>
@@ -462,18 +462,18 @@ VARIANT(5, memcpy_jart)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-constant">tail</span>:
-    <span class="org-keyword">if</span> (size &lt;= 16) {
-        <span class="org-keyword">if</span> (size &gt;= 8) {
+<pre class="src src-Cpp">tail:
+    if (size &lt;= 16) {
+        if (size &gt;= 8) {
             __builtin_memcpy(dst + size - 8, src + size - 8, 8);
             __builtin_memcpy(dst, src, 8);
-        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (size &gt;= 4) {
+        } else if (size &gt;= 4) {
             __builtin_memcpy(dst + size - 4, src + size - 4, 4);
             __builtin_memcpy(dst, src, 4);
-        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (size &gt;= 2) {
+        } else if (size &gt;= 2) {
             __builtin_memcpy(dst + size - 2, src + size - 2, 2);
             __builtin_memcpy(dst, src, 2);
-        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (size &gt;= 1) {
+        } else if (size &gt;= 1) {
             *dst = *src;
         }
 </pre>
@@ -489,7 +489,7 @@ VARIANT(5, memcpy_jart)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">if</span> (size &lt;= 32) {
+<pre class="src src-Cpp">if (size &lt;= 32) {
     __builtin_memcpy(dst, src, 8);
     __builtin_memcpy(dst + 8, src + 8, 8);
 
@@ -497,7 +497,7 @@ VARIANT(5, memcpy_jart)
     src += 16;
     size -= 16;
 
-    <span class="org-keyword">goto</span> <span class="org-constant">tail</span>;
+    goto tail;
 }
 </pre>
 </div>
@@ -512,19 +512,19 @@ avx版本是先对 `dst+size-32` 和 `src+size-32` 进行单独处理，然后�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">if</span> (size &lt;= 256) {
-    <span class="org-keyword">__asm__</span>(<span class="org-string">"vmovups    -0x20(%[s],%[size],1), %%ymm0\n"</span>
-            <span class="org-string">"vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"</span>
-            : [<span class="org-constant">d</span>] <span class="org-string">"+r"</span>(dst), [<span class="org-constant">s</span>] <span class="org-string">"+r"</span>(src)
-            : [<span class="org-constant">size</span>] <span class="org-string">"r"</span>(size)
-            : <span class="org-string">"ymm0"</span>, <span class="org-string">"memory"</span>);
+<pre class="src src-Cpp">if (size &lt;= 256) {
+    __asm__("vmovups    -0x20(%[s],%[size],1), %%ymm0\n"
+            "vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"
+            : [d] "+r"(dst), [s] "+r"(src)
+            : [size] "r"(size)
+            : "ymm0", "memory");
 
-    <span class="org-keyword">while</span> (size &gt; 32) {
-        <span class="org-keyword">__asm__</span>(<span class="org-string">"vmovups    (%[s]), %%ymm0\n"</span>
-                <span class="org-string">"vmovups    %%ymm0, (%[d])\n"</span>
-                : [<span class="org-constant">d</span>] <span class="org-string">"+r"</span>(dst), [<span class="org-constant">s</span>] <span class="org-string">"+r"</span>(src)
+    while (size &gt; 32) {
+        __asm__("vmovups    (%[s]), %%ymm0\n"
+                "vmovups    %%ymm0, (%[d])\n"
+                : [d] "+r"(dst), [s] "+r"(src)
                 :
-                : <span class="org-string">"ymm0"</span>, <span class="org-string">"memory"</span>);
+                : "ymm0", "memory");
 
         dst += 32;
         src += 32;
@@ -538,13 +538,13 @@ avx版本是先对 `dst+size-32` 和 `src+size-32` 进行单独处理，然后�
 sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷贝，同样不会有tail bytes的情况。
 </p>
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">if</span> (size &lt;= 128) {
-    _mm_storeu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst + size - 16),
-                     _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src + size - 16)));
+<pre class="src src-Cpp">if (size &lt;= 128) {
+    _mm_storeu_si128(reinterpret_cast&lt;__m128i*&gt;(dst + size - 16),
+                     _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src + size - 16)));
 
-    <span class="org-keyword">while</span> (size &gt; 16) {
-        _mm_storeu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst),
-                         _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src)));
+    while (size &gt; 16) {
+        _mm_storeu_si128(reinterpret_cast&lt;__m128i*&gt;(dst),
+                         _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src)));
         dst += 16;
         src += 16;
         size -= 16;
@@ -568,44 +568,44 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">/// </span><span class="org-comment">Align destination to 16 bytes boundary.</span>
-<span class="org-type">size_t</span> <span class="org-variable-name">padding</span> = (16 - (<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">size_t</span>&gt;(dst) &amp; 15)) &amp; 15;
+<pre class="src src-Cpp">/// Align destination to 16 bytes boundary.
+size_t padding = (16 - (reinterpret_cast&lt;size_t&gt;(dst) &amp; 15)) &amp; 15;
 
-<span class="org-keyword">if</span> (padding &gt; 0) {
-    <span class="org-type">__m128i</span> <span class="org-variable-name">head</span> = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src));
-    _mm_storeu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst), head);
+if (padding &gt; 0) {
+    __m128i head = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src));
+    _mm_storeu_si128(reinterpret_cast&lt;__m128i*&gt;(dst), head);
     dst += padding;
     src += padding;
     size -= padding;
 }
 
-<span class="org-comment-delimiter">/// </span><span class="org-comment">Aligned unrolled copy.</span>
-<span class="org-type">__m128i</span> <span class="org-variable-name">c0</span>, <span class="org-variable-name">c1</span>, <span class="org-variable-name">c2</span>, <span class="org-variable-name">c3</span>, <span class="org-variable-name">c4</span>, <span class="org-variable-name">c5</span>, <span class="org-variable-name">c6</span>, <span class="org-variable-name">c7</span>;
+/// Aligned unrolled copy.
+__m128i c0, c1, c2, c3, c4, c5, c6, c7;
 
-<span class="org-keyword">while</span> (size &gt;= 128) {
-    c0 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 0);
-    c1 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 1);
-    c2 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 2);
-    c3 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 3);
-    c4 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 4);
-    c5 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 5);
-    c6 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 6);
-    c7 = _mm_loadu_si128(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*&gt;(src) + 7);
+while (size &gt;= 128) {
+    c0 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 0);
+    c1 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 1);
+    c2 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 2);
+    c3 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 3);
+    c4 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 4);
+    c5 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 5);
+    c6 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 6);
+    c7 = _mm_loadu_si128(reinterpret_cast&lt;const __m128i*&gt;(src) + 7);
     src += 128;
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 0), c0);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 1), c1);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 2), c2);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 3), c3);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 4), c4);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 5), c5);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 6), c6);
-    _mm_store_si128((<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">__m128i</span>*&gt;(dst) + 7), c7);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 0), c0);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 1), c1);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 2), c2);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 3), c3);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 4), c4);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 5), c5);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 6), c6);
+    _mm_store_si128((reinterpret_cast&lt;__m128i*&gt;(dst) + 7), c7);
     dst += 128;
 
     size -= 128;
 }
 
-<span class="org-keyword">goto</span> <span class="org-constant">tail</span>;
+goto tail;
 </pre>
 </div>
 </div>
@@ -629,7 +629,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="org0044653">
+<pre class="example" id="org84eb667">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="org5973f5a">
+<pre class="example" id="orgedaf5cd">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -671,7 +671,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="org0f0c2ad">
+<pre class="example" id="org3d3beeb">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="org5513a90">
+<pre class="example" id="org082d3a4">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -752,19 +752,19 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">if</span> (size &lt;= 256) {
-    <span class="org-keyword">__asm__</span>(<span class="org-string">"vmovups    -0x20(%[s],%[size],1), %%ymm0\n"</span>
-            <span class="org-string">"vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"</span>
-            : [<span class="org-constant">d</span>] <span class="org-string">"+r"</span>(dst), [<span class="org-constant">s</span>] <span class="org-string">"+r"</span>(src)
-            : [<span class="org-constant">size</span>] <span class="org-string">"r"</span>(size)
-            : <span class="org-string">"ymm0"</span>, <span class="org-string">"memory"</span>);
+<pre class="src src-Cpp">if (size &lt;= 256) {
+    __asm__("vmovups    -0x20(%[s],%[size],1), %%ymm0\n"
+            "vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"
+            : [d] "+r"(dst), [s] "+r"(src)
+            : [size] "r"(size)
+            : "ymm0", "memory");
 
-    <span class="org-keyword">while</span> (size &gt; 32) {
-        <span class="org-keyword">__asm__</span>(<span class="org-string">"vmovups    (%[s]), %%ymm0\n"</span>
-                <span class="org-string">"vmovups    %%ymm0, (%[d])\n"</span>
-                : [<span class="org-constant">d</span>] <span class="org-string">"+r"</span>(dst), [<span class="org-constant">s</span>] <span class="org-string">"+r"</span>(src)
+    while (size &gt; 32) {
+        __asm__("vmovups    (%[s]), %%ymm0\n"
+                "vmovups    %%ymm0, (%[d])\n"
+                : [d] "+r"(dst), [s] "+r"(src)
                 :
-                : <span class="org-string">"ymm0"</span>, <span class="org-string">"memory"</span>);
+                : "ymm0", "memory");
 
         dst += 32;
         src += 32;
@@ -778,7 +778,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </p>
 
 
-<div id="org7667170" class="figure">
+<div id="org66484ae" class="figure">
 <p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
 </p>
 </div>
@@ -788,7 +788,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </p>
 
 
-<div id="orgca80711" class="figure">
+<div id="orgc2ec95c" class="figure">
 <p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
 </p>
 </div>
@@ -850,13 +850,13 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 </ul>
 
 
-<div id="orgea4b1a0" class="figure">
+<div id="org6f0c68a" class="figure">
 <p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
 </p>
 </div>
 
 
-<div id="orgc18f125" class="figure">
+<div id="org8a70a87" class="figure">
 <p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
 </p>
 </div>
@@ -895,8 +895,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 
 <p>
 <img src="../images/media/16684889455769/16686553116226.jpg" alt="16686553116226.jpg" />
-<img src="../images/media/16684889455769/16686553169239.jpg" alt="16686553169239.jpg" />
-</p>
+<img src="../images/media/16684889455769/16686553169239.jpg" alt="16686553169239.jpg" /></p>
 </div>
 </div>
 </div>

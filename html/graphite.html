@@ -56,7 +56,7 @@ graphite几个组件都是python编写的, 所以推荐使用pip/virtualenv来�
 <p>
 如果使用virtualenv安装在自定义目录下的话，可以使用下面两个命令安装. 这里安装位置是$HOME/utils/graphite/app.
 </p>
-<pre class="example" id="org709cf26">
+<pre class="example" id="org7f2040e">
 pip install carbon --install-option="--prefix=$HOME/utils/graphite/app" --install-option="--install-lib=$HOME/utils/graphite/app/lib/"
 pip install graphite-web --install-option="--prefix=/$HOME/utils/graphite/app" --install-option="--install-lib=$HOME/utils/graphite/app/webapp"
 </pre>
@@ -97,7 +97,7 @@ pip install graphite-web --install-option="--prefix=/$HOME/utils/graphite/app" -
 <p>
 配置carbon可以看 <a href="https://graphite.readthedocs.org/en/latest/config-carbon.html">这里</a>. 主要考虑的问题是数据如何滚动, 每种粒度的数据各保存多久. 比如1min级别数据保存7天, 10min数据保存30天, 其他数据都以小时级别保存的话. 在storage-schemas.conf保存, 不同前缀数据留存时间不同
 </p>
-<pre class="example" id="org39beacf">
+<pre class="example" id="org5369910">
 [carbon]
 pattern = ^carbon\.
 retentions = 10:1d
@@ -158,7 +158,7 @@ retentions = 10s:1d
 <p>
 然后配置nginx来转发请求和处理静态文件. 让nginx在10000端口处理, 转发到10001端口.
 </p>
-<pre class="example" id="org3305e3e">
+<pre class="example" id="org3c8b21b">
 server {
     listen 10000;
     access_log /opt/graphite/storage/log/webapp/nginx_access.log;
@@ -175,13 +175,12 @@ server {
 <p>
 最后通过gunicorn启动django webapp. graphite_wsgi.py可以从conf/graphite.wsgi.example复制过来
 </p>
-<pre class="example" id="orgf767f7f">
+<pre class="example" id="org98f1a01">
 gunicorn graphite_wsgi:application -b 0.0.0.0:10001 -w 4
 </pre>
 
 <p>
-虽然carbon和redis类似, 也是使用<a href="http://graphite.readthedocs.org/en/latest/feeding-carbon.html">plaintext protcol</a>, 但是使用起来依然有所不便. 不过plaintext protocol好处就是可以让许多第三方系统对接. <a href="http://graphite.readthedocs.org/en/latest/tools.html">这里</a> 列举了一些可以和graphite对接的系统和库. 这里以 <a href="https://github.com/etsy/statsd">statsd</a> 和 <a href="https://github.com/sivy/pystatsd">pystatsd</a> 为例.
-</p>
+虽然carbon和redis类似, 也是使用<a href="http://graphite.readthedocs.org/en/latest/feeding-carbon.html">plaintext protcol</a>, 但是使用起来依然有所不便. 不过plaintext protocol好处就是可以让许多第三方系统对接. <a href="http://graphite.readthedocs.org/en/latest/tools.html">这里</a> 列举了一些可以和graphite对接的系统和库. 这里以 <a href="https://github.com/etsy/statsd">statsd</a> 和 <a href="https://github.com/sivy/pystatsd">pystatsd</a> 为例.</p>
 </div>
 </div>
 </div>

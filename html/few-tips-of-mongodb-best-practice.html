@@ -173,28 +173,28 @@ Readahead size should be set to 0 for WiredTiger. Usethe blockdev &#x2013;setra 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-javascript">killMyRunningOps = <span class="org-keyword">function</span> (<span class="org-variable-name">ns</span>, <span class="org-variable-name">max_ms</span> = 500) {
-    <span class="org-keyword">var</span> <span class="org-variable-name">currOp</span> = db.currentOp();
-    <span class="org-keyword">var</span> <span class="org-variable-name">max_microsecs</span> = max_ms * 1000;
-    <span class="org-keyword">for</span> (op <span class="org-keyword">in</span> currOp.inprog) {
+<pre class="src src-Javascript">killMyRunningOps = function (ns, max_ms = 500) {
+    var currOp = db.currentOp();
+    var max_microsecs = max_ms * 1000;
+    for (op in currOp.inprog) {
         x = currOp.inprog[op];
-        <span class="org-keyword">if</span> (x.ns == ns &amp;&amp; x.microsecs_running &gt; max_microsecs) {
+        if (x.ns == ns &amp;&amp; x.microsecs_running &gt; max_microsecs) {
             print(x.opid);
             db.killOp(x.opid)
         }
     }
 }
 
-listRunningOps = <span class="org-keyword">function</span> (<span class="org-variable-name">max_ms</span> = 500) {
-    <span class="org-keyword">var</span> <span class="org-variable-name">currOp</span> = db.currentOp()
-    <span class="org-keyword">var</span> <span class="org-variable-name">max_microsecs</span> = max_ms * 1000
-    <span class="org-keyword">for</span> (op <span class="org-keyword">in</span> currOp.inprog) {
+listRunningOps = function (max_ms = 500) {
+    var currOp = db.currentOp()
+    var max_microsecs = max_ms * 1000
+    for (op in currOp.inprog) {
         x = currOp.inprog[op]
-        <span class="org-keyword">if</span> (x.microsecs_running &gt; max_microsecs &amp;&amp; !x.ns.startsWith(<span class="org-string">'local'</span>)) {
-            print(<span class="org-string">"======================"</span>)
+        if (x.microsecs_running &gt; max_microsecs &amp;&amp; !x.ns.startsWith('local')) {
+            print("======================")
             print(x.ns, x.op, x.opid, x.microsecs_running * 0.001)
             printjson(x.query)
-            <span class="org-comment-delimiter">// </span><span class="org-comment">printjson(x)</span>
+            // printjson(x)
         }
      }
 }
@@ -211,7 +211,7 @@ listRunningOps = <span class="org-keyword">function</span> (<span class="org-var
 </p>
 
 <div class="org-src-container">
-<pre class="src src-bash">watch --diff <span class="org-string">"mongo --eval \"db.adminCommand('top').totals['your-collection'].queries.count\" | tail -n +4"</span>
+<pre class="src src-Bash">watch --diff "mongo --eval \"db.adminCommand('top').totals['your-collection'].queries.count\" | tail -n +4"
 </pre>
 </div>
 </div>

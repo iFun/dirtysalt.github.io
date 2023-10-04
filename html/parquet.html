@@ -77,7 +77,7 @@ Hierarchically, a file consists of one or more row groups. A row group contains 
 <p>
 大致文件格式如下，看上去和leveldb SSTable格式也非常类似。Chunk N表示第N个row group，
 </p>
-<pre class="example" id="org9638e07">
+<pre class="example" id="org9d47c5e">
 4-byte magic number "PAR1"
 &lt;Column 1 Chunk 1 + Column Metadata&gt;
 &lt;Column 2 Chunk 1 + Column Metadata&gt;
@@ -102,7 +102,7 @@ File Metadata
 </p>
 
 
-<div id="org4d90833" class="figure">
+<div id="orgd58913d" class="figure">
 <p><img src="../images/parquet-file-format.png" alt="parquet-file-format.png" />
 </p>
 </div>
@@ -112,7 +112,7 @@ There are three types of metadata: file metadata, column (chunk) metadata and pa
 </p>
 
 
-<div id="org40a6dc7" class="figure">
+<div id="org87d4a0d" class="figure">
 <p><img src="../images/parquet-file-metadata.png" alt="parquet-file-metadata.png" />
 </p>
 </div>
@@ -159,7 +159,7 @@ Dictionary page format: the entries in the dictionary - in dictionary order - us
 <p>
 For example, the numbers 1 through 7 using bit width 3:
 </p>
-<pre class="example" id="org370e966">
+<pre class="example" id="org055f72c">
 dec value: 0   1   2   3   4   5   6   7
 bit value: 000 001 010 011 100 101 110 111
 bit label: ABC DEF GHI JKL MNO PQR STU VWX
@@ -171,7 +171,7 @@ bit label: ABCDEFGH IJKLMNOP QRSTUVWX
 <p>
 对于3里面bit-packing压缩方法一样，但是存放顺序是从LSB到MSB，还是以上面为例
 </p>
-<pre class="example" id="orgc452981">
+<pre class="example" id="org8ec60fd">
 bit value: 10001000 11000110 11111010
 bit label: HIDEFABC RMNOJKLG VWXSTUPQ
 </pre>
@@ -183,7 +183,7 @@ bit label: HIDEFABC RMNOJKLG VWXSTUPQ
 <p>
 为了混合RLE和bit-packing, 压缩方法3在存储上使用单独标志位标记使用哪种方法
 </p>
-<pre class="example" id="org2bc76d7">
+<pre class="example" id="org59b5ea4">
 rle-bit-packed-hybrid: &lt;length&gt; &lt;encoded-data&gt;
 length := length of the &lt;encoded-data&gt; in bytes stored as 4 bytes little endian
 encoded-data := &lt;run&gt;*
@@ -212,7 +212,7 @@ This encoding is adapted from the Binary packing described in "<a href="http://a
 <p>
 Delta encoding consists of a header followed by blocks of delta encoded values binary packed. Each block is made of miniblocks, each of them binary packed with its own bit width. When there are not enough values to encode a full block we pad with zeros (added to the frame of reference). The header is defined as follows:
 </p>
-<pre class="example" id="org86df214">
+<pre class="example" id="org9312ef3">
 &lt;block size in values&gt; &lt;number of miniblocks in a block&gt; &lt;total value count&gt; &lt;first value&gt;
 </pre>
 <ul class="org-ul">
@@ -226,7 +226,7 @@ Delta encoding consists of a header followed by blocks of delta encoded values b
 <p>
 Each block contains
 </p>
-<pre class="example" id="org0dfcc84">
+<pre class="example" id="org48721bb">
 &lt;min delta&gt; &lt;list of bitwidths of miniblocks&gt; &lt;miniblocks&gt;
 </pre>
 <ul class="org-ul">
@@ -256,8 +256,7 @@ This is also known as incremental encoding or front compression: for each elemen
 </p>
 
 <p>
-举个例子"AB", "ABC", "ABCD", 前缀压缩之后成为&lt;0&gt;"AB", &lt;2&gt;"C", &lt;3&gt;"D". 最终压缩结果是DeltaEncoding(0,2,3) DeltaEncoding(2,1,1) "ABCD".
-</p>
+举个例子"AB", "ABC", "ABCD", 前缀压缩之后成为&lt;0&gt;"AB", &lt;2&gt;"C", &lt;3&gt;"D". 最终压缩结果是DeltaEncoding(0,2,3) DeltaEncoding(2,1,1) "ABCD".</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/parquet.html';this.page.identifier = 'parquet.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

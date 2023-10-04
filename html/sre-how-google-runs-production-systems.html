@@ -43,7 +43,7 @@
 </ol>
 
 
-<div id="org63635bc" class="figure">
+<div id="orgfb094e4" class="figure">
 <p><img src="../images/google-campus.png" alt="google-campus.png" />
 </p>
 </div>
@@ -132,7 +132,7 @@ QPS陷阱
 </p>
 
 
-<div id="orgf06d055" class="figure">
+<div id="org5d22e00" class="figure">
 <p><img src="../images/consensus-group-placement-0.png" alt="consensus-group-placement-0.png" />
 </p>
 </div>
@@ -142,7 +142,7 @@ QPS陷阱
 </p>
 
 
-<div id="orgd586cda" class="figure">
+<div id="orgb909ee5" class="figure">
 <p><img src="../images/consensus-group-placement-1.png" alt="consensus-group-placement-1.png" />
 </p>
 </div>
@@ -152,7 +152,7 @@ QPS陷阱
 </p>
 
 
-<div id="orgd9cbab7" class="figure">
+<div id="org4150cc6" class="figure">
 <p><img src="../images/consensus-group-placement-2.png" alt="consensus-group-placement-2.png" />
 </p>
 </div>
@@ -171,8 +171,7 @@ QPS陷阱
 </p>
 
 <p>
-大规模部署带外检测器成本较高。Gmail计算资源的很大一部分都会用来支持每日数据检测的运行。使这个问题变得更加严重的是，本身可能会造成软件服务器缓存命中率的下降，这就会造成用户可见响应速度的下降。为了避免这种问题，Gmail提供了一系列针对校验器的限速机制，同时定期重构这些校验器，以降低磁盘压力。在某一次重构工作，我们降低了60%磁盘磁头的使用率，同时没有显著降低校验器覆盖的范围。虽然大部分Gmail检测器每天运行一次，但是压力最大的校验器被分为10~14个分片，每天只运行一个分片。
-</p>
+大规模部署带外检测器成本较高。Gmail计算资源的很大一部分都会用来支持每日数据检测的运行。使这个问题变得更加严重的是，本身可能会造成软件服务器缓存命中率的下降，这就会造成用户可见响应速度的下降。为了避免这种问题，Gmail提供了一系列针对校验器的限速机制，同时定期重构这些校验器，以降低磁盘压力。在某一次重构工作，我们降低了60%磁盘磁头的使用率，同时没有显著降低校验器覆盖的范围。虽然大部分Gmail检测器每天运行一次，但是压力最大的校验器被分为10~14个分片，每天只运行一个分片。</p>
 </div>
 </div>
 </div>

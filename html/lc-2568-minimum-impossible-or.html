@@ -35,14 +35,14 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">minImpossibleOR</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">mask</span> = <span class="org-py-number">0</span>
-        <span class="org-keyword">for</span> x <span class="org-keyword">in</span> nums:
-            <span class="org-keyword">if</span> (x &amp; (x - <span class="org-py-number">1</span>)) == <span class="org-py-number">0</span>:  <span class="org-comment"># x &#26159; 2 &#30340;&#24130;&#27425;</span>
-                <span class="org-py-variable-name">mask</span> |= x
-        <span class="org-py-variable-name">mask</span> = ~mask <span class="org-comment"># &#27809;&#26377;&#20351;&#29992;&#30340;bit</span>
-        <span class="org-keyword">return</span> mask &amp; -mask  <span class="org-comment"># lowbit</span>
+<pre class="src src-Python">class Solution:
+    def minImpossibleOR(self, nums: List[int]) -&gt; int:
+        mask = 0
+        for x in nums:
+            if (x &amp; (x - 1)) == 0:  # x 是 2 的幂次
+                mask |= x
+        mask = ~mask # 没有使用的bit
+        return mask &amp; -mask  # lowbit
 </pre>
 </div>
 </div>

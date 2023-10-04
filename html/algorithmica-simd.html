@@ -21,7 +21,7 @@ CPU支持指令集合情况，以及每种指令集处理宽度
 </p>
 
 
-<div id="org930fd75" class="figure">
+<div id="org381cdac" class="figure">
 <p><img src="../images/algorithmica-simd-isa-evolution.jpg" alt="algorithmica-simd-isa-evolution.jpg" />
 </p>
 </div>
@@ -31,19 +31,19 @@ CPU支持指令集合情况，以及每种指令集处理宽度
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#define</span> <span class="org-function-name">CHECK_CPUID</span>(<span class="org-variable-name">x</span>)                                                         \
-    <span class="org-keyword">do</span> {                                                                       \
-        <span class="org-type">int</span> <span class="org-variable-name">ok</span> = __builtin_cpu_supports(x);                                    \
-        cout &lt;&lt; <span class="org-string">"support '"</span> &lt;&lt; x &lt;&lt; <span class="org-string">"' = "</span> &lt;&lt; (ok ? <span class="org-string">"true"</span> : <span class="org-string">"false"</span>) &lt;&lt; <span class="org-string">"\n"</span>; \
-    } <span class="org-keyword">while</span> (0)
+<pre class="src src-Cpp">#define CHECK_CPUID(x)                                                         \
+    do {                                                                       \
+        int ok = __builtin_cpu_supports(x);                                    \
+        cout &lt;&lt; "support '" &lt;&lt; x &lt;&lt; "' = " &lt;&lt; (ok ? "true" : "false") &lt;&lt; "\n"; \
+    } while (0)
 
-<span class="org-type">void</span> <span class="org-function-name">test_cpu_supports</span>() {
+void test_cpu_supports() {
     HEADER();
-    CHECK_CPUID(<span class="org-string">"sse"</span>);
-    CHECK_CPUID(<span class="org-string">"sse2"</span>);
-    CHECK_CPUID(<span class="org-string">"avx"</span>);
-    CHECK_CPUID(<span class="org-string">"avx2"</span>);
-    CHECK_CPUID(<span class="org-string">"avx512f"</span>);
+    CHECK_CPUID("sse");
+    CHECK_CPUID("sse2");
+    CHECK_CPUID("avx");
+    CHECK_CPUID("avx2");
+    CHECK_CPUID("avx512f");
 }
 </pre>
 </div>
@@ -95,17 +95,17 @@ GCC可以通过定义vector type来帮助auto-vectorization，但是某些时候
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-keyword">typedef</span> <span class="org-type">int</span> <span class="org-type">v8si</span> <span class="org-keyword">__attribute__</span> (( vector_size(32) ));
-<span class="org-comment-delimiter">// </span><span class="org-comment">type ^   ^ typename          size in bytes ^</span>
+<pre class="src src-Cpp">typedef int v8si __attribute__ (( vector_size(32) ));
+// type ^   ^ typename          size in bytes ^
 
-<span class="org-keyword">typedef</span> <span class="org-type">double</span> <span class="org-type">v4d</span> <span class="org-keyword">__attribute__</span> (( vector_size(32) ));
-<span class="org-type">v4d</span> <span class="org-variable-name">a</span>[100/4], <span class="org-variable-name">b</span>[100/4], <span class="org-variable-name">c</span>[100/4];
+typedef double v4d __attribute__ (( vector_size(32) ));
+v4d a[100/4], b[100/4], c[100/4];
 
-<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 100/4; i++)
+for (int i = 0; i &lt; 100/4; i++)
     c[i] = a[i] + b[i];
 
-<span class="org-type">v8f</span> <span class="org-variable-name">x</span>;
-<span class="org-type">int</span> <span class="org-variable-name">mask</span> = _mm256_movemask_ps((<span class="org-type">__m256</span>) x); <span class="org-comment-delimiter">// </span><span class="org-comment">&lt;--- You have to do it explicitly.</span>
+v8f x;
+int mask = _mm256_movemask_ps((__m256) x); // &lt;--- You have to do it explicitly.
 </pre>
 </div>
 
@@ -128,11 +128,11 @@ Using a well-established SIMD library is recommended as it greatly improves the 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">print</span>(<span class="org-type">__m256i</span> <span class="org-variable-name">v</span>) {
-    <span class="org-keyword">auto</span> <span class="org-variable-name">t</span> = (<span class="org-type">unsigned</span>*) &amp;v;
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 8; i++)
-        <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-constant">std</span>::bitset&lt;32&gt;(t[i]) &lt;&lt; <span class="org-string">" "</span>;
-    <span class="org-constant">std</span>::cout &lt;&lt; <span class="org-constant">std</span>::endl;
+<pre class="src src-Cpp">void print(__m256i v) {
+    auto t = (unsigned*) &amp;v;
+    for (int i = 0; i &lt; 8; i++)
+        std::cout &lt;&lt; std::bitset&lt;32&gt;(t[i]) &lt;&lt; " ";
+    std::cout &lt;&lt; std::endl;
 }
 </pre>
 </div>
@@ -142,7 +142,7 @@ Using a well-established SIMD library is recommended as it greatly improves the 
 </p>
 
 
-<div id="org841524a" class="figure">
+<div id="orgf052816" class="figure">
 <p><img src="../images/algorithmica-simd-scatter-gather.jpg" alt="algorithmica-simd-scatter-gather.jpg" />
 </p>
 </div>
@@ -170,18 +170,18 @@ The lack of (fast) gather and scatter instructions makes SIMD programming on CPU
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-comment-delimiter">// </span><span class="org-comment">When the compiler can&#8217;t prove that the function may be used for intersecting arrays, it has to generate two implementation variants &#8212; a vectorized and a &#8220;safe&#8221; one &#8212; and insert runtime checks to choose between the two. To avoid them, we can tell the compiler that we are that no memory is aliased by adding the __restrict__ keyword:</span>
+<pre class="src src-Cpp">// When the compiler can’t prove that the function may be used for intersecting arrays, it has to generate two implementation variants — a vectorized and a “safe” one — and insert runtime checks to choose between the two. To avoid them, we can tell the compiler that we are that no memory is aliased by adding the __restrict__ keyword:
 
-<span class="org-type">void</span> <span class="org-function-name">add</span>(<span class="org-type">int</span> * <span class="org-variable-name">__restrict__</span> a, <span class="org-keyword">const</span> <span class="org-type">int</span> * <span class="org-variable-name">__restrict__</span> b, <span class="org-type">int</span> <span class="org-variable-name">n</span>) {
-    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++)
+void add(int * __restrict__ a, const int * __restrict__ b, int n) {
+    for (int i = 0; i &lt; n; i++)
         a[i] += b[i];
 }
 
-<span class="org-comment-delimiter">// </span><span class="org-comment">The other way, specific to SIMD, is the &#8220;ignore vector dependencies&#8221; pragma. It is a general way to inform the compiler that there are no dependencies between the loop iterations:</span>
+// The other way, specific to SIMD, is the “ignore vector dependencies” pragma. It is a general way to inform the compiler that there are no dependencies between the loop iterations:
 
-<span class="org-preprocessor">#pragma</span> GCC ivdep
-<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++)
-    <span class="org-comment-delimiter">// </span><span class="org-comment">...</span>
+#pragma GCC ivdep
+for (int i = 0; i &lt; n; i++)
+    // ...
 </pre>
 </div>
 

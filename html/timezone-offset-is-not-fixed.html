@@ -49,11 +49,11 @@ C++程序可以参考下面的，需要google cctz实现 <a href="https://github
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">TimestampValue</span>::<span class="org-function-name">from_unixtime</span>(<span class="org-type">int64_t</span> <span class="org-variable-name">second</span>, <span class="org-keyword">const</span> <span class="org-constant">cctz</span>::<span class="org-type">time_zone</span>&amp; <span class="org-variable-name">ctz</span>) {
-    <span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-constant">cctz</span>::<span class="org-type">time_point</span>&lt;<span class="org-constant">cctz</span>::sys_seconds&gt; <span class="org-variable-name">epoch</span> =
-            <span class="org-constant">std</span>::<span class="org-constant">chrono</span>::time_point_cast&lt;<span class="org-constant">cctz</span>::sys_seconds&gt;(<span class="org-constant">std</span>::<span class="org-constant">chrono</span>::<span class="org-constant">system_clock</span>::from_time_t(0));
-    <span class="org-constant">cctz</span>::<span class="org-type">time_point</span>&lt;<span class="org-constant">cctz</span>::sys_seconds&gt; <span class="org-variable-name">t</span> = epoch + <span class="org-constant">cctz</span>::seconds(second);
-    <span class="org-keyword">const</span> <span class="org-keyword">auto</span> <span class="org-variable-name">tp</span> = <span class="org-constant">cctz</span>::convert(t, ctz);
+<pre class="src src-Cpp">void TimestampValue::from_unixtime(int64_t second, const cctz::time_zone&amp; ctz) {
+    static const cctz::time_point&lt;cctz::sys_seconds&gt; epoch =
+            std::chrono::time_point_cast&lt;cctz::sys_seconds&gt;(std::chrono::system_clock::from_time_t(0));
+    cctz::time_point&lt;cctz::sys_seconds&gt; t = epoch + cctz::seconds(second);
+    const auto tp = cctz::convert(t, ctz);
     from_timestamp(tp.year(), tp.month(), tp.day(), tp.hour(), tp.minute(), tp.second(), 0);
 }
 </pre>
@@ -65,34 +65,34 @@ Java程序可以参考下面额：
 </p>
 
 <div class="org-src-container">
-<pre class="src src-java">
-<span class="org-keyword">package</span> com.starrocks.<span class="org-constant">lab</span>;
+<pre class="src src-Java">
+package com.starrocks.lab;
 
 
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">Instant</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">LocalDateTime</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-type">ZoneId</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-constant">format</span>.<span class="org-type">DateTimeFormatter</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">time</span>.<span class="org-constant">format</span>.<span class="org-type">DateTimeFormatterBuilder</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">ArrayList</span>;
-<span class="org-keyword">import</span> <span class="org-constant">java</span>.<span class="org-constant">util</span>.<span class="org-type">List</span>;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
+import java.util.List;
 
 
-<span class="org-comment-delimiter">/*</span>
-<span class="org-comment">1900-01-01 00:00:00 ---&gt; -2209017943000000</span>
-<span class="org-comment">1910-01-01 00:00:00 ---&gt; -1893484800000000</span>
-<span class="org-comment">1920-01-01 00:00:00 ---&gt; -1577952000000000</span>
-<span class="org-comment">1930-01-01 00:00:00 ---&gt; -1262332800000000</span>
-<span class="org-comment">1940-01-01 00:00:00 ---&gt; -946800000000000</span>
-<span class="org-comment">1950-01-01 00:00:00 ---&gt; -631180800000000</span>
-<span class="org-comment">1960-01-01 00:00:00 ---&gt; -315648000000000</span>
-<span class="org-comment">1970-01-01 00:00:00 ---&gt; -28800000000</span>
-<span class="org-comment">1980-01-01 00:00:00 ---&gt; 315504000000000</span>
-<span class="org-comment">1990-01-01 00:00:00 ---&gt; 631123200000000</span>
-<span class="org-comment-delimiter"> */</span>
-<span class="org-keyword">public</span> <span class="org-keyword">class</span> <span class="org-type">TimezoneOffsetTest</span> {
-    <span class="org-keyword">public</span> <span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">main</span>(<span class="org-type">String</span>[] <span class="org-variable-name">args</span>) {
-        <span class="org-type">List</span>&lt;<span class="org-type">Long</span>&gt; <span class="org-variable-name">list</span> = <span class="org-keyword">new</span> <span class="org-type">ArrayList</span>&lt;&gt;();
+/*
+1900-01-01 00:00:00 ---&gt; -2209017943000000
+1910-01-01 00:00:00 ---&gt; -1893484800000000
+1920-01-01 00:00:00 ---&gt; -1577952000000000
+1930-01-01 00:00:00 ---&gt; -1262332800000000
+1940-01-01 00:00:00 ---&gt; -946800000000000
+1950-01-01 00:00:00 ---&gt; -631180800000000
+1960-01-01 00:00:00 ---&gt; -315648000000000
+1970-01-01 00:00:00 ---&gt; -28800000000
+1980-01-01 00:00:00 ---&gt; 315504000000000
+1990-01-01 00:00:00 ---&gt; 631123200000000
+ */
+public class TimezoneOffsetTest {
+    public static void main(String[] args) {
+        List&lt;Long&gt; list = new ArrayList&lt;&gt;();
         list.add(-2209017943L);
         list.add(-1893484800L);
         list.add(-1577952000L);
@@ -105,15 +105,15 @@ Java程序可以参考下面额：
         list.add(631123200L);
 
 
-        <span class="org-type">DateTimeFormatterBuilder</span> <span class="org-variable-name">builder</span> = <span class="org-keyword">new</span> <span class="org-type">DateTimeFormatterBuilder</span>();
-        builder.append(DateTimeFormatter.ofPattern(<span class="org-string">"yyyy-MM-dd HH:mm:ss"</span>));
-        <span class="org-type">DateTimeFormatter</span> <span class="org-variable-name">formatter</span> = builder.toFormatter();
+        DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
+        builder.append(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        DateTimeFormatter formatter = builder.toFormatter();
 
 
-        <span class="org-type">ZoneId</span> <span class="org-variable-name">zone</span> = ZoneId.of(<span class="org-string">"Asia/Shanghai"</span>);
-        <span class="org-keyword">for</span> (<span class="org-type">Long</span> <span class="org-variable-name">sec</span> : list) {
-            <span class="org-type">LocalDateTime</span> <span class="org-variable-name">dt</span> = LocalDateTime.ofInstant(Instant.ofEpochSecond(sec, 0), zone);
-            System.out.printf(<span class="org-string">"sec = %d, date = %s\n"</span>, sec, dt.format(formatter));
+        ZoneId zone = ZoneId.of("Asia/Shanghai");
+        for (Long sec : list) {
+            LocalDateTime dt = LocalDateTime.ofInstant(Instant.ofEpochSecond(sec, 0), zone);
+            System.out.printf("sec = %d, date = %s\n", sec, dt.format(formatter));
         }
 
 

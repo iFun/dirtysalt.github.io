@@ -56,9 +56,11 @@
 <div id="outline-container-orga4f2c49" class="outline-2">
 <h2 id="orga4f2c49"><span class="section-number-2">2.</span> 优化</h2>
 <div class="outline-text-2" id="text-2">
-<p class="verse">
-CPython(2).run(Python(1).run(user-code))<br />
+<blockquote>
+<p>
+CPython(2).run(Python(1).run(user-code))
 </p>
+</blockquote>
 
 <ol class="org-ol">
 <li>使用的是一个Python的语言子集RPython. 最突出的特点就是所有对象类型都是不可变的，所以可以很容易编译成为native code以及被优化</li>
@@ -69,9 +71,11 @@ CPython(2).run(Python(1).run(user-code))<br />
 然后我们就得到了PyPy的运行方式
 </p>
 
-<p class="verse">
-PyPyC.run(RPython.run(user-code))<br />
+<blockquote>
+<p>
+PyPyC.run(RPython.run(user-code))
 </p>
+</blockquote>
 
 <p>
 可是即便是以这种方式来运行user-code, 也没有比直接运行CPython要快。（帖子里面说大约35~50%的速度把，但是不算是数量级上的差距）。为了进一步提高性能PyPyC需要实现JIT，但是这个JIT和普通的JIT还有点区别。
@@ -114,8 +118,7 @@ PyPyC.run(RPython.run(user-code))<br />
 </p>
 
 <p>
-安装requirements.txt的时候除了一些问题，是在pycrypto上面，网上说法是不支持fastmath, 所以需要使用 `with_gmp=no pip install pycrypt` 命令来安装。一切没有问题之后，发现PyPy可能不支持pth这种路径文件方式，只要先作罢，看看后面有没有什么其他工程可以用上PyPy的。
-</p>
+安装requirements.txt的时候除了一些问题，是在pycrypto上面，网上说法是不支持fastmath, 所以需要使用 `with_gmp=no pip install pycrypt` 命令来安装。一切没有问题之后，发现PyPy可能不支持pth这种路径文件方式，只要先作罢，看看后面有没有什么其他工程可以用上PyPy的。</p>
 </div>
 </div>
 </div>

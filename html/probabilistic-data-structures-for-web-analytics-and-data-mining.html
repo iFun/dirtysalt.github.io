@@ -40,7 +40,7 @@ Let us start with a simple example that illustrates capabilities of probabilisti
 </p>
 
 
-<div id="orgd37b963" class="figure">
+<div id="orgfdb5387" class="figure">
 <p><img src="../images/probabilistic-data-structures-overview.png" alt="probabilistic-data-structures-overview.png" />
 </p>
 </div>
@@ -97,7 +97,7 @@ The following table contains key formulas that allow one to estimate cardinality
 </p>
 
 
-<div id="org2e82362" class="figure">
+<div id="org4d09b20" class="figure">
 <p><img src="../images/linear-counting-analysis.png" alt="linear-counting-analysis.png" />
 </p>
 </div>
@@ -120,7 +120,7 @@ The following table provides the estimation formula and equations that can be us
 </p>
 
 
-<div id="orgac80fdb" class="figure">
+<div id="org0c842df" class="figure">
 <p><img src="../images/loglog-counting-analysis.png" alt="loglog-counting-analysis.png" />
 </p>
 </div>
@@ -139,7 +139,7 @@ The basic idea of Count-Min Sketch is quite simple and somehow similar to Linear
 </p>
 
 
-<div id="org53ab6af" class="figure">
+<div id="org281cea0" class="figure">
 <p><img src="../images/count-min-sketch-overview.png" alt="count-min-sketch-overview.png" />
 </p>
 </div>
@@ -153,32 +153,32 @@ It is clear that if sketch is large in comparison with the cardinality of the da
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">CountMinSketch</span> {
-    <span class="org-type">long</span> <span class="org-variable-name">estimators</span>[][] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d][w]    <span class="org-comment-delimiter">// </span><span class="org-comment">d and w are design parameters</span>
-    <span class="org-type">long</span> a[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-    <span class="org-type">long</span> b[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-    <span class="org-type">long</span> p      <span class="org-comment-delimiter">// </span><span class="org-comment">hashing parameter, a prime number. For example 2^31-1</span>
-    <span class="org-type">void</span> initializeHashes() {
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++) {
-            a[i] = random(p)    <span class="org-comment-delimiter">// </span><span class="org-comment">random in range 1..p</span>
+<pre class="src src-Cpp">class CountMinSketch {
+    long estimators[][] = new long[d][w]    // d and w are design parameters
+    long a[] = new long[d]
+    long b[] = new long[d]
+    long p      // hashing parameter, a prime number. For example 2^31-1
+    void initializeHashes() {
+        for(i = 0; i &lt; d; i++) {
+            a[i] = random(p)    // random in range 1..p
             b[i] = random(p)
         }
     }
-    <span class="org-type">void</span> <span class="org-function-name">add</span>(value) {
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++)
+    void add(value) {
+        for(i = 0; i &lt; d; i++)
             estimators[i][ hash(value, i) ]++
     }
-    <span class="org-type">long</span> <span class="org-function-name">estimateFrequency</span>(value) {
-        <span class="org-type">long</span> <span class="org-variable-name">minimum</span> = MAX_VALUE
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++)
+    long estimateFrequency(value) {
+        long minimum = MAX_VALUE
+        for(i = 0; i &lt; d; i++)
             minimum = min(
                 minimum,
-                <span class="org-type">estimators</span>[i][ hash(value, i) ]
+                estimators[i][ hash(value, i) ]
             )
-        <span class="org-keyword">return</span> minimum
+        return minimum
     }
-    <span class="org-function-name">hash</span>(value, i) {
-        <span class="org-keyword">return</span> ((<span class="org-type">a</span>[i] * value + b[i]) <span class="org-type">mod</span> <span class="org-variable-name">p</span>) <span class="org-type">mod</span> <span class="org-variable-name">w</span>
+    hash(value, i) {
+        return ((a[i] * value + b[i]) mod p) mod w
     }
 }
 </pre>
@@ -189,7 +189,7 @@ Dependency between the sketch size and accuracy is shown in the table below. It 
 </p>
 
 
-<div id="orgb7efc07" class="figure">
+<div id="orga49c804" class="figure">
 <p><img src="../images/count-min-sketch-analysis.png" alt="count-min-sketch-analysis.png" />
 </p>
 </div>
@@ -204,7 +204,7 @@ Two experiments were done with the Count-Min sketch of size 3×64, i.e. 192 coun
 </p>
 
 
-<div id="orge4471ea" class="figure">
+<div id="orgf273a8a" class="figure">
 <p><img src="../images/count-min-sketch-unskewed-dataset-experiment.png" alt="count-min-sketch-unskewed-dataset-experiment.png" />
 </p>
 </div>
@@ -214,7 +214,7 @@ In the second case the sketch was populated with a relatively highly skewed data
 </p>
 
 
-<div id="org446643c" class="figure">
+<div id="org665a477" class="figure">
 <p><img src="../images/count-min-sketch-skewed-dataset-experiment.png" alt="count-min-sketch-skewed-dataset-experiment.png" />
 </p>
 </div>
@@ -237,17 +237,17 @@ As an alternative, more careful correction can be done to compensate the noise c
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">CountMeanMinSketch</span> {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">initialization and addition procedures as in CountMinSketch</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">n is total number of added elements</span>
-    <span class="org-type">long</span> <span class="org-function-name">estimateFrequency</span>(value) {
-        <span class="org-type">long</span> <span class="org-variable-name">e</span>[] = <span class="org-keyword">new</span> <span class="org-type">long</span>[d]
-        <span class="org-keyword">for</span>(i = 0; i &lt; d; i++) {
+<pre class="src src-Cpp">class CountMeanMinSketch {
+    // initialization and addition procedures as in CountMinSketch
+    // n is total number of added elements
+    long estimateFrequency(value) {
+        long e[] = new long[d]
+        for(i = 0; i &lt; d; i++) {
             sketchCounter = estimators[i][ hash(value, i) ]
             noiseEstimation = (n - sketchCounter) / (w - 1)
-            e[i] = sketchCounter &#8211; noiseEstimator
+            e[i] = sketchCounter – noiseEstimator
         }
-        <span class="org-keyword">return</span> median(e)
+        return median(e)
     }
 }
 </pre>
@@ -258,7 +258,7 @@ This enhancement can significantly improve accuracy of the Count-Min structure. 
 </p>
 
 
-<div id="org2e8cc6f" class="figure">
+<div id="org9bd34a8" class="figure">
 <p><img src="../images/count-mean-min-sketch-unskewed-dataset-experiment.png" alt="count-mean-min-sketch-unskewed-dataset-experiment.png" />
 </p>
 </div>
@@ -364,7 +364,7 @@ Nevertheless, it is possible to overcome these problems using multiple Count-Min
 </p>
 
 
-<div id="org53e59ba" class="figure">
+<div id="org78c11e6" class="figure">
 <p><img src="../images/array-of-count-min-sketch.png" alt="array-of-count-min-sketch.png" />
 </p>
 </div>
@@ -391,14 +391,13 @@ The following table contains formulas that allow one to calculate parameters of 
 </p>
 
 
-<div id="org8225d86" class="figure">
+<div id="org7b4b3a8" class="figure">
 <p><img src="../images/bloom-filter-analysis.png" alt="bloom-filter-analysis.png" />
 </p>
 </div>
 
 <p>
-Bloom filter is widely used as a preliminary probabilistic test that allows one to reduce a number of exact checks. The following case study shows how the Bloom filter can be applied to the cardinality estimation.
-</p>
+Bloom filter is widely used as a preliminary probabilistic test that allows one to reduce a number of exact checks. The following case study shows how the Bloom filter can be applied to the cardinality estimation.</p>
 </div>
 </div>
 </div>

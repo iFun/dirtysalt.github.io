@@ -637,8 +637,7 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 如果我们直接在语法树的节点上加入这些方法的话，那么语法节点的方法会越来越多难以管理。
 Visitor模式就是要求把访问逻辑和元素表示分开。语法节点上面提供一个Accept(Visitor* visitor)接口，实现就是visitor-&gt;Visit(this)。
 然后我们可以定义类型检查Visitor，代码生成Visitor，代码优化Visitor来实现Visit接口。Visitor模式比较
-适合在内部结构已经固定，但是外部需要增加很多操作这种内部结构接口的情况。
-</p>
+适合在内部结构已经固定，但是外部需要增加很多操作这种内部结构接口的情况。</p>
 </div>
 </div>
 </div>

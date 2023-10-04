@@ -37,55 +37,55 @@
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="org-py-import-from">from</span> typing <span class="org-py-import-from">import</span> List
+<pre class="src src-Python">from typing import List
 
 
-<span class="org-py-def-class">def</span> <span class="org-function-name">get_primes</span>(M):
-    <span class="org-py-variable-name">P</span> = [<span class="org-py-number">0</span>] * (M + <span class="org-py-number">1</span>)
-    <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">2</span>, M + <span class="org-py-number">1</span>):
-        <span class="org-keyword">if</span> <span class="org-py-variable-name">P</span>[i] == <span class="org-py-number">1</span>: <span class="org-keyword">continue</span>
-        <span class="org-keyword">for</span> j <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">2</span>, M + <span class="org-py-number">1</span>):
-            <span class="org-keyword">if</span> i * j &gt; M: <span class="org-keyword">break</span>
-            <span class="org-py-variable-name">P</span>[i * j] = <span class="org-py-number">1</span>
+def get_primes(M):
+    P = [0] * (M + 1)
+    for i in range(2, M + 1):
+        if P[i] == 1: continue
+        for j in range(2, M + 1):
+            if i * j &gt; M: break
+            P[i * j] = 1
 
-    <span class="org-py-variable-name">primes</span> = []
-    <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span>(<span class="org-py-number">2</span>, M + <span class="org-py-number">1</span>):
-        <span class="org-keyword">if</span> <span class="org-py-variable-name">P</span>[i] == <span class="org-py-number">0</span>:
+    primes = []
+    for i in range(2, M + 1):
+        if P[i] == 0:
             primes.append(i)
 
-    <span class="org-keyword">return</span> primes
+    return primes
 
 
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">Solution</span>:
-    <span class="org-py-def-class">def</span> <span class="org-function-name">findValidSplit</span>(<span class="org-py-object-reference">self</span>, nums: List[<span class="org-py-builtins">int</span>]) -&gt; <span class="org-py-builtins">int</span>:
-        <span class="org-py-variable-name">M</span> = <span class="org-py-builtins">min</span>(max(nums), <span class="org-py-number">10</span> ** <span class="org-py-number">3</span>)
-        <span class="org-py-variable-name">primes</span> = get_primes(M)
-        <span class="org-py-variable-name">left</span> = {}
-        <span class="org-py-variable-name">right</span> = [<span class="org-py-number">0</span>] * (len(nums))
+class Solution:
+    def findValidSplit(self, nums: List[int]) -&gt; int:
+        M = min(max(nums), 10 ** 3)
+        primes = get_primes(M)
+        left = {}
+        right = [0] * (len(nums))
 
-        <span class="org-py-def-class">def</span> <span class="org-function-name">update</span>(p, idx):
-            <span class="org-keyword">if</span> p <span class="org-keyword">not</span> <span class="org-keyword">in</span> left:
-                <span class="org-py-variable-name">pos</span> = idx
-                <span class="org-py-variable-name">left</span>[p] = idx
-            <span class="org-keyword">else</span>:
-                <span class="org-py-variable-name">pos</span> = left[p]
-            <span class="org-py-variable-name">right</span>[pos] = idx
+        def update(p, idx):
+            if p not in left:
+                pos = idx
+                left[p] = idx
+            else:
+                pos = left[p]
+            right[pos] = idx
 
-        <span class="org-keyword">for</span> idx, x <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(nums):
-            <span class="org-keyword">for</span> p <span class="org-keyword">in</span> primes:
-                <span class="org-keyword">if</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                    <span class="org-keyword">while</span> x % <span class="org-py-variable-name">p</span> == <span class="org-py-number">0</span>:
-                        <span class="org-py-variable-name">x</span> = x // p
+        for idx, x in enumerate(nums):
+            for p in primes:
+                if x % p == 0:
+                    while x % p == 0:
+                        x = x // p
                     update(p, idx)
-            <span class="org-keyword">if</span> x &gt; <span class="org-py-number">1</span>:
+            if x &gt; 1:
                 update(x, idx)
 
-        <span class="org-py-variable-name">ans</span> = <span class="org-py-number">0</span> <span class="org-comment"># &#20551;&#35774;&#24403;&#21069;&#26368;&#36828;&#20301;&#32622;</span>
-        <span class="org-keyword">for</span> idx, r <span class="org-keyword">in</span> <span class="org-py-builtins">enumerate</span>(right):
-            <span class="org-keyword">if</span> idx &gt; ans:
-                <span class="org-keyword">return</span> ans
-            <span class="org-py-variable-name">ans</span> = <span class="org-py-builtins">max</span>(ans, r)
-        <span class="org-keyword">return</span> -<span class="org-py-number">1</span>
+        ans = 0 # 假设当前最远位置
+        for idx, r in enumerate(right):
+            if idx &gt; ans:
+                return ans
+            ans = max(ans, r)
+        return -1
 </pre>
 </div>
 </div>

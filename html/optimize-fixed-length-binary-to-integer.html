@@ -57,16 +57,16 @@ fixed length binary有两个特点：
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">binary_to_int128</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;Slice&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int128_t</span> <span class="org-variable-name">value</span> = s.data[0] &amp; 0x80 ? -1 : 0;
-        memcpy(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">char</span>*&gt;(&amp;value) + <span class="org-keyword">sizeof</span>(value) - s.size, s.data, s.size);
+<pre class="src src-Cpp">void binary_to_int128(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int128_t value = s.data[0] &amp; 0x80 ? -1 : 0;
+        memcpy(reinterpret_cast&lt;char*&gt;(&amp;value) + sizeof(value) - s.size, s.data, s.size);
         value = ToHost128(value);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 </pre>
 </div>
@@ -81,16 +81,16 @@ fixed length binary有两个特点：
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">binary_to_int128_fixed</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;Slice&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int128_t</span> <span class="org-variable-name">value</span> = s.data[0] &amp; 0x80 ? -1 : 0;
-        memcpy(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">char</span>*&gt;(&amp;value) + <span class="org-keyword">sizeof</span>(value) - 7, s.data, 7);
+<pre class="src src-Cpp">void binary_to_int128_fixed(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int128_t value = s.data[0] &amp; 0x80 ? -1 : 0;
+        memcpy(reinterpret_cast&lt;char*&gt;(&amp;value) + sizeof(value) - 7, s.data, 7);
         value = ToHost128(value);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 </pre>
 </div>
@@ -99,7 +99,7 @@ fixed length binary有两个特点：
 这个优化有改进但是不是特别大
 </p>
 
-<pre class="example" id="orgedab75a">
+<pre class="example" id="orgd890e31">
 -----------------------------------------------------------------------------
 Benchmark                                   Time             CPU   Iterations
 -----------------------------------------------------------------------------
@@ -122,33 +122,33 @@ run_binary_to_int128_fixed/1000000    8215534 ns      8214657 ns           87
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">.L9</span>:
-        <span class="org-keyword">mov</span>     rdx, rax
-        <span class="org-keyword">xor</span>     r9d, r9d
-        <span class="org-keyword">sal</span>     rdx, 4
-        <span class="org-keyword">mov</span>     r11, r9
-        <span class="org-keyword">mov</span>     rsi, QWORD PTR [rbx+rdx]
-        <span class="org-keyword">movsx</span>   rcx, BYTE PTR [rsi]
-        <span class="org-keyword">shr</span>     rcx, 63
-        <span class="org-keyword">mov</span>     r10, rcx
-        <span class="org-keyword">neg</span>     r10
-        <span class="org-keyword">adc</span>     r11, 0
-        <span class="org-keyword">mov</span>     rcx, r10
-        <span class="org-keyword">mov</span>     QWORD PTR [rsp-24], r10
-        <span class="org-keyword">mov</span>     r10d, DWORD PTR [rsi]
-        <span class="org-keyword">mov</span>     esi, DWORD PTR [rsi+3]
-        <span class="org-keyword">neg</span>     r11
-        <span class="org-keyword">add</span>     rax, 1
-        <span class="org-keyword">bswap</span>   rcx
-        <span class="org-keyword">mov</span>     QWORD PTR [rsp-16], r11
-        <span class="org-keyword">mov</span>     DWORD PTR [rsp-15], r10d
-        <span class="org-keyword">mov</span>     DWORD PTR [rsp-12], esi
-        <span class="org-keyword">mov</span>     rsi, QWORD PTR [rsp-16]
-        <span class="org-keyword">mov</span>     QWORD PTR [rdi+8+rdx], rcx
-        <span class="org-keyword">bswap</span>   rsi
-        <span class="org-keyword">mov</span>     QWORD PTR [rdi+rdx], rsi
-        <span class="org-keyword">cmp</span>     rax, rbp
-        <span class="org-keyword">jb</span>      .L9
+<pre class="src src-Asm">.L9:
+        mov     rdx, rax
+        xor     r9d, r9d
+        sal     rdx, 4
+        mov     r11, r9
+        mov     rsi, QWORD PTR [rbx+rdx]
+        movsx   rcx, BYTE PTR [rsi]
+        shr     rcx, 63
+        mov     r10, rcx
+        neg     r10
+        adc     r11, 0
+        mov     rcx, r10
+        mov     QWORD PTR [rsp-24], r10
+        mov     r10d, DWORD PTR [rsi]
+        mov     esi, DWORD PTR [rsi+3]
+        neg     r11
+        add     rax, 1
+        bswap   rcx
+        mov     QWORD PTR [rsp-16], r11
+        mov     DWORD PTR [rsp-15], r10d
+        mov     DWORD PTR [rsp-12], esi
+        mov     rsi, QWORD PTR [rsp-16]
+        mov     QWORD PTR [rdi+8+rdx], rcx
+        bswap   rsi
+        mov     QWORD PTR [rdi+rdx], rsi
+        cmp     rax, rbp
+        jb      .L9
 </pre>
 </div>
 </div>
@@ -184,17 +184,17 @@ run_binary_to_int128_fixed/1000000    8215534 ns      8214657 ns           87
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">binary_to_int128_ex</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;Slice&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int64_t</span> <span class="org-variable-name">value</span> = 0;
-        memcpy((<span class="org-type">char</span>*)&amp;value, s.data, 8);
+<pre class="src src-Cpp">void binary_to_int128_ex(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int64_t value = 0;
+        memcpy((char*)&amp;value, s.data, 8);
         value = ToHost64(value);
         value = value &gt;&gt; ((8 - BYTE_SIZE) * 8);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 </pre>
 </div>
@@ -204,19 +204,19 @@ run_binary_to_int128_fixed/1000000    8215534 ns      8214657 ns           87
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">.L14</span>:
-        <span class="org-keyword">movq</span>    (<span class="org-variable-name">%r8</span>,<span class="org-variable-name">%rdx</span>), <span class="org-variable-name">%rax</span>
-        <span class="org-keyword">addq</span>    $1, <span class="org-variable-name">%rcx</span>
-        <span class="org-keyword">movq</span>    (<span class="org-variable-name">%rax</span>), <span class="org-variable-name">%rax</span>
-        <span class="org-keyword">bswap</span>   <span class="org-variable-name">%rax</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rax</span>, <span class="org-variable-name">%rdi</span>
-        <span class="org-keyword">sarq</span>    $63, <span class="org-variable-name">%rax</span>
-        <span class="org-keyword">sarq</span>    $8, <span class="org-variable-name">%rdi</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rax</span>, 8(<span class="org-variable-name">%rsi</span>,<span class="org-variable-name">%rdx</span>)
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rdi</span>, (<span class="org-variable-name">%rsi</span>,<span class="org-variable-name">%rdx</span>)
-        <span class="org-keyword">addq</span>    $16, <span class="org-variable-name">%rdx</span>
-        <span class="org-keyword">cmpq</span>    <span class="org-variable-name">%r9</span>, <span class="org-variable-name">%rcx</span>
-        <span class="org-keyword">jb</span>      .L14
+<pre class="src src-Asm">.L14:
+        movq    (%r8,%rdx), %rax
+        addq    $1, %rcx
+        movq    (%rax), %rax
+        bswap   %rax
+        movq    %rax, %rdi
+        sarq    $63, %rax
+        sarq    $8, %rdi
+        movq    %rax, 8(%rsi,%rdx)
+        movq    %rdi, (%rsi,%rdx)
+        addq    $16, %rdx
+        cmpq    %r9, %rcx
+        jb      .L14
 </pre>
 </div>
 
@@ -224,7 +224,7 @@ run_binary_to_int128_fixed/1000000    8215534 ns      8214657 ns           87
 结果大约提升了3倍左右
 </p>
 
-<pre class="example" id="org2a6c90b">
+<pre class="example" id="orgc812048">
 -----------------------------------------------------------------------------
 Benchmark                                   Time             CPU   Iterations
 -----------------------------------------------------------------------------
@@ -243,17 +243,17 @@ run_binary_to_int128_ex/1000000       2261388 ns      2261088 ns          353
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-type">void</span> <span class="org-function-name">binary_to_int128_ex_128</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;Slice&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int128_t</span> <span class="org-variable-name">value</span> = 0;
-        memcpy((<span class="org-type">char</span>*)&amp;value, s.data, 16);
+<pre class="src src-Cpp">void binary_to_int128_ex_128(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int128_t value = 0;
+        memcpy((char*)&amp;value, s.data, 16);
         value = ToHost128(value);
         value = value &gt;&gt; ((16 - BYTE_SIZE) * 8);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 </pre>
 </div>
@@ -263,23 +263,23 @@ run_binary_to_int128_ex/1000000       2261388 ns      2261088 ns          353
 </p>
 
 <div class="org-src-container">
-<pre class="src src-asm"><span class="org-function-name">.L14</span>:
-        <span class="org-keyword">movq</span>    (<span class="org-variable-name">%r10</span>,<span class="org-variable-name">%rax</span>), <span class="org-variable-name">%rcx</span>
-        <span class="org-keyword">addq</span>    $1, <span class="org-variable-name">%rdx</span>
-        <span class="org-keyword">movq</span>    (<span class="org-variable-name">%rcx</span>), <span class="org-variable-name">%rsi</span>
-        <span class="org-keyword">movq</span>    8(<span class="org-variable-name">%rcx</span>), <span class="org-variable-name">%rcx</span>
-        <span class="org-keyword">bswap</span>   <span class="org-variable-name">%rsi</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rsi</span>, <span class="org-variable-name">%r9</span>
-        <span class="org-keyword">bswap</span>   <span class="org-variable-name">%rcx</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rcx</span>, <span class="org-variable-name">%rsi</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%r9</span>, <span class="org-variable-name">%rdi</span>
-        <span class="org-keyword">shrdq</span>   $40, <span class="org-variable-name">%r9</span>, <span class="org-variable-name">%rsi</span>
-        <span class="org-keyword">sarq</span>    $40, <span class="org-variable-name">%rdi</span>
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rsi</span>, (<span class="org-variable-name">%rbx</span>,<span class="org-variable-name">%rax</span>)
-        <span class="org-keyword">movq</span>    <span class="org-variable-name">%rdi</span>, 8(<span class="org-variable-name">%rbx</span>,<span class="org-variable-name">%rax</span>)
-        <span class="org-keyword">addq</span>    $16, <span class="org-variable-name">%rax</span>
-        <span class="org-keyword">cmpq</span>    <span class="org-variable-name">%r11</span>, <span class="org-variable-name">%rdx</span>
-        <span class="org-keyword">jb</span>      .L14
+<pre class="src src-Asm">.L14:
+        movq    (%r10,%rax), %rcx
+        addq    $1, %rdx
+        movq    (%rcx), %rsi
+        movq    8(%rcx), %rcx
+        bswap   %rsi
+        movq    %rsi, %r9
+        bswap   %rcx
+        movq    %rcx, %rsi
+        movq    %r9, %rdi
+        shrdq   $40, %r9, %rsi
+        sarq    $40, %rdi
+        movq    %rsi, (%rbx,%rax)
+        movq    %rdi, 8(%rbx,%rax)
+        addq    $16, %rax
+        cmpq    %r11, %rdx
+        jb      .L14
 </pre>
 </div>
 
@@ -287,7 +287,7 @@ run_binary_to_int128_ex/1000000       2261388 ns      2261088 ns          353
 结果如下，速度看上去比int64要稍微差些，但是也比之前的实现要快很多。
 </p>
 
-<pre class="example" id="org7b02520">
+<pre class="example" id="org4603f68">
 ------------------------------------------------------------------------------
 Benchmark                                    Time             CPU   Iterations
 ------------------------------------------------------------------------------
@@ -307,184 +307,184 @@ run_binary_to_int128_ex_128/1000000    2184613 ns      2184084 ns          354
 </p>
 
 <div class="org-src-container">
-<pre class="src src-cpp"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;benchmark/benchmark.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;emmintrin.h&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;immintrin.h&gt;</span>
+<pre class="src src-Cpp">#include &lt;benchmark/benchmark.h&gt;
+#include &lt;emmintrin.h&gt;
+#include &lt;immintrin.h&gt;
 
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cmath&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;functional&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
-<span class="org-preprocessor">#include</span> <span class="org-string">&lt;random&gt;</span>
+#include &lt;cmath&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;functional&gt;
+#include &lt;iostream&gt;
+#include &lt;random&gt;
 
-<span class="org-keyword">typedef</span> <span class="org-type">__int128</span> <span class="org-type">int128_t</span>;
+typedef __int128 int128_t;
 
-<span class="org-keyword">struct</span> <span class="org-type">Slice</span> {
-    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">data</span>;
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span>;
+struct Slice {
+    const char* data;
+    size_t size;
 };
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">int</span> <span class="org-variable-name">BYTE_SIZE</span> = 11;
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">int</span> <span class="org-variable-name">GAP_SIZE</span> = 0;
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">bool</span> <span class="org-variable-name">verify</span> = <span class="org-constant">false</span>;
+static constexpr int BYTE_SIZE = 11;
+static constexpr int GAP_SIZE = 0;
+static constexpr bool verify = false;
 
-<span class="org-preprocessor">#define</span> <span class="org-function-name">bswap_64</span>(<span class="org-variable-name">x</span>) __bswap_64(x)
+#define bswap_64(x) __bswap_64(x)
 
-<span class="org-keyword">inline</span> <span class="org-type">unsigned</span> <span class="org-type">__int128</span> <span class="org-function-name">bswap_128</span>(<span class="org-type">unsigned</span> <span class="org-type">__int128</span> <span class="org-variable-name">host_int</span>) {
-    <span class="org-keyword">return</span> <span class="org-keyword">static_cast</span>&lt;<span class="org-type">unsigned</span> <span class="org-variable-name">__int128</span>&gt;(bswap_64(<span class="org-keyword">static_cast</span>&lt;<span class="org-type">uint64_t</span>&gt;(host_int &gt;&gt; 64))) |
-           (<span class="org-keyword">static_cast</span>&lt;<span class="org-type">unsigned</span> <span class="org-variable-name">__int128</span>&gt;(bswap_64(<span class="org-keyword">static_cast</span>&lt;<span class="org-type">uint64_t</span>&gt;(host_int))) &lt;&lt; 64);
+inline unsigned __int128 bswap_128(unsigned __int128 host_int) {
+    return static_cast&lt;unsigned __int128&gt;(bswap_64(static_cast&lt;uint64_t&gt;(host_int &gt;&gt; 64))) |
+           (static_cast&lt;unsigned __int128&gt;(bswap_64(static_cast&lt;uint64_t&gt;(host_int))) &lt;&lt; 64);
 }
 
-<span class="org-keyword">static</span> <span class="org-type">unsigned</span> <span class="org-type">__int128</span> <span class="org-function-name">ToHost128</span>(<span class="org-type">unsigned</span> <span class="org-type">__int128</span> <span class="org-variable-name">x</span>) {
-    <span class="org-keyword">return</span> bswap_128(x);
+static unsigned __int128 ToHost128(unsigned __int128 x) {
+    return bswap_128(x);
 }
 
-<span class="org-keyword">static</span> <span class="org-type">uint64_t</span> <span class="org-function-name">ToHost64</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">x</span>) {
-    <span class="org-keyword">return</span> __bswap_64(x);
+static uint64_t ToHost64(uint64_t x) {
+    return __bswap_64(x);
 }
 
-<span class="org-type">void</span> <span class="org-function-name">make_src_data</span>(<span class="org-type">size_t</span> <span class="org-variable-name">size</span>, <span class="org-constant">std</span>::<span class="org-type">string</span>* <span class="org-variable-name">blob</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt;* <span class="org-variable-name">src_data</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">assume each data is 7 bytes</span>
-    <span class="org-comment-delimiter">// </span><span class="org-comment">and bewteen each data there is 4 bytes.</span>
+void make_src_data(size_t size, std::string* blob, std::vector&lt;Slice&gt;* src_data) {
+    // assume each data is 7 bytes
+    // and bewteen each data there is 4 bytes.
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">add some extra padding bytes.</span>
-    <span class="org-type">size_t</span> <span class="org-variable-name">bytes</span> = (BYTE_SIZE + GAP_SIZE) * (size) + 16;
-    <span class="org-constant">std</span>::<span class="org-type">mt19937_64</span> <span class="org-variable-name">gen64</span>;
+    // add some extra padding bytes.
+    size_t bytes = (BYTE_SIZE + GAP_SIZE) * (size) + 16;
+    std::mt19937_64 gen64;
     blob-&gt;resize(bytes);
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; bytes; i++) {
+    for (size_t i = 0; i &lt; bytes; i++) {
         (*blob)[i] = gen64() &amp; 0xff;
     }
 
-    <span class="org-comment-delimiter">// </span><span class="org-comment">construct src data.</span>
-    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">p</span> = blob-&gt;data();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
+    // construct src data.
+    const char* p = blob-&gt;data();
+    for (size_t i = 0; i &lt; size; i++) {
         src_data-&gt;emplace_back(Slice{.data = p, .size = BYTE_SIZE});
         p += (BYTE_SIZE + GAP_SIZE);
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">binary_to_int128</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int128_t</span> <span class="org-variable-name">value</span> = s.data[0] &amp; 0x80 ? -1 : 0;
-        memcpy(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">char</span>*&gt;(&amp;value) + <span class="org-keyword">sizeof</span>(value) - s.size, s.data, s.size);
+void binary_to_int128(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int128_t value = s.data[0] &amp; 0x80 ? -1 : 0;
+        memcpy(reinterpret_cast&lt;char*&gt;(&amp;value) + sizeof(value) - s.size, s.data, s.size);
         value = ToHost128(value);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">run_binary_to_int128</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">blob</span>;
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = state.range(0);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt; <span class="org-variable-name">src_data</span>;
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt; <span class="org-variable-name">dst_data</span>(size);
+static void run_binary_to_int128(benchmark::State&amp; state) {
+    // Code inside this loop is measured repeatedly
+    std::string blob;
+    size_t size = state.range(0);
+    std::vector&lt;Slice&gt; src_data;
+    std::vector&lt;int128_t&gt; dst_data(size);
     make_src_data(size, &amp;blob, &amp;src_data);
 
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.PauseTiming();</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.ResumeTiming();</span>
+    for (auto _ : state) {
+        // state.PauseTiming();
+        // state.ResumeTiming();
         binary_to_int128(src_data, dst_data);
     }
 }
 
-<span class="org-type">void</span> <span class="org-function-name">binary_to_int128_fixed</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
-        <span class="org-type">int128_t</span> <span class="org-variable-name">value</span> = s.data[0] &amp; 0x80 ? -1 : 0;
-        memcpy(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">char</span>*&gt;(&amp;value) + <span class="org-keyword">sizeof</span>(value) - 7, s.data, 7);
+void binary_to_int128_fixed(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
+        int128_t value = s.data[0] &amp; 0x80 ? -1 : 0;
+        memcpy(reinterpret_cast&lt;char*&gt;(&amp;value) + sizeof(value) - 7, s.data, 7);
         value = ToHost128(value);
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">run_binary_to_int128_fixed</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">blob</span>;
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = state.range(0);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt; <span class="org-variable-name">src_data</span>;
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt; <span class="org-variable-name">dst_data</span>(size);
+static void run_binary_to_int128_fixed(benchmark::State&amp; state) {
+    // Code inside this loop is measured repeatedly
+    std::string blob;
+    size_t size = state.range(0);
+    std::vector&lt;Slice&gt; src_data;
+    std::vector&lt;int128_t&gt; dst_data(size);
     make_src_data(size, &amp;blob, &amp;src_data);
 
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.PauseTiming();</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.ResumeTiming();</span>
+    for (auto _ : state) {
+        // state.PauseTiming();
+        // state.ResumeTiming();
         binary_to_int128_fixed(src_data, dst_data);
     }
 }
 
-<span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">TYPE</span>&gt;
-<span class="org-type">void</span> <span class="org-function-name">binary_to_int128_ex</span>(<span class="org-keyword">const</span> <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt;&amp; <span class="org-variable-name">src_data</span>, <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt;&amp; <span class="org-variable-name">dst_data</span>) {
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = src_data.size();
-    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; size; i++) {
-        <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">s</span> = src_data[i];
+template &lt;typename TYPE&gt;
+void binary_to_int128_ex(const std::vector&lt;Slice&gt;&amp; src_data, std::vector&lt;int128_t&gt;&amp; dst_data) {
+    size_t size = src_data.size();
+    for (size_t i = 0; i &lt; size; i++) {
+        const Slice&amp; s = src_data[i];
 
-        <span class="org-type">TYPE</span> <span class="org-variable-name">value</span> = 0;
-        memcpy((<span class="org-type">char</span>*)&amp;value, s.data, <span class="org-keyword">sizeof</span>(TYPE));
-        <span class="org-keyword">if</span> <span class="org-keyword">constexpr</span> (<span class="org-constant">std</span>::<span class="org-type">is_same_v</span>&lt;<span class="org-type">TYPE</span>, <span class="org-type">int64_t</span>&gt;) {
+        TYPE value = 0;
+        memcpy((char*)&amp;value, s.data, sizeof(TYPE));
+        if constexpr (std::is_same_v&lt;TYPE, int64_t&gt;) {
             value = ToHost64(value);
-        } <span class="org-keyword">else</span> {
+        } else {
             value = ToHost128(value);
         }
-        value = value &gt;&gt; ((<span class="org-keyword">sizeof</span>(TYPE) - BYTE_SIZE) * 8);
+        value = value &gt;&gt; ((sizeof(TYPE) - BYTE_SIZE) * 8);
 
-        <span class="org-keyword">if</span> <span class="org-keyword">constexpr</span> ((BYTE_SIZE &lt;= <span class="org-keyword">sizeof</span>(TYPE)) &amp;&amp; verify) {
-            <span class="org-type">TYPE</span> <span class="org-variable-name">value2</span> = s.data[0] &amp; 0x80 ? -1 : 0;
-            memcpy(<span class="org-keyword">reinterpret_cast</span>&lt;<span class="org-type">char</span>*&gt;(&amp;value2) + <span class="org-keyword">sizeof</span>(value2) - BYTE_SIZE, s.data, BYTE_SIZE);
-            <span class="org-keyword">if</span> <span class="org-keyword">constexpr</span> (<span class="org-constant">std</span>::<span class="org-type">is_same_v</span>&lt;<span class="org-type">TYPE</span>, <span class="org-type">int64_t</span>&gt;) {
+        if constexpr ((BYTE_SIZE &lt;= sizeof(TYPE)) &amp;&amp; verify) {
+            TYPE value2 = s.data[0] &amp; 0x80 ? -1 : 0;
+            memcpy(reinterpret_cast&lt;char*&gt;(&amp;value2) + sizeof(value2) - BYTE_SIZE, s.data, BYTE_SIZE);
+            if constexpr (std::is_same_v&lt;TYPE, int64_t&gt;) {
                 value2 = ToHost64(value2);
-            } <span class="org-keyword">else</span> {
+            } else {
                 value2 = ToHost128(value2);
             }
-            <span class="org-keyword">if</span> (value != value2) {
-                printf(<span class="org-string">"FAILED at %s. v = %p, v2 = %p, raw = "</span>, __func__, value, value2);
-                <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">j</span> = 0; j &lt; BYTE_SIZE; j++) {
-                    printf(<span class="org-string">"%x "</span>, s.data[j]);
+            if (value != value2) {
+                printf("FAILED at %s. v = %p, v2 = %p, raw = ", __func__, value, value2);
+                for (int j = 0; j &lt; BYTE_SIZE; j++) {
+                    printf("%x ", s.data[j]);
                 }
-                printf(<span class="org-string">"\n"</span>);
+                printf("\n");
                 exit(-1);
             }
         }
         dst_data[i] = value;
     }
-    <span class="org-keyword">return</span>;
+    return;
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">run_binary_to_int128_ex</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">blob</span>;
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = state.range(0);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt; <span class="org-variable-name">src_data</span>;
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt; <span class="org-variable-name">dst_data</span>(size);
+static void run_binary_to_int128_ex(benchmark::State&amp; state) {
+    // Code inside this loop is measured repeatedly
+    std::string blob;
+    size_t size = state.range(0);
+    std::vector&lt;Slice&gt; src_data;
+    std::vector&lt;int128_t&gt; dst_data(size);
     make_src_data(size, &amp;blob, &amp;src_data);
 
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.PauseTiming();</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.ResumeTiming();</span>
-        binary_to_int128_ex&lt;<span class="org-type">int64_t</span>&gt;(src_data, dst_data);
+    for (auto _ : state) {
+        // state.PauseTiming();
+        // state.ResumeTiming();
+        binary_to_int128_ex&lt;int64_t&gt;(src_data, dst_data);
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">run_binary_to_int128_ex_128</span>(<span class="org-constant">benchmark</span>::<span class="org-type">State</span>&amp; <span class="org-variable-name">state</span>) {
-    <span class="org-comment-delimiter">// </span><span class="org-comment">Code inside this loop is measured repeatedly</span>
-    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">blob</span>;
-    <span class="org-type">size_t</span> <span class="org-variable-name">size</span> = state.range(0);
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">Slice</span>&gt; <span class="org-variable-name">src_data</span>;
-    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int128_t</span>&gt; <span class="org-variable-name">dst_data</span>(size);
+static void run_binary_to_int128_ex_128(benchmark::State&amp; state) {
+    // Code inside this loop is measured repeatedly
+    std::string blob;
+    size_t size = state.range(0);
+    std::vector&lt;Slice&gt; src_data;
+    std::vector&lt;int128_t&gt; dst_data(size);
     make_src_data(size, &amp;blob, &amp;src_data);
 
-    <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">_</span> : state) {
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.PauseTiming();</span>
-        <span class="org-comment-delimiter">// </span><span class="org-comment">state.ResumeTiming();</span>
-        binary_to_int128_ex&lt;<span class="org-type">int128_t</span>&gt;(src_data, dst_data);
+    for (auto _ : state) {
+        // state.PauseTiming();
+        // state.ResumeTiming();
+        binary_to_int128_ex&lt;int128_t&gt;(src_data, dst_data);
     }
 }
 
-<span class="org-keyword">static</span> <span class="org-keyword">constexpr</span> <span class="org-type">size_t</span> <span class="org-variable-name">N</span> = 1000000;
+static constexpr size_t N = 1000000;
 BENCHMARK(run_binary_to_int128)-&gt;Args({N});
 BENCHMARK(run_binary_to_int128_fixed)-&gt;Args({N});
 BENCHMARK(run_binary_to_int128_ex)-&gt;Args({N});
