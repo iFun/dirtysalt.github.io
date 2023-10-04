@@ -210,7 +210,7 @@ class Merger:
 1. 没有内存重叠
 2. 使用相同的allocator分配（也就是对齐方式是一样的）
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int strcpy(uchar *from, uchar* dest) {
     int n = strlen(from);
     int count = n;

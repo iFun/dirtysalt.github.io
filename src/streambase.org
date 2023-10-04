@@ -15,7 +15,7 @@ StreamBase本身是使用Java编写的，IDE称为StreamBase Studuo.IDE是基于
 http://streambase.com/developers/docs/latest/admin/ha-designing.html#d0e13346
 
 我们这里不打算试图使用一个框图来表现StreamBase框架，使用代码的话可能会更好一些。注意我们启动的就是StreamBaseServer进程。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class StreamBaseServer{
     // 对于一个StreamBaseServer来说的话包含了一系列Container
     Collection< Container > containers;

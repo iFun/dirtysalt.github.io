@@ -35,4 +35,3 @@ HTTPHeaderDict({'X-Request-Id': '9e703b03-ec08-4ea3-bce4-ed8583af038f', 'Via': '
 #+END_EXAMPLE
 
 应对Retry-After这个问题也非常好解决，只需要在外部请求的时候增加一个定时器就行。之所以会出现Retry-After，基本上还是因为访问次数太多了，换一批代理或者是改进一下负载策略才能根本地解决问题。
-

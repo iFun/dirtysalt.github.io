@@ -71,7 +71,7 @@ https://leetcode-cn.com/contest/biweekly-contest-29/problems/parallel-courses-ii
 - 然后在和can做一个and操作，就可以得到正确结果
 - 接着我们直接使用这个正确结果继续遍历
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 for (int t = can; t; t = (t-1)&can) {
     if (__builtin_popcount(t) > k) continue;
     f[s|t] = min(f[s|t], f[s]+1);

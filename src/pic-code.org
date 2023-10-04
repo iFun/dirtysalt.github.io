@@ -5,7 +5,7 @@
 ** 什么是PIC
 pic的意思是position independent code(位置无关代码),就是指运行和放置地址无关的代码。
 其实这里pic是一个相对意思，因为生成代码或多或少都使用了位置无关代码这个概念，就好比跳转指令：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int main(int argc,char const* argv[]){
     if(argc>=2){
         argc++;
@@ -59,7 +59,7 @@ UPDATE@201912：按照我粗浅的理解是
 ** 为什么需要PIC
 考虑可执行程序使用静态库而言的话，最终使用的所有静态库符号，都会进行符号重定位的。因为在编译静态库的时候，
 汇编器不确定最终每个符号安排在什么位置上，所有从0x0这个地址开始依次安排每一个符号，不同的段是分开的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int global_variable_data=1;
 static int global_variable_bss;
 int echo(){
@@ -177,7 +177,7 @@ ELF Header:
 #+END_EXAMPLE
 
 假设main.cc编译出main，里面调用echo函数定义在libecho.so里面。main.o不需要是位置无关代码，所以不用-fPIC编译。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //==============================main.cc==============================
 #include <cstdio>
 extern "C" int global_variable;

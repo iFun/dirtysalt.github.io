@@ -10,14 +10,14 @@
 很早之前一直不理解内存屏障到底要解决什么问题，直到第一次编写lock-free queue的时候才稍微意识到。内存屏障这个问题在编写多线程和编写设备驱动时候是需要考虑的，只是通常我们使用已经封装之后的同步机制比如lock, mutex来解决多线程数据共享问题，所以不需要考虑内存屏障这件事情。内存屏障有两种，一种是关于和编译器相关的内存屏障，一种是和CPU相关的内存屏障。
 
 ** 编译器内存屏障
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // #define mfence_c() __asm__ __volatile__("": : :"memory")
 #define barrier() __asm__ __volatile__("": : :"memory")
 
 #+END_SRC
 
 这个内存屏障的意思是:在这个操作之后，所有的原来分配在寄存器里面的变量全部失效，需要重新进行一次寄存器的分配（相当于变量需要全部重新载入）。之所以需要有这个操作，可以考虑这么一个情况。假设有两个值a,分配的内存地址分别是0x12345.我们有下面这样的代码
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 int a=0;
 int main() {
@@ -35,7 +35,7 @@ int main() {
 barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz还告诉我可能会阻止gcc进行instruction reorder.指令重排会出现很多问题。曾经在编写infpack遇到过这个问题，现在这段代码在compress.h这里，compress_uint64里面使用了mfence_c.加这个内存障碍是jjp告诉我的，当时这段代码除了问题加了这个barrier就好了，但是凭的是直觉也不太清楚为什么。
 
 ** CPU内存屏障
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // #define mfence_x86() __asm__ __volatile__("mfence":::"memory")
 #define rmb() __asm__ __volatile__("lfence":::"memory")
 #define wmb() __asm__ __volatile__("sfence":::"memory")

@@ -104,4 +104,3 @@ http://research.google.com/pubs/pub38125.html @ 2012
     - Fewer joins
   - For bulk operations
     - Use small transactions in parallel - high throughput
-

@@ -11,4 +11,4 @@
 - Prefer battle-tested tools over the “new hotness”.
   - It can be tempting to reach for the newest tools that promise big new features.
   - New technologies frequently have unknown-to-you and unknown-to-them modes of failure.
-  - Newer tools also tend to have immature facilities for running in production. 
+  - Newer tools also tend to have immature facilities for running in production.

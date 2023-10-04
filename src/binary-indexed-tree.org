@@ -64,7 +64,7 @@ Binary Indexed Tree实际上进行分段存储，每段长度都是2 ** k - 1，
 #+END_EXAMPLE
 所以这个过程和上面相反，index += (index & -index).
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /*            n  --> No. of elements present in input array.
     BITree[0..n] --> Array that represents Binary Indexed Tree.
     arr[0..n-1]  --> Input array for whic prefix sum is evaluated. */

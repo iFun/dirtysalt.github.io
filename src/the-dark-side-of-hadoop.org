@@ -13,4 +13,3 @@ update@201509: 链接已经失效
 
 Making Hadoop easy to deploy, use, and operate should be the #1 priority for the developers of Hadoop.
 
-

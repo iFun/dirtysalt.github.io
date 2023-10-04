@@ -12,7 +12,7 @@ kylin是baidu in-house的异步编程框架，提供CPU，Network以及Disk异�
 
 *** atomic
 最主要实现了atomic add/swap/cas三个操作。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // return old value
 static inline int atomic_add(volatile int *count, int add) {
     __asm__ __volatile__(
@@ -53,7 +53,7 @@ static inline int atomic_comp_swap(volatile void *lockword,
 }
 #+END_SRC
 然后再上面封装了一系列原子操作。封装的一系列原子操作还是比较好理解的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define AtomicGetValue(x)    (atomic_comp_swap(&(x), 0, 0))
 #define AtomicSetValue(x, v)    (atomic_swap(&(x), (v)))
 #define AtomicSetValueIf(x, v, ifn)(atomic_comp_swap(&(x), (v), ifn))
@@ -63,7 +63,7 @@ static inline int atomic_comp_swap(volatile void *lockword,
 
 *** spinlock
 spinlock直接使用atomic提供的原子操作来实现，理解起来倒不是很麻烦
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline void spin_lock(volatile int *lock) {
     int l;
     int i = 10;
@@ -103,7 +103,7 @@ static inline bool spin_trylock(volatile int *lock) {
 
 在spinlock.h下面有一个token实现。token语义非常简单，如果token==0的话那么这个令牌没有被任何人获得，
 如果token!=0的话，那么令牌被token标记的对象获取了。token可以是pid,也可以是tid.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline int token_acquire(volatile int *token, int id) {
     return atomic_comp_swap(token, id, 0);
 }
@@ -123,7 +123,7 @@ static inline int token_set(volatile int *token, int id) {
 
 *** cycle
 提供开销更小的计时器，使用读取CPU的time stamp counter.这个内容表示自计算机启动以来的CPU运行周期。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline uint64 rdtsc() {
     unsigned int lo, hi;
     /* We cannot use "=A", since this would use %rax on x86_64 */
@@ -163,7 +163,7 @@ power management:
 
 *** support
 从这里面我们可以学习到如何进行系统调用，阅读一下<asm/unistd.h>可以找到系统调用号，然后使用syscall来发起。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/syscall.h>
 #include <cstdio>
@@ -186,7 +186,7 @@ int main() {
 如果想要深入了解的话，看看pthread里面同步组件的实现。
 
 这里我们简单地介绍一下kylin里面使用futex实现的功能，先看看futex结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct futex {
     volatile int lock; // futex shared address
     volatile int count;
@@ -195,7 +195,7 @@ struct futex {
 
 **** sema
 可以认为是操作系统里面的PV实现.count就是资源数目，lock始终==0.理解起来并不会很麻烦。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline int futex_sema_down(struct futex* pf, struct timespec* timeout, bool interruptable) {
     // 首先在用户态尝试取资源
     // 如果n>0的话，说明资源OK,那么就不需要陷入内核态进行wait.
@@ -249,7 +249,7 @@ static inline int futex_sema_up(struct futex* pf) {
 
 **** cond
 这里cond和pthread_cond是有差别的，这里的cond没有和任何mutex相关。kylin这里认为count==0的时候，那么condition才被满足。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline int futex_cond_wait(struct futex* pf, struct timespec* timeout, bool interruptable) {
     /* I dont know whether it is a bug of linux kernel.
      * Sometimes, sys_futex(.., FUTEX_WAIT, ..) returns 0, but the condition is not satisfied.
@@ -285,7 +285,7 @@ static inline int futex_cond_signal(struct futex* pf) {
 **** event
 这里的event名字取得也相当的奇怪。这里count实际上有两个状态，>=0以及<0(LARGE_ENOUGH_NEGATIVE).对于count>=0的状态时候，
 可以认为当前是没有signaled的需要wait，如果count为<0(LARGE_ENOUGH_NEGATIVE)的时候是有signal的状态的不需要wait。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline int futex_event_wait(struct futex* pf, struct timespec* timeout, bool interruptable) {
     // 如果不是signaled状态的话
     int n = atomic_add(&pf->count, 1);
@@ -360,7 +360,7 @@ static inline void futex_event_reset(struct futex* pf) {
 
 *** Async
 kylin对于用户来说首先需要了解的概念就在Async.h文件里面，主要是下面两个类
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 typedef void (*JOB_PROC)(Job*);
 
 // 对于Job这个内容我们稍后在ThreadPool部分会有详细分析
@@ -420,7 +420,7 @@ public:
 *** ThreadPool
 **** Overview
 线程池很简单，取出一个Job出来执行就多了。但是为了更好地理解kylin有必要看看线程池接口/实现。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 typedef void (*THREAD_INIT_PROC)(int type, int id); // id表示这个线程的逻辑编号
 
 class CThreadPool
@@ -452,7 +452,7 @@ class CThreadPool
 
 **** How Thread Works
 了解线程是怎么工作的，可以看看线程执行的函数是怎么定义的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void*
 WorkerProc(void* pData)
 {
@@ -486,7 +486,7 @@ WorkerProc(void* pData)
 #+END_SRC
 
 普通的Job会在每个Man里面单独提到，我们看看控制Job是怎么定义的。在ThreadPool里面就有一个TermianationJob.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct TerminationJob : ControlJob {
     int id;
 };
@@ -507,7 +507,7 @@ TerminateWorker(ControlJob* pCtl, WorkerContext* pCtx)
 
 **** AddWorker & DelWorker
 AddWorker非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int CThreadPool::_AddWorker(int nAdd)
 {
     int i;
@@ -528,7 +528,7 @@ int CThreadPool::_AddWorker(int nAdd)
 #+END_SRC
 
 DelWorker因为有ControlJob的辅助所以可以很好地解决，只需要在每个线程后面增加一个TerminationJob即可
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int CThreadPool::_DelWorker(int nDel, bool bFinal)
 {
     TerminationJob *pTerminations = new TerminationJob[nDel];
@@ -555,7 +555,7 @@ int CThreadPool::_DelWorker(int nDel, bool bFinal)
 
 **** QueueJob & CancelJob
 相对来说QueueJob也更加简单一些，直接投递到某个线程对应的WorkerContext里面即可。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void QueueJob(Job* pJob, int nWhich) {
      int nJobs = atomic_add(&m_nJobs, 1);
     if (-1 == nWhich) {
@@ -567,7 +567,7 @@ void QueueJob(Job* pJob, int nWhich) {
 #+END_SRC
 
 而CancelJob则是通过加锁替换这个Job来完成的，还是比较精巧的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void
 DoNothing(Job* pJob)
 {
@@ -598,7 +598,7 @@ TranBuf.h CTranBufPool是一个内存分配器。对于很多系统来说，合�
 **** Overview
 首先看看CTranBufPool的数据结构，看看里面每个字段含义和作用.对于TranBuf来说的话内部
 本质还是一个sample allocator，也是按照固定的BlockSize来进行分配的。构造函数可以看到水位线三个阈值都是0.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class CTranBufPool : public CBufPoolV {
   struct Handle { // 每个BlockSize字节内存内存由一个Handle管理.
     DLINK link; // 分配出来之后多个Handle组成环形双向链表.
@@ -645,7 +645,7 @@ class CTranBufPool : public CBufPoolV {
 
 **** Create
 大部分Create代码都是在设置参数，最后调用m_nMin次AllocOnce来分配初始的内存块。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   bool Create(int nBlockSize, int nAlloc, int nMin, int nMax, double fRatio1, double fRatio2) {
     m_nUnitSize = nBlockSize;
     m_nBlockSize = nBlockSize;
@@ -676,7 +676,7 @@ class CTranBufPool : public CBufPoolV {
 **** AllocOnce
 之前说过AllocOnce是分配一个连续内存块，每个Block大小是m_nBlockSize,而个数是nAlloc.
 同时还需要分配nAlloc个Handle.每个Handle管理一个Block.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   bool AllocOnce() {
     char* pBuffer = (char*)AlignAlloc(m_nBlockSize, m_nBufferSize);
     Handle* pHdl = (Handle*)ZeroAlloc(m_nAlloc * sizeof(Handle));
@@ -711,7 +711,7 @@ class CTranBufPool : public CBufPoolV {
 **** GetHandle
 GetHandle是通过传入buffer首地址来确定管理这个buffer的Handle.但是注意不是RealHdl.
 如果需要对这个内存做引用计数的话，应该是对RealHdl做引用计数。可以看看下面的AddRef实现。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   Handle* GetHandle(char* pBuffer) {
     BufferMap::iterator it = m_BufferMap.upper_bound(pBuffer);
     if (it != m_BufferMap.begin()) {
@@ -732,7 +732,7 @@ GetHandle是通过传入buffer首地址来确定管理这个buffer的Handle.但�
 
 **** AddRef
 对某块内存进行引用计数。并且强大的是这个内存地址不必是分配的首地址，可以是连续内存内部任意地址。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   int AddRef(char* p, bool bCheck = false) {
     Handle* pHdl = GetHandle(p);
     if (NULL == pHdl) {
@@ -751,7 +751,7 @@ GetHandle是通过传入buffer首地址来确定管理这个buffer的Handle.但�
 **** Destroy
 Destroy是将AllocOnce分配的内存和Handle全部回收。因为得到了所有分配内存和Handle的起始地址
 保存在map里面所以释放并不麻烦.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void Destroy() {
     m_FreeList.Init();
     m_nBuffers = 0; // 将分配计数清零.
@@ -768,7 +768,7 @@ Destroy是将AllocOnce分配的内存和Handle全部回收。因为得到了所�
 **** Allocate
 分配内存。可以从参数里面看出来语义是说分配多少个Block.nPriority参数是说使用哪个水位线。
 如果超过水位线的话，那么会使用相应的策略来处理(打印日志)。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 从freelist里面分配一个block出来.
 #define _ALLOC_TRAN_BUF(p, how)                     \
   p = m_FreeList.how();                           \
@@ -844,7 +844,7 @@ Destroy是将AllocOnce分配的内存和Handle全部回收。因为得到了所�
 #+END_SRC
 
 **** Free
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #ifdef  _DEBUG
 #define _FREE_TRAN_BUF(p, how)                              \
   memset(p->pBuffer, 0xCC, m_nBlockSize);             \
@@ -903,7 +903,7 @@ network IO app的。通过全局的BufHandlePool对象来分配内存。
 
 **** OverView
 首先我们看看BufHandle结构以及提供的API.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct BufHandle {
   BufHandle* _next; // 链式指针.
   char* pBuf; // 管理的内存.
@@ -944,7 +944,7 @@ BufHandle* CloneHdlAndTerminate(BufHandle* pHdl, BufHandle* pNext,
 
 **** SetTranBuf
 首先我们先看看CBufHandlePool的结构然后在看这个API
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 继承于TObjectPool对象池可以直接高效分配出BufHandle对象出来.
 class CBufHandlePool : public TObjectPool<BufHandle> {
   volatile int m_lock; // 多线程安全.
@@ -987,7 +987,7 @@ static CBufHandlePool* GetBufHdlPool() {
 #+END_SRC
 
 然后来看看这些参数是来如何设置的.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int s_nTranBuf = 1024;
 int s_nBufSize = 4096;
 int s_nBigTranBuf = 64;
@@ -1007,7 +1007,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** DoAllocate
 这个是底层确保一定分配成功API(如果失败抛异常).来看看实现.使用hang住当前操作等待其他线程归还内存.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // 从什么pool里面进行分配，尝试多少次分配.
   BufHandle* DoAllocate(CTranBufPool* pPool, int nRetry) {
     BufHandle* pHdl;
@@ -1036,7 +1036,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** DoAllocateCanFail
 底层不一定保证分配成功，可能返回NULL表示失败.只是尝试一次分配.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* DoAllocateCanFail(CTranBufPool* pPool, int nSize) {
     BufHandle* pHdl;
     int nBlockSize = pPool->GetBlockSize();
@@ -1064,7 +1064,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 只是针对头部的BufHandle增加计数而共用其他部分的BufHandle.
 
 (NOTICE):(不过在外部调用可以看到,CloneAndTerminate实际上也还是遍历了所有的Handle做引用计数).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* _DoAddRef(BufHandle* pHdl, BufHandle* pNext, BufHandle** * pppLast) {
     if (-1 != m_TranBufPool.AddRef(pHdl->pBuf) || -1 != m_BigBufPool.AddRef(pHdl->pBuf)) {
       BufHandle* pTmp = TObjectPool<BufHandle>::Allocate();
@@ -1081,7 +1081,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** _DoFree
 只是释放单个BufHandle对象.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void _DoFree(BufHandle* pHdl) {
     if (-1 == m_TranBufPool.Free(pHdl->pBuf))
       m_BigBufPool.Free(pHdl->pBuf);
@@ -1091,7 +1091,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** AllocateBig
 从BigTranBufPool里面分配大块内存.注意对于大块内存而言的话只允许分配一个Block.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* AllocateBig(bool bCanFail) {
     BufHandle* pHdl;
 
@@ -1109,7 +1109,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** AllocateCanFail
 从TranBufPool里面分配连续内存出来.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* AllocateCanFail(int nSize) {
     BufHandle* pHdl = DoAllocateCanFail(&m_TranBufPool, nSize);
     if (pHdl) {
@@ -1123,7 +1123,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** AllocForBuf
 为某个buf分配内存.把buf内容copy进来.并且设置pNext.pppLast表示最后一个节点的next字段指针(三指针比较难理解...)
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* AllocForBuf(char* pBuf, int nLen, BufHandle* pNext, BufHandle** * pppLast) {
     BufHandle* pFirst, *pHdl, **ppLast;
 
@@ -1151,7 +1151,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 #+END_SRC
 
 **** Allocate
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // 如果是inpool的话，那么pubuf必须是pool分配出来的，
   // 那么我们只是针对这个buffer做一个引用计数
 
@@ -1190,7 +1190,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** ChainFree
 释放[pHdl,pNext)链上的所有item.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void ChainFree(BufHandle* pHdl, BufHandle* pNext) {
     BufHandle* pTmp;
     LOCK;
@@ -1205,7 +1205,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 **** CloneAndTerminate
 这个API的语义在之前已经解释过了，来看看代码.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   BufHandle* CloneAndTerminate(BufHandle* pHdl, BufHandle* pNext,
                                int* pnLen, bool bCopyNonTranBuf
                               ) {
@@ -1250,7 +1250,7 @@ void SetTranBuf(int nSmallNum, int nBigNum, int nSmallSize, float fLowMark, floa
 
 *** Kylin
 这个模块主要负责框架的启动和停止，做了一些琐碎的事情方便用户，主要是下面这两个函数
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 启动框架，使用多少个CPU,网络和磁盘线程，至少1个CPU和1个网络线程
 // f表示线程初始化函数
 // nTimerPrecision会影响到定时器实现.如果超时在时间精度一下的话都会通过ExecMan直接触发
@@ -1265,7 +1265,7 @@ APF_ERROR StopKylin(bool bWait);
 *** ExecMan
 **** Overview
 我们首先看看ExecMan的接口
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define g_pExecMan CExecMan::Instance() // 直接使用宏g_pExecMan就可以单例
 
 class CExecMan
@@ -1297,7 +1297,7 @@ class CExecMan
 
 **** Start & Stop
 Start逻辑很简单，包括计算1s对应多少cycle数目以及启动线程池。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CExecMan::Start(int nWorkers, THREAD_INIT_PROC fInit, uint32 nTimerPrecision)
 {
     // 计算一下CPU一个tick有多少个cycle数目，这样可以通过rdstc转换成为时间
@@ -1314,7 +1314,7 @@ APF_ERROR CExecMan::Start(int nWorkers, THREAD_INIT_PROC fInit, uint32 nTimerPre
 #+END_SRC
 
 Stop逻辑的话可能需要仔细理解一下
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // bWait表示是否需要等待kylin的线程池正常结束，执行完成线程池里面任务为止。
 // 不断修正m_nCurJobs作用是为了阻止新任务的提交。这个我们可以在QueuExec部分联合起来一起看看
 void CExecMan::Stop(bool bWait)
@@ -1337,7 +1337,7 @@ void CExecMan::Stop(bool bWait)
 
 **** QueueExec
 QueueExec和QueueExecEmergent逻辑非常相似，只不过底层调用线程池的QueueJob和QueueEmergentJob.我们这里只看QueueExec.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void
 Proc(Job* pJob)
 {
@@ -1386,7 +1386,7 @@ APF_ERROR CExecMan::QueueExec(AsyncContext* pCtx, bool bClientReferred)
 定时器任务加入是DelayExec,检查触发是RunTimer.如果查看CallGraph的话会发现RunTimer都是在网络部分调用的，我们在网络部分看看触发的时机。
 DelayExec里面的逻辑会根据定时时间来判断如何实现，如果定时时间超过g_nTickPrecision，那么会将超时时间加入一个map里面去，然后让RunTimer去触发。
 否则会加入线程池里面去。对于加入到map里面的fProc有一个特殊的标记(JOB_PROC)2.在CancelExec时候会认识这个特殊标记，将事件从map中删除。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CExecMan::DelayExec(int nAction, CAsyncClient* pClient, uint32 nMilliseconds, AsyncContext* pCtx)
 {
     VERIFY_OR_RETURN(NULL != pClient, APFE_INVALID_ARGS);
@@ -1419,7 +1419,7 @@ APF_ERROR CExecMan::DelayExec(int nAction, CAsyncClient* pClient, uint32 nMillis
 然后我看看看RunTimer这个部分。这个部分非常简单，就是根据当前时间判断map里面哪些定时器需要进行触发，然后将触发逻辑作为Job丢入CPU线程池。
 我们这里不看RunTimer具体代码，反而倒是对外面的一些小细节比较感兴趣。我们不希望RunTimer被多个实例调用，只要有一个实例调用就OK，使用CToken完成。
 当然可以使用mutex+try_lock来实现但是开销应该会更大。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CExecMan::RunTimer()
 {
     static CToken token;
@@ -1435,7 +1435,7 @@ void CExecMan::RunTimer()
 我们这里给的例子非常简单，但是希望有启发性.我们从1开始进行打印，每打印1个数字就认为当前任务结束，一直无限打印。
 但是我们同时会启动一个定时器，只允许我们做1.2s钟时间的打印。如果我们在1.2s内打印数字个数超过了100个的话，那么我们重启一个定时器1.2s，
 而这次打印数字个数阈值为200个之后每次翻倍，直到1.2s内没有打印我们所希望个数的话程序退出。在主线程100ms来检查ExecMan的RunTimer.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <time.h>
@@ -1553,7 +1553,7 @@ int main(){
 然后每次发起磁盘操作使用另外一个结构Request.这里名字上和原来的CPU事件并不太一样，我们可能需要习惯一下。实际上如果我们需要映射到CPU事件里面的话，这两个Context应该结合在一起。
 只不过这里DiskContext不是经常变动的部分，而DiskRequest是经常变动的部分所以分离开了。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 这个是磁盘操作相关的Context
 struct DiskContext {
     int fd;
@@ -1579,7 +1579,7 @@ struct DiskRequest {
 };
 #+END_SRC
 然后在看看DiskMan接口
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define g_pDiskMan CDiskMan::Instance() // 直接使用宏g_pDiskMan就可以单例
 
 class CDiskMan
@@ -1606,7 +1606,7 @@ class CDiskMan
 
 **** Start & Stop
 启动停止逻辑非常简单，就是让线程池启动和停止
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CDiskMan::Start(int nDisks, THREAD_INIT_PROC fInit)
 {
     ASSERT(nDisks <= MAX_NR_DISKS);
@@ -1633,7 +1633,7 @@ void CDiskMan::Stop()
 关于这里最重点的绑定内容就是diskno.diskno非常作用类似于CPU事件里面的AsyncId.相同AsyncId可以分摊到同一个CPU线程这件可以免去加锁开销，
 而diskno可以让多个DiskContext分摊到同一个Disk线程，不同线程绑定不同的磁盘驱动器，这样可以让同一个磁盘驱动器仅仅为几个文件服务。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CDiskMan::Associate(int diskno, char* pPath, int nFlag,
                               CAsyncClient* pClient, DiskContext* pContext)
 {
@@ -1659,7 +1659,7 @@ APF_ERROR CDiskMan::Deassociate(DiskContext* pContext)
 
 **** Read & Write
 文件的Read/Write非常简单，因为本身就是一个阻塞的过程，发起一次就可以保证读取所有内容了，所以不像网络一样需要多次发起。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CDiskMan::Read(DiskContext* pContext, void* pBuf, int count, DiskRequest* pReq)
 {
     pReq->async.nAction = AA_READ; // 设置nAction,然后QueueTask,Task中回调就是ReadOp
@@ -1686,7 +1686,7 @@ void CDiskMan::Write(DiskContext* pContext, void* pBuf, int count, DiskRequest* 
 
 从上面分析的话，所有重要的工作都分摊在了ReadOp和WriteOp上面。我们需要做的是Dig下去看看两个是怎么工作的。但是很不幸，两个函数里面内容都是使用了宏DiskOp.
 DiskOp(a,b,c)其中a表示对应的系统调用叫什么名字，b表示这个Job,c表示读写(没有使用).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void
 ReadOp(Job* pJob)
 {
@@ -1701,7 +1701,7 @@ WriteOp(Job* pJob)
 #+END_SRC
 
 继续Dig看看DISKOP是怎么工作的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 完成之后设置ErrCode,并且加入CPU线程池。用户最终处理的话需要强制转换DiskRequest.
 #define NotifyClient(err, req)    {                                     \
         req->async.nErrCode = err;                                      \
@@ -1747,7 +1747,7 @@ WriteOp(Job* pJob)
 
 **** Example
 例子非常简单就是我们首先发起一个磁盘操作写文件然后在将去读取出来。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -1845,7 +1845,7 @@ int main(){
 *** NetworkMan
 **** Overview
 和网络相关的也有两个比较重要的类。同样和DiskMan相同，NetworkMan也提供了NetContext和NetRequest.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 网络请求
 struct NetRequest {
     union {
@@ -1918,7 +1918,7 @@ struct NetContext {
 };
 #+END_SRC
 然后我们看看NetworkMan的接口
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define g_pNetworkMan       CNetworkMan::Instance() // 单例
 
 typedef TLockedQueue<NetContext, TStlList<NetContext*> > NetContexts;
@@ -1960,7 +1960,7 @@ class CNetworkMan
 过程大致是这样的，将EPoller.Run包装在一个MyJob对象里面，然后将MyJob丢入到线程池里面进行运行。一旦线程池取到MyJob,
 调用的函数是EPoller.run方法。也就是说每个队列里面始终只有1个Job，所以在Stop时候我们只需要将EPoller.Close()就可以了。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CNetworkMan::Start(int nWorkers, THREAD_INIT_PROC fInit)
 {
     int n = m_ThreadPool.Start(nWorkers, fInit);
@@ -1992,7 +1992,7 @@ void CNetworkMan::Stop()
 #+END_SRC
 
 然后我们看看MyJob以及对应的Polling是如何实现的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct MyJob {
     Job job;
     volatile int count;
@@ -2009,7 +2009,7 @@ Polling(Job* pJob)
 
 **** Associate & Deassociate
 Associate和Deassociate逻辑非常简单，无非就是将NetContext和网络线程池里面的EPoller绑定起来，将NetContext里面的fd给epoll来管理。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CNetworkMan::Associate(NetContext* pCtx)
 {
     APF_ERROR err = APFE_NOT_CREATED;
@@ -2057,7 +2057,7 @@ APF_ERROR CNetworkMan::Deassociate(NetContext* pCtx)
 
 **** Listen
 发起Listen操作
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CNetworkMan::Listen(NetContext* pCtx, int backlog)
 {
     pCtx->backlog = backlog;
@@ -2070,7 +2070,7 @@ void CNetworkMan::Listen(NetContext* pCtx, int backlog)
 
 **** Connect
 发起Connect操作，注意这里还填写了WriteReq,timeout以及nAction=AA_CONNECT.对于pReq的话应该是在connect之后发起的写操作。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CNetworkMan::Connect(NetContext* pCtx, uint32 ip, uint16 port,
                           void *pBuf, int count, uint32 timeout, NetRequest* pReq)
 {
@@ -2096,7 +2096,7 @@ void CNetworkMan::Connect(NetContext* pCtx, uint32 ip, uint16 port,
 
 **** Monitor
 发起Monitor操作。所谓Monitor操作的话是指创建Socket成功之后的操作。代码这里的意图是创建服务端的Socket成功之后准备监听的状态。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CNetworkMan::Monitor(NetContext* pCtx)
 {
     pCtx->pClient->AddRef();
@@ -2108,7 +2108,7 @@ void CNetworkMan::Monitor(NetContext* pCtx)
 
 **** Delay
 发起一个读超时的操作
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CNetworkMan::Delay(NetContext* pCtx, uint32 nMilliseconds)
 {
     bool bRet = false;
@@ -2124,7 +2124,7 @@ bool CNetworkMan::Delay(NetContext* pCtx, uint32 nMilliseconds)
 
 **** Read & Write
 Read/Write过程非常简单，就是将Request封装好之后交给EPoller来处理。所以这里可以知道大部分的事情都是在Poller里面完成的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CNetworkMan::Read(NetContext* pCtx, NetRequest* pReq)
 {
     pReq->xfered = 0;
@@ -2185,7 +2185,7 @@ class CEPoller
 
 **** Create & Close
 Create和Close无非就是创建epoll fd
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CEPoller::Create(int size)
 {
     m_fd = sys_epoll_create(size);
@@ -2207,7 +2207,7 @@ void CEPoller::Close()
 
 **** Associate & Deassociate
 将NetContext的fd放入epoll中进行关联.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CEPoller::Associate(NetContext* pCtx)
 {
     struct epoll_event ev;
@@ -2244,7 +2244,7 @@ APF_ERROR CEPoller::Deassociate(NetContext* pCtx)
 
 **** DoConnect
 DoConnect是真实地进行connect操作
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CEPoller::DoConnect(NetContext* pCtx)
 {
     SOCKADDR_IN sa;
@@ -2270,7 +2270,7 @@ bool CEPoller::DoConnect(NetContext* pCtx)
 
 **** Delay & CancalDelay
 Delay操作无非就是将超时事件到DelayedList里面，而CancalDelay是将对应的超时事件从DelayedList里面删除。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CEPoller::Delay(NetContext* pCtx, uint32 nMilliseconds)
 {
     uint64 nCycle = rdtsc();
@@ -2301,7 +2301,7 @@ bool CEPoller::CancelDelay(NetContext* pCtx)
 
 **** Read & Write
 发起Read/Write最后都是调用StartRead/StartWrite
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CEPoller::Read(NetContext* pCtx, NetRequest* pReq)
 {
     pReq->async.nAction = AA_READ; // 发起的Action是AA_READ
@@ -2320,7 +2320,7 @@ void CEPoller::Write(NetContext* pCtx, NetRequest* pReq)
 #+END_SRC
 
 首先我们看看StartRead这个过程。这里所谓的StartRead不过就是尝试阅读访问一下Context看看是否可以读出数据。调用的时机一个是刚发起Read一个是EPoller::Run里面。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CEPoller::StartRead(NetContext* pCtx, bool bUser)
 {
     NetRequest* pReq;
@@ -2399,7 +2399,7 @@ bool CEPoller::StartRead(NetContext* pCtx, bool bUser)
 #+END_SRC
 
 StartWrite这个过程也是非常相似的，不过为了方便起见的话每个Write操作都是使用BufHandle来管理的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CEPoller::StartWrite(NetContext* pCtx, bool bUser)
 {
     BufHandle* pHdl;
@@ -2479,7 +2479,7 @@ bool CEPoller::StartWrite(NetContext* pCtx, bool bUser)
 }
 #+END_SRC
 这里面最主要的过程无非就是NotifyAndNextWrite.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static BufHandle*
 NotifyAndNextWrite(NetContext* pCtx, int nWritten)
 {
@@ -2525,7 +2525,7 @@ NotifyAndNextWrite(NetContext* pCtx, int nWritten)
 
 **** NofityClient
 当EPoller发现内部需要进行回调的话，那么就会通过NofityClient来通知客户进行回调。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void
 NotifyClient(int nErrCode, NetContext* pCtx, NetRequest* pReq)
 {
@@ -2547,14 +2547,14 @@ NotifyClient(int nErrCode, NetContext* pCtx, NetRequest* pReq)
 }
 #+END_SRC
 这是NotifyClient的一个版本，另外一个版本的原型是这样的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void NotifyClient(int nErrCode, int nAction, NetContext* pCtx);
 #+END_SRC
 可以看到这个地方没有和任何的NetRequest进行关联，所以在内部实现的话会直接new一个出来，用户在处理这个逻辑时候需要记得释放。
 
 **** Run
 过程比较冗长，而且里面很多细节依然并不是非常清楚，但是不妨碍大体的理解
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CEPoller::Run()
 {
     NetContext* pCtx;
@@ -2697,7 +2697,7 @@ APF_ERROR CEPoller::Run()
 *** Socket
 **** Overview
 Socket包含了如何配合使用NetworkMan以及EPoller两个部分，并且里面提供了很多默认的封装。对于我们编写程序的话大部分时候都使用这个类即可。还是首先看看接口
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // socket类型
 enum SockType {
     ST_NONE = 0,
@@ -2771,7 +2771,7 @@ class CSocketV : public CAsyncClient
 
 **** Create
 对于create的话我们看稍微复杂的一个实现，就是头参数是bTCP的原型实现。注意这里ip=0,port=0的话那么这样对于client来说的话就会随机选择一个端口。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CSocketV::Create(bool bTCP, uint16 port, uint32 ip, uint32 flag)
 {
     APF_ERROR err;
@@ -2846,7 +2846,7 @@ retry2:
 #+END_SRC
 
 后来我觉得这个Create原型我们也还是值得看看的，因为这个函数原型通常是在server进行accept之后触发的create
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 APF_ERROR CSocketV::Create(SOCKET s, uint16 port, uint32 flag)
 {
     ASSERT(!IsCreated());
@@ -2866,7 +2866,7 @@ APF_ERROR CSocketV::Create(SOCKET s, uint16 port, uint32 flag)
 #+END_SRC
 
 **** Close
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CSocketV::Close()
 {
     if (INVALID_SOCKET != m_s) { // 可以多次调用Close
@@ -2888,7 +2888,7 @@ bool CSocketV::Close()
 #+END_SRC
 
 **** Shutdown
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool CSocketV::Shutdown(bool bLingerOff)
 {
     int state = AtomicSetValue(m_Ctx.state, SS_SHUTDOWN);
@@ -2910,7 +2910,7 @@ bool CSocketV::Shutdown(bool bLingerOff)
 #+END_SRC
 
 **** Listen
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CSocketV::Listen(int backlog)
 {
     ASSERT(IsCreated());
@@ -2922,7 +2922,7 @@ void CSocketV::Listen(int backlog)
 
 **** Connect
 Connect相关函数有Connect,ConnectAndWrite以及ReConnect,都非常简单通过NetworkMan发起操作
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CSocketV::Connect(uint32 ip, uint16 port, uint32 timeout)
 {
     //TRACE5("Connecting(%x) %s:%d...\n", m_s, in_ntoa(ip), port);
@@ -2950,7 +2950,7 @@ void CSocketV::ReConnect(uint32 nMilliseconds)
 
 **** Read & Write
 Read/Write函数也非常简单无非就是包装一些NetRequest然后交给NetworkMan来发起
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CSocketV::Read(void* pBuf, int count, int request, NetRequest* pReq)
 {
     g_pNetworkMan->Read(&m_Ctx, pBuf, count, request, pReq);
@@ -2965,7 +2965,7 @@ void CSocketV::Write(void* pBuf, int count, NetRequest* pReq)
 **** OnCompletion
 其实对于Socket部分最主要的内容还是在这里。上面那些函数无非是做一个Wrapper，而Socket本质上还是一个CAsyncClient要处理各种事件回调。
 我们需要仔细看看OnCompletion的过程，因为大部分我们所需要扩展的就是这个部分了。但是如果仔细阅读这个部分的话，还是会发现有很多细节的东西的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CSocketV::OnCompletion(AsyncContext* pContext)
 {
     NetRequest* pReq = (NetRequest*)pContext;
@@ -3072,7 +3072,7 @@ void CSocketV::OnCompletion(AsyncContext* pContext)
 *** echo
 echo这个就是客户端连接上之后不断发送1K数据而服务器就直接回复这1K数据
 **** client.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -3198,7 +3198,7 @@ int main(){
 #+END_SRC
 
 **** server.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -3311,7 +3311,7 @@ int main(){
 file-request希望可以结合ExecMan,NetworkMan和DiskMan三个Manager写一个简单的demo,功能非常简单就是客户端每次发送一个文件名，服务端得到之后分析出文件名然后将内容返回给client.
 消息格式都是头部带上了4个字节的长度，然后后面跟上数据。和之前的echo不同的是我们这里需要采取分段读取。
 **** client.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <string>
@@ -3457,7 +3457,7 @@ int main(){
 #+END_SRC
 
 **** server.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <vector>
 #include <string>

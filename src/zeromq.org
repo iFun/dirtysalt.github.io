@@ -32,7 +32,7 @@ What this means is that you should always think in terms of "servers" as stable 
 这是一个lockstep的过程，就是说中途不能够切换做另外的事情，比如client发送消息之后就不能够再发送必须等待回应，而server接收到消息之后必须立刻恢复而不能够再次接收。
 咋一看这是一个同步过程，但是后面可以看到ZMQ允许完成异步的Request-Reply.使用这种简单的通信模型我们可以很快地写出一个echo服务。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //============================================================
 //client.cc.send 'hello' always to server,which hosts on localhost:19870
 //============================================================
@@ -137,7 +137,7 @@ pgm的实现需要访问原始的IP套接字（socket）。附加的功能可能
 #+END_QUOTE
 
 我们可以非常容易地切换到其他通信协议上，而不需要修改任何代码。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 zmq_connect(req,"ipc://fuck"); // client.cc
 zmq_bind(req,"ipc://fuck"); // server.cc
 #+END_SRC
@@ -162,7 +162,7 @@ Change: 2011-09-26 14:02:44.000000000 +0800
 There is however a good answer to the question, "how can I make profitable use of ZMQ when making my new XYZ server?" You need to implement whatever protocol you want to speak in any case, but you can connect that protocol server (which can be extremely thin) to a ZMQ backend that does the real work. The beautiful part here is that you can then extend your backend with code in any language, running locally or remotely, as you wish. Zed Shaw's Mongrel2 web server is a great example of such an architecture.
 
 ZMQ的消息格式是这样的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct msg{
     msg_size_t size; // 但是为了效率的话会使用特殊的方法进行压缩
     msg_data_t data[0];
@@ -174,7 +174,7 @@ ZMQ允许一条message按照多个部分进行发送(multipart message),为了�
 - frame.single part message.
 - message.多个frame组成的一条完整message.
 我们使用下面的例子来说明如何进行multipart message传输和接收的。multipart message对于理解后面的路由非常重要。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //  Convert C string to ZMQ string and send to socket
 static int
 s_send (void *socket, char *string) {
@@ -247,7 +247,7 @@ Identity可以用来表示一个socket的身份，对于ZMQ是非常有用途的
 - 持久化socket(durable socket).影响到Publish-Subscribe通信模型的可靠性。
 - 路由(routing).影响到ROUTER的路由选择。
 关于Identity似乎如何影响到上面两个方面的，我们会在后面的各个小节仔细描述。我们看看如何设置Identity的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 zmq_setsockopt(socket,ZMQ_IDENTITY,"dirlt",5);
 #+END_SRC
 
@@ -263,7 +263,7 @@ ZMQ里面内置的Device有下面三种：
 - STREAMER, which is like FORWARDER but for pipeline flows.
 
 使用device也非常简单。下面是段示例代码
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include "zhelpers.h"
 int main (void)
 {
@@ -289,7 +289,7 @@ int main (void)
 #+END_SRC
 
 ZMQ Guide里面提到了不要将不同Device和socket进行混用. If you're like most 01MQ users, at this stage your mind is starting to think, "what kind of evil stuff can I do if I plug random socket types into devices?" The short answer is: don't do it. You can mix socket types but the results are going to be weird. So stick to using ROUTER/DEALER for queue devices, SUB/PUB for forwarders and PULL/PUSH for streamers. 如果实际阅读代码的话，会发现这个部分的逻辑都是一样的，也就是事实上在现在ZMQ版本里面是可以混用的。用户在使用的时候需要注意好模式的搭配。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq_device (int device_, void *insocket_, void *outsocket_)
 {
     if (!insocket_ || !outsocket_) {
@@ -309,7 +309,7 @@ int zmq_device (int device_, void *insocket_, void *outsocket_)
 #+END_SRC
 
 而zmq::device逻辑也非常简单，就是之前提到pipe工作机制。内部使用了ZMQ本身提供的zmq_poll机制来进行通知哪个socket上面有数据。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq::device (class socket_base_t *insocket_,
         class socket_base_t *outsocket_)
 {
@@ -423,7 +423,7 @@ Some notes on using the HWM option:
 Exclusive-Pair是最简单的1:1通信模式，你可以认为就是一个TCPConnection.我们依然需要写bind和connect,但是server只能够接受一个连接。
 数据可以进行双向连接，没有类似于REQ-REP的lockstep这样的要求。例子中我们连续发送了两个message,然后使用了inproc协议的socket.
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <zmq.h>
 #include <cstdio>
 #include <cstdlib>
@@ -486,7 +486,7 @@ Pub-Sub模式非常简单，Pub不断地发布消息而Sub那么就不断地接�
 我们在使用的时候subscriber必须设置ZMQ_SUBSCRIBE内容，否则subscriber是接收不到数据的。对于这个内容在进行过滤的时候有用，subscriber会根据消息头进行过滤，
 如果消息头不和ZMQ_SUBSCRIBE的内容匹配的话那么数据就会被丢弃。但是从现在的实现上来看的话，现在过滤过程并不是在publisher来完成的，而是在subscriber获得所有数据来进行过滤的。
 如果不想进行过滤的话，那么可以将ZMQ_SUBSCRIBE内容设置为空
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE, "", 0);
 #+END_SRC
 
@@ -496,7 +496,7 @@ In the current versions of ZMQ, filtering happens at the subscriber side, not th
 我们看下面一个例子.为了简单起见我们想让subscriber首先运行起来，然后让publisher运行起来。因为如果我们首先将publisher连接起来的话，
 那么subscriber在进行连接的话就会丢失很多记录了。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //============================================================
 // publisher.cc,faster speed.
 //============================================================
@@ -586,7 +586,7 @@ A more robust model could be:
 
 **** Congestion Control
 之前我们提到拥塞控制，对于PUB来说的话如果达到了HWM的话那么会直接进行丢弃。我们简单地修改一下上面的代码，让subscriber连接上但是不进行处理，而publisher不断地发送消息。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //============================================================
 // publisher.cc,faster speed.
 //============================================================
@@ -637,13 +637,13 @@ int main(){
 subscriber在sub这端进行缓存。如果一旦disconnect掉subscriber的话，因为publisher没有订阅者，那么消息直接丢弃不会在pub这端缓存。
 
 我们可以通过设置Identity来强迫publisher进行缓存，在subscriber.cc部分加上
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 zmq_setsockopt(sub,ZMQ_IDENTITY,"luck",4);
 #+END_SRC
 然后启动subscriber然后挂断，因为subscriber连接上之后告诉了publisher自己的identity,那么publisher就会尝试缓存所有没有发往这个subscriber的数据。
 如果没有设置PUB的HWM的话，那么PUB的内存很快就会被耗光。如果我们设置了HWM的话，那么publisher仅仅会缓存部分数据。我们还可以通过设置SWAP大小，
 将部分拥塞部分结果放在磁盘上面，如果拥塞结果消息数量超过HWM的话
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 uint64_t hwm = 2;
 zmq_setsockopt (publisher, ZMQ_HWM, &hwm, sizeof (hwm));
 
@@ -681,7 +681,7 @@ Here now is a more detailed explanation of the four socket types we use for requ
 - 如果对端设置了identity的话，每发送一个消息的话ROUTER接收到，那么ROUTER在转发之前会在头部自动加上一个message part,内容是identity.
 - 如果对端没有设置identity的话，每发送一个消息的话ROUTER接收到，那么ROUTER在转发之前会生成一个UUID,同样自动加上一个message part,内容是UUID.
 如果消息流经多个ROUTER的话，那么会自动加上多个这样的东西。不过下面的实验证明，并不是每个消息都会生成UUID的，而是针对每个连接生成UUID.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include "zhelpers.h"
 
 int main (void) {
@@ -741,7 +741,7 @@ The 0MQ lightweight messaging kernel is a library which extends the standard soc
 我理解context对于0MQ来说就好比是epoll线程的句柄，然后之后所有的建立的socket都会在这个线程里面进行监听。当然整个app通常来说只需要创建一次就可以了，然后在app之前等待结束即可。
 
 首先通过zmq_init来进行初始化
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // The io_threads argument specifies the size of the 0MQ thread pool to handle I/O operations.
 // If your application is using only the inproc transport for messaging you may set this to zero, otherwise set it to at least one.
 void *zmq_init (int io_threads);
@@ -749,7 +749,7 @@ void *zmq_init (int io_threads);
 其中io_threads指定的就是线程个数。
 
 然后在app销毁的时候调用zmq_term来销毁这个epoll线程句柄以及开辟的epoll线程。原型非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq_term (void *context);
 #+END_SRC
 但是语义以及返回值有点麻烦。
@@ -779,7 +779,7 @@ Context termination is performed in the following steps:
 - zmq_msg_init_data // 以data,size进行初始化，msg里面持有内存指针。比较适合zmq_send我们自己的数据，但是我们需要提供send over销毁数据的回调函数。
 我们这里仔细看看init_size以及init_data的实现.我们会发现msg里面还有一个content对象，然后content里面会包含一个头部以及data.并且对于content有引用计数。
 这个非常好理解，尤其是这个message是以一种异步的方式进行发送的，所以必须有引用计数才能够搞定这件事情。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq_msg_init_size (zmq_msg_t *msg_, size_t size_)
 {
     if (size_ <= ZMQ_MAX_VSM_SIZE) {
@@ -823,7 +823,7 @@ int zmq_msg_init_data (zmq_msg_t *msg_, void *data_, size_t size_,
 #+END_SRC
 
 了解了初始化的逻辑之后，对于销毁逻辑就非常清楚了。但是我们最好看看这个实现
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq_msg_close (zmq_msg_t *msg_)
 {
     // 这个地方是会检查标志的，这样可以放置多次释放造成错误的结果
@@ -867,7 +867,7 @@ int zmq_msg_close (zmq_msg_t *msg_)
 
 *** Sockets
 使用zmq_socket和zmq_close就可以创建和销毁socket.对于socket具体的类型的话可以参看文档，写得非常的详细。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 错误可能有下面这些
 // 1.EINVAL type不合法
 // 2.EFAULT context无效
@@ -883,7 +883,7 @@ int zmq_close (void *socket);
 
 然后剩下要做的就是创建服务端(bind)或者是客户端(connect).必须注意到zmq这里提供了一个很方便的东西，
 就是connect本身也是一个异步过程。如果本次没有完成连接的话，那么下次隔断时间又会重新尝试发起连接。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 其中endpoint根据不同的transport表达方式不同.这个后面会提到
 // 可能的错误有下面这些
 // 1.EPROTONOSUPPORT endpoint的transport有问题
@@ -909,7 +909,7 @@ int zmq_connect (void *socket, const char *endpoint);
 
 接下来的部分就是读写了。zeromq读写都是针对message来操作的，允许操作multipart messages.但是个人现在看起来，
 觉得multipart messages似乎没有什么太大的用途:(.因为两个接口面向对象都是message,对于十分简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 其中flags可以为ZMQ_NOBLOCK与ZMQ_SNDMORE(表示发送多消息，0表示结束)
 // 这里NOBLOCK的含义是，如果不能够理解丢入异步消息队列的话，那么就立刻返回
 // 可能的错误有下面这些
@@ -939,7 +939,7 @@ int zmq_recv (void *socket, zmq_msg_t *msg, int flags);
 #+END_SRC
 
 socket还允许使用poll来观察socket是否可读可写.zmq_poll提供的接口和poll非常相似
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 typedef struct
 {
     void *socket; // 可以使用zmq_socket
@@ -962,7 +962,7 @@ poll这个接口对于device需要.
 
 *** Options
 允许获取和设置的options并不是一样的，所以这里列出所有的options.获取的话标记R,设置的话标记W
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq_getsockopt (void *socket, int option_name, void *option_value, size_t *option_len);
 int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
 #+END_SRC
@@ -1025,7 +1025,7 @@ transport://endpoint
 
 *** Devices
 关于Device的实现，虽然文档强调device必须配合frontend和backend，但是实际上代码只是使用一套。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // ZMQ_QUEUE starts a queue device
 // ZMQ_FORWARDER starts a forwarder device
 // ZMQ_STREAMER starts a streamer device
@@ -1033,7 +1033,7 @@ int zmq_device (int device, const void *frontend, const void *backend);
 #+END_SRC
 我们有必要研究一下device的写法，而且有时候我们可能不能用系统自带的zmq_device.好比zmq文档的multithreads的例子里面，
 如果我们希望在每次轮询的时候可以检测一下外部的标记的话，那么就不能够使用自带的zmq_device。但是可以基于现在device简单修改即可.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int zmq::device (class socket_base_t *insocket_,
         class socket_base_t *outsocket_)
 {

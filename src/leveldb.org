@@ -76,7 +76,7 @@ lg(base)                              : 1 byte
 
 *** FilterBlockBuilder
 对于Table在初始化之前会调用StartBlock.并且在每次进行Flush Data Block时候也会根据Data Block offset调用。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void FilterBlockBuilder::StartBlock(uint64_t block_offset) {
   uint64_t filter_index = (block_offset / kFilterBase);
   assert(filter_index >= filter_offsets_.size());
@@ -88,7 +88,7 @@ void FilterBlockBuilder::StartBlock(uint64_t block_offset) {
 可以看到两个data block offset跨越超过base的话那么会产生几个empty filter.但是默认实现的话empty filter不占用太多空间。
 
 然后每次Table在AddKey时候也会调用FilterBlock::AddKey
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void FilterBlockBuilder::AddKey(const Slice& key) {
   Slice k = key;
   start_.push_back(keys_.size());
@@ -98,7 +98,7 @@ void FilterBlockBuilder::AddKey(const Slice& key) {
 注意这里keys_是一个string.start_记录每个新增key的偏移。AddKey是将这段时间内添加的Key全部缓存下来。
 
 然后每次Flush的时候都会产生filter.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void FilterBlockBuilder::GenerateFilter() {
   const size_t num_keys = start_.size();
   if (num_keys == 0) {
@@ -127,7 +127,7 @@ void FilterBlockBuilder::GenerateFilter() {
 #+END_SRC
 
 最后filter block需要刷新出去调用Flush方法。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Slice FilterBlockBuilder::Finish() {
   if (!start_.empty()) {
     GenerateFilter();
@@ -148,7 +148,7 @@ Slice FilterBlockBuilder::Finish() {
 
 *** FilterBlockReader
 了解上面的filter block的存储格式之后Reader就非常简单。构造函数首先计算出各个参数。simple huh?
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 FilterBlockReader::FilterBlockReader(const FilterPolicy* policy,
                                      const Slice& contents)
     : policy_(policy),
@@ -169,7 +169,7 @@ FilterBlockReader::FilterBlockReader(const FilterPolicy* policy,
 
 阅读完成后面的Storage一节之后就会发现query key的话首先是在data index block找到这个key所在的data block offset的。
 所以这里filter就是判断某个offset的data block是否含所有key.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool FilterBlockReader::KeyMayMatch(uint64_t block_offset, const Slice& key) {
   uint64_t index = block_offset >> base_lg_;
   if (index < num_) {
@@ -300,7 +300,7 @@ Solution 3: We work on reducing the cost of very wide merges. Perhaps most of th
 in the cache and we will only need to worry about the O(N) complexity in the merging iterator.
 #+END_EXAMPLE
 其中第二点感觉非常好就是认为控制写入速度当level0文件过多的时候。在db_impl.cc DBImpl::MakeRoomForWrite这个应该是在memtable缺少空间的时候的函数.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
         allow_delay &&
         versions_->NumLevelFiles(0) >= config::kL0_SlowdownWritesTrigger) {
       // We are getting close to hitting a hard limit on the number of
@@ -417,7 +417,7 @@ void Version::AddIterators(const ReadOptions& options,
 
 是这样的，你可以看到AddIterators这个部分是被DBImpl::NewInternalIterator调用的，得到所有的iterators之后，构造一个MergingIterator对象。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // 对于version来说可能存在很多文件需要遍历.
   versions_->current()->AddIterators(options, &list);
   // 将这些内容构造称为一个merge iterator.
@@ -428,7 +428,7 @@ void Version::AddIterators(const ReadOptions& options,
 
 注意它这里提供的comparator是一个internal_comparator. 这个comparator不仅仅比较user key, 还比较sequence number. 因为sequence number是顺序分配的，所以新的kv得到更大的sequence number. 代码在这里：
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int InternalKeyComparator::Compare(const Slice& akey, const Slice& bkey) const {
   // Order by:
   //    increasing user key (according to user-supplied comparator)

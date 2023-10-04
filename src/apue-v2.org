@@ -47,12 +47,12 @@
  整数，内核用它标识一个特定进程正在访问的文件。对于每一个应用程序，shell都会为这个应用程序打开
  默认的3个fd,分别是stdin,stdout和stderr.这3个fd的值通常是0,1,2,但是为了程序的可移植性考虑的话，
  最好使用
- #+BEGIN_SRC C++
+#+BEGIN_SRC C++
  #include <unistd.h>
  #define STDIN_FILENO 0
  #define STDOUT_FILENO 1
  #define STDERR_FILENO 2
- #+END_SRC
+#+END_SRC
 
  IO分为不带缓冲IO和带缓冲IO.不带缓冲IO是指read/write这样的调用，而带缓冲IO是指标准IO比如printf/
  getchar/fputs这样的调用。是否带缓冲的区别是是否在用户态是否有buffer来缓冲从内核态读出来的数据。
@@ -71,7 +71,7 @@
 
 *** 错误处理
  当Unix函数出错时，常常返回一个负值并且使用errno来表示这个错误号。
- #+BEGIN_SRC C++
+#+BEGIN_SRC C++
  #include <errno.h>
  //是否支持多线程
  #ifdef SUPPORT_MULTI_THREADS
@@ -83,16 +83,16 @@
  //错误编号(!0)
  #define EACCESS <???>
  #define EPERM <???>
- #+END_SRC
+#+END_SRC
  没有支持多线程之前，可以使用变量来表示。但是如果是支持多线程的话，那么errno将会是一个全局变量，
  所以errno就需要后面一种方式表示。因为现在大部分操作系统都是支持多线程的，所以对于我们来说，
  需要认识到errno其实是一个宏。
 
  同时C标准定义了两个函数来帮助打印错误信息
- #+BEGIN_SRC C++
+#+BEGIN_SRC C++
  const char* strerror(int errnum); //根据错误号返回一个错误信息字符串
  void perror(const char* msg); //msg:<错误消息>打印到标准错误上
- #+END_SRC
+#+END_SRC
 
 *** 用户标识
  用户标识包括
@@ -124,7 +124,7 @@
 - 时钟时间(wall clock time).
 - 用户CPU时间(user cpu time).
 - 系统CPU时间(sys cpu time).
- #+BEGIN_SRC C++
+#+BEGIN_SRC C++
  #include <cstdio>
  #include <cstdlib>
  #include <cerrno>
@@ -154,7 +154,7 @@
             buf.tms_cstime*1.0/clock_tck_per_sec);
      return 0;
  }
- #+END_SRC
+#+END_SRC
 
 *** 系统调用和库函数
  系统调用是内核态函数，而库函数是用户态函数。但是对于用户来说实际上是不关心的。
@@ -469,7 +469,7 @@ SUS的组成部分。
 
 对于文件IO来说，操作的对象就是文件描述符。这是一个非负整数。通常来说系统会使用0,1,2来作为
 进程的标准输入，输出和错误。但是最好不要依赖这个行为，而使用
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #define STDIN_FILENO 0
 #define STDOUT_FILENO 1
@@ -503,7 +503,7 @@ close允许关闭文件描述符。关闭一个文件会释放该进程在文件
 lseek允许显示设置文件当前偏移量。如果文件描述符是一个管道，FIFO或者是网络套接字的话，那么
 会返回ESPIPE的错误。需要注意的是lseek仅仅是修改进程对于这个文件访问逻辑偏移，实际上不进行任何
 物理IO操作。使用lseek允许造成文件空洞(通常见于core文件),空洞部分并不要求占用磁盘存储空间。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
@@ -527,7 +527,7 @@ int main(){
 关于占用多少真实磁盘大小是文件系统所关心的，Linux下面使用20K来保存空洞文件。
 另外需要关心lseek问题就是文件大小的情况，我们可以使用_FILE_OFFSET_BITS来控制偏移量的范围，
 这样就允许操作更大的文件了。如果
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 -D_FILE_OFFSET_BITS=64
 #+END_SRC
 的话，那么偏移量就允许在2^64.这种规模的文件是相当大的了。尽管可以支持64位文件偏移，但是是否
@@ -590,7 +590,7 @@ O_DIRECT 和 RAW设备最根本的区别是O_DIRECT是基于文件系统的，�
 
 *** pread/pwrite
 pread/pwrite相当于一个方便的lseek+read/write操作，并且有一个特点就是不修改当前文件偏移。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
@@ -610,7 +610,7 @@ int main(){
 #+END_SRC
 
 *** dup/dup2
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int dup(int fd);
 int dup2(int src_fd,int dst_fd);
 #+END_SRC
@@ -635,7 +635,7 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 
 *** ioctl
 全称是io control.ioctl是IO操作杂物箱，终端IO是ioctl的最大使用方面。ioctl包含的头文件是
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <stropts.h>
@@ -666,7 +666,7 @@ dup2相当于一个原子操作，首先关闭dst_fd然后再复制到dst_fd上�
 *** 底层实现
 这节主要说文件描述符是如何管理的，假设在一个系统中存在很多进程(process),每个进程里面有一个文件
 描述符表，大致结构如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct Process{
     //这是一个数组，文件描述符就是下标。
     vector<FileDescriptorEntry> entries;
@@ -679,7 +679,7 @@ struct FileDescriptorEntry{
 #+END_SRC
 
 然后系统维护一个打开表文件表表项，在每个进程的文件描述符里面有对应的表项指针。大致结构如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct OpenedFileTable{
     int status; //状态标志，比如O_RDWR,O_APPEND,OSYNC等。
     off_t offset; //当前偏移
@@ -698,7 +698,7 @@ struct OpenedFileTable{
 - fstat(int fd,struct stat* restrict buf);
 - lstat(const char* restrict pathname,struct stat* restrict buf);
 其中lstat和stat区别就是lstat是获取软链接文件属性的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct stat{
     mode_t st_mode; //文件类型和访问权限
     ino_t st_ino; //inode编号
@@ -719,7 +719,7 @@ struct stat{
 *** 文件系统
 首先我们可以将一块磁盘进行分区，这样每个区就可以在上面建立一个文件系统。
 一个文件系统可以表示为下面这样的数据结构：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //Physical File System
 strcut PFS{
     //这个部分内容可以直接载入内存来进行管理
@@ -739,7 +739,7 @@ strcut PFS{
 然后对于Inode节点来说，里面存放的就是数据块的索引。这里为了概念上表示方便而使用数组
 表示的，实际上Inode可能有简介索引，指向的并不一定就是直接可以的读取数据块，可能数据块
 上面存放的是更多数据块的指针。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct Inode{
     FileAttribute attr; //文件属性
     index_t datablock[]; //数据块的索引
@@ -749,7 +749,7 @@ struct Inode{
 struct stat这个结构。可以看到文件属性是存放在inode节点上而不是数据块上的。
 
 对于一个目录项来说，结构大致如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //目录项
 struct DirectoryEntry{
     char filename[]; //文件名
@@ -810,7 +810,7 @@ lrwxrwxrwx 1 dirlt dirlt 38 05-19 08:15 b2 -> /home/dirlt/cvs/opencode/zyspace/d
 #+END_EXAMPLE
 我们调用passwd修改密码，实际uid和gid是我们自己，而运行uid和gid则是root.为了查看文件
 是否设置了这个功能，我们可以使用S_ISUID和S_ISGID查看st_mode相应位。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/stat.h>
 #include <cstdio>
 int main(){
@@ -901,7 +901,7 @@ mask为S_IRUSR | S_IWUSR的话，那么在创建文件和目录时，那么用�
 文件长度对应st_size字段，而文件使用的块大小对应st_blksize字段，占用块数对应st_blocks字段。
 大部分情况下面，st_size和st_blksize*st_blocks应该是很接近的，除非一种情况就是文件空洞。
 一般对应于空洞文件来说，st_size可能很大，而实际占用磁盘空间却很少。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -927,13 +927,13 @@ size:1073741860,st_blksize:4096,st_blocks:40
 #+END_EXAMPLE
 
 *** 文件截断
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int truncate(const char* filename,off_t length);
 int ftruncate(int fd,off_t length);
 #+END_SRC
 如果length比原来文件短的话，那么文件在length偏移之后数据就不可以访问了。如果length比
 原来文件长的话，那么会创造一个空洞出来
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <fcntl.h>
 #include <unistd.h>
@@ -961,7 +961,7 @@ size:1073741824,st_blksize:4096,st_blocks:8
 创建一个硬链接效果就是，选择一个文件名然后选择一个已经使用的inode编号存放在目录下面。
 一旦创建硬链接之后，那么被链接的文件的属性里面就会将链接数目+1.链接数目对应于struct stat
 结构里面的st_nlink字段。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int link(const char* existingpath,const char* newpath);
 #+END_SRC
 可以看到硬链接是使用inode节点来操作的，所以硬链接是不可以跨越文件系统的。另外需要注意的是，
@@ -994,7 +994,7 @@ int link(const char* existingpath,const char* newpath);
 
 *** 文件删除和重命名
 为了解除硬链接可以使用下面这个函数：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int unlink(const char* pathname);
 #+END_SRC
 因为文件链接数目如果为0的话，那么文件就会被删除，所以这个函数也可以用来删除文件。
@@ -1008,7 +1008,7 @@ int unlink(const char* pathname);
 在删除文件是后需要注意的一个问题是这样的，就是即使st_nlink==0的话，如果系统中
 还有进程在访问这个文件的话，那么磁盘空间仍然不会释放，知道进程关闭这个文件之后
 才会释放磁盘空间。甚至来说，如果进程持有这个fd的话，这个文件依然是可写的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <fcntl.h>
 #include <unistd.h>
@@ -1090,7 +1090,7 @@ B执行完成之后，A的工作目录不会发生变化。
 
 *** 特殊设备文件
 st_dev是设备号，分为主次设备号：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 major(buf.st_dev) //主设备号
 minor(buf.st_dev) //次设备号
 #+END_SRC
@@ -1099,7 +1099,7 @@ minor(buf.st_dev) //次设备号
 
 st_rdev只有字符特殊文件和块特殊文件才有这个值，表示实际设备的设备编号。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <cstdio>
@@ -1167,7 +1167,7 @@ inotify可以用于监控文件以及目录的变化，下面是inotify提供的
 - int inotify_rm_watch(int fd, int wd);
 
 整个使用过程非常简单，首先通过init创建fd, 然后将需要监控的文件添加进来/或者是移除，之后在read时候读取监控事件。fd可以放在epoll里面进行监控。监控事件结构如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Structure describing an inotify event.  */
 struct inotify_event
 {
@@ -1181,7 +1181,7 @@ struct inotify_event
  对于__flexarr这个字段是一个悬挂指针表示文件名称，文件长度通过len表示，所以读取一个event之后的话，还需要向前移动len个字节才能够读取下一个事件。
 
 有下面这些事件可以进行监控。下面是代码
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Supported events suitable for MASK parameter of INOTIFY_ADD_WATCH.  */
 #define IN_ACCESS	 0x00000001	/* File was accessed.  */
 #define IN_MODIFY	 0x00000002	/* File was modified.  */
@@ -1338,7 +1338,7 @@ man里面对于每个事件有详细说明
 全缓冲需要强制进行实际操作的话，可以调用fflush来冲刷。对于flush有两层意思，对于
 标准IO而言，flush是将缓冲区的内容进行实际IO操作，而对于设备驱动程序而言，就是
 丢弃缓冲区里面的内容。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <unistd.h>
 int main(){
@@ -1355,7 +1355,7 @@ int main(){
 的话，那么也是会进行的。并且任何时候如果标准IO库从一个不带缓冲的流，或者是从内核
 得到数据的带行缓冲流中获得数据的话，会造成冲洗所有行缓冲输出流。(what fucking is that?).
 通常来说对于终端设备比如标准输入和输出的时候，使用行缓冲。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <unistd.h>
 int main(){
@@ -1367,7 +1367,7 @@ int main(){
     return 0;
 }
 #+END_SRC
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <unistd.h>
 int main(){
@@ -1379,7 +1379,7 @@ int main(){
     return 0;
 }
 #+END_SRC
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <unistd.h>
 int main(){
@@ -1404,7 +1404,7 @@ int main(){
 - 终端设备是行缓冲的。
 - 其他都是全缓冲的。
 也提供了API来设置缓冲模式：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //打开和关闭缓冲模式
 //如果buf!=NULL,buf必须是BUFSIZE大小缓冲区，那么选择合适的缓冲模式
 //如果buf==NULL,那么表示不带缓冲
@@ -1424,7 +1424,7 @@ int setvbuf(FILE* restrict fp,char* restrict buf,int mode,size_t size);
 
 *** 打开和关闭流
 打开流提供了下面这些函数：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //打开pathname
 FILE* fopen(const char* restrict pathname,const char* restrict type);
 //关闭fp,然后打开pathname,和fp进行关联
@@ -1460,7 +1460,7 @@ FILE* fdopen(int fd,const char* type);
 *** 读写流
 **** 字符IO
 包括下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int getc(FILE* fp);
 int fgetc(FILE* fp);
 int getchar();
@@ -1483,7 +1483,7 @@ int putchar();
 
 **** 行IO
 包括下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 char* fgets(char* restrict buf,int n,FILE* restrict fp);
 char* gets(char* buf);
 int fputs(const char* restrict str,FILE* restrict fp);
@@ -1494,7 +1494,7 @@ int puts(const char* str);
 
 **** 二进制IO
 包括下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //其中size表示一个对象的大小，nobj表示需要读取多少个对象
 size_t fread(void* restrict ptr,size_t size,size_t nobj,FILE* restrict fp);
 size_t fwrite(const void* restrict ptr,size_t size,size_t nobj,FILE* restrict fp);
@@ -1523,7 +1523,7 @@ size_t fwrite(const void* restrict ptr,size_t size,size_t nobj,FILE* restrict fp
 
 *** 定位流
 包括下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 long ftell(FILE* fp);
 off_t ftello(FILE* fp);
 
@@ -1545,7 +1545,7 @@ int fsetpos(FILE* fp,const fpos_t* pos);
 
 *** 临时文件
 创建临时文件的接口有：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 char* tmpnam(char* ptr);
 FILE* tmpfile(void);
 char* tempnam(const char* directory,const char* prefix);
@@ -1553,7 +1553,7 @@ int mkstemp(char* template);
 #+END_SRC
 
 tmpnam的ptr传入一个L_tmpnam长度的buf,然后会返回一个临时文件的名称，最多调用TMP_MAX次。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 int main(){
     char name[L_tmpnam];
@@ -1595,7 +1595,7 @@ tempnam相对于tmpnam来说功能更强大，但是至于是否好用就不好�
 - 如果directory不为NULL的话，那么使用directory.
 - <cstdio>定义的P_tmpdir.
 而prefix是最多包含5个字符的字符串。然后内部使用malloc来构造，所以最终需要自己释放。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <cstdlib>
 #include <unistd.h>
@@ -1655,7 +1655,7 @@ dbus:x:81:81:System message bus:/:/sbin/nologin
 一个不存在的shell比如/sbin/noshell或者是/sbin/nologin.
 
 所涉及到的结构和接口包括：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <pwd.h>
 struct passwd {
     char    *pw_name;      /* user name */
@@ -1679,7 +1679,7 @@ void setpwent(void);
 //关闭entry访问接口
 void endpwent(void);
 #+END_SRC
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <pwd.h>
 #include <cstdio>
 int main(){
@@ -1706,7 +1706,7 @@ dirlt:$1$BRt79uEo$PtCKwZNuUB7x5zyOKVRi00:14927:0:99999:7:::
 #+END_EXAMPLE
 
 访问结构和接口有下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <shadow.h>
 struct spwd {
     char          *sp_namp; /* user login name */
@@ -1739,7 +1739,7 @@ dirlt:x:500
 #+END_EXAMPLE
 
 结构和接口有下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <grp.h>
 struct group {
     char   *gr_name;       /* group name */
@@ -1755,7 +1755,7 @@ struct group* getgrent();
 void setgrent();
 void endgrent();
 #+END_SRC
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <grp.h>
 #include <cstdio>
 int main(){
@@ -1795,7 +1795,7 @@ Unix提供了下面这两个数据文件utmp和wtmp.其中utmp记录当前登录
 而wtmp是跟踪各个登录和注销事件，内部都是相同的二进制记录。在Linux系统上，两个
 文件的存放位置分别是/var/run/utmp和/var/log/wtmp,查看man utmp可以查看二进制的
 格式：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct exit_status {
     short int e_termination;    /* process termination status */
     short int e_exit;           /* process exit status */
@@ -1839,7 +1839,7 @@ utmp和wtmp虽然都是二进制文件，但是Linux系统了系统命令可以�
 
 *** 系统标识
 uname函数可以返回和当前主机和操作系统相关信息：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/utsname.h>
 int uname(struct utsname *buf);
 struct utsname {
@@ -1855,12 +1855,12 @@ struct utsname {
 #+END_SRC
 需要注意的是nodename不能够用于引用网络通信主机，仅仅适用于引用UUCP网络上的主机。
 如果需要返回TCP网络主机的话，可以使用gethostname这个函数：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 int gethostname(char* name,int namelen);
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/utsname.h>
 #include <unistd.h>
 #include <cstdio>
@@ -1898,7 +1898,7 @@ hostname:localhost.localdomain
 Unix所提供的时间和日期是存放在一个量值里面的，就是time_t.表示从国际标准时间1970年
 1月1日00:00:00至今的秒数，使用调用time可以获得。当然Unix也提供了一系列的函数来进行转换和本地化操作，
 包括夏时制转换以及转换成为本地时区的时间。当然Unix也提供了更加精确到微妙的调用gettimeofday。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct timeval{
     time_t tv_sec; //这个分量还是表示秒
     long tv_usec; //微秒
@@ -1906,7 +1906,7 @@ struct timeval{
 #+END_SRC
 
 time_t是一个秒的概念，Unix还提供了下面结构可以表达日期时间概念：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct tm {
     int tm_sec;         /* seconds */ //[0,60]60表示闰秒
     int tm_min;         /* minutes */
@@ -1997,7 +1997,7 @@ ISO C提供了下面这些函数来分配heap上空间：
 
 对于stack来说，提供了两种方式，一种是函数一种是编译器的语法。函数是alloca而
 语法就是varied length array(VLA)(只有gcc支持，g++不支持).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <alloca.h>
 #include <string.h>
 #include <stdio.h>
@@ -2019,7 +2019,7 @@ int main(){
 
 *** 命令行参数和环境表
 对于标准main函数界面应该是这样的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int main(int argc,char* argv[],char* envp[]);
 #+END_SRC
 通常来说也可以不写第三个参数，而直接使用全局变量引用也可以extern char** environ.其中环境表
@@ -2046,14 +2046,14 @@ k,v单量，所以setenv内部是需要分配一个内存来合并name和value�
 *** 非局部跳转
 局部跳转是指在一个函数内的跳转，可以使用goto.非局部跳转就是指函数之间的跳转了。使用的
 函数是：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <setjmp.h>
 int setjmp(jmp_buf env);
 void longjmp(jmp_buf env,int val);
 #+END_SRC
 使用方式是，在一个地方setjmp得到当前jmp_buf内容并且返回0,表示第一次调用。如果使用
 longjmp并且val!=0的话，那么调回这个位置时候，说明是非局部跳转。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <setjmp.h>
 #include <stdio.h>
 jmp_buf env;
@@ -2082,7 +2082,7 @@ jmp from foo
 那么跳回去的时候，值是会回滚的。如果不希望回滚的话，那么就要声明变量是volatile的。
 同时也可以看到，因为仅仅保存的是寄存器，所以如果跳转到函数的话，必须保证栈上内容没有被
 修改
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <setjmp.h>
 #include <stdio.h>
 #include <string.h>
@@ -2127,7 +2127,7 @@ jmp from foo
 
 *** 资源限制
 每个进程都有一组资源限制，可以设置和查看这些资源限制。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/resource.h>
 int getrlimit(int resource,struct rlimit* limit);
 int setrlimit(int resource,const struct rlimit* limit);
@@ -2190,7 +2190,7 @@ http://www.blogkid.net/archives/2670.html
 
 http://linux.die.net/man/2/sched_setaffinity
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sched.h>
 #include <unistd.h>
 #include <pthread.h>
@@ -2253,7 +2253,7 @@ ID==2是页守护进程(page daemon),负责支持虚拟存储系统的分页操�
 
 *** 开辟子进程
 我们使用fork/vfork可以开辟子进程：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 //返回值==0表示子进程，>0表示父进程(表示子进程pid)
 pid_t fork();
@@ -2288,7 +2288,7 @@ fork出的子进程继承了父进程下面这些属性：
 fork通常一种使用方法就是之后执行exec程序，因为大部分时候做一个COW内存映像也是没有必要的。
 vfork相对于fork就是这样一个差别，vfork子进程和父进程占用同一个内存映像，在子进程修改会影响父进程。
 同时只有在子进程执行exec/exit之后才会运行父进程。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -2316,7 +2316,7 @@ parent are waiting...
 实际上子进程占用的栈空间就是父进程的栈空间，所以需要非常小心。如果vfork的子进程并没有
 exec或者是exit的话，那么子进程就会执行父进程直到程序退出之后，父进程才开始执行。而这个
 时候父进程的内存已经完全被写坏：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -2349,7 +2349,7 @@ Segmentation fault
 已经没有父进程成为了孤儿进程。对于孤儿进程，内核会修改这个进程的父进程为init进程，操作
 过程大致如下：每当一个进程终止时，内核会逐个检查所有活动进程，以判断它是否需要是正要
 终止进程的子进程，如果是的话，那么修改ppid=1.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -2416,7 +2416,7 @@ dirlt     9482  0.0  0.0      0     0 pts/0    Z    17:04   0:00 [main] <defunct
 wait/waitpid来得到子进程终止状态。
 
 两个函数接口是：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/wait.h>
 pid_t wait(int* statloc);
 pid_t waitpid(pid_t pid,int* statloc,int options);
@@ -2452,7 +2452,7 @@ pid_t waitpid(pid_t pid,int* statloc,int options);
 之前提到了对于子进程结束的话，内核是会维护子进程的一些资源使用和终止状态的。对于wait/waitpid来说，只是
 得到了终止状态信息，如果需要得到资源使用的饿话，那么可以使用wait3/wait4函数。这两个函数都是wait/waitpid
 的升级版本。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pid_t wait3(int* statloc,int options,struct rusage* rusage);
 pid_t wait4(pid_t pid,int* statloc,int options,struct rusage* rusage);
 #+END_SRC
@@ -2460,7 +2460,7 @@ pid_t wait4(pid_t pid,int* statloc,int options,struct rusage* rusage);
 *** exec函数
 exec函数并不创建任何新进程，所以前后进程关系是没有发生任何改变的。exec所做的事情就是替换当前
 正文段，数据，堆和栈。exec族函数包括：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int execl(const char* pathname,const char* arg0,...); //end with NULL
 int execv(const char* pathname,char* const argv[]); //end with NULL
 int execle(const char* pathname,const char* arg0,...);//end with NULL and char* const envp[]
@@ -2494,7 +2494,7 @@ int execvp(const char* filename,char* const argv[]); //end with NULL
 
 *** 更改用户ID和组ID
 所涉及的函数包括下面几个：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 int setuid(uid_t uid);
 int setgid(gid_t gid);
@@ -2537,7 +2537,7 @@ system函数使用起来非常方便，但是需要了解其中细节才可能�
 因为cmdstring是通过/bin/sh来执行的话，那么允许里面包含glob符号和重定向等shell字符。
 
 值得一提的是，在waitpid出来之前，system使用wait函数来等待子进程返回，方式大概如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 while((lastpid=wait(&status))!=pid && lastpid!=-1);
 #+END_SRC
 那么如果在system之前执行了一个子进程S，然后system启动。这在system的cmdstring之前
@@ -2548,7 +2548,7 @@ while((lastpid=wait(&status))!=pid && lastpid!=-1);
 还有需要注意的是，如果执行system的进程有效用户ID是0(root)的话，执行一个X没有设置设置uid
 和gid位的话，因为system没有调用setuid和setgid接口，会导致X的有效用户ID是0(root)，因此在
 使用system的时候需要特别小心。原理是：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //main.cc
 #include <cstdio>
 #include <cstdlib>
@@ -2602,7 +2602,7 @@ ruid=500,euid=500 //实际上这里并没有改变。如果按照上面阐述的
 /bin/sh发现有效用户和实际用户不匹配的话，会将有效用户设置成为实际用户。
 
 为了验证另外一种情况
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //main.cc
 #include <cstdio>
 #include <cstdlib>
@@ -2639,7 +2639,7 @@ ruid=500,euid=0 //这个时候就修改成功了
 假设文件是X,我们正准备执行./X arg0 arg1.那么shell会做如下处理：
 - 识别出是解释器文件X
 - 直接调用pathname [optional-arguments] X arg0 arg1
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 int main(int argc,char* const argv[]){
     for(int i=0;i<argc;i++){
@@ -2683,14 +2683,14 @@ print("hello,world")
 如果多个用户对应同样一个uid的话，那么我们这个时候就没有办法区分用户了。Unix系统
 提供下面这个函数来得到登陆用户。如果调用此函数的进程没有连接到用户登录所使用
 的终端的话，那么本函数会失败。通常来说这些进程就是守护进程daemon.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 char* getlogin();
 #+END_SRC
 
 *** 进程时间
 使用下面函数可以获得进程执行时间：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 struct tms {
     clock_t tms_utime;  /* user time */
@@ -2743,21 +2743,21 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 *** 进程组
 进程组是一个或者是多个进程的集合，通常和一个作业相关联，可以接受来自同一终端的各种信号。每个进程组有一个唯一的进程组ID,
 也有一个组长进程，组长进程标识是组长进程id==进程组id.或者进程组id可以通过
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pid_t getpgrp();
 pid_t getpgid(pid_t pid); //如果pid==0,那么就是调用进程进程组id
 #+END_SRC
 进程组的存在和进程组长是否终止没有关系，进程组的生命周期是最后一个进程消亡或者是离开了进程组。
 
 也可以使用
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int setpgid(pid_t pid,pid_t pgid);
 #+END_SRC
 将pid的进程组id设置为pgid.pid==0的话，那么使用调用进程的pid,如果pgid==0的话，那么将pid设置为pgid.
 
 *** 会话
 会话是一个或者是多个进程组集合。进程可以通过调用
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pid_t setsid();
 #+END_SRC
 来建立一个新会话。如果调用此函数的进程不是进程组长的话，那么就会创建一个新的会话。那么此时会：
@@ -2787,7 +2787,7 @@ pid_t setsid();
 
 通过控制终端可以设置前台进程组和获取前台进程组信息，以及获取会话首进程。设置了前台进程组的话，
 这样终端设备驱动程序就可以知道终端输入和输出信号送到何处了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pid_t tcgetpgrp(int fd);
 int tcsetpgrp(int fd,pid_t pgrpid);
 pid_t tcgetsid(int fd);
@@ -2840,7 +2840,7 @@ hello,world
 #+END_EXAMPLE
 
 如果我们使用设置前台进程组函数的话，那么一样可以看到这样的情况
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -2871,7 +2871,7 @@ x
 如果某个进程终止，使得某个进程组成为孤儿进程组的话，系统会向孤儿进程组里面每个处于停止状态进程发送一个SIGHUP信号，
 然后发送SIGCONT信号。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -2991,7 +2991,7 @@ Unix早期版本就提供了信号机制，但是这些系统提供的信号模�
 
 对于SIGCHLD信号来说，如果忽略的话那么不会产生僵尸进程。子进程返回直接丢弃退出状态。
 而父进程如果调用wait的话，那么会等待到最后一个子进程结束，然后返回-1并且errno=ECHILD.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int main(){
     //如果加上的话，那么ps aux看不出有任何僵死进程
     //如果不加上的话，那么存在僵尸进程
@@ -3015,7 +3015,7 @@ int main(){
 *** 不可靠信号
 早期的Unix版本提供的信号机制是不可靠的。首先信号可能会丢失。也就是说信号发生但是进程却可能不知道这点。
 signal设置信号处理之后，每次都会复位。那么在调用处理函数和安装这段时间内，信号是按照默认方式处理的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void sig_handler(int signo){
     //这个时间片内，SIGUSR1是按照默认程序处理的
     //而默认处理方式是终止
@@ -3029,7 +3029,7 @@ int main(){
 #+END_SRC
 
 其次对于信号控制能力差，只是提供阻塞和忽略。如果我们想先阻塞完成之后查看有哪些pending的信号，这是满足不了的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int flag;
 void sig_handler(int signo){
     signal(SIGUSR1,sig_handler);
@@ -3058,7 +3058,7 @@ errno=EINTR.理由是，一旦信号发生的话意味系统发生某些事情�
 需要注意的是，磁盘文件并不属于低速系统调用范围。
 
 对于存在中断的系统调用来说，我们必须显示处理中断情况写起来就相当恶心：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 again:
     if((n=read(fd,buf,BUFFSIZE))<0){
         if(errno==EINTR){
@@ -3091,7 +3091,7 @@ again:
 信号集是一堆信号的集合，POSIX.1定义了信号集上一系列操作。因为信号集的数量可能扩展，所以必须定义一个新的结构表示。
 但是使用的应该是比较节省的方式，按照bit进行标记。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //sigset_t as the set of signals
 int sigemptyset(sigset_t* set); //清空
 int sigfillset(sigset_t* set); //填充
@@ -3102,7 +3102,7 @@ int sigismember(const sigset_t* set,int signo) //检查是否存在
 
 **** sigprocmask/sigpending
 sigprocmask可以设置当前信号屏蔽字，sigpending可以返回当前未决信号集。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -3139,7 +3139,7 @@ pending SIGUSR2=1
 
 **** sigaction
 sigaction是signal的替代品，但是提供了更多的功能：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //<sys/ucontext.h>
 typedef struct ucontext{
     unsigned long int uc_flags;
@@ -3238,12 +3238,12 @@ int sigaction(int signo,const struct sigaction* restrict act,struct sigaction* r
 
 **** sigsetjmp/siglongjmp
 对于setjmp和longjmp并没有规定如何来处理信号屏蔽字。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int sigsetjmp(sigjmp_buf env,int savemask); //是否保存信号屏蔽字
 int siglongjmp(sigjmp_buf,int val);
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <setjmp.h>
 #include <signal.h>
@@ -3274,7 +3274,7 @@ SIGUSR1 masked=1
 #+END_EXAMPLE
 
 如果修改称为sig版本的话：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 sigjmp_buf env;
 void handler(int signo){
     siglongjmp(env,1);
@@ -3306,7 +3306,7 @@ SIGUSR1 masked=0
 - 然后恢复原始屏蔽字
 但是在修改屏蔽字和pause之间有一个短暂的时间间隔，如果这个时间信号到来的话，那么pause以后就会永久陷入阻塞。
 究其原因是因为这两个操作本来应该为一个操作，应该存在一个原子操作。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //临时以sigmask替换当前的屏蔽字，然后等待信号到来
 //在等待期间，sigmask设置的信号都是被屏蔽的
 int sigsuspend(const sigset_t* sigmask);
@@ -3315,7 +3315,7 @@ int sigsuspend(const sigset_t* sigmask);
 *** 常用函数
 **** signal
 signal函数是最常见的信号机制相关函数，原型是这样的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <signal.h>
 typedef void (*SignFunc)(int);
 #define SIG_ERR (SignFunc)-1
@@ -3327,7 +3327,7 @@ SignFunc就是信号处理函数，signo就是我们有待关心的信号有哪�
 SIG_ERR表示调用signal错误，SIG_DFL表示默认处理函数，SIG_IGN表示忽略信号。signal设置完成之后，
 就会返回原来的信号处理函数。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -3360,7 +3360,7 @@ int main(){
 接下来进行exec,会将所有设置成为捕捉的信号都修改成为默认，而原来已经设置成为忽略的信号就不发生改变。
 
 另一个问题就是，对于信号来说如果捕捉到某个信号，进入信号捕捉函数的时候，此时当前信号会自动加入到进程的信号屏蔽字。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <errno.h>
@@ -3407,7 +3407,7 @@ int main(){
 该信号就一定被传送到了该进程并且触发信号捕获函数。
 
 **** kill/raise
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <signal.h>
 //1.pid>0
 //2.pid==0 发送给属于同一进程组进程，但是不包括系统进程
@@ -3420,7 +3420,7 @@ int raise(int signo); //==kill(getpid(),signo)
 可以发送给同一个会话里面所有进程。
 
 之前说到signo=0是一种特殊情况，我们可以用来检查进程是否存在，通过发送signo==0的信号。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/wait.h>
 #include <errno.h>
@@ -3447,7 +3447,7 @@ No such process
 #+END_EXAMPLE
 
 **** alarm/pause
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 unsigned int alarm(unsigned int secs);
 int pause();
@@ -3455,7 +3455,7 @@ int pause();
 alarm设置闹钟，如果提前返回的话那么返回剩余时间，同时触发一个SIGALRM信号。如果本次闹钟时间为0的话，
 那么取消之前登记的但是尚未超过的闹钟时钟，并且返回上次剩余时间。pause会等待一个信号触发，然后返回-1
 并且errno=EINTR.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/wait.h>
 #include <signal.h>
@@ -3490,7 +3490,7 @@ POSIX要求如果abort调用终止进程的话，那么它对所有打开标准I
 对于abort内部会调用fflush(NULL)来强制冲洗所有的标准IO流。
 
 当然我们可以使用jmp来绕过abort的部分：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <setjmp.h>
 #include <signal.h>
@@ -3540,7 +3540,7 @@ SIGINT或者是SIGQUIT来终止这个程序。但是问题是，如果我们syst
 阻塞SIGCHLD信号也是必要的。对于system大体实现是fork/exec/wait来实现的。如果我们不阻塞SIGCHLD而在外部程序安装了
 处理SIGCHLD信号的话，那么system执行子进程返回的话，首先会通知捕获程序。如果捕获程序里面调用了wait的话，那么system的
 wait就会一直阻塞住了。下面是一个例子来说明这个问题：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/wait.h>
 #include <setjmp.h>
@@ -3578,7 +3578,7 @@ wait,然后在触发SIGCHLD操作。似乎这样做更加合理。
 
 **** 其他函数
 和errno对应的strerror以及perror一样，对于信号也提供了相应的方便打印的函数：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <signal.h>
 void psignal(int signo,const char* msg);
 const char* strsignal(int signo);
@@ -3611,7 +3611,7 @@ pthread函数在调用失败的时候通常会返回错误码，它们并不像�
 
 *** 线程标识
 线程使用线程id来标识自己，thread_t这个数据结构。我们不能够使用一种可移植的方式来打印该数据类型的值。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pthread_t pthread_sekf(); //获得自身的线程标识
 int pthread_equal(pthread_t tid1,pthread_t tid2); //比较两个线程号是否相同
 #+END_SRC
@@ -3622,7 +3622,7 @@ int pthread_equal(pthread_t tid1,pthread_t tid2); //比较两个线程号是否�
 默认情况下面我们可以使用gettid这个系统调用得到thread id.但是我们可以通过汇编来得到thread id
 而不调用系统调用。这个内容在fs寄存器指向的段144个字节上，占用4个字节。至于为什么是在144字节上的话，
 可以阅读nptl/descr.h里面pthread结构体代码，每个线程的fs寄存器指向内容就是这个结构体。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Thread descriptor data structure.  */
 struct pthread
 {
@@ -3659,7 +3659,7 @@ struct pthread
 } __attribute ((aligned (TCB_ALIGNMENT)));
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <linux/unistd.h>
 _syscall0(pid_t,gettid)
 
@@ -3683,7 +3683,7 @@ int main(){
 
 *** 线程创建
 创建接口为
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //1.tidp表示创建的线程号
 //2.attr表示线程属性
 //3.线程入口
@@ -3694,12 +3694,12 @@ int pthread_create(pthread_t* restrict tidp,const pthread_attr_t* restrict attr,
 并且集成了线程的浮点环境和信号屏蔽字，但是对于未决的信号都会进行丢弃。
 
 如果希望多个线程里面某些部分只是执行一次的话，可以使用下面这个接口：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pthread_once_t initflag=PTHREAD_ONCE_INIT;
 int pthread_once(pthread_once_t* initflag,void (*initfn)(void));
 #+END_SRC
 然后再每个线程里面调用pthread_once.下面是一个例子：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <pthread.h>
 #include <cstdio>
@@ -3731,7 +3731,7 @@ int main(){
 - 线程只是从启动例程中返回，返回值是线程的退出码。
 - 线程可以被同一进程中的其他线程取消。
 - 线程调用pthread_exit.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void pthread_exit(void* ret_ptr); //返回ret_ptr
 int pthread_join(pthread_t tid,void** ret_ptr); //得到ret_ptr内容
 int pthread_cancel(pthread_t tid); //好比调用了pthread_exit(PTHREAD_CANCELED),只是通知线程而并不等待取消，是一个异步过程。
@@ -3741,13 +3741,13 @@ int pthread_detach(pthread_t tid);
 pthread_join好比wait调用。如果线程是一个detach状态的话，那么pthread_join马上就会失败返回EINVAL.
 
 和进程使用atexit一样，线程也允许存在这种清理函数：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void pthread_cleanup_push(void (*func)(void*),void* arg);
 void pthread_cleanup_pop(int execute); //非0表示立即执行,0表示不立即执行
 #+END_SRC
 通常来说这两个函数需要配对使用，因为很可能实现为宏。push包含{,而pop包含}.当线程返回的时候，那么就会触发push的函数：
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void foo(void* arg){
     printf("%s\n",(char*)arg);
 }
@@ -3793,7 +3793,7 @@ push1
 - 条件变量
 **** 互斥锁
 互斥锁可以确保同一时间只有一个线程访问数据：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //可以设置属性
 int pthread_mutex_init(pthread_mutex_t* restrict mutex,const pthread_mutexattr_t* restrict attr);
 int pthread_mutex_destroy(pthread_mutex_t* mutex);
@@ -3801,7 +3801,7 @@ int pthread_mutex_destroy(pthread_mutex_t* mutex);
 对于互斥锁来说可以静态初始化为PTHREAD_MUTEX_INITIALIZER,也可以调用init来进行初始化。
 
 互斥锁操作上有下面几种，包括加锁，解锁和尝试加锁(非阻塞行为):
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_mutex_lock(pthread_mutex_t* mutex);
 int pthread_mutex_unlock(pthread_mutex_t* mutex);
 int pthread_mutex_trylock(pthread_mutex_t* mutex);
@@ -3810,7 +3810,7 @@ int pthread_mutex_trylock(pthread_mutex_t* mutex);
 **** 读写锁
 对于部分应用来说是读多写少的应用，而读因为不会修改状态所以是允许读之间并发的。而互斥锁不管是读读之间，
 还是读写之间都是会互斥的。读写锁就是用来解决这个问题的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //和互斥量不同的是，不允许静态初始化
 int pthread_rwlock_init(pthread_rwlock_t* restrict rwlock,const pthread_rwlockattr_t* restrict attr);
 int pthread_rwlock_destroy(pthread_rwlock_t* rwlock);
@@ -3821,7 +3821,7 @@ int pthread_rwlock_tryrdlock(pthread_rwlock_t* rwlock);
 int pthread_rwlock_trywrlock(pthread_rwlock_t* rwlock);
 #+END_SRC
 如果在同时有读写请求的话，优先权是交给系统来决定的。当然也有接口可以控制这个行为：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Return current setting of reader/writer preference.  */
 extern int pthread_rwlockattr_getkind_np (__const pthread_rwlockattr_t *
 					  __restrict __attr,
@@ -3837,7 +3837,7 @@ extern int pthread_rwlockattr_setkind_np (pthread_rwlockattr_t *__attr,
 条件变量允许线程以一种更加友好的协作方式来运行。比如典型的生产和消费者模型来说，如果生产者停滞的话那么
 消费者的动作就不断加锁解锁，通过轮训来检测状态会影响到协作性。相反如果生产者当只有生产出东西之后，
 再来通知消费者的话，那么性能会更优：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //如果生产者比消费者速度慢的话，那么大部分时间都在消费者的检查上
 pthread_muext_t mutex;
 void consumer(){
@@ -3854,7 +3854,7 @@ void consumer(){
 }
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //如果使用条件变量的话，那么大部分空间时间都会在cond_wait上等待，而系统就可以让出CPU
 pthread_muext_t mutex;
 pthread_cond_t cond;
@@ -3876,7 +3876,7 @@ void consumer(){
 条件变量会首先判断条件是否满足，如果不满足的话那么会释放当前这个配对的锁，如果一旦触发的话那么会尝试加锁。
 
 关于条件变量接口有下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_cond_wait(pthread_cond_t* restrict cond,pthread_condattr_t* restrict attr);
 int pthread_cond_destroy(pthread_cond_t* cond)
 int pthread_cond_wait(pthread_cond_t* restrict cond,pthread_mutex_t* restrict mutex);
@@ -3901,7 +3901,7 @@ int pthread_cond_broadcast(pthread_cond_t* cond);
 
 *** 线程属性
 在创建线程的时候我们可以指定线程属性，接口是：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_attr_init(pthread_attr_t* attr);
 int pthread_attr_destroy(pthread_attr_t* attr);
 #+END_SRC
@@ -3917,7 +3917,7 @@ int pthread_attr_destroy(pthread_attr_t* attr);
 **** 分离状态
 对于detachstate来说，我们可以控制线程启动时候属性是分离的，还是可以join的。如果我们不设置的话，默认
 是joinable的。当然我们也可以使用pthread_detach来将这个线程属性修改成为分离状态。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_attr_getdetachstate(const pthread_attr_t* restrict attr,int* detachstate);
 int pthread_attr_setdetachstate(pthread_attr_t* attr,int detachstate);
 #+END_SRC
@@ -3925,18 +3925,18 @@ int pthread_attr_setdetachstate(pthread_attr_t* attr,int detachstate);
 
 **** 线程栈
 每个线程都是在特定栈上面运行的，如果我们不设置的话那么会按照默认方式来分配栈。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_attr_getstack(const pthread_attr_t* restrict attr,void** restrict stackaddr,size_t* restrict stacksize);
 int pthread_attr_setstack(pthread_attr_t* addr,void* stackaddr,size_t stacksize);
 #+END_SRC
 如果我们想修改栈大小但是不想自己控制栈的位置的话，那么pthread提供了一个简化的接口
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_attr_getstacksize(const pthread_attr_t* restrict attr,size_t* restrict stacksize);
 int pthread_attr_setstacksize(pthread_attr_t* attr,size_t stacksize);
 #+END_SRC
 guardsize意思是如果我们使用线程栈超过了设定大小之后，系统还会使用部分扩展内存来防止栈溢出。而这部分扩展内存大小就是guardsize.
 不过如果自己修改了栈分配位置的话，那么这个选项失效，效果相当于将guardsize设置为0.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_attr_getguardsize(const pthread_attr_t* restrict attr,size_t* restrict guardsize);
 int pthread_attr_setguardsize(pthread_attr_t* attr,size_t guardsize);
 #+END_SRC
@@ -3949,7 +3949,7 @@ int pthread_attr_setguardsize(pthread_attr_t* attr,size_t guardsize);
 - 并发度
 并发度控制着用户线程可以映射的内核线程或者是进程数目，如果系统实现多个用户线程对应一个系统线程的话，那么增加
 可以运行的用户线程数目可以改善性能。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_getconcurrency();
 int pthread_setconcurrency(int level); //如果为0的话那么让用户自己决定
 #+END_SRC
@@ -3961,7 +3961,7 @@ int pthread_setconcurrency(int level); //如果为0的话那么让用户自己�
 **** 进程共享
 对于三个同步机制来说，提供了进程共享的属性。也就是说，如果同步机制是在共享内存上面开辟的话，
 并且设置这个同步机制的进程共享属性的话，那么就可以用于进程之间的同步了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //互斥量
 /* Initialize mutex attribute object ATTR with default attributes
    (kind is PTHREAD_MUTEX_TIMED_NP).  */
@@ -4032,7 +4032,7 @@ extern int pthread_condattr_setpshared (pthread_condattr_t *__attr,
 | PTHREAD_MUTEX_ERRORCHECK | 错误锁，同一个线程加锁的话会出现错误   |
 | PTHREAD_MUTEX_RECURSIVE  | 递归锁，同一个线程加锁的话可以递归加锁 |
 | PTHREAD_MUTEX_DEFAULT    | 前面三种默认一种，通常为普通锁         |
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Return in *KIND the mutex kind attribute in *ATTR.  */
 extern int pthread_mutexattr_gettype (__const pthread_mutexattr_t *__restrict
 				      __attr, int *__restrict __kind)
@@ -4046,7 +4046,7 @@ extern int pthread_mutexattr_settype (pthread_mutexattr_t *__attr, int __kind)
 #+END_SRC
 
 我们有下面两种情形需要使用递归锁，我们分别来看看这两个情形。第一个情形下面
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 pthread_mutex_t mutex;
 void func1(){
     pthread_mutex_lock(&mutex);
@@ -4071,7 +4071,7 @@ void func2(){
 一些线程不安全函数，提供一个线程安全的版本，通常以_r结尾。
 
 标准IO提供了函数来保证操作标准IO是线程安全的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int ftrylockfile(FILE* fp);
 void flockfile(FILE* fp);
 void funlockfile(FILE* fp);
@@ -4080,7 +4080,7 @@ void funlockfile(FILE* fp);
 多次fprintf的话不会hang住，所以内部实现应该是递归锁，在同一个线程内多次调用没有任何问题。标准IO默认提供递归锁
 又引入了一个问题，那就是如果我们操作字符的时候，如果每次操作字符都要加锁那么代价是非常大的，所以标准IO还提供了另外
 一个接口是允许不加锁的操作字符
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 int getchar_unlocked();
 int getc_unlocked(FILE* fp);
@@ -4094,7 +4094,7 @@ int putc_unlocked(FILE* fp);
 私有数据。每个线程私有数据对应一个键，通过这个键来获取对线程私有数据的访问权。考虑如果没有这个线程私有数据的话，
 那么我们线程里面每个函数都必须将这个对象作为参数传入，何其繁琐。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int pthread_key_create(pthread_key_t* keyp,void (*destructor)(void*));
 int pthread_key_delete(pthread_key_t* key);
 void* pthread_getspecific(pthread_key_t key);
@@ -4109,7 +4109,7 @@ int pthread_setspecific(pthread_key_t key,const void* value);
 
 *** 取消选项
 线程分为是否可以取消，以及如果允许取消的话是延迟还是异步取消。设置线程取消可以通过：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //1.PTHREAD_CANCEL_ENABLE
 //2.PTHREAD_CANCEL_DISABLE
 int pthread_setcancelstate(int state,int* oldstate);
@@ -4123,7 +4123,7 @@ int pthread_setcancelstate(int state,int* oldstate);
 
 取消时机也分延迟取消还是异步取消，延迟取消就是我们所看到的到达某个同步点才取消，而异步取消的话线程可以在
 任意时间取消，而不是遇到取消点才取消。设置取消时机的接口是
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //1.PTHREAD_CANCEL_DEFERRED
 //2.PTHREAD_CANCEL_ASYNCHRONOUS
 int pthread_setcanceltype(int type,int* oldtype);
@@ -4138,7 +4138,7 @@ POSIX.1的线程模型中，异步信号被发送到进程以后，进程中当�
 来为每个线程提供线程的信号屏蔽字。此外线程还可以通过调用sigwait来等待一个或者是多个信号发生。语义和sigsuspend一样，
 但是可以获得等待到的信号编号。sigwait会首先清除未决的信号，然后打开需要截获的信号，这也意味这在sigwait之前需要屏蔽
 需要关心的信号，然后调用sigwait.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <signal.h>
 int pthread_sigmask(int how,const sigset_t* restrict set,sigset_t* restrict oset);
 int sigwait(const sigset_t* restrict set,int* restrict signop);
@@ -4146,7 +4146,7 @@ int sigwait(const sigset_t* restrict set,int* restrict signop);
 
 使用sigwait可以简化信号处理，允许把异步的信号用同步的方式处理。我们可以将正常线程屏蔽信号，然后只让某一个线程处理信号。
 这样能够按照同步方式来处理信号，非常方便。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <signal.h>
 #include <pthread.h>
@@ -4194,7 +4194,7 @@ int main(){
 #+END_SRC
 
 进程之间发送信号也是可以的。我们也可以传递信号0来判断线程是否存在。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <signal.h>
 int pthread_kill(pthread_t thread,int signo);
 #+END_SRC
@@ -4243,7 +4243,7 @@ schedpolicy可以设置调度策略，而schedparam可以设置调度策略所�
 - SCHED_FIFO
 - SCHED_RR
 - SCHED_SPORADIC
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // /usr/include/bits/sched.h
 struct sched_param
   {
@@ -4387,7 +4387,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 getcpuclockid可以获得clock_id,每一个线程/进程都会绑定一个CPU-time clock,然后通过clock_id来区分。线程可以通过pthread_getcpuclockid获取，
 而进程可以通过clock_getcpuclockid获取。取得clock_id之后，我们可以clock_getres来获得时钟精度，clock_gettime来获得运行时间。
 还可以timer_create来创建高精度定时器。不过这些内容都是猜测从manpage里面看的，似乎没有任何一本手册提到过这些内容。这些内容都是rt(realtime)范畴的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <pthread.h>
 #include <cstdio>
 #include <cstring>
@@ -4415,7 +4415,7 @@ resolution 0.000001 ms
 #+END_EXAMPLE
 
 #note: 可能和某些具体实现相关
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Global definition.  Needed in pthread_getconcurrency as well.  */
 int __concurrency_level;
 
@@ -4448,7 +4448,7 @@ pthread_setconcurrency (level)
 最近几天看core java,对于多线程部分的话提到了最好不要stop,suspend,resume线程。在外部去干扰线程执行的话，容易造成线程资源占用以及运行状态不合理。
 
 下面代码就是最近遇到一个问题的例子。main -> func1 -> func2.然后main等待func1建立完成之后cancel并且join func1.而func1就是join func2.而func2里面尝试持有一个mutex lock.其中mutex lock里面存在字段holder_表示哪个线程持有这个lock.为了确保mutex lock的锁释放正确，会在析构去assert没有任何线程持有这个lock.单独看这个mutex lock实现没有任何问题，但是在这个cancel线程场景下…
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -4550,7 +4550,7 @@ int main() {
 - 将当前工作目录更改为根目录。父进程继承过来的当前目录可能mount在一个文件系统上。如果不切换到根目录，那么这个文件系统不允许unmount.
 - 关闭不需要的文件描述符。可以通过_SC_OPEN_MAX来判断最高文件描述符(不是很必须).
 - 然后打开/dev/null复制到0,1,2(不是很必须).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void print_ids(const char* name){
     printf("%s:pid=%d,ppid=%d,pgid=%d,sid=%d\n",
            name,getpid(),getppid(),getpgid(0),getsid(0));
@@ -4585,7 +4585,7 @@ void daemonize(){
 实验之后发现其实控制终端依然还是存在的并且依然可写(不过在关闭之后定位到/dev/null不可写了)。但是如果本次链接断开之后下次重新链接的话，
 那么就会失去这个控制终端。其实似乎建立一个这样的东西完全没有必要这么麻烦，甚至最后面setsid和第二次fork都不需要，因为第一个子进程
 已经成为一孤儿进程组，shell会话是不会影响到它的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void daemonize(){
     umask(0);
     pid_t pid=fork();
@@ -4612,7 +4612,7 @@ void daemonize(){
 - 内核例程通过log函数传递到syslogd,通信机制也是unix domain socket,文件是/dev/klog.
 
 syslog的设施接口是下面这样的：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <syslog.h>
 //facility通常为LOG_USER
 void openlog(const char* ident,int option,int facility);
@@ -4672,7 +4672,7 @@ local7.*						/var/log/boot.log
 #+END_EXAMPLE
 可以看到每个项分两个部分，第一个是priority,第二个就是写的位置。如果*那么都会收到这个message.
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <syslog.h>
 int main(){
     openlog("FuckYourAss",0,LOG_EMERG);
@@ -4721,7 +4721,7 @@ int main(){
 
 **** 接口
 我们使用fcntl来操纵记录锁，那么接口是
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <fcntl.h>
 struct flock
   {
@@ -4748,7 +4748,7 @@ int fcntl(int fd,int cmd,struct flock* lockp);
 
 **** 实现
 实现上来说，所有的锁都是挂在在v节点表之后的，以链表形式挂接：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct lockf{
     struct lockf* next;
     flag_t flag; //标识
@@ -4766,7 +4766,7 @@ struct lockf{
 效果相当于构造一个文件描述符表，然后如果可读可写或者是发生异常的话就会返回一个准备好的fd集合。
 
 **** select/pselect
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/select.h>
 /* Check the first NFDS descriptors each in READFDS (if not NULL) for read
    readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS
@@ -4807,7 +4807,7 @@ pselect相对于改进的话是首先时间信息使用timespect支持到纳秒�
 fds不会修改，所以最好每次都重新进行设置。对于timeout的话，如果提前返回的话，那么里面存放的是剩余时间。
 
 这里我们看到有一个fd集合，原则上和sigset_t接口是一样的，但是更简单一些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define	__FD_SETSIZE		1024
 /* fd_set for select and pselect.  */
 typedef struct
@@ -4838,7 +4838,7 @@ typedef struct
 文件描述符本身的阻塞与否不会影响到select/pselect的行为的，select/pselect给出的界面还是阻塞行为的。
 
 **** poll/ppoll
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <poll.h>
 /* Type used for the number of file descriptors.  */
 typedef unsigned long int nfds_t;
@@ -4900,7 +4900,7 @@ SIGIO是通用异步信号，而SIGURG是用药通知进程在网络连接上有
 - 使用F_SETOWN为fd设置进程和进程组。因为一旦fd触发信号的话，系统是要决定信号投递到哪个进程和进程组的。
 - 使用F_SETFL来设置O_ASYNC文件状态标志。对于BSD来说仅仅用于终端或者是网络的描述符。
 对于SIGURG只需要设置前面两个步骤，信号仅仅是用于支持带外数据的网络连接描述符产生的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <fcntl.h>
 #include <pthread.h>
@@ -4945,7 +4945,7 @@ I/O possible received(14)
 
 *** readv/writev
 readv和writev能够将分散的多块缓冲区一次性读出和写入，而仅仅是是用一次系统调用
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/uio.h>
 
 /* Structure for scatter/gather I/O.  */
@@ -4981,7 +4981,7 @@ extern ssize_t writev (int __fd, __const struct iovec *__iovec, int __count);
 相当读取磁盘文件的内容，同样如果写缓冲区的话就直接修改文件。映射区域和具体实现相关，但是通常映射在
 堆栈之间的存储区域内部。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/mman.h>
 /* Map addresses starting near ADDR and extending for LEN bytes.  from
    OFFSET into the file FD describes according to PROT and FLAGS.  If ADDR
@@ -5033,7 +5033,7 @@ extern int msync (void *__addr, size_t __len, int __flags);
 如果访问1K以外4K以内，因为内存分配出来了所以访问没有问题，但是没有对应文件那么返回SIGBUS.
 如果访问4K以外的话，因为没有分配内存那么返回SIGSEGV.
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/stat.h>
@@ -5088,17 +5088,17 @@ linux aio的API大抵包括下面这些：
 - io_cancel // cancel aio task
 这个API接口只能够用于disk IO而不能够用于network IO上。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int io_setup(unsigned nr_events, aio_context_t *ctxp);
 int io_destroy(aio_context_t ctx);
 #+END_SRC
 创建和销毁aio context非常简单无须多言。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int io_submit(aio_context_t ctx_id, long nr, struct iocb **iocbpp);
 #+END_SRC
 可以看到可以提交多个task.具体每个task都是通过struct iocb来指定的。这个结构可以在/usr/include/linux/aio_abi.h里面找到。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* include/linux/aio_abi.h
  *
  * Copyright 2000,2001,2002 Red Hat.
@@ -5213,7 +5213,7 @@ struct iocb {
 最常用的大概就是pread和pwrite操作。
 
 发起之后的话，可以有两种方式得到通知：1）使用我RESFD 2）使用io_getevents。我们主要看第二个方式。看看API
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int io_getevents(aio_context_t ctx_id, long min_nr, long nr,
                  struct io_event *events, struct timespec *timeout);
 int io_cancel(aio_context_t ctx_id, struct iocb *iocb,
@@ -5238,7 +5238,7 @@ unix系统下面的IPC(inteprocess communication)主要分为下面这几种：
 - 半双工。
 - 必须具备进程关系，比如父子进程。
 fifo没有第二种局限性，而uds两种局限性都没有。产生管道非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 int pipe(int fd[2]);
 #+END_SRC
@@ -5250,7 +5250,7 @@ int pipe(int fd[2]);
 S_ISFIFO是成功的。和套接字一样，如果写端关闭的话那么读端读取返回0，如果读端关闭的话那么写端会产生SIGPIPE信号错误，
 返回错误为EPIPE.
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -5288,7 +5288,7 @@ hello,world
 #+END_EXAMPLE
 
 管道pipe还有另外两个比较有用的函数分别是
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 FILE* popen(const char* cmd,const char* type);
 int pclose(FILE* fp);
@@ -5299,7 +5299,7 @@ pclose返回的结果和system一样，可能会返回执行命令的内容，�
 fd必然和这个进程号做了一个绑定。不然我们在pclose使用FILE*必须能够找到，我们应该wait什么进程终止。
 在pclose必须fclose掉句柄，不然如果作为一输入命令的话那么会一直等待输入完成。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -5319,13 +5319,13 @@ int main(){
 *** fifo
 这里的fifo是指命名fifo.和管道特征一样，一次字节小于PIPE_BUF保证不会穿插，并且没有写端读端返回0,没有读端
 写端产生SIGPIPE并且返回EPIPE错误，测试类型为S_ISFIFO.命名fifo依赖于特殊文件，然后通过读写文件来进行数据传递。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/stat.h>
 int mkfifo(const char* pathname,mode_t mode);
 #+END_SRC
 如果我们只读打开的话，那么会等待直到某个进程为写打开fifo.如果设置O_NONBLOCK打开的话，那么会立刻返回没有错误。
 如果我们只写打开的话，那么会等待直到某个进程为读打开fifo.如果设置O_NNOBLOCK打开的话，那么会立刻返回错误ENXIO.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int main(){
     mkfifo("./fifo",0666);
     pid_t pid=fork();
@@ -5358,13 +5358,13 @@ IPC资源是全局的，所以在得到这个整数之前可能尝试获取多�
 
 和文件的open对象，我们需要打开某个东西才能够获得这个IPC标识。在文件下面是文件路径，在IPC下面是key_t,
 在<sys/types.h>里面定义，可以认为是一个整数。从key_t到IPC标识这个过程内核来完成，接口如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int xxxget(key_t key,int flag); /返回IPC标识
 #+END_SRC
 这个key_t如何指定有几种方法：
 - key_t指定为IPC_PRIVATE的话，那么每次都会创建一个新IPC标识。
 - 通过ftok函数来生成一个key_t
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/ipc.h>
 key_t ftok(const char* path,int id); //id在[0,255]
 #+END_SRC
@@ -5374,7 +5374,7 @@ ftok必须引用一个已经存在的路径。底层实现可能是得到path的
 
 **** 权限结构
 对于每一个IPC结构都设置了ipc_perm结构，规定了权限和所有者。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/ipc.h>
 /* Data structure used to pass permission information to IPC operations.  */
 struct ipc_perm
@@ -5440,7 +5440,7 @@ for x in msg:
 
 *** 消息队列
 消息队列由内核来管理，每一个队列通过一个队列ID来识别(queue ID).每一个消息队列都有一个结构msgid_ds与其关联
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Structure of record for one message inside the kernel.
    The type `struct msg' is opaque.  */
 struct msqid_ds
@@ -5469,7 +5469,7 @@ struct msqid_ds
 - 系统中最大消息队列数，linux2.4.22为16
 
 关于消息队列的API有下面这些：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Message queue control operation.  */
 //cmd可以为IPC_STAT表示获取属性，IPC_SET表示设置属性，IPC_RMID表示删除消息队列
 extern int msgctl (int __msqid, int __cmd, struct msqid_ds *__buf) __THROW;
@@ -5519,7 +5519,7 @@ struct msgbuf
 可以看到消息队列是基于消息并且由内核管理，那么不可避免需要设置一个消息上限。但是这个上限可能是不可移植的。
 消息队列提供比较方便的功能一方面是信息的记录，另外一方面是消息的过滤，这点它的代替产物unix domain soket可能并没有直接提供，
 但是可以在应用层面完成消息划分以及消息按照类型或者是id过滤。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/msg.h>
 #include <cstdio>
@@ -5570,7 +5570,7 @@ help
 *** 信号量
 信号量主要用于进行多进程之间同步的。通常来说针对资源的话，提供是类似于操作系统里面提到的PV操作。
 不过XSI的信号量要复杂得多，XSI的信号量提供的是一个信号集合。对于每一个信号量集都下面这样的信息结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Data structure describing a set of semaphores.  */
 struct semid_ds
 {
@@ -5592,14 +5592,14 @@ struct semid_ds
 可以看到下面提供的接口都可以获取或者是设置这个属性。
 
 创建一个信号量集的话，可以使用下面这个接口：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/sem.h>
 int semget(key_t key,int nsems,int flag);
 #+END_SRC
 其中nsems表示想创建的信号量集合个数，而flag含义和消息队列一样允许IPC_CREAT和IPC_EXCL.低9位为权限。
 
 控制这个信号集的话可以使用下面这个接口：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/sem.h>
 union semun{
    int val;
@@ -5621,7 +5621,7 @@ semnum用于选定集合中某个特性的信号量，不同cmd情况下面可�
 - SETALL +array设置所有信号量的资源个数
 
 最后一个接口是操作信号量集的接口。这个接口允许批量操作信号集并且以原子操作方式完成。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/sem.h>
 struct sembuf{
     unsigned short sem_num; //number index in sem set
@@ -5651,7 +5651,7 @@ SEM_UNDO的意思就是说撤销刚才的操作。
 
 其实信号量的接口还是非常易于理解的，但是却没有必要，很少有情况我们需要操作多个信号集。
 下面一个通过信号量来同步父子进程的例子
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/sem.h>
 #include <sys/wait.h>
@@ -5695,7 +5695,7 @@ child about to exit
 
 *** 共享存储
 共享存储也成为共享内存，和其他XSI IPC一样也每个共享存储段也有一个结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/shm.h>
 /* Data structure describing a set of semaphores.  */
 struct shmid_ds
@@ -5717,7 +5717,7 @@ struct shmid_ds
 #+END_SRC
 
 关于共享存储的接口如下：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* The following System V style IPC functions implement a shared memory
    facility.  The definition is found in XPG4.2.  */
 
@@ -5742,7 +5742,7 @@ extern int shmdt (__const void *__shmaddr) __THROW;
 如果不想连接这个共享内存段的话，那么可以直接shmdt.这个时候shmid_ds里面的shm_nattch字段会-1.
 
 相对来说，共享内存是最好理解的IPC了，是一种非常自然的概念。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/shm.h>
 #include <sys/wait.h>
@@ -5780,7 +5780,7 @@ segment size:1024,attach number:2
 mmap映射/dev/zero这个文件。因为/dev/zero是一个特殊文件任何写都被忽略，并且一旦映射上的话存储
 区内容都被初始化为0.另外一种方式是简化的方式，Linux系统提供了MAP_ANON选项使用这个选项的话，那么不需要
 打开/dev/zero就可以创建一个具有进程关系之间的匿名存储映射。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
@@ -5806,7 +5806,7 @@ int main(){
 }
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/mman.h>
 #include <sys/wait.h>
@@ -5833,7 +5833,7 @@ int main(){
 pthread的同步机制允许设置进程之间的共享属性。通过pthread的同步机制是在共享内存上面开辟并且设置了共享属性，
 那么就允许pthread来协调进程之间的同步。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <pthread.h>
 #include <sys/mman.h>

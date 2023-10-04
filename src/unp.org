@@ -80,7 +80,7 @@ TCP MSS(maximum segment size,最大分节大小),用于告诉TCP对端在每个�
 | in_addr_t   | uint32_t           | IPv4地址               | <netinet/in.h>    |
 | in_port_t   | uint16_t           | 端口号                 | <netinet/in.h>    |
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //==============================
 //#include <bits/sockaddr.h>
 #define	__SOCKADDR_COMMON(sa_prefix) \
@@ -121,7 +121,7 @@ struct sockaddr_storage //新的通用套接字地址结构，能够容纳几乎
 基本上没有必要关心sockaddr_storage这个结构。
 
 **** IPv4地址结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //==============================
 //#include <netinet/in.h>
 struct in_addr
@@ -144,7 +144,7 @@ struct sockaddr_in
 #+END_SRC
 
 **** IPv6地址结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //==============================
 //#include <netinet/in.h>
 /* IPv6 address */
@@ -177,7 +177,7 @@ struct sockaddr_in6
 使用inet_pton和inet_ntop可以在IP地址的表示(presentation)以及数值(numeric)之间进行转换，表示格式是ASCII字符串，
 而数值格式是存放到套接字结构中的二进制，使用inet_pton和inet_ntop可以在这两种格式下面转换。
 对于IPv4和IPv6的IP表示长度存在限制，如果提供的长度不足以表示的话那么会返回ENOSPC错误。但是幸运的是，系统提供了限制常数。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <arpa/inet.h>
 /* Convert from presentation format of an Internet number in buffer
    starting at CP to the binary network format and store result for
@@ -197,7 +197,7 @@ extern __const char *inet_ntop (int __af, __const void *__restrict __cp,
 #define INET6_ADDRSTRLEN 46
 #+END_SRC
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <cstdio>
@@ -220,7 +220,7 @@ IP用于标识通讯的机器，而端口号用于标识通信的进程。IANA(t
 - 动态端口(dynamic port)[49152,65535],IANA不管这些端口，我们可以自由使用，通常也称临时端口(ephemeral port).
 注意对于不同的传输层协议，端口是可以复用的。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <netinet/in.h>
 /* Standard well-known ports.  */
 enum
@@ -265,7 +265,7 @@ enum
 
 因为网络字节序是大端序表示的，所以在设置套接字地址端口的话需要做字节序转换。同样幸运的是，
 系统提供了这样的转换函数
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <netinet/in.h>
 extern uint32_t ntohl (uint32_t __netlong) __THROW __attribute__ ((__const__));
 extern uint16_t ntohs (uint16_t __netshort)  __THROW __attribute__ ((__const__));
@@ -273,7 +273,7 @@ extern uint32_t htonl (uint32_t __hostlong)  __THROW __attribute__ ((__const__))
 extern uint16_t htons (uint16_t __hostshort)  __THROW __attribute__ ((__const__));
 #+END_SRC
 其中n表示network,h表示host,而l表示long(32bit),s表示short(16bit).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <netinet/in.h>
 #include <cstdio>
 int main(){
@@ -287,7 +287,7 @@ int main(){
 
 *** socket
 获得操作网络IO的套接字文件描述符。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Create a new socket of type TYPE in domain DOMAIN, using
    protocol PROTOCOL.  If PROTOCOL is zero, one is chosen automatically.
@@ -320,7 +320,7 @@ protocol取值有下面这些：
 *** connect
 建立客户端和服务端的连接。
 **** 使用说明
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Open a connection on socket FD to peer at ADDR (which LEN bytes long).
    For connectionless socket types, just set the default address to send to
@@ -432,7 +432,7 @@ Local address is already in use.
 
 *** bind
 将套接字和一个本地协议地址进行绑定。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Give the socket FD the local address ADDR (which is LEN bytes long).  */
 extern int bind (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
@@ -444,7 +444,7 @@ extern int bind (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
 的话，那么内核自己选择port,否则是进程指定port.
 
 对于IP的通配地址，IPv4使用INADDR_ANY,而IPv6使用in6addr_any.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <netinet/in.h>
 
 /* Address to accept any incoming messages.  */
@@ -463,7 +463,7 @@ extern const struct in6_addr in6addr_loopback;   /* ::1 */
 *** listen
 将主动套接字设置成为被动套接字。
 **** 使用说明
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Prepare to accept connections on socket FD.
    N connection requests will be queued before further requests are refused.
@@ -498,7 +498,7 @@ RST分节还是不回复ACK分节，而让客户端进行重传。对于manpage�
 *** accept
 处理已经建立好的连接。
 **** 使用说明
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
    This function is a cancellation point and therefore not marked with
    __THROW.  */
@@ -581,7 +581,7 @@ accept ...
 
 *** close/shutdown
 关闭建立好的连接
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <unistd.h>
 /* Close the file descriptor FD.
 
@@ -625,7 +625,7 @@ write failed:Broken pipe
 - fcntl.
 - ioctl.
 本节讨论的所有选项都是通过getsockopt/setsockopt来操作的，对于fcntl/ioctl会在其他地方进行讨论。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Put the current value for socket FD's option OPTNAME at protocol level LEVEL
    into OPTVAL (which is *OPTLEN bytes long), and set *OPTLEN to the value's
@@ -700,7 +700,7 @@ TCP_CORK:off
 默认情况下面，close的动作是发送完成缓冲区内数据，并且发送FIN分节之后立即返回。返回之后如果数据或者是FIN分节没有确认的话，
 那么tcp实现会自动进行重传，但是如果重传失败的话，我们也是没有办法知道的。使用SO_LINGER选项可以在一定长度上解决这个问题。
 SO_LINGER使用的值是下面这个类型，如果l_onoff=0的话，那么就是按照默认情况处理。下面我们讨论l_onoff=1的情况。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <bits/socket.h>
 /* Structure used to manipulate the SO_LINGER option.  */
 struct linger
@@ -884,7 +884,7 @@ quick ACK是相对于delay ACK来说的。delay ACK算法就是说，接收到�
 然后上层进行轮询检查是否有数据可读或者是空间可用。
 
 设置非阻塞IO的话可以使用如下代码：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
     int flags=fcntl(fd,F_GETFL,0);
     flags |= O_NONBLOCK;
     fcntl(fd,F_SETFL,flags);
@@ -897,7 +897,7 @@ quick ACK是相对于delay ACK来说的。delay ACK算法就是说，接收到�
 多路等待或者是轮询时间都让系统来进行托管，而不是在用户态处理。
 
 ***** select/pselect
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <bits/time.h>
 /* A time value that is accurate to the nearest
    microsecond but also has a range of years.  */
@@ -984,7 +984,7 @@ select存在限制，那就是FD_SETSIZE这个大小。通常来说这个值是1
 就是调整FD_SETSIZE的话，性能也会出现问题。更好的方式就是使用epoll.这个可以在fs/select.c下面看到实现。
 
 ***** poll/ppoll
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/poll.h>
 /* Type used for the number of file descriptors.  */
 typedef unsigned long int nfds_t;
@@ -1042,7 +1042,7 @@ poll的超时时间单位是ms如果为负值的话那么就是永久等待。po
 信号驱动IO的方式是发送SIGIO信号来通知我们某个fd是可读或者是可写的。fd的阻塞等待或者是轮询都让系统来进行托管，而不是在用户态处理。
 
 设置信号驱动IO的话可以使用如下代码：
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
     //首先设置信号驱动，这样准备好之后会发送SIGIO信号
     int flags=fcntl(fd,F_GETFL,0);
     flags |= O_ASYNC;
@@ -1057,7 +1057,7 @@ poll的超时时间单位是ms如果为负值的话那么就是永久等待。po
 
 **** 高级IO
 ***** recv/send
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <sys/socket.h>
 /* Send N bytes of BUF to socket FD.  Returns the number sent or -1.
 
@@ -1100,7 +1100,7 @@ recv/send界面上和write/read非常相似，不过多了一个flags参数。�
 | MSG_WAITALL  | 阻塞直到请求数目数据可读的时候返回             |
 
 ***** readv/writev
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <bits/uio.h>
 /* Structure for scatter/gather I/O.  */
 struct iovec
@@ -1135,7 +1135,7 @@ extern ssize_t writev (int __fd, __const struct iovec *__iovec, int __count);
 
 ***** recvmsg/sendmsg
 这个函数可以说是最通用的IO函数了
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <bits/socket.h>
 /* Structure describing messages sent by
    `sendmsg' and received by `recvmsg'.  */
@@ -1208,7 +1208,7 @@ extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
 - 采用类似DNS这样的解析服务，可以认为是一个分布式有层级关系的名字解析集群，
 不过具体顺序的话，在/etc/host.conf里面可以查看。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 //#include <netdb.h>
 extern int gethostbyaddr_r (__const void *__restrict __addr, __socklen_t __len,
 			    int __type,
@@ -1236,7 +1236,7 @@ extern __const char *hstrerror (int __err_num) __THROW;
 返回IPv4还是IPv6的返回地址，gethostbyaddr_r的__type告诉传入的addr是IPv4还是IPv6地址，值可以是AF_INET或者是AF_INET6.
 
 然后我们看看最主要的结构struct hostent.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* Description of data base entry for a single host.  */
 struct hostent
 {
@@ -1364,7 +1364,7 @@ TCP(Transmission Control Protocol,传输控制协议)相对于UDP来说更加复
 
 *** TCP首部
 TCP首部数据格式如下，如果不计可选字段的话占用20个字节（通常来说也就是占用20个字节）
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct tcp_header_t{
     uint16_t src_port;
     uint16_t dst_port;
@@ -1688,7 +1688,7 @@ Unix domain socket走的是loopback接口。loopback接口是没有网卡流量�
 
 ** 示例程序
 *** connect.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -1827,7 +1827,7 @@ int main(int argc,char* const argv[]){
 #+END_SRC
 
 *** server.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -1961,7 +1961,7 @@ int main(int argc,char* const argv[]){
 #+END_SRC
 
 *** viewsockopt.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <unistd.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -2050,7 +2050,7 @@ int main(){
 #+END_SRC
 
 *** name2addr.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <netdb.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -2117,7 +2117,7 @@ next2:
 #+END_SRC
 
 *** addr2name.cc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <netdb.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>

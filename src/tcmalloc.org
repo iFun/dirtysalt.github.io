@@ -39,7 +39,7 @@ tcmalloc.cc
 
 tcmallo.cc里面定义了函数入口.对于安排在section(google_malloc)不知道有作用。当然下面有很多相关的函数比如tc_memalign，但是这些并不影响阅读主线。
 我们只需要关心两个函数tc_malloc以及tc_free即可。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <malloc.h>
 #define __THROW
 # define ATTRIBUTE_SECTION(name) __attribute__ ((section (#name)))
@@ -52,7 +52,7 @@ extern "C" {
 #+END_SRC
 
 然后在libc_override_gcc_and_weak.h和libc_override_glibc.h进行了函数替换
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #define ALIAS(tc_fn)   __attribute__ ((alias (#tc_fn)))
 extern "C" {
   void* __libc_malloc(size_t size)                ALIAS(tc_malloc);
@@ -66,7 +66,7 @@ extern "C" {
 
 同时在里面还覆盖了malloc_hook和free_hook这两个函数，不允许用户自己进行hook.
 我猜想tcmalloc应该是自己提供了malloc_hook和free_hook的定义.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 extern "C" {
 static void* glibc_override_malloc(size_t size, const void *caller) {
   return tc_malloc(size);
@@ -82,7 +82,7 @@ void (* MALLOC_HOOK_MAYBE_VOLATILE __free_hook)(void*, const void*)
 #+END_SRC
 
 仔细阅读tcmalloc.cc接口面还发现了下面这些接口非常有意思
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 返回当前malloc信息,在malloc.h里面有定义
 struct mallinfo tc_mallinfo(void) __THROW ATTRIBUTE_SECTION(google_malloc);
 // 这个指针实际可用内存大小
@@ -97,7 +97,7 @@ int tc_mallopt(int cmd, int value) __THROW ATTRIBUTE_SECTION(google_malloc);
 ** 全局内存
 system-alloc.h
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 extern void* TCMalloc_SystemAlloc(size_t bytes, size_t *actual_bytes,
                                   size_t alignment = 0);
 extern void TCMalloc_SystemRelease(void* start, size_t length);
@@ -107,14 +107,14 @@ extern void TCMalloc_SystemRelease(void* start, size_t length);
 - MmapSysAllocator.使用mmap来分配内存
 SysAllocator需要实现一个接口void* Alloc(size_t size, size_t *actual_size, size_t alignment);因为全局只是需要一个这样的对象，
 所以这个对象可以静态分配即可.然后定义了一个DefaultSysAllocator允许设置Children.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static char sbrk_space[sizeof(SbrkSysAllocator)];
 static char mmap_space[sizeof(MmapSysAllocator)];
 static char default_space[sizeof(DefaultSysAllocator)];
 #+END_SRC
 
 在初始化InitSystemAllocators的时候将sbrk_space以及mmap_space作为default_space的两个children.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   MmapSysAllocator *mmap = new (mmap_space) MmapSysAllocator();
   SbrkSysAllocator *sbrk = new (sbrk_space) SbrkSysAllocator();
   DefaultSysAllocator *sdef = new (default_space) DefaultSysAllocator();
@@ -127,7 +127,7 @@ static char default_space[sizeof(DefaultSysAllocator)];
   }
 #+END_SRC
 实际操作时候都是先sbrk尝试先，然后使用mmap.DefaultAllocator按照children顺序尝试分配，也就意味着首先使用sbrk如果不成功尝试mmap
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void* DefaultSysAllocator::Alloc(size_t size, size_t *actual_size,
                                  size_t alignment) {
   for (int i = 0; i < kMaxAllocators; i++) {
@@ -167,7 +167,7 @@ tcmalloc_guard.h
 
 TCMallocGuard主要是为了确保在tc_malloc之前所有静态变量都已经完成了初始化。首先全局存在一个static TCMallocGuard module_enter_exit_hook;
 这个变量来确保静态初始化，但是同时为了防止重复初始化还加了引用计数进行判断
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static int tcmallocguard_refcount = 0;  // no lock needed: runs before main()
 TCMallocGuard::TCMallocGuard() {
   if (tcmallocguard_refcount++ == 0) {
@@ -185,7 +185,7 @@ TCMallocGuard::TCMallocGuard() {
 #+END_SRC
 
 对于释放来说的话也非常简单，可以根据环境变量来选择是否打印统计信息
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 TCMallocGuard::~TCMallocGuard() {
   if (--tcmallocguard_refcount == 0) {
     const char* env = getenv("MALLOCSTATS");
@@ -207,13 +207,13 @@ page_heap_allocator.h
 
 page_heap_allocator.h里面实现了一个sample_alloc叫做PageHeapAllocator.原理来说非常简单，这里就不赘述了。需要注意的是每一个节点肯定都是>sizeof(void*)的，
 所以每个节点不用分配额外的next指针空间，这个是一个基本上所以写过内存分配器程序员公开的技巧了。另外需要关注的是每次向全局内存空间要的大小是多少
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static const int kAllocIncrement = 128 << 10; // 128K
 #+END_SRC
 里面还维护了一个inuse()接口表示当前有多少个object正在被使用。
 
 另外为了更好的统计管理对象使用的内存，在common.cc里面记录了元信息分配的内存大小
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static uint64_t metadata_system_bytes_ = 0;
 void* MetaDataAlloc(size_t bytes) {
   void* result = TCMalloc_SystemAlloc(bytes, NULL);
@@ -231,7 +231,7 @@ common.h
 
 SizeMap定义了slab大小，大小到slab编号的映射，一种slab每次分配的多少个pages，一种slab的话在tc和central cache中每次移动多少个对象。
 具体定义可以阅读common.h.里面的算法个人觉得还是比较复杂的没有仔细研究。slab的一共有
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #if defined(TCMALLOC_LARGE_PAGES)
 static const size_t kPageShift  = 15;
 static const size_t kNumClasses = 78;
@@ -243,7 +243,7 @@ static const size_t kNumClasses = 86;
 对于我们如果使用大页面的话，32K的话那么有77种slab,否则只有85种。注意这里slab的编号从1开始计算。
 
 tcmalloc提供了一个Dump方法可以查看最终这些数值。我们需要和源代码联合编译才有可能看到
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <src/internal_logging.h>
 #include <src/static_vars.h>
@@ -300,7 +300,7 @@ central_freelist.h
 首先在static里面定义的central_cache是一个数组大小为kNumClasses，相当于和每一个thread cache里面的slab对应。
 数组每个元素是CentralFreeListPadded,在central_freelist.h里面定义的。阅读CentralFreeListPadded这个结构，就会发现，
 实际上这个功能是在CentralFreeList里面的，为了能够进行align进行了padded,还是非常巧妙的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template<int kFreeListSizeMod64>
 class CentralFreeListPaddedTo : public CentralFreeList {
  private:
@@ -318,7 +318,7 @@ class CentralFreeListPadded : public CentralFreeListPaddedTo<
 所以后续的话我们只需要关注CentralFreeList即可。
 
 数据结构基本上还是很好理解的:).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class CentralFreeList {
  private:
   // TransferCache is used to cache transfers of
@@ -385,7 +385,7 @@ CentralFreeList的接口非常少
 **** Init
 init主要是计算了tc(transfer cache)的max_cache_size以及cache_size,然后初始化了字段。
 我们这里暂时不关注empty以及nonempty这两个字段的数据结构
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CentralFreeList::Init(size_t cl) {
   size_class_ = cl;
   tcmalloc::DLL_Init(&empty_);
@@ -415,7 +415,7 @@ void CentralFreeList::Init(size_t cl) {
 **** InsertRange
 这个接口就是为了回收[start,end]并且长度为N objects的内存链。首先注意它加了自选锁确保了线程安全。
 然后有一个逻辑就是判断是否可以进入tc,如果不允许进入tc的话那么挂到链上去。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CentralFreeList::InsertRange(void *start, void *end, int N) {
   SpinLockHolder h(&lock_);
   if (N == Static::sizemap()->num_objects_to_move(size_class_) &&
@@ -436,7 +436,7 @@ void CentralFreeList::InsertRange(void *start, void *end, int N) {
 
 回收到tc这个逻辑非常简单，然后看看ReleaseListToSpans这个逻辑。大致逻辑就是遍历start知道end,
 然后对于每一个object调用ReleaseToSpans单独进行处理。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CentralFreeList::ReleaseToSpans(void* object) {
   Span* span = MapObjectToSpan(object); // 将object映射到span
   ASSERT(span != NULL);
@@ -480,7 +480,7 @@ void CentralFreeList::ReleaseToSpans(void* object) {
 **** RemoveRange
 这个接口就是为了尝试分配N个objects对象，然后将首地址尾地址给start和end.同样内部逻辑会判断是否可以从tc
 中直接取出，如果可以取出的话那么分配就非常快。注意函数开始也尝试加锁了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 int CentralFreeList::RemoveRange(void **start, void **end, int N) {
   ASSERT(N > 0);
   lock_.Lock();
@@ -519,7 +519,7 @@ int CentralFreeList::RemoveRange(void **start, void **end, int N) {
 #+END_SRC
 
 其中FetchFromSpanSafe逻辑也比较简单，就是
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void* CentralFreeList::FetchFromSpansSafe() {
   void *t = FetchFromSpans();
   if (!t) {
@@ -531,7 +531,7 @@ void* CentralFreeList::FetchFromSpansSafe() {
 #+END_SRC
 
 首先我们要看懂FetchFromSpans()逻辑，才能够清楚什么情况下面需要调用Populate
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void* CentralFreeList::FetchFromSpans() {
   if (tcmalloc::DLL_IsEmpty(&nonempty_)) return NULL; // 如果span里面都空了的.
   Span* span = nonempty_.next;
@@ -555,7 +555,7 @@ void* CentralFreeList::FetchFromSpans() {
 基本上了解了调用Populate的时机，是如果cc里面nonempty里面没有span的话。代码有点长.
 这里为了减少阻塞的部分，首先进行解锁然后让全局进行分配。只是针对局部操作没有任何问题。
 最后加入nonempty的部分的话这个部分需要加锁。非常巧妙。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void CentralFreeList::Populate() {
   // Release central list lock while operating on pageheap
   lock_.Unlock();  // 首先需要计算出我们需要多少个pages
@@ -611,7 +611,7 @@ page_heap.h
 **** Data Structure
 PageHeap是在page_heap.h里面定义的，主要是用来分配page的。对于PageHeap结构还是比较复杂的.阅读tcmalloc文档也会发现，
 管理page的方法和cc是一样的，也是按照page大小做成数组。每个数组的结构是这样的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // We segregate spans of a given size into two circular linked
   // lists: one for normal spans, and one for spans whose memory
   // has been returned to the system.
@@ -633,7 +633,7 @@ normal freelist是普通的回收进行缓存起来，而returned freelist表示
 
 
 另外在PageHeap里面还定义了如何通过PageID查找到Span这个结构，使用了两种方式，一种是Cache,另外一种是radix tree(32位是另外一个结构). 这个会在下面分析
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Selector class -- general selector uses 3-level map
 template <int BITS> class MapSelector {
  public:
@@ -648,7 +648,7 @@ template <int BITS> class MapSelector {
   mutable PageMapCache pagemap_cache_;
 #+END_SRC
 其中kAddressBits的定义在common.h
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #if defined __x86_64__
 // All current and planned x86_64 processors only look at the lower 48 bits
 // in virtual to physical address translation.  The top 16 are thus unused.
@@ -679,7 +679,7 @@ tcmalloc代码里面kMaxPages==1 << (20- kPageShift) 相同于有256种页面。
 **** New
 New的逻辑非常简单，首先会尝试在free list里面查找，如果没有的话在lage free list里面查找，不行的话尝试要更多的内存，然后重试。
 需要注意的是，因为这个是一个全局的操作，所以前面都会加上自选锁 SpinLockHolder h(Static::pageheap_lock());
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Span* PageHeap::New(Length n) {
   ASSERT(Check());
   ASSERT(n > 0);
@@ -698,7 +698,7 @@ Span* PageHeap::New(Length n) {
 #+END_SRC
 
 SearchFreeAndLargeLists相对来说还是比较简单的，但是里面Carve这个需要单独来看
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Span* PageHeap::SearchFreeAndLargeLists(Length n) {
   ASSERT(Check());
   ASSERT(n > 0);
@@ -726,7 +726,7 @@ Span* PageHeap::SearchFreeAndLargeLists(Length n) {
 
 **** Carve
 我们看看Carve代码，然后在里面的话会稍微粗略地提到pagemap管理span对象的细节
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Span* PageHeap::Carve(Span* span, Length n) {
   ASSERT(n > 0);
   ASSERT(span->location != Span::IN_USE);
@@ -755,7 +755,7 @@ Span* PageHeap::Carve(Span* span, Length n) {
 非常简单，如果span管理的是[p..q]的范围的话，那么在pagemap里面只需要记录(p,span),(q,span).
 这样如果有一个span回收的话，那么在pagemap里面查找p-1和q+1的span,然后尝试合并。非常精巧。
 所以在RecordSpan里面很明显就是需要设置前后的边界
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void RecordSpan(Span* span) {
     pagemap_.set(span->start, span); // 这时span开始
     if (span->length > 1) {
@@ -767,7 +767,7 @@ Span* PageHeap::Carve(Span* span, Length n) {
 **** GrowHeap
 GrowHeap就是需要尝试从系统中拿出更多的内存出来然后好做切分，满足本次allocate n pages的请求。
 GrowHeap里面有一些策略
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 这个就是相当于允许分配的最大Pages
 static const Length kMaxValidPages = (~static_cast<Length>(0)) >> kPageShift;
 static const int kMinSystemAlloc = kMaxPages; // 调用GrowHeap最小的页数
@@ -829,7 +829,7 @@ bool PageHeap::GrowHeap(Length n) {
 
 **** Delete
 Delete逻辑非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void PageHeap::Delete(Span* span) {
   ASSERT(Check());
   ASSERT(span->location == Span::IN_USE);
@@ -848,7 +848,7 @@ void PageHeap::Delete(Span* span) {
 #+END_SRC
 
 里面有两个函数我们需要仔细关心MergeIntoFreeList以及IncrementalScavenge.首先看看MergeIntoFreeList
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void PageHeap::MergeIntoFreeList(Span* span) {
   ASSERT(span->location != Span::IN_USE);
   const PageID p = span->start;
@@ -888,7 +888,7 @@ IncrementalScavenge这个意思就是增量回收，大致内容就是说将一�
 而只是简单地挂在了_returned_free_list上面，但是里面的策略还是值得看看的。这里所谓的scavenge_counter_意思就是如果归还了多少内存之后，
 那么我们就会尝试进行一次完全交回给系统内存.
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void PageHeap::IncrementalScavenge(Length n) {
   // Fast path; not yet time to release memory
   scavenge_counter_ -= n;
@@ -931,7 +931,7 @@ void PageHeap::IncrementalScavenge(Length n) {
 **** ReleaseAtLeastNPages
 这个函数的语义就是至少尝试释放n pages.实现方式非常简单，每次都从一种pages里面取出一个东西并且进行释放，直到全部释放为止。
 算是一种round-robin的方式吧，我猜想这样释放的方式对于后面分配的性能影响比较小，每一种大小都释放一些。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Length PageHeap::ReleaseAtLeastNPages(Length num_pages) {
   Length released_pages = 0;
   Length prev_released_pages = -1;
@@ -961,7 +961,7 @@ Length PageHeap::ReleaseAtLeastNPages(Length num_pages) {
 #+END_SRC
 
 然后我们看看ReleaseLastNormalSpan这个过程，非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 Length PageHeap::ReleaseLastNormalSpan(SpanList* slist) {
   Span* s = slist->normal.prev;
   ASSERT(s->location == Span::ON_NORMAL_FREELIST);
@@ -983,7 +983,7 @@ Split过程和Carve过程是非常相似的，只不过Split针对的是IN_USE�
 
 **** GetNextRange
 得到page id >=start的span的具体内容。首先看看MallocRange的内容
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 struct MallocRange {
   // 这个malloc范围是什么类型
   enum Type {
@@ -1003,7 +1003,7 @@ struct MallocRange {
 };
 #+END_SRC
 然后来看看这个过程
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 bool PageHeap::GetNextRange(PageID start, base::MallocRange* r) {
   Span* span = reinterpret_cast<Span*>(pagemap_.Next(start));
   if (span == NULL) {
@@ -1043,7 +1043,7 @@ page_map.h
 之前pageheap里面可以看到有这么一个要求，就是从一个page ID映射到span这么一个过程。在64位下面的话逻辑地址空间有1 << 64，
 如果按照4K per page计算的话，那么最多会存在1<<52个page.如果使用数组存储的话那么是会存在问题的。所以这里使用了radix tree来进行映射。
 对于64位的话使用了3-level radix tree.每段分别是(18,18,16)
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // How many bits should we consume at each interior level
   static const int INTERIOR_BITS = (BITS + 2) / 3; // Round-up
   static const int INTERIOR_LENGTH = 1 << INTERIOR_BITS;
@@ -1053,7 +1053,7 @@ page_map.h
   static const int LEAF_LENGTH = 1 << LEAF_BITS;
 #+END_SRC
 对于一个地址映射称为每一个level的number index的函数可以参看get这个方法
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void* get(Number k) const {
     const Number i1 = k >> (LEAF_BITS + INTERIOR_BITS);
     const Number i2 = (k >> LEAF_BITS) & (INTERIOR_LENGTH-1);
@@ -1072,7 +1072,7 @@ page_map.h
 
 - void* Next(Number k) const
 Next接口就纯粹想知道>=k的这些PageId首先映射到的span对象是什么，实现起来非常巧妙可以仔细阅读一下
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   void* Next(Number k) const {
     while (k < (Number(1) << BITS)) {
       const Number i1 = k >> (LEAF_BITS + INTERIOR_BITS);
@@ -1102,7 +1102,7 @@ packed-cache-inl.h
 
 PackedCache是一种非常精巧的数据结构。它的作用主要是想知道对于一个pageId所管理的span而言的话，对应的sizeclass是什么。
 在pageheap里面是这样定义的   typedef PackedCache<BITS-kPageShift, uint64_t> CacheType;  我们还是看看这个结构是什么样的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template <int kKeybits, typename T>
 class PackedCache {
  public:
@@ -1146,7 +1146,7 @@ Thread Cache比较重要的接口有下面这些：
 - BecomeIdle // 标记这个thread已经idle，所以可以释放这个tc了
 
 涉及到的静态变量有下面这些
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 namespace tcmalloc {
 
 static bool phinited = false;
@@ -1166,7 +1166,7 @@ pthread_key_t ThreadCache::heap_key_; // 如果使用pthread线程局部数据�
 #+END_SRC
 
 **** InitModule
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::InitModule() {
   SpinLockHolder h(Static::pageheap_lock());  // 全局自选锁
   if (!phinited) {
@@ -1178,7 +1178,7 @@ void ThreadCache::InitModule() {
 #+END_SRC
 
 **** InitTSD
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::InitTSD() {
   ASSERT(!tsd_inited_); // 这个变量标记是否已经初始化了线程局部变量，如果没有的话那么是没有任何tc的.
   perftools_pthread_key_create(&heap_key_, DestroyThreadCache); // 这个就是设置好线程局部变量
@@ -1187,7 +1187,7 @@ void ThreadCache::InitTSD() {
 }
 #+END_SRC
 然后我们看看DestroyThreadCache.很容易想到其实这个方法就是销毁掉线程的tc
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::DestroyThreadCache(void* ptr) {
   // Note that "ptr" cannot be NULL since pthread promises not
   // to invoke the destructor on NULL values, but for safety,
@@ -1200,7 +1200,7 @@ void ThreadCache::DestroyThreadCache(void* ptr) {
 
 **** GetCache
 关于GetCache我们也可以一起看看GetThreadHeap,GetCacheIfPresent,CreateCacheIfNecessary
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline ThreadCache* ThreadCache::GetCache() {
   ThreadCache* ptr = NULL;
   if (!tsd_inited_) {
@@ -1214,7 +1214,7 @@ inline ThreadCache* ThreadCache::GetCache() {
 #+END_SRC
 
 GetThreadHeap非常简单直接从线程局部变量里面取出即可
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline ThreadCache* ThreadCache::GetThreadHeap() {
   return reinterpret_cast<ThreadCache *>(
       perftools_pthread_getspecific(heap_key_));
@@ -1227,7 +1227,7 @@ inline ThreadCache* ThreadCache::GetCacheIfPresent() {
 
 **** CreateCacheIfNecessary
 然后看看CreateCacheIfNecessary这个实现,看看是如何创建tc的
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 ThreadCache* ThreadCache::CreateCacheIfNecessary() {
   // Initialize per-thread data if necessary
   ThreadCache* heap = NULL;
@@ -1255,7 +1255,7 @@ ThreadCache* ThreadCache::CreateCacheIfNecessary() {
 
 **** NewHeap
 NewHeap是产生一个新的tc调用Init.将这个tc插入到队列里面.注意这里NewHeap已经加了锁了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 ThreadCache* ThreadCache::NewHeap(pthread_t tid) {
   // Create the heap and add it to the linked list
   ThreadCache *heap = threadcache_allocator.New();
@@ -1277,7 +1277,7 @@ ThreadCache* ThreadCache::NewHeap(pthread_t tid) {
 
 **** BecomeIdle
 BecomeIdle触发条件现在还不是很清楚，但是作用是认为这个tc没有必要了可以删除。不过在大部分使用应该不会有这个调用吧。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::BecomeIdle() {
   if (!tsd_inited_) return;              // No caches yet
   ThreadCache* heap = GetThreadHeap();
@@ -1300,7 +1300,7 @@ void ThreadCache::BecomeIdle() {
 
 这里我想到一个问题，就是如果不断地启动线程然后关闭线程，如果tid是不允许复用的话那么会导致thread_cache不断地开辟。
 如果使用gettid的话那么可能会有这个情况，而如果用pthread_self的话可能就不会有了(至少从程序上看可以复用)
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <cstdio>
 #include <pthread.h>
 
@@ -1325,7 +1325,7 @@ int main() {
 
 **** Init
 注意这里Init已经在外围的NewHeap加锁了。这个地方进行初始化。设置一下最大分配多少空间以及初始化每一个slab
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::Init(pthread_t tid) {
   size_ = 0;
 
@@ -1360,7 +1360,7 @@ void ThreadCache::Init(pthread_t tid) {
 
 **** ThreadCache::FreeList
 freelist就是对应的slab.本质上数据结构就是一个单向链表，毕竟这个分配对于顺序没有任何要求。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   class FreeList {
    private:
     void*    list_;       // Linked list of nodes
@@ -1379,7 +1379,7 @@ freelist就是对应的slab.本质上数据结构就是一个单向链表，毕�
 
 **** IncreaseCacheLimitLocked
 之前说到这个函数是在计算这个tc里面最多可以分配多少内存，那么看看这个函数的实现.调用这个函数的时候必然都是已经加了自旋锁的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::IncreaseCacheLimitLocked() {
   if (unclaimed_cache_space_ > 0) { // 如果tc里面还有空闲的内容的话，那么获取64KB过来
     // static const size_t kStealAmount = 1 << 16;(64KB)
@@ -1419,7 +1419,7 @@ void ThreadCache::IncreaseCacheLimitLocked() {
 
 **** DeleteCache
 DeleteCache作用就是删除一个tc.大致逻辑非常简单，首先将自己持有的内存归还给central cache,然后将自己从tc的链中删除即可。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::DeleteCache(ThreadCache* heap) {
   // Remove all memory from heap
   heap->Cleanup(); // 稍后我们查看Cleanup实现。
@@ -1442,7 +1442,7 @@ void ThreadCache::DeleteCache(ThreadCache* heap) {
 
 **** Cleanup
 Cleanup是在DeleteCache，会在BecomeIdle里面可以调用，也会在销毁线程局部变量里面调用。作用就是将自己持有的内存归还给系统
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::Cleanup() {
   // Put unused memory back into central cache
   for (int cl = 0; cl < kNumClasses; ++cl) {
@@ -1455,7 +1455,7 @@ void ThreadCache::Cleanup() {
 遍历所有的slab并且将上面挂在的free list归还给central cache.这个在ReleaseToCentralCache里面调用
 
 **** ReleaseToCentralCache
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::ReleaseToCentralCache(FreeList* src, size_t cl, int N) {
   ASSERT(src == &list_[cl]);
   if (N > src->length()) N = src->length(); // 这个地方感觉不是很有必要.不过其他地方的话可能这两个参数不同
@@ -1477,7 +1477,7 @@ void ThreadCache::ReleaseToCentralCache(FreeList* src, size_t cl, int N) {
 }
 #+END_SRC
 PopRange这个语义非常简单，但是我们稍微看看这个的实现，
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
     void PopRange(int N, void **start, void **end) {
       SLL_PopRange(&list_, N, start, end);
       ASSERT(length_ >= N);
@@ -1489,7 +1489,7 @@ PopRange这个语义非常简单，但是我们稍微看看这个的实现，
 
 **** Allocate
 Allocate就是从对应的slab里面分配出一个object.注意在Init时候的话每个tc里面是没有任何内容的，size_=0.FreeList也是空的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline void* ThreadCache::Allocate(size_t size, size_t cl) {
   ASSERT(size <= kMaxSize);
   ASSERT(size == Static::sizemap()->ByteSizeForClass(cl));
@@ -1505,7 +1505,7 @@ inline void* ThreadCache::Allocate(size_t size, size_t cl) {
 
 **** FetchFromCentralCache
 这个部分的逻辑是从cc里面取出一系列的slab对象出来。里面有很多策略，非常精巧
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void* ThreadCache::FetchFromCentralCache(size_t cl, size_t byte_size) {
   FreeList* list = &list_[cl];
   ASSERT(list->empty());
@@ -1543,7 +1543,7 @@ void* ThreadCache::FetchFromCentralCache(size_t cl, size_t byte_size) {
 
 **** Deallocate
 释放内存部分非常简单，但是同样里面有很多策略。并且里面涉及到了tc的GC问题
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline void ThreadCache::Deallocate(void* ptr, size_t cl) {
   FreeList* list = &list_[cl];
   size_ += Static::sizemap()->ByteSizeForClass(cl); // 释放了这个内存所以空闲大小增大
@@ -1573,7 +1573,7 @@ inline void ThreadCache::Deallocate(void* ptr, size_t cl) {
 我们可以看到Allocate里面如果从cc里面取在不断地增加max_length(存在上限).问题是我们不能够让这个部分缓存太多的内容，
 所以我们必须在一段时间内缩小max_length，一旦length>max_length的话就会触发ListTooLong.
 而ListTooLong里面的操作就是将max_length尝试缩小并且将一部分object归还给cc.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 void ThreadCache::ListTooLong(FreeList* list, size_t cl) {
   const int batch_size = Static::sizemap()->num_objects_to_move(cl);
   ReleaseToCentralCache(list, cl, batch_size); // 首先尝试将batch_size的内容归还到tc里面取
@@ -1603,7 +1603,7 @@ ListTooLong是第一个确保在tc里面不会持有太多内存的机制.虽然
 **** Scavenge
 同样Scavenge是第二个确保在tc里不会持有太多内存的机制。同样虽然对这个过程比较了解但是也没有从大体生了解这个策略是如何设计出来的。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Release idle memory to the central cache
 void ThreadCache::Scavenge() {
   // If the low-water mark for the free list is L, it means we would
@@ -1646,7 +1646,7 @@ tcmalloc.h
 
 *** 函数入口
 我们还是以最初的函数入门进行分析，我们只是关注tc_malloc与tc_free.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 extern "C" PERFTOOLS_DLL_DECL void* tc_malloc(size_t size) __THROW {
   void* result = do_malloc_or_cpp_alloc(size);
   MallocHook::InvokeNewHook(result, size);
@@ -1664,7 +1664,7 @@ extern "C" PERFTOOLS_DLL_DECL void tc_free(void* ptr) __THROW {
 
 *** 分配逻辑
 我们先看看do_malloc这个过程
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline void* do_malloc(size_t size) {
   void* ret = NULL;
 
@@ -1691,7 +1691,7 @@ inline void* do_malloc(size_t size) {
 #+END_SRC
 
 对于小对象分配逻辑已经清楚了，接着看看大对象分配调用do_malloc_pages这个部分
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline void* do_malloc_pages(ThreadCache* heap, size_t size) {
   void* result;
   bool report_large;
@@ -1719,7 +1719,7 @@ inline void* do_malloc_pages(ThreadCache* heap, size_t size) {
 #+END_SRC
 
 然后稍微看看should_report_large是如何判断的以及如何report
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 通过获取环境变量即可得到
 const int64 kDefaultLargeAllocReportThreshold = static_cast<int64>(1) << 30; // 默认是1GB
 DEFINE_int64(tcmalloc_large_alloc_report_threshold,
@@ -1755,7 +1755,7 @@ inline bool should_report_large(Length num_pages) {
 }
 #+END_SRC
 然后看看如果进行report的.代码上看基本上就是打印出这个函数调用堆栈到stderr上面，使用的buffer空间1000B.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static void ReportLargeAlloc(Length num_pages, void* result) {
   StackTrace stack;
   stack.depth = GetStackTrace(stack.stack, tcmalloc::kMaxStackDepth, 1);
@@ -1776,7 +1776,7 @@ static void ReportLargeAlloc(Length num_pages, void* result) {
 
 *** 释放逻辑
 相对分配来说，释放逻辑要稍微简单一些.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 inline void do_free_with_callback(void* ptr, void (*invalid_free_fn)(void*)) {
   if (ptr == NULL) return;
   ASSERT(Static::pageheap() != NULL);  // Should not call free() before malloc()

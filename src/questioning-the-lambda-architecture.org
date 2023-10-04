@@ -15,4 +15,3 @@ So, why the excitement about the Lambda Architecture? I think the reason is beca
 
 
 
-

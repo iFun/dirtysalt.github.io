@@ -63,7 +63,7 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 - STRICT_ALIGN # input数据是否对齐
 
 压缩函数其实不长，所以这里我把代码稍作整理全部贴出来，然后附上相关注释
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #ifndef FRST
 # define FRST(p) (((p[0]) << 8) | p[1])
 # define NEXT(v,p) (((v) << 8) | p[2])
@@ -286,7 +286,7 @@ literal处理比较有趣，大致方式如下
 ** Decompress
 相对于压缩函数，解压缩函数就没有那么多策略，完全是数据驱动。同样我把代码稍作整理添加少注释
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // intel有rep movsb指令用来做memcpy. 之前做过实验发现效果并不理想
 #if USE_REP_MOVSB /* small win on amd, big loss on intel */
 #if (__i386 || __amd64) && __GNUC__ >= 3

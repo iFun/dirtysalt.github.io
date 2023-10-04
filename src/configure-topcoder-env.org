@@ -31,7 +31,7 @@ UPDATE@2017-10-06: 下面这些插件还不支持Python, 所以我开始使用�
 
 然后就是配置Code Template。如果使用C++的话，那么可以考虑使用下面的模板
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 /* coding:utf-8
  * Copyright (C) dirlt
  */

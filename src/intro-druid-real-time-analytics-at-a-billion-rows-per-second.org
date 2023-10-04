@@ -83,4 +83,3 @@ And then we threw in a couple more that seemed like good ideas:
 - No dimensional tables to manage （不维护任何dimensional table）
 
 These are the requirements we used to implement Druid. The system makes a number of simplifying assumptions that fit our use case (namely that all analytics are time-based) and integrates access to real-time and historical data for a configurable amount of time into the past.（做了一些假设来简化设计比如所有的分析都是按照时间来进行划分的，并且支持对实时和非实时数据的统一访问）
-

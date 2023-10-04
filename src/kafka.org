@@ -132,4 +132,3 @@ replication实现方式大致是这样的：
 3. producers写入数据时候可以指定说，是否写入master就返回，还是必须等待写入k个followers才返回，还是不需要等待master的ack就返回。策略牵扯到latency和durabilityz之间的tradeoff.
 4. 常见quorum要求，如果集群节点数量为2f+1的话，那么必须得到f+1个节点的相同认定（容忍f个节点失效）。但是kafka quorum不是这样做的，kafka会在保存一个ISR(in-sync replicas)到可能是zookeeper上，这个集合代表当前有哪些节点是处于in-sync状态的。在进行quorum时候只允许ISR里面节点进行投票。和微软 [[http://research.microsoft.com/apps/pubs/default.aspx?id=66814][PacificA]] 一致性协议比较类似，和常见quorum协议差别就在于在更新状态时候保存了ISR。如果节点数量为2f+1的话，那么可以容忍2f个节点失效。
 5. 如果一个broker挂掉的话，迁移决策过程是由另外一个broker来代理完成的，这个broker称为controller.
-

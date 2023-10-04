@@ -142,4 +142,3 @@ scripts into efficient query processing pipelines instead of sequences of MapRed
 - http://hortonworks.com/hadoop/tez/
 - http://hortonworks.com/stinger/
 - http://spark-project.org/
-

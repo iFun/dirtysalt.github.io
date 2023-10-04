@@ -80,7 +80,7 @@ Snappy实现上来说非常简单，首先针对字节流进行分块(比如32KB
 ** Source & Sink
 这里Source表示输入源，而Sink表示输出源。不过设计上比较遗憾的是在Compress上面使用了这两个结构，
 而在Uncompress上面的话只是使用了Source这个结构，而输出源的话使用了另外一个内部类Writer.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 size_t Compress(Source* source, Sink* sink);
 bool RawUncompress(Source* compressed, char* uncompressed); // 内部有一个Writer封装了uncompressed操作
 #+END_SRC
@@ -88,7 +88,7 @@ bool RawUncompress(Source* compressed, char* uncompressed); // 内部有一个Wr
 我们首先看看Sink定义的接口。能够理解这个接口全依赖这个清晰的注释。其中
 - Append接口的话是将bytes[0,n-1]这个字节流写入。
 - GetAppendBuffer的话是交出一块length的buffer。这块length的buffer的话必须一致有效直到Append被调用。当然我们也可以直接返回scratch(外围框架分配的内存).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // A Sink is an interface that consumes a sequence of bytes.
 class Sink {
  public:
@@ -123,7 +123,7 @@ class Sink {
 #+END_SRC
 
 然后看看snappy默认实现Sink接口。这里GetAppendBuffer并没有使用scratch而是直接返回dest_,这样的话可以减少1次copy.因为如果返回scratch的话，那么外部框架首先copy到scratch,然后从scratch在copy回dest_.所以这里为什么Append需要判断(data!=dest_).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // A Sink implementation that writes to a flat array without any bound checks.
 class UncheckedByteArraySink : public Sink {
  public:
@@ -158,7 +158,7 @@ char* UncheckedByteArraySink::GetAppendBuffer(size_t len, char* scratch) {
 - Available表示还有多少个字节剩余。
 - Peek是返回前面可以窥探到的字节流，并且返回长度。返回的buffer必须持续有效直到Skip.
 - Skip相当于告诉Source某个部分的字节流已经不需要被使用了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // A Source is an interface that yields a sequence of bytes
 class Source {
  public:
@@ -195,7 +195,7 @@ class Source {
 };
 #+END_SRC
 然后snappy的默认实现非常简单
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // A Source implementation that yields the contents of a flat array
 class ByteArraySource : public Source {
  public:
@@ -229,7 +229,7 @@ Snappy里面有相当多的代码片段非常精巧(一定程度上难懂)，所
 
 *** Bits
 定义了一些位操作，都使用了gcc内置函数
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Some bit-manipulation functions.
 class Bits {
  public:
@@ -267,7 +267,7 @@ inline int Bits::FindLSBSetNonZero64(uint64 n) {
 *** Varint
 定义了如何将32位整数进行编码和解码。关于这种编码方式可以参考protobuf的链接
 http://code.google.com/intl/zh-CN/apis/protocolbuffers/docs/encoding.html#varints
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Variable-length integer encoding.
 class Varint {
  public:
@@ -351,7 +351,7 @@ void Varint::Append32(string* s, uint32 value) {
 
 *** GetUint32AtOffset
 能够从一个uint64里面取出任意偏移的uint32。通常我们一次载入一个uint64的话那么知道可以得到5个uint32,效率会很高。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // For 0 <= offset <= 4, GetUint32AtOffset(UNALIGNED_LOAD64(p), offset) will
 // equal UNALIGNED_LOAD32(p + offset).  Motivation: On x86-64 hardware we have
 // empirically found that overlapping loads such as
@@ -367,7 +367,7 @@ static inline uint32 GetUint32AtOffset(uint64 v, int offset) {
 在Compress的时候需要得到HashTable来判断哪些地方可以得到copy.不过实话说GetHashTable其实没有太多可以值得学习的地方，但是我们还是看看吧。
 至于hashtable每一个entry都是uint16表示什么东西，这个在Compress函数里面会讲到
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // 因为Compress是按照1个个chunk来进行压缩的，input_size表示这个chunk大小多少
 // 现在来看的话chunk最大32KB。然后table_size表示hashtable桶大小。
 
@@ -402,7 +402,7 @@ uint16* WorkingMemory::GetHashTable(size_t input_size, int* table_size) {
 
 *** FindMatchLength
 为了快速找到两个串(s1,s2)最大匹配长度多少，其中s2_limit表示s2的结尾返回匹配长度。引用场景下面s1和s2是同一个串，不过(s1<s2)因为我们不需要判断s1溢出。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Return the largest n such that
 //
 //   s1[0,n-1] == s2[0,n-1]
@@ -454,7 +454,7 @@ snappy接口简单很大程度上是因为对于一个input串的话，可以根
 然后进行压缩之前可以进行预分配，然后snappy内部的话在进行压缩时候就不进行字符越界检查了。
 至于这个长度是如何计算出来的，可以接合此处注释以及后续对copy以及literal带来的膨胀代价分析。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 size_t MaxCompressedLength(size_t source_len) {
   // Compressed data can be defined as:
   //    compressed := item* literal*
@@ -482,7 +482,7 @@ size_t MaxCompressedLength(size_t source_len) {
 
 *** IncrementalCopy
 首先看看IncrementalCopy的原型和语义是什么
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Copy "len" bytes from "src" to "op", one byte at a time.  Used for
 // handling COPY operations where the input and output regions may
 // overlap.  For example, suppose:
@@ -508,7 +508,7 @@ static inline void IncrementalCopy(const char* src, char* op, int len) {
 
 但是是否有办法更快呢？下面就是一个更快的实现。首先我们是的op和src的差距拉到>=8,一旦这样之后的话
 就可以开始使用8个字节进行copy了。为了将差距拉到8，不断地做8个字节copy并且调整dest.
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 const int kMaxIncrementCopyOverflow = 10;
 
 static inline void IncrementalCopyFastPath(const char* src, char* op, int len) {
@@ -526,7 +526,7 @@ static inline void IncrementalCopyFastPath(const char* src, char* op, int len) {
 }
 #+END_SRC
 可能阅读这个代码比较难理解，作者良好的注释又有帮助了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Equivalent to IncrementalCopy except that it can write up to ten extra
 // bytes after the end of the copy, and that it is faster.
 //
@@ -567,7 +567,7 @@ EmitLiteral就是输出literal.虽然从Format很直观地看出literal应该怎
 allow_fast_path场景是如果op后面有15个空余字节的话，那么就可以使用2个8字节copy完成。这个在CompressFragment代码里面可以看到，
 应用层面上只有在确保了op后面15个空余字节才会让allow_fast_path==true.而其他逻辑的话因为就是正常的copy都走了memcpy这个分支。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline char* EmitLiteral(char* op,
                                 const char* literal,
                                 int len,
@@ -613,7 +613,7 @@ static inline char* EmitLiteral(char* op,
 
 *** EmitCopy
 EmitCopy非常简单也不牵扯到数据的memcpy,只是写入(offset,length)这两个分量。但是之前说了如果length>=64的话，那么是需要进行copy的切分的。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static inline char* EmitCopyLessThan64(char* op, int offset, int len) {
   DCHECK_LE(len, 64);
   DCHECK_GE(len, 4);
@@ -654,7 +654,7 @@ static inline char* EmitCopy(char* op, int offset, int len) {
 
 ** Compress
 终于进行Compress正题了，看看大体框架吧。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 size_t Compress(Source* reader, Sink* writer) {
 
     // 首先取得reader的长度进行编码放在最开头
@@ -759,7 +759,7 @@ size_t Compress(Source* reader, Sink* writer) {
 #+END_SRC
 
 整个过程并不是很麻烦，无非就是切出chunk出来并且初始化hashtable然后交给CompressFragment来处理。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 char* CompressFragment(const char* const input,
                        const size_t input_size,
                        char* op,
@@ -922,7 +922,7 @@ char* CompressFragment(const char* const input,
 Uncompress最终走到的逻辑是下面这个代码。比较重要的就是SnappyDecompressor以及Write这个接口。不过从代码逻辑上看非常简单，
 首先ReadUncompressedLength，然后writer设置最终解码之后应该多大。然后decompressor开始分析各个tag了。最后decompressor判断是否读完以及
 writer判断自己解码之后长度和uncompressed_len是否相同。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template <typename Writer>
 static bool InternalUncompress(Source* r,
                                Writer* writer,
@@ -947,7 +947,7 @@ static bool InternalUncompress(Source* r,
 *** Writer
 我们首先看看一个实现SnappyArrayWriter.最关键的两个函数就是Append(copy literal)以及AppendFromSelf(copy copy).
 然后对于SnappyDecompressor分析出literal以及copy之后就可以调用这两个函数来进行解压缩了。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class SnappyArrayWriter {
  private:
   char* base_; // 起始地址
@@ -1014,7 +1014,7 @@ class SnappyArrayWriter {
 #+END_SRC
 
 不难想到如果修改一下这个实现的话那么可以做检查器，我们只是验证压缩包是否正确。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // A Writer that drops everything on the floor and just does validation
 class SnappyDecompressionValidator {
  private:
@@ -1048,7 +1048,7 @@ SnappyDecompressor有几个比较重要的方法：
 - RefillTag.填充tag所需要的字节到scratch[]内部。这个也没有太大问题。
 在看这个代码之前，我们想想如果我们得到scratch之后应该如何从中提取tag信息呢？最好的方式就是打表。
 因为tag的头一个字节反应了这个tag所有信息，所以在snappy里面有char_table这个表以头一个字节内容作为索引
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // Data stored per entry in lookup table:
 //      Range   Bits-used       Description
 //      ------------------------------------
@@ -1071,7 +1071,7 @@ static const uint16 char_table[256] = {
 - [8..10]表示copy的offset / 256,对于offset剩余内容通过extra表示
 - [11..13]表示后面剩余多少个字节。通过wordmask来提取。
 这里workmask
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 static const uint32 wordmask[] = {
   0u, 0xffu, 0xffffu, 0xffffffu, 0xffffffffu
 };
@@ -1079,7 +1079,7 @@ static const uint32 wordmask[] = {
 这样如果extra bytes==1的话，通过& 0xffu可以取到1个字节。这个在代码里面就会有体现。非常精巧。
 
 我们看看DecompressAllTags这个函数实现
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
   // Process the next item found in the input.
   // Returns true if successful, false on error or end of input.
   template <class Writer>
@@ -1143,7 +1143,7 @@ static const uint32 wordmask[] = {
 
 ** Example
 工作很简单，首先从main.cc里面读取内容然后压缩到main.cc.compress文件里面，然后读取出来解压缩对比是否正确。这里我们演示了Sink如何封装。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>

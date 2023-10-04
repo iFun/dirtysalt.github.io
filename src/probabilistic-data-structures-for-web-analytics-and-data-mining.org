@@ -57,7 +57,7 @@ It is clear that if sketch is large in comparison with the cardinality of the da
 
 一个value会映射到每个row上面某个column。因为对于某一个cell来说可能会有不同的value重复叠加这个单元。如果sketch比较大的，那么对应某个row来说其中的column被重复叠加的概率就比较小，而这个column的值肯定是比其他row上面对应的column要小的。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class CountMinSketch {
     long estimators[][] = new long[d][w]    // d and w are design parameters
     long a[] = new long[d]
@@ -110,7 +110,7 @@ One can see that result is more accurate, at least for the most frequent items. 
 
 As an alternative, more careful correction can be done to compensate the noise caused by collisions. One possible correction algorithm was suggested in (5). It estimates noise for each hash function as the average value of all counters in the row that correspond to this function (except counter that corresponds to the query itself), deduces it from the estimation for this hash function, and, finally, computes the median of the estimations for all hash functions. Having that the sum of all counters in the sketch row equals to the total number of the added elements, we obtain the following implementation:
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 class CountMeanMinSketch {
     // initialization and addition procedures as in CountMinSketch
     // n is total number of added elements

@@ -229,4 +229,3 @@ STORE query_revenues INTO ‘myoutput’
 ** FUTURE WORK
 ** SUMMARY
 
-
