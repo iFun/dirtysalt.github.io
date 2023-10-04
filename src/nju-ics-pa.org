@@ -99,7 +99,7 @@ riscv64里面的中断例程大约就是这样的 (abstract-machine/am/src/riscv
   - 在 Context 中设置 mstatus 中MPIE位，还可以在mret的时候把中断打开
   - 在 Context 中的 mepc 中可以记录上次切换的PC地址，然后mret的时候又可以切换回去
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // abstract-machine/am/include/arch/riscv64-nemu.h
 
 struct Context {

@@ -8,7 +8,7 @@ ORC文件使用了bit-packing技术来对整数进行编码 https://orc.apache.o
 
 如果使用c++来编写unpacking的话，大致是这样的:
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 // in: input
 // fb: fixed bit
 // data: output

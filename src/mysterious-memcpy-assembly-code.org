@@ -4,7 +4,7 @@
 
 下面代码在profile的时候发现，每次循环的时候rax在和奇怪的地址进行比较 0x16181e0
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template <typename T>
 inline uint32_t FixedLengthColumnBase<T>::serialize(size_t idx, uint8_t* pos) {
     strings::memcpy_inlined(pos, &_data[idx], sizeof(T));
@@ -28,7 +28,7 @@ void FixedLengthColumnBase<T>::serialize_batch(uint8_t* __restrict__ dst, Buffer
 
 改成下面这样的写法，似乎也不太行，那个奇怪的地址比较还在。不过代码好像清爽不少。
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template <typename T>
 inline uint32_t FixedLengthColumnBase<T>::serialize(size_t idx, uint8_t* pos) {
     strings::memcpy_inlined(pos, &_data[idx], sizeof(T));
@@ -96,7 +96,7 @@ uint32_t FixedLengthColumnBase<T>::serialize_default(uint8_t* pos) {
 
 ** 手工使用memcpy
 
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
 template <typename T>
 void FixedLengthColumnBase<T>::serialize_batch(uint8_t* __restrict__ dst, Buffer<uint32_t>& slice_sizes,
                                                size_t chunk_size, uint32_t max_one_row_size) {
