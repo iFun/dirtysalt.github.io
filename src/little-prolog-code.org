@@ -12,7 +12,7 @@ Prolog的求解器本质上是通过DFS来找到解空间的，在搜索期间�
 我们可以通过在规则里面增加print语句来调试。print可以打印出在某个步骤的时候变量是什么内容。但是如同上面提到的，这些变量不一定是确切的值，也可能是约束。
 好在即便是约束，Gnu Prolog也可以使用比较human-readbale的方式打印出来，所以调试并不是件特别困难的事情。
 
-#+BEGIN_SRC prolog
+#+BEGIN_SRC Prolog
 % load file.
 % ['test.prolog']
 

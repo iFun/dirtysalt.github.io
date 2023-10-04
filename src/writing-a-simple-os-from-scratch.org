@@ -41,7 +41,7 @@ GDT管理内存的方式，还是类似段式内存管理，可以在一个segme
 
 [[../images/os-gdt-descriptor.png]]
 
-#+BEGIN_SRC asm
+#+BEGIN_SRC Asm
 gdb_descriptor:
 dw gdt_end - gdt_start - 1
 dd gdt_start

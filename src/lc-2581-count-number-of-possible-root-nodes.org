@@ -11,7 +11,7 @@ https://leetcode.cn/problems/count-number-of-possible-root-nodes/
 
 "换根DP", 这个解法之前还没有听说过。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def rootCount(self, edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
         n = len(edges) + 1

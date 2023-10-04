@@ -11,7 +11,7 @@ https://leetcode.com/problems/online-majority-element-in-subarray/
 
 当时作者给出的算法是这样的：不断地消解两个连续的元素，如果他们一致就保留两个，否则全部丢弃。但是这个算法会对数组修改。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def majority_vote(a):
     while len(a) != 1:
         k = 0
@@ -39,7 +39,7 @@ print(majority_vote([1,2,1,1,2,2]))
 - 如果 x==P, 那么 C++. 如果 x!=P, 那么 C--.
 - 在结尾时，如果C>0的话，那么说明P就是majority元素.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def majority_vote(a):
     p, c = None, 0
     for x in a:
@@ -67,7 +67,7 @@ print(majority_vote([1,2,1,1,2,2]))
 - a.freq < b.freq => Tree(b.val, b.freq - a.freq)
 只有当freq>0的话，val才是majority元素.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class SegTree:
     def __init__(self):
         self.val = self.freq = 0

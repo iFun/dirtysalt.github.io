@@ -10,7 +10,7 @@ https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/d
 
 这个代码写正确还真花费了一些时间，主要复杂性都是在这个 State 对象里面。另外就是算法需要找到正确的环，就是 findRoot这个部分。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def getMaxFunctionValue(self, receiver: List[int], k: int) -> int:
@@ -101,7 +101,7 @@ class Solution:
 
 后来看了题解，觉得这个倍增算法很简单很容易理解。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def getMaxFunctionValue(self, receiver: List[int], k: int) -> int:

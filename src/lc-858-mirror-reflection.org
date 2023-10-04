@@ -10,7 +10,7 @@ https://leetcode.com/problems/mirror-reflection/
 - 如果是x到达边缘的话，那么dx就会变换方向
 - 如果是y到达边缘的话，那么dy就会变换方向
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def mirrorReflection(self, p: int, q: int) -> int:
         x, y = 0, 0

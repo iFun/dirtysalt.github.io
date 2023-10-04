@@ -15,7 +15,7 @@ https://leetcode.cn/problems/maximum-number-of-groups-with-increasing-length/des
 
 [[../images/maximum-number-of-groups-with-increasing-length-1.png]]
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
   class Solution:
       def maxIncreasingGroups(self, usageLimits: List[int]) -> int:
@@ -44,7 +44,7 @@ https://leetcode.cn/problems/maximum-number-of-groups-with-increasing-length/des
 - 如果当前填满的话，那么将多余的放在后面，并且将预期值+1
 - 因为后面的数更大，会尽量用后面的数去填，所以不会出现重叠
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def maxIncreasingGroups(self, usageLimits: List[int]) -> int:
         usageLimits.sort()

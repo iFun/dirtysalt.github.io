@@ -4,7 +4,7 @@ https://leetcode.cn/problems/handling-sum-queries-after-update/
 
 这题看题解中还有直接模拟超大数的bit count. 按照直觉来说这种办法其实并不容易work, 但是运行时间却比线段树要好很多。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def handleQuery(self, nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:
         s = sum(nums2)
@@ -34,7 +34,7 @@ class Solution:
 2. 递归的时候，想要更新的区间可以不进行分隔，但是作用区间需要分隔。
 3. 延迟线段树需要设置 `lazy[i]`, 表示它的子树是否已经处理过。如果子树没有处理过的话，那么先处理两个子树。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def handleQuery(self, nums1: List[int], nums2: List[int], queries: List[List[int]]) -> List[int]:

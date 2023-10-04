@@ -65,4 +65,3 @@ machines
 cool system
 
 [[../images/google-cool-system.png]]
-

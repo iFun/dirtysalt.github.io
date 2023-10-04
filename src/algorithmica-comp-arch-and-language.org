@@ -30,7 +30,7 @@ Computed Goto 在glibc IO-related部分非常常见
 Compilers use this technique when the values are densely packed together (not necessarily strictly sequentially, but it has to be worth having blank fields in the table). It can also be implemented explicitly with a computed goto:
 #+END_QUOTE
 
-#+BEGIN_SRC cpp
+#+BEGIN_SRC Cpp
 void weather_in_russia(int season) {
     static const void* table[] = {&&winter, &&spring, &&summer, &&fall};
     goto *table[season];

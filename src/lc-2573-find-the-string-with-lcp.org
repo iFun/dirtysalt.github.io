@@ -4,7 +4,7 @@
 - 构建的时候会验证对称性和grid[i][j]>1的情况
 - 最后验证的时候会验证grid[i][j]=0的情况
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def findTheString(self, lcp: List[List[int]]) -> str:
         n = len(lcp)
@@ -71,7 +71,7 @@ class Solution:
   - 以及grid[i][j] = 0的条件
 - 所有需要最后一步进行验证，包括矩阵是否对称。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def findTheString(self, lcp: List[List[int]]) -> str:
         n = len(lcp)

@@ -11,7 +11,7 @@ https://leetcode-cn.com/problems/orderly-queue/
 
 [[../images/lc-899-orderly-queue.png]]
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def orderlyQueue(self, S: str, K: int) -> str:
         if K == 1:

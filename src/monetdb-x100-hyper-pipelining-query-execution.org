@@ -36,7 +36,7 @@ A = t0 * t1
 
 可以看到t0/t1的load/store. 虽然我们有CPU cache的加持，但是对memory bandwidth开销还是很大的。Incremental Materialization则是通过定义compound vectorized primitives来解决，假设我们定义如下操作，首先f这个函数依然可以使用向量化技术，此外我们还减少了内存的读写压力。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def f(a, b, c, index, size):
     for(i=0;i<size;i++):
         j = index + i

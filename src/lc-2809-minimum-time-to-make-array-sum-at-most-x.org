@@ -10,7 +10,7 @@ https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/descriptio
 - 如果不考虑nums1的影响，那么按照nums2的顺序这样选择是没有问题的，甚至只需要贪心就行。
 - 如果考虑了nums1的话，那么就需要使用dp来确保选择是最优的。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minimumTime(self, nums1: List[int], nums2: List[int], x: int) -> int:
         xs = list(zip(nums1, nums2))

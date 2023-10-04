@@ -44,7 +44,7 @@ map_rerank: 这种一般不会用在总结的 chain 上，而是会用在问答�
 
 我也照着github那个参考教程写了一个，就是勉强能跑起来，但是效果不好。我选择的语料是starrocks/docs下面的md文件，同时购买gpt plus得到的效果是还可以的。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 #!/usr/bin/env python
 # coding: utf-8
 

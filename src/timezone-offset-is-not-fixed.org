@@ -31,7 +31,7 @@ void TimestampValue::from_unixtime(int64_t second, const cctz::time_zone& ctz) {
 
 Java程序可以参考下面额：
 
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 
 package com.starrocks.lab;
 

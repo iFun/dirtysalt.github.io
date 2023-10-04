@@ -9,7 +9,7 @@
 - 然后看之后序列的时候，考虑一些是否可以将之前某个item给去掉（保证category数量只能增加）
 - 同时考虑去掉这个item之后cost的改变。（减去去掉item的profile, 并且更新category数量）
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
         items.sort(key=lambda x: -x[0])

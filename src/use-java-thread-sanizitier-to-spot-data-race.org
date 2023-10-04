@@ -18,7 +18,7 @@ use-java13; unset CLASSPATH;  bash configure --prefix=`pwd`/installed ; make CON
 
 简单的Java程序，多个线程共同修改某个变量
 
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 package com.starrocks.lab;
 
 import java.util.concurrent.ExecutorService;

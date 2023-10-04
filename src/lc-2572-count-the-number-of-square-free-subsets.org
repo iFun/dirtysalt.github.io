@@ -10,7 +10,7 @@ https://leetcode.cn/problems/count-the-number-of-square-free-subsets/
 
 这样写来写出的代码就特别地长，比如下面这样
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def squareFreeSubsets(self, nums: List[int]) -> int:
@@ -86,7 +86,7 @@ class Solution:
    - 选择状态st ^ m, 同时选择m.
 - 可以看到其实这里就能把1选入进去了，因为 `mask[1] = 0`.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def squareFreeSubsets(self, nums: List[int]) -> int:
         primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]

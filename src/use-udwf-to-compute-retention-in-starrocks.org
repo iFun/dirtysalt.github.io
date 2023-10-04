@@ -8,7 +8,7 @@
 
 然后我们要计算，T这天活跃的用户，在T+1, T+2, T+3 后面几天的活跃数量。
 
-#+BEGIN_SRC sql
+#+BEGIN_SRC Sql
 create table user_activity (uid int, date string)
     engine = olap duplicate key (`uid`)
     distributed by hash(`uid`)
@@ -19,7 +19,7 @@ create table user_activity (uid int, date string)
 
 使用python脚本来生成测试数据
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def main():
     data = []
     today = datetime.date.today()
@@ -42,7 +42,7 @@ main()
 
 然后使用 stream load 将这些数据导入到 SR 里面
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC Shell
 curl --location-trusted -u root: -H "label:124" \
     -H "column_separator:," \
     -H "columns: date,uid" \
@@ -89,7 +89,7 @@ MySQL [zya]> select * from user_activity;
 
 然后在统计的时候，我们使用不同的 bit right shift 来统计不同天数的留存情况，其中 `RetentionEncode` 是我们要实现的UDWF(user define window function)
 
-#+BEGIN_SRC sql
+#+BEGIN_SRC Sql
 with Rte as (select uid, date as date , RetentionEncode(date)  over (partition by uid order by date desc) as encoded from user_activity)
      select date, count(1) as cohort,
           sum(bitand(bit_shift_right(encoded, 1), 1)) as day1,
@@ -103,7 +103,7 @@ with Rte as (select uid, date as date , RetentionEncode(date)  over (partition b
 
 https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/JAVA_UDF#java-udfs
 
-#+BEGIN_SRC sql
+#+BEGIN_SRC Sql
 drop global function RetentionEncode(string);
 
 CREATE GLOBAL AGGREGATE FUNCTION RetentionEncode(string)
@@ -175,7 +175,7 @@ https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/JAVA_UDF#use-
 - 使用 `TreeSet` 维护63天以内的所有的日期
 - 遍历这个 `TreeSet` 来生成对应的 encoded
 
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 package com.starrocks.udf;
 
 import java.text.SimpleDateFormat;

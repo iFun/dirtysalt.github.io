@@ -18,7 +18,7 @@ https://oi-wiki.org/graph/euler/
 原理比较好理解，但是我始终没有想到比较好的数据结构，因为每次选择出来回路需要覆盖回去。如果不考虑这个部分的实现，
 算法复杂度好像还可以，大约是在O(N)左右。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
         from collections import defaultdict, Counter
@@ -66,7 +66,7 @@ class Solution:
 UPDATE: 其实我们在find_path的时候不断地循环查找head的所有路径，一旦确认head所有路径都被查找完成了，就可以推送到ans里面，否则继续放在queue里面。
 我觉得下面的实现应该是更加高效，虽然提交的时候运行时间更长了，整个时间复杂度应该是O(N).
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def validArrangement(self, pairs: List[List[int]]) -> List[List[int]]:
         from collections import defaultdict, Counter

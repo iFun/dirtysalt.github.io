@@ -436,7 +436,7 @@ http://www.infoq.com/cn/news/2012/08/32-most-important-algorithms
 这里对大家可能选择的值进行模拟。如果在智商在90一下的话，那么猜测33。每提高3个智商点的话，
 他的猜测会在原来的基础上(* 2/3). 我在网上查阅到说智商的方差是15.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 import numpy as np
 
 vs = np.random.normal(loc = 100, scale = 15, size = 100000)
@@ -472,7 +472,7 @@ tfidf算法考虑单词在一篇文档出现的次数，和这个单词在所有
 
 下面是tfidf和bm25算法实现，下面实现中tfidf是个变种。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def tfidf_weight(X):
     """ Weights a Sparse Matrix by TF-IDF Weighted """
     X = coo_matrix(X)

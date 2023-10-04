@@ -16,7 +16,7 @@ https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree/
 这个tarjan-lca的算法大致思路就是，某个点的parent会随着dfs不断地修改，这个点的parent始终是在最近一次访问的root上。
 为了更好更快递修改点的parent, 就需要使用union find set结构，具体说应该是find结构就行。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def tarjan_lca(graph, root, queries):
     class UnionFindSet:
         def __init__(self, n):

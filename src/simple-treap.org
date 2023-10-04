@@ -9,7 +9,7 @@ treap应该是tree + heap得来的，tree是因为它是一个二叉树，heap�
 treap也需要有旋转操作，当priority不满足的时候也需要进行旋转。删除某个节点的话，可以将这个节点的priority设置为infinity,
 然后不断地下沉到叶子上，最后删除这个叶子就好了。但是因为涉及到旋转，所以插入和删除函数都是递归的。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 def left_rotate(r: TreeNode, rl: TreeNode):
     if r.priority <= rl.priority:
@@ -75,7 +75,7 @@ def delete_tree_node(root: TreeNode, val):
 同样为了看看插入节点和删除节点的变化，可以使用graphviz来做可视化。我们逆序插入1-12这些数值，然后删除1，2节点，看看每次变化。
 因为priority是随机数，所以为了确保确定性，最好设置上随机数的种子。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def test_pprint_tree():
     root = None
     stream = StringIO()

@@ -12,7 +12,7 @@ https://leetcode.cn/contest/weekly-contest-335/problems/split-the-array-to-make-
 - left[p] 表示p因子第一次出现的位置
 - right[i] 表示位置i包含因子的最远位置
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 from typing import List
 
 

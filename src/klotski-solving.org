@@ -272,7 +272,7 @@ timer = 0.026241064071655273
 今天重新把这题目拿出来看看，我在网上找到了两个比较复杂的例子，测试了一下两者的时间差距。
 这两个例子是在 [[http://w01fe.com/blog/2009/01/the-hardest-eight-puzzle-instances-take-31-moves-to-solve/][这里]] 找到的。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 def test_case(source_matrix):
     print('==============================')

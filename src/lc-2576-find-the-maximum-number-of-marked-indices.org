@@ -6,7 +6,7 @@ https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices/
 
 如果是k的话，那么选择最小k元素，和最大k元素，然后确认两两之间是否满足条件就行。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def maxNumOfMarkedIndices(self, nums: List[int]) -> int:
         nums.sort()

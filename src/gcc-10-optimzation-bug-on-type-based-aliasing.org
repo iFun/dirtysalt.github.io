@@ -23,7 +23,7 @@ doris-sandbox04 :: ~/public » ./opt2.s
 
 复现代码如下：
 
-#+BEGIN_SRC cpp
+#+BEGIN_SRC Cpp
 
 #include <cstdint>
 #include <vector>

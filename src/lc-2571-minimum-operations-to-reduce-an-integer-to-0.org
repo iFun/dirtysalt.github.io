@@ -6,7 +6,7 @@ https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/
 
 每次扩展的时候其实不用考虑所有的bit，只需要考虑lowbit的就行，然后加上记忆化搜索。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minOperations(self, n: int) -> int:
         import functools
@@ -26,7 +26,7 @@ class Solution:
   - 而如果每直接每个位都-1, 那么至少2次操作
 - 对于不连续的1，那么可以-1
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minOperations(self, n: int) -> int:
         ans = 1

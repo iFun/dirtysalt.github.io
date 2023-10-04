@@ -20,7 +20,7 @@ https://leetcode.cn/problems/string-transformation/description/
 
 很早之前看过课本上的kmp算法，感觉有点不太好理解，因为里面构建状态是类似backoff的状态，而不是上次match的状态。我觉得题解里面给出的模板挺好的，可以按照这个方式去理解一下。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def mat_mul(a, b, MOD):
     R, K, C = len(a), len(a[0]), len(b[0])
     res = [[0] * C for _ in range(R)]

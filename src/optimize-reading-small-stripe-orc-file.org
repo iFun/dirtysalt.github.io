@@ -18,7 +18,7 @@ Optimize small read on ORC(small row group index/stripe/file) by dirtysalt · Pu
 
 这个我在本地使用自己创建的小文件进行了验证，这个小文件350个stripes，一个stripe大约700K. 代码如下
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
         with pyorc.Writer(fh, typedef, compression=pyorc.CompressionKind.ZLIB,
                           stripe_size=128, batch_size=1) as writer:
             for idx in range(1000 * 1000):

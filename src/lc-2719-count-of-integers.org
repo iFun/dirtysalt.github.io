@@ -12,7 +12,7 @@
 3. isNum 表示当前是否得到的是有效数字，因为起始我么允许使用"000" 这样的，所有 isNum 开始就是 true. 这个里面可以省略
 4. isLimit 表示前缀是否被锁定
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def count(self, num1: str, num2: str, min_sum: int, max_sum: int) -> int:
 
@@ -49,7 +49,7 @@ class Solution:
 
 这题里面就需要维护一个 mask. 然后这题里面起始不允许出现前缀 0 这样的答案，所以一开始 isNum = false
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def numDupDigitsAtMostN(self, n: int) -> int:

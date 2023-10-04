@@ -201,4 +201,3 @@ There are problems that MillWheel is poorly suited for. Mono-lithic operations t
 If a computation is performing an aggregation based on low wa-termark timers, MillWheel’s performance degrades if data delays hold back low watermarks for large amounts of time. This can result in hours of skew over buffered records in the system. Often-times memory usage is proportional to skew, because an application depends on low watermarks to flush this buffered data. To prevent memory usage from growing without bound, an effective remedy is to limit the total skew in the system, by waiting to inject newer records until the low watermarks have advanced. # 使用LW定时器的时候，如果输入数据延迟到来的话会让LW一直不动，造成的结果就是所有计算节点需要一直buffer数据（因为LW触发计算，计算完成之后，这部分buffered数据才可以释放）。一个有效的解决办法是injector插入新的记录让LW增长。
 
 ** RELATED WORK
-

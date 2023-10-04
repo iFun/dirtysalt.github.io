@@ -19,7 +19,7 @@
 
 因为Dremio不支持View，所以将Q15进行改写成为下面SQL, 然后观察运行情况
 
-#+BEGIN_SRC SQL
+#+BEGIN_SRC Sql
 with revenue0 as(
     select
         l_suppkey as supplier_no,
@@ -204,7 +204,7 @@ nvme0n1           0.00     0.00    1.00    0.00     4.00     0.00     8.00     0
 
 为了方便还是使用tpch/Q15进行测试，使用下面SQL创建物化 Raw Reflections
 
-#+BEGIN_SRC SQL
+#+BEGIN_SRC Sql
 with revenue00 as(
     select
         l_suppkey as supplier_no,
@@ -223,7 +223,7 @@ with revenue00 as(
 
 使用Raw Relections之后，原本SQL可以改写为
 
-#+BEGIN_SRC SQL
+#+BEGIN_SRC Sql
 select
   s_suppkey,
   s_name,

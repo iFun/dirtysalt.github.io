@@ -23,7 +23,7 @@
 
 在计算 x% m 的时候作者有个优化值得说下，假设sizeof(x) = 4的话，那么可以 (x * m) >> 32. 因为 x / (2 ^ 32) 可以认为就是均匀打散的。另外就是有个murmur finalizer可以打散64bit value
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 input: key x, seed s
 h ← x+s
 h ← (h xor (h >> 33)) ∗ 0xff51afd7ed558ccd

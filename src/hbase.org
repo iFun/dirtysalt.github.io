@@ -2,7 +2,7 @@
 
 ** 单节点搭建
 修改conf/hbase-site.xml,增加选项
-#+BEGIN_SRC XML
+#+BEGIN_SRC Xml
  <property>
   <property>
     <name>hbase.cluster.distributed</name>

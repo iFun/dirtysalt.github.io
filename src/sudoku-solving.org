@@ -7,7 +7,7 @@
 
 增加了剪枝策略：选择下一个放置点的时候，尽可能考虑这个点上可选项最少。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
     # 限制策略：考虑可选数值最少的点
     class RestrictedNextStrategy:
         def __init__(self, ps):

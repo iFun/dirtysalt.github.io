@@ -35,7 +35,7 @@ https://leetcode-cn.com/problems/maximize-grid-happiness/
 - 基准情况是 `dp[-1][0][0][0]=0`
 - 考虑到值只能是越来越大，所以我们结果只需要去查询所有状态的最大值就行。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def getMaxGridHappiness(self, m: int, n: int, introvertsCount: int, extrovertsCount: int) -> int:
         dp = {}

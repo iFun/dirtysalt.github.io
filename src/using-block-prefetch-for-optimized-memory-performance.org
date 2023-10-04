@@ -41,7 +41,7 @@ Block prefetch and three phase processing are general techniques for improving t
 
 Aligning “hot” branch targets to 16 byte boundaries can improve speed, by maximizing the number of instruction fills into the instruction-byte queue. This is especially important for short loops, like a block prefetch loop. This wasn’t shown in the code examples, for the sake of readability. It can be done with the ALIGN pragma, like this:
 
-#+BEGIN_SRC asm
+#+BEGIN_SRC Asm
 align 16
 prefetchloop:
   mov ebx, [esi+ecx*8-64]

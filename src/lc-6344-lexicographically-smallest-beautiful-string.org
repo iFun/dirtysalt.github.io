@@ -12,7 +12,7 @@ https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
 
 假设我们得到了 "abcdeaaaaa", 我们是在e这个位置上+1得到的，问题就是修正之后的aaaaa了，同样我们只需要确保不存在长度2/3的回文串就行。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def smallestBeautifulString(self, s: str, k: int) -> str:
         CH = [ord(x) - ord('a') for x in s]

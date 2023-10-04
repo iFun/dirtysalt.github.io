@@ -15,7 +15,7 @@ https://leetcode.cn/problems/apply-operations-to-make-all-array-elements-equal-t
 
 这题有个需要注意的地方就是结尾，当我们处理 A[n-1]之后，我们还需要确保 C后面的元素（k-1）个都是 0.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def checkArray(self, nums: List[int], k: int) -> bool:
         if k == 1: return True

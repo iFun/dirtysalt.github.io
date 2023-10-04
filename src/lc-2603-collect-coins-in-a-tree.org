@@ -17,7 +17,7 @@ https://leetcode.cn/problems/collect-coins-in-a-tree/
 
 然后在第二次遍历的时候，我们依然可以说使用 `ind[x]=1` 判断条件。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def collectTheCoins(self, coins: List[int], edges: List[List[int]]) -> int:
         n = len(edges) + 1

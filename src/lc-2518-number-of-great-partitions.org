@@ -13,7 +13,7 @@ https://leetcode.cn/contest/weekly-contest-325/problems/number-of-great-partitio
 
 其中X, Y都可以使用一个动态规划计算出来。下面代码里面可能MOD没有怎么处理好，但是可以通过测试用例。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def countPartitions(self, nums: List[int], k: int) -> int:

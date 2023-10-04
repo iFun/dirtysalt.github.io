@@ -19,7 +19,7 @@
 所以总体时间复杂度是O(VE). 我的算法(BFS版本)在实现上和链接文章的里面给的实现有点不同，一个差别是将处理增广路径单独分离出来，
 另外一个差别就是增广路径的表示我觉得会更加清晰一些。另外我的实现中顶点编号从1开始。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def hungarian(adj):
     n = len(adj)
     matching = [0] * n

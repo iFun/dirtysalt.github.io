@@ -5,7 +5,7 @@
 
 引入的是hdfs-client 2.8.5版本，我尝试了一下切换到其他版本也存在同样的问题。高CPU使用率相对还比较好分析，尝试了下面两种方法来定位。
 
-#+BEGIN_SRC xml
+#+BEGIN_SRC Xml
 <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.8</java.version>
@@ -106,7 +106,7 @@ perf-map-agent地址在这 https://github.com/jvm-profiling-tools/perf-map-agent
 
 其实拿出代码来看，里面也没有什么复杂的。读取数据，然后拼接字符串，性能肯定不会是在jvm lib里面，唯一的原因就是在debug日志这块，这个和最开始Java HPROF的测试结果是可以对上的。
 
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 private void wire(final String header, final InputStream inStream)
   throws IOException {
     final StringBuilder buffer = new StringBuilder();

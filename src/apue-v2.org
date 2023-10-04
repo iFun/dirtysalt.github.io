@@ -47,7 +47,7 @@
  整数，内核用它标识一个特定进程正在访问的文件。对于每一个应用程序，shell都会为这个应用程序打开
  默认的3个fd,分别是stdin,stdout和stderr.这3个fd的值通常是0,1,2,但是为了程序的可移植性考虑的话，
  最好使用
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
  #include <unistd.h>
  #define STDIN_FILENO 0
  #define STDOUT_FILENO 1
@@ -71,7 +71,7 @@
 
 *** 错误处理
  当Unix函数出错时，常常返回一个负值并且使用errno来表示这个错误号。
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
  #include <errno.h>
  //是否支持多线程
  #ifdef SUPPORT_MULTI_THREADS
@@ -89,7 +89,7 @@
  需要认识到errno其实是一个宏。
 
  同时C标准定义了两个函数来帮助打印错误信息
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
  const char* strerror(int errnum); //根据错误号返回一个错误信息字符串
  void perror(const char* msg); //msg:<错误消息>打印到标准错误上
 #+END_SRC
@@ -124,7 +124,7 @@
 - 时钟时间(wall clock time).
 - 用户CPU时间(user cpu time).
 - 系统CPU时间(sys cpu time).
-#+BEGIN_SRC C++
+#+BEGIN_SRC Cpp
  #include <cstdio>
  #include <cstdlib>
  #include <cerrno>

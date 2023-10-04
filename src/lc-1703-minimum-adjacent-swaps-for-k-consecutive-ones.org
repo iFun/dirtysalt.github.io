@@ -11,7 +11,7 @@ https://leetcode-cn.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/
 2. 每个点因为顺序原因少移动的距离。
 关于(2)可以举个例子， 假设 010101 -> 000111, 最左边的1到最右边的1距离是4，不过因为它是最外面的一个1，所以只需要移动4-2=2。将（2）单独分离出来计算可以减少逻辑复杂度，并且(2)这个距离是不变。下面是计算(2)这个值得代码
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
  saved = 0
  for i in range(mid):
      saved += (mid - i)
@@ -27,7 +27,7 @@ https://leetcode-cn.com/problems/minimum-adjacent-swaps-for-k-consecutive-ones/
 
 下面是完整代码
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minMoves(self, nums: List[int], k: int) -> int:
         arr = []

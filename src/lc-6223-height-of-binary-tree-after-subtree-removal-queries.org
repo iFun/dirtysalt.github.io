@@ -9,7 +9,7 @@ https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries
   - 如果裁掉右子树，高度是多少？ `max(root.lh + d, h)`
 - 遍历queries去结果集合里面查询。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def treeQueries(self, root: Optional[TreeNode], queries: List[int]) -> List[int]:
         index = {}

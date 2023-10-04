@@ -14,7 +14,7 @@
 然后分别遍历1-7这些数字观察树的旋转情况。只要数字在树里面，那么每次访问数字最终都能到根节点上。
 虽然我的代码跑这个结果和书里面的不太一样，但是我觉得我的更好（不过没有完整测试，可能还是有bug)
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 def uplift_left(r, rl):
     r.left = rl.right
@@ -125,7 +125,7 @@ def access_tree_node(r: TreeNode, val):
 2. 调用 `tree_to_dot` 传入节点，graph名称和stream
 3. 最后将stream输出并且调用gvpack+graphviz产生图片。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 def test_pprint_tree():
     root = None
     stream = StringIO()

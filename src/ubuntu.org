@@ -336,7 +336,7 @@ Ubuntu Software Center -> Edit -> Software Sources -> Ubuntu Sofware(Download fr
 
 *** 设置默认浏览器
 System Settings =》 Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
-#+BEGIN_SRC elisp
+#+BEGIN_SRC Elisp
 (setq browse-url-generic-program (executable-find "chromium-browser")
       browse-url-browser-function 'browse-url-generic)
 #+END_SRC

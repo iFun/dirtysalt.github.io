@@ -62,4 +62,3 @@ class BlockAllCookiePolocy(cookielib.CookiePolicy):
         self.my_ss.cookies.set_policy(BlockAllCookiePolocy())
 ...
 #+END_SRC
-

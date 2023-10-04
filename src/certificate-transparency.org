@@ -48,7 +48,7 @@ CT可以在现在的TSL/SSL系统上改进得到，下图是三种方式：
 2. prefix = append，prefix表示为了计算tree大小为N的root hash, 需要使用哪些节点。这个问题等同于加入编号为N的节点。
 3. update(N) 表示将要加入编号为N的节点，计算出来hash之后，需要更新哪些level.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 #!/usr/bin/env python3
 # coding:utf-8
 # Copyright (C) dirlt

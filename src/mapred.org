@@ -23,7 +23,7 @@
   - export HADOOP_CLASSPATH=/path/to/your/hadoop-lzo-lib.jar
   - export JAVA_LIBRARY_PATH=/path/to/hadoop-lzo-native-libs:/path/to/standard-hadoop-native-libs
 - 修改core-site.xml配置
-#+BEGIN_SRC XML
+#+BEGIN_SRC Xml
 <property>
 <name>io.compression.codecs</name>
 <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,org.apache.hadoop.io.compress.BZip2Codec</value>

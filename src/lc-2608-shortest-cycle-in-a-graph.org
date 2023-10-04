@@ -8,7 +8,7 @@ https://leetcode.cn/problems/shortest-cycle-in-a-graph/
 
 那这个问题就相当是BFS，但是遍历的时候需要避开某些边。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def findShortestCycle(self, n: int, edges: List[List[int]]) -> int:
 

@@ -8,7 +8,7 @@ https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/descripti
 
 然后就是这个状态中value必须取模k, 否则这个状态数量就太大了。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def numberOfBeautifulIntegers(self, low: int, high: int, k: int) -> int:

@@ -20,13 +20,13 @@ https://github.com/StarRocks/starrocks/blob/main/java-extensions/hudi-reader/src
 
 这个factory类使用了定制的class loader. 因为如果不定制class loader的话，那么BE启动的时候其实会使用 `hadoop_env.sh` 里面定义的classpath
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC Bash
 export HADOOP_CLASSPATH=${STARROCKS_HOME}/lib/hadoop/common/*:${STARROCKS_HOME}/lib/hadoop/common/lib/*:${STARROCKS_HOME}/lib/hadoop/hdfs/*:${STARROCKS_HOME}/lib/hadoop/hdfs/lib/*
 #+END_SRC
 
 这个classpath加载的是 `be/lib/hadoop` 下面的jar.  **这些jars可能和目前hudi reader的jar是不兼容的，这就是要做定制class loader的原因。**
 
-#+BEGIN_SRC java
+#+BEGIN_SRC Java
 public class HudiSliceScannerFactory implements ScannerFactory {
     static ChildFirstClassLoader classLoader;
 
@@ -67,7 +67,7 @@ public class HudiSliceScannerFactory implements ScannerFactory {
 
 这个比较简单，修改pom.xml就行。并且为了和presto自带的hadoop兼容，我们需要使用相同的版本 2.7.4.
 
-#+BEGIN_SRC xml
+#+BEGIN_SRC Xml
         <presto.hadoop.version>2.7.4-11</presto.hadoop.version>
         <presto.hive.version>3.0.0-8</presto.hive.version>
         <hadoop.version>2.7.4</hadoop.version>
@@ -81,7 +81,7 @@ public class HudiSliceScannerFactory implements ScannerFactory {
 
 完了之后还需要修改一下 be/conf/core-site.xml, 告诉hadoop jar：如果遇到 s3://这样的协议，那么使用其中某个类来处理。
 
-#+BEGIN_SRC xml
+#+BEGIN_SRC Xml
   <property>
       <name>fs.s3.impl</name>
       <value>org.apache.hadoop.fs.s3a.S3AFileSystem</value>
@@ -174,7 +174,7 @@ public class org.apache.hadoop.util.PerformanceAdvisory {
 
 看上去去解决办法就是，把hadoop-common-2.7.4从hadoop-aws里面挪出去
 
-#+BEGIN_SRC xml
+#+BEGIN_SRC Xml
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-aws</artifactId>
@@ -225,7 +225,7 @@ Exception in thread "Thread-9" java.lang.NoClassDefFoundError: org/apache/common
 
 找了一下，这个package在
 
-#+BEGIN_SRC xml
+#+BEGIN_SRC Xml
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>

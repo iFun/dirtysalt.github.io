@@ -31,7 +31,7 @@ s
 
 对于nums[m]>target的话，可以得到几乎相同的条件表达是 `target <= nums[e] <= nums[s] <= nums[m]`.
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
     def search(self, nums: List[int], target: int) -> int:
         s, e = 0, len(nums) - 1
         while s <= e:

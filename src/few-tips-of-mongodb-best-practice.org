@@ -83,7 +83,7 @@ Readahead size should be set to 0 for WiredTiger. Usethe blockdev --setra <value
 
 如果出现慢查询的话，列举和杀掉长时间运行的操作
 
-#+BEGIN_SRC javascript
+#+BEGIN_SRC Javascript
 killMyRunningOps = function (ns, max_ms = 500) {
     var currOp = db.currentOp();
     var max_microsecs = max_ms * 1000;
@@ -115,6 +115,6 @@ listRunningOps = function (max_ms = 500) {
 
 查看collection更新情况
 
-#+BEGIN_SRC bash
+#+BEGIN_SRC Bash
 watch --diff "mongo --eval \"db.adminCommand('top').totals['your-collection'].queries.count\" | tail -n +4"
 #+END_SRC

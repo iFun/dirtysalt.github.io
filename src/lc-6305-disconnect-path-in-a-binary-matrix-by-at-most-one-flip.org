@@ -10,7 +10,7 @@ https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-f
 
 搜索路径的时候最好使用动态规划 `dp[i][j]` 表示是否可以从i,j出发到达终点，然后我们可以通过dp来构建路径。第二次搜索的时候，直接修改graph将上一次搜索路径的点设置为0就行。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 
 class Solution:
     def isPossibleToCutPath(self, grid: List[List[int]]) -> bool:

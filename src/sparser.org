@@ -38,7 +38,7 @@ deviates significantly (e.g., 20% in our implementation), Sparser reruns its opt
 @201809
 
 demo_repl 给出的例子是使用如下SQL
-#+BEGIN_SRC SQL
+#+BEGIN_SRC Sql
 SELECT count(*)\n\
 FROM tweets\n\
 WHERE text contains \"Trump\" AND text contains \"Putin\"";

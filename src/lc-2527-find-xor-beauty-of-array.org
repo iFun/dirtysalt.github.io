@@ -21,7 +21,7 @@ X[i]只是对 `x[j] | x[k]` 做个mask, 所以其实可以把xor算子放在里�
 
 ----------
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def xorBeauty(self, nums: List[int]) -> int:
         ans = 0

@@ -258,7 +258,7 @@ int main(){
 
 我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance_counter初始化为0.首先判断是否初始化了，然后会调用__cxa_guard_acquire加锁然后再判断一次(double check,可以减少开销），最后使用__cxa_guard_release释放这个锁。
 
-#+BEGIN_SRC ASM
+#+BEGIN_SRC Asm
 .globl _Z3foov
 	.type	_Z3foov, @function
 _Z3foov:

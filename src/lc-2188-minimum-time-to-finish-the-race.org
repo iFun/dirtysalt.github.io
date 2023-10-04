@@ -10,7 +10,7 @@ https://leetcode-cn.com/contest/weekly-contest-282/problems/minimum-time-to-fini
 
 最终我们可以得到 `best[T]` 表示跑T圈的最短耗时是多少，然后就是一个动态规划问题。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minimumFinishTime(self, tires: List[List[int]], changeTime: int, numLaps: int) -> int:
         n = len(tires)

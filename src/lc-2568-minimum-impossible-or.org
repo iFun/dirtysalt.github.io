@@ -12,7 +12,7 @@ https://leetcode.cn/problems/minimum-impossible-or/
 
 然后题解里面还给了一个更牛的办法，就是只考虑 `1<<i` 的数，然后取最低位没有使用的bit `x & ~x`
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minImpossibleOR(self, nums: List[int]) -> int:
         mask = 0

@@ -23,7 +23,7 @@ The number of tokens processed in a given API request depends on the length of b
 
 通用代码
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 import openai
 import os
 

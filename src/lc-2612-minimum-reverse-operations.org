@@ -14,7 +14,7 @@ https://leetcode.cn/problems/minimum-reverse-operations/
 3. 不满足的条件就是， 如果(x, y)交换，那么可以延展的范围必须在数组内。
 4. 我们在筛选那些没有选中点的时候，必须也考虑到奇偶性，不然搜索空间就会很大了。
 
-#+BEGIN_SRC python
+#+BEGIN_SRC Python
 class Solution:
     def minReverseOperations(self, n: int, p: int, banned: List[int], k: int) -> List[int]:
         from sortedcontainers import SortedList
