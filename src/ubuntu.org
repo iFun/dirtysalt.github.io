@@ -335,7 +335,7 @@ Ubuntu Software Center -> Edit -> Software Sources -> Ubuntu Sofware(Download fr
 似乎sunpinyin在google docs下面工作不是很好。使用原来的pinyin就没有问题。what a shame！
 
 *** 设置默认浏览器
-System Settings =》 Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
+System Settings => Details 里面可以设置默认浏览器。至于emacs里面的话可以使用如下配置。
 #+BEGIN_SRC Elisp
 (setq browse-url-generic-program (executable-find "chromium-browser")
       browse-url-browser-function 'browse-url-generic)
@@ -374,7 +374,7 @@ System Settings =》 Details 里面可以设置默认浏览器。至于emacs里�
 - Ctrl+Alt+上下左右 // 在不同的workspace之间切换。
 
 *** 调整字体大小
-System Settings =》 Universal Access里面的Seeing部分可以用来调整字体大小。但是只有等级没有具体的数字可以进行调整。
+System Settings => Universal Access里面的Seeing部分可以用来调整字体大小。但是只有等级没有具体的数字可以进行调整。
 可以通过安装gnome-tweak-tool并且运行之来进行微调。
 
 参考链接 http://ltek.dyndns.org/wordpress/?p=282
@@ -548,11 +548,11 @@ Generation complete.
 
 *** virtualbox下使用U盾
 首先需要在 https://www.virtualbox.org/wiki/Downloads VirtualBox Extension Pack，双击执行。
-在Settings =》 USB选项里面勾选 Enable USB Controller 和 Enable USB2.0（EHCI） Controller。
+在Settings => USB选项里面勾选 Enable USB Controller 和 Enable USB2.0（EHCI） Controller。
 
 然后我们需要添加vboxusers这个群组，同时将自己加入到这个群组内：
 - sudo groupadd vboxusers
 - sudo gpasswd -a dirlt vboxusers
 接着重新启动ubuntu。
 
-接着Settings =》 USB里面添加那些已经识别的设备，接着启动windows虚拟机就可以使用U盾了。
+接着Settings => USB里面添加那些已经识别的设备，接着启动windows虚拟机就可以使用U盾了。

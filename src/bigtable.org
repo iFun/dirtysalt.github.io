@@ -14,7 +14,7 @@
   - Bigtable schema pa-rameters let clients dynamically control whether to serve data out of memory or from disk.（schema参数可以让用户动态控制是否使用超过内存大小数据）
 
 ** Data Model
-- A Bigtable is a sparse, distributed, persistent multi-dimensional sorted map. The map is indexed by a row key, column key, and a timestamp; each value in the map is an uninterpreted array of bytes.（本质上是稀疏的，分布式，可持久化的多维sorted-map。通过row-key和column-key找到对应的cell，在这个cell上面通过timestamp来从多维数据中取出一维） (row:string, column:string, time:int64) =》 string
+- A Bigtable is a sparse, distributed, persistent multi-dimensional sorted map. The map is indexed by a row key, column key, and a timestamp; each value in the map is an uninterpreted array of bytes.（本质上是稀疏的，分布式，可持久化的多维sorted-map。通过row-key和column-key找到对应的cell，在这个cell上面通过timestamp来从多维数据中取出一维） (row:string, column:string, time:int64) => string
 
 [[../images/bigtable-data-model.png]]
 
