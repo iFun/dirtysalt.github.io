@@ -62,7 +62,7 @@ The JNI is designed to handle situations where you need to combine Java applicat
 </ul>
 
 
-<div id="orgd293761" class="figure">
+<div id="org3e19af9" class="figure">
 <p><img src="../images/role-of-the-jni.png" alt="role-of-the-jni.png" />
 </p>
 </div>
@@ -102,7 +102,7 @@ The JNI is designed to handle situations where you need to combine Java applicat
 <li>然后 java Hello 启动</li>
 </ul>
 
-<div id="org6f25d06" class="figure">
+<div id="org4037dca" class="figure">
 <p><img src="../images/jni-example.png" alt="jni-example.png" />
 </p>
 </div>
@@ -209,7 +209,7 @@ JNIEXPORT void JNICALL Java_Hello_run  (JNIEnv * env, jclass cls)
 </ul>
 
 
-<div id="orgfad141e" class="figure">
+<div id="org79cf7ce" class="figure">
 <p><img src="../images/jnienv-interface-pointer.png" alt="jnienv-interface-pointer.png" />
 </p>
 </div>
@@ -481,7 +481,7 @@ int main() {
 </pre>
 </div>
 
-<pre class="example" id="org4e874dc">
+<pre class="example" id="org8302df1">
 ➜  ~  g++ Hello.cc -I$JAVA_HOME/include -L$JAVA_HOME/jre/lib/amd64/server -ljvm
 Hello.cc: In function ‘int main()’:
 Hello.cc:22:29: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
@@ -628,7 +628,7 @@ Passing Data
 </p>
 
 
-<div id="org37b7af1" class="figure">
+<div id="org48a7d28" class="figure">
 <p><img src="../images/jni-passing-date-in-reference.png" alt="jni-passing-date-in-reference.png" />
 </p>
 </div>

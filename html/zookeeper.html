@@ -102,7 +102,7 @@ zookeeper上的数据组织成为一个类似于文件系统的树(但是实际�
 </p>
 
 
-<div id="org3d867b5" class="figure">
+<div id="orgd4dbfd8" class="figure">
 <p><img src="../images/zookeeper-znode.png" alt="zookeeper-znode.png" />
 </p>
 </div>
@@ -185,7 +185,7 @@ In this section, we show how to use the ZooKeeper API to implement more powerful
 <h2 id="org40eb4ab"><span class="section-number-2">5.</span> ZooKeeper Implementation</h2>
 <div class="outline-text-2" id="text-5">
 
-<div id="orge8e1135" class="figure">
+<div id="org62d0839" class="figure">
 <p><img src="../images/zookeeper-components.png" alt="zookeeper-components.png" />
 </p>
 </div>
@@ -248,7 +248,7 @@ ZooKeeper does not assume that servers can be Byzantine, but we do employ mechan
 关于zxid
 </p>
 
-<pre class="example" id="org6dabbd4">
+<pre class="example" id="orgfd979db">
 Linearizable writes
   clients send writes to the leader
   the leader chooses an order, numbered by "zxid"
@@ -267,7 +267,7 @@ A few consequences:
 关于API设计
 </p>
 
-<pre class="example" id="org647f1ce">
+<pre class="example" id="org8b41b27">
 ZooKeeper API well tuned to synchronization:
   + exclusive file creation; exactly one concurrent create returns success
   + getData()/setData(x, version) supports mini-transactions
@@ -292,7 +292,7 @@ ZooKeeper is a successful design.
 关于性能似乎也不错
 </p>
 
-<pre class="example" id="org5f58fcf">
+<pre class="example" id="org4b9ff61">
 Is the resulting performance good?
   Table 1
   High read throughput -- and goes up with number of servers!

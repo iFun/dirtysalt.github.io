@@ -144,7 +144,7 @@ python字符串是unicode类型，二进制是str类型。
 <li>encode是将unicode转换成为str</li>
 <li>decode是将str转换成为unicode</li>
 </ul>
-<pre class="example" id="org43d498f">
+<pre class="example" id="orgb9380b8">
 &gt;&gt;&gt; a="中国"
 &gt;&gt;&gt; a
 '\xe4\xb8\xad\xe5\x9b\xbd'
@@ -312,7 +312,7 @@ foo(2, 4, 5, *(1, 2), **{'x': '??'})
 <p>
 输出结果是
 </p>
-<pre class="example" id="orgd481f7d">
+<pre class="example" id="orgdb33cd1">
 a = 2, b = 4, c = 5, args = (1, 2), kwargs = {'x': '??'}
 a = 1, b = 4, c = 5, args = (1, 2, 3), kwargs = {'e': 1, 'f': 2}
 a = 0, b = 4, c = 5, args = (1, 2, 3), kwargs = {'e': 1, 'f': 2}
@@ -459,7 +459,7 @@ print func2.__name__
 <p>
 使用functools.wraps这个装饰器是可以继续使用原有函数的名称，除此之外还做了许多其他工作。
 </p>
-<pre class="example" id="orgb87bcdd">
+<pre class="example" id="orgc497d94">
 &gt;&gt;&gt;&gt;&gt;
 hello, world
 &lt;&lt;&lt;&lt;&lt;
@@ -550,7 +550,7 @@ produce(c)
 <p>
 上面这段代码的输出结果如下
 </p>
-<pre class="example" id="org3f937cb">
+<pre class="example" id="orge5e7a39">
 start consumer
 uninitialized
 start producer
@@ -630,7 +630,7 @@ def ts2dt(ts):
 <p>
 其中strptime是非常耗时的（12.9us），所以应该尽量避免这种parse的方法。
 </p>
-<pre class="example" id="org54dbd61">
+<pre class="example" id="org9edebea">
 In [8]: timeit time.strptime('2015-01-02 22:21:01', '%Y-%m-%d %H:%M:%S')
 100000 loops, best of 3: 12.9 µs per loop
 
@@ -688,7 +688,7 @@ def parse_date(s):
 </pre>
 </div>
 
-<pre class="example" id="org6e7a784">
+<pre class="example" id="orgc3f648e">
 s = 'Fri, 9 Feb 2018 03:00:00 PST'
 parse_date(s)
 
@@ -804,7 +804,7 @@ Logger支持层次结构，层次结构是根据name来判断的。比如a就是
 </p>
 
 
-<div id="org1524b88" class="figure">
+<div id="orgf2c647f" class="figure">
 <p><img src="../images/python-logging-flow.png" alt="python-logging-flow.png" />
 </p>
 </div>
@@ -816,7 +816,7 @@ Logger支持层次结构，层次结构是根据name来判断的。比如a就是
 <p>
 logging配置可以从文件载入 `logging.config.fileConfig('logging.cfg')`
 </p>
-<pre class="example" id="org993425f">
+<pre class="example" id="orgfbbd999">
 [loggers]
 keys = root
 

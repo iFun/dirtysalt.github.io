@@ -84,7 +84,7 @@
 内存使用状况
 </p>
 
-<pre class="example" id="org77a1552">
+<pre class="example" id="org831259e">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/meminfo
 MemTotal:        3960316 kB
 MemFree:          202908 kB
@@ -133,7 +133,7 @@ DirectMap2M:     4052992 kB
 <p>
 可以使用/usr/bin/time来获取Page size
 </p>
-<pre class="example" id="org94c40f4">
+<pre class="example" id="org637e870">
 ➜  debs git:(devel-yan) ✗ /usr/bin/time -v date
 Fri Jun 12 11:53:44 CST 2015
 Command being timed: "date"
@@ -170,7 +170,7 @@ Exit status: 0
 系统启动以来的多种统计信息
 </p>
 
-<pre class="example" id="orgc789fc6">
+<pre class="example" id="orgcf1c393">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/stat
 cpu  25175536 13184 10088010 208990815 1165440 37 29476 0 0 0
 cpu0 7597990 7286 3089511 49810301 706702 37 23258 0 0 0
@@ -200,7 +200,7 @@ softirq 304218476 0 151026247 103572 14071723 3554590 0 262575 55846497 864372 7
 当前系统上的交换分区及其空间利用信息. 优先级数字越低, 被使用到的可能性越大.
 </p>
 
-<pre class="example" id="org4c032a5">
+<pre class="example" id="orgd1d3f59">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/swaps
 Filename                                Type            Size    Used    Priority
 /dev/sda5                               partition       4103164 1423572 -1
@@ -215,7 +215,7 @@ Filename                                Type            Size    Used    Priority
 在启动时传递至内核的相关参数信息. 这些信息通常由lilo或grub等启动管理工具进行传递.
 </p>
 
-<pre class="example" id="org7654f45">
+<pre class="example" id="org07a2be7">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/cmdline
 BOOT_IMAGE=/boot/vmlinuz-3.2.0-27-generic root=UUID=b25db1c7-e694-4eed-8d11-ea33047338cb ro quiet splash vt.handoff=7
 </pre>
@@ -229,7 +229,7 @@ BOOT_IMAGE=/boot/vmlinuz-3.2.0-27-generic root=UUID=b25db1c7-e694-4eed-8d11-ea33
 内核版本
 </p>
 
-<pre class="example" id="orgfd3adb6">
+<pre class="example" id="org16d1f5b">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/version
 Linux version 3.2.0-27-generic (buildd@allspice) (gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) ) #43-Ubuntu SMP Fri Jul 6 14:25:57 UTC 2012
 </pre>
@@ -243,7 +243,7 @@ Linux version 3.2.0-27-generic (buildd@allspice) (gcc version 4.6.3 (Ubuntu/Lina
 当前挂载的所有文件系统. see man fstab.
 </p>
 
-<pre class="example" id="org694d8d4">
+<pre class="example" id="orga281557">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/mounts
 rootfs / rootfs rw 0 0
 sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
@@ -271,7 +271,7 @@ gvfs-fuse-daemon /home/dirlt/.gvfs fuse.gvfs-fuse-daemon rw,nosuid,nodev,relatim
 所有可用模块列表(lsmod): 模块名, 占用内存, 引用技术, 依赖模块, 加载状态
 </p>
 
-<pre class="example" id="org4ce8427">
+<pre class="example" id="org3c825d3">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/modules
 pci_stub 12622 1 - Live 0x0000000000000000
 vboxpci 23200 0 - Live 0x0000000000000000 (O)
@@ -328,7 +328,7 @@ r8169 62099 0 - Live 0x0000000000000000
 磁盘设备I/O信息.  <a href="https://www.kernel.org/doc/Documentation/iostats.txt">https://www.kernel.org/doc/Documentation/iostats.txt</a>
 </p>
 
-<pre class="example" id="org6a7a283">
+<pre class="example" id="org03adb28">
 ➜  logzilla git:(devel-yan) ✗ cat /proc/diskstats
    1       0 ram0 0 0 0 0 0 0 0 0 0 0 0
    1       1 ram1 0 0 0 0 0 0 0 0 0 0 0
@@ -376,7 +376,7 @@ r8169 62099 0 - Live 0x0000000000000000
 所有可用的加密算法
 </p>
 
-<pre class="example" id="org6abe8c7">
+<pre class="example" id="org4b21f6e">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/crypto
 name         : cbc(aes)
 driver       : cbc(aes-generic)
@@ -501,7 +501,7 @@ digestsize   : 4
 <a href="http://ilinuxkernel.com/?p=869">Linux系统中Load Average含义</a>
 </p>
 
-<pre class="example" id="org2e7c9e6">
+<pre class="example" id="org997ad2e">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/loadavg
 2.46 2.14 2.16 15/736 11012
 </pre>
@@ -520,7 +520,7 @@ digestsize   : 4
 内核slab分配器信息
 </p>
 
-<pre class="example" id="org12dc50b">
+<pre class="example" id="orge66f4cc">
 [dirlt@umeng-ubuntu-pc] &gt; sudo cat /proc/slabinfo
 [sudo] password for dirlt:
 slabinfo - version: 2.1
@@ -638,7 +638,7 @@ kmem_cache_node      128    128     64   64    1 : tunables    0    0    0 : sla
 虚拟内存统计信息
 </p>
 
-<pre class="example" id="org72ccb5e">
+<pre class="example" id="org5080631">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/vmstat
 nr_free_pages 39606
 nr_inactive_anon 207905
@@ -747,7 +747,7 @@ thp_split 0
 内存区域(zone)信息
 </p>
 
-<pre class="example" id="orge37adda">
+<pre class="example" id="orga3a4b29">
 [dirlt@umeng-ubuntu-pc] &gt; cat /proc/zoneinfo
 Node 0, zone      DMA
   pages free     3977
@@ -1098,7 +1098,7 @@ Node 0, zone   Normal
 <p>
 控制脏页写回磁盘策略
 </p>
-<pre class="example" id="orge68cd2a">
+<pre class="example" id="org9961227">
 ➜  notes git:(master) ✗ ls /proc/sys/vm/dirty_*
 /proc/sys/vm/dirty_background_bytes  /proc/sys/vm/dirty_bytes             /proc/sys/vm/dirty_ratio
 /proc/sys/vm/dirty_background_ratio  /proc/sys/vm/dirty_expire_centisecs  /proc/sys/vm/dirty_writeback_centisecs
@@ -1199,7 +1199,7 @@ This enables or disables panic on out-of-memory feature.
 本地port分配范围. 本地client如果没有指定连接port的话那么就从这个范围内随机分配
 </p>
 
-<pre class="example" id="org9be4641">
+<pre class="example" id="org0a86f58">
 ➜  notes git:(master) ✗ cat /proc/sys/net/ipv4/ip_local_port_range
 32768	61000
 </pre>
@@ -1258,7 +1258,7 @@ of the available low memory, divided by the registration cost in bytes.
 </p>
 </blockquote>
 
-<pre class="example" id="org81ba915">
+<pre class="example" id="org021679e">
 ➜  notes git:(master) ✗ cat /proc/sys/fs/epoll/max_user_watches
 1645137
 </pre>
@@ -1308,7 +1308,7 @@ One can change the sampling interval of khungtaskd through the sysctl interface 
 <p>
 之前在hdfs一个datanode上面出现了磁盘损坏问题，然后在syslog里面发现了下面日志
 </p>
-<pre class="example" id="org3979b25">
+<pre class="example" id="orgbc196cf">
 May 14 00:02:50 dp46 kernel: INFO: task jbd2/sde1-8:3411 blocked for more than 120 seconds.
 May 14 00:02:50 dp46 kernel: "echo 0 &gt; /proc/sys/kernel/hung_task_timeout_secsmahung_task_timeout_secs" disables this message.
 May 14 00:02:50 dp46 kernel: jbd2/sde1-8   D 0000000000000000     0  3411      2 0x00000000
@@ -1375,7 +1375,7 @@ The JBD is the <a href="http://kerneltrap.org/node/6741">journaling block device
 网卡设备流量信息
 </p>
 
-<pre class="example" id="org3e71020">
+<pre class="example" id="org4819f04">
 ➜  logzilla git:(devel-yan) ✗ cat /proc/net/dev
 Inter-|   Receive                                                |  Transmit
  face |bytes    packets errs drop fifo frame compressed multicast|bytes    packets errs drop fifo colls carrier compressed

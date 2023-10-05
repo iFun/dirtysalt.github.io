@@ -33,7 +33,7 @@
 <p>
 从dirlt.com跳转到dirtysalt.info
 </p>
-<pre class="example" id="org2e4dc32">
+<pre class="example" id="org1aa32fb">
 http {
     server_name dirlt.com;
     rewrite ^ $scheme://dirtysalt.info$request_uri? permanent;
@@ -44,7 +44,7 @@ http {
 这样访问dirlt.com时候，返回HTTP Permanent Redirect
 </p>
 
-<pre class="example" id="org8faa4e3">
+<pre class="example" id="org9e3e939">
 ➜~  curl -v -S dirlt.com
 -* Rebuilt URL to: dirlt.com/
 -*   Trying 139.162.32.139...
@@ -76,7 +76,7 @@ http {
 <div id="outline-container-org9212d05" class="outline-2">
 <h2 id="org9212d05"><span class="section-number-2">2.</span> 支持软链接</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="org30ab18a">
+<pre class="example" id="orgd732ff9">
 http {
     disable_symlinks off;
 }
@@ -89,7 +89,7 @@ http {
 <p>
 用nginx做一个http proxy. `resolver` 这个字段是必要的。
 </p>
-<pre class="example" id="orgf638118">
+<pre class="example" id="org1795365">
 server {
     resolver 8.8.8.8;
     resolver_timeout 5s;
@@ -107,7 +107,7 @@ server {
 <p>
 然后来测试一下
 </p>
-<pre class="example" id="org5f1579c">
+<pre class="example" id="org5be997d">
 In [10]: import requests
 
 In [11]: r = requests.get('http://www.baidu.com', **{'proxies': {'http': 'http://127.0.0.1:64441'}})
@@ -125,7 +125,7 @@ Out[12]: &lt;Response [200]&gt;
 可以针对某个路径下面的请求进行缓存。不过我还没有搞清楚缓存规则是怎么样的，默认应该是对query做key.
 </p>
 
-<pre class="example" id="org4a24878">
+<pre class="example" id="orgea8f83f">
 proxy_cache_path /root/ngx-cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=1d;
 server {
   listen 80;

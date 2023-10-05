@@ -48,7 +48,7 @@ Scala provides many tools that enable succinct expression. Less typing is less r
 </p>
 
 <p>
-&gt; Scala提供很多工具使表达式可以很简洁。敲的少读的就少，读的少就能更快的读，因此简洁增强了代码的清晰。然而简洁也是一把钝器(blunt tool)也可能起到相反的效果：在考虑正确性之后，也要为读者着想。
+&gt;&gt; Scala提供很多工具使表达式可以很简洁。敲的少读的就少，读的少就能更快的读，因此简洁增强了代码的清晰。然而简洁也是一把钝器(blunt tool)也可能起到相反的效果：在考虑正确性之后，也要为读者着想。
 </p>
 
 <p>
@@ -56,7 +56,7 @@ Above all, program in Scala. You are not writing Java, nor Haskell, nor Python; 
 </p>
 
 <p>
-&gt; 首先，用Scala编程，你不是在写Java，Haskell或Python；Scala程序不像这其中的任何一种。为了高效的使用语言，你必须用其术语表达你的问题。 强制把Java程序转成Scala程序是无用的，因为大多数情况下它会不如原来的。
+&gt;&gt; 首先，用Scala编程，你不是在写Java，Haskell或Python；Scala程序不像这其中的任何一种。为了高效的使用语言，你必须用其术语表达你的问题。 强制把Java程序转成Scala程序是无用的，因为大多数情况下它会不如原来的。
 </p>
 
 <p>
@@ -64,7 +64,7 @@ This is a living document that will change to reflect our current “best practi
 </p>
 
 <p>
-&gt; 永远重视可读性；写泛化的代码但不要牺牲清晰度； 利用简单的语言特性的威力，但避免晦涩难懂（尤其是类型系统）。最重要的，总要意识到你所做的取舍。一门成熟的(sophisticated)语言需要复杂的实现，复杂性又产生了复杂性：之于推理，之于语义，之于特性之间的交互，以及与你合作者之间的理解。因此复杂性是为成熟所交的税——你必须确保效用超过它的成本。
+&gt;&gt; 永远重视可读性；写泛化的代码但不要牺牲清晰度； 利用简单的语言特性的威力，但避免晦涩难懂（尤其是类型系统）。最重要的，总要意识到你所做的取舍。一门成熟的(sophisticated)语言需要复杂的实现，复杂性又产生了复杂性：之于推理，之于语义，之于特性之间的交互，以及与你合作者之间的理解。因此复杂性是为成熟所交的税——你必须确保效用超过它的成本。
 </p>
 </div>
 </div>
@@ -98,7 +98,7 @@ Immutable collections should be covariant. Methods that receive the contained ty
 </p>
 
 <p>
-&gt; 不可变(Immutable)集合应该是协变的(covariant)。接受容器化类型得方法应该适当地降级(downgrade)集合. 可变(mutable)集合应该是不可变的(invariant). 协变对于可变集合是典型无效的。
+&gt;&gt; 不可变(Immutable)集合应该是协变的(covariant)。接受容器化类型得方法应该适当地降级(downgrade)集合. 可变(mutable)集合应该是不可变的(invariant). 协变对于可变集合是典型无效的。
 </p>
 
 <p>
@@ -106,7 +106,7 @@ If you do find yourself using implicits, always ask yourself if there is a way t
 </p>
 
 <p>
-&gt; 如果你发现自己在用隐式转换，总要问问自己是否不使用这种方式也可以达到目的。不要使用隐式转换对两个相似的数据类型做自动转换(例如，把list转换为stream);显示地做更好，因为不同类型有不同的语意，读者应该意识到这些含义。
+&gt;&gt; 如果你发现自己在用隐式转换，总要问问自己是否不使用这种方式也可以达到目的。不要使用隐式转换对两个相似的数据类型做自动转换(例如，把list转换为stream);显示地做更好，因为不同类型有不同的语意，读者应该意识到这些含义。
 </p>
 </div>
 </div>
@@ -127,7 +127,7 @@ The collections library is large: in addition to an elaborate hierarchy — the 
 </p>
 
 <p>
-&gt; 集合库很大：除了精心设计的层级(Hierarchy)——根是 Traversable[T] —— 大多数集合都有不可变(immutable)和可变(mutable)两种变体。无论其复杂性，下面的图表包含了可变和不可变集合层级的重要差异。
+&gt;&gt; 集合库很大：除了精心设计的层级(Hierarchy)——根是 Traversable[T] —— 大多数集合都有不可变(immutable)和可变(mutable)两种变体。无论其复杂性，下面的图表包含了可变和不可变集合层级的重要差异。
 </p>
 
 <p>
@@ -135,7 +135,7 @@ Iterable[T] 是所有可遍历的集合，它提供了迭代的方法(foreach)�
 </p>
 
 
-<div id="orga4587fa" class="figure">
+<div id="org471d942" class="figure">
 <p><img src="../images/scala-collection-hierarchy-simple.png" alt="scala-collection-hierarchy-simple.png" />
 </p>
 </div>
@@ -153,7 +153,7 @@ Prefer using immutable collections. They are applicable in most circumstances, a
 </p>
 
 <p>
-&gt; 优先使用不可变集合。不可变集合适用于大多数情况，让程序易于理解和推断，因为它们是引用透明的( referentially transparent )因此缺省也是线程安全的。使用可变集合时，明确地引用可变集合的命名空间。
+&gt;&gt; 优先使用不可变集合。不可变集合适用于大多数情况，让程序易于理解和推断，因为它们是引用透明的( referentially transparent )因此缺省也是线程安全的。使用可变集合时，明确地引用可变集合的命名空间。
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">import scala.collection.mutable
@@ -166,7 +166,7 @@ Use the default constructor for the collection type. The corollary to the above 
 </p>
 
 <p>
-&gt; 使用集合类型缺省的构造函数。上面的推论是：在你自己的方法和构造函数里，适当地接受最宽泛的集合类型。通常可以归结为Iterable, Seq, Set, 或 Map中的一个。如果你的方法需要一个 sequence，使用 Seq[T]，而不是List[T]
+&gt;&gt; 使用集合类型缺省的构造函数。上面的推论是：在你自己的方法和构造函数里，适当地接受最宽泛的集合类型。通常可以归结为Iterable, Seq, Set, 或 Map中的一个。如果你的方法需要一个 sequence，使用 Seq[T]，而不是List[T]
 </p>
 
 <p>
@@ -174,7 +174,7 @@ High level collections libraries (as with higher level constructs generally) mak
 </p>
 
 <p>
-&gt; 高阶集合库（通常也伴随高阶构造）使推理性能更加困难：你越偏离直接指示计算机——即命令式风格——就越难准确预测一段代码的性能影响。然而推理正确性通常很容易；可读性也是加强的。在Java运行时使用Scala使得情况更加复杂，Scala对你隐藏了装箱(boxing)/拆箱(unboxing)操作，可能引发严重的性能或内存空间问题。
+&gt;&gt; 高阶集合库（通常也伴随高阶构造）使推理性能更加困难：你越偏离直接指示计算机——即命令式风格——就越难准确预测一段代码的性能影响。然而推理正确性通常很容易；可读性也是加强的。在Java运行时使用Scala使得情况更加复杂，Scala对你隐藏了装箱(boxing)/拆箱(unboxing)操作，可能引发严重的性能或内存空间问题。
 </p>
 
 <p>
@@ -182,7 +182,7 @@ Use scala.collection.JavaConverters to interoperate with Java collections. These
 </p>
 
 <p>
-&gt; 使用 scala.collection.JavaConverters 与Java集合交互。它有一系列的隐式转换，添加了asJava和asScala的转换方法。使用它们这些方法确保转换是显式的，有助于阅读
+&gt;&gt; 使用 scala.collection.JavaConverters 与Java集合交互。它有一系列的隐式转换，添加了asJava和asScala的转换方法。使用它们这些方法确保转换是显式的，有助于阅读
 </p>
 </div>
 </div>
@@ -221,7 +221,7 @@ Prefer transforming futures over creating your own. Future transformations ensur
 </p>
 
 <p>
-&gt; 更愿意转换（transforming）future而非自己创造。Future的转换(transformations)确保失败会传播，可以通过信号取消，对于程序员来说不必考虑Java内存模型的含义。
+&gt;&gt; 更愿意转换（transforming）future而非自己创造。Future的转换(transformations)确保失败会传播，可以通过信号取消，对于程序员来说不必考虑Java内存模型的含义。
 </p>
 
 <p>
@@ -229,7 +229,7 @@ The subject of concurrent collections is fraught with opinions, subtleties, dogm
 </p>
 
 <p>
-&gt; 并发集合的主题充满着意见、微妙(subtleties)、教条、恐惧/不确定/怀疑(FUD)。在大多实际场景都不存在问题：总是先用最简单,最无聊，最标准的集合解决问题。 在你知道不能使用synchronized前不要去用一个并发集合：JVM有着老练的手段来使得同步开销更小，所以它的效率能让你惊讶。
+&gt;&gt; 并发集合的主题充满着意见、微妙(subtleties)、教条、恐惧/不确定/怀疑(FUD)。在大多实际场景都不存在问题：总是先用最简单,最无聊，最标准的集合解决问题。 在你知道不能使用synchronized前不要去用一个并发集合：JVM有着老练的手段来使得同步开销更小，所以它的效率能让你惊讶。
 </p>
 
 <p>
@@ -237,7 +237,7 @@ If an immutable collection will do, use it — they are referentially transparen
 </p>
 
 <p>
-&gt; 如果一个不可变(immutable)集合可行，就尽可能用不可变集合——它们是指称透明的(referentially transparent)，所以在并发上下文推断它们是简单的。不可变集合的改变通常用更新引用到当前值(一个var单元或一个AtomicReference)。必须小心正确地应用：原子型的(atomics)必须重试(retried)，变量(var类型的)必须声明为volatile以保证它们发布(published)到它们的线程。
+&gt;&gt; 如果一个不可变(immutable)集合可行，就尽可能用不可变集合——它们是指称透明的(referentially transparent)，所以在并发上下文推断它们是简单的。不可变集合的改变通常用更新引用到当前值(一个var单元或一个AtomicReference)。必须小心正确地应用：原子型的(atomics)必须重试(retried)，变量(var类型的)必须声明为volatile以保证它们发布(published)到它们的线程。
 </p>
 
 <p>
@@ -254,7 +254,7 @@ returns can have hidden costs: when used inside of a closure. <b>implemented in 
 </p>
 
 <p>
-&gt; return会有隐性开销：当在闭包内部使用时。在字节码层实现为一个异常的捕获/声明(catching/throwing)对，用在频繁的执行的代码中，会有性能影响。
+&gt;&gt; return会有隐性开销：当在闭包内部使用时。在字节码层实现为一个异常的捕获/声明(catching/throwing)对，用在频繁的执行的代码中，会有性能影响。
 </p>
 <div class="org-src-container">
 <pre class="src src-Scala">seq foreach { elem =&gt;
@@ -271,7 +271,7 @@ require and assert both serve as executable documentation. Both are useful for s
 </p>
 
 <p>
-&gt; 要求(require)和断言(assert)都起到可执行文档的作用。两者都在类型系统不能表达所要求的不变量(invariants)的场景里有用。 assert用于代码假设的不变量(invariants) （内部或外部的）相反，require用于表达API契约
+&gt;&gt; 要求(require)和断言(assert)都起到可执行文档的作用。两者都在类型系统不能表达所要求的不变量(invariants)的场景里有用。 assert用于代码假设的不变量(invariants) （内部或外部的）相反，require用于表达API契约
 </p>
 </div>
 </div>
@@ -290,7 +290,7 @@ Value oriented programming confers many advantages, especially when used in conj
 </ul>
 
 <p>
-&gt; 面向值（value-oriented ）编程有很多优势，特别是用在与函数式编程结构相结合。这种风格强调值的转换（译注：由一个不变的值生成另一个不变的值）而非状态的改变，生成的代码是指称透明的(referentially transparent)，提供了更强的不变型(invariants)，因此容易实现。Case类(也被翻译为样本类)，模式匹配，解构绑定(destructuring bindings)，类型推断，轻量级的闭包和方法创建语法都是这一类的工具。
+&gt;&gt; 面向值（value-oriented ）编程有很多优势，特别是用在与函数式编程结构相结合。这种风格强调值的转换（译注：由一个不变的值生成另一个不变的值）而非状态的改变，生成的代码是指称透明的(referentially transparent)，提供了更强的不变型(invariants)，因此容易实现。Case类(也被翻译为样本类)，模式匹配，解构绑定(destructuring bindings)，类型推断，轻量级的闭包和方法创建语法都是这一类的工具。
 </p>
 
 <p>
@@ -298,7 +298,7 @@ The Option type is a container that is either empty (None) or full (Some(value))
 </p>
 
 <p>
-&gt; Option类型是一个容器，空(None)或满(Some(value))二选一。它提供了使用null的另一种安全选择，应该尽可能的替代null。它是一个集合(最多只有一个元素)并用集合操所修饰，尽量用Option。
+&gt;&gt; Option类型是一个容器，空(None)或满(Some(value))二选一。它提供了使用null的另一种安全选择，应该尽可能的替代null。它是一个集合(最多只有一个元素)并用集合操所修饰，尽量用Option。
 </p>
 
 <p>
@@ -306,7 +306,7 @@ Use lazy fields for this purpose, but avoid using laziness when laziness is requ
 </p>
 
 <p>
-&gt; 它在需要时计算结果并会记住结果，在要达到这种目的时使用lazy成员；但当语意上需要惰性赋值时(by semantics)，要避免使用惰性赋值，这种情况下，最好显式赋值因为它使得成本模型是明确的，并且副作用被严格的控制。Lazy成员是线程安全的。
+&gt;&gt; 它在需要时计算结果并会记住结果，在要达到这种目的时使用lazy成员；但当语意上需要惰性赋值时(by semantics)，要避免使用惰性赋值，这种情况下，最好显式赋值因为它使得成本模型是明确的，并且副作用被严格的控制。Lazy成员是线程安全的。
 </p>
 
 <p>
@@ -314,7 +314,7 @@ flatMap — the combination of map with flatten — deserves special attention, 
 </p>
 
 <p>
-&gt; flatMap——结合了map 和 flatten —— 的使用要特别小心，它有着难以琢磨的威力和强大的实用性。类似它的兄弟 map，它也是经常在非传统的集合中使用的，例如 Future , Option。
+&gt;&gt; flatMap——结合了map 和 flatten —— 的使用要特别小心，它有着难以琢磨的威力和强大的实用性。类似它的兄弟 map，它也是经常在非传统的集合中使用的，例如 Future , Option。
 </p>
 </div>
 </div>
@@ -333,7 +333,7 @@ We spend a lot of time tuning garbage collection in production. The garbage coll
 </p>
 
 <p>
-&gt; 我们对生产中花了很多时间来调整垃圾回收。垃圾回收的关注点与Java大致相似，尽管一些惯用的Scala代码比起惯用的Java代码会容易产生更多(短暂的)垃圾——函数式风格的副产品。Hotspot的分代垃圾收集通常使这不成问题，因为短暂的(short-lived)垃圾在大多情形下会被有效的释放掉。
+&gt;&gt; 我们对生产中花了很多时间来调整垃圾回收。垃圾回收的关注点与Java大致相似，尽管一些惯用的Scala代码比起惯用的Java代码会容易产生更多(短暂的)垃圾——函数式风格的副产品。Hotspot的分代垃圾收集通常使这不成问题，因为短暂的(short-lived)垃圾在大多情形下会被有效的释放掉。
 </p>
 
 <p>
@@ -345,7 +345,7 @@ In Scala proper, your only tool to mitigate GC problems is to generate less garb
 </p>
 
 <p>
-&gt; Scala固有的问题，你能够缓解GC的方法是产生更少的垃圾；但不要在没有数据的情况下行动。除非你做了某些明显的恶化，使用各种Java的profiling工具——我们拥有的包括heapster和gcprof。
+&gt;&gt; Scala固有的问题，你能够缓解GC的方法是产生更少的垃圾；但不要在没有数据的情况下行动。除非你做了某些明显的恶化，使用各种Java的profiling工具——我们拥有的包括heapster和gcprof。
 </p>
 </div>
 </div>
@@ -361,7 +361,7 @@ The most important standard libraries at Twitter are <a href="http://github.com/
 </p>
 
 <p>
-&gt; Twitter最重要的标准库是 Util 和 Finagle。Util 可以理解为Scala和Java的标准库扩展，提供了标准库中没有的功能或已有功能的更合适的实现。Finagle 是我们的RPC系统，核心分布式系统组件。
+&gt;&gt; Twitter最重要的标准库是 Util 和 Finagle。Util 可以理解为Scala和Java的标准库扩展，提供了标准库中没有的功能或已有功能的更合适的实现。Finagle 是我们的RPC系统，核心分布式系统组件。
 </p>
 
 <p>

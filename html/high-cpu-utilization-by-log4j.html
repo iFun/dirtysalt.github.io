@@ -69,7 +69,7 @@
 这个东西好处就是系统自带，而且可以直接在本机上运行，不用像jvisualvm那样需要打洞和远程连接上来。这个工具可以分析CPU和heap使用情况，使用起来也非常方便  `java -agentlib:hprof=cpu=samples,depth=5` . 其中samples表示是采样方式，而depth=5表示只是对5层stack进行聚合。期间JVM会对所有活跃进程进行采样，每个stack trace形成一个TRACE，然后按照TRACE进行group by. 输出入下图所示。
 </p>
 
-<pre class="example" id="orga379850">
+<pre class="example" id="org4498caf">
 TRACE 300648:
     java.net.SocketInputStream.socketRead0(SocketInputStream.java:Unknown line)
     java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
@@ -154,7 +154,7 @@ perf-map-agent地址在这 <a href="https://github.com/jvm-profiling-tools/perf-
 </p>
 
 
-<div id="orgf056cd0" class="figure">
+<div id="org8bc538a" class="figure">
 <p><img src="../images/high-cpu-utilization-by-log4j-0.png" alt="high-cpu-utilization-by-log4j-0.png" />
 </p>
 </div>

@@ -39,7 +39,7 @@
 </ul>
 
 
-<div id="orgb62e9a5" class="figure">
+<div id="org6288f03" class="figure">
 <p><img src="../images/dremio-c3-effect-0.jpg" alt="dremio-c3-effect-0.jpg" />
 </p>
 </div>
@@ -102,7 +102,7 @@ order by
 Dremio运行时间在1756ms左右
 </p>
 
-<pre class="example" id="org5ac6c37">
+<pre class="example" id="org85163c3">
 --&gt; 1671. avg = 1756
 --&gt; 1681. avg = 1756
 --&gt; 1778. avg = 1756
@@ -119,7 +119,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="org788ae6c" class="figure">
+<div id="org17493eb" class="figure">
 <p><img src="../images/dremio-c3-effect-1.jpg" alt="dremio-c3-effect-1.jpg" />
 </p>
 </div>
@@ -129,19 +129,19 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="org3786f36" class="figure">
+<div id="org58ddb79" class="figure">
 <p><img src="../images/dremio-c3-effect-2.jpg" alt="dremio-c3-effect-2.jpg" />
 </p>
 </div>
 
 
-<div id="orgb2a684f" class="figure">
+<div id="org9c1fc9f" class="figure">
 <p><img src="../images/dremio-c3-effect-3.jpg" alt="dremio-c3-effect-3.jpg" />
 </p>
 </div>
 
 
-<div id="orgd771af7" class="figure">
+<div id="org50365f9" class="figure">
 <p><img src="../images/dremio-c3-effect-4.jpg" alt="dremio-c3-effect-4.jpg" />
 </p>
 </div>
@@ -155,7 +155,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 Dremio可以选择将cache关闭。如果把cache关闭的话，那么这个查询的延迟会下降到11s上下
 </p>
 
-<pre class="example" id="orgfeff4be">
+<pre class="example" id="orgaea957c">
 running Q15-WITH-AS on dremio
 --&gt; 12238. avg = 12238
 --&gt; 11935. avg = 12086
@@ -170,7 +170,7 @@ running Q15-WITH-AS on dremio
 </pre>
 
 
-<div id="org34f9050" class="figure">
+<div id="orge64aec5" class="figure">
 <p><img src="../images/dremio-c3-effect-5.jpg" alt="dremio-c3-effect-5.jpg" />
 </p>
 </div>
@@ -180,7 +180,7 @@ running Q15-WITH-AS on dremio
 </p>
 
 
-<div id="org924602d" class="figure">
+<div id="orgb10d542" class="figure">
 <p><img src="../images/dremio-c3-effect-6.jpg" alt="dremio-c3-effect-6.jpg" />
 </p>
 </div>
@@ -203,7 +203,7 @@ running Q15-WITH-AS on dremio
 下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看<a href="https://docs.dremio.com/software/deployment/cloud-cache-config/">dremio.conf</a>, 的确是使用了这两个盘来做cache的。
 </p>
 
-<pre class="example" id="orga4b8583">
+<pre class="example" id="org0a586f8">
 [ec2-user@ip-172-31-13-89 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 devtmpfs         63G     0   63G   0% /dev
@@ -259,7 +259,7 @@ services.executor.cache.pctquota.fs += "95"
 Dremio使用了EFS，但是似乎这上面只是存储了每个节点的日志信息，以及thirdparty估计是第三方库使用EFS来进行共享，EFS上并没有存储Cache
 </p>
 
-<pre class="example" id="org05fa070">
+<pre class="example" id="org90eaf94">
 [ec2-user@ip-172-31-10-156 ~]$ sudo mount -t efs -o tls fs-0719cd08e6a31df7b:/ efs
 /home/ec2-user/efs is already mounted, please run 'mount' command to verify
 [ec2-user@ip-172-31-10-156 ~]$ cd efs/
@@ -286,7 +286,7 @@ thirdparty/
 重启机器之后，可以看到存在大量磁盘读取
 </p>
 
-<pre class="example" id="orge6eac9b">
+<pre class="example" id="org400c195">
 Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
 nvme1n1           0.00     0.00 1789.00    0.00 213612.00     0.00   238.81     0.31    0.23    0.23    0.00   0.06  11.20
 nvme2n1           0.00     0.00 1695.00    0.00 211096.00     0.00   249.08     0.48    0.33    0.33    0.00   0.06  10.00
@@ -319,7 +319,7 @@ nvme0n1           0.00     0.00    1.00    0.00     4.00     0.00     8.00     0
 </div>
 
 
-<div id="org4dcb49e" class="figure">
+<div id="orgd713b0f" class="figure">
 <p><img src="../images/dremio-c3-effect-7.jpg" alt="dremio-c3-effect-7.jpg" />
 </p>
 </div>
@@ -355,7 +355,7 @@ order by
 运行时间在 255ms 上下
 </p>
 
-<pre class="example" id="org2912eff">
+<pre class="example" id="org18167e4">
 running Q01 on dremio
 --&gt; 340. avg = 340
 --&gt; 251. avg = 295
@@ -374,13 +374,13 @@ running Q01 on dremio
 </p>
 
 
-<div id="org3b5a279" class="figure">
+<div id="orga8e4e91" class="figure">
 <p><img src="../images/dremio-c3-effect-8.jpg" alt="dremio-c3-effect-8.jpg" />
 </p>
 </div>
 
 
-<div id="orgb04de57" class="figure">
+<div id="orga55eec1" class="figure">
 <p><img src="../images/dremio-c3-effect-9.jpg" alt="dremio-c3-effect-9.jpg" />
 </p>
 </div>

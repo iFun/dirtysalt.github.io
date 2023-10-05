@@ -76,7 +76,7 @@
 <h2 id="org1b85764"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 
-<div id="orgce91a99" class="figure">
+<div id="org24e1f90" class="figure">
 <p><img src="../images/linux-analysis-and-tools.jpg" alt="linux-analysis-and-tools.jpg" />
 </p>
 </div>
@@ -90,7 +90,7 @@
 <div id="outline-container-org7011045" class="outline-3">
 <h3 id="org7011045"><span class="section-number-3">2.1.</span> mpstat</h3>
 <div class="outline-text-3" id="text-2-1">
-<pre class="example" id="orgf9dfaf9">
+<pre class="example" id="org209407b">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ mpstat -P ALL 1
 Linux 2.6.9_5-10-0-1 (tc-cm-et18.tc.baidu.com)  2011年09月20日
 
@@ -176,7 +176,7 @@ Linux 2.6.9_5-10-0-1 (tc-cm-et18.tc.baidu.com)  2011年09月20日
 <li>vmstat -s # 虚拟内存相关的系统事件次数统计</li>
 </ul>
 
-<pre class="example" id="orgaf5d5f7">
+<pre class="example" id="org6efba76">
 [dirlt@localhost.localdomain]$ vmstat 1
 procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
  r  b   swpd   free   buff  cache   si   so    bi    bo   in   cs us sy id wa st
@@ -204,7 +204,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 <li>st 虚拟机使用时间[stolen from VM]</li>
 </ul>
 
-<pre class="example" id="org7ee4061">
+<pre class="example" id="orge55088c">
 [zhangyan04@tc-hpc-dev.tc.baidu.com]$ vmstat -s
       8191996  total memory
       4519256  used memory
@@ -238,7 +238,7 @@ procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
 <div id="outline-container-org54f830a" class="outline-3">
 <h3 id="org54f830a"><span class="section-number-3">3.2.</span> free</h3>
 <div class="outline-text-3" id="text-3-2">
-<pre class="example" id="org4f89c3b">
+<pre class="example" id="org6d63d09">
 [zhangyan04@tc-hpc-dev.tc.baidu.com]$ free -t
              total       used       free     shared    buffers     cached
 Mem:       8191996    4519868    3672128          0      76204    3935864
@@ -288,7 +288,7 @@ Total:     9212084    4519868    4692216
 <div id="outline-container-orgf9eac76" class="outline-3">
 <h3 id="orgf9eac76"><span class="section-number-3">4.1.</span> iostat</h3>
 <div class="outline-text-3" id="text-4-1">
-<pre class="example" id="orga9b7bae">
+<pre class="example" id="orgc735ae0">
 dirlt@dirlt-virtual-machine:~$ iostat -dx 1
 Linux 3.2.0-23-generic (dirlt-virtual-machine)  2012年06月18日  _x86_64_        (1 CPU)
 
@@ -360,7 +360,7 @@ sda               0.00     0.00    0.00    0.00     0.00     0.00     0.00     0
 <p>
 `/sbin/ifconfig -a` 网卡配置和统计数据
 </p>
-<pre class="example" id="org327bdc4">
+<pre class="example" id="org196cc81">
 [zhangyan04@tc-hpc-dev.tc.baidu.com]$ /sbin/ifconfig -a
 eth0      Link encap:Ethernet  HWaddr 00:1D:09:22:C9:A9
           BROADCAST MULTICAST  MTU:1500  Metric:1
@@ -428,7 +428,7 @@ lo        Link encap:Local Loopback
 <p>
 `ss -s` 系统所有socket使用情况汇总
 </p>
-<pre class="example" id="orgc590d31">
+<pre class="example" id="org34e1d8a">
 ➜  notes git:(master) ✗ ss -s
 Total: 1071 (kernel 0)
 TCP:   63 (estab 23, closed 1, orphaned 0, synrecv 0, timewait 1/0), ports 0
@@ -497,7 +497,7 @@ specification
 </ul>
 
 
-<div id="org4a28f8a" class="figure">
+<div id="org6b95499" class="figure">
 <p><img src="../images/iftop-illustration.png" alt="iftop-illustration.png" />
 </p>
 </div>
@@ -521,7 +521,7 @@ my traceroute. ping和traceroute两个工具的合体. 两种工作方式, 一�
 两者区别是实时查看的话mtr会不断地发送ICMP, 而报表模式则需要指定发送多少个ICMP.
 </p>
 
-<pre class="example" id="orge352937">
+<pre class="example" id="org85df33e">
 root@iZ62cqwtc33Z:~/podcast-crawler# sudo mtr d3s7zw2sg6cujw.cloudfront.net -r -w -c 10
 Start: Wed Aug 10 16:39:08 2016
 HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Best  Wrst StDev
@@ -592,7 +592,7 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 </ul>
 
 
-<div id="org703d590" class="figure">
+<div id="org639013a" class="figure">
 <p><img src="../images/linux-tools-sar.png" alt="linux-tools-sar.png" />
 </p>
 </div>
@@ -631,7 +631,7 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 <h3 id="orgeba6f50"><span class="section-number-3">6.6.</span> collectl</h3>
 <div class="outline-text-3" id="text-6-6">
 
-<div id="org2e5196e" class="figure">
+<div id="org2eda2fa" class="figure">
 <p><img src="../images/linux-tools-collectl.png" alt="linux-tools-collectl.png" />
 </p>
 </div>
@@ -666,7 +666,7 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 <div id="outline-container-orgd614b78" class="outline-3">
 <h3 id="orgd614b78"><span class="section-number-3">7.3.</span> uptime</h3>
 <div class="outline-text-3" id="text-7-3">
-<pre class="example" id="org49e3ac7">
+<pre class="example" id="org148e9e5">
 ➜  notes git:(master) ✗ uptime
  13:50:11 up 3 days, 17:12,  4 users,  load average: 0.27, 0.29, 0.27
 </pre>
@@ -711,7 +711,7 @@ HOST: iZ62cqwtc33Z                                 Loss%   Snt   Last   Avg  Bes
 <p>
 配置文件参考
 </p>
-<pre class="example" id="orgf341c14">
+<pre class="example" id="org20f9310">
 0 6 * * * /home/dirlt/platform/apache/bin/apachectl restart 每天早上6点重启apache
 0,30 18-23 * * * /home/dirlt/platform/apache/bin/apachectl restart 每天18-23时候每隔半小时重启apache
 \* 23-7/1 * * * /* 23-7/1 * * * /usr/local/apache/bin/apachectl restart 每天从23到次日7点每隔一小时重启apache
@@ -735,7 +735,7 @@ ntp(network time protocol)是用来做机器时间同步的，包含下面几个
 <li>ntpdate(ntp date) 和其他机器进行同步，不可以和ntpd共同使用。</li>
 </ul>
 
-<pre class="example" id="orgff67971">
+<pre class="example" id="orga05ab58">
 [dirlt@umeng-ubuntu-pc] &gt; sudo /etc/init.d/ntp start
  * Starting NTP server ntpd
    ...done.
@@ -768,7 +768,7 @@ ntp(network time protocol)是用来做机器时间同步的，包含下面几个
 <p>
 `iptables -S` 列举所有规则
 </p>
-<pre class="example" id="org119d3c9">
+<pre class="example" id="org495933d">
 ➜  ~GALERA_SRC git:(yan) sudo iptables -S
 -P INPUT ACCEPT
 -P FORWARD ACCEPT
@@ -787,7 +787,7 @@ ntp(network time protocol)是用来做机器时间同步的，包含下面几个
 <p>
 `iptables -A [chain] [chain-specification]` 添加规则
 </p>
-<pre class="example" id="org7f4e6be">
+<pre class="example" id="org4b71cb4">
 sudo iptables -A INPUT -s "192.168.100.104" -d "192.168.100.105" -j DROP
 </pre>
 <p>
@@ -797,7 +797,7 @@ sudo iptables -A INPUT -s "192.168.100.104" -d "192.168.100.105" -j DROP
 <p>
 `iptables -D` 删除规则。规则既可以使用rule-num来引用，也可以使用chain-specification来指定
 </p>
-<pre class="example" id="org9df78c4">
+<pre class="example" id="orgb80746c">
 ➜  ~GALERA_SRC git:(yan) sudo iptables -S
 -P INPUT ACCEPT
 -P FORWARD ACCEPT
@@ -824,7 +824,7 @@ ab(apache benchmarking)
 <p>
 `ab -c 100 -n 10000 -r localhost/` 共10k个请求, 并发数100. 结果 `Requsts per second` 显示QPS在13k/s
 </p>
-<pre class="example" id="org231e8f5">
+<pre class="example" id="org8325613">
 Server Software:        nginx/1.2.1
 Server Hostname:        localhost
 Server Port:            80

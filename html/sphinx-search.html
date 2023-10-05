@@ -138,7 +138,7 @@ RT索引实现方式是: a. 将最新写入的数据缓存在内存并且建立�
 <p>
 searchd支持MySQL二进制网络协议，只需要在配置增加一行"listen = localhost:9306:mysql41", 就可以使用MySQL API来进行访问. searchd使用的SphinxSQL仅仅是SQL一个子集，所以可能执行某些SQL语句会出现错误。
 </p>
-<pre class="example" id="org6b534ad">
+<pre class="example" id="orgccf435b">
 ➜  ss  mysql -h 127.0.0.1 -P 9306
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 1
@@ -191,7 +191,7 @@ sphinx支持分布式搜索，准确地说是将不同机器上的索引在一�
 <p>
 配置分布式索引非常容易，只需要指定哪些机器上host了哪些index就可以。
 </p>
-<pre class="example" id="orgf1a1e73">
+<pre class="example" id="org0c2f6f4">
 # distributed index example
 #
 # this is a virtual index which can NOT be directly indexed,

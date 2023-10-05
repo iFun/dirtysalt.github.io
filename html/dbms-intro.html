@@ -111,7 +111,7 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </p>
 
 
-<div id="org9cdc4d7" class="figure">
+<div id="org1e95d6c" class="figure">
 <p><img src="../images/dbms-arch-in-simple.jpg" alt="dbms-arch-in-simple.jpg" />
 </p>
 </div>
@@ -616,7 +616,7 @@ Transactions can be deferred, immediate, or exclusive. The default transaction b
 <p>
 对于任何约束的话我们都可以为其命名，方式是CONSTRAINT &lt;name&lt;&gt; &lt;constraint-content&gt;.比如
 </p>
-<pre class="example" id="org25e3085">
+<pre class="example" id="org66aae9c">
 name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 </pre>
 <p>
@@ -665,7 +665,7 @@ name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 CHECK约束包括基于属性的约束(attributed-based CHECK constraint)以及基于元组的约束(tuple-based CHECK constraint).基于属性的约束首先
 有一个非NULL约束，使用很简单就是name CHAR(30) NOT NULL.而除此之外，基于属性和基于元组的约束表达上非常相似。比如下面
 </p>
-<pre class="example" id="org634bd08">
+<pre class="example" id="org3358083">
 #基于元组约束
 CREATE TABLE R( name CHAR(30) PRIMARY KEY, gender CHAR(1), CHECK (gender='F' or name NOT LIKE 'Ms.%'))
 #基于属性约束
@@ -751,7 +751,7 @@ CHECK约束仅仅是针对某一个关系的而不是针对于数据库的。如
 <p>
 通过一个例子来稍微分析一下吧.
 </p>
-<pre class="example" id="orgd086a1c">
+<pre class="example" id="org01cc67c">
 CREATE TRIGGER X # 创建触发器
 AFTER UPDATE OF y ON R #这里可以是AFTER,BEFORE以及INSTEAD OF(视图里面会提及到). 可以是UPDATE OF(可以指定属性)/INSERT/DELETE(只能和元组相关)
 REFERENCING

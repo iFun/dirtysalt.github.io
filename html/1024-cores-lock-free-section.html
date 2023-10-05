@@ -204,7 +204,7 @@ bi-directional fences是为了避免一类指令重排，比如store-load是个X
 </p>
 
 
-<div id="orgf2345c9" class="figure">
+<div id="orgc02b46a" class="figure">
 <p><img src="../images/1024-cores-lock-free-bi-fence.jpg" alt="1024-cores-lock-free-bi-fence.jpg" />
 </p>
 </div>
@@ -220,7 +220,7 @@ tied-to-memory-access fences则是组织所有的指令重排， 比如load-acqu
 </p>
 
 
-<div id="orge7594f7" class="figure">
+<div id="org3a6ac76" class="figure">
 <p><img src="../images/1024-cores-lock-free-acq-rel.jpg" alt="1024-cores-lock-free-acq-rel.jpg" />
 </p>
 </div>
@@ -269,9 +269,11 @@ Fifth, atomic RMW operations have some fixed associated costs. For modern Intel 
 作者总结下来，提高扩展性的箴言就是：减少cache line在线程之间的交换
 </p>
 
+<blockquote>
 <p>
-&gt; The most important aggregate metric for a concurrent data structure is a mean number of cache line transfers between threads per operation.
+The most important aggregate metric for a concurrent data structure is a mean number of cache line transfers between threads per operation.
 </p>
+</blockquote>
 </div>
 </div>
 

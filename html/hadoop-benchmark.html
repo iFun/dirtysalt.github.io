@@ -61,7 +61,7 @@
 测试hdfs吞吐
 </p>
 
-<pre class="example" id="org29b1a1d">
+<pre class="example" id="org04681eb">
 hdfs@hadoop1:~$ hadoop jar /usr/lib/hadoop/hadoop-test-0.20.2-cdh3u3.jar TestDFSIO
 Usage: TestDFSIO [genericOptions] -read | -write | -append | -clean [-nrFiles N] [-fileSize Size[B|KB|MB|GB|TB]] [-resFile resultFileName] [-bufferSize Bytes] [-rootDir]%
 </pre>
@@ -74,7 +74,7 @@ Usage: TestDFSIO [genericOptions] -read | -write | -append | -clean [-nrFiles N]
 <li>rootDir 操作文件根目录（/benchmarks/TestDFSIO/）</li>
 </ul>
 
-<pre class="example" id="org1376d5d">
+<pre class="example" id="org9a8b762">
 ----- TestDFSIO ----- : write
            Date &amp; time: Thu Apr 25 19:14:21 CST 2013
        Number of files: 2
@@ -109,7 +109,7 @@ Average IO rate mb/sec: 28.125
 通过排序测试MR执行效率 <b>我看了一下代码map/reduce都有CPU操作，并且这个也非常依靠shuffle/copy.因此这个测试应该会是比较全面的</b>
 </p>
 
-<pre class="example" id="org3271343">
+<pre class="example" id="orgd1192b7">
 hdfs@hadoop1:~$ hadoop jar /usr/lib/hadoop/hadoop-examples-0.20.2-cdh3u3.jar &lt;command&gt;
 </pre>
 <ul class="org-ul">
@@ -145,7 +145,7 @@ hdfs@hadoop1:~$ hadoop jar /usr/lib/hadoop/hadoop-examples-0.20.2-cdh3u3.jar &lt
 测试nn负载能力
 </p>
 
-<pre class="example" id="org8b558ef">
+<pre class="example" id="orgbca7581">
 ➜  ~HADOOP_HOME  hadoop jar hadoop-test-0.20.2-cdh3u3.jar nnbench
 NameNode Benchmark 0.4
 Usage: nnbench &lt;options&gt;
@@ -168,7 +168,7 @@ Options:
 <li>startTime 作用是为了能够让所有的map同时启动以便对nn造成压力</li>
 </ul>
 
-<pre class="example" id="org8a736af">
+<pre class="example" id="org297b835">
 ➜  ~HADOOP_HOME  hadoop jar hadoop-test-0.20.2-cdh3u3.jar nnbench -operation create_write -bytesToWrite 0 -numberOfFiles 1200
 ➜  ~HADOOP_HOME  hadoop jar hadoop-test-0.20.2-cdh3u3.jar nnbench -operation open_read
 </pre>
@@ -176,7 +176,7 @@ Options:
 <p>
 结果报告文件是 NNBench_results.log
 </p>
-<pre class="example" id="org3d29499">
+<pre class="example" id="orgcd0089a">
 -------------- NNBench -------------- :
                                Version: NameNode Benchmark 0.4
                            Date &amp; time: 2013-04-25 19:41:02,873
@@ -257,7 +257,7 @@ Avg exec time (ms): Create/Write/Close: 26.526666666666667
 测试运行small mr jobs执行效率，主要关注响应时间。
 </p>
 
-<pre class="example" id="orgb2e96e4">
+<pre class="example" id="orgb854ee3">
 MRBenchmark.0.0.2
 Usage: mrbench [-baseDir &lt;base DFS path for output/input, default is /benchmarks/MRBench&gt;] [-jar &lt;local path to job jar file containing Mapper and Reducer implementations, default is current jar file&gt;] [-numRuns &lt;number of times to run the job, default is 1&gt;] [-maps &lt;number of maps for each run, default is 2&gt;] [-reduces &lt;number of reduces for each run, default is 1&gt;] [-inputLines &lt;number of input lines to generate, default is 1&gt;] [-inputType &lt;type of input to generate, one of ascending (default), descending, random&gt;] [-verbose]
 </pre>
@@ -268,14 +268,14 @@ Usage: mrbench [-baseDir &lt;base DFS path for output/input, default is /benchma
 <li>inputType 输入是否有序</li>
 </ul>
 
-<pre class="example" id="org495a2e4">
+<pre class="example" id="orgbf8eaa6">
 hdfs@hadoop1:~$ hadoop jar /usr/lib/hadoop/hadoop-test-0.20.2-cdh3u3.jar mrbench -verbose
 </pre>
 
 <p>
 结果直接输出在终端上面，
 </p>
-<pre class="example" id="org5c0554a">
+<pre class="example" id="org92cb2b0">
 Total MapReduce jobs executed: 1
 Total lines of data per job: 1
 Maps per job: 2
@@ -293,7 +293,7 @@ DataLines	Maps	Reduces	AvgTime (milliseconds)
 <div id="outline-container-orgdd3df45" class="outline-2">
 <h2 id="orgdd3df45"><span class="section-number-2">5.</span> hbase.PerformanceEvaluation</h2>
 <div class="outline-text-2" id="text-5">
-<pre class="example" id="org130a8e6">
+<pre class="example" id="orgc4beb81">
 hdfs@hadoop1:~$ hbase org.apache.hadoop.hbase.PerformanceEvaluation
 Usage: java org.apache.hadoop.hbase.PerformanceEvaluation \
   [--miniCluster] [--nomapred] [--rows=ROWS] &lt;command&gt; &lt;nclients&gt;
@@ -341,7 +341,7 @@ Examples:
 <li>#note: 这里的key都非常简单，10个字符的数字，printf("%010d",row)</li>
 </ul>
 
-<pre class="example" id="orgc678c08">
+<pre class="example" id="org8e1f3f6">
 hdfs@hadoop1:~$ time hbase org.apache.hadoop.hbase.PerformanceEvaluation --rows=1000 sequentialWrite 2
 13/04/25 23:47:56 INFO mapred.JobClient:   HBase Performance Evaluation
 13/04/25 23:47:56 INFO mapred.JobClient:     Row count=2000

@@ -191,7 +191,7 @@
 <p>
 #note: 发现还是存在一些不兼容的thrift协议，比如使用scan似乎就存在问题
 </p>
-<pre class="example" id="org3d033d6">
+<pre class="example" id="orgab09bd9">
 Traceback (most recent call last):
   File "./hbase.py", line 20, in &lt;module&gt;
     for k,v in iters:
@@ -333,7 +333,7 @@ For performance consider the following options:
 <p>
 按照链接里面的命令执行，bin/hbase org.apache.hadoop.hbase.mapreduce.Export可能会出现下面的问题
 </p>
-<pre class="example" id="orgc2f60ba">
+<pre class="example" id="orge8d429e">
 13/12/17 16:38:47 ERROR security.UserGroupInformation: PriviledgedActionException as:dirlt (auth:SIMPLE) cause:java.io.IOException: Cannot initialize Cluster. Please check your configuration for mapreduce.framework.name and the correspond server addresses.
 Exception in thread "main" java.io.IOException: Cannot initialize Cluster. Please check your configuration for mapreduce.framework.name and the correspond server addresses.
         at org.apache.hadoop.mapreduce.Cluster.initialize(Cluster.java:121)
@@ -359,7 +359,7 @@ Exception in thread "main" java.io.IOException: Cannot initialize Cluster. Pleas
 <p>
 解决办法是使用hadoop来执行，而不要使用hbase来执行
 </p>
-<pre class="example" id="org9ebf10e">
+<pre class="example" id="org6b34f07">
 hadoop jar ~/utils/hbase-0.94.6-cdh4.3.0/hbase-0.94.6-cdh4.3.0-security.jar export/import
 </pre>
 </div>
@@ -371,7 +371,7 @@ hadoop jar ~/utils/hbase-0.94.6-cdh4.3.0/hbase-0.94.6-cdh4.3.0-security.jar expo
 <p>
 region一直assign不上，观察曾经尝试被assigned的节点出现下面的错误
 </p>
-<pre class="example" id="orgd8d2043">
+<pre class="example" id="org95cd1aa">
 java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File does not exist: /hbase/installhistory/2f1b909bb15ce5960d72a1773902085c/install/240086423354424bb32d647fab6f9b98
         at org.apache.hadoop.hdfs.server.namenode.INodeFile.valueOf(INodeFile.java:39)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getBlockLocationsUpdateTimes(FSNamesystem.java:1341)
@@ -423,7 +423,7 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 2013.04.07 AttachAppkeyToDeviceInfo失败很多次，都是因为连接hbase很多次失败。观察发现每次task都是连接某一个regionserver失败。日志中出现很多下面这样的错误：
 </p>
 
-<pre class="example" id="org6ec10a3">
+<pre class="example" id="orga765fd1">
 2013-04-12 06:02:25,978 WARN org.apache.hadoop.ipc.HBaseServer: IPC Server Responder, call multi(org.apache.hadoop.hbase.client.MultiAction@9c31dfd) from 10.11.0.13:25641: output error
 2013-04-12 06:02:25,987 WARN org.apache.hadoop.ipc.HBaseServer: IPC Server handler 18 on 60020 caught: java.nio.channels.ClosedChannelException
         at sun.nio.ch.SocketChannelImpl.ensureWriteOpen(SocketChannelImpl.java:133)
@@ -456,7 +456,7 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 HBase中出现如下FATAL信息。单独看这个日志只是知道zookeeper长时间没有汇报断开连接，但是具体是什么原因需要分析上下文
 </p>
 
-<pre class="example" id="org86c829d">
+<pre class="example" id="orga1be5ae">
 2013-04-12 08:20:36,063 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp18.umeng.com,60020,1364871259512, load=(requests=14830, regions=211, used
 Heap=12618, maxHeap=13973): regionserver:60020-0x53c04ec6699f092 regionserver:60020-0x53c04ec6699f092 received expired from ZooKeeper, aborting
 org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = Session expired
@@ -469,7 +469,7 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 <p>
 常见的上下文如下。实际上这些INFO日志都有说明即将和zookeeper断开。 <b>主要是因为GC时间过长而不是网络partition(现在是在同机房)</b>
 </p>
-<pre class="example" id="orge8c2d3f">
+<pre class="example" id="orgd6008ab">
 2013-04-12 08:20:35,545 INFO org.apache.zookeeper.ClientCnxn: Client session timed out, have not heard from server in 43293ms for sessionid 0x53c04ec6699f092, closing socket connection and at
 tempting reconnect
 2013-04-12 08:20:35,545 INFO org.apache.zookeeper.ClientCnxn: Client session timed out, have not heard from server in 45375ms for sessionid 0x53c04ec6699f093, closing socket connection and at
@@ -492,7 +492,7 @@ tion
 <p>
 <b>CPU开销比较大也是可能原因</b> ， @2013-05-16 01:53:46 dp48 也出现过这样的情况但是上下文里面没有显示是GC造成的开销，毕竟可以看到memory使用比较小
 </p>
-<pre class="example" id="org0211722">
+<pre class="example" id="orge767a7f">
 2013-05-16 01:53:46,449 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp48.umops.us,60020,1368628743704, load=(requests=0, regions=5, usedHeap=108, maxHeap=13952): regionserver:60020-0x43e6d9fa1317bba-0x43e6d9fa1317bba regionserver:60020-0x43e6d9fa1317bba-0x43e6d9fa1317bba received expired from ZooKeeper, aborting
 org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = Session expired
         at org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher.connectionEvent(ZooKeeperWatcher.java:353)
@@ -505,7 +505,7 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 </p>
 
 
-<div id="org86a4b6d" class="figure">
+<div id="org9c886be" class="figure">
 <p><img src="../images/hbase-dp48-high-cpu-load.png" alt="hbase-dp48-high-cpu-load.png" />
 </p>
 </div>
@@ -515,7 +515,7 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 <div id="outline-container-org17181ec" class="outline-2">
 <h2 id="org17181ec"><span class="section-number-2">14.</span> lease expired exception</h2>
 <div class="outline-text-2" id="text-14">
-<pre class="example" id="org0ab5b29">
+<pre class="example" id="org6c3cd87">
 2013-04-11 08:07:34,121 ERROR org.apache.hadoop.hbase.regionserver.HRegionServer: Close and delete failed
 org.apache.hadoop.hdfs.server.namenode.LeaseExpiredException: org.apache.hadoop.hdfs.server.namenode.LeaseExpiredException: No lease on /hbase/.logs/dp22.umeng.com,60020,1365284229083/dp22.umeng.com%3A60020.1365638781277 File does
 not exist. [Lease.  Holder: DFSClient_hb_rs_dp22.umeng.com,60020,1365284229083_1365284230001, pendingcreates: 2]
@@ -562,7 +562,7 @@ hbase出现如下fatal日志，并且可以看到这个日志造成region server
 #note: 个人觉得原因是namenode和datanode不能够支撑这些请求压力，可以适当调大处理线程数目。这种情况下面也会出现很多Failed to connect to datanode的情况
 </p>
 
-<pre class="example" id="org5e9b6f9">
+<pre class="example" id="orgeef70e2">
 2013-05-13 04:10:11,256 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp31.umeng.com,60020,1367978709152, load=(requests=55849, regions=158, usedHeap=6520, maxHeap=13962): File System not available
 java.io.IOException: File system is not available
         at org.apache.hadoop.hbase.util.FSUtils.checkFileSystemAvailable(FSUtils.java:135)
@@ -642,7 +642,7 @@ throws IOException {
 GS这里表示generation stamp, 对应的是creation time of file. 从日志里面分析应该是hdfs文件已经被修改过了，所以原来的datanode对应的block已经不存在了。
 </p>
 
-<pre class="example" id="org13dcc1c">
+<pre class="example" id="org5d145f0">
 2013-05-13 01:16:31,881 WARN org.apache.hadoop.hdfs.DFSClient: Error Recovery for block blk_-8113206033894163645_85507011 failed  because recovery from primary datanode 10.11.0.47:50010 failed 4 times.  Pipeline was 10.11.0.47:50010. Will retry...
 2013-05-13 01:16:32,900 WARN org.apache.hadoop.hdfs.DFSClient: Failed recovery attempt #4 from primary datanode 10.11.0.47:50010
 org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: java.io.IOException: blk_-8113206033894163645_85507011 has out of date GS 85507011 found 85507383, may already be committed
@@ -695,7 +695,7 @@ org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: ja
 </p>
 
 
-<div id="org100298a" class="figure">
+<div id="org37a3063" class="figure">
 <p><img src="../images/hbase-architecture.png" alt="hbase-architecture.png" />
 </p>
 </div>
@@ -999,7 +999,7 @@ So everything is fine :)
 <p>
 如果region server和master的时间偏差太大的话，会造成region server启动失败
 </p>
-<pre class="example" id="orgd122b76">
+<pre class="example" id="orgbc2410b">
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
         at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
         at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)

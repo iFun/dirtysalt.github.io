@@ -79,7 +79,7 @@ systemtap使用一种触发式的工作方式，通过安装探针（probe）来
 <p>
 一个使用systemtap的简单例子
 </p>
-<pre class="example" id="org755fcd7">
+<pre class="example" id="orga135711">
 [dirlt@umeng-ubuntu-pc] &gt;  sudo stap -ve 'probe begin { log("hello world") exit() }'
 Pass 1: parsed user script and 76 library script(s) using 92476virt/22592res/2616shr kb, in 80usr/0sys/85real ms.
 Pass 2: analyzed script: 1 probe(s), 2 function(s), 0 embed(s), 0 global(s) using 93000virt/23472res/2816shr kb, in 0usr/0sys/4real
@@ -115,7 +115,7 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 <h3 id="orgaba7530"><span class="section-number-3">2.1.</span> Systemtap processing steps</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="org62d0fc9" class="figure">
+<div id="orgf129b42" class="figure">
 <p><img src="../images/systemtap-processing-steps.png" alt="systemtap-processing-steps.png" />
 </p>
 </div>
@@ -239,7 +239,7 @@ Each probe point specification has a “dotted-functor” syntax such as kernel.
 下面是一些示例代码
 </p>
 
-<pre class="example" id="org6fe1783">
+<pre class="example" id="org843b268">
 kernel.function("sys_read").return
   a return probe on the named function.
 

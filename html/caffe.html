@@ -116,7 +116,7 @@ caffe提供了许多内置layer，比如convolution layer, pool layer, dropout l
 </p>
 
 
-<div id="orgc015a0f" class="figure">
+<div id="orgdc31148" class="figure">
 <p><img src="../images/caffe-layer.jpg" alt="caffe-layer.jpg" />
 </p>
 </div>
@@ -147,7 +147,7 @@ caffe支持的layer完整在 <a href="http://caffe.berkeleyvision.org/tutorial/l
 net是layers组成的DAG, 并且可以使用文本格式来描述(protocol-buffers TextFormat). 比如下面文本生成的是logistic regression.
 </p>
 
-<pre class="example" id="org87afdfd">
+<pre class="example" id="orga6a8adb">
 name: "LogReg"
 layers {
   name: "mnist"
@@ -178,7 +178,7 @@ layers {
 </pre>
 
 
-<div id="orgee876f6" class="figure">
+<div id="org20af27d" class="figure">
 <p><img src="../images/caffe-net-logreg.jpg" alt="caffe-net-logreg.jpg" />
 </p>
 </div>
@@ -187,7 +187,7 @@ layers {
 Net有个初始化函数Init(). 它的作用有两个：1. 创建blosb和layers; 2. 调用layers的SetUp函数来初始化layers. 在这个过程中会打印日志来说明。注意在这个阶段并没有指明说是用GPU还是CPU来训练，指定使用什么训练是在solver层面的事情，这样可以将模型和实现分离。Net还有Forward和Backward两个函数，分别调用各个Layers的forward/backward. 最周如果我们进行预测的话，我们先填充好input blobs, 然后调用forward函数，最后获取output blobs作为预测结果。
 </p>
 
-<pre class="example" id="org1599211">
+<pre class="example" id="org1332081">
 I0902 22:52:17.931977 2079114000 net.cpp:39] Initializing net from parameters:
 name: "LogReg"
 [...model prototxt printout...]
@@ -229,7 +229,7 @@ I0902 22:52:17.941824 2079114000 net.cpp:220] Memory required for data: 201476
 <p>
 如果阅读caffe/models会发现，这些例子下面有train.prototxt，还有一个deploy.prototxt. 差别仅仅在于deploy.txt没有data-layer，而是在指定输入的shape.
 </p>
-<pre class="example" id="org94c42ac">
+<pre class="example" id="org89e7854">
 input: "data"
 input_dim: 10
 input_dim: 1
@@ -298,7 +298,7 @@ solver每轮迭代做了下面这些事情：
 <p>
 下面是solver.prototxt的一个示例（从examples/mnist/修改过来的）
 </p>
-<pre class="example" id="orgc4d2c3c">
+<pre class="example" id="org6efe8fe">
 # The train/test net protocol buffer definition
 net: "caffe-conf/train.prototxt"
 
