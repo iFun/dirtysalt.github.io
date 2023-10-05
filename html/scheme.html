@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org77e1384">1. 两种delay/force实现</a></li>
-<li><a href="#orgcde14dd">2. define-syntax</a></li>
-<li><a href="#org0010091">3. 重新认识closure</a></li>
-<li><a href="#org28d6e61">4. let,let*,letrec</a></li>
+<li><a href="#org8c18338">1. 两种delay/force实现</a></li>
+<li><a href="#org826d2d3">2. define-syntax</a></li>
+<li><a href="#org60ed6b1">3. 重新认识closure</a></li>
+<li><a href="#org1908d4b">4. let,let*,letrec</a></li>
 </ul>
 </div>
 </div>
@@ -36,8 +36,8 @@ links:
 </ul>
 
 
-<div id="outline-container-org77e1384" class="outline-2">
-<h2 id="org77e1384"><span class="section-number-2">1.</span> 两种delay/force实现</h2>
+<div id="outline-container-org8c18338" class="outline-2">
+<h2 id="org8c18338"><span class="section-number-2">1.</span> 两种delay/force实现</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 第一个是使用闭包，第二个使用mcons可变对象。可能可变对象的开销比较小。
@@ -76,8 +76,8 @@ links:
 </div>
 </div>
 
-<div id="outline-container-orgcde14dd" class="outline-2">
-<h2 id="orgcde14dd"><span class="section-number-2">2.</span> define-syntax</h2>
+<div id="outline-container-org826d2d3" class="outline-2">
+<h2 id="org826d2d3"><span class="section-number-2">2.</span> define-syntax</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 `define-syntax` 可能是racket语言专有的，感觉功能上比 `define-macro` 要更简单容易使用：
@@ -128,8 +128,8 @@ links:
 </div>
 </div>
 </div>
-<div id="outline-container-org0010091" class="outline-2">
-<h2 id="org0010091"><span class="section-number-2">3.</span> 重新认识closure</h2>
+<div id="outline-container-org60ed6b1" class="outline-2">
+<h2 id="org60ed6b1"><span class="section-number-2">3.</span> 重新认识closure</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 关于closure的一些问题：
@@ -265,8 +265,8 @@ links:
 </div>
 </div>
 </div>
-<div id="outline-container-org28d6e61" class="outline-2">
-<h2 id="org28d6e61"><span class="section-number-2">4.</span> let,let*,letrec</h2>
+<div id="outline-container-org1908d4b" class="outline-2">
+<h2 id="org1908d4b"><span class="section-number-2">4.</span> let,let*,letrec</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 它们之间的差别是，let是一次性绑定，let*则是顺序绑定。letrec是let的扩展，解决递归函数问题，语义上相同用于一次性现将所有的ids创建好。

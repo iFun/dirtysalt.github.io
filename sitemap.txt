@@ -27,7 +27,6 @@ https://dirtysalt.github.io/html/a-man-for-all-markets.html
 https://dirtysalt.github.io/html/a-mathematician-plays-the-stock-market.html
 https://dirtysalt.github.io/html/a-note-of-nobel-winner.html
 https://dirtysalt.github.io/html/a-page-about-call-cc.html
-https://dirtysalt.github.io/html/a-person-of-fidget.html
 https://dirtysalt.github.io/html/a-possible-impl-of-abtest-sys.html
 https://dirtysalt.github.io/html/a-possible-impl-of-reco-sys.html
 https://dirtysalt.github.io/html/a-programmers-rantings.html
@@ -334,6 +333,7 @@ https://dirtysalt.github.io/html/few-blogs-of-elite-course.html
 https://dirtysalt.github.io/html/few-simd-code-snippets.html
 https://dirtysalt.github.io/html/few-tips-of-mongodb-best-practice.html
 https://dirtysalt.github.io/html/ffmpeg.html
+https://dirtysalt.github.io/html/fidgety-mind-and-thought.html
 https://dirtysalt.github.io/html/filter-range-optimization.html
 https://dirtysalt.github.io/html/finagle.html
 https://dirtysalt.github.io/html/financial-markets-class.html

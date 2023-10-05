@@ -16,17 +16,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org75b04c4">1. WSL的问题</a></li>
-<li><a href="#org0b57381">2. MSYS2的问题</a></li>
-<li><a href="#org204aeed">3. Intellij的问题</a></li>
-<li><a href="#orgeb4c589">4. Miniconda3</a></li>
-<li><a href="#org7177304">5. 快捷键冲突</a></li>
+<li><a href="#org470d2ba">1. WSL的问题</a></li>
+<li><a href="#orgb809a30">2. MSYS2的问题</a></li>
+<li><a href="#org2bac9a3">3. Intellij的问题</a></li>
+<li><a href="#orgd2472d9">4. Miniconda3</a></li>
+<li><a href="#org7c0b567">5. 快捷键冲突</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org75b04c4" class="outline-2">
-<h2 id="org75b04c4"><span class="section-number-2">1.</span> WSL的问题</h2>
+<div id="outline-container-org470d2ba" class="outline-2">
+<h2 id="org470d2ba"><span class="section-number-2">1.</span> WSL的问题</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 虽然上面有了WSL，但是这个东西和Windows本身的交互性并不是很好。比如wsl里面的目录不能被obsidian识别（打开的时候会出现ELSDIR这样的错误），WSL是独立的网络空间使用ssh tunnel在Windows里面是看不到的等等这些问题。稍微令人欣慰的就是intellij WSL支持的不错，Java项目可以使用WSL里面的JDK以及配置，但是python这个不行。这个也可以理解，毕竟linux和windows下面的python二进制差别还蛮大的。
@@ -34,8 +34,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0b57381" class="outline-2">
-<h2 id="org0b57381"><span class="section-number-2">2.</span> MSYS2的问题</h2>
+<div id="outline-container-orgb809a30" class="outline-2">
+<h2 id="orgb809a30"><span class="section-number-2">2.</span> MSYS2的问题</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 为了解决ssh tunnel这个问题，可以安装一个 [MSYS2](<a href="https://www.msys2.org/">https://www.msys2.org/</a>) 。这个东西和cygwin很像，可以在windows环境下面提供linux环境，以及提供各种linux命令等等。最常用的就是git/ssh这类。安装完了之后可以在windows terminal里面配置这个shell，可以配置使用zsh作为默认的shell.
@@ -77,15 +77,15 @@ set MSYS=winsymlinks:nativestrict
 </div>
 </div>
 
-<div id="outline-container-org204aeed" class="outline-2">
-<h2 id="org204aeed"><span class="section-number-2">3.</span> Intellij的问题</h2>
+<div id="outline-container-org2bac9a3" class="outline-2">
+<h2 id="org2bac9a3"><span class="section-number-2">3.</span> Intellij的问题</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 打开WSL环境下面的Java项目没啥问题，甚至还可以使用WSL里面的JDK，这个真的是太方便了。遇到的唯一问题就是，maven的settings.xml文件我使用的是WSL下面的软链接，这个intellij没有识别，需要使用WSL下面的真实路径。
 </p>
 
 
-<div id="orgb46777c" class="figure">
+<div id="org49166a0" class="figure">
 <p><img src="../images/attempt-move-work-to-windows.png" alt="attempt-move-work-to-windows.png" />
 </p>
 </div>
@@ -103,8 +103,8 @@ WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 </p>
 </div>
 </div>
-<div id="outline-container-orgeb4c589" class="outline-2">
-<h2 id="orgeb4c589"><span class="section-number-2">4.</span> Miniconda3</h2>
+<div id="outline-container-orgd2472d9" class="outline-2">
+<h2 id="orgd2472d9"><span class="section-number-2">4.</span> Miniconda3</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 在Windows下面安装Python环境，最简单的方法估计就是使用miniconda3了。安装好了之后，PyCharm就可以自动发现这个python sdk, 并且可以在pycharm下面创建virtualenv.   然后为了方便切换到某个环境，可以在windows terminal下面配置profile, 这样可以方便地切换环境。
@@ -132,8 +132,8 @@ WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 </div>
 </div>
 
-<div id="outline-container-org7177304" class="outline-2">
-<h2 id="org7177304"><span class="section-number-2">5.</span> 快捷键冲突</h2>
+<div id="outline-container-org7c0b567" class="outline-2">
+<h2 id="org7c0b567"><span class="section-number-2">5.</span> 快捷键冲突</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 [Win 10 Ctrl + Shift + F快捷键占用-百度经验](<a href="https://jingyan.baidu.com/article/d71306351f002b52fcf4755b.html">https://jingyan.baidu.com/article/d71306351f002b52fcf4755b.html</a>)

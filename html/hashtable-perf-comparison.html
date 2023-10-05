@@ -16,19 +16,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2d1c7d9">1. 测试准备</a></li>
-<li><a href="#orgf73e506">2. 低基数</a></li>
-<li><a href="#org06d2cd9">3. 中基数</a></li>
-<li><a href="#org377a887">4. 高基数</a></li>
-<li><a href="#org0231a09">5. 超高基数</a></li>
-<li><a href="#org4ed7454">6. CK和phmap对比</a></li>
-<li><a href="#orga7c7741">7. 测试代码</a></li>
+<li><a href="#org58efe6c">1. 测试准备</a></li>
+<li><a href="#org9591908">2. 低基数</a></li>
+<li><a href="#orgbcdc05e">3. 中基数</a></li>
+<li><a href="#orgff6d4ef">4. 高基数</a></li>
+<li><a href="#org29d8162">5. 超高基数</a></li>
+<li><a href="#org2874640">6. CK和phmap对比</a></li>
+<li><a href="#org87fc459">7. 测试代码</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org2d1c7d9" class="outline-2">
-<h2 id="org2d1c7d9"><span class="section-number-2">1.</span> 测试准备</h2>
+<div id="outline-container-org58efe6c" class="outline-2">
+<h2 id="org58efe6c"><span class="section-number-2">1.</span> 测试准备</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 CK代码是从 <a href="https://github.com/ClickHouse/ClickHouse/commit/2805c28e6573fab09128b43150c4a7cb7ad21cc1">https://github.com/ClickHouse/ClickHouse/commit/2805c28e6573fab09128b43150c4a7cb7ad21cc1</a> 上面分离出来的，为了方便地单独编译做了下面这些处理：
@@ -67,7 +67,7 @@ ska::flat_hash_map 源代码地址是在这里 <a href="https://github.com/skaru
 <li>run_insert_random_ck 表示CK</li>
 </ul>
 
-<pre class="example" id="orgf18db2e">
+<pre class="example" id="orga7d68ea">
 -----------------------------------------------------------------------------------
 Benchmark                                         Time             CPU   Iterations
 -----------------------------------------------------------------------------------
@@ -91,8 +91,8 @@ run_insert_random_ck/65536000/960000000  3743974165 ns   3743242838 ns          
 </div>
 </div>
 
-<div id="outline-container-orgf73e506" class="outline-2">
-<h2 id="orgf73e506"><span class="section-number-2">2.</span> 低基数</h2>
+<div id="outline-container-org9591908" class="outline-2">
+<h2 id="org9591908"><span class="section-number-2">2.</span> 低基数</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 时间上看：
@@ -107,7 +107,7 @@ run_insert_random_ck/65536000/960000000  3743974165 ns   3743242838 ns          
 空间上看，CK有点低
 </p>
 
-<pre class="example" id="org3fba536">
+<pre class="example" id="org2c9dc10">
 run_insert_random/65536000/960            219113702 ns    219081575 ns            3
 run_insert_random_ska/65536000/960        304808498 ns    304779963 ns            2
 run_insert_precompute/65536000/960        234825202 ns    234803423 ns            3
@@ -158,8 +158,8 @@ run_insert_random_ck: hash set size = 960, load factor = 0.234375
 </div>
 </div>
 
-<div id="outline-container-org06d2cd9" class="outline-2">
-<h2 id="org06d2cd9"><span class="section-number-2">3.</span> 中基数</h2>
+<div id="outline-container-orgbcdc05e" class="outline-2">
+<h2 id="orgbcdc05e"><span class="section-number-2">3.</span> 中基数</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 时间上看：
@@ -174,7 +174,7 @@ run_insert_random_ck: hash set size = 960, load factor = 0.234375
 空间上看, ck/ska都比较低
 </p>
 
-<pre class="example" id="orge3011fc">
+<pre class="example" id="orgca22c78">
 run_insert_random/65536000/96000          322532514 ns    322502376 ns            2
 run_insert_random_ska/65536000/96000      906551339 ns    906459594 ns            1
 run_insert_precompute/65536000/96000      270961498 ns    270920370 ns            3
@@ -225,8 +225,8 @@ run_insert_random_ck: hash set size = 96000, load factor = 0.366211
 </div>
 </div>
 
-<div id="outline-container-org377a887" class="outline-2">
-<h2 id="org377a887"><span class="section-number-2">4.</span> 高基数</h2>
+<div id="outline-container-orgff6d4ef" class="outline-2">
+<h2 id="orgff6d4ef"><span class="section-number-2">4.</span> 高基数</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 时间上看：
@@ -240,7 +240,7 @@ run_insert_random_ck: hash set size = 96000, load factor = 0.366211
 空间上看, ck/ska依然比较低
 </p>
 
-<pre class="example" id="org7a60502">
+<pre class="example" id="org331967c">
 run_insert_random/65536000/9600000       2223202526 ns   2222753516 ns            1
 run_insert_random_ska/65536000/9600000   2044231505 ns   2044013964 ns            1
 run_insert_precompute/65536000/9600000   1086953992 ns   1086852808 ns            1
@@ -291,8 +291,8 @@ run_insert_random_ck: hash set size = 9589629, load factor = 0.285793
 </div>
 </div>
 
-<div id="outline-container-org0231a09" class="outline-2">
-<h2 id="org0231a09"><span class="section-number-2">5.</span> 超高基数</h2>
+<div id="outline-container-org29d8162" class="outline-2">
+<h2 id="org29d8162"><span class="section-number-2">5.</span> 超高基数</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 时间上看：
@@ -307,7 +307,7 @@ run_insert_random_ck: hash set size = 9589629, load factor = 0.285793
 空间上看，此时内存分配比较多，大家在在内存分配上都比较保守
 </p>
 
-<pre class="example" id="org77767d7">
+<pre class="example" id="org3bc540e">
 run_insert_random/65536000/960000000     6454115631 ns   6453461530 ns            1
 run_insert_random_ska/65536000/960000000 6683883384 ns   6682989324 ns            1
 run_insert_precompute/65536000/960000000 3963008998 ns   3962379163 ns            1
@@ -358,8 +358,8 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 </div>
 </div>
 
-<div id="outline-container-org4ed7454" class="outline-2">
-<h2 id="org4ed7454"><span class="section-number-2">6.</span> CK和phmap对比</h2>
+<div id="outline-container-org2874640" class="outline-2">
+<h2 id="org2874640"><span class="section-number-2">6.</span> CK和phmap对比</h2>
 <div class="outline-text-2" id="text-6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -424,7 +424,7 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 </p>
 
 
-<div id="org9e31f56" class="figure">
+<div id="orgf9254c5" class="figure">
 <p><img src="../images/hashtable-perf-comparison.jpg" alt="hashtable-perf-comparison.jpg" />
 </p>
 </div>
@@ -438,21 +438,21 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 </ol>
 
 
-<div id="orga282024" class="figure">
+<div id="org36bd75a" class="figure">
 <p><img src="../images/prefetchers-101.jpg" alt="prefetchers-101.jpg" />
 </p>
 </div>
 
 
-<div id="org61d0d5a" class="figure">
+<div id="org1398996" class="figure">
 <p><img src="../images/kernel-software-prefetching.jpg" alt="kernel-software-prefetching.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orga7c7741" class="outline-2">
-<h2 id="orga7c7741"><span class="section-number-2">7.</span> 测试代码</h2>
+<div id="outline-container-org87fc459" class="outline-2">
+<h2 id="org87fc459"><span class="section-number-2">7.</span> 测试代码</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-Cpp">#include &lt;benchmark/benchmark.h&gt;

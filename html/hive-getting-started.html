@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org893b8ba">1. Configuration</a></li>
-<li><a href="#org218b5f2">2. Local Mode</a></li>
-<li><a href="#org9fa60e0">3. Metadata Store</a></li>
-<li><a href="#orgaa14e2b">4. Example</a></li>
+<li><a href="#org812619f">1. Configuration</a></li>
+<li><a href="#orgadb3324">2. Local Mode</a></li>
+<li><a href="#orgcf67360">3. Metadata Store</a></li>
+<li><a href="#org6e0518c">4. Example</a></li>
 </ul>
 </div>
 </div>
@@ -31,8 +31,8 @@
 首先配置好hdfs/mapred(spark), 然后配置hive. hive使用hdfs做文件存储, 使用mapred(spark)做计算引擎
 </p>
 
-<div id="outline-container-org893b8ba" class="outline-2">
-<h2 id="org893b8ba"><span class="section-number-2">1.</span> Configuration</h2>
+<div id="outline-container-org812619f" class="outline-2">
+<h2 id="org812619f"><span class="section-number-2">1.</span> Configuration</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>默认配置文件是 &lt;install-dir&gt;/conf/hive-default.xml</li>
@@ -45,8 +45,8 @@
 </div>
 </div>
 
-<div id="outline-container-org218b5f2" class="outline-2">
-<h2 id="org218b5f2"><span class="section-number-2">2.</span> Local Mode</h2>
+<div id="outline-container-orgadb3324" class="outline-2">
+<h2 id="orgadb3324"><span class="section-number-2">2.</span> Local Mode</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这里所谓的local-mode主要是指运行的mapreduce是在local node上面完成的，至于数据源还是和hdfs/hbase本身配置相关。可以通过设置 SET mapred.job.tracker=local; 强制修改mapreduce本地完成。
@@ -63,8 +63,8 @@ hive0.7以后提供自动切换local-mode功能，设置 hive&gt; SET hive.exec.
 </div>
 </div>
 
-<div id="outline-container-org9fa60e0" class="outline-2">
-<h2 id="org9fa60e0"><span class="section-number-2">3.</span> Metadata Store</h2>
+<div id="outline-container-orgcf67360" class="outline-2">
+<h2 id="orgcf67360"><span class="section-number-2">3.</span> Metadata Store</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <a href="https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin">https://cwiki.apache.org/confluence/display/Hive/AdminManual+MetastoreAdmin</a>
@@ -187,7 +187,7 @@ Client Configuration Parameters
 <p>
 thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 端口可以通过-p选项来指定, 或是从环境变量METASTORE_PORT来获得(hive-env.sh里面可以设置).
 </p>
-<pre class="example" id="org4232389">
+<pre class="example" id="org0025936">
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Started the new metaserver on port [9083]...
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Options.minWorkerThreads = 200
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Options.maxWorkerThreads = 100000
@@ -197,7 +197,7 @@ thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 
 <p>
 配置文件如下
 </p>
-<pre class="example" id="org650e071">
+<pre class="example" id="org719af6b">
 &lt;configuration&gt;
   &lt;property&gt;
     &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
@@ -240,14 +240,14 @@ thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 
 </div>
 </div>
 
-<div id="outline-container-orgaa14e2b" class="outline-2">
-<h2 id="orgaa14e2b"><span class="section-number-2">4.</span> Example</h2>
+<div id="outline-container-org6e0518c" class="outline-2">
+<h2 id="org6e0518c"><span class="section-number-2">4.</span> Example</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 数据默认是使用ctrl-a来做分割
 </p>
 
-<pre class="example" id="org7f01d88">
+<pre class="example" id="org794d88d">
 ➜  bin  hadoop fs -copyFromLocal ../examples/files/kv1.txt /tmp/
 13/03/07 14:34:40 INFO security.UserGroupInformation: JAAS Configuration already set up for Hadoop, not re-installing.
 ➜  bin  hive

@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org87c5f9c">1. Getting Started</a></li>
-<li><a href="#orgf940c98">2. 启动多台虚拟机</a></li>
-<li><a href="#org5353eae">3. invalid byte sequence in UTF-8 (Argument Error)</a></li>
-<li><a href="#org7d51595">4. Connection timeout. Retrying</a></li>
+<li><a href="#org5465b73">1. Getting Started</a></li>
+<li><a href="#orgf50ba81">2. 启动多台虚拟机</a></li>
+<li><a href="#org3c33a43">3. invalid byte sequence in UTF-8 (Argument Error)</a></li>
+<li><a href="#org75104e7">4. Connection timeout. Retrying</a></li>
 </ul>
 </div>
 </div>
@@ -28,8 +28,8 @@
 <li>available boxes: <a href="http://www.vagrantbox.es/">http://www.vagrantbox.es/</a></li>
 </ul>
 
-<div id="outline-container-org87c5f9c" class="outline-2">
-<h2 id="org87c5f9c"><span class="section-number-2">1.</span> Getting Started</h2>
+<div id="outline-container-org5465b73" class="outline-2">
+<h2 id="org5465b73"><span class="section-number-2">1.</span> Getting Started</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这篇文章可以作为很好的起点 <a href="http://blog.segmentfault.com/fenbox/1190000000264347">http://blog.segmentfault.com/fenbox/1190000000264347</a>
@@ -60,8 +60,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf940c98" class="outline-2">
-<h2 id="orgf940c98"><span class="section-number-2">2.</span> 启动多台虚拟机</h2>
+<div id="outline-container-orgf50ba81" class="outline-2">
+<h2 id="orgf50ba81"><span class="section-number-2">2.</span> 启动多台虚拟机</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <a href="http://docs.vagrantup.com/v2/multi-machine/index.html">http://docs.vagrantup.com/v2/multi-machine/index.html</a>
@@ -71,7 +71,7 @@
 启动多个虚拟机，并且每个虚拟机使用不同的环境
 </p>
 
-<pre class="example" id="orge41e101">
+<pre class="example" id="orgb1331c5">
 # Every Vagrant virtual environment requires a box to build off of.
 config.vm.define "centos" do |m|
   m.vm.box = "centos"
@@ -90,14 +90,14 @@ end
 </div>
 </div>
 
-<div id="outline-container-org5353eae" class="outline-2">
-<h2 id="org5353eae"><span class="section-number-2">3.</span> invalid byte sequence in UTF-8 (Argument Error)</h2>
+<div id="outline-container-org3c33a43" class="outline-2">
+<h2 id="org3c33a43"><span class="section-number-2">3.</span> invalid byte sequence in UTF-8 (Argument Error)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 添加box时候出现如下错误
 </p>
 
-<pre class="example" id="org8f21904">
+<pre class="example" id="org4da59a3">
 ➜  vm.centos  vagrant box add centos ~/utils/centos65-x86_64-20140116.box
 ==&gt; box: Adding box 'centos' (v0) for provider:
     box: Downloading: file:///home/dirlt/utils/centos65-x86_64-20140116.box
@@ -144,14 +144,14 @@ end
 </div>
 </div>
 
-<div id="outline-container-org7d51595" class="outline-2">
-<h2 id="org7d51595"><span class="section-number-2">4.</span> Connection timeout. Retrying</h2>
+<div id="outline-container-org75104e7" class="outline-2">
+<h2 id="org75104e7"><span class="section-number-2">4.</span> Connection timeout. Retrying</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 启动box时候出现如下错误，说明虚拟机一直没有成功启动
 </p>
 
-<pre class="example" id="orgf2332e7">
+<pre class="example" id="org93c1b48">
 ==&gt; default: Waiting for machine to boot. This may take a few minutes...
     default: SSH address: 127.0.0.1:2222
     default: SSH username: vagrant
@@ -174,7 +174,7 @@ end
 <p>
 可以将virtualbox的GUI打开，看看具体是什么错误导致没有正常启动。在Vagrantfile里面添加
 </p>
-<pre class="example" id="orgb7c9094">
+<pre class="example" id="orge4d7457">
 config.vm.provider :virtualbox do |vb|
   vb.gui = true
 end

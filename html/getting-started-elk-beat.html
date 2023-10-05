@@ -41,7 +41,7 @@ Beat可以即可以输出到logstash（可以用来做parse &amp; transform) 然
 </p>
 
 
-<div id="org383b47d" class="figure">
+<div id="org98eebf0" class="figure">
 <p><img src="../images/elk_beat_dashboard.png" alt="elk_beat_dashboard.png" />
 </p>
 </div>
@@ -88,7 +88,7 @@ output {
 <p>
 在output不断可以通过fields.type或者是type判断是不是metricbeat. 如果希望通过fields.type判断的话，为此我们需要在metric beat配置里面增加下面配置片段
 </p>
-<pre class="example" id="org9d4d3ac">
+<pre class="example" id="org508dba8">
 fields:
   type: metricbeat
 </pre>
@@ -100,7 +100,7 @@ fields:
 file beat相比就更容易配置一些。file beat会记录所有文件最后读取的偏移，存储到本地的data/registry里面。所以如果希望重新灌文件的话，可以将这个文件删除掉
 </p>
 
-<pre class="example" id="orgb3c2c53">
+<pre class="example" id="org33916c4">
 ➜  data ls
 meta.json registry
 ➜  data cat registry
@@ -114,7 +114,7 @@ meta.json registry
 </p>
 
 
-<div id="org1ee2c3c" class="figure">
+<div id="org58b5f88" class="figure">
 <p><img src="../images/elk_beat_discovery.png" alt="elk_beat_discovery.png" />
 </p>
 </div>

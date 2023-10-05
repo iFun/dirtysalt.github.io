@@ -55,7 +55,7 @@ Optimize small read on ORC(small row group index/stripe/file) by dirtysalt · Pu
 使用脚本 `java -jar ~/installed/orc-tools-1.7.0-SNAPSHOT-uber.jar meta test_many_columns.orc | grep -P "Stripe"` 或者是 `hive &#x2013;orcfiledump test_many_columns.orc | grep -P "Stripe"` 可以看到stripe情况。
 </p>
 
-<pre class="example" id="org9728bb5">
+<pre class="example" id="orgd0adce6">
   Stripe 350:
 Stripes:
   Stripe: offset: 3 data: 722325 rows: 2864 tail: 1861 index: 9095
@@ -74,7 +74,7 @@ Stripes:
 </ul>
 
 
-<div id="org9aa4100" class="figure">
+<div id="org23e780e" class="figure">
 <p><img src="../images/optimize-reading-small-stripe-orc-file-0.jpg" alt="optimize-reading-small-stripe-orc-file-0.jpg" />
 </p>
 </div>
@@ -99,7 +99,7 @@ Stripes:
 </p>
 
 
-<div id="orgaf0eb44" class="figure">
+<div id="orgca557d5" class="figure">
 <p><img src="../images/optimize-reading-small-stripe-orc-file-1.png" alt="optimize-reading-small-stripe-orc-file-1.png" /></p>
 </div>
 </div>

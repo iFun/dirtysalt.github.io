@@ -16,14 +16,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org588c6ca">1. 常用命令</a></li>
-<li><a href="#org0a3aed7">2. 视频转GIF</a></li>
+<li><a href="#orgb7acd59">1. 常用命令</a></li>
+<li><a href="#org56c3b23">2. 视频转GIF</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org588c6ca" class="outline-2">
-<h2 id="org588c6ca"><span class="section-number-2">1.</span> 常用命令</h2>
+<div id="outline-container-orgb7acd59" class="outline-2">
+<h2 id="orgb7acd59"><span class="section-number-2">1.</span> 常用命令</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 视频反转 `ffmpeg -i input.mp4 -vf reverse output.mp4`
@@ -75,8 +75,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0a3aed7" class="outline-2">
-<h2 id="org0a3aed7"><span class="section-number-2">2.</span> 视频转GIF</h2>
+<div id="outline-container-org56c3b23" class="outline-2">
+<h2 id="org56c3b23"><span class="section-number-2">2.</span> 视频转GIF</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 普通质量 `ffmpeg -i output.mp4 -map 0:0 -vf reverse,fps=6 -s 300*300 output.gif`
@@ -89,7 +89,7 @@
 <p>
 较高质量，体积较大
 </p>
-<pre class="example" id="org7f16ebe">
+<pre class="example" id="org5b49b81">
 #!/bin/sh
 
 palette="/tmp/palette.png"
