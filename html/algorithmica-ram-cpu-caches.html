@@ -47,7 +47,7 @@ You can compare it with your own hardware by running dmidecode -t cache or lshw 
 </p>
 
 
-<div id="org4266acb" class="figure">
+<div id="org769b83a" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-0.jpg" alt="algorithmica-ram-cpu-caches-0.jpg" />
 </p>
 </div>
@@ -114,13 +114,13 @@ for (int t = 0; t &lt; K; t++)
 </ol>
 
 
-<div id="org60ea4bd" class="figure">
+<div id="org7b0fd9f" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-1.jpg" alt="algorithmica-ram-cpu-caches-1.jpg" />
 </p>
 </div>
 
 
-<div id="orgb75932f" class="figure">
+<div id="org432fc24" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-2.jpg" alt="algorithmica-ram-cpu-caches-2.jpg" />
 </p>
 </div>
@@ -142,7 +142,7 @@ The important practical lesson when designing and analyzing memory-bound algorit
 </p>
 
 
-<div id="orgbc98c13" class="figure">
+<div id="org5bc18c9" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-3.jpg" alt="algorithmica-ram-cpu-caches-3.jpg" />
 </p>
 </div>
@@ -177,7 +177,7 @@ hardware prefetch几乎是没有性能回退的，因为它只有在memory/cache
 </p>
 
 
-<div id="orgc6d7e87" class="figure">
+<div id="orgc8733af" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-4.jpg" alt="algorithmica-ram-cpu-caches-4.jpg" />
 </p>
 </div>
@@ -195,7 +195,7 @@ You can also specify a specific level of cache the data needs to be brought to w
 <hr />
 
 <p>
-memory paging的page size对于TLB影响很大，通常有2级TLB分别是64, 2048 entries， 如果page size = 4K的话大约可以覆盖512K, 8M大小。也就是说，8MB内存内部访问，内存地址转换非常快，但是超过之后涉及到VM部分那么影响下降就比较严重。这个测试中避免了L2 cache, D &gt;= 16. (L3 cache使用的是物理地址而不是虚拟地址）
+memory paging的page size对于TLB影响很大，通常有2级TLB分别是64, 2048 entries， 如果page size = 4K的话大约可以覆盖512K, 8M大小。也就是说，8MB内存内部访问，内存地址转换非常快，但是超过之后涉及到VM部分那么影响下降就比较严重。这个测试中避免了L2 cache, D &gt;= 16. (L3 cache使用的是物理地址而不是虚拟地址)
 </p>
 
 <div class="org-src-container">
@@ -208,7 +208,7 @@ for (int i = 0; i &lt; D * N; i += D)
 </div>
 
 
-<div id="org8630fd4" class="figure">
+<div id="org354023a" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-5.jpg" alt="algorithmica-ram-cpu-caches-5.jpg" />
 </p>
 </div>
@@ -264,7 +264,7 @@ madvise(ptr, array_size, MADV_HUGEPAGE);
 </p>
 
 
-<div id="org56c565c" class="figure">
+<div id="org16d0730" class="figure">
 <p><img src="../images/algorithmica-ram-cpu-caches-6.jpg" alt="algorithmica-ram-cpu-caches-6.jpg" />
 </p>
 </div>

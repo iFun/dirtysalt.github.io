@@ -17,7 +17,7 @@
 </p>
 
 
-<div id="orgeeb2b1f" class="figure">
+<div id="org74a828c" class="figure">
 <p><img src="../images/dict-query-history-desktop.png" alt="dict-query-history-desktop.png" />
 </p>
 </div>
@@ -27,15 +27,15 @@
 </p>
 
 <p>
-昨天突发奇想，为什么不将这些查询单词记录下来。以后可以定期复习这些单词，也算是学习单词的一种好办法。结合上面两个做法，一个idea很快就形成了。首先将默认搜索引擎切换到`gw:8080`上，我可以修改服务器代码，将查询单词记录下来，然后再交给金山词霸。看上去效果像是这样的。
+昨天突发奇想，为什么不将这些查询单词记录下来。以后可以定期复习这些单词，也算是学习单词的一种好办法。结合上面两个做法，一个idea很快就形成了。首先将默认搜索引擎切换到 `gw:8080` 上，我可以修改服务器代码，将查询单词记录下来，然后再交给金山词霸。看上去效果像是这样的。
 </p>
 
 <p>
-首先修改默认搜索引擎到`gw:8080`上，分配一个固定的path.
+首先修改默认搜索引擎到 `gw:8080` 上，分配一个固定的path.
 </p>
 
 
-<div id="org3c6c565" class="figure">
+<div id="orge09ee00" class="figure">
 <p><img src="../images/dict-query-history-chrome.png" alt="dict-query-history-chrome.png" />
 </p>
 </div>
@@ -45,13 +45,13 @@
 </p>
 
 
-<div id="org5025ebd" class="figure">
+<div id="org3ab8522" class="figure">
 <p><img src="../images/dict-query-history-selection.png" alt="dict-query-history-selection.png" />
 </p>
 </div>
 
 <p>
-修改后的服务器代码如下，启动命令为`python local_server.py 8080`. 代码是仿照SimpleHTTPServer.py写的，继承了它的Handler然后改写send_head方法。
+修改后的服务器代码如下，启动命令为 `python local_server.py 8080`. 代码是仿照SimpleHTTPServer.py写的，继承了它的Handler然后改写send_head方法。
 </p>
 
 <div class="org-src-container">

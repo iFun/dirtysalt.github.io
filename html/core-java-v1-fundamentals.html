@@ -210,7 +210,7 @@ Java有下面4个访问修饰符可以用来控制可见性：
 <p>
 所谓静态导入，就是可以导入某个类下面的静态方法以及静态域，通常来说这样可以使得代码更容易阅读，比如
 </p>
-<pre class="example" id="org63ebf00">
+<pre class="example" id="orgac2006f">
 import static java.lang.Math.*;
 class App {
   public static void main(String[] args){
@@ -261,7 +261,7 @@ equqls编写建议：
 </p>
 <ol class="org-ol">
 <li>普通内部类。（可以访问到外围类实例）</li>
-<li>静态内部类。(C++嵌套类和静态内部类更相似）</li>
+<li>静态内部类。(C++嵌套类和静态内部类更相似)</li>
 <li>局部类。（通常在方法内使用，可以访问到外围类实例以及方法中final参数）</li>
 <li>匿名内部类。（局部类一种特例，方便做一个接口简单扩展）</li>
 </ol>
@@ -382,7 +382,7 @@ class X$Y extends java.lang.Object{
 <h3 id="orgc34e2eb"><span class="section-number-3">2.4.</span> 匿名内部类</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-匿名类编写回调或者是特定的接口扩展非常方便，当然也可以容易地扩展一个类。(或许可以使用Java8 Lambda语法代替了？）
+匿名类编写回调或者是特定的接口扩展非常方便，当然也可以容易地扩展一个类。(或许可以使用Java8 Lambda语法代替了？)
 </p>
 
 <div class="org-src-container">
@@ -667,7 +667,7 @@ Runnable的run方法是不允许抛出任何异常的，对于可检查的异常
 </p>
 <ul class="org-ul">
 <li>如果作用于对象或者是对象方法的话，那么其实相当是同步这个对象(对象存在一个mutex lock)</li>
-<li>如果作用于静态字段或者是静态方法的话，那么其实相当是同步这个类（类有一个mutex lock)</li>
+<li>如果作用于静态字段或者是静态方法的话，那么其实相当是同步这个类(类有一个mutex lock)</li>
 </ul>
 <p>
 一旦理解这点之后，就比较好理解為什麼存在wait, notify, notifyAll这些方法了。其实都是相当于这个lock对应的condition本身提供的方法。
@@ -741,7 +741,7 @@ public class CyclicBarrierTest {
 
 <p>
 我对于类型擦除的理解是，在生成字节码的时候，类型参数会使用类型上界（比如T extends Comparable&lt;T&gt;，那么
-类型上界就是Comparable）来代替。如果没有设定类型上界的话，那么使用Object代替。除非是使用类似C++这样
+类型上界就是Comparable)来代替。如果没有设定类型上界的话，那么使用Object代替。除非是使用类似C++这样
 编译方式（实例化模板来生成代码），否则泛型必须将一部分功能放在运行时，而在编译时能做的就是有限的检查。
 </p>
 

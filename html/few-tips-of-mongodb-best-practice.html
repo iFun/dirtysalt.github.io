@@ -43,10 +43,10 @@
 </p>
 
 <p>
-mongodb是如何管理查询计划的？query planner会针对query shape（某种特定filter, project, sort)的组合指定某种query paln.
+mongodb是如何管理查询计划的？query planner会针对query shape(某种特定filter, project, sort)的组合指定某种query paln.
 </p>
 <ul class="org-ul">
-<li>如果存在多种查询计划的话，那么就会缓存起来（plan cache)</li>
+<li>如果存在多种查询计划的话，那么就会缓存起来(plan cache)</li>
 <li>下次在遇到类似这种query shape的话就会去查询缓存</li>
 <li>如果查询不到缓存或者是缓存的query plan效率不行的话，那么都会做replanning</li>
 <li>mongodb提供了plan cache相关操作的API</li>

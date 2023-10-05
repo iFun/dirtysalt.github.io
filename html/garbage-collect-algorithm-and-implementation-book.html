@@ -90,7 +90,7 @@ Pros/Cons:
 <ol class="org-ol">
 <li>延迟引用计数，根上rc==0的时候不会立刻进行回收，而是等待其他时机（内存压力大）重新检查根。根上需要维护一个zct(zero count table), 里面是引用计数可能为0的节点。减轻根上rc频繁变化造成的GC，但是rc本身的好处就没有了。本质上类似mark-and-sweep方式。</li>
 <li>sticky引用计数法，减少rc位的大小，基于rc值通常不会太大的假设。比如如果引用计数最多是31的话，那么rc可以使用5bits.  如果存在RC溢出的情况可能会不准确，所以需要使用mark-and-sweep当做backup plan. 实现上需要首先将所有的对象rc设置为0，执行完成mark-and-sweep之后将rc重新设置回来。</li>
-<li>部分标记-清除算法，用来解决循环引用问题。对象会被标记成为黑(black, 绝对不是垃圾), 白(white, 绝对是垃圾), 灰(gray, 搜索完毕对象）, 阴影（hatch, 可能是循环引用的垃圾）。将可能是循环引用的对象放在hatch queue里面，然后定期对hatch queue执行回收）。细想的话这个方法和mark-and-sweep还是有点类似的，但是在mark阶段使用了RC信息。</li>
+<li>部分标记-清除算法，用来解决循环引用问题。对象会被标记成为黑(black, 绝对不是垃圾), 白(white, 绝对是垃圾), 灰(gray, 搜索完毕对象), 阴影（hatch, 可能是循环引用的垃圾）。将可能是循环引用的对象放在hatch queue里面，然后定期对hatch queue执行回收)。细想的话这个方法和mark-and-sweep还是有点类似的，但是在mark阶段使用了RC信息。</li>
 </ol>
 
 <p>
@@ -120,7 +120,7 @@ Cheney GC(1970). 改进了上面递归调用问题，维护两个指针scan/free
 </p>
 
 
-<div id="orgb99aaa0" class="figure">
+<div id="org6b87862" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-0.png" alt="garbage-collect-algorithm-and-implementation-book-0.png" />
 </p>
 </div>
@@ -130,7 +130,7 @@ Cheney GC(1970). 改进了上面递归调用问题，维护两个指针scan/free
 </p>
 
 
-<div id="org0dd8052" class="figure">
+<div id="org8a94a99" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-1.png" alt="garbage-collect-algorithm-and-implementation-book-1.png" />
 </p>
 </div>
@@ -227,7 +227,7 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 </p>
 <ol class="org-ol">
 <li>记录集(record set).  每次老年对象持有新生对象的时候，需要将这个老年对象记录下来。</li>
-<li>卡片标记，将老年代进行划分(1024字节）成区域，这个区域内的内存赋值在一个bitmap标记上，这样搜索的的时候需要搜索这个bitmap对应的区域。</li>
+<li>卡片标记，将老年代进行划分(1024字节)成区域，这个区域内的内存赋值在一个bitmap标记上，这样搜索的的时候需要搜索这个bitmap对应的区域。</li>
 <li>页面标记，类似卡片标记但是依赖于OS标记，就是OS如果写入某个页面的话会有某个特殊标记。</li>
 </ol>
 
@@ -236,7 +236,7 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 </p>
 
 <p>
-最后面还提到一个列车垃圾回收（Train GC)，有点太细了，主要是为了解决老年代的垃圾回收暂停时间。大致思路好像是，将相互引用的老年代的对象放置在一个个列车里。如果发现列车里面对象没有被root引用的话，那么整个列车对象都可以被回收。
+最后面还提到一个列车垃圾回收(Train GC)，有点太细了，主要是为了解决老年代的垃圾回收暂停时间。大致思路好像是，将相互引用的老年代的对象放置在一个个列车里。如果发现列车里面对象没有被root引用的话，那么整个列车对象都可以被回收。
 </p>
 </div>
 </div>
@@ -251,13 +251,13 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 
 
 
-<div id="orge86f993" class="figure">
+<div id="org35f9e31" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-2.png" alt="garbage-collect-algorithm-and-implementation-book-2.png" />
 </p>
 </div>
 
 
-<div id="org111184c" class="figure">
+<div id="org31f8b5c" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-3.png" alt="garbage-collect-algorithm-and-implementation-book-3.png" />
 </p>
 </div>

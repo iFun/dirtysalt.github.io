@@ -148,7 +148,7 @@ meta block存放了bloom filter信息，这样可以减少磁盘读取。关于T
 <p>
 leveldb是这么分配filter block的.以base(2KB)计算.如果block offset在[base*i,base*(i+1)-1]之间的话，那么就在filter i上面。存储格式是这样的。
 </p>
-<pre class="example" id="org07c6bca">
+<pre class="example" id="org53cea82">
 [filter 0]
 [filter 1]
 [filter 2]
@@ -345,7 +345,7 @@ memtable在leveldb内部实现就是一个skiplist.所有的update都不是in-pl
 但是其实这也反应了leveldb的定位，就是针对fault-tolerant的分布式系统设计。这些分布式系统架在commodity PC上面，磁盘可能很容易出现问题。
 在文档最后作者也给给出了这种block存储方式(recordio)的利弊。
 </p>
-<pre class="example" id="orgca2d2e3">
+<pre class="example" id="org38b34d8">
 Some benefits over the recordio format:
 
 (1) We do not need any heuristics for resyncing - just go to next
@@ -475,7 +475,7 @@ seperator可以设置成为ac.seperator的生成可以参考Comparator.使用尽
 那么做compaction需要耗费5s时间。假设用户写速度也在10MS/s的话，那么会生成50MB数据相当于25个sst level0文件。这样对读来说会造成很大影响。
 作者给出的建议包括：
 </p>
-<pre class="example" id="orged9c625">
+<pre class="example" id="org5f38e5c">
 Solution 1: To reduce this problem, we might want to increase the log switching threshold when the number of level-0 files is large.
 Though the downside is that the larger this threshold, the more memory we will need to hold the corresponding memtable.
 
@@ -611,14 +611,14 @@ Cache主要用来解决读取问题，做写穿透并且让Cache失效即可。l
 <h2 id="orge0ac02a"><span class="section-number-2">10.</span> Discussion</h2>
 <div class="outline-text-2" id="text-10">
 <p>
-leveldb通过iterator遍历，对于相同的key如何保证获取到最新的值（hpplinux)
+leveldb通过iterator遍历，对于相同的key如何保证获取到最新的值(hpplinux)
 </p>
 
 <p>
 <b>Question</b>
 </p>
 
-<pre class="example" id="orgc49d1d4">
+<pre class="example" id="org4b0982d">
 我在看LevelDB代码的时候遇到了一个问题，百思不得其解，也找不到可以探讨请教的人，所以冒昧的给您发了这封邮件，希望得到您的帮助。
 我遇到的问题是这样的：
 在

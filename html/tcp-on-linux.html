@@ -35,7 +35,7 @@
 </p>
 
 
-<div id="org64dd056" class="figure">
+<div id="orgfabe4b0" class="figure">
 <p><img src="../images/tcp-create-connection.png" alt="tcp-create-connection.png" />
 </p>
 </div>
@@ -58,7 +58,7 @@
 <h2 id="org339009a"><span class="section-number-2">2.</span> packet reception</h2>
 <div class="outline-text-2" id="text-2">
 
-<div id="orgc25db4a" class="figure">
+<div id="org06ef654" class="figure">
 <p><img src="../images/tcp-packet-reception.png" alt="tcp-packet-reception.png" />
 </p>
 </div>
@@ -113,7 +113,7 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 <h2 id="org3422027"><span class="section-number-2">3.</span> packet transmission</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="org4d61604" class="figure">
+<div id="org7097801" class="figure">
 <p><img src="../images/tcp-packet-transmission.png" alt="tcp-packet-transmission.png" />
 </p>
 </div>
@@ -124,7 +124,7 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 <ul class="org-ul">
 <li>application layer将数据copy到tcp send buffer里面，如果空间不够的话那么就会出现阻塞。 <b>copy app buffer to tcp send buffer as app packet</b></li>
 <li>tcp layer等待tcp send buffer存在数据或者是需要做ack的时候，组装ip packet推送到IP layer <b>copy tcp send buffer to ip send buffer as tcp packet</b></li>
-<li>IP layer从kernel memory申请sk_buffer，将ip data包装成为packet data，然后塞到qdisc(txqueuelen控制队列长度）里面（指针）。如果队列满的话那么就会出现阻塞，反馈到tcp layer阻塞。 <b>copy ip send buffer to packet data as ip packet</b></li>
+<li>IP layer从kernel memory申请sk_buffer，将ip data包装成为packet data，然后塞到qdisc(txqueuelen控制队列长度)里面（指针）。如果队列满的话那么就会出现阻塞，反馈到tcp layer阻塞。 <b>copy ip send buffer to packet data as ip packet</b></li>
 <li>NIC driver如果检测到qdisc有数据的话，调用NIC DMA Engine将packet发送出去。发送完成之后NIC向CPU发起中断释放packet data内存到Kernel Memory</li>
 <li>其中内核参数有：
 <ul class="org-ul">
@@ -136,7 +136,7 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 <p>
 在wangyx的帮助下, qdisc队列长度参数txqueuelen这个配置在ifconfig下面找到了. txqueuelen = 1000.
 </p>
-<pre class="example" id="org1216950">
+<pre class="example" id="org4cd6ec9">
 ➜  ~  ifconfig
 eth0      Link encap:Ethernet  HWaddr 12:31:40:00:49:d1
           inet addr:10.170.78.31  Bcast:10.170.79.255  Mask:255.255.254.0
@@ -168,7 +168,7 @@ QDisc的队列长度由txqueuelen设置，和接收数据包的队列长度由�
 <h2 id="orgd5f71dd"><span class="section-number-2">4.</span> congestion control</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="orgbe8a8c2" class="figure">
+<div id="org590ed24" class="figure">
 <p><img src="../images/tcp-congestion-control.png" alt="tcp-congestion-control.png" />
 </p>
 </div>

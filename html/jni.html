@@ -62,7 +62,7 @@ The JNI is designed to handle situations where you need to combine Java applicat
 </ul>
 
 
-<div id="orgb32a767" class="figure">
+<div id="orgd293761" class="figure">
 <p><img src="../images/role-of-the-jni.png" alt="role-of-the-jni.png" />
 </p>
 </div>
@@ -82,8 +82,8 @@ The JNI is designed to handle situations where you need to combine Java applicat
 <ul class="org-ul">
 <li>The Java API might not support certain host-dependent features needed by an application. An application may want to perform, for example, special file operations that are not supported by the Java API, yet it is both cumbersome and inefficient to manipulate files through another process.（在一些host上面非常特殊的操作）</li>
 <li>You may want to access an existing native library and are not willing to pay for the overhead of copying and transmitting data across different processes. Loading the native library in the same process is much more efficient.（进程之间通信需要拷贝传输大量的数据）</li>
-<li>Having an application span multiple processes could result in unacceptable memory footprint. This is typically true if these processes need to reside on the same client machine. Loading a native library into the existing process hosting the application requires less system resources than starting a new pro-cess and loading the library into that process.（单独的进程会存在相当的overhead)</li>
-<li>You may want to implement a small portion of time-critical code in a lower-level language, such as assembly. If a 3D-intensive application spends most of its time in graphics rendering, you may find it necessary to write the core por-tion of a graphics library in assembly code to achieve maximum performance.(控制底层提高性能效率）</li>
+<li>Having an application span multiple processes could result in unacceptable memory footprint. This is typically true if these processes need to reside on the same client machine. Loading a native library into the existing process hosting the application requires less system resources than starting a new pro-cess and loading the library into that process.(单独的进程会存在相当的overhead)</li>
+<li>You may want to implement a small portion of time-critical code in a lower-level language, such as assembly. If a 3D-intensive application spends most of its time in graphics rendering, you may find it necessary to write the core por-tion of a graphics library in assembly code to achieve maximum performance.(控制底层提高性能效率)</li>
 </ul>
 </div>
 </div>
@@ -102,7 +102,7 @@ The JNI is designed to handle situations where you need to combine Java applicat
 <li>然后 java Hello 启动</li>
 </ul>
 
-<div id="org1fc700b" class="figure">
+<div id="org6f25d06" class="figure">
 <p><img src="../images/jni-example.png" alt="jni-example.png" />
 </p>
 </div>
@@ -209,7 +209,7 @@ JNIEXPORT void JNICALL Java_Hello_run  (JNIEnv * env, jclass cls)
 </ul>
 
 
-<div id="org409b733" class="figure">
+<div id="orgfad141e" class="figure">
 <p><img src="../images/jnienv-interface-pointer.png" alt="jnienv-interface-pointer.png" />
 </p>
 </div>
@@ -310,10 +310,10 @@ Cache fieldID/methodID:
 <hr />
 
 <p>
-Let us start by comparing the cost of Java/native calls with the cost of Java/Java calls. Java/native calls are potentially slower than Java/Java calls for the fol-lowing reasons: (Java/Java calls和Java/native calls的对比，Java/native calls通常更慢）：
+Let us start by comparing the cost of Java/native calls with the cost of Java/Java calls. Java/native calls are potentially slower than Java/Java calls for the fol-lowing reasons: (Java/Java calls和Java/native calls的对比，Java/native calls通常更慢)：
 </p>
 <ul class="org-ul">
-<li>Native methods most likely follow a different calling convention than that used by Java/Java calls inside the Java virtual machine implementation. As a result, the virtual machine must perform additional operations to build argu-ments and set up the stack frame before jumping to a native method entry point.（额外操作来建立stack frame调用native method)</li>
+<li>Native methods most likely follow a different calling convention than that used by Java/Java calls inside the Java virtual machine implementation. As a result, the virtual machine must perform additional operations to build argu-ments and set up the stack frame before jumping to a native method entry point.(额外操作来建立stack frame调用native method)</li>
 <li>It is common for the virtual machine to inline method calls. Inlining Java/native calls is a lot harder than inlining Java/Java calls. （inline方面Java/Java calls更容易做）</li>
 </ul>
 
@@ -481,7 +481,7 @@ int main() {
 </pre>
 </div>
 
-<pre class="example" id="orgad1ce0d">
+<pre class="example" id="org4e874dc">
 ➜  ~  g++ Hello.cc -I$JAVA_HOME/include -L$JAVA_HOME/jre/lib/amd64/server -ljvm
 Hello.cc: In function ‘int main()’:
 Hello.cc:22:29: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
@@ -628,7 +628,7 @@ Passing Data
 </p>
 
 
-<div id="org83479d5" class="figure">
+<div id="org37b7af1" class="figure">
 <p><img src="../images/jni-passing-date-in-reference.png" alt="jni-passing-date-in-reference.png" />
 </p>
 </div>

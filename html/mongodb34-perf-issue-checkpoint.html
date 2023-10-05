@@ -27,7 +27,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="orgdeac93c" class="figure">
+<div id="orgd56bc6d" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-0.jpg" alt="mongodb34-perf-issue-checkpoint-0.jpg" />
 </p>
 </div>
@@ -43,15 +43,15 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 <p>
-因为这个延迟是在10minute统计出来的数值（我们使用stasd/graphite来收集延迟数据，rotate schema是10s:1h, 60s:1d, 10m:7d, 60m:60d)，所以延迟的增加可能有两个原因：1. 每个请求的延迟都增加 2. 部分请求延迟出现尖峰。当然也可能是两个原因都存在。所以需要在更短的时间(30min)范围内延迟波动情况。我在写这篇文章的时候，之前并没有截图，然后现在数据也滚动过去了，所以没有办法提供当时的数据。不过结果是情况2，也就是部分请求延迟出现了尖峰。并且这个尖峰出现时机非常奇怪，大约是1min出现一个。
+因为这个延迟是在10minute统计出来的数值(我们使用stasd/graphite来收集延迟数据，rotate schema是10s:1h, 60s:1d, 10m:7d, 60m:60d)，所以延迟的增加可能有两个原因：1. 每个请求的延迟都增加 2. 部分请求延迟出现尖峰。当然也可能是两个原因都存在。所以需要在更短的时间(30min)范围内延迟波动情况。我在写这篇文章的时候，之前并没有截图，然后现在数据也滚动过去了，所以没有办法提供当时的数据。不过结果是情况2，也就是部分请求延迟出现了尖峰。并且这个尖峰出现时机非常奇怪，大约是1min出现一个。
 </p>
 
 <p>
-除此之外IO bytes以及CPU Idle也表现了同样的规律，并且primary和secondary都表现除了这样的情况，而不仅仅是primary. 因此当时猜测这种磁盘操作的尖峰，应该不是应用层的写入（不然secondary不会出现同样的pattern).
+除此之外IO bytes以及CPU Idle也表现了同样的规律，并且primary和secondary都表现除了这样的情况，而不仅仅是primary. 因此当时猜测这种磁盘操作的尖峰，应该不是应用层的写入(不然secondary不会出现同样的pattern).
 </p>
 
 
-<div id="orgb1c066a" class="figure">
+<div id="org2af8146" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-1.jpg" alt="mongodb34-perf-issue-checkpoint-1.jpg" />
 </p>
 </div>
@@ -71,7 +71,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org92c86bd" class="figure">
+<div id="org0b7e112" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-2.jpg" alt="mongodb34-perf-issue-checkpoint-2.jpg" />
 </p>
 </div>
@@ -81,7 +81,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org90de1bc" class="figure">
+<div id="org613b34e" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-3.jpg" alt="mongodb34-perf-issue-checkpoint-3.jpg" />
 </p>
 </div>
@@ -91,7 +91,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 为了确认这些数据是mongodb写入的，我们还运行了一个 `iotop` 来观察记录当时的情况
 </p>
 
-<pre class="example" id="org590df96">
+<pre class="example" id="org5054a8a">
 09:35:46  2979 be/3 root        0.00 B/s   64.93 K/s  0.00 %  1.58 % [jbd2/xvdb-8]
 09:35:46  2505 be/3 root        0.00 B/s    0.00 B/s  0.00 %  0.12 % [jbd2/xvda1-8]
 09:35:46  6964 be/4 ec2-user    2.63 M/s  104.81 M/s  0.00 %  0.01 % mongod --storageEngine wiredTiger --port 27017 --dbpath /srv/mongodb --wiredTigerCacheSizeGB 30 --logpath /srv/mongodb/log --pidfilepath /home/ec2-user/nova/deploy/mongod-27017.pid --fork --journal --replSet rs0 --setParameter replWriterThreadCount=1
@@ -181,7 +181,7 @@ while True:
 </p>
 
 
-<div id="org315be00" class="figure">
+<div id="org52717dd" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-4.jpg" alt="mongodb34-perf-issue-checkpoint-4.jpg" />
 </p>
 </div>
@@ -204,7 +204,7 @@ while True:
 如果对比mongodb 3.0 和 3.4 的wiredtiger默认参数的话，其实差别非常小，checkpoint wait 值完全一样。所以猜测 wiredtiger 3.4 生成的checkpoint 体积相比3.0要大很多，才造成升级之后会感知到磁盘的瞬间写入。
 </p>
 
-<pre class="example" id="org990779b">
+<pre class="example" id="org808361d">
 mongodb 3.0
 
 2017-08-20T13:51:13.516+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=2G,session_max=20000,eviction=(threads_max=4),statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),

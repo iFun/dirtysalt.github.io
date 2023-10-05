@@ -188,7 +188,7 @@ elephant-bird实现了protobuf+lzo组合使用方式。
 <p>
 首先创建proto文件，比如message.proto
 </p>
-<pre class="example" id="orgd61eccb">
+<pre class="example" id="org93921a5">
 package com.dirlt.java.mr.proto;
 
 // FATAL: This name works as a version number
@@ -480,7 +480,7 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 集群中出现job中少数几个任务卡在reduce的copy阶段，并且这几个任务都是在同一个机器执行。tasktracker log日志如下： <b>可以看到有两个task,49和50</b>
 </p>
 
-<pre class="example" id="orgbf7cdda">
+<pre class="example" id="orgcff5314">
 2013-04-26 13:57:01,144 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000050_1 0.1976251% reduce &gt; copy (466 of 786 at 24.13 MB/s) &gt;
 2013-04-26 13:57:03,595 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000049_1 0.1976251% reduce &gt; copy (466 of 786 at 24.40 MB/s) &gt;
 2013-04-26 13:57:04,179 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000050_1 0.1976251% reduce &gt; copy (466 of 786 at 24.13 MB/s) &gt;
@@ -491,7 +491,7 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 检查网卡，CPU，IO，内存都非常正常。使用kill -QUIT &lt;pid&gt;然后到userlogs stdout察看stacktrace，日志如下：
 </p>
 
-<pre class="example" id="orga17df49">
+<pre class="example" id="org7523cbd">
 2013-04-26 14:08:07
 Full thread dump Java HotSpot(TM) 64-Bit Server VM (20.12-b01 mixed mode):
 
@@ -720,7 +720,7 @@ Heap
 <p>
 一旦tt被blacklist之后，会出现如下日志。从语义上看就是删除在这个tt上面所有执行的job(in purgeJob)
 </p>
-<pre class="example" id="org57a31c8">
+<pre class="example" id="orge65c457">
 2013-05-02 11:55:18,170 INFO org.apache.hadoop.mapred.TaskTracker: Received 'KillJobAction' for job: job_201301231102_25218
 2013-05-02 11:55:18,170 WARN org.apache.hadoop.mapred.TaskTracker: Unknown job job_201301231102_25218 being deleted.
 </pre>
@@ -728,7 +728,7 @@ Heap
 <p>
 而在jt里面会出现如下日志
 </p>
-<pre class="example" id="org7218615">
+<pre class="example" id="org1ecb9a5">
 2013-05-14 03:19:37,493 INFO org.apache.hadoop.mapred.JobTracker: Adding dp31.umeng.com to the blacklist across all jobs
 2013-05-14 03:19:37,493 INFO org.apache.hadoop.mapred.JobTracker: Blacklisting tracker : dp31.umeng.com Reason for blacklisting is : EXCEEDING_FAILURES
 </pre>
@@ -759,7 +759,7 @@ dp24 OOM
 <p>
 dp31
 </p>
-<pre class="example" id="org210dc37">
+<pre class="example" id="org1da604a">
 dp@dp31:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   34G  1.7T   2% /
@@ -780,7 +780,7 @@ none             24G     0   24G   0% /run/shm
 <p>
 dp34
 </p>
-<pre class="example" id="orgde390d4">
+<pre class="example" id="org65872a6">
 dp@dp34:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   33G  1.7T   2% /
@@ -802,7 +802,7 @@ none             24G     0   24G   0% /run/shm
 dp36 2013-05-07就挂了，在也没有起来过，但是从当时FATAL日志看来已经是没有磁盘空间了。
 </p>
 
-<pre class="example" id="org58c7e44">
+<pre class="example" id="org0bbc08c">
 dp@dp36:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   32G  1.7T   2% /
@@ -823,7 +823,7 @@ none             24G     0   24G   0% /run/shm
 <p>
 dp41
 </p>
-<pre class="example" id="org62881e3">
+<pre class="example" id="orgda8d51d">
 dp@dp41:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   34G  1.7T   2% /
@@ -861,7 +861,7 @@ dp41上面出现如下错误日志，可以看到dp41在作为map output server�
 <li>map task attempt_201301231102_33841_m_000331_0</li>
 <li>reduce task id = 15</li>
 </ul>
-<pre class="example" id="orgf45c18c">
+<pre class="example" id="org40f3f26">
 2013-05-13 12:23:06,708 WARN org.apache.hadoop.mapred.TaskTracker: getMapOutput(attempt_201301231102_33841_m_000331_0,15) failed :
 org.mortbay.jetty.EofException
         at org.mortbay.jetty.HttpGenerator.flush(HttpGenerator.java:791)
@@ -981,7 +981,7 @@ java.lang.IllegalStateException: Committed
 <p>
 <code>=mapper in dp41=</code>
 </p>
-<pre class="example" id="org14bb9cc">
+<pre class="example" id="org66d3d2b">
 monitor
 by pass counter	2,557,788
 
@@ -1011,7 +1011,7 @@ Records Read	3,155,527
 <p>
 <code>=reducer in dp16=</code>
 </p>
-<pre class="example" id="orgcfbf076">
+<pre class="example" id="org5d32f49">
 FileSystemCounters
 FILE_BYTES_READ	28,468,696,830
 FILE_BYTES_WRITTEN	28,468,769,783
@@ -1033,7 +1033,7 @@ Reduce input records	321,140,243
 <p>
 性能数据非常正常. 然后察看dp16对应时刻的日志，发现这个getMapOutput只不过是一个偶然的失败。但是其实从dp16上面的日志来看，可能只是取map output部分block没有成功，但是后续还是成功的，观察 <b>attempt_201301231102_33841_r_000015_0</b> 传输百分比和block数目。
 </p>
-<pre class="example" id="orgcada6d0">
+<pre class="example" id="orgc9d3755">
 2013-05-13 12:23:04,575 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_33841_r_000015_0 0.01798942% reduce &gt; copy (102 of 1890 at 19.63 MB/s) &gt;
 2013-05-13 12:23:04,620 INFO org.apache.hadoop.mapred.TaskTracker.clienttrace: src: 10.11.0.16:50060, dest: 10.11.0.50:29582, bytes: 28814, op: MAPRED_SHUFFLE, cliID: attempt_201301231102_33841_m_000480_0, duration: 3011431376
 2013-05-13 12:23:05,438 INFO org.apache.hadoop.mapred.TaskTracker.clienttrace: src: 10.11.0.16:50060, dest: 10.11.0.54:38101, bytes: 13541361, op: MAPRED_SHUFFLE, cliID: attempt_201301231102_33841_m_000480_0, duration: 28773030913
@@ -1062,7 +1062,7 @@ Reduce input records	321,140,243
 <p>
 dp31出现如下日志，这个过程是非常诡异的。从stacktrace上面可以看到过程是在创建job directory时候正要修改权限，但是文件找不到了。从dp31的df -h可以看到剩余磁盘空间如下
 </p>
-<pre class="example" id="org7de52f2">
+<pre class="example" id="org509d3b5">
 /dev/sdf1       1.8T  1.7T  904M 100% /data/data5
 /dev/sdb1       1.8T  1.7T  681M 100% /data/data1
 /dev/sdc1       1.8T  1.7T  902M 100% /data/data2
@@ -1075,7 +1075,7 @@ dp31出现如下日志，这个过程是非常诡异的。从stacktrace上面可
 所以我怀疑是因为磁盘过满出现的一些诡异问题。 #note: 容易造成node被blacklisted.
 </p>
 
-<pre class="example" id="orga1af7cc">
+<pre class="example" id="org381fcb5">
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201301231102_34166_m_000000_0 task's state:UNASSIGNED
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201301231102_34166_m_000000_0 which needs 1 slots
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 12 and trying to launch attempt_201301231102_34166_m_000000_0 which needs 1 slots
@@ -1129,7 +1129,7 @@ ENOENT: No such file or directory
 <ul class="org-ul">
 <li>Users - Shuffle In Memory OutOfMemoryError : <a href="http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html">http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html</a></li>
 </ul>
-<pre class="example" id="org8c6406b">
+<pre class="example" id="org103839b">
 2013-06-19 07:16:17,180 FATAL org.apache.hadoop.mapred.Task: attempt_201306141608_1574_r_009039_0 : Map output copy failure : java.lang.OutOfMemoryError: Java heap space
 	at org.apache.hadoop.mapred.ReduceTask$ReduceCopier$MapOutputCopier.shuffleInMemory(ReduceTask.java:1612)
 	at org.apache.hadoop.mapred.ReduceTask$ReduceCopier$MapOutputCopier.getMapOutput(ReduceTask.java:1472)
@@ -1153,7 +1153,7 @@ ENOENT: No such file or directory
 Number of Maps：
 </p>
 <ul class="org-ul">
-<li>The number of maps is usually driven by the number of DFS blocks in the input files. Although that causes people to adjust their DFS block size to adjust the number of maps. (map数量通常都是由输入文件的blocks决定的，因此可以通过调整blocksize来调整map的数量）</li>
+<li>The number of maps is usually driven by the number of DFS blocks in the input files. Although that causes people to adjust their DFS block size to adjust the number of maps. (map数量通常都是由输入文件的blocks决定的，因此可以通过调整blocksize来调整map的数量)</li>
 <li>The right level of parallelism for maps seems to be around 10-100 maps/node, although we have taken it up to 300 or so for very cpu-light map tasks. Task setup takes awhile, so it is best if the maps take at least a minute to execute. （因为map启动需要花费一些时间，因此map执行时间最好至少1min不然overhead太高。通常map数量是在10-100/node但是如果cpu-light的话那么可以设置到300左右）</li>
 <li>The number of map tasks can also be increased manually using the JobConf's conf.setNumMapTasks(int num). This can be used to increase the number of map tasks, but will not set the number below that which Hadoop determines via splitting the input data. （使用API可以增加map数量但是却不能够减少）</li>
 </ul>
@@ -1162,8 +1162,8 @@ Number of Maps：
 Number of Reduces：
 </p>
 <ul class="org-ul">
-<li>The right number of reduces seems to be 0.95 or 1.75 * (nodes * mapred.tasktracker.tasks.maximum). At 0.95 all of the reduces can launch immediately and start transfering map outputs as the maps finish. At 1.75 the faster nodes will finish their first round of reduces and launch a second round of reduces doing a much better job of load balancing. （将reduce数量设置在允许同时运行最大reduce数量的0.95/1.75. 0.95可以让map完成之后所有reduce都可以理解启动就传输数据，而1.75的话可以让比较快的节点在第一轮就运算完成，而在第二轮做更好的load-balance)</li>
-<li>The number of reduces also controls the number of output files in the output directory, but usually that is not important because the next map/reduce step will split them into even smaller splits for the maps. (虽然reduce数量会影响到输出文件的数量，但是通常并不重要）</li>
+<li>The right number of reduces seems to be 0.95 or 1.75 * (nodes * mapred.tasktracker.tasks.maximum). At 0.95 all of the reduces can launch immediately and start transfering map outputs as the maps finish. At 1.75 the faster nodes will finish their first round of reduces and launch a second round of reduces doing a much better job of load balancing. (将reduce数量设置在允许同时运行最大reduce数量的0.95/1.75. 0.95可以让map完成之后所有reduce都可以理解启动就传输数据，而1.75的话可以让比较快的节点在第一轮就运算完成，而在第二轮做更好的load-balance)</li>
+<li>The number of reduces also controls the number of output files in the output directory, but usually that is not important because the next map/reduce step will split them into even smaller splits for the maps. (虽然reduce数量会影响到输出文件的数量，但是通常并不重要)</li>
 <li>The number of reduce tasks can also be increased in the same way as the map tasks, via JobConf's conf.setNumReduceTasks(int num). （可以设置reduce数目）</li>
 </ul>
 </div>

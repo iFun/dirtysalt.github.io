@@ -54,7 +54,7 @@ high variance意味着训练算法得到的是overfit的结果，需要使用更
 </p>
 
 
-<div id="org90f62b3" class="figure">
+<div id="org674588e" class="figure">
 <p><img src="../images/improve-dnn-bias-and-variance.png" alt="improve-dnn-bias-and-variance.png" />
 </p>
 </div>
@@ -85,17 +85,17 @@ W越小，会让模型更加简单，有一个可能的解释如下. 就是让W�
 </p>
 
 
-<div id="org9356719" class="figure">
+<div id="orga53f619" class="figure">
 <p><img src="../images/improve-dnn-reg-and-weight-decay.png" alt="improve-dnn-reg-and-weight-decay.png" />
 </p>
 </div>
 
 <p>
-Dropout可以让在一个layers上，某些neuron可以尽可能地不依赖于其他neuros, 可以获得更好的generalization. Dropout在实现上需要区分train/dev/test阶段，在train阶段需要打开，而在dev/test阶段则关闭。并且具体地 D[l] = A[l] * mask. 其中mask = (rand() &lt; p) / p(这里/p是为了等比例扩展其他neuron的权重）。推导可以得到dA = dD * mask. Dropout和Gradient Check放在一起比较难写对。
+Dropout可以让在一个layers上，某些neuron可以尽可能地不依赖于其他neuros, 可以获得更好的generalization. Dropout在实现上需要区分train/dev/test阶段，在train阶段需要打开，而在dev/test阶段则关闭。并且具体地 D[l] = A[l] * mask. 其中mask = (rand() &lt; p) / p(这里/p是为了等比例扩展其他neuron的权重)。推导可以得到dA = dD * mask. Dropout和Gradient Check放在一起比较难写对。
 </p>
 
 
-<div id="orgd98826d" class="figure">
+<div id="orga3c81e8" class="figure">
 <p><img src="../images/improve-dnn-reg-dropout.png" alt="improve-dnn-reg-dropout.png" />
 </p>
 </div>
@@ -110,13 +110,13 @@ BN是在一个mini-batch上面对输入进行normalization，并且这个BN是�
 </p>
 
 
-<div id="orgdbf5039" class="figure">
+<div id="org65a363d" class="figure">
 <p><img src="../images/improve-dnn-batch-norm.png" alt="improve-dnn-batch-norm.png" />
 </p>
 </div>
 
 <p>
-BN在每层有两个超参数，并且最终训练完成之后也有两个参数分别是u(mean), e(std). 这两个参数会作用在预测上。如何在train阶段结合mini-batch来计算u和e呢？这个可以参考 Optimization 一节里面 `expoentially weighted average(ewa)`的计算方法：在计算mini-batch的时候每次都会得到一个u和e, 然后通过ewa最终得到最终值，这个最终值可以在一定程度上认为是每个mini-batch的平均值。
+BN在每层有两个超参数，并且最终训练完成之后也有两个参数分别是u(mean), e(std). 这两个参数会作用在预测上。如何在train阶段结合mini-batch来计算u和e呢？这个可以参考 Optimization 一节里面 `expoentially weighted average(ewa)` 的计算方法：在计算mini-batch的时候每次都会得到一个u和e, 然后通过ewa最终得到最终值，这个最终值可以在一定程度上认为是每个mini-batch的平均值。
 </p>
 </div>
 </div>
@@ -146,7 +146,7 @@ BN在每层有两个超参数，并且最终训练完成之后也有两个参数
 <h2 id="orgaf57bf6"><span class="section-number-2">5.</span> Optimization</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-DL优化，并不是要解决local optima，因为cost function是一个非常高纬度的函数，不太可能在所有dimension上都是最低点，更多的是sadle point(鞍点，在某些dimension是最低点，但是另外一些dimension上并不是）。DL优化其实解决的是plateau, 在plateau上没有办法再继续优化/尝试了（或者是迭代很缓慢）。
+DL优化，并不是要解决local optima，因为cost function是一个非常高纬度的函数，不太可能在所有dimension上都是最低点，更多的是sadle point(鞍点，在某些dimension是最低点，但是另外一些dimension上并不是)。DL优化其实解决的是plateau, 在plateau上没有办法再继续优化/尝试了（或者是迭代很缓慢）。
 </p>
 
 <p>
@@ -166,7 +166,7 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </p>
 
 
-<div id="org85f3434" class="figure">
+<div id="orga56b17d" class="figure">
 <p><img src="../images/improve-dnn-ewa-bias-correction.png" alt="improve-dnn-ewa-bias-correction.png" />
 </p>
 </div>
@@ -188,7 +188,7 @@ momentum在更新weight时候，不是直接更新-a * dW, 而是更新这些dW�
 </p>
 
 
-<div id="org28140d7" class="figure">
+<div id="org3a521f2" class="figure">
 <p><img src="../images/improve-dnn-grad-check.png" alt="improve-dnn-grad-check.png" />
 </p>
 </div>

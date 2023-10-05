@@ -135,25 +135,25 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org1166c16" class="figure">
+<div id="org4fb0014" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
 </p>
 </div>
 
 
-<div id="org96598df" class="figure">
+<div id="orgd84124c" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
 </p>
 </div>
 
 
-<div id="orgb60d4c1" class="figure">
+<div id="orga3d5afd" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
 </p>
 </div>
 
 
-<div id="org6dd06ff" class="figure">
+<div id="orgffbd01a" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
 </p>
 </div>
@@ -178,19 +178,19 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="orga099684" class="figure">
+<div id="org6e069a1" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
 </p>
 </div>
 
 
-<div id="org467dd10" class="figure">
+<div id="org31ada2f" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
 </p>
 </div>
 
 
-<div id="org060227b" class="figure">
+<div id="org88c9e73" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
 </p>
 </div>
@@ -214,19 +214,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org7516fd9" class="figure">
+<div id="org10e6584" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
 </p>
 </div>
 
 
-<div id="org26a0cfb" class="figure">
+<div id="org586d2d8" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
 </p>
 </div>
 
 
-<div id="org5653f89" class="figure">
+<div id="org8e50b54" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
 </p>
 </div>
@@ -249,19 +249,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org60828a6" class="figure">
+<div id="org3e896b4" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
 </p>
 </div>
 
 
-<div id="org4508068" class="figure">
+<div id="org8b4ac94" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
 </p>
 </div>
 
 
-<div id="orgdf319da" class="figure">
+<div id="orgd94caae" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
 </p>
 </div>
@@ -442,7 +442,7 @@ static INLINE void memcpy_sse2_32(void* __restrict dst, const void* __restrict s
 <h3 id="org2546cdc"><span class="section-number-3">3.4.</span> memcpy_my/my2</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
-代码比较长，完整代码可以看这里 <a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308</a>. 两者实现逻辑非常接近，差别在于`memcpy_my2` 版本在
+代码比较长，完整代码可以看这里 <a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308</a>. 两者实现逻辑非常接近，差别在于 `memcpy_my2` 版本在
 </p>
 <ul class="org-ul">
 <li>`if (size &lt; 30000 || !have_avx)` 条件下面使用128字节sse2版本，因为使用avx指令会有额外开销。</li>
@@ -629,7 +629,7 @@ goto tail;
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="orgd916701">
+<pre class="example" id="org642834c">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ goto tail;
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="org3f05f33">
+<pre class="example" id="org646afae">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -662,16 +662,16 @@ goto tail;
 实现上有下面这些注意点：
 </p>
 <ul class="org-ul">
-<li>对于小尺寸分支重要（减少分支或者是变成jmp table/switch)</li>
-<li>处理非对齐尺寸(1,3,5,7字节），通常使用重叠move</li>
+<li>对于小尺寸分支重要(减少分支或者是变成jmp table/switch)</li>
+<li>处理非对齐尺寸(1,3,5,7字节)，通常使用重叠move</li>
 <li>对于大尺寸可以使用sse/avx或者是rep movsb.（看上去大尺寸rep movsb比sse/avx要差点）</li>
-<li>avx-512会造成CPU降频, 混合sse/avx使用会有开销（但是好像最新的CPU是没有这个问题了的) <a href="https://www.zhihu.com/question/37230675/answer/273654228">https://www.zhihu.com/question/37230675/answer/273654228</a></li>
-<li>循环展开最多8次，使用寄存器xmm0-xmm7或者是ymm0-ymm7（其实也有ymm8-ymm15). 但是这个也不是最优解。</li>
-<li>使用unaligned load和aligned store (但是好像其实两者差别不是很大）</li>
+<li>avx-512会造成CPU降频, 混合sse/avx使用会有开销(但是好像最新的CPU是没有这个问题了的) <a href="https://www.zhihu.com/question/37230675/answer/273654228">https://www.zhihu.com/question/37230675/answer/273654228</a></li>
+<li>循环展开最多8次，使用寄存器xmm0-xmm7或者是ymm0-ymm7(其实也有ymm8-ymm15). 但是这个也不是最优解。</li>
+<li>使用unaligned load和aligned store (但是好像其实两者差别不是很大)</li>
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="org2176e21">
+<pre class="example" id="org84786b6">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ goto tail;
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="orge4cf0b2">
+<pre class="example" id="org79cf973">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -778,7 +778,7 @@ goto tail;
 </p>
 
 
-<div id="org0c305e0" class="figure">
+<div id="orga02d89c" class="figure">
 <p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
 </p>
 </div>
@@ -788,7 +788,7 @@ goto tail;
 </p>
 
 
-<div id="org1c5c770" class="figure">
+<div id="org4302695" class="figure">
 <p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
 </p>
 </div>
@@ -850,13 +850,13 @@ goto tail;
 </ul>
 
 
-<div id="orgaae1e6e" class="figure">
+<div id="org44a7b29" class="figure">
 <p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
 </p>
 </div>
 
 
-<div id="orgd2d5f00" class="figure">
+<div id="orgf89c23c" class="figure">
 <p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
 </p>
 </div>

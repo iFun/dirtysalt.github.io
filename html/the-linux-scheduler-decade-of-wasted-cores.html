@@ -71,7 +71,7 @@ Therefore, what Linux and most other schedulers do is pe- riodically run a load-
 </p>
 
 
-<div id="org569b7c6" class="figure">
+<div id="org1a6bdee" class="figure">
 <p><img src="../images/the-linux-scheduler-decade-of-wasted-cores-0.png" alt="the-linux-scheduler-decade-of-wasted-cores-0.png" />
 </p>
 </div>
@@ -87,7 +87,7 @@ The cores are logically organized in a hierarchy, at the bottom of which is a si
 </p>
 
 
-<div id="org6bca6d6" class="figure">
+<div id="org4e5055e" class="figure">
 <p><img src="../images/the-linux-scheduler-decade-of-wasted-cores-1.png" alt="the-linux-scheduler-decade-of-wasted-cores-1.png" />
 </p>
 </div>
@@ -97,7 +97,7 @@ The cores are logically organized in a hierarchy, at the bottom of which is a si
 </p>
 
 
-<div id="orge9f358a" class="figure">
+<div id="org3bada18" class="figure">
 <p><img src="../images/the-linux-scheduler-decade-of-wasted-cores-2.png" alt="the-linux-scheduler-decade-of-wasted-cores-2.png" />
 </p>
 </div>
@@ -106,7 +106,7 @@ The cores are logically organized in a hierarchy, at the bottom of which is a si
 <hr />
 
 <p>
-Linux Scheduler经历过多次重新设计和实现，并且为了适配新的硬件以及运行环境，做了许多改进/牺牲。未来可以预见到，其他的设计和实现也会不断地被提出来，同时bugs也会不断地被引入。scheduler这个东西的bugs比较隐秘，它不会造成crash,  也很拿通过类似sampling的方式来观察到，必须使用tracing的方式来发现，还有就是复现这些问题的workload(单一的workload可能没有办法复现，必须是多个applications同时运行），这个就给测试以及回归造成很大的困难。
+Linux Scheduler经历过多次重新设计和实现，并且为了适配新的硬件以及运行环境，做了许多改进/牺牲。未来可以预见到，其他的设计和实现也会不断地被提出来，同时bugs也会不断地被引入。scheduler这个东西的bugs比较隐秘，它不会造成crash,  也很拿通过类似sampling的方式来观察到，必须使用tracing的方式来发现，还有就是复现这些问题的workload(单一的workload可能没有办法复现，必须是多个applications同时运行)，这个就给测试以及回归造成很大的困难。
 </p>
 
 <blockquote>

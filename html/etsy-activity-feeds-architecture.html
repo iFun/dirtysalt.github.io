@@ -49,12 +49,12 @@ Connection是有向的，边上面有权重值，这个信息可以帮助排序�
 </p>
 <ul class="org-ul">
 <li>Choosing Connections.（可以根据affinity进行选择）</li>
-<li>Make Activity Sets. （根据上面选择出来的connections选择activities)</li>
-<li>Classification. (这个我没有看懂是为什么？可能是为了后续展现逻辑使用的）</li>
+<li>Make Activity Sets. (根据上面选择出来的connections选择activities)</li>
+<li>Classification. (这个我没有看懂是为什么？可能是为了后续展现逻辑使用的)</li>
 <li>Scoring. (simple time decay function)</li>
 <li>Pruning. (剪枝，主要做去重)</li>
 <li>Soft &amp; Merge. （合并和排序）</li>
-<li>Cleaning Up. (限制展现数量）</li>
+<li>Cleaning Up. (限制展现数量)</li>
 </ul>
 <p>
 Aggregation的触发时间有两个：用户操作或者是登录，以及cron定时触发。

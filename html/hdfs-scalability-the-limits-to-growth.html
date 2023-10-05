@@ -107,7 +107,7 @@ The question is now whether the goals are feasible with the current system archi
 <li>The default heartbeat interval is three seconds. （心跳间隔3s）</li>
 <li>If the name-node does not receive a heartbeat from a data-node in 10 minutes, it pronounces the data-node dead and schedules its blocks for replication on other nodes.（10min没有接收到心跳那么认为死亡）</li>
 <li>Heartbeats also carry information about total and used disk capacity and the number of data transfers currently performed by the node, which plays an important role in the name-node’s space and load-balancing decisions.（心跳携带信息还包含磁盘使用情况等）</li>
-<li>The communication on HDFS clusters is organized in such a way that the name-node does not call data-nodes directly. It uses heartbeats to reply to the data-nodes with important instructions. The instructions include com- mands to:（而对于nn来说通过在心跳里面piggyback一些信息来操作dn)
+<li>The communication on HDFS clusters is organized in such a way that the name-node does not call data-nodes directly. It uses heartbeats to reply to the data-nodes with important instructions. The instructions include com- mands to:(而对于nn来说通过在心跳里面piggyback一些信息来操作dn)
 <ul class="org-ul">
 <li>Replicate blocks to other nodes</li>
 <li>Remove local block replicas</li>
@@ -119,7 +119,7 @@ The question is now whether the goals are feasible with the current system archi
 
 <li>The Internal Load
 <ul class="org-ul">
-<li>The block reports and heartbeats form the internal load of the cluster. This load mostly depends on the number of data-nodes. If the internal load is too high, the cluster becomes dysfunctional, able to process only a few, if any, external client operations such as 1s, read, or write.(internal load和dn的数量相关，主要是block report和heartbeat造成的。如果internal load非常高的话，那么会导致响应外部请求非常慢，比如ls, create, read, write）</li>
+<li>The block reports and heartbeats form the internal load of the cluster. This load mostly depends on the number of data-nodes. If the internal load is too high, the cluster becomes dysfunctional, able to process only a few, if any, external client operations such as 1s, read, or write.(internal load和dn的数量相关，主要是block report和heartbeat造成的。如果internal load非常高的话，那么会导致响应外部请求非常慢，比如ls, create, read, write)</li>
 <li>This section analyzes what percentage of the total processing power of the name-node is dedicated to the internal load. 这节主要是想了解，internal load使用的百分比。
 <ul class="org-ul">
 <li>200M blocks / 10K nodes = 20K blocks/node. 需要考虑blocks replication factor是3，那么每个节点上有60k个blocks。This is the size of an average block report sent by a data-node to the name-node.</li>

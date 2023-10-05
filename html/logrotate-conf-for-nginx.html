@@ -16,7 +16,7 @@
 nginx默认的logrotate配置如下
 </p>
 
-<pre class="example" id="orgbfcd2e4">
+<pre class="example" id="org26e191c">
 [ec2-user@rpc_ngx ~]$ cat /etc/logrotate.d/nginx
 /var/log/nginx/*log {
     create 0664 nginx root
@@ -33,7 +33,7 @@ nginx默认的logrotate配置如下
 </pre>
 
 <p>
-每天早上0点的时候会对所有的log文件切分，压缩，轮转，然后调用`nginx reopen_logs`.
+每天早上0点的时候会对所有的log文件切分，压缩，轮转，然后调用 `nginx reopen_logs`.
 </p>
 
 <p>
@@ -47,7 +47,7 @@ nginx默认的logrotate配置如下
 那么你会发现这个gzip文件是不完整的。EMR日志会出现下面这些错误
 </p>
 
-<pre class="example" id="org50afcd2">
+<pre class="example" id="orgfce4af3">
 19/04/23 08:35:02 INFO HadoopRDD: Input split: s3a://fm.castbox.data.nginx-logs/sync_server_access/201904/20190423-app1.gz:0+542490624
 Traceback (most recent call last):
   File "/mnt/yarn/usercache/hadoop/appcache/application_1556007841411_0001/container_1556007841411_0001_02_000002/pyspark.zip/pyspark/daemon.py", line 170, in manager
@@ -82,7 +82,7 @@ java.io.EOFException: Unexpected end of input stream
 <ol class="org-ol">
 <li>先对所有的log文件重新命名</li>
 <li>对历史数据进行轮转</li>
-<li>调用`nginx reopen_logs`</li>
+<li>调用 `nginx reopen_logs`</li>
 <li>对这些新生成的文件压缩成.gz文件</li>
 </ol>
 <p>
@@ -94,7 +94,7 @@ java.io.EOFException: Unexpected end of input stream
 所有动作完成之后执行的，正好可以满足我的需求。所以一个nginx比较好的logrotate配置应该是这样的
 </p>
 
-<pre class="example" id="org9339114">
+<pre class="example" id="org581116a">
 [ec2-user@rpc_ngx nginx-logs]# cat /etc/logrotate.d/nginx
 /var/log/nginx/*log {
     create 0664 nginx root

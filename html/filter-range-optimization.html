@@ -102,7 +102,7 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </div>
 
 <p>
-另外一个实现则需要CPU支持AVX512F特性，具体来说就是用到这个指令：`_mm512_mask_compress_epi32` 和 `_mm512_mask_compress_epi64`.  这两个指令可以支持32bit/64bit的压缩。如果需要支持epi8/epi16压缩的话，那么就需要AVX512_VBMI(icelake)特性，我看了下我们开发机器还不支持。
+另外一个实现则需要CPU支持AVX512F特性，具体来说就是用到这个指令： `_mm512_mask_compress_epi32` 和 `_mm512_mask_compress_epi64`.  这两个指令可以支持32bit/64bit的压缩。如果需要支持epi8/epi16压缩的话，那么就需要AVX512_VBMI(icelake)特性，我看了下我们开发机器还不支持。
 </p>
 
 <div class="org-src-container">
@@ -147,7 +147,7 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </div>
 
 <p>
-运行时CPU特性判断可以参考 <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html">这里</a> 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
+运行时CPU特性判断可以参考 <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html">这里</a> 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init` ，不过我测试了如果不调用好像也没有问题）
 </p>
 
 <hr />
@@ -161,12 +161,12 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </p>
 <ul class="org-ul">
 <li>拷贝8bit和16bit上其实性能差别不大，16bit在bitmask版本略微高些，但是branchless差别不大。</li>
-<li>branchless只有在 `bits = 8` 的情况下面比bitmask好一点，在 `bits = 16`的情况下面比bitmask好很多。</li>
+<li>branchless只有在 `bits = 8` 的情况下面比bitmask好一点，在 `bits = 16` 的情况下面比bitmask好很多。</li>
 <li>但是如果在这里增加一次判断的话，造成的额外开销会比较大。</li>
 </ul>
 
 
-<div id="orgbf4cdb2" class="figure">
+<div id="org7b26963" class="figure">
 <p><img src="../images/filter-range-optimization-0.jpg" alt="filter-range-optimization-0.jpg" />
 </p>
 </div>
@@ -181,13 +181,13 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </ol>
 
 
-<div id="org48d5344" class="figure">
+<div id="orgac568e3" class="figure">
 <p><img src="../images/filter-range-optimization-1.jpg" alt="filter-range-optimization-1.jpg" />
 </p>
 </div>
 
 
-<div id="orgd078c15" class="figure">
+<div id="orgeb6912e" class="figure">
 <p><img src="../images/filter-range-optimization-2.jpg" alt="filter-range-optimization-2.jpg" />
 </p>
 </div>

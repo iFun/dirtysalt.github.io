@@ -51,7 +51,7 @@ We also need to acknowledge the disadvantages. Adopting a microservice architect
 </p>
 
 <p>
-When distributing, the emphasis should be on resilience engineering and adopting loosely coupled, stateless components—not microservices for microservices’ sake. We need to view eventual consistency as a tool, not a side effect. The problem I see is that teams often end up with what is essentially a complex, distributed monolith. Now you have two problems. If you’re building a microservice which doesn’t make sense outside the context of another system or isn’t useful on its own, stop and re-evaluate. If you’re designing something to be fast and correct, realize that distributing it will frequently take away both.（分布式应该尽可能地关注弹性，解耦，以及无状态，而不是MS，否则最终结果就是为了MS而作出一个复杂的分布式的monolithic系统(service-disoriented architecture))
+When distributing, the emphasis should be on resilience engineering and adopting loosely coupled, stateless components—not microservices for microservices’ sake. We need to view eventual consistency as a tool, not a side effect. The problem I see is that teams often end up with what is essentially a complex, distributed monolith. Now you have two problems. If you’re building a microservice which doesn’t make sense outside the context of another system or isn’t useful on its own, stop and re-evaluate. If you’re designing something to be fast and correct, realize that distributing it will frequently take away both.(分布式应该尽可能地关注弹性，解耦，以及无状态，而不是MS，否则最终结果就是为了MS而作出一个复杂的分布式的monolithic系统(service-disoriented architecture))
 </p>
 
 <p>

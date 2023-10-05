@@ -85,7 +85,7 @@ While vanilla Hadoop performs poorly in a scale-up configurations, a series of o
 </p>
 
 
-<div id="orge5cea90" class="figure">
+<div id="orgf3926ed" class="figure">
 <p><img src="../images/scale-up-vs-out-jobs.png" alt="scale-up-vs-out-jobs.png" />
 </p>
 </div>
@@ -100,9 +100,9 @@ While vanilla Hadoop performs poorly in a scale-up configurations, a series of o
 </p>
 <ol class="org-ol">
 <li>优化Storage(directly access local file system)</li>
-<li>Concurrency(thread vs. process，这个差别不大）</li>
-<li>Shuffle(取消并发限制并且直接访问本地文件，这个差别很大）</li>
-<li>调整Heap size（更加有效地利用大内存但同时避免big overhead of GC)</li>
+<li>Concurrency(thread vs. process，这个差别不大)</li>
+<li>Shuffle(取消并发限制并且直接访问本地文件，这个差别很大)</li>
+<li>调整Heap size(更加有效地利用大内存但同时避免big overhead of GC)</li>
 </ol>
 
 <p>
@@ -141,7 +141,7 @@ The key difference from a private cluster is that in the cloud, HDFS is unlikely
 </p>
 
 
-<div id="orgb404816" class="figure">
+<div id="orgf872756" class="figure">
 <p><img src="../images/scale-up-vs-out-on-public-cluster.png" alt="scale-up-vs-out-on-public-cluster.png" />
 </p>
 </div>
@@ -155,7 +155,7 @@ scale-up的问题在于memory access会成为瓶颈，这个时候scale-out就�
 </p>
 
 
-<div id="orgfc1700e" class="figure">
+<div id="org902c74d" class="figure">
 <p><img src="../images/scale-up-vs-out-on-tera-sort.png" alt="scale-up-vs-out-on-tera-sort.png" />
 </p>
 </div>
@@ -165,7 +165,7 @@ These results tell us two things. First, even with “big memory”, the scale-u
 </p>
 
 <p>
-对scale-up有个很经典的误区在于，我们是否可以使用少数的high-end机器组成cluster, 来代替大量的low-end机器组成的cluster呢？这种方法效果并不是很好，因为它会牺牲shuffle的性能优化，使得performance / $ 下降。所以正确的部署方式是：a. 单台high-end server（scale-up) b. 多台low-end servers(scale-out).
+对scale-up有个很经典的误区在于，我们是否可以使用少数的high-end机器组成cluster, 来代替大量的low-end机器组成的cluster呢？这种方法效果并不是很好，因为它会牺牲shuffle的性能优化，使得performance / $ 下降。所以正确的部署方式是：a. 单台high-end server(scale-up) b. 多台low-end servers(scale-out).
 </p>
 
 <p>

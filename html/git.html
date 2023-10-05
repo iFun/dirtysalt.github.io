@@ -131,7 +131,7 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 <li>git pull &lt;repo&gt; [&lt;branch&gt;] 将远程repo合并到本地HEAD.</li>
 <li>git merge &lt;branch&gt; 将本地branch进行合并
 <ul class="org-ul">
-<li>&#x2013;no-ff 将多个commit合并成为一个commit（不进行fast-forward)</li>
+<li>&#x2013;no-ff 将多个commit合并成为一个commit(不进行fast-forward)</li>
 <li>&#x2013;squash 将多个commit合并在一起放在WD, 之后需要用户手动发起commit.</li>
 </ul></li>
 <li>git cherry-pick &lt;commit-id&gt; # pick commit to merge</li>
@@ -142,7 +142,7 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 </ul>
 
 <p>
-如果合并过来的分支，是当前分支的child的话，那么执行fast-forward合并（除非指定&#x2013;no-ff)，否则会执行普通的合并生成一个新的node，这个node是两个分支的共同child。
+如果合并过来的分支，是当前分支的child的话，那么执行fast-forward合并(除非指定&#x2013;no-ff)，否则会执行普通的合并生成一个新的node，这个node是两个分支的共同child。
 </p>
 
 <p>
@@ -269,7 +269,7 @@ $ git rebase -i HEAD~n
 <a href="http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials">http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials</a>
 </p>
 
-<pre class="example" id="org9df968e">
+<pre class="example" id="org585b990">
 git config --global credential.helper cache # 默认超时15分钟
 git config --global credential.helper 'cache --timeout=3600' # 将超时时间提高到1小时
 </pre>
@@ -289,11 +289,11 @@ git archive &#x2013;format HEAD &gt; output.zip
 <h3 id="org3e1cc4a"><span class="section-number-3">6.4.</span> 自建git仓库</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
-假设我们有一台开了ssh服务的机器my-node, 在这台机器上`git &#x2013;bare init /home/user/project`
+假设我们有一台开了ssh服务的机器my-node, 在这台机器上 `git &#x2013;bare init /home/user/project`
 </p>
 
 <p>
-之后我们就可以在自己主机上`git clone user@my-node:/home/user/project project`把项目克隆到本地. 然后也可以提交到这个endpoint上.
+之后我们就可以在自己主机上 `git clone user@my-node:/home/user/project project` 把项目克隆到本地. 然后也可以提交到这个endpoint上.
 </p>
 </div>
 </div>

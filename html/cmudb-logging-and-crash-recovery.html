@@ -28,7 +28,7 @@ b. Force Policy: 对于那些committed txn是否一定要把内容写回到数�
 </p>
 
 <p>
-现代数据库系统通常使用Steal + No-Force的组合方式，配合实现就是WAL. WAL要记录每个txn的开始和结束(abort/commit), 然后每次操作需要记录(txn-id, obj-id, old-value, new-value). old-value是用来做undo操作的，new-value则用来做redo操作。这种记录类似于MySQL里面的row-format, 其实还有sql-format(SQL层面的）或者是hybrid-format(row + sql format) . tradeoff就是详细的偏物理层面的格式体积就大，偏逻辑层面的格式体积就小但是准确性不好。WAL和txn之间需要配合刷盘，ideally WAL应该完全flush到disk上之后txn才能回复client是否commit/abort, 但是可能这样性能就不好。所以常见策略就是interval + size threshold混合判断，另外可以使用group commit让多个txn的WAL一起flush下去（leveldb里面对多个table的WAL也是会放在一起flush）。光有WAL不行，出现故障恢复回放全量WAL的话肯定是不行的，所以需要做checkpoint. checkpoint事件可以和txn op一起写入到WAL中.
+现代数据库系统通常使用Steal + No-Force的组合方式，配合实现就是WAL. WAL要记录每个txn的开始和结束(abort/commit), 然后每次操作需要记录(txn-id, obj-id, old-value, new-value). old-value是用来做undo操作的，new-value则用来做redo操作。这种记录类似于MySQL里面的row-format, 其实还有sql-format(SQL层面的)或者是hybrid-format(row + sql format) . tradeoff就是详细的偏物理层面的格式体积就大，偏逻辑层面的格式体积就小但是准确性不好。WAL和txn之间需要配合刷盘，ideally WAL应该完全flush到disk上之后txn才能回复client是否commit/abort, 但是可能这样性能就不好。所以常见策略就是interval + size threshold混合判断，另外可以使用group commit让多个txn的WAL一起flush下去（leveldb里面对多个table的WAL也是会放在一起flush）。光有WAL不行，出现故障恢复回放全量WAL的话肯定是不行的，所以需要做checkpoint. checkpoint事件可以和txn op一起写入到WAL中.
 </p>
 
 <p>
@@ -40,7 +40,7 @@ b. Force Policy: 对于那些committed txn是否一定要把内容写回到数�
 </p>
 
 
-<div id="org349c8cb" class="figure">
+<div id="org1e3e5b8" class="figure">
 <p><img src="../images/cmudb-log-sequence-numbers.png" alt="cmudb-log-sequence-numbers.png" />
 </p>
 </div>

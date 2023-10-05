@@ -231,7 +231,7 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 <li>从SequenceFile创建MapFile非常简单</li>
 </ul>
 <ul class="org-ul">
-<li>首先使用sort将SequenceFile进行排序(可以使用hadoop example的sort）
+<li>首先使用sort将SequenceFile进行排序(可以使用hadoop example的sort)
 <ul class="org-ul">
 <li>然后调用hadoop MapFileFixer来建立索引</li>
 </ul></li>
@@ -416,7 +416,7 @@ Hadoop运行MapReduce作业的工作原理
 </p>
 
 
-<div id="orgd8924fa" class="figure">
+<div id="org0d75a7e" class="figure">
 <p><img src="../images/mapreduce-workflow-architecture.png" alt="mapreduce-workflow-architecture.png" />
 </p>
 </div>
@@ -426,13 +426,13 @@ Hadoop运行MapReduce作业的工作原理
 其中有几点需要注意的：
 </p>
 <ul class="org-ul">
-<li>计算分片信息是在本地完成的，分片信息和其他resouce(包括jars,files,archives等）一起copy到HDFS上面，然后jobtracker直接读取分片信息。</li>
+<li>计算分片信息是在本地完成的，分片信息和其他resouce(包括jars,files,archives等)一起copy到HDFS上面，然后jobtracker直接读取分片信息。</li>
 <li>提交的资源可以设置replication数目，高副本数目可以缓解tasktracker获取resource的压力。参数是mapred.submit.replication.</li>
 <li>对于streaming以及pipes的实现，无非就是task并不直接执行任务，而是开辟另外一个子进程来运行streaming或者是pipes的程序。</li>
 </ul>
 
 
-<div id="orgbd01275" class="figure">
+<div id="org21d2070" class="figure">
 <p><img src="../images/mapreduce-streamming-pipes.jpg" alt="mapreduce-streamming-pipes.jpg" />
 </p>
 </div>
@@ -523,13 +523,13 @@ shuffle和排序
 </p>
 
 
-<div id="orgc154ba8" class="figure">
+<div id="org83db706" class="figure">
 <p><img src="../images/mapreduce-shuffle-sort.jpg" alt="mapreduce-shuffle-sort.jpg" />
 </p>
 </div>
 
 
-<div id="orgf767d0a" class="figure">
+<div id="org2e8a4ca" class="figure">
 <p><img src="../images/mapreduce-shuffle-sort-2.png" alt="mapreduce-shuffle-sort-2.png" />
 </p>
 </div>
@@ -829,7 +829,7 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 <ul class="org-ul">
 <li>ChainMapper 允许在Map阶段，多个mapper组成一个chain,然后连续进行调用</li>
 <li>ChainReducer 允许在Reuduce阶段，reducer完成之后执行一个mapper chain.</li>
-<li>最终达到的效果就是 M+ -&gt; R -&gt; M* （1个或者是多个mapper, 一个reducer，然后0个或者是多个mapper)</li>
+<li>最终达到的效果就是 M+ -&gt; R -&gt; M* (1个或者是多个mapper, 一个reducer，然后0个或者是多个mapper)</li>
 <li>#todo: 这样做倒是可以将各个mapper组合起来用作adapter.</li>
 </ul></li>
 </ul></li>
@@ -853,7 +853,7 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 <li>core-site.xml core配置，包括hdfs以及mapred的IO配置等</li>
 <li>hdfs-site.xml hadoop进程配置比如namenode以及datanode以及secondary namenode</li>
 <li>mapred-site.xml mapred进程配置比如jobtracker以及tasktracker</li>
-<li>masters 运行namenode（secondary namenode)的机器列表，每行一个, <b>无需分发到各个节点，在本地启动primary namenode</b></li>
+<li>masters 运行namenode(secondary namenode)的机器列表，每行一个, <b>无需分发到各个节点，在本地启动primary namenode</b></li>
 <li>slaves 运行datanode以及tasktracker的机器列表，每行一个 <b>无需分发到各个节点，在本地启动jobtracker</b></li>
 <li>hadoop-metrics.properties 对hadoop做监控的配置文件</li>
 <li>log4j.properties 日志配置文件</li>
@@ -1031,7 +1031,7 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 <li>下面是几种常见的context
 <ul class="org-ul">
 <li>FileContext 度量写到文件</li>
-<li>GangliaContext 度量写到ganglia <b>(这个似乎比较靠谱）</b></li>
+<li>GangliaContext 度量写到ganglia <b>(这个似乎比较靠谱)</b></li>
 <li>CompositeContext 组合context</li>
 </ul></li>
 <li>度量可以从hadoop-metrics.properties进行配置</li>

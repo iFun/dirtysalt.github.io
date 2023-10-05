@@ -392,8 +392,8 @@ Finally, given the current status of built-in security into Hadoop and HBase, it
 <li>By default it reserves a specific number of bytes in blocks for situations where a disk fills up but crucial system processes need this space to continue to function. This is really useful for critical disks, for example the one hosting the operating system, but it is less useful for the storage drives, and in a large enough cluster can have a significant impact on available storage capacities.（减少磁盘的预留空间，主要还是需要针对数据磁盘，不要针对系统磁盘）</li>
 <li>tune2fs -m 1 &lt;device-name&gt; （1% reserved）</li>
 </ul></li>
-<li>Yahoo has publicly stated that it is using ext3 as their file system of choice on their large Hadoop cluster farm. This shows that although it is by far not the most current or modern file system that it does very well in large clusters. In fact, you are more likely to saturate your IO on other levels of the stack before reaching the limits of ext3.（Yahoo对ext3的使用证明还是比较稳定的，并且在ext3达到极限之前可能网络IO已经到达bottleneck)</li>
-<li>The biggest drawback of ext3 is that during the bootstrap process of the servers it requires the largest amount of time. Formatting a disk with ext3 can take minutes to complete and may become a nuisance when spinning up machines dynamically on a regular basis - although that is not very common practice. (ext3最大的缺点就在于启动server的时候消耗大量时间，并且做磁盘格式化的时候费时）</li>
+<li>Yahoo has publicly stated that it is using ext3 as their file system of choice on their large Hadoop cluster farm. This shows that although it is by far not the most current or modern file system that it does very well in large clusters. In fact, you are more likely to saturate your IO on other levels of the stack before reaching the limits of ext3.(Yahoo对ext3的使用证明还是比较稳定的，并且在ext3达到极限之前可能网络IO已经到达bottleneck)</li>
+<li>The biggest drawback of ext3 is that during the bootstrap process of the servers it requires the largest amount of time. Formatting a disk with ext3 can take minutes to complete and may become a nuisance when spinning up machines dynamically on a regular basis - although that is not very common practice. (ext3最大的缺点就在于启动server的时候消耗大量时间，并且做磁盘格式化的时候费时)</li>
 </ul></li>
 
 <li>ext4
@@ -459,7 +459,7 @@ MapReduce Locality
 <h3 id="org6d7b517"><span class="section-number-3">6.1.</span> Storage</h3>
 <div class="outline-text-3" id="text-6-1">
 
-<div id="org684dd75" class="figure">
+<div id="org21ff7ac" class="figure">
 <p><img src="../images/hbase-architecture.png" alt="hbase-architecture.png" />
 </p>
 </div>
@@ -475,7 +475,7 @@ The HRegionServer opens the region and creates a corresponding HRegion object. W
 <li>The WAL is a standard Hadoop SequenceFile and it stores HLogKey instances.</li>
 <li>These keys contain a sequential number as well as the actual data and are used to replay not yet persisted data after a server crash.</li>
 </ul></li>
-<li>每个Store有一个MemStore以及多个StoreFile(HFile的包装，存放在HDFS上）</li>
+<li>每个Store有一个MemStore以及多个StoreFile(HFile的包装，存放在HDFS上)</li>
 </ul>
 </div>
 </div>
@@ -483,7 +483,7 @@ The HRegionServer opens the region and creates a corresponding HRegion object. W
 <div id="outline-container-orga1bc527" class="outline-3">
 <h3 id="orga1bc527"><span class="section-number-3">6.2.</span> Files</h3>
 <div class="outline-text-3" id="text-6-2">
-<pre class="example" id="orgbb92841">
+<pre class="example" id="org68a3b01">
 ➜  ~  hadoop fs -lsr /home/dirlt/hbase
 13/05/30 12:32:37 INFO security.UserGroupInformation: JAAS Configuration already set up for Hadoop, not re-installing.
 drwxr-xr-x   - dirlt supergroup          0 2013-05-08 14:49 /home/dirlt/hbase/-ROOT-
@@ -551,7 +551,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </p>
 
 
-<div id="org5019fa1" class="figure">
+<div id="org217c674" class="figure">
 <p><img src="../images/hbase-hfile-structure.png" alt="hbase-hfile-structure.png" />
 </p>
 </div>
@@ -565,7 +565,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </p>
 
 
-<div id="org5b0de8e" class="figure">
+<div id="org028becf" class="figure">
 <p><img src="../images/hbase-keyvalue-format.png" alt="hbase-keyvalue-format.png" />
 </p>
 </div>
@@ -599,7 +599,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </ul>
 
 
-<div id="org58e8c6f" class="figure">
+<div id="org7ef38f2" class="figure">
 <p><img src="../images/hbase-store-files-in-minor-compaction.png" alt="hbase-store-files-in-minor-compaction.png" />
 </p>
 </div>
@@ -623,7 +623,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 <h3 id="orgf623412"><span class="section-number-3">6.5.</span> WAL</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<div id="org7114db9" class="figure">
+<div id="orgd8abb0e" class="figure">
 <p><img src="../images/hbase-wal-structure.png" alt="hbase-wal-structure.png" />
 </p>
 </div>
@@ -637,7 +637,7 @@ The figure shows three different regions, hosted on the same region server, and 
 </p>
 
 
-<div id="org929eed1" class="figure">
+<div id="orgdc5b3de" class="figure">
 <p><img src="../images/hbase-wal-shared.png" alt="hbase-wal-shared.png" />
 </p>
 </div>

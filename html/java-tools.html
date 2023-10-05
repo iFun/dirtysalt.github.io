@@ -87,7 +87,7 @@ HPROF: A Heap/CPU Profiling Tool
 <p>
 使用java -agentlib:hprof=help可以察看hprof的调用方式
 </p>
-<pre class="example" id="org6573eaa">
+<pre class="example" id="org99a4ac1">
 
      HPROF: Heap and CPU Profiling Agent (JVMTI Demonstration Code)
 
@@ -194,7 +194,7 @@ jmx似乎是一个标准，在JDK里面有默认的实现。通过jmx可以暴�
 </p>
 
 <p>
-我大致阅读了一下代码，在server有两个比较重要的概念:agent(mbean server)和mxbean. agent(mbean server)类似server启动，mxbean则是各个data source. 但是从jdk默认的实现（ManagementFactory::getPlatformMBeanServer)里面可以看到，mxbean不是一个静态基类，而是通过反射的方式将mxbean类转换成为DynamicMBean（猜测数据传输格式应该是JPO，Java Persistent Object,也就是java对象自带序列化方式，这种方式的好处就是没有限制data source format，但是却复杂了实现）。
+我大致阅读了一下代码，在server有两个比较重要的概念:agent(mbean server)和mxbean. agent(mbean server)类似server启动，mxbean则是各个data source. 但是从jdk默认的实现(ManagementFactory::getPlatformMBeanServer)里面可以看到，mxbean不是一个静态基类，而是通过反射的方式将mxbean类转换成为DynamicMBean（猜测数据传输格式应该是JPO，Java Persistent Object,也就是java对象自带序列化方式，这种方式的好处就是没有限制data source format，但是却复杂了实现）。
 </p>
 <ul class="org-ul">
 <li>com.dirlt.java.tomb.SimpleJMX 例子比较简单，显示和修改数据，但是只能是基本类型。</li>

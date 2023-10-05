@@ -25,7 +25,7 @@ StarRocks增加了Pipeline功能之后，所有的query被拆解成为pipeline/o
 </p>
 
 
-<div id="org29ff67e" class="figure">
+<div id="orgdcd11d7" class="figure">
 <p><img src="../images/use-chrome-trace-viewer-to-observe-schedule-0.jpg" alt="use-chrome-trace-viewer-to-observe-schedule-0.jpg" />
 </p>
 </div>
@@ -36,7 +36,7 @@ StarRocks增加了Pipeline功能之后，所有的query被拆解成为pipeline/o
 <ul class="org-ul">
 <li><a href="https://limboy.me/posts/chrome-trace-viewer/">强大的可视化利器 Chrome Trace Viewer 使用详解</a></li>
 <li><a href="https://github.com/hrydgard/minitrace">hrydgard/minitrace: Simple C/C++ library for producing JSON traces suitable for Chrome's built-in trace viewer (about:tracing).</a></li>
-<li><a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit#">Trace Event Format - Google 文档</a> (这个里面有JSON文件格式的具体细节，但是有点长，许多东西可能也用不上）</li>
+<li><a href="https://docs.google.com/document/d/1CvAClvFfyA5R-PhYUmn5OOQtYMH4h6I0nSsKchNAySU/edit#">Trace Event Format - Google 文档</a> (这个里面有JSON文件格式的具体细节，但是有点长，许多东西可能也用不上)</li>
 <li><a href="https://perfetto.dev/">Perfetto - System profiling, app tracing and trace analysis</a> (更加完整的工具包)</li>
 </ul>
 
@@ -58,7 +58,7 @@ Normal Event有两类标注方式, 使用 `ph` 字段区分：
 <ul class="org-ul">
 <li>cat 字段表示 category，这个不会展现</li>
 <li>name 字段表示 name, 这个会展现在时间轴上</li>
-<li>pid, tid 表示进程和线程id. 按道理应该是uint32, 但是如果是字符串也行（不过对于 Perfetto 要求必须是uint32)</li>
+<li>pid, tid 表示进程和线程id. 按道理应该是uint32, 但是如果是字符串也行(不过对于 Perfetto 要求必须是uint32)</li>
 <li>args 表示参数信息，这个基本不使用</li>
 <li>ph 表示 phase,
 <ul class="org-ul">

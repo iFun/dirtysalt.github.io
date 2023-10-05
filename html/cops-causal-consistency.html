@@ -29,7 +29,7 @@
 </p>
 
 
-<div id="orgef1e87a" class="figure">
+<div id="orga9730ed" class="figure">
 <p><img src="../images/cops-arch.png" alt="cops-arch.png" />
 </p>
 </div>
@@ -48,13 +48,13 @@
 </p>
 
 
-<div id="org63d85e7" class="figure">
+<div id="orgea79c0a" class="figure">
 <p><img src="../images/cops-deps.png" alt="cops-deps.png" />
 </p>
 </div>
 
 <p>
-在同一个execution thread里面，如果v6发生在t2, u1之后，那么它就依赖于t2, u1.同理z4依赖于几乎所有变量（All Deps). 不过在实际实现中，我们只需要存储离z4最近的几个deps就行，也就是nearest deps. 因为只要满足了nearest deps，那么all deps就可以满足了。这里的deps不仅仅是key, 还包括对应的version. dep = &lt;key, version&gt;
+在同一个execution thread里面，如果v6发生在t2, u1之后，那么它就依赖于t2, u1.同理z4依赖于几乎所有变量(All Deps). 不过在实际实现中，我们只需要存储离z4最近的几个deps就行，也就是nearest deps. 因为只要满足了nearest deps，那么all deps就可以满足了。这里的deps不仅仅是key, 还包括对应的version. dep = &lt;key, version&gt;
 </p>
 
 <p>

@@ -23,7 +23,7 @@ WebServers上面压力并不大，通过psyco JIT来加速
 </p>
 
 
-<div id="org2872ceb" class="figure">
+<div id="org8adcfbc" class="figure">
 <p><img src="../images/youtube-scalability-web-servers.png" alt="youtube-scalability-web-servers.png" />
 </p>
 </div>
@@ -33,7 +33,7 @@ WebServers上面压力并不大，通过psyco JIT来加速
 </p>
 
 
-<div id="orge1b09a1" class="figure">
+<div id="orgd3b9be4" class="figure">
 <p><img src="../images/youtube-scalability-serving-video.png" alt="youtube-scalability-serving-video.png" />
 </p>
 </div>
@@ -43,30 +43,30 @@ thumbnail 小文件，请求数量大，会造成很多磁盘读。开始使用a
 </p>
 
 
-<div id="orgd3cb63c" class="figure">
+<div id="org00c5660" class="figure">
 <p><img src="../images/youtube-scalability-serving-thumbnails.png" alt="youtube-scalability-serving-thumbnails.png" />
 </p>
 </div>
 
 <p>
-Database用的是MySQL，存储元数据和用户数据。在Linux 2.4有个swapping问题，造成MySQL性能有严重问题。但是当时还在等high-level hardware过来，这哥们用了个临时的办法：把kernel swapping功能先关闭掉，来渡过难关知道new hardware到来。当数据读写速度越来越高时，很自然的办法是replication, 读写分离。但是如果写入速度过快的话，主从之间差异会越来越大。最后从两个方面优化：1）应用层面入手切分成为两个cluster 2) RAID优化（RAID10-&gt;5 x RAID1 ）提升20-30%的吞吐量。
+Database用的是MySQL，存储元数据和用户数据。在Linux 2.4有个swapping问题，造成MySQL性能有严重问题。但是当时还在等high-level hardware过来，这哥们用了个临时的办法：把kernel swapping功能先关闭掉，来渡过难关知道new hardware到来。当数据读写速度越来越高时，很自然的办法是replication, 读写分离。但是如果写入速度过快的话，主从之间差异会越来越大。最后从两个方面优化：1)应用层面入手切分成为两个cluster 2) RAID优化（RAID10-&gt;5 x RAID1 ）提升20-30%的吞吐量。
 </p>
 
 
 
-<div id="org2c3d716" class="figure">
+<div id="org82458c3" class="figure">
 <p><img src="../images/youtube-scalability-databases-0.png" alt="youtube-scalability-databases-0.png" />
 </p>
 </div>
 
 
-<div id="org4e6dd62" class="figure">
+<div id="org32a6ebd" class="figure">
 <p><img src="../images/youtube-scalability-databases-1.png" alt="youtube-scalability-databases-1.png" />
 </p>
 </div>
 
 <p>
-数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题（也就是sharding)
+数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题(也就是sharding)
 </p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/youtube-scalability.html';this.page.identifier = 'youtube-scalability.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

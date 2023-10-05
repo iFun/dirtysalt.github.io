@@ -25,7 +25,7 @@
 </p>
 
 <p>
-什么时候收到端口数量60k的限制呢？这个出现在bind阶段[1]。如果调用系统调用 `bind(ip, port = 0)`的话，让系统绑定到某个网卡和自动分配的端口，此时系统没有办法确定接下来这个socket是要去connect还是listen. 如果是listen的话，那么肯定是不能出现端口冲突的，如果是connect的话，只要满足4元组唯一即可。在这种情况下，系统只能尽可能满足更强的要求，就是先要求端口不能冲突，即使之后去connect的时候4元组是唯一的。
+什么时候收到端口数量60k的限制呢？这个出现在bind阶段[1]。如果调用系统调用 `bind(ip, port = 0)` 的话，让系统绑定到某个网卡和自动分配的端口，此时系统没有办法确定接下来这个socket是要去connect还是listen. 如果是listen的话，那么肯定是不能出现端口冲突的，如果是connect的话，只要满足4元组唯一即可。在这种情况下，系统只能尽可能满足更强的要求，就是先要求端口不能冲突，即使之后去connect的时候4元组是唯一的。
 </p>
 
 <p>
@@ -50,7 +50,7 @@
 </ul>
 
 
-<div id="org8f70c25" class="figure">
+<div id="org69723c1" class="figure">
 <p><img src="../images/socket-port-reuse.png" alt="socket-port-reuse.png" />
 </p>
 </div>

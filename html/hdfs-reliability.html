@@ -104,7 +104,7 @@ When the name node starts it enters a state where the filesystem is read only, a
 <ol class="org-ol">
 <li>If the name node didn't wait for the data nodes to check in, it would think that blocks were under-replicated and start re-replicating blocks across the cluster.</li>
 <li>Instead, the name node waits until enough data nodes check in to account for a configurable percentage of blocks (99.9% by default), which satisfy the minimum replication level (1 by default). （等待足够数量的block都出现并且满足一定的备份数目）</li>
-<li>The name node then waits a further fixed amount of time (30 seconds by default) to allow the cluster to settle down before exiting safe mode.（然后等待30s离开safe mode)</li>
+<li>The name node then waits a further fixed amount of time (30 seconds by default) to allow the cluster to settle down before exiting safe mode.(然后等待30s离开safe mode)</li>
 </ol></li>
 </ol>
 </div>
@@ -137,7 +137,7 @@ Data loss can occur for the following reasons:
 How does Hadoop detect hardware failures?
 </p>
 <ul class="org-ul">
-<li>The name node would notice that the data node is not sending heartbeats, then after a certain time period (10 minutes by default) it considers the node as dead, at which point it will re-replicate the blocks that were on the failed data node using replicas stored on other nodes of the cluster.(dn故障检测通过心跳完成）</li>
+<li>The name node would notice that the data node is not sending heartbeats, then after a certain time period (10 minutes by default) it considers the node as dead, at which point it will re-replicate the blocks that were on the failed data node using replicas stored on other nodes of the cluster.(dn故障检测通过心跳完成)</li>
 <li>Detecting corrupt data requires a different approach. The principal technique is to use checksums to check for corruption.（通过校验来检测数据损坏）
 <ul class="org-ul">
 <li>Corruption may occur during transmission of the block over the network, or when it is written to or read from disk. In Hadoop, the data nodes verify checksums on receipt of the block. If any checksum is invalid the data node will complain and the block will be resent. A block's checksums are stored along with the block data, to allow further integrity checks.（传输出现损坏的话那么需要进行重传，然后checksum也会被保存下来用于后续检查）</li>
@@ -170,7 +170,7 @@ How does Hadoop detect hardware failures?
 To avoid this catastrophic scenario the name node should have special treatment:
 </p>
 <ol class="org-ol">
-<li>The name node should write its persistent metadata to multiple local disks. If one physical disk fails then there is a backup of the data on another disk. RAID can be used in this case too.(用RAID来提高可靠性）</li>
+<li>The name node should write its persistent metadata to multiple local disks. If one physical disk fails then there is a backup of the data on another disk. RAID can be used in this case too.(用RAID来提高可靠性)</li>
 <li>The name node should write its persistent metadata to a remote NFS mount. If the name node fails, then there is a backup of the data on NFS.（用NFS来做提高可靠性）</li>
 <li>The secondary name node should run on a separate node to the primary. In the case of losing all of the primary's data (local disks and NFS), the secondary can provide a stale copy of the metadata. Since it is stale, there will be some data loss, but it will be a known amount of data loss, since the secondary makes periodic backups of the metadata on a configurable schedule（secondary nn和nn分开部署）</li>
 <li>Make backups of the name node's persistent metadata. You should keep multiple copies of different ages (1 day, 1 week, 1 month) to allow recovery in the case of corruption. A convenient way to do this is to use the checkpoints on the secondary as the source of the backup. These backups should be verified; at present the only way to do this is to start a new name node (on a separate, unreachable network to the production cluster) to visually check that it can reconstruct the filesystem metadata.（定期备份并且进行校验，一个简单的校验方法就是用这个image去启动一个namenode）</li>

@@ -20,11 +20,11 @@
 <ul>
 <li><a href="#org458f332">1.1. 登录</a></li>
 <li><a href="#orgf45fe36">1.2. 帮助</a></li>
-<li><a href="#orgd26481d">1.3. 文件和目录</a></li>
+<li><a href="#orgc945ee7">1.3. 文件和目录</a></li>
 <li><a href="#org0c8f068">1.4. 输入和输出</a></li>
 <li><a href="#orgaddd96e">1.5. 程序和进程</a></li>
 <li><a href="#org11ea253">1.6. 错误处理</a></li>
-<li><a href="#org5361f1a">1.7. 用户标识</a></li>
+<li><a href="#org5c34d25">1.7. 用户标识</a></li>
 <li><a href="#org77113d0">1.8. 信号</a></li>
 <li><a href="#orga2aed65">1.9. 时间值</a></li>
 <li><a href="#orgf8e6135">1.10. 系统调用和库函数</a></li>
@@ -67,7 +67,7 @@
 <li><a href="#org2951385">3.13. 底层实现</a></li>
 </ul>
 </li>
-<li><a href="#orgc945ee7">4. 文件和目录</a>
+<li><a href="#org6955287">4. 文件和目录</a>
 <ul>
 <li><a href="#org7b669c1">4.1. 文件系统</a></li>
 <li><a href="#orge0844e0">4.2. 文件类型</a></li>
@@ -126,7 +126,7 @@
 <li><a href="#orgcc7c70f">7.4. 存储器分配</a></li>
 <li><a href="#orgaebc82c">7.5. 命令行参数和环境表</a></li>
 <li><a href="#org8bde37b">7.6. 非局部跳转</a></li>
-<li><a href="#org30d999d">7.7. 资源限制</a></li>
+<li><a href="#orgfaa074f">7.7. 资源限制</a></li>
 <li><a href="#org4122ddd">7.8. 进程调度</a>
 <ul>
 <li><a href="#orge96c324">7.8.1. 控制进程和CPU亲和性</a></li>
@@ -144,7 +144,7 @@
 <li><a href="#orgd5c5582">8.6. 更改用户ID和组ID</a></li>
 <li><a href="#org4518a16">8.7. system函数</a></li>
 <li><a href="#org57830b2">8.8. 解释器文件</a></li>
-<li><a href="#org5c34d25">8.9. 用户标识</a></li>
+<li><a href="#org8deb213">8.9. 用户标识</a></li>
 <li><a href="#org853a07e">8.10. 进程时间</a></li>
 </ul>
 </li>
@@ -176,7 +176,7 @@
 </li>
 <li><a href="#orga2ddc90">10.8. 常用函数</a>
 <ul>
-<li><a href="#orged8173c">10.8.1. signal</a></li>
+<li><a href="#org41f3a7f">10.8.1. signal</a></li>
 <li><a href="#org3b52a00">10.8.2. kill/raise</a></li>
 <li><a href="#org2fb9333">10.8.3. alarm/pause</a></li>
 <li><a href="#orgce5d9d2">10.8.4. abort</a></li>
@@ -269,7 +269,7 @@
 <ul>
 <li><a href="#org988de74">14.3.1. 创建标识</a></li>
 <li><a href="#org0f4e968">14.3.2. 权限结构</a></li>
-<li><a href="#orgfaa074f">14.3.3. 资源限制</a></li>
+<li><a href="#orgbbf0fd0">14.3.3. 资源限制</a></li>
 <li><a href="#orge5b9058">14.3.4. 优点和缺点</a></li>
 </ul>
 </li>
@@ -329,8 +329,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd26481d" class="outline-3">
-<h3 id="orgd26481d"><span class="section-number-3">1.3.</span> 文件和目录</h3>
+<div id="outline-container-orgc945ee7" class="outline-3">
+<h3 id="orgc945ee7"><span class="section-number-3">1.3.</span> 文件和目录</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 目录的起点为根，名字是/.目录是包含多个目录项的文件，逻辑上来说目录包含文件名还包括文件
@@ -442,8 +442,8 @@ void perror(const char* msg); //msg:&lt;错误消息&gt;打印到标准错误上
 </div>
 </div>
 
-<div id="outline-container-org5361f1a" class="outline-3">
-<h3 id="org5361f1a"><span class="section-number-3">1.7.</span> 用户标识</h3>
+<div id="outline-container-org5c34d25" class="outline-3">
+<h3 id="org5c34d25"><span class="section-number-3">1.7.</span> 用户标识</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 用户标识包括
@@ -1962,7 +1962,7 @@ int main(){
 <p>
 创建1G的空洞，可以查看
 </p>
-<pre class="example" id="org49dbbbb">
+<pre class="example" id="org99569b7">
 [dirlt@localhost.localdomain]$ ll hole
 -rw-r--r-- 1 dirlt dirlt 1073741860 05-17 08:11 hole
 
@@ -2321,8 +2321,8 @@ struct FileDescriptorEntry{
 </div>
 </div>
 
-<div id="outline-container-orgc945ee7" class="outline-2">
-<h2 id="orgc945ee7"><span class="section-number-2">4.</span> 文件和目录</h2>
+<div id="outline-container-org6955287" class="outline-2">
+<h2 id="org6955287"><span class="section-number-2">4.</span> 文件和目录</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 上一章主要是围绕文件系统IO来展开的，而这章主要说明文件系统的其他特征和文件的性质(文件属性)。
@@ -2426,7 +2426,7 @@ struct Directory{
 <p>
 对于符号链接来说，在文件属性标记是否为符号链接，然后磁盘内容就是目的地文件系统路径。
 </p>
-<pre class="example" id="org16ca250">
+<pre class="example" id="org53479a3">
 [dirlt@localhost.localdomain]$ touch a
 [dirlt@localhost.localdomain]$ ln -s ./a b
 [dirlt@localhost.localdomain]$ ln -s /home/dirlt/cvs/opencode/zyspace/doc/a b2
@@ -2529,7 +2529,7 @@ lrwxrwxrwx 1 dirlt dirlt 38 05-19 08:15 b2 -&gt; /home/dirlt/cvs/opencode/zyspac
 通常来说有效uid和gid等同于实际uid和gid.但是对于一些特殊程序比如需要修改passwd,那么
 程序执行时必须以另外一种用户启动，所以区分了这两个概念。
 </p>
-<pre class="example" id="org7e07a19">
+<pre class="example" id="org663dda4">
 [dirlt@localhost.localdomain]$ ll /usr/bin/passwd
 -rwsr-xr-x 1 root root 25708 2007-09-26 /usr/bin/passwd
 </pre>
@@ -2551,7 +2551,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org1a10992">
+<pre class="example" id="org0b5db91">
 is_uid:1
 is_gid:1
 owner uid:0
@@ -2794,7 +2794,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org15829a0">
+<pre class="example" id="orgb62d886">
 [dirlt@localhost.localdomain]$ ./main
 size:1073741860,st_blksize:4096,st_blocks:40
 </pre>
@@ -2831,7 +2831,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org6e34520">
+<pre class="example" id="orgbf4c5c2">
 [dirlt@localhost.localdomain]$ ./main
 size:1073741824,st_blksize:4096,st_blocks:8
 </pre>
@@ -3395,7 +3395,7 @@ int main(int argc,char * const* argv){
 }
 </pre>
 </div>
-<pre class="example" id="org20113e0">
+<pre class="example" id="orgfffd3aa">
 [dirlt@localhost.localdomain]$ mount
 /dev/mapper/VolGroup00-LogVol00 on / type ext3 (rw)
 proc on /proc type proc (rw)
@@ -3524,7 +3524,7 @@ struct inotify_event
 <p>
 man里面对于每个事件有详细说明
 </p>
-<pre class="example" id="org5ac8704">
+<pre class="example" id="orgce9d577">
 inotify events
     The  inotify_add_watch(2) mask argument and the mask field of the inotify_event structure returned when read(2)ing an ino‐
     tify file descriptor are both bit masks identifying inotify events.  The following bits can  be  specified  in  mask  when
@@ -3582,7 +3582,7 @@ inotify events
 <p>
 在man 7 inotify里面给出了涉及到的内核参数
 </p>
-<pre class="example" id="org42845ab">
+<pre class="example" id="org3e7d0e4">
 /proc interfaces
     The following interfaces can be used to limit the amount of kernel memory consumed by inotify:
 
@@ -4057,7 +4057,7 @@ int main(){
 <p>
 临时文件目录都是在/tmp目录下面的
 </p>
-<pre class="example" id="org4c4da48">
+<pre class="example" id="orgecd8051">
 [dirlt@localhost.localdomain]$ ./main
 238328
 /tmp/fileroni3c
@@ -4114,7 +4114,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org13ee24d">
+<pre class="example" id="org22ea89b">
 [dirlt@localhost.localdomain]$ ./main
 /tmp
 /var/tmp/hello7wVj3K
@@ -4149,7 +4149,7 @@ Unix系统正常允许需要使用大量和系统相关的数据文件，有些�
 <p>
 口令文件存储于/ect/passwd下面，每一行是一个记录按照:进行分隔：
 </p>
-<pre class="example" id="org5481c8f">
+<pre class="example" id="org4ad067a">
 root:x:0:0:root:/root:/bin/bash
 bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin
@@ -4229,7 +4229,7 @@ int main(){
 工程学的知识来破解的话，相对来说比较容易破解。所以之后Unix系统将单向加密值放在/etc/shadow
 文件下面，这个文件只有root可以阅读。格式和/etc/shadow一样：
 </p>
-<pre class="example" id="orge13af46">
+<pre class="example" id="org19de96f">
 root:$1$s4hs87U1$ti.Gd2Nh/JiQ6L.SuSg7L1:14927:0:99999:7:::
 dirlt:$1$BRt79uEo$PtCKwZNuUB7x5zyOKVRi00:14927:0:99999:7:::
 </pre>
@@ -4266,7 +4266,7 @@ vodi endspent();
 <p>
 格式和/etc/passwd一样，最后一个字段按照,分开：
 </p>
-<pre class="example" id="org988ac20">
+<pre class="example" id="org0bba6de">
 root:x:0:root
 bin:x:1:root,bin,daemon
 daemon:x:2:root,bin,daemon
@@ -4525,7 +4525,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org21af234">
+<pre class="example" id="orgf115c3b">
 [dirlt@localhost.localdomain]$ ./main
 sysname:Linux
 nodename:localhost.localdomain
@@ -4714,7 +4714,7 @@ _Exit是ISO C所定义的。
 <p>
 典型的逻辑布局是：
 </p>
-<pre class="example" id="orgaff3723">
+<pre class="example" id="org9b98413">
 | .text | .data | .bss | .heap(-&gt;) | zero block | (&lt;-).stack | argv &amp; environ |
 </pre>
 <p>
@@ -4732,7 +4732,7 @@ _Exit是ISO C所定义的。
 <p>
 使用size命令可以查看各个段大小：
 </p>
-<pre class="example" id="orga244f47">
+<pre class="example" id="orgbfb5940">
 [dirlt@localhost.localdomain]$ size /usr/bin/gcc /usr/libexec/gcc/i386-redhat-linux/4.1.2/cc1plus /bin/bash
    text    data     bss     dec     hex filename
  196215    4124       0  200339   30e93 /usr/bin/gcc
@@ -4872,7 +4872,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="orgdeb70dc">
+<pre class="example" id="org3d1a47e">
 [dirlt@localhost.localdomain]$ ./main
 ins 1
 jmp from foo
@@ -4918,7 +4918,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org44d3fd9">
+<pre class="example" id="org037979e">
 [dirlt@localhost.localdomain]$ ./main
 0xbffc0d28,68
 hello,dirlt
@@ -4932,8 +4932,8 @@ jmp from foo
 </div>
 </div>
 
-<div id="outline-container-org30d999d" class="outline-3">
-<h3 id="org30d999d"><span class="section-number-3">7.7.</span> 资源限制</h3>
+<div id="outline-container-orgfaa074f" class="outline-3">
+<h3 id="orgfaa074f"><span class="section-number-3">7.7.</span> 资源限制</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 每个进程都有一组资源限制，可以设置和查看这些资源限制。
@@ -5068,7 +5068,7 @@ struct rlimit{
 对于RLIMIT_CPU来说，超过soft limit每秒发送SIGXCPU信号，如果超过hard limit发送SIGKILL。
 </p>
 
-<pre class="example" id="orgb3a07df">
+<pre class="example" id="org42cf27b">
 [dirlt@localhost.localdomain]$ ulimit -a
 core file size          (blocks, -c) 0
 data seg size           (kbytes, -d) unlimited
@@ -5134,7 +5134,7 @@ int main() {
 </pre>
 </div>
 
-<pre class="example" id="orgb080631">
+<pre class="example" id="orgb17d220">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ mpstat -P ALL 1
 08时34分00秒  CPU   %user   %nice %system %iowait    %irq   %soft   %idle    intr/s
 08时34分01秒  all   37.45    0.00    0.00    0.00    0.00    0.00   62.55   1005.00
@@ -5264,7 +5264,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org0b0ee69">
+<pre class="example" id="orga3be0f9">
 [dirlt@localhost.localdomain]$ ./main
 parent are waiting...
 1
@@ -5294,7 +5294,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org8619789">
+<pre class="example" id="orgc2cab78">
 [dirlt@localhost.localdomain]$ ./main
 parent are waiting...
 6616584
@@ -5334,7 +5334,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="orgcb2562b">
+<pre class="example" id="orgab3f65f">
 [dirlt@localhost.localdomain]$ ./main
 [dirlt@localhost.localdomain]$ 1
 </pre>
@@ -5368,7 +5368,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org5c587c1">
+<pre class="example" id="org58875df">
 dirlt     9472  0.0  0.1   1604   300 pts/0    T    17:04   0:00 ./main
 dirlt     9473  0.0  0.0      0     0 pts/0    Z    17:04   0:00 [main] &lt;defunct&gt;
 dirlt     9474  0.0  0.0      0     0 pts/0    Z    17:04   0:00 [main] &lt;defunct&gt;
@@ -5701,7 +5701,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org5488376">
+<pre class="example" id="orgdcc46c5">
 [dirlt@localhost.localdomain]$ su root
 口令：
 [root@localhost doc]# chown root:root main
@@ -5760,7 +5760,7 @@ int main(int argc,char* const argv[]){
 }
 </pre>
 </div>
-<pre class="example" id="orgf19e628">
+<pre class="example" id="org4ea86ae">
 [dirlt@localhost.localdomain]$ su root
 口令：
 [root@localhost doc]# chown root:root main
@@ -5780,7 +5780,7 @@ ruid=500,euid=0 //这个时候就修改成功了
 <p>
 解释器文件是以#!开头的文件，格式是
 </p>
-<pre class="example" id="org0d67232">
+<pre class="example" id="orgfd7e5f5">
 #!pathname [optional-arguments]
 </pre>
 <p>
@@ -5804,7 +5804,7 @@ int main(int argc,char* const argv[]){
 <pre class="src src-Shell">#!./main hello world
 </pre>
 </div>
-<pre class="example" id="orgba9c9a9">
+<pre class="example" id="org3ee7114">
 [dirlt@localhost.localdomain]$ ./shell arg0 arg1
 ./main
 hello world
@@ -5844,8 +5844,8 @@ print("hello,world")
 </div>
 </div>
 
-<div id="outline-container-org5c34d25" class="outline-3">
-<h3 id="org5c34d25"><span class="section-number-3">8.9.</span> 用户标识</h3>
+<div id="outline-container-org8deb213" class="outline-3">
+<h3 id="org8deb213"><span class="section-number-3">8.9.</span> 用户标识</h3>
 <div class="outline-text-3" id="text-8-9">
 <p>
 如果多个用户对应同样一个uid的话，那么我们这个时候就没有办法区分用户了。Unix系统
@@ -5927,7 +5927,7 @@ bash启动之后会读取.bash_profile.这样用户最终的话，通过终端�
 而对于shell来说，这些操作就是直接从0,1,2读取和写入数据。对于Linux来说，唯一不同的就是，对于
 gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描述的。
 </p>
-<pre class="example" id="orgedf86bc">
+<pre class="example" id="org335f20f">
 | shell | 终端设备驱动程序 | 用户 |
 </pre>
 
@@ -5939,7 +5939,7 @@ gettty启动过程参数不是在文件/etc/ttys而是在/etc/inittab里面描�
 因为如果login执行失败的话，那么没有办法重新启动telnetd(注意现在login失败的话，那么父进程是init而不是telnetd).
 所以telnetd通过fork一次，子进程exec login.如果子进程失败的话，那么父进程可以感知到。如果成功的话，那么和终端登录一样。
 </p>
-<pre class="example" id="orgc7e0147">
+<pre class="example" id="org375360e">
 | shell | 伪终端设备驱动程序 | 用户 |
 </pre>
 </div>
@@ -6019,7 +6019,7 @@ pid_t getpgid(pid_t pid); //如果pid==0,那么就是调用进程进程组id
 <p>
 查看当前shell使用的控制终端可以
 </p>
-<pre class="example" id="org8376895">
+<pre class="example" id="org5ce5496">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ps
   PID TTY          TIME CMD
 23449 pts/18   00:00:00 bash
@@ -6071,7 +6071,7 @@ pid_t tcgetsid(int fd);
 会产生SIGTTOUT信号，后台作业也会停止我们被通知到。不过大部分情况是，作业会直接写到终端上，
 而之后shell会显示后台作业运行完毕。我们可以稍微调整一下控制终端行为，就可以看到这样的结果：
 </p>
-<pre class="example" id="orga603249">
+<pre class="example" id="org4c94e1d">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ cat &gt;tmp.txt &amp;
 [2] 30493 //挂起
 [zhangyan@tc-cm-et18.tc.baidu.com]$
@@ -6080,7 +6080,7 @@ pid_t tcgetsid(int fd);
 [zhangyan@tc-cm-et18.tc.baidu.com]$
 </pre>
 
-<pre class="example" id="orgbac5839">
+<pre class="example" id="orgf696220">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ cat tmp.txt &amp;
 [2] 30617
 [zhangyan@tc-cm-et18.tc.baidu.com]$ hello,world
@@ -6120,7 +6120,7 @@ int main(){
 因为getppid()为shell的pid,当设置为前台进程的话我们继续从stdin读取的话，那么就会产生SIGTTIN信号，
 然后stop掉，通知到父进程shell.然后shell告诉我们子进程停止了
 </p>
-<pre class="example" id="orgbe61c07">
+<pre class="example" id="org37709bc">
 [dirlt@localhost.localdomain]$ ./a.out
 
 [2]+  Stopped                 ./a.out
@@ -6179,7 +6179,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orga8d1414">
+<pre class="example" id="orge176ffd">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./a.out
 parent:pid=26510,ppid=23449,pgrp=26510,tpgrp=26510
 child:pid=26511,ppid=26510,pgrp=26510,tpgrp=26510
@@ -6191,7 +6191,7 @@ child:pid=26511,ppid=1,pgrp=26510,tpgrp=26510 //但是SIGCONT被换到了前台�
 如果我们这里不kill而是sleep,那么不会接收到SIGHUP信号。然后父进程作为进程组完成之后，前台进程切换到shell了，
 这样造成read会存在错误。
 </p>
-<pre class="example" id="orgfe0d352">
+<pre class="example" id="org7288d16">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./a.out
 parent:pid=27218,ppid=23449,pgrp=27218,tpgrp=27218
 child:pid=27219,ppid=27218,pgrp=27218,tpgrp=27218
@@ -6709,7 +6709,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgb77834c">
+<pre class="example" id="org4e10aa6">
 [dirlt@localhost.localdomain]$ ./a.out &amp;
 [2] 6850
 [dirlt@localhost.localdomain]$ kill -s SIGUSR2 6850
@@ -6915,7 +6915,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgd40c84c">
+<pre class="example" id="org16b6924">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ kill -s SIGUSR1 28591
 SIGUSR1 masked=1
 </pre>
@@ -6943,7 +6943,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org018994e">
+<pre class="example" id="orgc0d7722">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ kill -s SIGUSR1 29846
 SIGUSR1 masked=0
 </pre>
@@ -6980,8 +6980,8 @@ int sigsuspend(const sigset_t* sigmask);
 <h3 id="orga2ddc90"><span class="section-number-3">10.8.</span> 常用函数</h3>
 <div class="outline-text-3" id="text-10-8">
 </div>
-<div id="outline-container-orged8173c" class="outline-4">
-<h4 id="orged8173c"><span class="section-number-4">10.8.1.</span> signal</h4>
+<div id="outline-container-org41f3a7f" class="outline-4">
+<h4 id="org41f3a7f"><span class="section-number-4">10.8.1.</span> signal</h4>
 <div class="outline-text-4" id="text-10-8-1">
 <p>
 signal函数是最常见的信号机制相关函数，原型是这样的：
@@ -7024,7 +7024,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orge7b690b">
+<pre class="example" id="orgbdc89ba">
 [dirlt@localhost.localdomain]$ kill -s SIGUSR1 4742
 [dirlt@localhost.localdomain]$ User defined signal 1
 
@@ -7072,7 +7072,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org2a94e2c">
+<pre class="example" id="org4866f81">
 [dirlt@localhost.localdomain]$ kill -s SIGUSR1 6473
 [dirlt@localhost.localdomain]$ SIGUSR1 received
 
@@ -7133,7 +7133,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org4fa7ba6">
+<pre class="example" id="org55592e4">
 [dirlt@localhost.localdomain]$ ./a.out
 No such process
 </pre>
@@ -7175,7 +7175,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org65a2756">
+<pre class="example" id="org612e0e7">
 [dirlt@localhost.localdomain]$ ./a.out
 Alarm clock received
 -1 errno=Interrupted system call
@@ -7227,7 +7227,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org1207f4e">
+<pre class="example" id="org952fc43">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./a.out
 Aborted received
 jump frm abort
@@ -7243,7 +7243,7 @@ POSIX规定调用system进程需要忽略SIGINT,SIGQUIT信号，阻塞SIGCHLD信
 那么返回127.如果命令正常执行的话，那么返回命令退出状态。如果/bin/sh因为信号退出的话，那么退出状态时128+信号编号。
 </p>
 
-<pre class="example" id="org77bd941">
+<pre class="example" id="org62a3aad">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ /bin//bash -c "sleep 30"
 //Ctrl-C发出SIGINT信号，而SIGINT编号为2,所以返回值为130.
 [zhangyan@tc-cm-et18.tc.baidu.com]$ echo $?
@@ -7576,7 +7576,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgd63b540">
+<pre class="example" id="orgb83bc54">
 [dirlt@localhost.localdomain]$ ./a.out
 pthread_join:Invalid argument
 push2
@@ -8337,7 +8337,7 @@ int pthread_kill(pthread_t thread,int signo);
 </div>
 </li>
 
-<li><a id="org3759be5"></a>sched<br />
+<li><a id="orgf582ca0"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-1-4">
 <ul class="org-ul">
 <li>pthread_attr_getinheritsched</li>
@@ -8571,7 +8571,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="org41f3a7f"></a>signal<br />
+<li><a id="org3b90c14"></a>signal<br />
 <div class="outline-text-5" id="text-11-14-3-3">
 <ul class="org-ul">
 <li>pthread_kill</li>
@@ -8581,7 +8581,7 @@ cancellation point有一类函数，如果我们希望在自己构造cancellatio
 </div>
 </li>
 
-<li><a id="orgf582ca0"></a>sched<br />
+<li><a id="org8704dc5"></a>sched<br />
 <div class="outline-text-5" id="text-11-14-3-4">
 <ul class="org-ul">
 <li>pthread_getschedparam</li>
@@ -8629,7 +8629,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="orgc97479c">
+<pre class="example" id="org1129ae2">
 exhausted 2002.648246 ms
 resolution 0.000001 ms
 </pre>
@@ -8758,7 +8758,7 @@ int main() {
 <p>
 运行结果为下
 </p>
-<pre class="example" id="orgc13a445">
+<pre class="example" id="orgcf4be34">
 [zhangyan04@tc-hpc-dev.tc.baidu.com]$ ./a.out
 enter func1
 enter func2
@@ -9006,7 +9006,7 @@ int setlogmask(int maskpri); //屏蔽的priority
 <p>
 看完这个之后我们看看一份syslog.conf的样例配置
 </p>
-<pre class="example" id="org27f8612">
+<pre class="example" id="org43b0c92">
 # Log all kernel messages to the console.
 # Logging much else clutters up the screen.
 #kern.*							/dev/console
@@ -9485,7 +9485,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgaac583e">
+<pre class="example" id="orgbc89664">
 //发送多次SIGIO信号之后才被pause所捕获到
 [dirlt@localhost.localdomain]$ ./a.out
 1I/O possible received(0)
@@ -9889,7 +9889,7 @@ struct iocb {
 </p>
 
 <p>
-发起之后的话，可以有两种方式得到通知：1）使用我RESFD 2）使用io_getevents。我们主要看第二个方式。看看API
+发起之后的话，可以有两种方式得到通知：1)使用我RESFD 2)使用io_getevents。我们主要看第二个方式。看看API
 </p>
 <div class="org-src-container">
 <pre class="src src-Cpp">int io_getevents(aio_context_t ctx_id, long min_nr, long nr,
@@ -9988,7 +9988,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgf611583">
+<pre class="example" id="orgc1f8ec4">
 [dirlt@localhost.localdomain]$ ./a.out
 PIPE_BUF=4096,S_ISFIFO=1
 hello,world
@@ -10150,8 +10150,8 @@ struct ipc_perm
 </div>
 </div>
 
-<div id="outline-container-orgfaa074f" class="outline-4">
-<h4 id="orgfaa074f"><span class="section-number-4">14.3.3.</span> 资源限制</h4>
+<div id="outline-container-orgbbf0fd0" class="outline-4">
+<h4 id="orgbbf0fd0"><span class="section-number-4">14.3.3.</span> 资源限制</h4>
 <div class="outline-text-4" id="text-14-3-3">
 <p>
 XSI IPC都有内置限制(built-in limit),大多数可以通过重新配置内核而加以修改。在Linux下面我们可以通过ipcs -l来显示
@@ -10358,7 +10358,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org56ced68">
+<pre class="example" id="org4cb9eb1">
 [dirlt@localhost.localdomain]$ ./a.out
 current bytes:5,current number:1,max bytes:16384
 msgrcv1 No message of desired type
@@ -10527,7 +10527,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org3fd2d0b">
+<pre class="example" id="org38fe92c">
 [dirlt@localhost.localdomain]$ ./a.out
 child wait to exit
 tell child ready
@@ -10628,7 +10628,7 @@ int main(){
 }
 </pre>
 </div>
-<pre class="example" id="org1b34b58">
+<pre class="example" id="org454d293">
 [dirlt@localhost.localdomain]$ ./a.out
 SHMLBA(shared memory low boundary):4096
 hello,world
@@ -10761,7 +10761,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="orgba41946">
+<pre class="example" id="orgdf7884f">
 [dirlt@localhost.localdomain]$ ./a.out
 child wait to exit
 parent waiting

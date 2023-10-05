@@ -28,7 +28,7 @@ NGINX有一个主进程（master process）（执行特权操作，如读取配�
 </p>
 
 
-<div id="org68e0f28" class="figure">
+<div id="org753caf1" class="figure">
 <p><img src="../images/nginx-process-model.png" alt="nginx-process-model.png" />
 </p>
 </div>
@@ -37,7 +37,7 @@ NGINX有一个主进程（master process）（执行特权操作，如读取配�
 这个四核服务器内，NGINX主进程创建了4个工作进程和2个缓存辅助进程（cachehelper processes）来管理磁盘内容缓存（on-disk content cache）。
 </p>
 
-<pre class="example" id="org969c8f3">
+<pre class="example" id="orgbc5fc83">
 # service nginx restart
 # ps -ef --forest | grep nginx
 root     32475     1  0 13:36 ?        00:00:00 nginx: master process /usr/sbin/nginx \
@@ -68,7 +68,7 @@ NGINX使用一个了可预见式的（predictable）进程模型，调度可用�
 </p>
 
 
-<div id="orgbaa7fba" class="figure">
+<div id="org30cb58d" class="figure">
 <p><img src="../images/nginx-worker-process.png" alt="nginx-worker-process.png" />
 </p>
 </div>
@@ -78,7 +78,7 @@ NGINX使用一个了可预见式的（predictable）进程模型，调度可用�
 </p>
 
 
-<div id="org95f64a7" class="figure">
+<div id="orgc47d46d" class="figure">
 <p><img src="../images/nginx-state-machine.png" alt="nginx-state-machine.png" />
 </p>
 </div>
@@ -107,7 +107,7 @@ NGINX的规模可以很好地支持每个工作进程上数以万计的连接。
 </p>
 
 
-<div id="org94139ae" class="figure">
+<div id="org35928a7" class="figure">
 <p><img src="../images/nginx-update-configuration.png" alt="nginx-update-configuration.png" />
 </p>
 </div>
@@ -117,7 +117,7 @@ NGINX的二进制升级过程更加神奇——你可以飞速地升级NGINX本�
 </p>
 
 
-<div id="org07d4b68" class="figure">
+<div id="org2cca489" class="figure">
 <p><img src="../images/nginx-update-binary.png" alt="nginx-update-binary.png" />
 </p>
 </div>

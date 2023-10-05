@@ -17,7 +17,7 @@
 </p>
 
 <p>
-CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结构，使用BP来做参数训练）增加了一些扩展技术： 1. 局部感知（卷积核）. 2. 参数共享 3. 多卷积核 4. pooling/subsampling(下采样).
+CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结构，使用BP来做参数训练)增加了一些扩展技术： 1. 局部感知（卷积核）. 2. 参数共享 3. 多卷积核 4. pooling/subsampling(下采样).
 </p>
 
 <hr />
@@ -30,7 +30,7 @@ CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结�
 </p>
 
 
-<div id="orgb451922" class="figure">
+<div id="org828df42" class="figure">
 <p><img src="../images/cnn-lsf.jpg" alt="cnn-lsf.jpg" />
 </p>
 </div>
@@ -61,7 +61,7 @@ CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结�
 </p>
 
 
-<div id="org709b8d3" class="figure">
+<div id="org6bb2921" class="figure">
 <p><img src="../images/cnn-wt-sharing.gif" alt="cnn-wt-sharing.gif" />
 </p>
 </div>
@@ -84,7 +84,7 @@ CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结�
 </p>
 
 
-<div id="orgceec271" class="figure">
+<div id="org1adc3da" class="figure">
 <p><img src="../images/cnn-feature-maps.jpg" alt="cnn-feature-maps.jpg" />
 </p>
 </div>
@@ -111,7 +111,7 @@ CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结�
 </p>
 
 
-<div id="orgfc73991" class="figure">
+<div id="org3715b3d" class="figure">
 <p><img src="../images/cnn-down-pooling.gif" alt="cnn-down-pooling.gif" />
 </p>
 </div>
@@ -126,7 +126,7 @@ pooling不仅仅能够减少计算量，还可以许多不变性，比如旋转(
 </p>
 
 
-<div id="org4472392" class="figure">
+<div id="org717cc23" class="figure">
 <p><img src="../images/cnn-lenet-5.png" alt="cnn-lenet-5.png" />
 </p>
 </div>
@@ -145,7 +145,7 @@ As Dr. LeCun explained it, his non-complete connection scheme would force the fe
 </p>
 
 
-<div id="orgfd63d6e" class="figure">
+<div id="org5778117" class="figure">
 <p><img src="../images/cnn-lenet-5-cf.png" alt="cnn-lenet-5-cf.png" />
 </p>
 </div>
@@ -167,11 +167,11 @@ As Dr. LeCun explained it, his non-complete connection scheme would force the fe
 </ul>
 
 <p>
-没有太理解F6/Output. 不过在这两层里面值得一体的是，论文里面说如果classes太多的话（比如84种），那么最好不要采用native-bitv方式来定义输出（native-bitv是我随便取的名字，如果classes=84, 那么输出就是84长度的bit-vector，其中有一个bit为1其他全部为0），否则使用sigmoid簇函数作为loss function效果非常差（当然可以使用softmax). LeCun给的方式则是RBF/Euclidean作为loss function, 输出表示方式允许在多个bit上为1. 如果将定义输出表示称为灰度图像的话，就是下面这个样子
+没有太理解F6/Output. 不过在这两层里面值得一体的是，论文里面说如果classes太多的话（比如84种），那么最好不要采用native-bitv方式来定义输出（native-bitv是我随便取的名字，如果classes=84, 那么输出就是84长度的bit-vector，其中有一个bit为1其他全部为0），否则使用sigmoid簇函数作为loss function效果非常差(当然可以使用softmax). LeCun给的方式则是RBF/Euclidean作为loss function, 输出表示方式允许在多个bit上为1. 如果将定义输出表示称为灰度图像的话，就是下面这个样子
 </p>
 
 
-<div id="orgb8f77b4" class="figure">
+<div id="org66c09b8" class="figure">
 <p><img src="../images/cnn-output-code.png" alt="cnn-output-code.png" />
 </p>
 </div>

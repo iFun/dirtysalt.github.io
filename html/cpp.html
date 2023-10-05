@@ -286,7 +286,7 @@ new_handler set_new_handler(new_handler) throw();
 <p>
 那么编译就会出现
 </p>
-<pre class="example" id="org3509eeb">
+<pre class="example" id="org0ddd1d3">
 main.cc:5: error: size of array `STATIC_ASSERT_FAILED_int_MUST_BE_8_BYTES’ is negative
 </pre>
 
@@ -338,7 +338,7 @@ int main() {
 <p>
 运行结果是
 </p>
-<pre class="example" id="orga1c3995">
+<pre class="example" id="org0c5ef5e">
 [dirlt@localhost ~]$ ./a.out
 0xbff031b0
 0xbff031b0
@@ -389,7 +389,7 @@ int main() {
 <p>
 运行结果
 </p>
-<pre class="example" id="org59580e2">
+<pre class="example" id="org62ad3f0">
 [dirlt@localhost ~]$ ./a.out
 o:0xbfff9aa0 pb-&gt;g:0xbfff9aa0
 c:0xbfff9a9c c.g:0xbfff9aa0
@@ -452,7 +452,7 @@ int main(){
 </div>
 
 <p>
-我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance_counter初始化为0.首先判断是否初始化了，然后会调用__cxa_guard_acquire加锁然后再判断一次(double check,可以减少开销），最后使用__cxa_guard_release释放这个锁。
+我们考虑局部静态对象的初始化时机。如果仅仅是在程序启动时候就初始化的话那么肯定不合适，所以肯定是在第一次调用foo时候进行初始化(这里还需要考虑多线程问题).我们可以看看这个部分汇编代码.对于a对象的话好比存在一个instance_counter初始化为0.首先判断是否初始化了，然后会调用__cxa_guard_acquire加锁然后再判断一次(double check,可以减少开销)，最后使用__cxa_guard_release释放这个锁。
 </p>
 
 <div class="org-src-container">
@@ -723,7 +723,7 @@ int main() {
 <p>
 在自己的Ubuntu机器下面使用g++4.6编译运行结果如下。可以看到测试组1里面action2运行时间为2.9s左右，而测试组2里面action2运行时间为8.5s 时间差别很大
 </p>
-<pre class="example" id="orga550a72">
+<pre class="example" id="orga79ec2a">
 ➜  tomb git:(master) ✗ g++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 19764.38
@@ -736,7 +736,7 @@ int main() {
 <p>
 可能是编译器的原因？ 在自己的Ubuntu机器下面clang++来编译，时间差别同样很大
 </p>
-<pre class="example" id="orgbde165a">
+<pre class="example" id="org8332f94">
 ➜  tomb git:(master) ✗ clang++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 19494.99
@@ -749,7 +749,7 @@ int main() {
 <p>
 在自己的macbook air下面使用clang重新编译，时间是差不多的
 </p>
-<pre class="example" id="orga3d207f">
+<pre class="example" id="orgb754295">
 ➜  tomb git:(master) ✗ g++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 22759.82
@@ -824,7 +824,7 @@ x.push(boost::bind(&amp;B::fun,&amp;b,_1,456));
 </div>
 
 <p>
-这里_1是boost::bind导出的符号表示占位符，这个参数表示接口中的第一个参数，这里不进行绑定。第一个参数表示函数地址，如果是成员函数的话那么需要传入对象地址（这里对于对象内存管理的话，可能需要智能指针的帮助。可以参考<a href="http://xuchaoqian.com/?p=797">http://xuchaoqian.com/?p=797</a>)。事实上稍微猜想一下boost::function和boost::bind实现，boost::function用于产生新的类型，boost::bind用于产生这个类型的对象，并且将指针以及所需要的closure context都绑定上去。我本来想实现的，但是发现基于模板的元编程，我确实不会:(
+这里_1是boost::bind导出的符号表示占位符，这个参数表示接口中的第一个参数，这里不进行绑定。第一个参数表示函数地址，如果是成员函数的话那么需要传入对象地址(这里对于对象内存管理的话，可能需要智能指针的帮助。可以参考<a href="http://xuchaoqian.com/?p=797">http://xuchaoqian.com/?p=797</a>)。事实上稍微猜想一下boost::function和boost::bind实现，boost::function用于产生新的类型，boost::bind用于产生这个类型的对象，并且将指针以及所需要的closure context都绑定上去。我本来想实现的，但是发现基于模板的元编程，我确实不会:(
 </p>
 
 <p>
@@ -1174,7 +1174,7 @@ int main() {
 针对上面的代码分别使用c++2a和c++03选项进行编译，主要是看foo2的输出上的差异。使用c++2a编译的输出结果如下，可以看到大部分地方都使用到了move操作。
 </p>
 
-<pre class="example" id="org53eccdb">
+<pre class="example" id="orgb0fee34">
 mac :: ~/utils » g++ test2.cpp -std=c++2a ; ./a.out
 ----- foo1(test c++0x) -----
 inside bar: 0x7ffee2b658d8
@@ -1211,7 +1211,7 @@ pb = 0x7ffee2b659b8
 而使用c++03编译的输出结果如下，可以看到foo2大部分地方都是copy操作。
 </p>
 
-<pre class="example" id="orgc0b7fbf">
+<pre class="example" id="org1194242">
 mac :: ~/utils » g++ test2.cpp -std=c++03 ; ./a.out
 ----- foo2(test c++03&amp;0x) ----
 inside bar: 0x7ffee9f60918

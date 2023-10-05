@@ -39,7 +39,7 @@ DNA顺序分析(DNA Sequence Analysis)
 </p>
 
 
-<div id="orge213b34" class="figure">
+<div id="orgbf68bf8" class="figure">
 <p><img src="../images/seq-model-why-not-nn.png" alt="seq-model-why-not-nn.png" />
 </p>
 </div>
@@ -57,7 +57,7 @@ RNN会考虑序列数据前后之间的联系。下图是RNN的两种表示方�
 </p>
 
 
-<div id="org1694c3e" class="figure">
+<div id="org951b3a9" class="figure">
 <p><img src="../images/seq-model-rnn-types.png" alt="seq-model-rnn-types.png" />
 </p>
 </div>
@@ -71,7 +71,7 @@ RNN会考虑序列数据前后之间的联系。下图是RNN的两种表示方�
 </p>
 
 
-<div id="org513cd92" class="figure">
+<div id="orgaef19e1" class="figure">
 <p><img src="../images/seq-model-drnn-example.png" alt="seq-model-drnn-example.png" />
 </p>
 </div>
@@ -106,7 +106,7 @@ LSTM相比GRU则引入了更多的状态，除了Tu(update gate)还有Tf(forget 
 </p>
 
 
-<div id="org825f764" class="figure">
+<div id="orgd89ab62" class="figure">
 <p><img src="../images/seq-model-brnn.png" alt="seq-model-brnn.png" />
 </p>
 </div>
@@ -162,7 +162,7 @@ skip-gram和CBOW互为镜像。
 </ol>
 
 
-<div id="org95c3f1c" class="figure">
+<div id="org72a53a8" class="figure">
 <p><img src="../images/seq-model-address-bias-word-embedding.png" alt="seq-model-address-bias-word-embedding.png" />
 </p>
 </div>
@@ -195,7 +195,7 @@ skip-gram和CBOW互为镜像。
 </ol>
 
 <p>
-在输出阶段，如果每个step都是选择概率最大输出的话（greedy search), 并不能保证最终输出序列的概率最大。P(y&lt;t&gt; | x, y&lt;1&gt;, y&lt;2&gt;, … y&lt;t-1&gt;) 最大，不能保证P(y&lt;Ty&gt;, y&lt;Ty-1&gt; … y&lt;1&gt; | x)最大。我们可以使用beam search（束搜索）来改进，原理就是同时保持B个当前观察到的最大概率序列。很明显B越大，选择到最大概率的输出序列的几率也就越大，但是同时会耗费更多的计算和内存资源。通常产品中B=100左右，研究时选择B=1000 or 10000这样。
+在输出阶段，如果每个step都是选择概率最大输出的话(greedy search), 并不能保证最终输出序列的概率最大。P(y&lt;t&gt; | x, y&lt;1&gt;, y&lt;2&gt;, … y&lt;t-1&gt;) 最大，不能保证P(y&lt;Ty&gt;, y&lt;Ty-1&gt; … y&lt;1&gt; | x)最大。我们可以使用beam search（束搜索）来改进，原理就是同时保持B个当前观察到的最大概率序列。很明显B越大，选择到最大概率的输出序列的几率也就越大，但是同时会耗费更多的计算和内存资源。通常产品中B=100左右，研究时选择B=1000 or 10000这样。
 </p>
 
 <p>

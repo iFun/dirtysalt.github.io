@@ -188,7 +188,7 @@ def search_path_1(source: State, dest: State):
 
 <p>
 如果最短路径的长度是20的话，因为每个状态会展开成为4个状态，那么最多会展开 4 ^ 20个状态（当然考虑到部分状态之前访问过，以及fanout没有这么大，
-所以实际情况不会有这么多，但是大约是这个量级）。
+所以实际情况不会有这么多，但是大约是这个量级)。
 </p>
 
 <p>
@@ -319,7 +319,7 @@ def search_path_2(source: State, dest: State):
 运行下来速度差别还是蛮大的，方法1是1.492s, 方法2是0.026s, 时间缩短了差不多98%.
 </p>
 
-<pre class="example" id="org1967afb">
+<pre class="example" id="org699d810">
 ➜  misc git:(master) ✗ python klotski.py
 naive BFS ...
 size = 23
@@ -386,7 +386,7 @@ def main():
 可以看到在复杂例子的情况下面，两者的时间差距就更大了，但是相对耗时比例是减少了。
 </p>
 
-<pre class="example" id="org68c37b2">
+<pre class="example" id="orgb2fc9f3">
 ➜  misc git:(master) ✗ python3 klotski.py
 ==============================
 source_matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]

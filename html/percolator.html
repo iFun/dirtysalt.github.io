@@ -41,7 +41,7 @@
 <h2 id="org60ab828"><span class="section-number-2">1.</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>Updating an index of the web as documents are crawled requires continuously transforming a large repository of existing documents as new documents ar-rive. This task is one example of a class of data pro-cessing tasks that transform a large repository of data via small, independent mutations. These tasks lie in a gap between the capabilities of existing infrastructure.(主要解决的问题就是，在非常大的base repository上面有少量的mutation应该如何进行处理？就现有的基础设施并没有很好地解决这个问题）</li>
+<li>Updating an index of the web as documents are crawled requires continuously transforming a large repository of existing documents as new documents ar-rive. This task is one example of a class of data pro-cessing tasks that transform a large repository of data via small, independent mutations. These tasks lie in a gap between the capabilities of existing infrastructure.(主要解决的问题就是，在非常大的base repository上面有少量的mutation应该如何进行处理？就现有的基础设施并没有很好地解决这个问题)</li>
 <li>Databases do not meet the storage or throughput require-ments of these tasks: Google’s indexing system stores tens of petabytes of data and processes billions of up-dates per day on thousands of machines. （存储大小以及吞吐量并不适合使用db。g的索引系统存储了pb级别的数据，并且每天需要在上千机器上面完成处理工作）</li>
 <li>MapReduce and other batch-processing systems cannot process small up-dates individually as they rely on creating large batches for efficiency.（而mapreduce属于批处理系统，不能够单独处理这些小的更新）</li>
 <li>We have built Percolator, a system for incrementally processing updates to a large data set, and deployed it to create the Google web search index. （percolator能够处理大数据集合下面的增量修改，并且现在已经使用在google的搜索引擎上面了）</li>
@@ -63,7 +63,7 @@
 <li>An ideal data processing system for the task of main-taining the web search index would be optimized for in-cremental processing; （我们需要的就是一个增量处理系统）
 <ul class="org-ul">
 <li>that is, it would allow us to main-tain a very large repository of documents and update it efficiently as each new document was crawled.</li>
-<li>Given that the system will be processing many small updates concurrently, an ideal system would also provide mech- anisms for maintaining invariants despite concurrent up-dates and for keeping track of which updates have been processed.（对于这个增量系统需要提供的机制包括下面两个，这也是percolator主要关注的两个方面：1）提供机制来维护不变量 2）能够追踪那些updates已经被处理过）</li>
+<li>Given that the system will be processing many small updates concurrently, an ideal system would also provide mech- anisms for maintaining invariants despite concurrent up-dates and for keeping track of which updates have been processed.（对于这个增量系统需要提供的机制包括下面两个，这也是percolator主要关注的两个方面：1）提供机制来维护不变量 2)能够追踪那些updates已经被处理过)</li>
 </ul></li>
 </ul>
 
@@ -96,7 +96,7 @@ The remainder of this paper describes a particular in-cremental processing syste
 <li>A Percolator system consists of three binaries that run on every machine in the cluster: a Percolator worker, a Bigtable tablet server, and a GFS chunkserver.（在每个计算机器上面都会运行percolator worker，worker是application但是底层使用了percolator library）</li>
 </ul>
 
-<div id="orge364408" class="figure">
+<div id="org9729df6" class="figure">
 <p><img src="../images/percolator-dependencies.png" alt="percolator-dependencies.png" />
 </p>
 </div>
@@ -283,7 +283,7 @@ Snapshot isolation does not provide serializability，这个问题以下面的ps
 </p>
 
 
-<div id="org9cd3558" class="figure">
+<div id="orgdf527b5" class="figure">
 <p><img src="../images/percolator-write-write-conflicts.png" alt="percolator-write-write-conflicts.png" />
 </p>
 </div>

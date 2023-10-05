@@ -39,11 +39,11 @@ With UMA systems, the CPUs are connected via a system bus (Front-Side Bus) to th
 <hr />
 
 <p>
-可能是随着CPU cores的数量增加，system bus上面的压力逐渐增大，没有办法做到很好的扩展性，开始引入NUMA架构(non-uniform memory access)。简单地说就是每个CPU有块自己的本地内存，也可以访问其他CPU负责的远程内存但是延迟更高，并且将memory controller模块也放在了CPU里面。CPU和CPU之间是通过QPI(QuickPath Interconnect)进行通信的，可以做到点到点之间的互联效果。（我理解这里的CPU是CPU socket/package, 而不是CPU dies/cores)
+可能是随着CPU cores的数量增加，system bus上面的压力逐渐增大，没有办法做到很好的扩展性，开始引入NUMA架构(non-uniform memory access)。简单地说就是每个CPU有块自己的本地内存，也可以访问其他CPU负责的远程内存但是延迟更高，并且将memory controller模块也放在了CPU里面。CPU和CPU之间是通过QPI(QuickPath Interconnect)进行通信的，可以做到点到点之间的互联效果。(我理解这里的CPU是CPU socket/package, 而不是CPU dies/cores)
 </p>
 
 
-<div id="orgc0c6d72" class="figure">
+<div id="orgac7c8ac" class="figure">
 <p><img src="../images/numa-deep-dive-part1-2.png" alt="numa-deep-dive-part1-2.png" />
 </p>
 </div>
@@ -71,7 +71,7 @@ The Nehalem microarchitecture not only replaced the legacy front-side bus but re
 </ul>
 
 
-<div id="orgecf2383" class="figure">
+<div id="orge33e06a" class="figure">
 <p><img src="../images/numa-deep-dive-part1-3.png" alt="numa-deep-dive-part1-3.png" />
 </p>
 </div>
@@ -106,7 +106,7 @@ With the introduction of the Nehalem microarchitecture in 2008, Intel moved away
 </p>
 
 
-<div id="org9c31155" class="figure">
+<div id="org8baa11a" class="figure">
 <p><img src="../images/numa-deep-dive-part1-4.png" alt="numa-deep-dive-part1-4.png" />
 </p>
 </div>
@@ -116,7 +116,7 @@ With the introduction of the Nehalem microarchitecture in 2008, Intel moved away
 我们现在开发机器(2022)的106cores, 2sockets, HT, 每个socket上有26个cores, L3 36MB. Intel Xeon(Cascade Lake) Platinum 8269CY.
 </p>
 
-<pre class="example" id="org42797e3">
+<pre class="example" id="org8865ebd">
 Architecture:          x86_64
 CPU op-mode(s):        32-bit, 64-bit
 Byte Order:            Little Endian

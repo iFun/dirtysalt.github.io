@@ -58,7 +58,7 @@ print(majority_vote([1,2,1,1,2,2]))
 </p>
 <ul class="org-ul">
 <li>假设我们先持有一个maj元素(P=None)和这个maj元素出现次数(C=0)</li>
-<li>遍历整个序列（并且这个序列可以是streaming的)，假设当前元素是x</li>
+<li>遍历整个序列(并且这个序列可以是streaming的)，假设当前元素是x</li>
 <li>如果 C==0, 说明当前没有可选值，C=1, P=x.</li>
 <li>如果 x==P, 那么 C++. 如果 x!=P, 那么 C&#x2013;.</li>
 <li>在结尾时，如果C&gt;0的话，那么说明P就是majority元素.</li>
@@ -90,7 +90,7 @@ print(majority_vote([1,2,1,1,2,2]))
 </p>
 
 <p>
-我们将区间用区间树来表示，节点有两个值 `freq`（表示值出现频次）和 `value` （表示具体什么值). 我们在处理节点a, b的时候
+我们将区间用区间树来表示，节点有两个值 `freq` （表示值出现频次）和 `value` (表示具体什么值). 我们在处理节点a, b的时候
 </p>
 <ul class="org-ul">
 <li>a.val == b.val =&gt; Tree(a.val, a.freq + b.freq)</li>

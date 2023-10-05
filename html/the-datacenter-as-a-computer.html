@@ -45,7 +45,7 @@
 按照目录对每个主题慢慢阅读。
 </p>
 
-<pre class="example" id="org7a3ebf3">
+<pre class="example" id="org0ef4712">
 1. Introduction
   1.1 Warehouse-Scale Computers
   1.2 Emphasis on Cost Efficiency
@@ -192,7 +192,7 @@ second-level switching domain can potentially span more than ten thousand indivi
 </p>
 
 
-<div id="orgfab5b38" class="figure">
+<div id="org38e744f" class="figure">
 <p><img src="../images/WSCs-elements.png" alt="WSCs-elements.png" />
 </p>
 </div>
@@ -238,7 +238,7 @@ complicating software development and possibly impacting resource utilization.
 </p>
 
 
-<div id="org11c4bb3" class="figure">
+<div id="org882d191" class="figure">
 <p><img src="../images/WSCs-cluster-level-storage.png" alt="WSCs-cluster-level-storage.png" />
 </p>
 </div>
@@ -364,7 +364,7 @@ more substantially from economies of scale.
 </blockquote>
 
 <p>
-暂时不考虑通信效率，纯粹考虑单机的计算/存储性价比（用的是TPC-C基准测试)。
+暂时不考虑通信效率，纯粹考虑单机的计算/存储性价比(用的是TPC-C基准测试)。
 </p>
 <ul class="org-ul">
 <li>low-end servers效率是high-end servers的3x</li>
@@ -398,7 +398,7 @@ server hardware becomes roughly 20 times more cost-efficient than the Superdome.
 </p>
 
 
-<div id="orge6449e3" class="figure">
+<div id="orgb70a05f" class="figure">
 <p><img src="../images/WSCs-tpc-c-benchmarking.png" alt="WSCs-tpc-c-benchmarking.png" />
 </p>
 </div>
@@ -450,7 +450,7 @@ their cost-efficiency may not be as competitive for WSCs as they are for small-s
 </p>
 
 
-<div id="orga8fc7a1" class="figure">
+<div id="org78a75a0" class="figure">
 <p><img src="../images/WSCs-high-low-end-servers-comparison.png" alt="WSCs-high-low-end-servers-comparison.png" />
 </p>
 </div>
@@ -630,7 +630,7 @@ it down again to 12–14°C.
 </p>
 
 
-<div id="orgfabe8d4" class="figure">
+<div id="org51b5ba3" class="figure">
 <p><img src="../images/WSCs-CRAC.png" alt="WSCs-CRAC.png" />
 </p>
 </div>
@@ -725,7 +725,7 @@ measured and optimized by the appropriate engineering disciplines, as shown in t
 </p>
 
 
-<div id="orgcbdb73f" class="figure">
+<div id="orgb5b95f3" class="figure">
 <p><img src="../images/WSCs-DCPE-equation.png" alt="WSCs-DCPE-equation.png" />
 </p>
 </div>
@@ -823,7 +823,7 @@ is a large improvement over the status quo. Based on the current state of the ar
 </blockquote>
 
 <p>
-“成比例的能耗使用计算”(engery-proportional computing，我后面写成EPC）理想情况就是：如果idle的话，那么最好就能能耗；
+“成比例的能耗使用计算”(engery-proportional computing，我后面写成EPC)理想情况就是：如果idle的话，那么最好就能能耗；
 然后能耗使用是和load成线性比例的。EPC要求有"wide dynamic power range"，这点拿人体来做参考。
 </p>
 
@@ -849,7 +849,7 @@ in organisms.
 </p>
 
 
-<div id="orgc918909" class="figure">
+<div id="orgff7b07a" class="figure">
 <p><img src="../images/WSCs-human-energy-usage.png" alt="WSCs-human-energy-usage.png" />
 </p>
 </div>
@@ -875,7 +875,7 @@ improvements across all components.
 </p>
 
 
-<div id="orgb6041bf" class="figure">
+<div id="orgfd7503e" class="figure">
 <p><img src="../images/WSCs-compute-load.png" alt="WSCs-compute-load.png" />
 </p>
 </div>
@@ -969,7 +969,7 @@ improvements.
 <p>
 WSCs设计者还要意识到，每个组件EPC是不断变化的。比如上图可以看到，CPU的EPC变得越来越好。但是总的来说应用软件的workload
 通常不会发生比较大的变化，对每个组件的load需求也是相对固定的。这个时候我们就要调整每个组件的能耗来适应软件的workload.
-比如CPU就可以使用DVS(dynamic voltage scaling)来降低CPU的功耗（因为CPU性能增速远好于disk和dram)
+比如CPU就可以使用DVS(dynamic voltage scaling)来降低CPU的功耗(因为CPU性能增速远好于disk和dram)
 </p>
 
 <blockquote>
@@ -1148,7 +1148,7 @@ and human mistakes.
 </p>
 
 
-<div id="orgcb97de6" class="figure">
+<div id="org4d92113" class="figure">
 <p><img src="../images/WSCs-service-disruption-events.png" alt="WSCs-service-disruption-events.png" />
 </p>
 </div>
@@ -1206,7 +1206,7 @@ mean time to machine crash (6 months or less).
 </blockquote>
 
 <p>
-在预测故障的时候，我们需要平衡accuracy和recall(主要是penalty, 因为没有及时预报造成的损失）。如果软件容错处理做得好的话，那么这个penalty会比较低。
+在预测故障的时候，我们需要平衡accuracy和recall(主要是penalty, 因为没有及时预报造成的损失)。如果软件容错处理做得好的话，那么这个penalty会比较低。
 所以在预测故障方面，我们适当地关注accuracy. 而传统软件在recall上面就要做得尽可能高。但是他们也指出，他们在磁盘故障预测上做得并不好。
 </p>
 
@@ -1256,7 +1256,7 @@ methods to suggest the most appropriate repairs action.
 </p>
 
 
-<div id="org496e09a" class="figure">
+<div id="org1d5c38e" class="figure">
 <p><img src="../images/WSCs-google-system-health.png" alt="WSCs-google-system-health.png" />
 </p>
 </div>

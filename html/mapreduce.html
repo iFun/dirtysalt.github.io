@@ -86,7 +86,7 @@ This section describes an implementation targeted to the computing environment i
 <li>(2) Commodity networking hardware is used – typically either 100 megabits/second or 1 gigabit/second at the machine level, but averaging considerably less in over-all bisection bandwidth.（单机上是1Gbps的网卡，但是外层的交换机上存在带宽限制，所以通常单机是跑不满的）</li>
 <li>(3) A cluster consists of hundreds or thousands of ma-chines, and therefore machine failures are common.（考虑机器故障）</li>
 <li>(4) Storage is provided by inexpensive IDE disks at-tached directly to individual machines. A distributed file system developed in-house is used to manage the data stored on these disks. The file system uses replication to provide availability and reliability on top of unreliable hardware.（使用廉价IDE磁盘，但是应该没有使用磁盘阵列，而是使用gfs做soft RAID）</li>
-<li>(5) Users submit jobs to a scheduling system. Each job consists of a set of tasks, and is mapped by the scheduler to a set of available machines within a cluster.（用户提交到scheduler system，scheduler来指定job在哪些机器运行，每个job包含很多task. Borg/Omega/k8s etc)</li>
+<li>(5) Users submit jobs to a scheduling system. Each job consists of a set of tasks, and is mapped by the scheduler to a set of available machines within a cluster.(用户提交到scheduler system，scheduler来指定job在哪些机器运行，每个job包含很多task. Borg/Omega/k8s etc)</li>
 </ul>
 
 
@@ -105,7 +105,7 @@ Reduce invoca-tions are distributed by partitioning the intermediate key space i
 </p>
 
 
-<div id="org24d3d64" class="figure">
+<div id="org4fcc66c" class="figure">
 <p><img src="../images/mapreduce-execution-overview.png" alt="mapreduce-execution-overview.png" />
 </p>
 </div>
@@ -370,7 +370,7 @@ Users have found the counter facility useful for sanity checking the behavior of
 </ul>
 
 
-<div id="org3c2b240" class="figure">
+<div id="orgb7810e4" class="figure">
 <p><img src="../images/mapreduce-instances-overtime.png" alt="mapreduce-instances-overtime.png" />
 </p>
 </div>
@@ -380,7 +380,7 @@ Users have found the counter facility useful for sanity checking the behavior of
 </p>
 
 
-<div id="orga9df0d1" class="figure">
+<div id="orgde26a52" class="figure">
 <p><img src="../images/mapreduce-jobs-run.png" alt="mapreduce-jobs-run.png" />
 </p>
 </div>

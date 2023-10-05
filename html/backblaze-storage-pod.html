@@ -51,7 +51,7 @@ Before realizing that we had to solve this storage problem ourselves, we conside
 </p>
 
 
-<div id="org92355e0" class="figure">
+<div id="org9da218b" class="figure">
 <p><img src="../images/cost-of-a-petabyte-chart.jpg" alt="cost-of-a-petabyte-chart.jpg" />
 </p>
 </div>
@@ -74,7 +74,7 @@ A Backblaze Storage Pod is a self-contained unit that puts storage online. It’
 </p>
 
 
-<div id="orgb344708" class="figure">
+<div id="org0855fdf" class="figure">
 <p><img src="../images/backblaze-storage-pod-main-components.jpg" alt="backblaze-storage-pod-main-components.jpg" />
 </p>
 </div>
@@ -90,7 +90,7 @@ A Backblaze Storage Pod isn’t a complete building block until it boots and is 
 </p>
 
 
-<div id="org0aa9b80" class="figure">
+<div id="orgd84fe4d" class="figure">
 <p><img src="../images/backblaze-storage-pod-software-layer-cake-diagram.jpg" alt="backblaze-storage-pod-software-layer-cake-diagram.jpg" />
 </p>
 </div>
@@ -114,7 +114,7 @@ We upgraded the hard drives inside the 4U sheet metal pod enclosure to store twi
 </p>
 
 
-<div id="org4d87288" class="figure">
+<div id="org15c5ba8" class="figure">
 <p><img src="../images/pod20-datacenter-cabinet.jpg" alt="pod20-datacenter-cabinet.jpg" />
 </p>
 </div>
@@ -133,7 +133,7 @@ We’ve made several improvements to the design that have doubled the performanc
 </p>
 
 <p>
-We upgraded the Linux 64-bit OS from Debian 4 to Debian 5, but we no longer use JFS as the file system. We selected JFS years ago for its ability to accommodate large volumes and low CPU usage, and it worked well. However, ext4 has since matured in both reliability and performance, and we realized that with a little additional effort we could get all the benefits and live within the unfortunate 16 terabyte volume limitation of ext4. One of the required changes to work around ext4’s constraints was to add LVM (Logical Volume Manager) above the RAID 6 but below the file system. In our particular application (which features more writes than reads), ext4’s performance was a clear winner over ext3, JFS, and XFS.（Debian从4.0到了5.0，没有继续使用JFS而改用ext4)
+We upgraded the Linux 64-bit OS from Debian 4 to Debian 5, but we no longer use JFS as the file system. We selected JFS years ago for its ability to accommodate large volumes and low CPU usage, and it worked well. However, ext4 has since matured in both reliability and performance, and we realized that with a little additional effort we could get all the benefits and live within the unfortunate 16 terabyte volume limitation of ext4. One of the required changes to work around ext4’s constraints was to add LVM (Logical Volume Manager) above the RAID 6 but below the file system. In our particular application (which features more writes than reads), ext4’s performance was a clear winner over ext3, JFS, and XFS.(Debian从4.0到了5.0，没有继续使用JFS而改用ext4)
 </p>
 
 <p>
@@ -141,7 +141,7 @@ With these performance improvements, we see the new storage pods in our datacent
 </p>
 
 
-<div id="orga195311" class="figure">
+<div id="orga1e51aa" class="figure">
 <p><img src="../images/pod20-performance.jpg" alt="pod20-performance.jpg" />
 </p>
 </div>

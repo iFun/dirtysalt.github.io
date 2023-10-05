@@ -39,8 +39,8 @@ google llvm组大佬chandler carruth, 主要讲解了现代编译器（以LLVM�
 </p>
 <ol class="org-ol">
 <li>inline function call</li>
-<li>memory loads &amp; stores (先转换为读写寄存器，然后在寄存器分配阶段优化）</li>
-<li>loops （loop prehead + exit两个block, 以及使用向量化做优化)</li>
+<li>memory loads &amp; stores (先转换为读写寄存器，然后在寄存器分配阶段优化)</li>
+<li>loops (loop prehead + exit两个block, 以及使用向量化做优化)</li>
 </ol>
 <p>
 而过去编译原理书籍里面说的常量折叠或者是传播，在SSA下面变得非常简单，在现代编译器中几乎就不是问题。SSA里面明确了程序的控制流以及数据流，让许多之前很复杂的优化变得十分简单。

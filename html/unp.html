@@ -46,8 +46,8 @@
 <li><a href="#orgc16dc9c">2.2. socket</a></li>
 <li><a href="#org07bed96">2.3. connect</a>
 <ul>
-<li><a href="#org1eb5954">2.3.1. 使用说明</a></li>
-<li><a href="#orgff2a687">2.3.2. 非阻塞</a></li>
+<li><a href="#org7f7df82">2.3.1. 使用说明</a></li>
+<li><a href="#orge6a47ce">2.3.2. 非阻塞</a></li>
 <li><a href="#orga86f333">2.3.3. 三次握手</a></li>
 <li><a href="#org5912a73">2.3.4. ETIMEOUT</a></li>
 <li><a href="#org94ddbbf">2.3.5. ECONNREFUSED</a></li>
@@ -58,15 +58,15 @@
 <li><a href="#org0f4797e">2.4. bind</a></li>
 <li><a href="#orgc34d7d1">2.5. listen</a>
 <ul>
-<li><a href="#orgb4967a8">2.5.1. 使用说明</a></li>
+<li><a href="#org8a06bac">2.5.1. 使用说明</a></li>
 <li><a href="#org3d13924">2.5.2. backlog</a></li>
 </ul>
 </li>
 <li><a href="#org4e1d165">2.6. accept</a>
 <ul>
-<li><a href="#orgbbf25c0">2.6.1. 使用说明</a></li>
+<li><a href="#orgec83a2d">2.6.1. 使用说明</a></li>
 <li><a href="#org03fa602">2.6.2. 惊群效应(thundering herd)</a></li>
-<li><a href="#orge6a47ce">2.6.3. 非阻塞</a></li>
+<li><a href="#org4472853">2.6.3. 非阻塞</a></li>
 <li><a href="#orgd65d27c">2.6.4. ECONNABORTED/EPROTO</a></li>
 <li><a href="#orgc7c88a9">2.6.5. EPIPE</a></li>
 </ul>
@@ -100,7 +100,7 @@
 </li>
 <li><a href="#orgb9c8aaa">2.11. conversion</a>
 <ul>
-<li><a href="#org7f7df82">2.11.1. 使用说明</a></li>
+<li><a href="#orgf81146f">2.11.1. 使用说明</a></li>
 <li><a href="#org1b5cd41">2.11.2. name2addr</a></li>
 <li><a href="#orgba48bf9">2.11.3. addr2name</a></li>
 </ul>
@@ -109,7 +109,7 @@
 </li>
 <li><a href="#org6f5ba65">3. TCP</a>
 <ul>
-<li><a href="#org19cd1c2">3.1. 特点</a></li>
+<li><a href="#orgd7ecded">3.1. 特点</a></li>
 <li><a href="#org6b67ba3">3.2. TCP首部</a>
 <ul>
 <li><a href="#org6921d43">3.2.1. RST分节</a></li>
@@ -142,21 +142,21 @@
 <li><a href="#org95c62a0">3.5.3. 保活定时器</a></li>
 </ul>
 </li>
-<li><a href="#orgeedc4ea">3.6. 读写数据</a>
+<li><a href="#org3715dd6">3.6. 读写数据</a>
 <ul>
-<li><a href="#org842e496">3.6.1. 读数据</a></li>
-<li><a href="#orgadd6181">3.6.2. 写数据</a></li>
+<li><a href="#org20bf37b">3.6.1. 读数据</a></li>
+<li><a href="#org58f2621">3.6.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#org51150df">4. UDP</a>
 <ul>
-<li><a href="#orgd7ecded">4.1. 特点</a></li>
-<li><a href="#org3715dd6">4.2. 读写数据</a>
+<li><a href="#orgff3b1c2">4.1. 特点</a></li>
+<li><a href="#org130487e">4.2. 读写数据</a>
 <ul>
-<li><a href="#org20bf37b">4.2.1. 读数据</a></li>
-<li><a href="#org58f2621">4.2.2. 写数据</a></li>
+<li><a href="#org9cb9f29">4.2.1. 读数据</a></li>
+<li><a href="#org05f16c3">4.2.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
@@ -813,8 +813,8 @@ protocol取值有下面这些：
 建立客户端和服务端的连接。
 </p>
 </div>
-<div id="outline-container-org1eb5954" class="outline-4">
-<h4 id="org1eb5954"><span class="section-number-4">2.3.1.</span> 使用说明</h4>
+<div id="outline-container-org7f7df82" class="outline-4">
+<h4 id="org7f7df82"><span class="section-number-4">2.3.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 <pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
@@ -840,8 +840,8 @@ extern int connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len);
 </div>
 </div>
 
-<div id="outline-container-orgff2a687" class="outline-4">
-<h4 id="orgff2a687"><span class="section-number-4">2.3.2.</span> 非阻塞</h4>
+<div id="outline-container-orge6a47ce" class="outline-4">
+<h4 id="orge6a47ce"><span class="section-number-4">2.3.2.</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 默认情况下connect是阻塞版本，直到对端的ACK响应之后才返回。但是如果客户端需要尝试多个连接的话并且顺序阻塞连接的话，
@@ -859,7 +859,7 @@ extern int connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len);
 <div id="outline-container-orga86f333" class="outline-4">
 <h4 id="orga86f333"><span class="section-number-4">2.3.3.</span> 三次握手</h4>
 <div class="outline-text-4" id="text-2-3-3">
-<pre class="example" id="orgd4c0f04">
+<pre class="example" id="org1daa56a">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 61.135.169.105 80
 bind (0.0.0.0:44557)
 connect (61.135.169.105,80)...
@@ -868,7 +868,7 @@ connect succeed
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="org8a13067">
+<pre class="example" id="org2695ca3">
 //tcpdump tcp port 44567 -ttt
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 61.135.169.105.http: Flags [S], seq 4248773398, win 5840, options [mss 1460,sackOK,TS val 30454000 ecr 0,nop,wscale 4], length 0
 00:00:00.006770 IP 61.135.169.105.http &gt; 192.168.189.128.44567: Flags [S.], seq 127082468, ack 4248773399, win 64240, options [mss 1460], length 0
@@ -885,7 +885,7 @@ connect succeed
 <p>
 如果SYN分节发给一个在路由器中存在表项，但是已经没有运行主机的话，没有得到SYN的ACK分节，就会返回ETIMEOUT的错误。
 </p>
-<pre class="example" id="org3ee1346">
+<pre class="example" id="orga4dbb46">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 192.168.189.1 80
 bind (0.0.0.0:44567)
 connect (192.168.189.1,80)...
@@ -894,7 +894,7 @@ connect failed:Connection timed out
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="orgcb336b5">
+<pre class="example" id="orga49d63c">
 //tcpdump tcp port 44567 -ttt
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 192.168.189.1.http: Flags [S], seq 342722628, win 5840, options [mss 1460,sackOK,TS val 30204841 ecr 0,nop,wscale 4], length 0
 00:00:03.000471 IP 192.168.189.128.44567 &gt; 192.168.189.1.http: Flags [S], seq 342722628, win 5840, options [mss 1460,sackOK,TS val 30207841 ecr 0,nop,wscale 4], length 0
@@ -916,7 +916,7 @@ connect failed:Connection timed out
 如果SYN分节发给一个在路由器中存在表项并且主机存在，但是主机端口并没有提供服务的话，返回RST分节，那么就会返回ECONNREFUSED的错误。
 我们这里使用本地主机ip,然后访问端口1，这个服务肯定是不存在的。
 </p>
-<pre class="example" id="org185f77e">
+<pre class="example" id="orgb8aaef0">
 [dirlt@localhost.localdomain]$  ./connect -b 44567 192.168.189.128 1
 bind (0.0.0.0:44567)
 connect (192.168.189.128,1)...
@@ -925,7 +925,7 @@ connect failed:Connection refused
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="orga914444">
+<pre class="example" id="org3871826">
 //tcpdump tcp port 44567 -ttt -i lo.因为这里走的是loopback接口
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 192.168.189.128.tcpmux: Flags [S], seq 1074623492, win 32792, options [mss 16396,sackOK,TS val 36551959 ecr 0,nop,wscale 4], length 0
 00:00:00.000031 IP 192.168.189.128.tcpmux &gt; 192.168.189.128.44567: Flags [R.], seq 0, ack 1074623493, win 0, length 0
@@ -945,7 +945,7 @@ connect failed:Connection refused
 远程路径，那么久会直接返回错误，另外一种情况是connect不等待完成就返回。
 </p>
 
-<pre class="example" id="org423d724">
+<pre class="example" id="orga659661">
 [dirlt@localhost.localdomain]$  ./connect -b 44567 192.168.189.0 1
 bind (0.0.0.0:44567)
 connect (192.168.189.0,1)...
@@ -954,7 +954,7 @@ connect failed:Network is unreachable
 <p>
 使用tcpdump没有任何结果，因为本地路由表没有这个路由表项
 </p>
-<pre class="example" id="org84ec9e5">
+<pre class="example" id="orgaca19c5">
 [root@localhost dirlt]# /sbin/route
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -1037,8 +1037,8 @@ extern const struct in6_addr in6addr_loopback;   /* ::1 */
 将主动套接字设置成为被动套接字。
 </p>
 </div>
-<div id="outline-container-orgb4967a8" class="outline-4">
-<h4 id="orgb4967a8"><span class="section-number-4">2.5.1.</span> 使用说明</h4>
+<div id="outline-container-org8a06bac" class="outline-4">
+<h4 id="org8a06bac"><span class="section-number-4">2.5.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <div class="org-src-container">
 <pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
@@ -1099,8 +1099,8 @@ RST分节还是不回复ACK分节，而让客户端进行重传。对于manpage�
 处理已经建立好的连接。
 </p>
 </div>
-<div id="outline-container-orgbbf25c0" class="outline-4">
-<h4 id="orgbbf25c0"><span class="section-number-4">2.6.1.</span> 使用说明</h4>
+<div id="outline-container-orgec83a2d" class="outline-4">
+<h4 id="orgec83a2d"><span class="section-number-4">2.6.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <div class="org-src-container">
 <pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
@@ -1130,8 +1130,8 @@ extern int accept (int __fd, __SOCKADDR_ARG __addr,
 </div>
 </div>
 
-<div id="outline-container-orge6a47ce" class="outline-4">
-<h4 id="orge6a47ce"><span class="section-number-4">2.6.3.</span> 非阻塞</h4>
+<div id="outline-container-org4472853" class="outline-4">
+<h4 id="org4472853"><span class="section-number-4">2.6.3.</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <p>
 默认情况下面accept是阻塞版本，直到连接三次握手完成进入complete queue并且被取出才返回。如果我们使用非阻塞版本的话，
@@ -1151,7 +1151,7 @@ extern int accept (int __fd, __SOCKADDR_ARG __addr,
 在应用层上可以进行忽略然后进行下一次accept.我们可以模拟这个情况，如果设置了套接字SO_LINGER的话，并且linger_time为0的时候，
 那么在关闭时候并不会发送FIN分节而是直接发送RST分节。
 </p>
-<pre class="example" id="orgaedc436">
+<pre class="example" id="org89c0db8">
 [dirlt@localhost.localdomain]$ ./connect -l -b 44568 127.0.0.1 44567
 setsockopt SO_LINGER
 bind (0.0.0.0:44568)
@@ -1159,7 +1159,7 @@ connect 127.0.0.1:44567 ...
 connect succeed
 </pre>
 
-<pre class="example" id="org2eaea9e">
+<pre class="example" id="org7650688">
 [dirlt@localhost.localdomain]$ ./server -d 10 44567
 bind (0.0.0.0:44567)
 listen 5
@@ -1171,7 +1171,7 @@ accept ...
 <p>
 似乎并没有返回ECONNABORTED的错误，而且这个连接正常返回了。然后我们看看tcpdump结果
 </p>
-<pre class="example" id="org635a0ce">
+<pre class="example" id="org68b19e6">
 00:00:00.000000 IP localhost.localdomain.44568 &gt; localhost.localdomain.44567: Flags [S], seq 1612964784, win 32792, options [mss 16396,sackOK,TS val 86983449 ecr 0,nop,wscale 4], length 0
 00:00:00.000158 IP localhost.localdomain.44567 &gt; localhost.localdomain.44568: Flags [S.], seq 1610609404, ack 1612964785, win 32768, options [mss 16396,sackOK,TS val 86983449 ecr 86983449,nop,wscale 4], length 0
 00:00:00.000050 IP localhost.localdomain.44568 &gt; localhost.localdomain.44567: Flags [.], ack 1, win 2050, options [nop,nop,TS val 86983449 ecr 86983449], length 0
@@ -1189,7 +1189,7 @@ accept ...
 <p>
 我们继续从上面情况分析下来，假设连接已经断开，而如果我们读写的话那么会是什么情况呢？
 </p>
-<pre class="example" id="orgdad4807">
+<pre class="example" id="org669fe79">
 [dirlt@localhost.localdomain]$ ./connect -l -b 44568 127.0.0.1 44567
 setsockopt SO_LINGER
 bind (0.0.0.0:44568)
@@ -1197,7 +1197,7 @@ connect 127.0.0.1:44567 ...
 connect succeed
 </pre>
 
-<pre class="example" id="orga609c4b">
+<pre class="example" id="org5783573">
 [dirlt@localhost.localdomain]$ ./server -d 10 -h 44567
 usage:./server [-r] [-d delay] [-b ip] [-c] port
 [dirlt@localhost.localdomain]$ ./server -c 44567
@@ -1254,7 +1254,7 @@ SHUT_RD能够关闭读半部，执行这个部分不会发送任何分节，而k
 而原来kernel内部维持的数据会首先全部发送出去，继续write这个fd的话会产生EPIPE错误。半关闭在有些情况下面是必要的，
 如果没有半关闭的话，那么应用层必须使用一些其他技术或者是协议来通知对端，自己已经将数据发送完毕。
 </p>
-<pre class="example" id="org8f4473a">
+<pre class="example" id="org8a5e0de">
 [dirlt@localhost.localdomain]$ ./connect -H -b 44567 119.75.218.45 80
 bind (0.0.0.0:44567)
 connect 119.75.218.45:80 ...
@@ -1435,7 +1435,7 @@ extern int setsockopt (int __fd, int __level, int __optname,
 <p>
 我们可以使用viewsockopt.cc来查看这些选项的默认值。
 </p>
-<pre class="example" id="org7e0cef2">
+<pre class="example" id="org6df17bd">
 [dirlt@localhost.localdomain]$ ./viewsockopt
 SO_ERROR:0
 SO_KEEPALIVE:off
@@ -1580,7 +1580,7 @@ struct linger
 使用SO_REUSEADDR选项的话那么允许监听(被动打开)的套接字绑定在一个正在被使用的端口上。使用这个选项必须在
 socket和bind之间调用。但是这里有一个问题，就是这个检查是在什么时候进行的。我们使用connect.cc进行两次正常连接：
 </p>
-<pre class="example" id="orgd08881d">
+<pre class="example" id="orga9550f3">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 119.75.217.56 80
 bind (0.0.0.0:44567)
 connect 119.75.217.56:80 ...
@@ -1593,7 +1593,7 @@ bind failed:Address already in use
 可以看到在bind就出现错误。如果我们使用这个选项的话，在socket之后系统并不知道我们是被动打开的话，
 那么bind没有问题，但是在connect时候就会出现问题，因为这样会造成两个连接出现：
 </p>
-<pre class="example" id="org124959d">
+<pre class="example" id="org2da5413">
 [dirlt@localhost.localdomain]$ ./connect -r -b 44568 119.75.217.56 80
 setsockopt SO_REUSEADDR
 bind (0.0.0.0:44568)
@@ -1617,7 +1617,7 @@ connect failed:Cannot assign requested address
 我们分别使用(x,z),(y,z)来启动两个服务器实例。但是需要注意的是，只要使用了任何一个可用ip的话那么就不允许使用
 通配地址，如果使用通配地址的话那么就不允许绑定特定ip.
 </p>
-<pre class="example" id="org61d8856">
+<pre class="example" id="org8d85dca">
 [dirlt@localhost.localdomain]$ ./server -b 127.0.0.1 44567
 bind (127.0.0.1:44567)
 listen 5
@@ -1635,7 +1635,7 @@ bind failed:Address already in use
 <p>
 如果我们首先绑定通配地址先的话
 </p>
-<pre class="example" id="org180a459">
+<pre class="example" id="org791a75c">
 [dirlt@localhost.localdomain]$ ./server 44567
 bind (0.0.0.0:44567)
 listen 5
@@ -2377,8 +2377,8 @@ extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
 <h3 id="orgb9c8aaa"><span class="section-number-3">2.11.</span> conversion</h3>
 <div class="outline-text-3" id="text-2-11">
 </div>
-<div id="outline-container-org7f7df82" class="outline-4">
-<h4 id="org7f7df82"><span class="section-number-4">2.11.1.</span> 使用说明</h4>
+<div id="outline-container-orgf81146f" class="outline-4">
+<h4 id="orgf81146f"><span class="section-number-4">2.11.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
 关于名字与地址转换，我们这里只关注主机名和IP地址之间的转换接口。至于实现方面的话，大致有两种方式：
@@ -2448,7 +2448,7 @@ struct hostent
 <div id="outline-container-org1b5cd41" class="outline-4">
 <h4 id="org1b5cd41"><span class="section-number-4">2.11.2.</span> name2addr</h4>
 <div class="outline-text-4" id="text-2-11-2">
-<pre class="example" id="orgc564fbb">
+<pre class="example" id="org3412796">
 //第一次请求
 [dirlt@localhost.localdomain]$ ./name2addr iptv.tsinghua.edu.cn
 ====================IPv4====================
@@ -2500,7 +2500,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 <div id="outline-container-orgba48bf9" class="outline-4">
 <h4 id="orgba48bf9"><span class="section-number-4">2.11.3.</span> addr2name</h4>
 <div class="outline-text-4" id="text-2-11-3">
-<pre class="example" id="orgc69d190">
+<pre class="example" id="orgb12b4d3">
 //第一次请求
 [dirlt@localhost.localdomain]$ ./addr2name 127.0.0.1
 ====================IPv4====================
@@ -2552,8 +2552,8 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 </p>
 </div>
 
-<div id="outline-container-org19cd1c2" class="outline-3">
-<h3 id="org19cd1c2"><span class="section-number-3">3.1.</span> 特点</h3>
+<div id="outline-container-orgd7ecded" class="outline-3">
+<h3 id="orgd7ecded"><span class="section-number-3">3.1.</span> 特点</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 TCP(Transmission Control Protocol,传输控制协议)相对于UDP来说更加复杂而功能也更加强大。首先TCP是面向连接的，
@@ -2652,7 +2652,7 @@ TCP首部数据格式如下，如果不计可选字段的话占用20个字节（
 <h3 id="org39e8546"><span class="section-number-3">3.3.</span> TCP状态</h3>
 <div class="outline-text-3" id="text-3-3">
 
-<div id="org1d736fa" class="figure">
+<div id="org0be736e" class="figure">
 <p><img src="../images/tcp-status-transmission.png" alt="tcp-status-transmission.png" />
 </p>
 </div>
@@ -2682,7 +2682,7 @@ TCP首部数据格式如下，如果不计可选字段的话占用20个字节（
 <h4 id="orgc9185ed"><span class="section-number-4">3.3.1.</span> 连接的建立和终止</h4>
 <div class="outline-text-4" id="text-3-3-1">
 
-<div id="org8f585bd" class="figure">
+<div id="orgb306463" class="figure">
 <p><img src="../images/tcp-connection-flow.jpg" alt="tcp-connection-flow.jpg" />
 </p>
 </div>
@@ -2792,7 +2792,7 @@ TFO在client开始SYN的时候允许设在TCP选项上面设置TFO option，然�
 </p>
 
 <p>
-然后RFC793虽然规定了 SYN可以带上数据，但是请求必须在3WHS之后才能够处理（一方面是为了防止过时的SYN，另外一方面是为了防止SYN flood attack)。但是TFO的实现允许在SYN就带上数据并且立刻处理，可以查看pdf里面TFO过程。为了防止SYN flood attack使用了cookie机制进行验证。而TFO并不防止过时的SYN这样的请求，允许SYN+数据发送多次并且响应，这就要求了server有能力确定是否开启TFO（server如果判断请求是幂等的话，那么就可以开启TFO)。
+然后RFC793虽然规定了 SYN可以带上数据，但是请求必须在3WHS之后才能够处理(一方面是为了防止过时的SYN，另外一方面是为了防止SYN flood attack)。但是TFO的实现允许在SYN就带上数据并且立刻处理，可以查看pdf里面TFO过程。为了防止SYN flood attack使用了cookie机制进行验证。而TFO并不防止过时的SYN这样的请求，允许SYN+数据发送多次并且响应，这就要求了server有能力确定是否开启TFO(server如果判断请求是幂等的话，那么就可以开启TFO)。
 </p>
 
 <p>
@@ -3080,12 +3080,12 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-orgeedc4ea" class="outline-3">
-<h3 id="orgeedc4ea"><span class="section-number-3">3.6.</span> 读写数据</h3>
+<div id="outline-container-org3715dd6" class="outline-3">
+<h3 id="org3715dd6"><span class="section-number-3">3.6.</span> 读写数据</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-org842e496" class="outline-4">
-<h4 id="org842e496"><span class="section-number-4">3.6.1.</span> 读数据</h4>
+<div id="outline-container-org20bf37b" class="outline-4">
+<h4 id="org20bf37b"><span class="section-number-4">3.6.1.</span> 读数据</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <p>
 #todo:
@@ -3093,8 +3093,8 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-orgadd6181" class="outline-4">
-<h4 id="orgadd6181"><span class="section-number-4">3.6.2.</span> 写数据</h4>
+<div id="outline-container-org58f2621" class="outline-4">
+<h4 id="org58f2621"><span class="section-number-4">3.6.2.</span> 写数据</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <p>
 首先应用层只是调用write将应用层数据完全copy到内核的tcp send buffer上，至于这个tcp send buffer大小是SO_SNDBUF来控制的。
@@ -3121,8 +3121,8 @@ tcp send buffer不会被丢弃直到对端收到这块buffer所包含内容的�
 </p>
 </div>
 
-<div id="outline-container-orgd7ecded" class="outline-3">
-<h3 id="orgd7ecded"><span class="section-number-3">4.1.</span> 特点</h3>
+<div id="outline-container-orgff3b1c2" class="outline-3">
+<h3 id="orgff3b1c2"><span class="section-number-3">4.1.</span> 特点</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 UDP(User Datagram Procotol,数据报传输协议)是一个简单的传输层协议，在RFC768中有详细说明。
@@ -3143,12 +3143,12 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-org3715dd6" class="outline-3">
-<h3 id="org3715dd6"><span class="section-number-3">4.2.</span> 读写数据</h3>
+<div id="outline-container-org130487e" class="outline-3">
+<h3 id="org130487e"><span class="section-number-3">4.2.</span> 读写数据</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org20bf37b" class="outline-4">
-<h4 id="org20bf37b"><span class="section-number-4">4.2.1.</span> 读数据</h4>
+<div id="outline-container-org9cb9f29" class="outline-4">
+<h4 id="org9cb9f29"><span class="section-number-4">4.2.1.</span> 读数据</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 #todo:
@@ -3156,8 +3156,8 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-org58f2621" class="outline-4">
-<h4 id="org58f2621"><span class="section-number-4">4.2.2.</span> 写数据</h4>
+<div id="outline-container-org05f16c3" class="outline-4">
+<h4 id="org05f16c3"><span class="section-number-4">4.2.2.</span> 写数据</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 和TCP输出一样，UDP也维护着内核udp send buffer,大小可以通过SO_SNDBUF来控制，而这个参数控制着一次写UDP数据报的大小上限。

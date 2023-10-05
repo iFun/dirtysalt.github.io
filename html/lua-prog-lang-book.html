@@ -116,7 +116,7 @@ k = y
 </div>
 
 <p>
-table constructor(table构造式）很有趣，同时兼容key/value和array的构造。
+table constructor(table构造式)很有趣，同时兼容key/value和array的构造。
 </p>
 <div class="org-src-container">
 <pre class="src src-Lua">days = {'Sun', 'Mon', 'Tue'} -- 数组构造，下标从1开始
@@ -135,7 +135,7 @@ days = {[ 0 ] = 20} -- days[0] 来引用
 </p>
 
 <p>
-块(block)(通常是do-end部分）是规定了local(局部)变量的作用范围。常见控制结构有
+块(block)(通常是do-end部分)是规定了local(局部)变量的作用范围。常见控制结构有
 </p>
 <ul class="org-ul">
 <li>if then(else/elseif) end</li>
@@ -215,7 +215,7 @@ hello(unpack(params))
 </div>
 
 <p>
-变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。`&#x2026;` 都被复制给了arg, 其中arg.n表示参数个数
+变长参数在C语言里面需要花费很大的力气才能解开，但是lua里面使用却很容易。 `&#x2026;` 都被复制给了arg, 其中arg.n表示参数个数
 </p>
 <div class="org-src-container">
 <pre class="src src-Lua">
@@ -376,12 +376,12 @@ end
 <h3 id="org29ddf93"><span class="section-number-3">1.4.</span> 编译执行与错误</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
-`loadstring`可以载入外部代码，`loadfile`可以载入代码文件。两者都会编译代码，并且返回local function对象。
+`loadstring` 可以载入外部代码， `loadfile` 可以载入代码文件。两者都会编译代码，并且返回local function对象。
 只有执行这个function对象代码才会变真正执行，在执行的时候也是可以传入参数（但是这个参数可能只能通过比较特殊手段拿到）
 </p>
 
 <p>
-`dofile` 执行的是 `f = loadfile(file_path); f() `，所以每次都会去编译代码文件。
+`dofile` 执行的是 `f = loadfile(file_path); f() ` ，所以每次都会去编译代码文件。
 </p>
 
 <p>
@@ -427,7 +427,7 @@ global i = 11
 </div>
 
 <p>
-`package.loadlib`可以载入C代码（动态加载）。这个函数不是标准ANSI C的实现，但是因为这个函数太重要的，所以lua在每个平台上都有特定实现。
+`package.loadlib` 可以载入C代码（动态加载）。这个函数不是标准ANSI C的实现，但是因为这个函数太重要的，所以lua在每个平台上都有特定实现。
 同样这个函数只是将动态库加载进来（需要传入动态库路径和初始化函数名称），返回一个function对象。
 </p>
 
@@ -437,7 +437,7 @@ global i = 11
 <ul class="org-ul">
 <li>`errro("error message")` 汇报错误；（产生异常）</li>
 <li>`assert` 做断言；</li>
-<li>`pcall`可以在保护模式(protected mode下面)调用函数，分别(true, value) | (nil, error)；（捕捉异常）</li>
+<li>`pcall` 可以在保护模式(protected mode下面)调用函数，分别(true, value) | (nil, error)；（捕捉异常）</li>
 <li>`xpcall` 传入调用函数和错误处理函数</li>
 <li>`debug.traceback` 可以打印出错堆栈</li>
 </ul>
@@ -669,7 +669,7 @@ year = 1990
 下面代码片段说明了metatable的使用
 </p>
 <ul class="org-ul">
-<li>`_m` 是 `make_obj`里面对象o的metatable</li>
+<li>`_m` 是 `make_obj` 里面对象o的metatable</li>
 <li>__tostring 函数影响到如何输出这个对象</li>
 <li>__add 函数影响到如何叠加两个对象</li>
 <li>__index 函数影响到如何查找某个不断在的字段</li>
@@ -920,7 +920,7 @@ end
 <h3 id="orgef3c37e"><span class="section-number-3">2.5.</span> 面向对象编程</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
-为了方便对象引用，lua引入一个新语法 `:`，实际上是一个语法糖 `a:method(x, y, z)` =  `a.method(a, x, y z)`。在函数体内可以使用 `self` 关键字引用到调用对象。
+为了方便对象引用，lua引入一个新语法 `:` ，实际上是一个语法糖 `a:method(x, y, z)` =  `a.method(a, x, y z)` 。在函数体内可以使用 `self` 关键字引用到调用对象。
 </p>
 
 <p>
@@ -928,8 +928,8 @@ end
 </p>
 <ul class="org-ul">
 <li>Account 是个类(class)，字段 `balance` 默认值是0</li>
-<li>`account` 是个对象(instance), `new`出来的时候并没有`balance`字段</li>
-<li>第一次调用 `add_balance` 的时候，`account` 对象里面才创建了 `balance` 对象</li>
+<li>`account` 是个对象(instance), `new` 出来的时候并没有 `balance` 字段</li>
+<li>第一次调用 `add_balance` 的时候， `account` 对象里面才创建了 `balance` 对象</li>
 </ul>
 
 <div class="org-src-container">
@@ -982,7 +982,7 @@ print(sub_account.balance, sub_account.level)
 </div>
 
 <p>
-如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在`__index`里面查找所有parent class.
+如果是多重继承的话，需要修改 `setmetatable(o, self)` 这段代码，需要传入所有的parent class, 然后在 `__index` 里面查找所有parent class.
 书里面给了例子，我觉得写起来还挺有技巧性的，所以复制一份代码放在这里。
 </p>
 <div class="org-src-container">
@@ -1188,7 +1188,7 @@ test_lua:test_lua.c
 如果运行出错的话，那么会出现类似下面这样的错误
 </p>
 
-<pre class="example" id="org93fe886">
+<pre class="example" id="orgb94d6c2">
 ➜  playbook ./a.out
 [string "test_lua::"]:1: attempt to call a nil value (field 'sinx')
 </pre>
@@ -1248,7 +1248,7 @@ print(mylib.l_add(10, 20));
 </div>
 
 <p>
-用户自定义类型可以设置`__gc`字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。
+用户自定义类型可以设置 `__gc` 字段，这个字段对应的函数会在对象被Lua执行GC的时候调用。
 </p>
 
 <p>

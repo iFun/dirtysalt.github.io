@@ -46,7 +46,7 @@ TinyLFU的整体结构是这样的：
 </ol>
 
 
-<div id="org9a1d1ae" class="figure">
+<div id="org516bd02" class="figure">
 <p><img src="../images/tinylfu-higly-efficient-cache-admission-policy-0.png" alt="tinylfu-higly-efficient-cache-admission-policy-0.png" />
 </p>
 </div>
@@ -70,7 +70,7 @@ A Minimal Increment CBF is an augmented counting Bloom filter that supports two 
 </p>
 <ul class="org-ul">
 <li>选择一个sample size/W, 以及记录更新次数C.</li>
-<li>当C=W的时候，可以认为是一个freshness周期，对里面每个bucket除2（文章叫做reset)</li>
+<li>当C=W的时候，可以认为是一个freshness周期，对里面每个bucket除2(文章叫做reset)</li>
 <li>这样cache hit counter可以指数衰减，历史上访问次数很高但是近期不访问的cache item，可以很快evicted出去。</li>
 </ul>
 
@@ -104,7 +104,7 @@ Instead, we propose a novel method for keeping the sketch fresh, the reset metho
 </ul>
 
 
-<div id="orgb4185eb" class="figure">
+<div id="org27abe75" class="figure">
 <p><img src="../images/tinylfu-higly-efficient-cache-admission-policy-1.png" alt="tinylfu-higly-efficient-cache-admission-policy-1.png" />
 </p>
 </div>

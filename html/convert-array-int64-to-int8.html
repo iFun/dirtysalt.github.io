@@ -282,7 +282,7 @@ void convert_i64toi8_simd_avx512(int64_t* RE src, int8_t * RE dst, size_t size) 
 <p>
 O0 编译的话，可以看到avx512效果很好，另外pack版本也很好，估计减少了内存和寄存器的倒腾。
 </p>
-<pre class="example" id="org50bf2f4">
+<pre class="example" id="org737ed48">
 mbp :: .codes/cc/misc ‹master*› » g++ ConvertI64ToI8Bench.cpp -std=c++17 -mavx512f -mavx512vbmi -DAVX512 -O0
 mbp :: .codes/cc/misc ‹master*› » ./a.out
 native version: N = 1024000, total = 4600, avg = 1.4969ns(per item)
@@ -296,7 +296,7 @@ pack version: N = 1024000, total = 2659, avg = 0.865271ns(per item)
 O2 编译的话，可以看到native版本就非常好了，和avx512基本持平，其他实现也不差。估计native版本已经展开成为了向量化。
 </p>
 
-<pre class="example" id="org308b5b0">
+<pre class="example" id="orgab9c146">
 mbp :: .codes/cc/misc ‹master*› » g++ ConvertI64ToI8Bench.cpp -std=c++17 -mavx512f -mavx512vbmi -DAVX512 -O2
 mbp :: .codes/cc/misc ‹master*› » ./a.out
 native version: N = 1024000, total = 1078, avg = 0.350795ns(per item)
@@ -310,7 +310,7 @@ pack version: N = 1024000, total = 1329, avg = 0.432473ns(per item
 O3 编译的话性能也就差不多了
 </p>
 
-<pre class="example" id="orgf7153cc">
+<pre class="example" id="orgdd2a24f">
 mbp :: .codes/cc/misc ‹master*› » g++ ConvertI64ToI8Bench.cpp -std=c++17 -mavx512f -mavx512vbmi -DAVX512 -O3
 mbp :: .codes/cc/misc ‹master*› » ./a.out
 native version: N = 1024000, total = 1080, avg = 0.351445ns(per item)
@@ -333,7 +333,7 @@ pack version: N = 1024000, total = 1393, avg = 0.453299ns(per item)
 O0 编译的话，同样pack版本效果很好
 </p>
 
-<pre class="example" id="org16d6ada">
+<pre class="example" id="org8586821">
 doris-sandbox04 :: ~ » g++ ConvertI64ToI8Bench.cpp -mssse3 -O0
 doris-sandbox04 :: ~ » ./a.out
 native version: N = 1024000, total = 6989, avg = 2.27431ns(per item)
@@ -346,7 +346,7 @@ pack version: N = 1024000, total = 3799, avg = 1.23624ns(per item)
 O2 编译的话，simd效果上来了，但是pack依然很好
 </p>
 
-<pre class="example" id="orga8e533a">
+<pre class="example" id="orgd2b899d">
 doris-sandbox04 :: ~ » g++ ConvertI64ToI8Bench.cpp -mssse3 -O2
 doris-sandbox04 :: ~ » ./a.out
 native version: N = 1024000, total = 2490, avg = 0.810277ns(per item)
@@ -359,7 +359,7 @@ pack version: N = 1024000, total = 1393, avg = 0.453299ns(per item)
 O3 编译的话，不知道为什么pack下来了，但是native版本效果很好，估计是使用向量化
 </p>
 
-<pre class="example" id="org6185c17">
+<pre class="example" id="org444d2ef">
 doris-sandbox04 :: ~ » g++ ConvertI64ToI8Bench.cpp -mssse3 -O3
 doris-sandbox04 :: ~ » ./a.out
 native version: N = 1024000, total = 1245, avg = 0.405138ns(per item)

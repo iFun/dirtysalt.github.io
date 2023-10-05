@@ -73,7 +73,7 @@ Code
 </ul>
 
 
-<div id="orga2f8197" class="figure">
+<div id="org7cf9d10" class="figure">
 <p><img src="../images/galera-code-structure.png" alt="galera-code-structure.png" />
 </p>
 </div>
@@ -158,13 +158,13 @@ Info.(@2012)
 <hr />
 
 
-<div id="org20ff992" class="figure">
+<div id="orgef59031" class="figure">
 <p><img src="../images/galera-gcs2.png" alt="galera-gcs2.png" />
 </p>
 </div>
 
 
-<div id="org01c493f" class="figure">
+<div id="org80f741a" class="figure">
 <p><img src="../images/galera-gcs.jpg" alt="galera-gcs.jpg" />
 </p>
 </div>
@@ -220,7 +220,7 @@ Info.(@2012)
 </ul>
 
 
-<div id="org29e0c62" class="figure">
+<div id="org1433450" class="figure">
 <p><img src="../images/galera-fsm.png" alt="galera-fsm.png" />
 </p>
 </div>
@@ -282,7 +282,7 @@ options:
 </p>
 
 <p>
-During normal operation MySQL/Galera node does not consume much more memory than a regular MySQL server. Additional memory is consumed for certification index and uncommitted writesets, but normally this should not be noticeable in a typical application. There is one exception though: （维护certification index以及没有提交的writeset)
+During normal operation MySQL/Galera node does not consume much more memory than a regular MySQL server. Additional memory is consumed for certification index and uncommitted writesets, but normally this should not be noticeable in a typical application. There is one exception though: (维护certification index以及没有提交的writeset)
 </p>
 
 <p>
@@ -353,7 +353,7 @@ There are two conceptually different ways to transfer a state from one MySQL ser
 </p>
 <ul class="org-ul">
 <li>Using mysqldump. This requires the receiving server to be fully initialized and ready to accept connections <b>before</b> the transfer. This method is by definition blocking, in that it blocks donor server from modifying its own state for the duration of transfer. It is also the slowest of all, and in the loaded cluster that might be an issue in a loaded cluster.（使用mysqldump。要求在transfer之前配置好。会阻塞donor操作，速度比较慢，高负载情况下会有问题）</li>
-<li>Copying data files directly. This requires that the receiving server is initialized <b>after</b> the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb_file_per_table should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.（直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)</li>
+<li>Copying data files directly. This requires that the receiving server is initialized <b>after</b> the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb_file_per_table should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.(直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)</li>
 <li><b>Xtrabackup and rsync SST cannot be used for a running server.</b> It is not possible to copy datafiles under running InnoDB. Having wsrep_address set to a list of node addresses and starting replication on a running node can lead to node crash. <del>#todo: Xtrabackup需要停机处理吗？</del>  #note: xtrabackup不需要停机处理</li>
 </ul>
 
@@ -364,7 +364,7 @@ SST Donor
 <li>All SST methods cause some disturbance for donor node</li>
 <li>By default donor accepts client connections, although committing will be prohibited for a while</li>
 <li>If wsrep_sst_donor_rejects_queries is set, donor gives unknown command error to clients</li>
-<li>Best practice is to dedicate a reference node for donor and backup activities（使用单独一台机器来做参照节点，这个机器上面没有负载，可以用作备份以及donor)</li>
+<li>Best practice is to dedicate a reference node for donor and backup activities(使用单独一台机器来做参照节点，这个机器上面没有负载，可以用作备份以及donor)</li>
 </ul>
 
 <p>
@@ -382,7 +382,7 @@ IST(Very effective)
 <h3 id="orgef0542b"><span class="section-number-3">3.6.</span> Parallel Applying</h3>
 <div class="outline-text-3" id="text-3-6">
 
-<div id="orgf35178d" class="figure">
+<div id="org1522d73" class="figure">
 <p><img src="../images/galera-parallel-applying.png" alt="galera-parallel-applying.png" />
 </p>
 </div>
@@ -473,7 +473,7 @@ Use wsrep_osu_method to choose either option. <b>ALTER TABLE to create new autoi
 <h3 id="org7907051"><span class="section-number-3">4.1.</span> Introduction</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
-Certification based replication uses group communication and transaction ordering techniques to achieve synchronous replication. Transactions execute optimistically in a single node (or replica) and, at commit time, run a coordinated certification process to enforce global consistency. Global coordination is achieved with the help of a broadcast service, that establishes a global total order among concurrent transactions. (基于 <b>组通信</b> 以及 <b>事务顺序化</b> 技术来达到同步备份。事务首先是乐观地在本地执行，然后提交给其他节点做验证来保证全局一致性）
+Certification based replication uses group communication and transaction ordering techniques to achieve synchronous replication. Transactions execute optimistically in a single node (or replica) and, at commit time, run a coordinated certification process to enforce global consistency. Global coordination is achieved with the help of a broadcast service, that establishes a global total order among concurrent transactions. (基于 <b>组通信</b> 以及 <b>事务顺序化</b> 技术来达到同步备份。事务首先是乐观地在本地执行，然后提交给其他节点做验证来保证全局一致性)
 </p>
 
 <p>
@@ -511,7 +511,7 @@ Certification based replication (or more precisely, certification-based conflict
 <h3 id="org9525feb"><span class="section-number-3">4.2.</span> Consistent read(read causality)</h3>
 <div class="outline-text-3" id="text-4-2">
 
-<div id="org36fbfce" class="figure">
+<div id="orgcd39568" class="figure">
 <p><img src="../images/galera-consistent-read.png" alt="galera-consistent-read.png" />
 </p>
 </div>
@@ -603,7 +603,7 @@ Possible methods:
 </p>
 
 
-<div id="orgce6e670" class="figure">
+<div id="org8f2ed7e" class="figure">
 <p><img src="../images/galera-backup-by-sst-api.png" alt="galera-backup-by-sst-api.png" />
 </p>
 </div>

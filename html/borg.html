@@ -250,7 +250,7 @@ A Borg cell consists of a set of machines, a logically central-ized controller c
 </p>
 
 
-<div id="org57c5855" class="figure">
+<div id="org5c82a38" class="figure">
 <p><img src="../images/borg-arch.png" alt="borg-arch.png" />
 </p>
 </div>
@@ -404,7 +404,7 @@ A job can specify a resource limit – an upper bound on the resources that each
 </p>
 
 <p>
-Rather than waste allocated resources that are not cur-rently being consumed, we estimate how many resources a task will use and reclaim the rest for work that can tolerate lower-quality resources, such as batch jobs. This whole pro-cess is called resource reclamation. The estimate is called the task’s reservation, and is computed by the Borgmas-ter every few seconds, using fine-grained usage (resource-consumption) information captured by the Borglet. The ini-tial reservation is set equal to the resource request (the limit); after 300 s, to allow for startup transients, it decays slowly towards the actual usage plus a safety margin. The reserva-tion is rapidly increased if the usage exceeds it. # 为了避免浪费资源，borgmaster每隔几秒钟会通过borglet汇报信息来估算task预留资源，初始预留资源和task limit相同，启动300s之后（考虑到启动时候过渡时间资源使用）会逐渐减少预留资源（实际使用+margin). 如果一旦使用率上来资源预留又会增加。
+Rather than waste allocated resources that are not cur-rently being consumed, we estimate how many resources a task will use and reclaim the rest for work that can tolerate lower-quality resources, such as batch jobs. This whole pro-cess is called resource reclamation. The estimate is called the task’s reservation, and is computed by the Borgmas-ter every few seconds, using fine-grained usage (resource-consumption) information captured by the Borglet. The ini-tial reservation is set equal to the resource request (the limit); after 300 s, to allow for startup transients, it decays slowly towards the actual usage plus a safety margin. The reserva-tion is rapidly increased if the usage exceeds it. # 为了避免浪费资源，borgmaster每隔几秒钟会通过borglet汇报信息来估算task预留资源，初始预留资源和task limit相同，启动300s之后（考虑到启动时候过渡时间资源使用）会逐渐减少预留资源(实际使用+margin). 如果一旦使用率上来资源预留又会增加。
 </p>
 
 <p>

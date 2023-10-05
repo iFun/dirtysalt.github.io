@@ -25,7 +25,7 @@
 </p>
 
 <p>
-最后没有办法，只能求救于AWS Support Team了，最后对比了这个volume的/home/ec2-user和另外一个正常机器上的这个目录权限，才定位到了问题。出现问题的volume的/home/ec2-user这个目录在group, other上都多出了write权限，而正常机器上的目录只有755权限。`chmod 755 /mnt/home/ec2-user` 之后重新挂载机器就能登录了。
+最后没有办法，只能求救于AWS Support Team了，最后对比了这个volume的/home/ec2-user和另外一个正常机器上的这个目录权限，才定位到了问题。出现问题的volume的/home/ec2-user这个目录在group, other上都多出了write权限，而正常机器上的目录只有755权限。 `chmod 755 /mnt/home/ec2-user` 之后重新挂载机器就能登录了。
 </p>
 
 <p>

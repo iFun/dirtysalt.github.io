@@ -57,7 +57,7 @@ The IEEE 754 standard specifies a binary32 as having:
 </ul>
 
 
-<div id="org424214f" class="figure">
+<div id="org494d87d" class="figure">
 <p><img src="../images/single-precision-floating-point-repr.png" alt="single-precision-floating-point-repr.png" />
 </p>
 </div>
@@ -260,7 +260,7 @@ Compiler switches. -ffast-math, -msse or -mfpmath=sse will disable denormals and
 <li>STEP = 0.1f（浮点版本）</li>
 </ol>
 
-<pre class="example" id="org3337d43">
+<pre class="example" id="org15ae3c4">
 
 rm -rf a.out
 gcc -O2 -Wall -DSTEP=0 temp.c -S -o int.s
@@ -298,7 +298,7 @@ echo "float version: "; time ./a.out
 <li>整数版本</li>
 </ol>
 
-<pre class="example" id="org22ddd92">
+<pre class="example" id="org3297074">
 ➜  playbook ./exp.sh
 int version:
 0.00
@@ -342,7 +342,7 @@ y变成了 normal number, 并且就是 0.1f（更准确的说是0.1f的规格浮
 </p>
 
 <p>
-而如果执行 `y += 0; y-=0; `的话，y原来是非规格浮点数，之后还是非规格浮点数。也就是说，在执行一段时间之后，
+而如果执行 `y += 0; y-=0; ` 的话，y原来是非规格浮点数，之后还是非规格浮点数。也就是说，在执行一段时间之后，
 整数版本之后执行的都是非规格浮点数运算，可想这个性能的下降。
 </p>
 </div>
@@ -399,7 +399,7 @@ x	addss	%xmm3, %xmm4
 </pre>
 </div>
 <p>
-同样有循环展开，但是是4条指令（mulss, divss, addss, addss)
+同样有循环展开，但是是4条指令(mulss, divss, addss, addss)
 </p>
 </div>
 </div>
@@ -638,7 +638,7 @@ y -= 0; <span class="org-comment-delimiter">// </span><span class="org-comment">
 </div>
 
 <p>
-所以现在问题就是，如何初始化xmm0, xmm1和xmm2(存放delta的值）
+所以现在问题就是，如何初始化xmm0, xmm1和xmm2(存放delta的值)
 </p>
 </div>
 </div>
@@ -668,7 +668,7 @@ y -= 0; <span class="org-comment-delimiter">// </span><span class="org-comment">
 <li>现将y拆分 y = y0 * y1 * &#x2026; y7（divide）</li>
 <li>将[y0..y3]存放在xmm1, [y4..y7]存放在xmm0</li>
 <li>每次迭代 yi = yi * delta</li>
-<li>最终再将 yi 相乘，就可以得到最终的y.（conquer)</li>
+<li>最终再将 yi 相乘，就可以得到最终的y.(conquer)</li>
 </ul>
 
 <p>

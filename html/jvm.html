@@ -103,7 +103,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </ul>
 
 
-<div id="orgc65da4f" class="figure">
+<div id="org0ab52d8" class="figure">
 <p><img src="../images/java-gc-gen.png" alt="java-gc-gen.png" />
 </p>
 </div>
@@ -162,7 +162,7 @@ JMM(Java Memory Model)的主要规则如下：
 <li>在监测对象上的解锁操作与后续的锁操作之间存在同步约束关系。（锁这样的对象可以用于同步约束）</li>
 <li>对易失性（volatile）变量的写入与后续对该变量的读取之间存在同步约束关系。（volatile关键字可以用于同步约束）</li>
 <li>如果动作A受到动作B的同步约束，则A在B之前发生。（跨线程的通过同步约束保证顺序）</li>
-<li>如果在程序中的线程内A出现在B之前，则A在B之前发生。 (单线程内无条件地保证顺序）</li>
+<li>如果在程序中的线程内A出现在B之前，则A在B之前发生。 (单线程内无条件地保证顺序)</li>
 </ul>
 </div>
 </div>
@@ -304,7 +304,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 以下是一些配置参数：
 </p>
 
-<pre class="example" id="org76e7f7c">
+<pre class="example" id="org00f01d1">
 -XX:+UseSerialGC 年轻代和老年代都用串行收集器
 -XX:+UseParNewGC 年轻代使用 ParNew，老年代使用 Serial Old
 -XX:+UseParallelGC 年轻代使用 ParallerGC，老年代使用 Serial Old
@@ -315,7 +315,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 </pre>
 
 
-<div id="org088857e" class="figure">
+<div id="orgcbd011f" class="figure">
 <p><img src="../images/jvm-gc-options-and-effects.jpg" alt="jvm-gc-options-and-effects.jpg" />
 </p>
 </div>
@@ -334,7 +334,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 线上使用最多的垃圾回收器，就有 CMS 和 G1，以及 Java8 默认的 Parallel Scavenge。
 </p>
 
-<pre class="example" id="org48612af">
+<pre class="example" id="org39da797">
 CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。

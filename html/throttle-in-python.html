@@ -231,7 +231,7 @@ def collect():
 </p>
 
 
-<div id="org37347e2" class="figure">
+<div id="org58ea035" class="figure">
 <p><img src="../images/throttle-in-python0.png" alt="throttle-in-python0.png" />
 </p>
 </div>
@@ -241,7 +241,7 @@ throttle的rate_limit设置为50, 所以在50上会被削平.
 </p>
 
 
-<div id="org654849a" class="figure">
+<div id="orgff13246" class="figure">
 <p><img src="../images/throttle-in-python1.png" alt="throttle-in-python1.png" />
 </p>
 </div>
@@ -262,7 +262,7 @@ UPDATE@202002 最近发现这个限速器在生产环境有点问题，没有对
 </ul>
 
 <p>
-其实这些实现都是使用固定窗口（有1s, 10s, 60s)的，在这个时间窗口内设置一个次数上限。而我上面的rate limiter是60s的近似滑动窗口，在限速上会更加平滑一些。
+其实这些实现都是使用固定窗口(有1s, 10s, 60s)的，在这个时间窗口内设置一个次数上限。而我上面的rate limiter是60s的近似滑动窗口，在限速上会更加平滑一些。
 </p>
 
 <p>

@@ -38,7 +38,7 @@
 <li>`(bitmap ^ bitmap2).cardinality() = 0` 可以认为两个bitmap语义上完全一致。</li>
 </ul>
 
-<pre class="example" id="orgf46553b">
+<pre class="example" id="org03c144f">
 allocate size 1073
 write size 1073
 =========
@@ -93,7 +93,7 @@ roaring bitmap里面有3类container: bitset(B), array(A), run(R) (可以认为�
 下面是bitmap一系列操作之后的可能出现的containers:
 </p>
 <ul class="org-ul">
-<li>增加元素 （B, A)</li>
+<li>增加元素 (B, A)</li>
 <li>做OR/AND 操作 (B, A)</li>
 <li>`runOptimize` 操作 (B, A, R)</li>
 <li>按照 `container` 格式序列化 + 反序列化 (B, A, R)</li>

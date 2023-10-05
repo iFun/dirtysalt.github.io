@@ -95,11 +95,11 @@
 <li>We support both the point-topoint delivery model in which multiple consumers jointly consume a single copy of all messages in a topic, as well as the publish/subscribe model in which multiple consumers each retrieve its own copy of a topic.（多个consumer可以共同消费一份，或者是各自消费一份）</li>
 </ul></li>
 </ul></li>
-<li>Since Kafka is distributed in nature, an Kafka cluster typically consists of multiple brokers. To balance load, a topic is divided into multiple partitions and each broker stores one or more of those partitions. Multiple producers and consumers can publish and retrieve messages at the same time.（一个topic被分割成多个partition, 每个broker上面可以host多个partition)</li>
+<li>Since Kafka is distributed in nature, an Kafka cluster typically consists of multiple brokers. To balance load, a topic is divided into multiple partitions and each broker stores one or more of those partitions. Multiple producers and consumers can publish and retrieve messages at the same time.(一个topic被分割成多个partition, 每个broker上面可以host多个partition)</li>
 </ul>
 
 
-<div id="orgc92ba60" class="figure">
+<div id="orgee1a550" class="figure">
 <p><img src="../images/kafka-architecture.png" alt="kafka-architecture.png" />
 </p>
 </div>
@@ -134,7 +134,7 @@ for (message : streams[0]) {
 <ul class="org-ul">
 <li>Simple storage
 <ul class="org-ul">
-<li>Each partition of a topic corresponds to a logical log. Physically, a log is implemented as a set of segment files of approximately the same size (e.g., 1GB).(每个partition对应一个logical log, 每个logical log对应多个segment file，这些文件都近似大小） Every time a producer publishes a message to a partition, the broker simply appends the message to the last segment file.（每个追加到最后一个segment file上）</li>
+<li>Each partition of a topic corresponds to a logical log. Physically, a log is implemented as a set of segment files of approximately the same size (e.g., 1GB).(每个partition对应一个logical log, 每个logical log对应多个segment file，这些文件都近似大小) Every time a producer publishes a message to a partition, the broker simply appends the message to the last segment file.（每个追加到最后一个segment file上）</li>
 <li>For better performance, we flush the segment files to disk only after a configurable number of messages have been published or a certain amount of time has elapsed. A message is only exposed to the consumers after it is flushed.（积累到一定的数据量才会进行刷新）</li>
 <li>Unlike typical messaging systems, a message stored in Kafka doesn’t have an explicit message id. Instead, each message is addressed by its logical offset in the log. This avoids the overhead of maintaining auxiliary, seek-intensive random-access index structures that map the message ids to the actual message locations. （没有messageid, 但是可以通过logical offset来定位log. 这样可以免去从message id对应到message这个过程，因为这个过程需要mapping需要random access index. 这样的message id自然不是连续的，但是却是递增的）</li>
 <li>A consumer always consumes messages from a particular partition sequentially. If the consumer acknowledges a particular message offset, it implies that the consumer has received all messages prior to that offset in the partition.（consumer只能通过偏移顺序读取内容） Under the covers, the consumer is issuing asynchronous pull requests to the broker to have a buffer of data ready for the application to consume. Each pull request contains the offset of the message from which the consumption begins and an acceptable number of bytes to fetch.</li>
@@ -143,7 +143,7 @@ for (message : streams[0]) {
 </ul>
 
 
-<div id="orge42d9cc" class="figure">
+<div id="org9b2d048" class="figure">
 <p><img src="../images/kafka-log-layout.png" alt="kafka-log-layout.png" />
 </p>
 </div>
@@ -151,7 +151,7 @@ for (message : streams[0]) {
 <ul class="org-ul">
 <li>Efficient transfer
 <ul class="org-ul">
-<li>Although the end consumer API iterates one message at a time, under the covers, each pull request from a consumer also retrieves multiple messages up to a certain size, typically hundreds of kilobytes.(批量传输）</li>
+<li>Although the end consumer API iterates one message at a time, under the covers, each pull request from a consumer also retrieves multiple messages up to a certain size, typically hundreds of kilobytes.(批量传输)</li>
 <li>Another unconventional choice that we made is to avoid explicitly caching messages in memory at the Kafka layer. Instead, we rely on the underlying file system page cache.（在kafka层面不进行cache，而由system完成page cache简化工作）This has the main benefit of avoiding double buffering&#x2014;messages are only cached in the page cache. This has the additional benefit of retaining warm cache even when a broker process is restarted. Since Kafka doesn’t cache messages in process at all, it has very little overhead in garbage collecting its memory, making efficient implementation in a VM-based language feasible.（这样也避免了GC带来的额外开销）</li>
 <li>Finally, since both the producer and the consumer access the segment files sequentially, with the consumer often lagging the producer by a small amount, normal operating system caching heuristics are very effective (specifically write-through caching and read- ahead).</li>
 <li>On Linux and other Unix operating systems, there exists a sendfile API that can directly transfer bytes from a file channel to a socket channel.（通过sendfile这个API减少系统调用次数）</li>
@@ -184,7 +184,7 @@ for (message : streams[0]) {
 <ul class="org-ul">
 <li>when each broker or consumer starts up, it stores its information in a broker or consumer registry in Zookeeper.（启动时候在上面进行注册）
 <ul class="org-ul">
-<li>The broker registry contains the broker’s host name and port, and the set of topics and partitions stored on it.（broker注册hostname和port,管理的topics以及partitions)</li>
+<li>The broker registry contains the broker’s host name and port, and the set of topics and partitions stored on it.(broker注册hostname和port,管理的topics以及partitions)</li>
 </ul></li>
 <li><p>
 The consumer registry includes the consumer group to which a consumer belongs and the set of topics that it subscribes to.(consumer注册consumer group，以及订阅的topics)
@@ -205,7 +205,7 @@ The ownership registry has one path for every subscribed partition and the path 
 </ul></li>
 </ul>
 <ul class="org-ul">
-<li>During the initial startup of a consumer or when the consumer is notified about a broker/consumer change through the watcher, the consumer initiates a rebalance process to determine the new subset of partitions that it should consume from.（consumer或者是broker发生变化的话，那么就会触发balance)
+<li>During the initial startup of a consumer or when the consumer is notified about a broker/consumer change through the watcher, the consumer initiates a rebalance process to determine the new subset of partitions that it should consume from.(consumer或者是broker发生变化的话，那么就会触发balance)
 <ul class="org-ul">
 <li>When there are multiple consumers within a group, each of them will be notified of a broker or a consumer change. However, the notification may come at slightly different times at the consumers. So, it is possible that one consumer tries to take ownership of a partition still owned by another consumer. When this happens, the first consumer simply releases all the partitions that it currently owns, waits a bit and retries the rebalance process. In practice, the rebalance process often stabilizes after only a few retries.（可能会出现一些颠簸的情况，但是这个情况最终是会稳定下来的）</li>
 <li>When a new consumer group is created, no offsets are available in the offset registry. In this case, the consumers will begin with either the smallest or the largest offset (depending on a configuration) available on each subscribed partition, using an API that we provide on the brokers.（新增的consume group可以选择最老的点开始读取，也可以选择最新的点开始读取）</li>
@@ -214,7 +214,7 @@ The ownership registry has one path for every subscribed partition and the path 
 </ul>
 
 
-<div id="orga53dd64" class="figure">
+<div id="orgb7fdd7d" class="figure">
 <p><img src="../images/kafka-coordination-algorithm.png" alt="kafka-coordination-algorithm.png" />
 </p>
 </div>
@@ -239,7 +239,7 @@ The ownership registry has one path for every subscribed partition and the path 
 <h2 id="org7226f04"><span class="section-number-2">5.</span> Kafka Usage at LinkedIn</h2>
 <div class="outline-text-2" id="text-5">
 
-<div id="org0ae0fbf" class="figure">
+<div id="org235a6b5" class="figure">
 <p><img src="../images/kafka-deployment.png" alt="kafka-deployment.png" />
 </p>
 </div>
@@ -267,7 +267,7 @@ The ownership registry has one path for every subscribed partition and the path 
 There are a number of directions that we’d like to pursue in the future.
 </p>
 <ul class="org-ul">
-<li>First, we plan to add built-in replication of messages across multiple brokers to allow durability and data availability guarantees even in the case of unrecoverable machine failures.（broker replicaiton需要线上，这样可以确保durability以及availability) We’d like to support both asynchronous and synchronous replication models to allow some tradeoff between producer latency and the strength of the guarantees provided. An application can choose the right level of redundancy based on its requirement on durability, availability and throughput. (在replication上面可以选择同步还是异步方式）</li>
+<li>First, we plan to add built-in replication of messages across multiple brokers to allow durability and data availability guarantees even in the case of unrecoverable machine failures.(broker replicaiton需要线上，这样可以确保durability以及availability) We’d like to support both asynchronous and synchronous replication models to allow some tradeoff between producer latency and the strength of the guarantees provided. An application can choose the right level of redundancy based on its requirement on durability, availability and throughput. (在replication上面可以选择同步还是异步方式)</li>
 <li>Second, we want to add some stream processing capability in Kafka.（提供一些流式处理方面的能力）
 <ul class="org-ul">
 <li>After retrieving messages from Kafka, real time applications often perform similar operations such as window-based counting and joining each message with records in a secondary store or with messages in another stream.</li>

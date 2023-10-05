@@ -34,7 +34,7 @@ On RAM: What you need to consider is the amount of RAM needed to keep the proces
 
 <p>
 On Disk: Look to buy high-capacity SATA drives, usually 7200RPM. Hadoop is storage hungry and seek efficient but it does not require fast, expensive hard drives. Keep in mind that with 12-drive systems you are generally getting 24 or 36 TB/node. Until recently, putting this much storage in a node was not practical because, in large clusters, disk failures are a regular occurrence and replicating 24+TB could swamp the network for long enough to really disrupt work and cause jobs to miss SLAs. The most recent release of Hadoop 0.20.204 is engineered to handle the failure of drives more elegantly, allowing machines to continue serving from their remaining drives. With these changes, we expect to see a lot of 12+ drive systems. In general, add disks for storage and not seeks. If your workload does not require huge amounts of storage, dropping disk count to 6 or 4 per box is a reasonable way to economize.（高容量SATA硬盘，最好是7.2KRPM，并且最好单机上面挂在12个硬盘。对于hadoop之前这种方式并不实际，因为磁盘非常容易损坏并且备份这24TB的数据非常耗时。而hadoop可以很好地解决这个问题。
-小集群来说的话，通常单个机器上面挂在4-6个disk即可）
+小集群来说的话，通常单个机器上面挂在4-6个disk即可)
 </p>
 
 <p>

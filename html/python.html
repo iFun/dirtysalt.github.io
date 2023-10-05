@@ -144,7 +144,7 @@ python字符串是unicode类型，二进制是str类型。
 <li>encode是将unicode转换成为str</li>
 <li>decode是将str转换成为unicode</li>
 </ul>
-<pre class="example" id="orga57aa0e">
+<pre class="example" id="org43d498f">
 &gt;&gt;&gt; a="中国"
 &gt;&gt;&gt; a
 '\xe4\xb8\xad\xe5\x9b\xbd'
@@ -201,7 +201,7 @@ UPDATE@201801: 这个问题只会出现在Python2.x Python3之后默认使用utf
 
 <hr />
 <p>
-UPDATE@201801 在decode阶段有个参数`errors`可以用来控制错误编码字符
+UPDATE@201801 在decode阶段有个参数 `errors` 可以用来控制错误编码字符
 </p>
 <ul class="org-ul">
 <li>strict 默认值，直接返回UnicodeError</li>
@@ -312,7 +312,7 @@ foo(2, 4, 5, *(1, 2), **{'x': '??'})
 <p>
 输出结果是
 </p>
-<pre class="example" id="org6a910a7">
+<pre class="example" id="orgd481f7d">
 a = 2, b = 4, c = 5, args = (1, 2), kwargs = {'x': '??'}
 a = 1, b = 4, c = 5, args = (1, 2, 3), kwargs = {'e': 1, 'f': 2}
 a = 0, b = 4, c = 5, args = (1, 2, 3), kwargs = {'e': 1, 'f': 2}
@@ -376,7 +376,7 @@ io_loop()
 </p>
 
 <p>
-Python3之前如果需要将多个生成器串联起来的话，不是特别容易。代码里面 `bar` 为了将两个 `foo(10)` 和 `foo(20)`迭代器串联起来，需要显示地遍历。
+Python3之前如果需要将多个生成器串联起来的话，不是特别容易。代码里面 `bar` 为了将两个 `foo(10)` 和 `foo(20)` 迭代器串联起来，需要显示地遍历。
 </p>
 <div class="org-src-container">
 <pre class="src src-Python">def foo(n):
@@ -459,7 +459,7 @@ print func2.__name__
 <p>
 使用functools.wraps这个装饰器是可以继续使用原有函数的名称，除此之外还做了许多其他工作。
 </p>
-<pre class="example" id="orge7c6ecc">
+<pre class="example" id="orgb87bcdd">
 &gt;&gt;&gt;&gt;&gt;
 hello, world
 &lt;&lt;&lt;&lt;&lt;
@@ -543,14 +543,14 @@ produce(c)
 </div>
 <ul class="org-ul">
 <li>`r = c.send(None)` 首先启动consumer.</li>
-<li>consumer执行到 `n = yield r`这个部分，要求外部继续输入并且返回r(uninitialized)，切换回producer.</li>
+<li>consumer执行到 `n = yield r` 这个部分，要求外部继续输入并且返回r(uninitialized)，切换回producer.</li>
 <li>producer执行到 `r = c.send(1)`, 然后切换到consumer. 后面循环继续</li>
 </ul>
 
 <p>
 上面这段代码的输出结果如下
 </p>
-<pre class="example" id="org7815ccb">
+<pre class="example" id="org3f937cb">
 start consumer
 uninitialized
 start producer
@@ -630,7 +630,7 @@ def ts2dt(ts):
 <p>
 其中strptime是非常耗时的（12.9us），所以应该尽量避免这种parse的方法。
 </p>
-<pre class="example" id="org6c87bb7">
+<pre class="example" id="org54dbd61">
 In [8]: timeit time.strptime('2015-01-02 22:21:01', '%Y-%m-%d %H:%M:%S')
 100000 loops, best of 3: 12.9 µs per loop
 
@@ -666,7 +666,7 @@ In [13]: timeit time.strftime('%Y-%m-%d %H:%M:%S', st)
 </div>
 
 <p>
-UPDATE@201802: 解析各种时间格式是非常麻烦的事情，好在有个 `python-dateutil` 库可以来解决这个问题。另外如果需要处理多个时区的话，最好统一转换成为UTC时间来处理。`python-dateutil` 有时候无法是被某些特定的timezone, 可以通过 `tzinfos` 字段来告诉如何处理
+UPDATE@201802: 解析各种时间格式是非常麻烦的事情，好在有个 `python-dateutil` 库可以来解决这个问题。另外如果需要处理多个时区的话，最好统一转换成为UTC时间来处理。 `python-dateutil` 有时候无法是被某些特定的timezone, 可以通过 `tzinfos` 字段来告诉如何处理
 </p>
 <div class="org-src-container">
 <pre class="src src-Python">TZINFOS = {'PST': -8 * 3600}
@@ -688,7 +688,7 @@ def parse_date(s):
 </pre>
 </div>
 
-<pre class="example" id="orgf8e31c3">
+<pre class="example" id="org6e7a784">
 s = 'Fri, 9 Feb 2018 03:00:00 PST'
 parse_date(s)
 
@@ -776,11 +776,11 @@ python模块管理工具(python package index)
 </p>
 <ul class="org-ul">
 <li>pip freeze # 以requirements.txt格式，输出本地所有安装的python模块</li>
-<li>pip install -r requirements.txt &#x2013;download=`pwd`/pycache # 安装python模块并且将下载文件缓存起来</li>
-<li>pip install &#x2013;no-index &#x2013;find-links=<a href="file://`pwd`/pycache">file://`pwd`/pycache</a> -r requirements.txt # 从缓存目录安装python模块</li>
-<li>pip wheel -r requirements.txt &#x2013;wheel-dir=`pwd`/pywheel &#x2013;find-links=<a href="file://`pwd`/pycache">file://`pwd`/pycache</a> # 将python模块编译称为wheel格式（二进制格式，利于分发安装）</li>
-<li>pip install &#x2013;no-index &#x2013;find-links=<a href="file://`pwd`/pywheel">file://`pwd`/pywheel</a> -r requirements.txt # 从缓存目录安装python模块 (note: 发现有些依赖却没有安装，所以推荐下面一种方式)</li>
-<li>pip install &#x2013;force-reinstall &#x2013;ignore-installed &#x2013;upgrade &#x2013;no-index &#x2013;no-deps `pwd`/pywheel/*.whl # 安装所有列举的python模块</li>
+<li>pip install -r requirements.txt &#x2013;download= `pwd` /pycache # 安装python模块并且将下载文件缓存起来</li>
+<li>pip install &#x2013;no-index &#x2013;find-links=<a href="file://">file://</a> `pwd` /pycache -r requirements.txt # 从缓存目录安装python模块</li>
+<li>pip wheel -r requirements.txt &#x2013;wheel-dir= `pwd` <i>pywheel &#x2013;find-links=file:/</i> `pwd` /pycache # 将python模块编译称为wheel格式（二进制格式，利于分发安装）</li>
+<li>pip install &#x2013;no-index &#x2013;find-links=<a href="file://">file://</a> `pwd` /pywheel -r requirements.txt # 从缓存目录安装python模块 (note: 发现有些依赖却没有安装，所以推荐下面一种方式)</li>
+<li>pip install &#x2013;force-reinstall &#x2013;ignore-installed &#x2013;upgrade &#x2013;no-index &#x2013;no-deps `pwd` /pywheel/*.whl # 安装所有列举的python模块</li>
 </ul>
 </div>
 </div>
@@ -804,7 +804,7 @@ Logger支持层次结构，层次结构是根据name来判断的。比如a就是
 </p>
 
 
-<div id="orgdca990d" class="figure">
+<div id="org1524b88" class="figure">
 <p><img src="../images/python-logging-flow.png" alt="python-logging-flow.png" />
 </p>
 </div>
@@ -816,7 +816,7 @@ Logger支持层次结构，层次结构是根据name来判断的。比如a就是
 <p>
 logging配置可以从文件载入 `logging.config.fileConfig('logging.cfg')`
 </p>
-<pre class="example" id="orga239d14">
+<pre class="example" id="org993425f">
 [loggers]
 keys = root
 
@@ -851,7 +851,7 @@ class=logging.Formatter
 </p>
 
 <p>
-用来创建独立的python环境. 原理是将python二进制以及依赖库拷贝(软链接)到独立目录下面. 使用`pip install virtualenv`快速安装. 如果没有特殊要求, 使用也非常简单.
+用来创建独立的python环境. 原理是将python二进制以及依赖库拷贝(软链接)到独立目录下面. 使用 `pip install virtualenv` 快速安装. 如果没有特殊要求, 使用也非常简单.
 </p>
 
 <ul class="org-ul">
@@ -867,7 +867,7 @@ class=logging.Formatter
 <h3 id="orgb9d17fc"><span class="section-number-3">3.7.</span> asyncio</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
-理论上asynco也可以不配合coroutine，不过配合coroutine才能最好地发挥asyncio的性能。Python3.5引入关键字`async`和`await`让定义coroutine更加简单。
+理论上asynco也可以不配合coroutine，不过配合coroutine才能最好地发挥asyncio的性能。Python3.5引入关键字 `async` 和 `await` 让定义coroutine更加简单。
 </p>
 
 <div class="org-src-container">

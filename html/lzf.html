@@ -48,7 +48,7 @@
 <div id="outline-container-orgc4ac7c0" class="outline-2">
 <h2 id="orgc4ac7c0"><span class="section-number-2">2.</span> Compress</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="org471ac71">
+<pre class="example" id="org9e55472">
 /*
  * Compress in_len bytes stored at the memory block starting at
  * in_data and write the result to out_data, up to a maximum length
@@ -83,7 +83,7 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 <p>
 压缩数据节(data section)有三种标识 a. literal b. short backref c. long backref.
 </p>
-<pre class="example" id="org52c2233">
+<pre class="example" id="org529257b">
 /*
  * compressed format
  *
@@ -332,7 +332,7 @@ literal处理比较有趣，大致方式如下
 <ul class="org-ul">
 <li>"lit = 0; op++". # 因为literal需要一个额外字节，这里op++空出一个字节</li>
 <li>可是有时候lit=0就退出了，这个时候op最后一个字节是废弃的，所以有"op -= !lit".</li>
-<li>当lit == MAX_LIT的时候或者是flush时候（假设lit!=0. lit=0的情况上面分析过了). 比如lit = 3
+<li>当lit == MAX_LIT的时候或者是flush时候(假设lit!=0. lit=0的情况上面分析过了). 比如lit = 3
 <ul class="org-ul">
 <li>"op[-lit-1] = lit-1" 就是 "op[-4] = 2"</li>
 <li>op[-4]是literal开头的字节，而2+1则是literal长度</li>

@@ -44,7 +44,7 @@ Existing DBMSs consider caching and computation pushdown as orthogonal. Most sys
 </blockquote>
 
 <p>
-理想的查询应该是， 一部分从caching里面拿数据，一部分交给pushdown，然后数据源在上面做merge两路数据。FPDB(FlexPushdownDB)引入separable operators的概念，这对这类operator是可以拆分成为两路查询，并且将结果合并上来的。并且一旦出现cache miss, 我们并不会急于立刻取cache,  是需要评估相比pushdown的cost如何：如果pushdown cost很低的话，并且访问频次很低的话，那么对未来查询可以继续使用pushdown.  为此引入的cache淘汰策略叫做weighted-lfu, 所谓weight就是这个cache的benefit，综合考虑cache size，access frequency，以及作用在这个cache上的predicate（由此计算出来的selectivity).
+理想的查询应该是， 一部分从caching里面拿数据，一部分交给pushdown，然后数据源在上面做merge两路数据。FPDB(FlexPushdownDB)引入separable operators的概念，这对这类operator是可以拆分成为两路查询，并且将结果合并上来的。并且一旦出现cache miss, 我们并不会急于立刻取cache,  是需要评估相比pushdown的cost如何：如果pushdown cost很低的话，并且访问频次很低的话，那么对未来查询可以继续使用pushdown.  为此引入的cache淘汰策略叫做weighted-lfu, 所谓weight就是这个cache的benefit，综合考虑cache size，access frequency，以及作用在这个cache上的predicate(由此计算出来的selectivity).
 </p>
 
 <blockquote>
@@ -112,7 +112,7 @@ Moreover, some recent work explored processing-in-memory (PIM) to push computati
 </p>
 
 
-<div id="org0f640c6" class="figure">
+<div id="org3feb60d" class="figure">
 <p><img src="../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-0.png" alt="flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-0.png" />
 </p>
 </div>
@@ -161,7 +161,7 @@ The basic caching unit in FPDB is a segment, which contains data for a particula
 </ul>
 
 <p>
-FPDB在生成计划的时候有下面这样的假设：从cost上来看, local cache &lt; pushdown &lt; pullup(拿到所有数据，或者说在上面做random access).  不过感觉这里有个问题就是，以SR为例FE需要知道每个节点的缓存情况，才能生成具体的计划，但是让FE去追踪BE cache情况比较复杂（心跳会比较多，而且还涉及到pin/unpin cache file). 最好的方式还是让BE自己决定走cache还是pushdown.
+FPDB在生成计划的时候有下面这样的假设：从cost上来看, local cache &lt; pushdown &lt; pullup(拿到所有数据，或者说在上面做random access).  不过感觉这里有个问题就是，以SR为例FE需要知道每个节点的缓存情况，才能生成具体的计划，但是让FE去追踪BE cache情况比较复杂(心跳会比较多，而且还涉及到pin/unpin cache file). 最好的方式还是让BE自己决定走cache还是pushdown.
 </p>
 
 <blockquote>
@@ -203,7 +203,7 @@ Cache Eviction策略叫做Benefit-Based Caching Framework, 这个东西的好处
 </ul>
 
 
-<div id="orgf2f270d" class="figure">
+<div id="org8765e52" class="figure">
 <p><img src="../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-1.png" alt="flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-1.png" />
 </p>
 </div>
@@ -217,7 +217,7 @@ Weighted-LFU算法则考虑了：如果这个cache被evicted出去之后，使�
 </p>
 
 
-<div id="org80e8ada" class="figure">
+<div id="org014c56d" class="figure">
 <p><img src="../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-2.png" alt="flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-2.png" />
 </p>
 </div>

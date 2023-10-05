@@ -79,7 +79,7 @@ systemtap使用一种触发式的工作方式，通过安装探针（probe）来
 <p>
 一个使用systemtap的简单例子
 </p>
-<pre class="example" id="org1762597">
+<pre class="example" id="org755fcd7">
 [dirlt@umeng-ubuntu-pc] &gt;  sudo stap -ve 'probe begin { log("hello world") exit() }'
 Pass 1: parsed user script and 76 library script(s) using 92476virt/22592res/2616shr kb, in 80usr/0sys/85real ms.
 Pass 2: analyzed script: 1 probe(s), 2 function(s), 0 embed(s), 0 global(s) using 93000virt/23472res/2816shr kb, in 0usr/0sys/4real
@@ -115,7 +115,7 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 <h3 id="orgaba7530"><span class="section-number-3">2.1.</span> Systemtap processing steps</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="org33fa8f9" class="figure">
+<div id="org62d0fc9" class="figure">
 <p><img src="../images/systemtap-processing-steps.png" alt="systemtap-processing-steps.png" />
 </p>
 </div>
@@ -162,10 +162,10 @@ Translation
 </ul></li>
 <li>Probe handlers are wrapped by an interface function which uses whatever probe point registration API is appropriate. （所有的probe handler都被包装成为function然后注册到probe point回调，但是方式有所不同）
 <ul class="org-ul">
-<li>For location type probe points targeting the kernel, this generally uses kprobes.（如果是内核探测点的话，那么使用kprobe)</li>
+<li>For location type probe points targeting the kernel, this generally uses kprobes.(如果是内核探测点的话，那么使用kprobe)</li>
 <li>Where the target software is user-level, probe points would need to be inserted into specific processes’ executable segments, using a mechanism yet to be specified.（如果是用户程序探测点的话，那么需要修改进程内存）</li>
 </ul></li>
-<li>When complete, the generated C code is compiled, and linked with the runtime, into a stand-alone kernel module. For security reasons, the module may be cryptographically signed, so that it may be archived and later reused here, or on another computer without a compiler installed.（编译成为ko模块，并且签名做cache)</li>
+<li>When complete, the generated C code is compiled, and linked with the runtime, into a stand-alone kernel module. For security reasons, the module may be cryptographically signed, so that it may be archived and later reused here, or on another computer without a compiler installed.(编译成为ko模块，并且签名做cache)</li>
 </ul>
 
 <p>
@@ -174,7 +174,7 @@ Execution
 <ul class="org-ul">
 <li>To run the probes, the systemtap driver program simply loads the kernel module using insmod. 使用insmod安装ko模块</li>
 <li>The module will initialize itself, insert the probes, then sit back and let the probe handlers be triggered by the system to collect and pass data. It will eventually remove the probes at unload time.（模块初始化之后安装probe然后等待handle触发，在unload的时候会将probes全部移除）</li>
-<li>When a probe is hit, the associated handler routine takes over the processor, suspending the target software briefly. When all handlers for that probe point have been executed, the target program resumes.（probe hit之后handler会执行，等待所有的handler执行完成之后目标程序才开始运行，因此最好不用hold住handler)</li>
+<li>When a probe is hit, the associated handler routine takes over the processor, suspending the target software briefly. When all handlers for that probe point have been executed, the target program resumes.(probe hit之后handler会执行，等待所有的handler执行完成之后目标程序才开始运行，因此最好不用hold住handler)</li>
 <li>The probe run concludes when the user sends an interrupt to the driver, or when the probe script runs an exit primitive. (This primitive might simply send a SIGINT to the running user-level driver process.) 通过发起信号结束</li>
 </ul>
 </div>
@@ -202,7 +202,7 @@ Multiple probe handlers may execute concurrently on a multiprocessor. Multiple p
 </p>
 
 <p>
-A script may make references to an identifier defined elsewhere in library of script tapsets. Such a cross-reference causes the entire tapset file providing the definition to be merged into the elaborated script, as if it was simply concatenated. (如果引用其他script变量的话，那么elaboration阶段会将引用的script全部包含进来，简单地看就像是合并）
+A script may make references to an identifier defined elsewhere in library of script tapsets. Such a cross-reference causes the entire tapset file providing the definition to be merged into the elaborated script, as if it was simply concatenated. (如果引用其他script变量的话，那么elaboration阶段会将引用的script全部包含进来，简单地看就像是合并)
 </p>
 
 <p>
@@ -239,7 +239,7 @@ Each probe point specification has a “dotted-functor” syntax such as kernel.
 下面是一些示例代码
 </p>
 
-<pre class="example" id="org4a21739">
+<pre class="example" id="org6fe1783">
 kernel.function("sys_read").return
   a return probe on the named function.
 
