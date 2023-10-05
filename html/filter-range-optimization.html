@@ -13,11 +13,11 @@
 <div id="content" class="content">
 <h1 class="title">filter range实现优化</h1>
 <p>
-基本代码都来自于 [StarRocks](<a href="https://github.com/StarRocks/starrocks/blob/main/be/src/column/column_helper.h#L315">https://github.com/StarRocks/starrocks/blob/main/be/src/column/column_helper.h#L315</a>)
+基本代码都来自于 <a href="https://github.com/StarRocks/starrocks/blob/main/be/src/column/column_helper.h#L315">StarRocks</a>
 </p>
 
 <p>
-benchmark代码放在 [Github](<a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/filter_range_perf.cpp">https://github.com/dirtysalt/codes/blob/master/cc/sr-test/filter_range_perf.cpp</a>)
+benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc/sr-test/filter_range_perf.cpp">Github</a>
 </p>
 
 <p>
@@ -147,7 +147,7 @@ benchmark代码放在 [Github](<a href="https://github.com/dirtysalt/codes/blob/
 </div>
 
 <p>
-运行时CPU特性判断可以参考 [这里](<a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html">https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html</a>) 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
+运行时CPU特性判断可以参考 <a href="https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html">这里</a> 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
 </p>
 
 <hr />
@@ -166,7 +166,7 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </ul>
 
 
-<div id="orge9caea9" class="figure">
+<div id="orgbf4cdb2" class="figure">
 <p><img src="../images/filter-range-optimization-0.jpg" alt="filter-range-optimization-0.jpg" />
 </p>
 </div>
@@ -181,14 +181,15 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </ol>
 
 
-<div id="org8683377" class="figure">
+<div id="org48d5344" class="figure">
 <p><img src="../images/filter-range-optimization-1.jpg" alt="filter-range-optimization-1.jpg" />
 </p>
 </div>
 
 
-<div id="org5c280fc" class="figure">
-<p><img src="../images/filter-range-optimization-2.jpg" alt="filter-range-optimization-2.jpg" /></p>
+<div id="orgd078c15" class="figure">
+<p><img src="../images/filter-range-optimization-2.jpg" alt="filter-range-optimization-2.jpg" />
+</p>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/filter-range-optimization.html';this.page.identifier = 'filter-range-optimization.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

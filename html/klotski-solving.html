@@ -319,7 +319,7 @@ def search_path_2(source: State, dest: State):
 运行下来速度差别还是蛮大的，方法1是1.492s, 方法2是0.026s, 时间缩短了差不多98%.
 </p>
 
-<pre class="example" id="org71ec179">
+<pre class="example" id="org1967afb">
 ➜  misc git:(master) ✗ python klotski.py
 naive BFS ...
 size = 23
@@ -386,7 +386,7 @@ def main():
 可以看到在复杂例子的情况下面，两者的时间差距就更大了，但是相对耗时比例是减少了。
 </p>
 
-<pre class="example" id="org4706d9c">
+<pre class="example" id="org68c37b2">
 ➜  misc git:(master) ✗ python3 klotski.py
 ==============================
 source_matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
@@ -415,7 +415,8 @@ timer = 0.5001683235168457
 </pre>
 
 <p>
-今天之所以把这道题目拿出来，是因为发现其实这道题目使用A*算法可以比较好的解决。双向BFS算法本身是没有什么问题的，不过代码比较复杂写起来容易出错，但是这的确是一个很好的思路。</p>
+今天之所以把这道题目拿出来，是因为发现其实这道题目使用A*算法可以比较好的解决。双向BFS算法本身是没有什么问题的，不过代码比较复杂写起来容易出错，但是这的确是一个很好的思路。
+</p>
 </div>
 </div>
 </div>

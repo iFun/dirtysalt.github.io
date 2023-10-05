@@ -34,7 +34,7 @@
 </p>
 
 <p>
-[Hudi fails to read Merge On Read table after adding logs files · Issue #27556 · StarRocks/starrocks](<a href="https://github.com/StarRocks/starrocks/issues/27556">https://github.com/StarRocks/starrocks/issues/27556</a>)
+<a href="https://github.com/StarRocks/starrocks/issues/27556">Hudi fails to read Merge On Read table after adding logs files · Issue #27556 · StarRocks/starrocks</a>
 </p>
 
 <p>
@@ -117,7 +117,7 @@
 <h2 id="org9ad61c9"><span class="section-number-2">3.</span> 引入hadoop-aws的问题</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-所以解决办法就是让hadoop也支持s3这个协议，我们需要引入 hadoop-aws 这个包。 [Apache Hadoop Amazon Web Services support – Hadoop-AWS module: Integration with Amazon Web Services](<a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html</a>).
+所以解决办法就是让hadoop也支持s3这个协议，我们需要引入 hadoop-aws 这个包。 <a href="https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html">Apache Hadoop Amazon Web Services support – Hadoop-AWS module: Integration with Amazon Web Services</a>.
 </p>
 
 <p>
@@ -178,7 +178,7 @@
 但是今天早上daily出错了，而且是在访问hdfs文件系统出错的，错误信息如下
 </p>
 
-<pre class="example" id="org977924a">
+<pre class="example" id="org646b82a">
 Exception in thread "main" java.lang.NoSuchFieldError: LOG
         at org.apache.hadoop.hdfs.shortcircuit.DomainSocketFactory.&lt;init&gt;(DomainSocketFactory.java:110)
         at org.apache.hadoop.hdfs.ClientContext.&lt;init&gt;(ClientContext.java:117)
@@ -207,7 +207,7 @@ Exception in thread "main" java.lang.NoSuchFieldError: LOG
 </pre>
 
 <p>
-我在github上看了一下 [代码](<a href="https://github.com/apache/hadoop/blob/release-2.7.4-RC0/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PerformanceAdvisory.java">https://github.com/apache/hadoop/blob/release-2.7.4-RC0/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PerformanceAdvisory.java</a>)， 这个类里面的确是有LOG字段的。
+我在github上看了一下 <a href="https://github.com/apache/hadoop/blob/release-2.7.4-RC0/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PerformanceAdvisory.java">代码</a>， 这个类里面的确是有LOG字段的。
 </p>
 
 <p>
@@ -218,7 +218,7 @@ Exception in thread "main" java.lang.NoSuchFieldError: LOG
 <li>一个是 `hadoop-common-2.7.4.jar` 这个pom.xml是hadoop-aws间接引入的</li>
 </ul>
 
-<pre class="example" id="orgcab5584">
+<pre class="example" id="org7f55155">
 hadoop-apache2-2.7.4-11.jar
 org/apache/hadoop/util/PerformanceAdvisory.class
 
@@ -230,7 +230,7 @@ org/apache/hadoop/util/PerformanceAdvisory.class
 如果用javap查看这两个类，可以发现其实都有LOG，差别就是两者的类型不同
 </p>
 
-<pre class="example" id="org7362df7">
+<pre class="example" id="org08b346e">
 sandbox-cloud :: be/lib/hudi-reader-lib ‹main*› » javap hadoop-apache2-PerformanceAdvisory.class
 Compiled from "PerformanceAdvisory.java"
 public class org.apache.hadoop.util.PerformanceAdvisory {
@@ -280,7 +280,7 @@ public class org.apache.hadoop.util.PerformanceAdvisory {
 但是自测s3的时候又发现一个问题，错误信息如下
 </p>
 
-<pre class="example" id="org9ffaaba">
+<pre class="example" id="orgecc301d">
 Exception in thread "Thread-9" java.lang.NoClassDefFoundError: org/apache/commons/lang/StringUtils
         at org.apache.hadoop.fs.s3a.BasicAWSCredentialsProvider.getCredentials(BasicAWSCredentialsProvider.java:37)
         at com.amazonaws.auth.AWSCredentialsProviderChain.getCredentials(AWSCredentialsProviderChain.java:101)
@@ -328,7 +328,7 @@ Exception in thread "Thread-9" java.lang.NoClassDefFoundError: org/apache/common
 hadoop-apache2 jar其实里面也用到了StringUtils, 但是被放在了另外一个package下面
 </p>
 
-<pre class="example" id="org74051e1">
+<pre class="example" id="org602ce06">
 hadoop-apache2-2.7.4-11.jar
 org/apache/hadoop/util/StringUtils.class
 org/apache/hadoop/util/StringUtils$TraditionalBinaryPrefix.class

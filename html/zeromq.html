@@ -263,7 +263,7 @@ zmq_bind(req,"ipc://fuck"); // server.cc
 <p>
 可以在系统上查看的确有 `fuck` 这个文件。
 </p>
-<pre class="example" id="org3486d15">
+<pre class="example" id="org616b8eb">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ stat fuck
   File: `fuck'
   Size: 0               Blocks: 0          IO Block: 4096   socket
@@ -765,7 +765,7 @@ int main(){
 </pre>
 </div>
 
-<pre class="example" id="org60f1ec1">
+<pre class="example" id="org0571ef0">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./publisher
 send '10001 0'
 send '10001 1'
@@ -975,7 +975,7 @@ int main (void) {
 }
 </pre>
 </div>
-<pre class="example" id="orga2ce82b">
+<pre class="example" id="orgc0efaea">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./env
 ----------------------------------------
 [017] 0011A54BD30A5A4FA589A7C2C2860926BA
@@ -1410,7 +1410,7 @@ transport是指zeromq的传输层在载体，一共有下面4种.
 这里因为对于pgm不是很了解所以不做过多分析:)zeromq底层根据不同的传输层载体进行了封装，只需要在bind或者是connect替换endpoint即可。
 所以这里只是看看endpoint的表示方法并且看看一些可能的潜在问题。endpoint的表示方法如下
 </p>
-<pre class="example" id="org448d6d1">
+<pre class="example" id="orgf46bb44">
 transport://endpoint
 </pre>
 
@@ -1754,7 +1754,8 @@ Yeah, we also counted seven, not eleven. That's not the point though. The point 
 </p>
 
 <p>
-Some widely used metaphors, despite being the basis for billion-dollar industries, are fundamentally broken, and shared state concurrency is one of them. Code that wants to scale without limit does it like the Internet does, by sending messages and sharing nothing except a common contempt for broken programming metaphors.</p>
+Some widely used metaphors, despite being the basis for billion-dollar industries, are fundamentally broken, and shared state concurrency is one of them. Code that wants to scale without limit does it like the Internet does, by sending messages and sharing nothing except a common contempt for broken programming metaphors.
+</p>
 </div>
 </div>
 </div>

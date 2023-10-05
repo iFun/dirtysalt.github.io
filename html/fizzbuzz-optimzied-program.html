@@ -3,7 +3,6 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>FizzBuzz程序优化</title>
@@ -30,7 +29,7 @@
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">FizzBuzz程序优化</h1>
@@ -40,7 +39,7 @@
 
 <hr />
 <p>
-我测试了一下第一名ASM编写的程序在我们开发机器上的效果，大约只能跑到 6.6GiB/s. 代码在 <a href="./codes/cc/xx-test/fizzbuzz-asm.S">这里</a>. 帖子里面给出的分数是 60GiB/s, 感觉这个差距有点大。
+我测试了一下第一名ASM编写的程序在我们开发机器上的效果，大约只能跑到 6.6GiB/s. 代码在 <a href="https://github.com/dirtysalt/codes/tree/master/cc/xx-test/fizzbuzz-asm.S">这里</a>. 帖子里面给出的分数是 60GiB/s, 感觉这个差距有点大。
 </p>
 
 <p>
@@ -76,7 +75,7 @@ UPDATE: 我自己感觉好像是kernel pipe buffer不够的原因：我使用 vm
 
 <hr />
 <p>
-我的代码在 <a href="./codes/cc/xx-test/fizzbuzz.cpp">这里</a>, 大约能跑到4.6GiB/s左右，也想不出怎么继续优化了。这里列举下优化点吧：
+我的代码在 <a href="https://github.com/dirtysalt/codes/tree/master/cc/xx-test/fizzbuzz.cpp">这里</a>, 大约能跑到4.6GiB/s左右，也想不出怎么继续优化了。这里列举下优化点吧：
 </p>
 <ol class="org-ol">
 <li>不要每次使用去使用itoa去计算整数的表示，这个可以通过模拟累加来完成</li>
@@ -407,7 +406,7 @@ UPDATE(20220825): 又做了一些改进，现在在同事的机器上可以稳�
 </p>
 
 <p>
-这次的优化思路是使用 <a href="./codes/cc/xx-test/fizzbuzz-gen.py">代码生成工具</a>，而不是使用模板。代码生成主要的目的是为了可以将要写的内容，通过计算的方式合并在一起，最后按照128bit/256bit写下去。
+这次的优化思路是使用 <a href="https://github.com/dirtysalt/codes/tree/master/cc/xx-test/fizzbuzz-gen.py">代码生成工具</a>，而不是使用模板。代码生成主要的目的是为了可以将要写的内容，通过计算的方式合并在一起，最后按照128bit/256bit写下去。
 </p>
 
 <p>
@@ -523,5 +522,5 @@ _mm_storeu_si128((__m128i*)buf, X); /* X = _mm_setzero_si128(); */ buf += 16;
 </pre>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/fizzbuzz-optimzied-program.html';this.page.identifier = 'fizzbuzz-optimzied-program.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

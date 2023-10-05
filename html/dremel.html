@@ -96,7 +96,7 @@
 </p>
 
 
-<div id="orged92aad" class="figure">
+<div id="org5199279" class="figure">
 <p><img src="../images/dremel-columnar-representation.png" alt="dremel-columnar-representation.png" />
 </p>
 </div>
@@ -183,7 +183,7 @@ NOTE：这节我看的也是云里雾里的。这个存储格式在内叫做Colu
 </p>
 
 
-<div id="org911fdb8" class="figure">
+<div id="orgfcb36ec" class="figure">
 <p><img src="../images/dremel-tree-architecture.png" alt="dremel-tree-architecture.png" />
 </p>
 </div>
@@ -226,7 +226,7 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </p>
 
 
-<div id="orgfdc32ee" class="figure">
+<div id="org416f7df" class="figure">
 <p><img src="../images/dremel-experiment-0.png" alt="dremel-experiment-0.png" />
 </p>
 </div>
@@ -236,7 +236,7 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </p>
 
 
-<div id="orgc2a447d" class="figure">
+<div id="org0108394" class="figure">
 <p><img src="../images/dremel-experiment-1.png" alt="dremel-experiment-1.png" />
 </p>
 </div>
@@ -254,14 +254,14 @@ fanout对比了2/3/4-levels:
 其中Q2/Q3分别是, 都是project-select-agg, 不过Q2 country结果集在100左右，而Q3在1.1M左右.
 </p>
 
-<pre class="example" id="org688f245">
+<pre class="example" id="org7de948e">
 Q2: SELECT country, SUM(item.amount) FROM T2 GROUP BY country
 
 Q3: SELECT domain, SUM(item.amount) FROM T2 WHERE domain CONTAINS ’.net’ GROUP BY domain
 </pre>
 
 
-<div id="orgd0baefc" class="figure">
+<div id="org489fa14" class="figure">
 <p><img src="../images/dremel-experiment-2.png" alt="dremel-experiment-2.png" />
 </p>
 </div>
@@ -276,7 +276,7 @@ Dremel scans quadrillions of records per month. Figure 15 shows the query respon
 </p>
 
 
-<div id="orgb2a633f" class="figure">
+<div id="orgbcb9e01" class="figure">
 <p><img src="../images/dremel-query-response-time-distribution.png" alt="dremel-query-response-time-distribution.png" />
 </p>
 </div>

@@ -23,7 +23,7 @@ SequenceFile存储格式如下
 </p>
 
 
-<div id="org014f279" class="figure">
+<div id="orgde538dd" class="figure">
 <p><img src="../images/hdfs-sequence-file-format.png" alt="hdfs-sequence-file-format.png" />
 </p>
 </div>
@@ -42,7 +42,7 @@ SequenceFile存储格式如下
 </p>
 
 
-<div id="org592db43" class="figure">
+<div id="org106de0c" class="figure">
 <p><img src="../images/hdfs-sequence-file-header.png" alt="hdfs-sequence-file-header.png" />
 </p>
 </div>
@@ -52,7 +52,7 @@ SequenceFile存储格式如下
 </p>
 
 
-<div id="orgb13fc3b" class="figure">
+<div id="org5668cc2" class="figure">
 <p><img src="../images/hdfs-sequence-file-metadata.png" alt="hdfs-sequence-file-metadata.png" />
 </p>
 </div>
@@ -76,7 +76,7 @@ Hadoop SequenceFile is the base data structure for the other types of files, lik
 </p>
 
 
-<div id="org46cf120" class="figure">
+<div id="orgf2bd863" class="figure">
 <p><img src="../images/hdfs-mapfile-index-data-bloom.png" alt="hdfs-mapfile-index-data-bloom.png" />
 </p>
 </div>
@@ -94,7 +94,8 @@ ArrayFile也是基于MapFile完成的，只不过key = LongWriatble，然后每�
 </p>
 
 <p>
-BloomMapFile扩展了MapFile添加了一个bloom文件，存储的是DynamicBloomFilter序列化内容。在判断key是否在MapFile之前，先走BloomFilter.</p>
+BloomMapFile扩展了MapFile添加了一个bloom文件，存储的是DynamicBloomFilter序列化内容。在判断key是否在MapFile之前，先走BloomFilter.
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/hadoop-io-files.html';this.page.identifier = 'hadoop-io-files.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

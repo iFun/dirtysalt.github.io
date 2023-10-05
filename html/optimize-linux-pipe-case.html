@@ -24,7 +24,7 @@
 下面数据是我在开发机器上得到的，绝对数值上看差不多是作者得到的一半，从sysbench测试得到的memory read bandwidth数值也是文章中的一半。
 </p>
 
-<pre class="example" id="org0558796">
+<pre class="example" id="org3cf6a65">
 sandbox-cloud :: ~/repo/pipes-speed-test ‹master*› » sudo ./write| ./read
 2.5GiB/s, 256KiB buffer, 40960 iterations (10GiB piped)
 sandbox-cloud :: ~/repo/pipes-speed-test ‹master*› » sudo ./write --write_with_vmsplice | ./read
@@ -48,7 +48,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="org0bd5739" class="figure">
+<div id="orgd7b55c5" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-0.svg" alt="optimize-linux-pipe-case-0.svg" class="org-svg" />
 </p>
 </div>
@@ -62,7 +62,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="org70ff1bc" class="figure">
+<div id="orgd895ab4" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-1.png" alt="optimize-linux-pipe-case-1.png" />
 </p>
 </div>
@@ -79,7 +79,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="orgf3aba94" class="figure">
+<div id="org75ff6f8" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-2.png" alt="optimize-linux-pipe-case-2.png" />
 </p>
 </div>
@@ -89,7 +89,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 </p>
 
 
-<div id="orgfb4f896" class="figure">
+<div id="org0ff1310" class="figure">
 <p><img src="../images/optimize-linux-pipe-case-3.svg" alt="optimize-linux-pipe-case-3.svg" class="org-svg" />
 </p>
 </div>
@@ -113,8 +113,9 @@ So to represent 2MiB huge page we’ll have 1 “head” struct page, and up to 
 </p>
 
 
-<div id="org0aaeb55" class="figure">
-<p><img src="../images/optimize-linux-pipe-case-4.png" alt="optimize-linux-pipe-case-4.png" /></p>
+<div id="org3b9f8e3" class="figure">
+<p><img src="../images/optimize-linux-pipe-case-4.png" alt="optimize-linux-pipe-case-4.png" />
+</p>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/optimize-linux-pipe-case.html';this.page.identifier = 'optimize-linux-pipe-case.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

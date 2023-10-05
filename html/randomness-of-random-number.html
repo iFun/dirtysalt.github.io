@@ -147,7 +147,7 @@ def compute_x2(fn, deg, size):
 两个随机数生成器得到的卡方值差别也蛮大的，这个准随机数生成器效果就是好。
 </p>
 
-<pre class="example" id="org55cf1f6">
+<pre class="example" id="org1047b72">
 degree = 5, size = 4000
 ===== numpy random =====
 [2.378, 2.891, 3.587, 4.142, 4.97, 6.086, 6.743, 8.852, 11.216, 12.473]
@@ -358,7 +358,8 @@ degree = 5, size = 4000
 
 <p>
 对于自由度k=5来说，只有值不大于11.07才能在p&lt;0.05置信区间中（这个置信区间应该是单向的）。也就是说，多次试验当中，
-如果卡方值如果出现大于11.07的话，那么说明每个变量并不是相互独立的，反过来说明随机数并不随机。</p>
+如果卡方值如果出现大于11.07的话，那么说明每个变量并不是相互独立的，反过来说明随机数并不随机。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/randomness-of-random-number.html';this.page.identifier = 'randomness-of-random-number.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Spanner: Google's Globally-Distributed Database</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Spanner: Google's Globally-Distributed Database</h1>
@@ -26,13 +25,13 @@
 <li><a href="#orgdd4e735">3.3. Data Model</a></li>
 </ul>
 </li>
-<li><a href="#org02380dd">4. TrueTime</a></li>
+<li><a href="#org14c0a40">4. TrueTime</a></li>
 <li><a href="#orgb88aced">5. Concurrency Control</a></li>
 <li><a href="#org54ec5b7">6. Evaluation</a>
 <ul>
 <li><a href="#org8c950a7">6.1. Microbenchmarks</a></li>
 <li><a href="#org6fc4530">6.2. Availability</a></li>
-<li><a href="#org14c0a40">6.3. TrueTime</a></li>
+<li><a href="#orge7302b1">6.3. TrueTime</a></li>
 <li><a href="#org8c1e74b">6.4. F1</a></li>
 </ul>
 </li>
@@ -100,7 +99,7 @@
 </ul>
 
 
-<div id="org378466d" class="figure">
+<div id="org634dcb7" class="figure">
 <p><img src="../images/design-goals-for-spanner.png" alt="design-goals-for-spanner.png" />
 </p>
 </div>
@@ -123,7 +122,7 @@
 <hr />
 
 
-<div id="orge1097be" class="figure">
+<div id="orga80030b" class="figure">
 <p><img src="../images/spanner-server-organization.png" alt="spanner-server-organization.png" />
 </p>
 </div>
@@ -145,7 +144,7 @@
 <h3 id="orgd225b7f"><span class="section-number-3">3.1.</span> Spanserver Software Stack</h3>
 <div class="outline-text-3" id="text-3-1">
 
-<div id="org8bd0674" class="figure">
+<div id="org7665289" class="figure">
 <p><img src="../images/spanserver-software-stack.png" alt="spanserver-software-stack.png" />
 </p>
 </div>
@@ -181,7 +180,7 @@
 <h3 id="orgbd856bf"><span class="section-number-3">3.2.</span> Directories and Placement</h3>
 <div class="outline-text-3" id="text-3-2">
 
-<div id="org0b2e692" class="figure">
+<div id="org071d095" class="figure">
 <p><img src="../images/spanner-directory-movement.png" alt="spanner-directory-movement.png" />
 </p>
 </div>
@@ -224,7 +223,7 @@
 </ul>
 
 
-<div id="org4197f72" class="figure">
+<div id="org5f6d36c" class="figure">
 <p><img src="../images/spanner-data-model-example.png" alt="spanner-data-model-example.png" />
 </p>
 </div>
@@ -236,11 +235,11 @@
 </div>
 </div>
 
-<div id="outline-container-org02380dd" class="outline-2">
-<h2 id="org02380dd"><span class="section-number-2">4.</span> TrueTime</h2>
+<div id="outline-container-org14c0a40" class="outline-2">
+<h2 id="org14c0a40"><span class="section-number-2">4.</span> TrueTime</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="org13ff14a" class="figure">
+<div id="org028e71d" class="figure">
 <p><img src="../images/spanner-true-time-api.png" alt="spanner-true-time-api.png" />
 </p>
 </div>
@@ -310,8 +309,8 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 <div id="outline-container-org6fc4530" class="outline-3">
 <h3 id="org6fc4530"><span class="section-number-3">6.2.</span> Availability</h3>
 </div>
-<div id="outline-container-org14c0a40" class="outline-3">
-<h3 id="org14c0a40"><span class="section-number-3">6.3.</span> TrueTime</h3>
+<div id="outline-container-orge7302b1" class="outline-3">
+<h3 id="orge7302b1"><span class="section-number-3">6.3.</span> TrueTime</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Two questions must be answered with respect to True- Time: is e truly a bound on clock uncertainty, and how bad e does get?（两个关键的问题就是偏移是否可以按照我们估算范围给出上界，另外就是偏移最坏能到什么情况）</li>
@@ -324,7 +323,7 @@ links can result in occasional localized spikes.（但是如果出现故障的�
 </ul>
 
 
-<div id="orgca1dc40" class="figure">
+<div id="org257e9fe" class="figure">
 <p><img src="../images/spanner-true-time-benchmark.png" alt="spanner-true-time-benchmark.png" />
 </p>
 </div>
@@ -355,5 +354,5 @@ Spanner started being experimentally evaluated under production workloads in ear
 <h2 id="org3541fbc"><span class="section-number-2">9.</span> Conclusions</h2>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/spanner.html';this.page.identifier = 'spanner.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DBMS Introduction</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">DBMS Introduction</h1>
@@ -112,7 +111,7 @@ update@201509: 还是加上架构图吧, 一图胜千言. 那个时候没有智�
 </p>
 
 
-<div id="org5c80e55" class="figure">
+<div id="org5282e46" class="figure">
 <p><img src="../images/dbms-arch-in-simple.jpg" alt="dbms-arch-in-simple.jpg" />
 </p>
 </div>
@@ -617,7 +616,7 @@ Transactions can be deferred, immediate, or exclusive. The default transaction b
 <p>
 对于任何约束的话我们都可以为其命名，方式是CONSTRAINT &lt;name&lt;&gt; &lt;constraint-content&gt;.比如
 </p>
-<pre class="example" id="orgbcabf39">
+<pre class="example" id="orgddc87d2">
 name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 </pre>
 <p>
@@ -666,7 +665,7 @@ name CHAR(30) CONSTRAINT hello nameIsKey PRIMARY KEY.
 CHECK约束包括基于属性的约束(attributed-based CHECK constraint)以及基于元组的约束(tuple-based CHECK constraint).基于属性的约束首先
 有一个非NULL约束，使用很简单就是name CHAR(30) NOT NULL.而除此之外，基于属性和基于元组的约束表达上非常相似。比如下面
 </p>
-<pre class="example" id="org9b048b6">
+<pre class="example" id="org7cddc52">
 #基于元组约束
 CREATE TABLE R( name CHAR(30) PRIMARY KEY, gender CHAR(1), CHECK (gender='F' or name NOT LIKE 'Ms.%'))
 #基于属性约束
@@ -752,7 +751,7 @@ CHECK约束仅仅是针对某一个关系的而不是针对于数据库的。如
 <p>
 通过一个例子来稍微分析一下吧.
 </p>
-<pre class="example" id="orgf351576">
+<pre class="example" id="orgc6a4f28">
 CREATE TRIGGER X # 创建触发器
 AFTER UPDATE OF y ON R #这里可以是AFTER,BEFORE以及INSTEAD OF(视图里面会提及到). 可以是UPDATE OF(可以指定属性)/INSERT/DELETE(只能和元组相关)
 REFERENCING
@@ -867,5 +866,5 @@ DTD(Document Type Definition).而XML模式(XML Schema)则是另外一种为XML�
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/dbms-intro.html';this.page.identifier = 'dbms-intro.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

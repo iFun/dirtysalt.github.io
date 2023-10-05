@@ -183,7 +183,7 @@ int search3(int* x, int n, int t) {
 <p>
 先看-O0的效果，展开效果还是非常明显的，甚至比设置哨兵还要好。
 </p>
-<pre class="example" id="org579d6d1">
+<pre class="example" id="org602de1d">
 ➜  misc git:(master) ✗ g++ opt_linear_search.cc -O0 --std=c++0x
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 211.902 ms
@@ -196,7 +196,7 @@ int search3(int* x, int n, int t) {
 <p>
 然后看-O2的效果. 展开效果似乎就没有那么明显了，甚至还有副作用。相比展开步长8和16的情况，发现步长并不是越长越好。
 </p>
-<pre class="example" id="org0e30a63">
+<pre class="example" id="org73b23b1">
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 34.7623 ms
 [ search11]Wall clock time passed: 35.4613 ms
@@ -345,7 +345,7 @@ inline void partial_sort(RandomAccessIterator first,
 如果找到重复字符串可以使用后缀数组，比如 banana 可以保存每个字符串的后缀
 </p>
 
-<pre class="example" id="orgea4c754">
+<pre class="example" id="orgfb03bf6">
 banana
 anana
 nana
@@ -358,7 +358,7 @@ a
 然后我们排序然后比较相邻的后缀元素，就能找到ana. 第二长的是na
 </p>
 
-<pre class="example" id="orge219c82">
+<pre class="example" id="orge495ca2">
 a
 ana
 anana
@@ -368,7 +368,8 @@ nana
 </pre>
 
 <p>
-如果不用排序的话，其实可以将这些字符串插入trie树，来找到最长重复子串。</p>
+如果不用排序的话，其实可以将这些字符串插入trie树，来找到最长重复子串。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/programming-pearls.html';this.page.identifier = 'programming-pearls.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

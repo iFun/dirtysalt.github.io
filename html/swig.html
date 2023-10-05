@@ -47,7 +47,7 @@ update@201509: 相比boost::python可以更容易地使用C++来编写Python扩�
 <div id="outline-container-org2191fbb" class="outline-2">
 <h2 id="org2191fbb"><span class="section-number-2">2.</span> a simple example</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="org594e4b4">
+<pre class="example" id="orgdbb53a5">
 %module pycompack_  // 生成pycompack_.py和pycompack_wrap.cxx.
 // 其中pycompack_.py是包装python代码，而pycompack_wrap.cxx是包装的C++代码。
 %include "std_string.i" // 使用std::string返回二进制，我们通常会使用
@@ -120,7 +120,7 @@ class Stream{
 <p>
 然后我们看看如何使用swig这个工具
 </p>
-<pre class="example" id="org611842c">
+<pre class="example" id="orgf172012">
 // -python 表示为python扩展
 // -c++ 表示我们使用c++语言
 // -I 和编译器相同
@@ -175,7 +175,7 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 <p>
 二进制参数. 传入二进制的话我们可以使用swig的typemap搞定
 </p>
-<pre class="example" id="orgd2fdc2c">
+<pre class="example" id="orgb6209c0">
 // 这样只要参数中含有const char* bin,unsigned int binlen这样形参的话
 // 那么就认为这个部分接收的就是二进制数据
 %apply (char *STRING, size_t LENGTH) { (const char* bin, unsigned int binlen) };
@@ -184,7 +184,7 @@ swig -Wall -python -c++ -I/usr/include -includeall pycompack.swg
 <p>
 传出二进制的话我们可以使用std::string传出，然后再我们的swg描述文件里面加上
 </p>
-<pre class="example" id="org78c038e">
+<pre class="example" id="orgefeb471">
 %include "std_string.i" // 使用std::string返回二进制，我们通常会使用
 </pre>
 
@@ -242,7 +242,8 @@ setup(name='pycompack', # 模块名称
 </pre>
 </div>
 <p>
-然后我们使用python setup.py build/install进行构建和安装了。</p>
+然后我们使用python setup.py build/install进行构建和安装了。
+</p>
 </div>
 </div>
 </div>

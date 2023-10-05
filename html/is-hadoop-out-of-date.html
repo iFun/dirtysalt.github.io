@@ -29,7 +29,8 @@ google提出的三个东西都是解决hadoop的软肋，最终目的还是需�
 </p>
 
 <p>
-分析图数据的Pregel。Google MapReduce的设计初衷是分析世界上最大的数据图谱——互联网。但是在分析人际网络、电信设备、文档和其他一些图数据时就没有那么灵光了，例如MapReduce在计算单源最短路径（SSSP）时效率非常低下，已有的并行图算法库Parallel BGL或者CGMgraph又没有容错。于是Google开发了Pregel，一个可以在分布式通用服务器上处理PB级别图数据的大型同步处理应用。与Hadoop经常在处理图数据时产生指数级数据放大相比，Pregel能够自然高效地处理SSSP或PageRank等图算法，所用时间要短得多，代码也简洁得多。目前唯一能与Pregel媲美的开源选择是Giraph，这是一个早期的Apache孵化项目，调用了HDFS和Zookeeper。Githb上还有一个项目Golden Orb可用。</p>
+分析图数据的Pregel。Google MapReduce的设计初衷是分析世界上最大的数据图谱——互联网。但是在分析人际网络、电信设备、文档和其他一些图数据时就没有那么灵光了，例如MapReduce在计算单源最短路径（SSSP）时效率非常低下，已有的并行图算法库Parallel BGL或者CGMgraph又没有容错。于是Google开发了Pregel，一个可以在分布式通用服务器上处理PB级别图数据的大型同步处理应用。与Hadoop经常在处理图数据时产生指数级数据放大相比，Pregel能够自然高效地处理SSSP或PageRank等图算法，所用时间要短得多，代码也简洁得多。目前唯一能与Pregel媲美的开源选择是Giraph，这是一个早期的Apache孵化项目，调用了HDFS和Zookeeper。Githb上还有一个项目Golden Orb可用。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/is-hadoop-out-of-date.html';this.page.identifier = 'is-hadoop-out-of-date.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

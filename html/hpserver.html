@@ -276,7 +276,8 @@ reactor的active_event函数。SignalInfo应该会自己安装自己的信号处
 在EventLoopOnce里面会根据定时器最小堆计算出到下一个定时器触发需要等待多长时间tv,然后调用Poller的Dispatch(tv)方法。
 在Dispatch方法里面会使用epoll等待io并且等待tv时间，然后调用SignalInfo::ProcessSignals处理信号，然后调用Reactor::ExpireTimerEvents来处理超时事件，
 然后调用ActiveEvent将所有可读可写事件加入m_vecActiveList里面来，然后调用scheduler进行调度。对于ScheduleActiveEvent这个函数，
-无非就是分析每个event item是否取消，如果没有取消的话那么调用绑定的handler对应的回调函数。整个过程就是这样的。</p>
+无非就是分析每个event item是否取消，如果没有取消的话那么调用绑定的handler对应的回调函数。整个过程就是这样的。
+</p>
 </div>
 </div>
 </div>

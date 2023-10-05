@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CMU DB Sort+Agg+Join</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">CMU DB Sort+Agg+Join</h1>
@@ -69,7 +68,8 @@ HJ 时间复杂度分为两个部分：Build + Probe. Build是将outer table 按
 </p>
 
 <p>
-HJ的cost analysis我有点没有看懂。上面的HJ要求hash table是in memory的话，如果没有办法in memory的话，那么可以分别对inner和outer table做partition，使用相同的hash function，然后分别对partition做join. 每个partition上面的join可以继续拆分，直到partition可以fit in memory为止，这是个递归的过程。如果不考虑递归的话，partition phase时间复杂度是2*(M+N)（input + output), Probe Phase因为完全fit in memory使用NLJ的话可以做到M+N. 所以总的cosst是 3*(M+N).</p>
+HJ的cost analysis我有点没有看懂。上面的HJ要求hash table是in memory的话，如果没有办法in memory的话，那么可以分别对inner和outer table做partition，使用相同的hash function，然后分别对partition做join. 每个partition上面的join可以继续拆分，直到partition可以fit in memory为止，这是个递归的过程。如果不考虑递归的话，partition phase时间复杂度是2*(M+N)（input + output), Probe Phase因为完全fit in memory使用NLJ的话可以做到M+N. 所以总的cosst是 3*(M+N).
+</p>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/cmudb-sort-agg-join.html';this.page.identifier = 'cmudb-sort-agg-join.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

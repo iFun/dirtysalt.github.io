@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Hadoop Distributed File System</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">The Hadoop Distributed File System</h1>
@@ -111,7 +110,7 @@
 </ul>
 
 
-<div id="org62797c3" class="figure">
+<div id="org62946be" class="figure">
 <p><img src="../images/hdfs-data-flow.png" alt="hdfs-data-flow.png" />
 </p>
 </div>
@@ -188,7 +187,7 @@
 <li>After data are written to an HDFS file, HDFS does not pro-vide any guarantee that data are visible to a new reader until the file is closed. If a user application needs the visibility guaran-tee, it can explicitly call the hflush operation. Then the current packet is immediately pushed to the pipeline, and the hflush operation will wait until all DataNodes in the pipeline ac-knowledge the successful transmission of the packet. (写入的数据并不一定保证就可以被看到，除非这个文件关闭了。如果希望可以立刻可见的话，那么可以使用hflush调用。hflush调用的话会等待到所有的datanodes都确认所有的消息才会返回）</li>
 </ul>
 
-<div id="org1523dc2" class="figure">
+<div id="org57a4baa" class="figure">
 <p><img src="../images/hdfs-data-pipeline.png" alt="hdfs-data-pipeline.png" />
 </p>
 </div>
@@ -208,7 +207,7 @@
 </ul>
 
 
-<div id="org81cc906" class="figure">
+<div id="org4ca09b1" class="figure">
 <p><img src="../images/hdfs-cluster-topology-example.png" alt="hdfs-cluster-topology-example.png" />
 </p>
 </div>
@@ -394,5 +393,5 @@ Large HDFS clusters at Yahoo! include about 3500 nodes. A typical cluster node h
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/the-hadoop-distributed-file-system.html';this.page.identifier = 'the-hadoop-distributed-file-system.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

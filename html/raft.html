@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Raft(A consensus algorithm)</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Raft(A consensus algorithm)</h1>
@@ -86,7 +85,7 @@ Labs
 Rafe FAQ
 </p>
 
-<pre class="example" id="orgcf11139">
+<pre class="example" id="orgdb613e0">
 how does a server learn about newly elected leader?
   new leader sees yes votes from majority
   others see AppendEntries heart-beats with a higher term number
@@ -126,7 +125,7 @@ A: Raft gives up some performance in return for clarity; for example:
 下面一段文字是关于Raft和Paxos等共识算法在实际应用中的比较
 </p>
 
-<pre class="example" id="org0fece69">
+<pre class="example" id="org1f03598">
 Q: Is Raft used in real-world software, or do companies generally roll
 their own flavor of Paxos (or use a different consensus protocol)?
 
@@ -199,7 +198,7 @@ datacenter. ePaxos is an example.
 如果这里只考虑数据一致性问题的话，其实这里面选S2,S3都无所谓。S2,S3可以把自己的4,5都擦出掉，因为4,5都没有commit. 肯定不能将已经commit的日志回滚。
 </p>
 
-<pre class="example" id="orga8bc865">
+<pre class="example" id="org6b8b3a2">
 how can logs disagree after a crash?
   a leader crashes before sending last AppendEntries to all
     S1: 3
@@ -229,7 +228,7 @@ Raft forces agreement by having followers adopt new leader's log
 为什么不选择日志最长的作为leader
 </p>
 
-<pre class="example" id="orgc38d653">
+<pre class="example" id="org85921e1">
 why not elect the server with the longest log as leader?
   example:
     S1: 5 6 7
@@ -458,5 +457,5 @@ A: Lab3简化了传输问题，snapshot数据一次RPC就可以完全传输完�
 </pre>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/raft.html';this.page.identifier = 'raft.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

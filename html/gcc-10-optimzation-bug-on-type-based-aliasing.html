@@ -16,7 +16,7 @@
 下面代码使用-O2和-O3编译会得到不同的结果
 </p>
 
-<pre class="example" id="org0a4c844">
+<pre class="example" id="orgf40d0ce">
 doris-sandbox04 :: ~/public » /home/disk1/doris-deps/toolchain/installed/gcc-10.3.0/bin/g++  -std=gnu++17  -O3  -msse4.2 -mavx2  -fopt-info-vec-optimized test.cpp -o opt3.s
 test.cpp:63:23: optimized: loop vectorized using 32 byte vectors
 /home/disk1/doris-deps/toolchain/installed/gcc-10.3.0/include/c++/10.3.0/ext/new_allocator.h:115:41: optimized: basic block part vectorized using 32 byte vectors
@@ -177,7 +177,8 @@ movabsq $4138674677912027985, %rdi
 </p>
 
 <p>
-gcc 编译参数 -fno-strict-aliasing - 云+社区 - 腾讯云 <a href="https://cloud.tencent.com/developer/article/1159055">https://cloud.tencent.com/developer/article/1159055</a>. 这篇文章里面说-O2就会把 -fstrict-aliasing 打开，但是我们开了-O2也没有遇到过着问题，也是比较奇怪。</p>
+gcc 编译参数 -fno-strict-aliasing - 云+社区 - 腾讯云 <a href="https://cloud.tencent.com/developer/article/1159055">https://cloud.tencent.com/developer/article/1159055</a>. 这篇文章里面说-O2就会把 -fstrict-aliasing 打开，但是我们开了-O2也没有遇到过着问题，也是比较奇怪。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/gcc-10-optimzation-bug-on-type-based-aliasing.html';this.page.identifier = 'gcc-10-optimzation-bug-on-type-based-aliasing.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -31,7 +31,7 @@
 </p>
 
 
-<div id="org3dd2a4d" class="figure">
+<div id="orgb4c8c10" class="figure">
 <p><img src="../images/orca-arch.png" alt="orca-arch.png" />
 </p>
 </div>
@@ -55,7 +55,7 @@
 </p>
 
 
-<div id="org90044ec" class="figure">
+<div id="orgb9fb9a5" class="figure">
 <p><img src="../images/orca-init-group.png" alt="orca-init-group.png" />
 </p>
 </div>
@@ -79,7 +79,8 @@
 </p>
 
 <p>
-性能回归的话，考虑到这个memo空间会比较大，所以Orca会进行plan采样（不知道是对root plan采样还是也可以对sub plan采样），拿这些采样去线上跑观察实际运行时间，然后验证自己的cost是否可信。具体来说，如果两个plan p1, p2, 如果cost(p1) &lt; cost(p2), 但是运行时间p2远小于p1的话，那么就值得分析一下具体原因了。</p>
+性能回归的话，考虑到这个memo空间会比较大，所以Orca会进行plan采样（不知道是对root plan采样还是也可以对sub plan采样），拿这些采样去线上跑观察实际运行时间，然后验证自己的cost是否可信。具体来说，如果两个plan p1, p2, 如果cost(p1) &lt; cost(p2), 但是运行时间p2远小于p1的话，那么就值得分析一下具体原因了。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/orca-a-modular-query-optimizer.html';this.page.identifier = 'orca-a-modular-query-optimizer.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

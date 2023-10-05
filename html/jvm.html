@@ -103,7 +103,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </ul>
 
 
-<div id="org0ea454e" class="figure">
+<div id="orgc65da4f" class="figure">
 <p><img src="../images/java-gc-gen.png" alt="java-gc-gen.png" />
 </p>
 </div>
@@ -304,7 +304,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 以下是一些配置参数：
 </p>
 
-<pre class="example" id="org8c82569">
+<pre class="example" id="org76e7f7c">
 -XX:+UseSerialGC 年轻代和老年代都用串行收集器
 -XX:+UseParNewGC 年轻代使用 ParNew，老年代使用 Serial Old
 -XX:+UseParallelGC 年轻代使用 ParallerGC，老年代使用 Serial Old
@@ -315,7 +315,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 </pre>
 
 
-<div id="org18126f9" class="figure">
+<div id="org088857e" class="figure">
 <p><img src="../images/jvm-gc-options-and-effects.jpg" alt="jvm-gc-options-and-effects.jpg" />
 </p>
 </div>
@@ -334,7 +334,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 线上使用最多的垃圾回收器，就有 CMS 和 G1，以及 Java8 默认的 Parallel Scavenge。
 </p>
 
-<pre class="example" id="org758e285">
+<pre class="example" id="org48612af">
 CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。
@@ -385,7 +385,8 @@ Java 5 版本以后，JDK 有一个包叫做 instrument ，能够实现一些非
 
 
 <p>
-jit配置 <a href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/23%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9AJIT%20%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%EF%BC%9F.md">23 动手实践：JIT 参数配置如何影响程序运行？.md</a></p>
+jit配置 <a href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/23%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9AJIT%20%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%EF%BC%9F.md">23 动手实践：JIT 参数配置如何影响程序运行？.md</a>
+</p>
 </div>
 </div>
 </div>

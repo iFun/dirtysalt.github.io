@@ -3,18 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>伸展树(splay tree)的可视化</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">伸展树(splay tree)的可视化</h1>
 <p>
-参考书籍 《[数据结构与算法分析_Java语言描述(第2版)].韦斯》<a href="codes/misc/random/test_splay_tree.py">code on github</a>
+参考书籍 《[数据结构与算法分析_Java语言描述(第2版)].韦斯》<a href="https://github.com/dirtysalt/codes/tree/master/misc/random/test_splay_tree.py">code on github</a>
 </p>
 
 <p>
@@ -145,7 +144,7 @@ def access_tree_node(r: TreeNode, val):
 <p>
 为了能够很好地观察树的变化，最好能够以可视化的方式将树展示出来（最好是图片或者是动画，而不是字符）。
 所以我编写了一个工具，可以将树输出成为.dot格式，然后使用graphviz输出成为图片。另外graphviz不支持
-输出多个graph, 如果要将多个graph放在一个图片里面需要使用gvpack工具。具体代码可以看 <a href="codes/misc/random/tree_util.py">tree_util.py</a>.
+输出多个graph, 如果要将多个graph放在一个图片里面需要使用gvpack工具。具体代码可以看 <a href="https://github.com/dirtysalt/codes/tree/master/misc/random/tree_util.py">tree_util.py</a>.
 </p>
 
 <p>
@@ -179,5 +178,5 @@ test_pprint_tree()
 </p>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/splay-tree-visualization.html';this.page.identifier = 'splay-tree-visualization.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

@@ -59,11 +59,11 @@
 <h2 id="org70e682e"><span class="section-number-2">1.</span> 测试代码</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-测试代码是在Clickhouse memcpy-bench基础上改造过来的  [ClickHouse/utils/memcpy-bench at master · ClickHouse/ClickHouse](<a href="https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench">https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench</a>)
+测试代码是在Clickhouse memcpy-bench基础上改造过来的  <a href="https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench">ClickHouse/utils/memcpy-bench at master · ClickHouse/ClickHouse</a>
 </p>
 
 <p>
-不过我们这里没有使用clickhouse的统计方式，而是使用google benchmark驱动。代码放在了这里 [codes/cc/sr-test/memcpy-bench at master · dirtysalt/codes](<a href="https://github.com/dirtysalt/codes/tree/master/cc/sr-test/memcpy-bench">https://github.com/dirtysalt/codes/tree/master/cc/sr-test/memcpy-bench</a>)
+不过我们这里没有使用clickhouse的统计方式，而是使用google benchmark驱动。代码放在了这里 <a href="https://github.com/dirtysalt/codes/tree/master/cc/sr-test/memcpy-bench">codes/cc/sr-test/memcpy-bench at master · dirtysalt/codes</a>
 </p>
 
 <p>
@@ -135,25 +135,25 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org1924ab1" class="figure">
+<div id="org1166c16" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
 </p>
 </div>
 
 
-<div id="org4bc7059" class="figure">
+<div id="org96598df" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
 </p>
 </div>
 
 
-<div id="org1707caa" class="figure">
+<div id="orgb60d4c1" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
 </p>
 </div>
 
 
-<div id="org3a2f13d" class="figure">
+<div id="org6dd06ff" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
 </p>
 </div>
@@ -178,19 +178,19 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="org8a539e7" class="figure">
+<div id="orga099684" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
 </p>
 </div>
 
 
-<div id="org29ef744" class="figure">
+<div id="org467dd10" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
 </p>
 </div>
 
 
-<div id="org663d967" class="figure">
+<div id="org060227b" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
 </p>
 </div>
@@ -214,19 +214,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="orgc820cb9" class="figure">
+<div id="org7516fd9" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
 </p>
 </div>
 
 
-<div id="orgf9173f1" class="figure">
+<div id="org26a0cfb" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
 </p>
 </div>
 
 
-<div id="orgad431de" class="figure">
+<div id="org5653f89" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
 </p>
 </div>
@@ -249,19 +249,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org5545ee2" class="figure">
+<div id="org60828a6" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
 </p>
 </div>
 
 
-<div id="orgf078938" class="figure">
+<div id="org4508068" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
 </p>
 </div>
 
 
-<div id="orga1a2960" class="figure">
+<div id="orgdf319da" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
 </p>
 </div>
@@ -629,7 +629,7 @@ goto tail;
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="org72dccb2">
+<pre class="example" id="orgd916701">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ goto tail;
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="org053b274">
+<pre class="example" id="org3f05f33">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -671,7 +671,7 @@ goto tail;
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="org2395ba4">
+<pre class="example" id="org2176e21">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ goto tail;
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="orgf347f07">
+<pre class="example" id="orge4cf0b2">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -778,7 +778,7 @@ goto tail;
 </p>
 
 
-<div id="org49ebc5e" class="figure">
+<div id="org0c305e0" class="figure">
 <p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
 </p>
 </div>
@@ -788,7 +788,7 @@ goto tail;
 </p>
 
 
-<div id="org0a4cb14" class="figure">
+<div id="org1c5c770" class="figure">
 <p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
 </p>
 </div>
@@ -799,7 +799,7 @@ goto tail;
 <h2 id="orgdd8e6d6"><span class="section-number-2">5.</span> 改进方案设计</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-个人觉得可以根据 `memcpy_my` 这个版本 ~~，然后在某些区间上使用erms特性来做改善~~。
+个人觉得可以根据 `memcpy_my` 这个版本为基础， <b><b>然后在某些区间上使用erms特性来做改善</b></b> 。
 </p>
 
 <p>
@@ -850,13 +850,13 @@ goto tail;
 </ul>
 
 
-<div id="org337798b" class="figure">
+<div id="orgaae1e6e" class="figure">
 <p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
 </p>
 </div>
 
 
-<div id="orge2acbe9" class="figure">
+<div id="orgd2d5f00" class="figure">
 <p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
 </p>
 </div>
@@ -895,7 +895,8 @@ goto tail;
 
 <p>
 <img src="../images/media/16684889455769/16686553116226.jpg" alt="16686553116226.jpg" />
-<img src="../images/media/16684889455769/16686553169239.jpg" alt="16686553169239.jpg" /></p>
+<img src="../images/media/16684889455769/16686553169239.jpg" alt="16686553169239.jpg" />
+</p>
 </div>
 </div>
 </div>

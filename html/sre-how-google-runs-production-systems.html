@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SRE Google运维解密(SRE: How Google Runs Production Systems)</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">SRE Google运维解密(SRE: How Google Runs Production Systems)</h1>
@@ -44,7 +43,7 @@
 </ol>
 
 
-<div id="orgc569b1a" class="figure">
+<div id="org677a51d" class="figure">
 <p><img src="../images/google-campus.png" alt="google-campus.png" />
 </p>
 </div>
@@ -133,7 +132,7 @@ QPS陷阱
 </p>
 
 
-<div id="orgacb3530" class="figure">
+<div id="org68fc1a3" class="figure">
 <p><img src="../images/consensus-group-placement-0.png" alt="consensus-group-placement-0.png" />
 </p>
 </div>
@@ -143,7 +142,7 @@ QPS陷阱
 </p>
 
 
-<div id="orgf48fad0" class="figure">
+<div id="org882f103" class="figure">
 <p><img src="../images/consensus-group-placement-1.png" alt="consensus-group-placement-1.png" />
 </p>
 </div>
@@ -153,7 +152,7 @@ QPS陷阱
 </p>
 
 
-<div id="org199e8aa" class="figure">
+<div id="org75f097f" class="figure">
 <p><img src="../images/consensus-group-placement-2.png" alt="consensus-group-placement-2.png" />
 </p>
 </div>
@@ -172,9 +171,10 @@ QPS陷阱
 </p>
 
 <p>
-大规模部署带外检测器成本较高。Gmail计算资源的很大一部分都会用来支持每日数据检测的运行。使这个问题变得更加严重的是，本身可能会造成软件服务器缓存命中率的下降，这就会造成用户可见响应速度的下降。为了避免这种问题，Gmail提供了一系列针对校验器的限速机制，同时定期重构这些校验器，以降低磁盘压力。在某一次重构工作，我们降低了60%磁盘磁头的使用率，同时没有显著降低校验器覆盖的范围。虽然大部分Gmail检测器每天运行一次，但是压力最大的校验器被分为10~14个分片，每天只运行一个分片。</p>
+大规模部署带外检测器成本较高。Gmail计算资源的很大一部分都会用来支持每日数据检测的运行。使这个问题变得更加严重的是，本身可能会造成软件服务器缓存命中率的下降，这就会造成用户可见响应速度的下降。为了避免这种问题，Gmail提供了一系列针对校验器的限速机制，同时定期重构这些校验器，以降低磁盘压力。在某一次重构工作，我们降低了60%磁盘磁头的使用率，同时没有显著降低校验器覆盖的范围。虽然大部分Gmail检测器每天运行一次，但是压力最大的校验器被分为10~14个分片，每天只运行一个分片。
+</p>
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/sre-how-google-runs-production-systems.html';this.page.identifier = 'sre-how-google-runs-production-systems.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

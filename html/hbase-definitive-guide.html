@@ -459,7 +459,7 @@ MapReduce Locality
 <h3 id="org6d7b517"><span class="section-number-3">6.1.</span> Storage</h3>
 <div class="outline-text-3" id="text-6-1">
 
-<div id="org46c68c8" class="figure">
+<div id="org684dd75" class="figure">
 <p><img src="../images/hbase-architecture.png" alt="hbase-architecture.png" />
 </p>
 </div>
@@ -483,7 +483,7 @@ The HRegionServer opens the region and creates a corresponding HRegion object. W
 <div id="outline-container-orga1bc527" class="outline-3">
 <h3 id="orga1bc527"><span class="section-number-3">6.2.</span> Files</h3>
 <div class="outline-text-3" id="text-6-2">
-<pre class="example" id="orge6a8b11">
+<pre class="example" id="orgbb92841">
 ➜  ~  hadoop fs -lsr /home/dirlt/hbase
 13/05/30 12:32:37 INFO security.UserGroupInformation: JAAS Configuration already set up for Hadoop, not re-installing.
 drwxr-xr-x   - dirlt supergroup          0 2013-05-08 14:49 /home/dirlt/hbase/-ROOT-
@@ -551,7 +551,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </p>
 
 
-<div id="orgf3fb0ef" class="figure">
+<div id="org5019fa1" class="figure">
 <p><img src="../images/hbase-hfile-structure.png" alt="hbase-hfile-structure.png" />
 </p>
 </div>
@@ -565,7 +565,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </p>
 
 
-<div id="orgaae2d13" class="figure">
+<div id="org5b0de8e" class="figure">
 <p><img src="../images/hbase-keyvalue-format.png" alt="hbase-keyvalue-format.png" />
 </p>
 </div>
@@ -599,7 +599,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 </ul>
 
 
-<div id="org1d9e80e" class="figure">
+<div id="org58e8c6f" class="figure">
 <p><img src="../images/hbase-store-files-in-minor-compaction.png" alt="hbase-store-files-in-minor-compaction.png" />
 </p>
 </div>
@@ -623,7 +623,7 @@ The actual storage files are implemented by the HFile class, which was specifica
 <h3 id="orgf623412"><span class="section-number-3">6.5.</span> WAL</h3>
 <div class="outline-text-3" id="text-6-5">
 
-<div id="org49fa376" class="figure">
+<div id="org7114db9" class="figure">
 <p><img src="../images/hbase-wal-structure.png" alt="hbase-wal-structure.png" />
 </p>
 </div>
@@ -637,7 +637,7 @@ The figure shows three different regions, hosted on the same region server, and 
 </p>
 
 
-<div id="org9861f63" class="figure">
+<div id="org929eed1" class="figure">
 <p><img src="../images/hbase-wal-shared.png" alt="hbase-wal-shared.png" />
 </p>
 </div>

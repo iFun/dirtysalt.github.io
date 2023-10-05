@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>垃圾回收的算法和实现</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">垃圾回收的算法和实现</h1>
@@ -121,7 +120,7 @@ Cheney GC(1970). 改进了上面递归调用问题，维护两个指针scan/free
 </p>
 
 
-<div id="orgd0a04fe" class="figure">
+<div id="orgb99aaa0" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-0.png" alt="garbage-collect-algorithm-and-implementation-book-0.png" />
 </p>
 </div>
@@ -131,7 +130,7 @@ Cheney GC(1970). 改进了上面递归调用问题，维护两个指针scan/free
 </p>
 
 
-<div id="org760a26d" class="figure">
+<div id="org0dd8052" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-1.png" alt="garbage-collect-algorithm-and-implementation-book-1.png" />
 </p>
 </div>
@@ -252,13 +251,13 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 
 
 
-<div id="org95dc2c7" class="figure">
+<div id="orge86f993" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-2.png" alt="garbage-collect-algorithm-and-implementation-book-2.png" />
 </p>
 </div>
 
 
-<div id="org2e2c2ef" class="figure">
+<div id="org111184c" class="figure">
 <p><img src="../images/garbage-collect-algorithm-and-implementation-book-3.png" alt="garbage-collect-algorithm-and-implementation-book-3.png" />
 </p>
 </div>
@@ -305,9 +304,10 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 </p>
 
 <p>
-RC Immix我看的比较粗略，但是RC对象并不是object而是Immix里面的block/line. 吞吐量可以提升不少， 并且因为回收对象粒度更大所以内存使用效率会更高不容易出现碎片。</p>
+RC Immix我看的比较粗略，但是RC对象并不是object而是Immix里面的block/line. 吞吐量可以提升不少， 并且因为回收对象粒度更大所以内存使用效率会更高不容易出现碎片。
+</p>
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/garbage-collect-algorithm-and-implementation-book.html';this.page.identifier = 'garbage-collect-algorithm-and-implementation-book.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

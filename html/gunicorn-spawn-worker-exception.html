@@ -81,7 +81,7 @@ AttributeError: module 'config' has no attribute 'APP_RUNNING_REGION'
 从这个错误日志看出现了加载模块的错误 config 里面增加属性 APP_RUNNING_REGION. 但是当时我的操作只是更新代码，而没有进行重启。下面可以看到push_rpc_server一直在运行。
 </p>
 
-<pre class="example" id="org7bec137">
+<pre class="example" id="orgdc50f89">
 [ec2-user@host pulsar]$ supervisorctl
 push_rpc_server                  RUNNING   pid 37526, uptime 28 days, 8:28:01
 </pre>
@@ -135,7 +135,8 @@ def wsgi(self):
 </div>
 
 <p>
-使用这种方式可以保证在整个运行期间，整个worker使用的code不再会变化。</p>
+使用这种方式可以保证在整个运行期间，整个worker使用的code不再会变化。
+</p>
 </div>
 </div>
 </div>

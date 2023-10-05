@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>The Anatomy Of The Google Architecture</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">The Anatomy Of The Google Architecture</h1>
@@ -64,7 +63,7 @@
 <h2 id="orga9db78e"><span class="section-number-2">2.</span> The Basic Glue</h2>
 <div class="outline-text-2" id="text-2">
 
-<div id="org04a9f09" class="figure">
+<div id="orgf30cea6" class="figure">
 <p><img src="../images/the-anatomy-of-google-architecture-basic-glue.png" alt="the-anatomy-of-google-architecture-basic-glue.png" />
 </p>
 </div>
@@ -83,7 +82,7 @@
 <h3 id="orgc419b26"><span class="section-number-3">2.1.</span> Exterior Network</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="org3016e1d" class="figure">
+<div id="org06285d7" class="figure">
 <p><img src="../images/google-architecture-exterior-network.png" alt="google-architecture-exterior-network.png" />
 </p>
 </div>
@@ -124,7 +123,7 @@
 <h3 id="org9dc3b2d"><span class="section-number-3">2.3.</span> Rack</h3>
 <div class="outline-text-3" id="text-2-3">
 
-<div id="org3beb66a" class="figure">
+<div id="orgd40f854" class="figure">
 <p><img src="../images/google-architecture-rack.png" alt="google-architecture-rack.png" />
 </p>
 </div>
@@ -277,7 +276,7 @@ Software:
 <h2 id="orgfdd610b"><span class="section-number-2">3.</span> The Major Glue</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="org68b0d2c" class="figure">
+<div id="org30f626f" class="figure">
 <p><img src="../images/the-anatomy-of-google-architecture-major-glue.png" alt="the-anatomy-of-google-architecture-major-glue.png" />
 </p>
 </div>
@@ -343,7 +342,7 @@ Software:
 <li>Workqueue can manage many tens of thousands of machines <b>管理上万机器</b></li>
 <li>Launched via API or command line (sawzall example shown)</li>
 </ul>
-<pre class="example" id="org1d065c8">
+<pre class="example" id="org942ca7b">
 saw --program code.szl --workqueue testing
 --input_files /gfs/cluster1/2005-02-0[1-7]/submits.* \
 --destination /gfs/cluster2/$USER/output@100
@@ -356,7 +355,7 @@ saw --program code.szl --workqueue testing
 <h2 id="org7493dd8"><span class="section-number-2">4.</span> BUILD YOUR OWN GOOGLE</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="orga26e4b7" class="figure">
+<div id="orgc21cefc" class="figure">
 <p><img src="../images/the-open-source-google-stack.png" alt="the-open-source-google-stack.png" />
 </p>
 </div>
@@ -370,5 +369,5 @@ saw --program code.szl --workqueue testing
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/the-anatomy-of-the-google-architecture.html';this.page.identifier = 'the-anatomy-of-the-google-architecture.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

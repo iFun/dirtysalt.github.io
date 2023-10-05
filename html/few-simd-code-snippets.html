@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SIMD代码片段分析</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">SIMD代码片段分析</h1>
@@ -71,10 +70,10 @@
 </div>
 
 <p>
-测试代码可以看 <a href="codes/cc/misc/StringReplaceTest.cpp">这里</a>, 粘贴一些运行时间。运行时间分为 sparse 和 dense两种模式，sparse触发替换比较少的，dense则是比较多的。可以预测到，dense模式下面分支预测比较好，所以运行时间相比sparse更短。
+测试代码可以看 <a href="https://github.com/dirtysalt/codes/tree/master/cc/misc/StringReplaceTest.cpp">这里</a>, 粘贴一些运行时间。运行时间分为 sparse 和 dense两种模式，sparse触发替换比较少的，dense则是比较多的。可以预测到，dense模式下面分支预测比较好，所以运行时间相比sparse更短。
 </p>
 
-<pre class="example" id="orge55e9b8">
+<pre class="example" id="orgdb1d365">
 YAN007 :: ~/shared » ./a.out
 Replace0: mode=sparse, sz=32(0,0) timer=1ms
 Replace1: mode=sparse, sz=32(0,0), timer=0ms
@@ -233,10 +232,10 @@ inline bool Writer&lt;StringBuffer&gt;::ScanWriteUnescapedString(StringStream&am
 
 <hr />
 <p>
-用 SIMD 来加速memcpy是否可行呢？ 测试代码可以看 <a href="codes/cc/misc/MemcopyTest.cpp">这里</a>, 从结果上看没有 `std::memcpy` 效果好。
+用 SIMD 来加速memcpy是否可行呢？ 测试代码可以看 <a href="https://github.com/dirtysalt/codes/tree/master/cc/misc/MemcopyTest.cpp">这里</a>, 从结果上看没有 `std::memcpy` 效果好。
 </p>
 
-<pre class="example" id="org52d68a6">
+<pre class="example" id="orgbcdc6f1">
 Memcopy: mode=dense, sz=32 timer=2ms
 std::memcpy: mode=dense, sz=32, timer=0ms
 Memcopy: mode=dense, sz=128 timer=3ms
@@ -249,5 +248,5 @@ Memcopy: mode=dense, sz=20480 timer=170ms
 std::memcpy: mode=dense, sz=20480, timer=115ms
 </pre>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/few-simd-code-snippets.html';this.page.identifier = 'few-simd-code-snippets.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

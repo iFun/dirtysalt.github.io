@@ -23,7 +23,7 @@ WebServers上面压力并不大，通过psyco JIT来加速
 </p>
 
 
-<div id="orgfafc87e" class="figure">
+<div id="org2872ceb" class="figure">
 <p><img src="../images/youtube-scalability-web-servers.png" alt="youtube-scalability-web-servers.png" />
 </p>
 </div>
@@ -33,7 +33,7 @@ WebServers上面压力并不大，通过psyco JIT来加速
 </p>
 
 
-<div id="org1dbfc5b" class="figure">
+<div id="orge1b09a1" class="figure">
 <p><img src="../images/youtube-scalability-serving-video.png" alt="youtube-scalability-serving-video.png" />
 </p>
 </div>
@@ -43,7 +43,7 @@ thumbnail 小文件，请求数量大，会造成很多磁盘读。开始使用a
 </p>
 
 
-<div id="org245aafb" class="figure">
+<div id="orgd3cb63c" class="figure">
 <p><img src="../images/youtube-scalability-serving-thumbnails.png" alt="youtube-scalability-serving-thumbnails.png" />
 </p>
 </div>
@@ -54,19 +54,20 @@ Database用的是MySQL，存储元数据和用户数据。在Linux 2.4有个swap
 
 
 
-<div id="org15452f9" class="figure">
+<div id="org2c3d716" class="figure">
 <p><img src="../images/youtube-scalability-databases-0.png" alt="youtube-scalability-databases-0.png" />
 </p>
 </div>
 
 
-<div id="orgf3027a2" class="figure">
+<div id="org4e6dd62" class="figure">
 <p><img src="../images/youtube-scalability-databases-1.png" alt="youtube-scalability-databases-1.png" />
 </p>
 </div>
 
 <p>
-数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题（也就是sharding)</p>
+数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题（也就是sharding)
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/youtube-scalability.html';this.page.identifier = 'youtube-scalability.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

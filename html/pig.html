@@ -3,7 +3,6 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pig Latin: A Not-So-Foreign Language for Data Processing</title>
@@ -30,7 +29,7 @@
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Pig Latin: A Not-So-Foreign Language for Data Processing</h1>
@@ -109,7 +108,7 @@
 <p>
 SQL
 </p>
-<pre class="example" id="org1c3e7a4">
+<pre class="example" id="orgbd3c5fb">
 SELECT category, AVG(pagerank)
 FROM urls WHERE pagerank &gt; 0.2
 GROUP BY category HAVING COUNT(*) &gt; 106
@@ -118,7 +117,7 @@ GROUP BY category HAVING COUNT(*) &gt; 106
 <p>
 Pig Latin
 </p>
-<pre class="example" id="org13bdf44">
+<pre class="example" id="org482311d">
 good_urls = FILTER urls BY pagerank &gt; 0.2;
 groups = GROUP good_urls BY category;
 big_groups = FILTER groups BY COUNT(good_urls)&gt;106 ;
@@ -229,7 +228,7 @@ Pig has a rich, yet simple data model consisting of the following four types:
 </ul>
 
 
-<div id="orged3fcd4" class="figure">
+<div id="orga11d8c2" class="figure">
 <p><img src="../images/pig-latin-expressions.png" alt="pig-latin-expressions.png" />
 </p>
 </div>
@@ -239,7 +238,7 @@ Pig has a rich, yet simple data model consisting of the following four types:
 <div id="outline-container-org49cdc03" class="outline-3">
 <h3 id="org49cdc03"><span class="section-number-3">4.2.</span> Specifying Input Data: LOAD</h3>
 <div class="outline-text-3" id="text-4-2">
-<pre class="example" id="orgd55918f">
+<pre class="example" id="org637939f">
 queries = LOAD ‘query_log.txt’
           USING myLoad()
           AS (userId, queryString, timestamp);
@@ -256,7 +255,7 @@ queries = LOAD ‘query_log.txt’
 <div id="outline-container-orgdd87c1c" class="outline-3">
 <h3 id="orgdd87c1c"><span class="section-number-3">4.3.</span> Per-tuple Processing: FOREACH</h3>
 <div class="outline-text-3" id="text-4-3">
-<pre class="example" id="org2055620">
+<pre class="example" id="orgbb87f7e">
 expanded_queries = FOREACH queries GENERATE
                    userId, expandQuery(queryString);
 
@@ -270,7 +269,7 @@ expanded_queries = FOREACH queries GENERATE
 </ul>
 
 
-<div id="org85e2e6b" class="figure">
+<div id="org84e640f" class="figure">
 <p><img src="../images/pig-latin-flattening-in-foreach.png" alt="pig-latin-flattening-in-foreach.png" />
 </p>
 </div>
@@ -280,7 +279,7 @@ expanded_queries = FOREACH queries GENERATE
 <div id="outline-container-org6659cb8" class="outline-3">
 <h3 id="org6659cb8"><span class="section-number-3">4.4.</span> Discarding Unwanted Data: FILTER</h3>
 <div class="outline-text-3" id="text-4-4">
-<pre class="example" id="org6e059e5">
+<pre class="example" id="org11e9048">
 real_queries = FILTER queries BY userId neq ‘bot’;
 </pre>
 <ul class="org-ul">
@@ -292,7 +291,7 @@ real_queries = FILTER queries BY userId neq ‘bot’;
 <div id="outline-container-org6596759" class="outline-3">
 <h3 id="org6596759"><span class="section-number-3">4.5.</span> Getting Related Data Together: COGROUP</h3>
 <div class="outline-text-3" id="text-4-5">
-<pre class="example" id="orgb358f5d">
+<pre class="example" id="org36a3ce6">
 grouped_data =  COGROUP results BY queryString,
                 revenue BY queryString;
 
@@ -301,7 +300,7 @@ url_revenues = FOREACH grouped_data GENERATE
 </pre>
 
 
-<div id="org1da7805" class="figure">
+<div id="org08a7b34" class="figure">
 <p><img src="../images/pig-latin-cogroup-versus-join.png" alt="pig-latin-cogroup-versus-join.png" />
 </p>
 </div>
@@ -316,7 +315,7 @@ url_revenues = FOREACH grouped_data GENERATE
 <div id="outline-container-org4baea99" class="outline-4">
 <h4 id="org4baea99"><span class="section-number-4">4.5.1.</span> Special Case of COGROUP: GROUP</h4>
 <div class="outline-text-4" id="text-4-5-1">
-<pre class="example" id="org5d8cf7d">
+<pre class="example" id="orge5eea2b">
 grouped_revenue = GROUP revenue BY queryString;
 query_revenues = FOREACH grouped_revenue GENERATE
                  queryString,
@@ -332,7 +331,7 @@ query_revenues = FOREACH grouped_revenue GENERATE
 <div id="outline-container-org243d44a" class="outline-4">
 <h4 id="org243d44a"><span class="section-number-4">4.5.2.</span> JOIN in Pig Latin</h4>
 <div class="outline-text-4" id="text-4-5-2">
-<pre class="example" id="org1e5755b">
+<pre class="example" id="orgc30df6b">
 join_result = JOIN results BY queryString, revenue BY queryString;
 
 temp_var = COGROUP results BY queryString,
@@ -349,7 +348,7 @@ join_result = FOREACH temp_var GENERATE
 #note: 上面JOIN那个图输出结果是错误的，我们可以使用下面的例子做验证
 </p>
 
-<pre class="example" id="orgf88d10a">
+<pre class="example" id="org0fb5f43">
 ---sample1.txt---
 hello	world	dirlt
 
@@ -357,7 +356,7 @@ hello	world	dirlt
 hello	love	cjy
 </pre>
 
-<pre class="example" id="org3b10b84">
+<pre class="example" id="org0987d95">
 grunt&gt; s1 = LOAD 'sample.txt' AS (key,v1,v2);
 grunt&gt; s2 = LOAD 'sample2.txt' AS (key,v1,v2);
 grunt&gt; s1 = LOAD 'sample1.txt' AS (key,v1,v2);
@@ -391,7 +390,7 @@ Pig Latin has a number of other commands that are very similar to their SQL coun
 <div id="outline-container-orga48acda" class="outline-3">
 <h3 id="orga48acda"><span class="section-number-3">4.7.</span> Nested Operations</h3>
 <div class="outline-text-3" id="text-4-7">
-<pre class="example" id="orgbb87f12">
+<pre class="example" id="orge567384">
 grouped_revenue = GROUP revenue BY queryString;
 query_revenues = FOREACH grouped_revenue{
                  top_slot = FILTER revenue BY
@@ -411,7 +410,7 @@ query_revenues = FOREACH grouped_revenue{
 <div id="outline-container-orgcf4d7c2" class="outline-3">
 <h3 id="orgcf4d7c2"><span class="section-number-3">4.8.</span> Asking for Output: STORE</h3>
 <div class="outline-text-3" id="text-4-8">
-<pre class="example" id="org8e8acb7">
+<pre class="example" id="orgfc96c33">
 STORE query_revenues INTO ‘myoutput’
                      USING myStore();
 </pre>
@@ -466,7 +465,7 @@ STORE query_revenues INTO ‘myoutput’
 </ul>
 
 
-<div id="org3de5232" class="figure">
+<div id="org39a5e37" class="figure">
 <p><img src="../images/pig-latin-mapreduce-compilation.png" alt="pig-latin-mapreduce-compilation.png" />
 </p>
 </div>
@@ -509,5 +508,5 @@ STORE query_revenues INTO ‘myoutput’
 <h2 id="orge06c568"><span class="section-number-2">10.</span> SUMMARY</h2>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/pig.html';this.page.identifier = 'pig.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

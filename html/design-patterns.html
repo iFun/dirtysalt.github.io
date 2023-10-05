@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>设计模式(Design Patterns)</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">设计模式(Design Patterns)</h1>
@@ -638,10 +637,11 @@ Command对象接口可以非常简单只有Execute/UnExecute，但是使用Comma
 如果我们直接在语法树的节点上加入这些方法的话，那么语法节点的方法会越来越多难以管理。
 Visitor模式就是要求把访问逻辑和元素表示分开。语法节点上面提供一个Accept(Visitor* visitor)接口，实现就是visitor-&gt;Visit(this)。
 然后我们可以定义类型检查Visitor，代码生成Visitor，代码优化Visitor来实现Visit接口。Visitor模式比较
-适合在内部结构已经固定，但是外部需要增加很多操作这种内部结构接口的情况。</p>
+适合在内部结构已经固定，但是外部需要增加很多操作这种内部结构接口的情况。
+</p>
 </div>
 </div>
 </div>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/design-patterns.html';this.page.identifier = 'design-patterns.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

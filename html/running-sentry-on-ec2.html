@@ -3,13 +3,12 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>在AWS EC2上启动Sentry</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-</head>
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
 <h1 class="title">在AWS EC2上启动Sentry</h1>
@@ -29,7 +28,7 @@ Sentry是提供SAAS的，但是也有on-premise的open source版本。我看了�
 但是上去转了一圈，发现根本没有sentry这个命令(<a href="https://docs.sentry.io/cli/">https://docs.sentry.io/cli/</a>) 后来转了半天不知道在哪里在找到命令行和配置: 二进制在/usr/sentry下面，配置文件在 ~/.sentry下面
 </p>
 
-<pre class="example" id="org9ca1f6c">
+<pre class="example" id="orgf8a225f">
 ubuntu@ip-172-31-17-62:/usr/sentry/bin$ ls sentry
 sentry
 
@@ -41,7 +40,7 @@ config.yml  nginx.conf  sentry.conf.py  services
 修改了config.yml配置，但是还不知道怎么重启对应的服务。看了一下services下面有这些 web/cron/worker
 </p>
 
-<pre class="example" id="org857c254">
+<pre class="example" id="orga625736">
 ubuntu@ip-172-31-17-62:~/.sentry$ ls services/
 sentry-cron.service  sentry-web.service  sentry-worker.service
 </pre>
@@ -51,7 +50,7 @@ sentry-cron.service  sentry-web.service  sentry-worker.service
 可以使用systemctl来进行控制: systemctl可以用来列举所有的服务, systemctl restart可以重启服务
 </p>
 
-<pre class="example" id="org76918f9">
+<pre class="example" id="org98c362e">
 ubuntu@ip-172-31-17-62:~/.sentry$ systemctl | grep sentry
 sentry-cron.service                                                     loaded active running   Sentry Beat Service
 sentry-web.service                                                      loaded active running   Sentry Web Service
@@ -60,5 +59,5 @@ sentry-worker.service                                                   loaded a
 ubuntu@ip-172-31-17-62:~/.sentry$ sudo systemctl restart sentry-worker
 </pre>
 </div>
-</body>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/running-sentry-on-ec2.html';this.page.identifier = 'running-sentry-on-ec2.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

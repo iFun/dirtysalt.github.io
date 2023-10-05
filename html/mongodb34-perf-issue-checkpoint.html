@@ -27,7 +27,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org6cd288d" class="figure">
+<div id="orgdeac93c" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-0.jpg" alt="mongodb34-perf-issue-checkpoint-0.jpg" />
 </p>
 </div>
@@ -51,7 +51,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org2003eba" class="figure">
+<div id="orgb1c066a" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-1.jpg" alt="mongodb34-perf-issue-checkpoint-1.jpg" />
 </p>
 </div>
@@ -63,15 +63,15 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 <p>
-接着我们希望上机器去观察进一步的情况，结合 `dstat` 和 `mongostat` 看看primary/secondary到底发生了什么事情
+接着我们希望上机器去观察进一步的情况，结合dsta和mongostat看看primary/secondary到底发生了什么事情
 </p>
 
 <p>
-观察primary节点，每隔接近1min的时候，active writer会突然增长持续大约3s左右掉下去。然后观察 `dstat` 的这个时候情况，可以看到disk write大约写入了36M + 35M + 32M ~= 103M 数据，并且这个写入占据了很多sys cpu(也占用了部分usr cpu), 导致cpu idle掉了0. 这也可以解释为什么从监控面板上看cpu idle出现尖峰的情况。
+观察primary节点，每隔接近1min的时候，active writer会突然增长持续大约3s左右掉下去。然后观察dstat的这个时候情况，可以看到disk write大约写入了36M + 35M + 32M ~= 103M 数据，并且这个写入占据了很多sys cpu(也占用了部分usr cpu), 导致cpu idle掉了0. 这也可以解释为什么从监控面板上看cpu idle出现尖峰的情况。
 </p>
 
 
-<div id="org7a01d90" class="figure">
+<div id="org92c86bd" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-2.jpg" alt="mongodb34-perf-issue-checkpoint-2.jpg" />
 </p>
 </div>
@@ -81,7 +81,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 </p>
 
 
-<div id="org482cb60" class="figure">
+<div id="org90de1bc" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-3.jpg" alt="mongodb34-perf-issue-checkpoint-3.jpg" />
 </p>
 </div>
@@ -91,7 +91,7 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 为了确认这些数据是mongodb写入的，我们还运行了一个 `iotop` 来观察记录当时的情况
 </p>
 
-<pre class="example" id="orgc8cbf16">
+<pre class="example" id="org590df96">
 09:35:46  2979 be/3 root        0.00 B/s   64.93 K/s  0.00 %  1.58 % [jbd2/xvdb-8]
 09:35:46  2505 be/3 root        0.00 B/s    0.00 B/s  0.00 %  0.12 % [jbd2/xvda1-8]
 09:35:46  6964 be/4 ec2-user    2.63 M/s  104.81 M/s  0.00 %  0.01 % mongod --storageEngine wiredTiger --port 27017 --dbpath /srv/mongodb --wiredTigerCacheSizeGB 30 --logpath /srv/mongodb/log --pidfilepath /home/ec2-user/nova/deploy/mongod-27017.pid --fork --journal --replSet rs0 --setParameter replWriterThreadCount=1
@@ -181,7 +181,7 @@ while True:
 </p>
 
 
-<div id="orgf5b1dcd" class="figure">
+<div id="org315be00" class="figure">
 <p><img src="../images/mongodb34-perf-issue-checkpoint-4.jpg" alt="mongodb34-perf-issue-checkpoint-4.jpg" />
 </p>
 </div>
@@ -204,7 +204,7 @@ while True:
 如果对比mongodb 3.0 和 3.4 的wiredtiger默认参数的话，其实差别非常小，checkpoint wait 值完全一样。所以猜测 wiredtiger 3.4 生成的checkpoint 体积相比3.0要大很多，才造成升级之后会感知到磁盘的瞬间写入。
 </p>
 
-<pre class="example" id="orgc7d424e">
+<pre class="example" id="org990779b">
 mongodb 3.0
 
 2017-08-20T13:51:13.516+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=2G,session_max=20000,eviction=(threads_max=4),statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),

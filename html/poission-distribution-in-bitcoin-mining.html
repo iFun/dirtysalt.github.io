@@ -65,7 +65,7 @@ for n in (100 * 1000, 1000 * 1000, 5 * 1000 * 1000):
 这个解释是，在接下来的10.4分钟内，平均会发生一次事件。
 </p>
 
-<pre class="example" id="org097bd31">
+<pre class="example" id="orgce1b6ae">
 n = 100000, # = 93291, avg = 10.434715031460698
 n = 1000000, # = 932709, avg = 10.401006101581523
 n = 5000000, # = 4664554, avg = 10.404514558090655
@@ -102,7 +102,7 @@ for n in (100 * 1000, 1000 * 1000, 5 * 1000 * 1000):
 输出结果如下，实际结果就是15min. 这个解释是下次block到来的平均时间是15min. 而此时已经过去了5min, 所以平均还要等待10min.
 </p>
 
-<pre class="example" id="org0fced60">
+<pre class="example" id="org1f94980">
 n = 100000, # = 60571, avg = 14.929722202106614
 n = 1000000, # = 605959, avg = 15.006197564991856
 n = 5000000, # = 3032462, avg = 15.00148591494115
@@ -110,7 +110,8 @@ n = 5000000, # = 3032462, avg = 15.00148591494115
 
 <p>
 泊松分布和指数分布两者时间是存在一定关系的：<a href="https://www.ruanyifeng.com/blog/2015/06/poisson-distribution.html">泊松分布和指数分布：10分钟教程 - 阮一峰的网络日志</a>. 对于单位时间内发生次数这种离散量，
-应该使用泊松分布，而对于两次事件的时间间隔这种连续量，应该使用指数分布。</p>
+应该使用泊松分布，而对于两次事件的时间间隔这种连续量，应该使用指数分布。
+</p>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/poission-distribution-in-bitcoin-mining.html';this.page.identifier = 'poission-distribution-in-bitcoin-mining.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
 </html>

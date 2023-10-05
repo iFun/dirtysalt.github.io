@@ -163,7 +163,7 @@ Linux调度器是以模块方式提供的, 这种模块化结构被成为调度�
 <p>
 /proc/interrupts存放了系统中与中断相关的统计信息. 第一列是IRQ, 之后是各个CPU响应中断的次数, 第三列是中断控制器, 第四列是中断相关的设备名字
 </p>
-<pre class="example" id="orgbd58bb3">
+<pre class="example" id="org23ca333">
 ➜  ~  cat /proc/interrupts
            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7
   0:         15          0          0          0          0          0          0          0   IO-APIC-edge      timer
@@ -304,7 +304,7 @@ jnz loop
 <p>
 接下来问题就是这个loop-times应该设置多少呢? 我们就有了BogoMIPS. BogoMIPS可以在dmesg中看到. 它记录处理器在给定时间内忙循环执行的次数, 在内核启动时利用calibrate_delay计算出, 存放在loops_per_jiffy中可以从/proc/cpuinfo中读取.
 </p>
-<pre class="example" id="org513ede6">
+<pre class="example" id="orge82d41e">
 [    0.004000] tsc: Detected 3491.869 MHz processor
 [    0.000002] Calibrating delay loop (skipped), value calculated using timer frequency.. 6983.73 BogoMIPS (lpj=13967476)
 
@@ -503,7 +503,7 @@ IO调度程序管理块设备的请求队列, 决定队列中请求排列顺序�
 <p>
 /proc/&lt;pid&gt;/maps以及pmap工具可以查看进程地址空间. pmap输出字段分别是起始地址, 区域大小, 权限, 以及二进制文件. proc输出还包括主次设备号和inode节点.
 </p>
-<pre class="example" id="org9d8fac9">
+<pre class="example" id="org2a2dc1a">
 ➜  notes git:(master) ✗ pmap 3252
 3252:   python -m SimpleHTTPServer 8080
 0000000000400000   2804K r-x-- python2.7
@@ -544,7 +544,7 @@ Linux使用三级页表完成虚拟地址到物理地址的转换. 为了加快�
 <p>
 页高速缓存(page cache)和块缓冲区(block cache, block buffer)之间的关系非常微妙. C14中提到了, 在2.6之前, 所以IO操作都是通过提交块缓冲区来执行的. 也就是说, 用户态写文件, 首先会写page cache, 同时也会写入block cache来发起IO操作. 一个磁盘块数据可以同时存于两个缓存中, 不仅浪费内存, 还需要考虑同步两个缓存中的数据. 2.6之后使用通过bio来管理IO请求, block cache就可以不再参与文件读写. 但是block cache依然有一些作用 a. 读写inode节点 b. 直接操作块底层(O_DIRECT). block cache和page cache大小可以从`free -t`命令中看到. 其中`buffers`对应block cache, `cached`对应page cache.
 </p>
-<pre class="example" id="orgef042a7">
+<pre class="example" id="orgb282cd4">
 ➜  notes git:(master) ✗ free -t
              total       used       free     shared    buffers     cached
 Mem:       8047140    3786604    4260536     393104     334472    1405072

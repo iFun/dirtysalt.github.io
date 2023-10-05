@@ -39,7 +39,7 @@
 </ul>
 
 
-<div id="orgad9d10a" class="figure">
+<div id="orgf2020a9" class="figure">
 <p><img src="../images/dremio-c3-effect-0.jpg" alt="dremio-c3-effect-0.jpg" />
 </p>
 </div>
@@ -102,7 +102,7 @@ order by
 Dremio运行时间在1756ms左右
 </p>
 
-<pre class="example" id="orgfc61ff6">
+<pre class="example" id="org457754c">
 --&gt; 1671. avg = 1756
 --&gt; 1681. avg = 1756
 --&gt; 1778. avg = 1756
@@ -119,7 +119,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="orge6cefc9" class="figure">
+<div id="org9fd1c2a" class="figure">
 <p><img src="../images/dremio-c3-effect-1.jpg" alt="dremio-c3-effect-1.jpg" />
 </p>
 </div>
@@ -129,19 +129,19 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="org9cd9029" class="figure">
+<div id="orge7f3bfa" class="figure">
 <p><img src="../images/dremio-c3-effect-2.jpg" alt="dremio-c3-effect-2.jpg" />
 </p>
 </div>
 
 
-<div id="orgb118bb9" class="figure">
+<div id="org0c9361f" class="figure">
 <p><img src="../images/dremio-c3-effect-3.jpg" alt="dremio-c3-effect-3.jpg" />
 </p>
 </div>
 
 
-<div id="org06616f3" class="figure">
+<div id="orgb5f2cac" class="figure">
 <p><img src="../images/dremio-c3-effect-4.jpg" alt="dremio-c3-effect-4.jpg" />
 </p>
 </div>
@@ -155,7 +155,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 Dremio可以选择将cache关闭。如果把cache关闭的话，那么这个查询的延迟会下降到11s上下
 </p>
 
-<pre class="example" id="org98b944c">
+<pre class="example" id="org94b8ab1">
 running Q15-WITH-AS on dremio
 --&gt; 12238. avg = 12238
 --&gt; 11935. avg = 12086
@@ -170,7 +170,7 @@ running Q15-WITH-AS on dremio
 </pre>
 
 
-<div id="org4500d03" class="figure">
+<div id="org5f477f1" class="figure">
 <p><img src="../images/dremio-c3-effect-5.jpg" alt="dremio-c3-effect-5.jpg" />
 </p>
 </div>
@@ -180,7 +180,7 @@ running Q15-WITH-AS on dremio
 </p>
 
 
-<div id="org328b630" class="figure">
+<div id="org58e6000" class="figure">
 <p><img src="../images/dremio-c3-effect-6.jpg" alt="dremio-c3-effect-6.jpg" />
 </p>
 </div>
@@ -196,14 +196,14 @@ running Q15-WITH-AS on dremio
 <li>重启机器之后，可以看有大量磁盘读取。</li>
 </ol></li>
 <li>dremio-worker读没有完全做到Local Read, 所以导致worker之间读取需要去另外一个worker里面要部分数据，所以存在网络输出</li>
-<li>dremio-worker的cache disk并不是使用EBS，而是使用[instance storage](<a href="https://aws.amazon.com/cn/premiumsupport/knowledge-center/ec2-linux-instance-store-volumes/">https://aws.amazon.com/cn/premiumsupport/knowledge-center/ec2-linux-instance-store-volumes/</a>)，相当于本地盘这个东西吧。</li>
+<li>dremio-worker的cache disk并不是使用EBS，而是使用<a href="https://aws.amazon.com/cn/premiumsupport/knowledge-center/ec2-linux-instance-store-volumes/">instance storage</a>，相当于本地盘这个东西吧。</li>
 </ol>
 
 <p>
-下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看[dremio.conf](<a href="https://docs.dremio.com/software/deployment/cloud-cache-config/">https://docs.dremio.com/software/deployment/cloud-cache-config/</a>), 的确是使用了这两个盘来做cache的。
+下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看<a href="https://docs.dremio.com/software/deployment/cloud-cache-config/">dremio.conf</a>, 的确是使用了这两个盘来做cache的。
 </p>
 
-<pre class="example" id="org10dd108">
+<pre class="example" id="org8094ed2">
 [ec2-user@ip-172-31-13-89 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 devtmpfs         63G     0   63G   0% /dev
@@ -259,7 +259,7 @@ services.executor.cache.pctquota.fs += "95"
 Dremio使用了EFS，但是似乎这上面只是存储了每个节点的日志信息，以及thirdparty估计是第三方库使用EFS来进行共享，EFS上并没有存储Cache
 </p>
 
-<pre class="example" id="org973a51e">
+<pre class="example" id="orgbdccdef">
 [ec2-user@ip-172-31-10-156 ~]$ sudo mount -t efs -o tls fs-0719cd08e6a31df7b:/ efs
 /home/ec2-user/efs is already mounted, please run 'mount' command to verify
 [ec2-user@ip-172-31-10-156 ~]$ cd efs/
@@ -286,7 +286,7 @@ thirdparty/
 重启机器之后，可以看到存在大量磁盘读取
 </p>
 
-<pre class="example" id="org56d10aa">
+<pre class="example" id="org5eb6b60">
 Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
 nvme1n1           0.00     0.00 1789.00    0.00 213612.00     0.00   238.81     0.31    0.23    0.23    0.00   0.06  11.20
 nvme2n1           0.00     0.00 1695.00    0.00 211096.00     0.00   249.08     0.48    0.33    0.33    0.00   0.06  10.00
@@ -319,7 +319,7 @@ nvme0n1           0.00     0.00    1.00    0.00     4.00     0.00     8.00     0
 </div>
 
 
-<div id="org9863072" class="figure">
+<div id="orgff26d37" class="figure">
 <p><img src="../images/dremio-c3-effect-7.jpg" alt="dremio-c3-effect-7.jpg" />
 </p>
 </div>
@@ -355,7 +355,7 @@ order by
 运行时间在 255ms 上下
 </p>
 
-<pre class="example" id="orgcac8a7e">
+<pre class="example" id="org7281c93">
 running Q01 on dremio
 --&gt; 340. avg = 340
 --&gt; 251. avg = 295
@@ -374,13 +374,13 @@ running Q01 on dremio
 </p>
 
 
-<div id="org7596926" class="figure">
+<div id="org8d39d1b" class="figure">
 <p><img src="../images/dremio-c3-effect-8.jpg" alt="dremio-c3-effect-8.jpg" />
 </p>
 </div>
 
 
-<div id="org65935e9" class="figure">
+<div id="orgba8ac2b" class="figure">
 <p><img src="../images/dremio-c3-effect-9.jpg" alt="dremio-c3-effect-9.jpg" />
 </p>
 </div>
