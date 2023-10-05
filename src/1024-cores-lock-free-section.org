@@ -129,7 +129,9 @@ Fifth, atomic RMW operations have some fixed associated costs. For modern Intel 
 
 作者总结下来，提高扩展性的箴言就是：减少cache line在线程之间的交换
 
-> The most important aggregate metric for a concurrent data structure is a mean number of cache line transfers between threads per operation.
+#+BEGIN_QUOTE
+The most important aggregate metric for a concurrent data structure is a mean number of cache line transfers between threads per operation.
+#+END_QUOTE
 
 ** false sharing 的前提是先减少sharing
 

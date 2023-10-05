@@ -48,7 +48,9 @@ Wu Wei(无为)就是需要依靠事物本身的发展规律行事。
 
 这些做惯了大单的agency, 上来就是大手笔，要租几天风洞。这种风洞是只有F1和空气动力学专家使用的设施。
 
-> The agency wanted to spend one million dollars on a thirty-second spot, which, while funny and clever, involved renting an actual wind tunnel for a couple of days. You know, those facilities used by Formula 1 teams and aerodynamicists.
+#+BEGIN_QUOTE
+The agency wanted to spend one million dollars on a thirty-second spot, which, while funny and clever, involved renting an actual wind tunnel for a couple of days. You know, those facilities used by Formula 1 teams and aerodynamicists.
+#+END_QUOTE
 
 -----
 
@@ -62,7 +64,9 @@ Wu Wei(无为)就是需要依靠事物本身的发展规律行事。
 
 从云上面下来自己买机器，一共买了20台机器，每台机器384GB内存挺大的。
 
-> Each of these R7625s contain two AMD EPYC 9454 CPUs running at 2.75GHz with 48 cores / 96 threads. That means we're adding almost 4,000 vCPUs to our on-premise fleet! And a ridiculous 7,680 GB of RAM! And 384TB of Gen 4 NVMe storage! Serious horsepower and headroom for years to come. In addition to this, we have another ~six database servers showing up between now and this summer, and then we'll be set.
+#+BEGIN_QUOTE
+Each of these R7625s contain two AMD EPYC 9454 CPUs running at 2.75GHz with 48 cores / 96 threads. That means we're adding almost 4,000 vCPUs to our on-premise fleet! And a ridiculous 7,680 GB of RAM! And 384TB of Gen 4 NVMe storage! Serious horsepower and headroom for years to come. In addition to this, we have another ~six database servers showing up between now and this summer, and then we'll be set.
+#+END_QUOTE
 
 **UPDATE**: [[https://world.hey.com/dhh/cut-cloud-before-payroll-a4530ebd][Cut cloud before payroll]]
 
@@ -72,9 +76,13 @@ Wu Wei(无为)就是需要依靠事物本身的发展规律行事。
 
 在SFO路上有很多这样的广告牌。老板们打上自家产品的广告，上下班看到这些牌子会有点小激动，但是实际没啥效果。
 
-> I will say that it felt pretty cool to see the irreverent Basecamp marketing messages appear on building-hugging billboards. There was an emotionally gratifying return on the investment. And perhaps that explains why it used to be common to see business software advertised in places like San Francisco where a lot of executives of such companies could feel good about seeing them. There's something gratifying about being in the real world like this.
+#+BEGIN_QUOTE
+I will say that it felt pretty cool to see the irreverent Basecamp marketing messages appear on building-hugging billboards. There was an emotionally gratifying return on the investment. And perhaps that explains why it used to be common to see business software advertised in places like San Francisco where a lot of executives of such companies could feel good about seeing them. There's something gratifying about being in the real world like this.
+#+END_QUOTE
 
-> But yeah, it didn't work. We won't be doing that again. But we'll always have the pictures
+#+BEGIN_QUOTE
+But yeah, it didn't work. We won't be doing that again. But we'll always have the pictures
+#+END_QUOTE
 
 -----
 
@@ -82,11 +90,17 @@ Wu Wei(无为)就是需要依靠事物本身的发展规律行事。
 
 这篇文章的标题真是漂亮 “如何在有电的前夕继续制造煤油灯“
 
-> 这种可视化的目的不是要堕入职业虚无主义的墓穴中。我们现在所做的一切都不重要，因为即将到来的人工智能霸主将在瞬间解除我们的职责。但是要鼓起谦卑之心，接受这样的事实：是的，偶尔，甚至很少，世界真的会发生巨大的变化。培养对你无法改变的东西的生存恐惧是没有任何好处的。
+#+BEGIN_QUOTE
+这种可视化的目的不是要堕入职业虚无主义的墓穴中。我们现在所做的一切都不重要，因为即将到来的人工智能霸主将在瞬间解除我们的职责。但是要鼓起谦卑之心，接受这样的事实：是的，偶尔，甚至很少，世界真的会发生巨大的变化。培养对你无法改变的东西的生存恐惧是没有任何好处的。
+#+END_QUOTE
 
-> 我喜欢想象，我们所有从事软件开发的人，就像今天看起来的那样，正忙着制造各种形状和大小的漂亮煤油灯。我们在提高燃烧效率。我们在寻找更清晰的玻璃形式来让光线通过。我们在修补一个已经存在了很长时间的配方。但在我们这样做的时候，爱迪生和特斯拉正在另一个房间里忙着发明电力。
+#+BEGIN_QUOTE
+我喜欢想象，我们所有从事软件开发的人，就像今天看起来的那样，正忙着制造各种形状和大小的漂亮煤油灯。我们在提高燃烧效率。我们在寻找更清晰的玻璃形式来让光线通过。我们在修补一个已经存在了很长时间的配方。但在我们这样做的时候，爱迪生和特斯拉正在另一个房间里忙着发明电力。
+#+END_QUOTE
 
-> 我确信，即使对爱迪生和特斯拉来说，也根本不清楚到底什么时候才会翻开那最后的灯泡时刻的开关。而与此同时，世界仍然需要在黑暗中看到东西，所以古老的灯仍然是必要的。这可能就是我们，现在，用可能很快成为过去的方式照亮通往未来的道路。
+#+BEGIN_QUOTE
+我确信，即使对爱迪生和特斯拉来说，也根本不清楚到底什么时候才会翻开那最后的灯泡时刻的开关。而与此同时，世界仍然需要在黑暗中看到东西，所以古老的灯仍然是必要的。这可能就是我们，现在，用可能很快成为过去的方式照亮通往未来的道路。
+#+END_QUOTE
 
 -----
 
@@ -149,7 +163,9 @@ aws prime video 自己给 "microservices/serverless" 的檄文
 
 这个这没有想到datadog可以这么赚钱，一个搞加密货币的客户付费65M。
 
-> At the risk of invoking a tired cliche, this kind of outlay for a performance and monitoring service sounds like a 0% interest rate phenomenon. There's just no universe I can imagine where that's a reasonable commitment. One that couldn't be more than adequately replaced by open-source alternatives. Even if you needed a fair bit of in-house development on top for tailoring.
+#+BEGIN_QUOTE
+At the risk of invoking a tired cliche, this kind of outlay for a performance and monitoring service sounds like a 0% interest rate phenomenon. There's just no universe I can imagine where that's a reasonable commitment. One that couldn't be more than adequately replaced by open-source alternatives. Even if you needed a fair bit of in-house development on top for tailoring.
+#+END_QUOTE
 
 -----
 
@@ -159,7 +175,9 @@ aws prime video 自己给 "microservices/serverless" 的檄文
 
 裁员可以让做狗屁事情的人才资源被更加合理地利用，但是为了还房贷做狗屁事情也不丢人。
 
-> Now arguing what is or isn't best for the individual is tricky business. I'm sure there are plenty of laid off tech workers who'd say they'd happily hold that bullshit job if it meant paying the mortgage. I get that. So let's return to the group perspective.
+#+BEGIN_QUOTE
+Now arguing what is or isn't best for the individual is tricky business. I'm sure there are plenty of laid off tech workers who'd say they'd happily hold that bullshit job if it meant paying the mortgage. I get that. So let's return to the group perspective.
+#+END_QUOTE
 
 -----
 
@@ -167,7 +185,9 @@ aws prime video 自己给 "microservices/serverless" 的檄文
 
 看上去大部分的文章都是灌水工作
 
-> The problem, as pointed out by Caplan, is that nobody cares about these research articles. In fact, if you asked engineers to pay the authors to access their research articles, they almost certainly would not be willing to pay.
+#+BEGIN_QUOTE
+The problem, as pointed out by Caplan, is that nobody cares about these research articles. In fact, if you asked engineers to pay the authors to access their research articles, they almost certainly would not be willing to pay.
+#+END_QUOTE
 
 -----
 

@@ -33,7 +33,9 @@ Calcite几个比较重要的特点如下：
 
 不太明白这两种算法之间的差别，从后面的内容看上去，multi-stage optimization是第一种的扩展来减少探索量，将优化分为多个阶段，每个阶段只使用部分规则进行探索。
 
-> In the current version of Calcite, the query optimizer architecture uses dynamic programming-based planning based on Volcano [20] with exten- sions for multi-stage optimizations as in Orca [45].
+#+BEGIN_QUOTE
+In the current version of Calcite, the query optimizer architecture uses dynamic programming-based planning based on Volcano [20] with exten- sions for multi-stage optimizations as in Orca [45].
+#+END_QUOTE
 
 ----------
 Calcite的架构图如下，可以看到除了优化器还有其他组件：

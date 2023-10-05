@@ -79,19 +79,27 @@ exclude=centos-release*
 
 使用所有仓库查看可用的perf
 
-> yum --enablerepo="**" list available perf
+#+BEGIN_QUOTE
+yum --enablerepo="**" list available perf
+#+END_QUOTE
 
 查看不同版本的perf
 
-> yum --enablerepo="**" --showduplicates list available perf
+#+BEGIN_QUOTE
+yum --enablerepo="**" --showduplicates list available perf
+#+END_QUOTE
 
 只在某些特定仓库下查找
 
-> yum --enablerepo="centos-kernel,centos-sclo-rh,fasttrack" --showduplicates search perf
+#+BEGIN_QUOTE
+yum --enablerepo="centos-kernel,centos-sclo-rh,fasttrack" --showduplicates search perf
+#+END_QUOTE
 
 列举所有的仓库
 
-> yum repolist
+#+BEGIN_QUOTE
+yum repolist
+#+END_QUOTE
 
 *** 反编译和符号解析问题
 

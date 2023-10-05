@@ -4,7 +4,9 @@ https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
 
 最开始没有啥头绪，看了提示里面一点有点启发
 
-> If the string does not contain any palindromic substrings of lengths 2 and 3, then the string does not contain any palindromic substrings at all.
+#+BEGIN_QUOTE
+If the string does not contain any palindromic substrings of lengths 2 and 3, then the string does not contain any palindromic substrings at all.
+#+END_QUOTE
 
 也就是说如果要确保没有任何回文的话，那么只需要保证长度2/3的串没有任何回文。
 
