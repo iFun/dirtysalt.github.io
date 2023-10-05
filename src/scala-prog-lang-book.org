@@ -12,7 +12,7 @@ scala标识符分为3类：
 - A *mixed identifier* consists of an alphanumeric identifier, which is fol- lowed by an underscore and an operator identifier.
   - unary_+ used as a method name defines a unary + operator.
   - myvar_= used as method name defines an assignment operator.
-- A *literal identifier* is an arbitrary string enclosed in back ticks (` . . . `). #note: 解决关键字问题
+- A *literal identifier* is an arbitrary string enclosed in back ticks. #note: 解决关键字问题
   - You cannot write Thread.yield() because yield is a reserved word in Scala. However, you can still name the method in back ticks, e.g., Thread.`yield`().
 
 *** 原始类型
