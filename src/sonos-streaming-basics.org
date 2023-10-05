@@ -5,7 +5,7 @@ http://musicpartners.sonos.com/node/465
 这个是Sonos Music API Dev Guide里面关于流媒体处理的一节，里面有不少关于流媒体(over HTTP)的基础知识，学习一下还是很不错的。
 
 ----------
-这个Guide里面有专门一章讲解如何进行DRM(Digit Rights Management)（[[http://musicpartners.sonos.com/node/507][链接]]).
+这个Guide里面有专门一章讲解如何进行DRM(Digit Rights Management)([[http://musicpartners.sonos.com/node/507][链接]]).
 
 #+BEGIN_QUOTE
 If you need your streaming media encrypted, Sonos supports digital rights management as described in Encrypting content for digital rights management (DRM). If you need to use expiring URIs for content (sometimes known as time-bomb URIs), see getMediaURI for guidelines.
@@ -13,7 +13,7 @@ If you need your streaming media encrypted, Sonos supports digital rights manage
 
 大概有下面三种办法：
 - HTTPS only.
-- Basic encryption: Add your encrypted content.（通过对称加密，需要得到ContentKey)
+- Basic encryption: Add your encrypted content.(通过对称加密，需要得到ContentKey)
 - Strong encryption: Add Sonos player verification and encrypt your content keys.（在ContentKey上面进行非对称加密，并且对Player进行验证）
 
 ----------

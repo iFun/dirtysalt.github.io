@@ -272,7 +272,7 @@ int main() {
 还有某些内存带宽更高的DRAM技术比如GDDR(Graphics DDR)和HBM(High Bandwidth Memory), 但是它们和DDR是不兼容的。
 
 可以看到传输速率在提升，但是延迟基本没有什么变化。现代CPU通常支持多个独立的memory channels, 而一个memory channel的宽度是32bit or 64bit.
-如果以64bit计算，主板上有4个memory channels的话，那么DDR4最高传输速率是在3.2G * 4 * 8 = 102.4GB/s. (也不知道这样计算的对不对）
+如果以64bit计算，主板上有4个memory channels的话，那么DDR4最高传输速率是在3.2G * 4 * 8 = 102.4GB/s. (也不知道这样计算的对不对)
 
 我看了一下我的macbook air, DDR3-1600(1600MT/s), 我不知道memory channel的情况，假设只有一个64bit channel, 那么peak bandwidth应该就是12.8GB/s.
 写了个小程序来做测试，只能做到一半 `bandwidth ` 6.653GB/s= ，不知道是否可以认为channel应该是32bit而不是64bit.
@@ -307,7 +307,7 @@ int main() {
 | L3    | ~40cycles(20ns)     |
 | Main  | 200+cycles(100ns)   |
 
-如果按照TMA进行分类的话，在L1I造成的cache miss会被归类为front-end stall(因为获取指令造成的停顿），而data miss则会被归类为back-end stall(因为执行和取内存造成的停顿）。
+如果按照TMA进行分类的话，在L1I造成的cache miss会被归类为front-end stall(因为获取指令造成的停顿)，而data miss则会被归类为back-end stall(因为执行和取内存造成的停顿)。
 
 使用 `perf` 工具我们可以查看到各个level造成的cache miss, 还可以查看mispredicted branch.
 

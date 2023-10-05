@@ -2,7 +2,7 @@
 http://research.google.com/pubs/pub36726.html @ 2010
 
 ** Abstract
-- Updating an index of the web as documents are crawled requires continuously transforming a large repository of existing documents as new documents ar-rive. This task is one example of a class of data pro-cessing tasks that transform a large repository of data via small, independent mutations. These tasks lie in a gap between the capabilities of existing infrastructure.(主要解决的问题就是，在非常大的base repository上面有少量的mutation应该如何进行处理？就现有的基础设施并没有很好地解决这个问题）
+- Updating an index of the web as documents are crawled requires continuously transforming a large repository of existing documents as new documents ar-rive. This task is one example of a class of data pro-cessing tasks that transform a large repository of data via small, independent mutations. These tasks lie in a gap between the capabilities of existing infrastructure.(主要解决的问题就是，在非常大的base repository上面有少量的mutation应该如何进行处理？就现有的基础设施并没有很好地解决这个问题)
 - Databases do not meet the storage or throughput require-ments of these tasks: Google’s indexing system stores tens of petabytes of data and processes billions of up-dates per day on thousands of machines. （存储大小以及吞吐量并不适合使用db。g的索引系统存储了pb级别的数据，并且每天需要在上千机器上面完成处理工作）
 - MapReduce and other batch-processing systems cannot process small up-dates individually as they rely on creating large batches for efficiency.（而mapreduce属于批处理系统，不能够单独处理这些小的更新）
 - We have built Percolator, a system for incrementally processing updates to a large data set, and deployed it to create the Google web search index. （percolator能够处理大数据集合下面的增量修改，并且现在已经使用在google的搜索引擎上面了）
@@ -17,7 +17,7 @@ http://research.google.com/pubs/pub36726.html @ 2010
 - Distributed storage systems like Bigtable can scale to the size of our repository but don’t provide tools to help programmers maintain data invariants in the face of concurrent updates.（而bigtable虽然可以扩展到支撑这些数据，但是却没有提供功能来维护不变量）
 - An ideal data processing system for the task of main-taining the web search index would be optimized for in-cremental processing; （我们需要的就是一个增量处理系统）
   - that is, it would allow us to main-tain a very large repository of documents and update it efficiently as each new document was crawled.
-  - Given that the system will be processing many small updates concurrently, an ideal system would also provide mech- anisms for maintaining invariants despite concurrent up-dates and for keeping track of which updates have been processed.（对于这个增量系统需要提供的机制包括下面两个，这也是percolator主要关注的两个方面：1）提供机制来维护不变量 2）能够追踪那些updates已经被处理过）
+  - Given that the system will be processing many small updates concurrently, an ideal system would also provide mech- anisms for maintaining invariants despite concurrent up-dates and for keeping track of which updates have been processed.（对于这个增量系统需要提供的机制包括下面两个，这也是percolator主要关注的两个方面：1）提供机制来维护不变量 2)能够追踪那些updates已经被处理过)
 
 
 -----

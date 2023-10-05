@@ -12,7 +12,7 @@ LinkedIn: https://www.linkedin.com/in/dirtysalt
 
 Talks:
 - 友盟数据分析平台架构 [[../images/um-arch.pdf][Umeng Analytical Architecture]]
-- 中国系统架构师大会(SACC 2014） [[../images/um-talk.pdf][如何在一天之内收集3.6亿移动设备的数据]]
+- 中国系统架构师大会(SACC 2014) [[../images/um-talk.pdf][如何在一天之内收集3.6亿移动设备的数据]]
 
 
 * 英文介绍
@@ -150,7 +150,7 @@ Data Lake Team:
 
 *** 高级软件架构师, 友盟, 2012.6 - 2016.4
 
-- 中国系统架构师大会(SACC 2014） [[../images/um-talk.pdf][如何在一天之内收集3.6亿移动设备的数据]]
+- 中国系统架构师大会(SACC 2014) [[../images/um-talk.pdf][如何在一天之内收集3.6亿移动设备的数据]]
 
 - 优化Hadoop集群使用包括：a) 使用lzma压缩算法来压缩不冷数据，节省60%以上的存储空间. b) 使用MapReduce任务直接生成HBase file然后进行Bulk Loading，相比直接使用HBase API来写入数据有很好的稳定性。 c) 重新设计HBase key prefix使得不会存在过热的Region Server
 

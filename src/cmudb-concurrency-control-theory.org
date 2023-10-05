@@ -6,11 +6,11 @@
 
 [[../images/cmudb-cct-schedules.png]]
 
-接下来就是CC的实现方式了：two-phase locking(两阶段锁，2PL，大部分DBMS都实现了）, timestamp ordering（时间序，我理解spanner可能属于这个范畴），multi-version (多版本）。
+接下来就是CC的实现方式了：two-phase locking(两阶段锁，2PL，大部分DBMS都实现了), timestamp ordering（时间序，我理解spanner可能属于这个范畴），multi-version (多版本)。
 
 2PL有两个阶段：growing & shrinking. 第一个阶段不断地拿到锁，第二个阶段不断地释放锁。基本的2PL实现可能会存在cascading aborts，tx1的abort会导致tx2 abort（考虑一下如果tx2 读取了 tx1的写入，但是tx1最终abort的情况）。cascading aborts回滚实现起来比较麻烦，所以为了避免它，可能对2PL施加更强的限制(strong strict 2PL)，就是只在事务结束的时候释放锁。 2PL的最大问题就在于并发性不好。
 
-2PL基本的锁有两个read/write lock，但是在事务里面通常叫做shared lock(S), exclusive lock(X). 但是仅仅有这两个lock还是不够的，设想起来如果要对table scan，那么我们要对上面所有的tuples做S-Lock，这个量有点大。我们需要有更大粒度的锁，所以就有了Intention lock：Intention-Shared(IS), Intention-Exclusive(IX), shared+intention-exclusive(SIX），关于这三个锁的用途可以看下面：增加了这些锁之后，锁的获取判断就复杂了，关于这点我还没有完全搞明白。
+2PL基本的锁有两个read/write lock，但是在事务里面通常叫做shared lock(S), exclusive lock(X). 但是仅仅有这两个lock还是不够的，设想起来如果要对table scan，那么我们要对上面所有的tuples做S-Lock，这个量有点大。我们需要有更大粒度的锁，所以就有了Intention lock：Intention-Shared(IS), Intention-Exclusive(IX), shared+intention-exclusive(SIX)，关于这三个锁的用途可以看下面：增加了这些锁之后，锁的获取判断就复杂了，关于这点我还没有完全搞明白。
 - Intention-Shared (IS): Indicates explicit locking at a lower level with shared locks.
 - Intention-Exclusive (IX): Indicates explicit locking at a lower level with exclusive or shared locks.
 - Shared+Intention-Exclusive (SIX): The sub-tree rooted at that node is locked explicitly in shared mode and explicit locking is being done at a lower level with exclusive-mode locks.

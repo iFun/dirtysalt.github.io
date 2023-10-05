@@ -10,7 +10,7 @@
 5. heart beat 定时去检测某些服务的心跳
 我觉得数据系统自身很重要，但是如果没有外围好的应用来辅助，价值还是会打折扣的。
 
-Beat可以即可以输出到logstash（可以用来做parse & transform) 然后输出给es, 也可以直接输出到es上。logstash支持很多种 [[https://www.elastic.co/guide/en/logstash/5.6/output-plugins.html][output plugins]], 这样就不用被锁定在es上了。
+Beat可以即可以输出到logstash(可以用来做parse & transform) 然后输出给es, 也可以直接输出到es上。logstash支持很多种 [[https://www.elastic.co/guide/en/logstash/5.6/output-plugins.html][output plugins]], 这样就不用被锁定在es上了。
 
 -----
 

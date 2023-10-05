@@ -51,7 +51,7 @@ The cores are logically organized in a hierarchy, at the bottom of which is a si
 
 ----------
 
-Linux Scheduler经历过多次重新设计和实现，并且为了适配新的硬件以及运行环境，做了许多改进/牺牲。未来可以预见到，其他的设计和实现也会不断地被提出来，同时bugs也会不断地被引入。scheduler这个东西的bugs比较隐秘，它不会造成crash,  也很拿通过类似sampling的方式来观察到，必须使用tracing的方式来发现，还有就是复现这些问题的workload(单一的workload可能没有办法复现，必须是多个applications同时运行），这个就给测试以及回归造成很大的困难。
+Linux Scheduler经历过多次重新设计和实现，并且为了适配新的硬件以及运行环境，做了许多改进/牺牲。未来可以预见到，其他的设计和实现也会不断地被提出来，同时bugs也会不断地被引入。scheduler这个东西的bugs比较隐秘，它不会造成crash,  也很拿通过类似sampling的方式来观察到，必须使用tracing的方式来发现，还有就是复现这些问题的workload(单一的workload可能没有办法复现，必须是多个applications同时运行)，这个就给测试以及回归造成很大的困难。
 
 #+BEGIN_QUOTE
 The Linux scheduler has gone through a couple ma- jor redesigns. The original scheduler had high algorithmic complexity, which resulted in poor performance when highly multithreaded workloads became common. In 2001, it was replaced by a new scheduler with O(1) complexity and bet- ter scalability on SMP systems. It was initially successful but soon required modifications for new architectures like NUMA and SMT. At the same time, users wanted better support for desktop use cases such as interactive and audio applications which required more changes to the scheduler. Despite numerous modifications and proposed heuristics, the O(1) scheduler was not able to meet expectations and was replaced by CFS in 2007. Interestingly, CFS sacrifices O(1) complexity for O(log n) but it was deemed worthwhile to provide the desired features.

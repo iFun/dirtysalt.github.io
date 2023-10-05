@@ -34,7 +34,7 @@ https://probablydance.com/2017/02/26/i-wrote-the-fastest-hashtable/ 这篇文章
 2. linear probing（phmap::hashset使用quandratic probing）
 3. robin hood hashing
 4. prime number slots
-5. an upper limit on probe count（上限设置在log2(n)上，max_load_factor是0.5)
+5. an upper limit on probe count(上限设置在log2(n)上，max_load_factor是0.5)
 可以看到这种实现在内存使用上远远超过phmap::hashset.
 
 CK/ska hashset实现

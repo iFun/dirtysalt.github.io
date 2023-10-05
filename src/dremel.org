@@ -96,7 +96,7 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 - MR/Dremel之间的差异
 - 树形结构层次对查询延迟影响
 - 每个Tablet处理时间：大约是在1~2s左右。
-- Scalability（扩展性)： 非常好
+- Scalability(扩展性)： 非常好
 - Straggler（慢节点）：每个节点通常只需要处理4-5 tablets(<10s), 但是慢节点可以到分钟级别。
 
 下图是行/列解析之间差异，可以看到如果选择10个列，列解析优势非常明显。按照这个趋势，估计要到上百列，可能行/列解析代价才会接近。

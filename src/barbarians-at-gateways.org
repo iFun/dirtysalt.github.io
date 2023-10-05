@@ -14,7 +14,7 @@ HFT可以认为是计算机科学/系统编程最具挑战的工作，它不是�
 I would argue that the computational challenges of developing and maintaining a competitive advantage in the exchange business are among the most difficult in computer science, and specifically systems programming. To give you a feeling of scale, the current exchange technology is benchmarked in nightly builds to run a series of simulated market data feeds at 1 million messages per second, as a unit test. There is no such thing as premature optimization in exchange development, as every cycle counts.
 #+END_QUOTE
 
-HFT行业就业的人都多来自于顶尖院校的PhD(not MBA). 现在数字化交易占据了70%以上的交易市场。并且整个社区都在不断地提升这个交易性能，比如可以购买到定制化的ASIC来处理market data, 将延迟降低740ns. （整个社区都在不断push limits of physics)
+HFT行业就业的人都多来自于顶尖院校的PhD(not MBA). 现在数字化交易占据了70%以上的交易市场。并且整个社区都在不断地提升这个交易性能，比如可以购买到定制化的ASIC来处理market data, 将延迟降低740ns. (整个社区都在不断push limits of physics)
 
 #+BEGIN_QUOTE
 The goal of this article is to introduce the problems on both sides of the wire. Today a big Wall Street trader is more likely to have a Ph.D from Caltech or MIT than an MBA from Harvard or Yale. The reality is that automated trading is the new marketplace, accounting for an estimated 77 percent of the volume of transactions in the U.K. market and 73 percent in the U.S. market. As a community, it’s starting to push the limits of physics. Today it is possible to buy a custom ASIC (application- specific integrated circuit) to parse market data and send executions in 740 nanoseconds (or 0.00074 milliseconds).4 (Human reaction time to a visual stimulus is around 190 million nanoseconds.)
@@ -79,7 +79,7 @@ The feed handler is often the first bit of code to be implemented by an HFT grou
 
 [[../images/barbarians-at-the-gateways-2.png]]
 
-交易所的技术和HFT差别不大，但是更加注意安全性。比如network上不允许做snoop, gateway的设计上也会监视每个client是否存在恶意操作（因为gateway是共享的，如果client A恶意操作，可以影响到上面共享的client B).
+交易所的技术和HFT差别不大，但是更加注意安全性。比如network上不允许做snoop, gateway的设计上也会监视每个client是否存在恶意操作(因为gateway是共享的，如果client A恶意操作，可以影响到上面共享的client B).
 
 #+BEGIN_QUOTE
 Exchange networking is as challenging as HFT networking but also has a deeper focus on security. Information arbitrage, or the practice of gaining information about a market that is not directly intended for the recipient, is a major concern. An example of information arbitrage is when an exchange participant “snoops” the wire to read packets from other participants. This practice is easily thwarted with deployment of VLANs for each client.

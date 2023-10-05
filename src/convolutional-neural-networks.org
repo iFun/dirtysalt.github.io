@@ -42,10 +42,10 @@ def conv_single_step(a_slice_prev, W, b):
 
 [[../images/cnn-why-convolutions.png]]
 
-通常来说，随着层数增加，H,W不断减小，而C不断增加。(C可以认为是feature detectors的数量）
+通常来说，随着层数增加，H,W不断减小，而C不断增加。(C可以认为是feature detectors的数量)
 
 ** 几种经典的CNN实现
-我就直接照抄ppt了，可以认为这几种实现上没有更多概念的引入（相比后面的resnet和inception).
+我就直接照抄ppt了，可以认为这几种实现上没有更多概念的引入(相比后面的resnet和inception).
 
 lenet-5解决当时手写数字识别问题。当时我看论文的时候也截了个图，可以对比一下Andrew Ng给的图和论文里面的图。看上去好像差不多。一共大约60k个参数。
 
@@ -114,7 +114,7 @@ Data Augmentation在图像上可以适度使用，包括下面几种方法：
 
 [[../images/cnn-fc-to-conv.png]] [[../images/cnn-conv-impl-of-sliding-windows.png]]
 
-物体检测上state-of-art技术应该是YOLO(you only look once). 实现上分为下面几步：（先假设我们只detect一种object)
+物体检测上state-of-art技术应该是YOLO(you only look once). 实现上分为下面几步：(先假设我们只detect一种object)
 1. 将输入图片分为9x9或者是19x19个grids.
 2. 每个grid上单独进行预测，输出包括(P, bx, by, bh, bw). 每个五元组为一个box, 可以有很多boxes
   1. P 表示检测到物体的概率
@@ -126,7 +126,7 @@ Data Augmentation在图像上可以适度使用，包括下面几种方法：
   2. 从boxes中选择P最大的box(A)，认为A里面有Object
   3. 然后剩余boxes中，如果和A的重合比例超过某个值(0.5)的话，那么丢弃
   4. 重复2，直到没有boxes为止
-重合比例计算可以用IOU(intersect over union), 也就是重合面积 / （A + B - 重合面积)。IOU很高的话，认为其实两个box重复。
+重合比例计算可以用IOU(intersect over union), 也就是重合面积 / (A + B - 重合面积)。IOU很高的话，认为其实两个box重复。
 
 如果需要检测多个物体的话，那么在一个grid里面可能会检测到多个objects，那么需要anchor box来帮助。anchor box实际上是帮助定位是哪一类objects的。比如下图：
 1. 在最下面的grid里面会检测到两个objects.

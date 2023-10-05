@@ -61,8 +61,8 @@ class Fancy:
 
 这里说一个更简单的办法，就是前面说到日志可以合并应用，但是其实也也是可以取消的（计算组合性）。
 - 比如要执行 add(a), mul(b), add(c), mul(d) 这些操作
-- 先执行 add(a), mul(b), 那么f(x) = x*b + a*b （系数分别是 b, a*b)
-- 在执行 add(c), mul(d), 那么f(x) = x*b*d + (a*b+c) *d （系数分别是 b*d, (a*b+c)*d)
+- 先执行 add(a), mul(b), 那么f(x) = x*b + a*b (系数分别是 b, a*b)
+- 在执行 add(c), mul(d), 那么f(x) = x*b*d + (a*b+c) *d (系数分别是 b*d, (a*b+c)*d)
 
 如果我们这时候想取消 add(a), mul(b), 应该怎么办呢？
 - 我们应该使用什么乘数： b*d/d

@@ -47,7 +47,7 @@ As mentioned in part 1, the Nehalem microarchitecture introduced a flexible arch
 
 [[../images/numa-deep-dive-part2-1.png]]
 
-下图是个Intel Xeon v4(Broadwell) HCC(High Core Count)结构图，CBOX是(Cache Box用来管理Cache一致性的）. 可以看到有两个ring, 不同core之间通信距离(hop)是不同的，但是估计差距不会那么大。如果要去访问remote memory的话，那么就需要通过R3 QPI/QPI Agent访问其他node上的memory.
+下图是个Intel Xeon v4(Broadwell) HCC(High Core Count)结构图，CBOX是(Cache Box用来管理Cache一致性的). 可以看到有两个ring, 不同core之间通信距离(hop)是不同的，但是估计差距不会那么大。如果要去访问remote memory的话，那么就需要通过R3 QPI/QPI Agent访问其他node上的memory.
 
 [[../images/numa-deep-dive-part2-2.png]]
 

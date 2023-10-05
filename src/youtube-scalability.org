@@ -18,11 +18,11 @@ thumbnail 小文件，请求数量大，会造成很多磁盘读。开始使用a
 
 [[../images/youtube-scalability-serving-thumbnails.png]]
 
-Database用的是MySQL，存储元数据和用户数据。在Linux 2.4有个swapping问题，造成MySQL性能有严重问题。但是当时还在等high-level hardware过来，这哥们用了个临时的办法：把kernel swapping功能先关闭掉，来渡过难关知道new hardware到来。当数据读写速度越来越高时，很自然的办法是replication, 读写分离。但是如果写入速度过快的话，主从之间差异会越来越大。最后从两个方面优化：1）应用层面入手切分成为两个cluster 2) RAID优化（RAID10->5 x RAID1 ）提升20-30%的吞吐量。
+Database用的是MySQL，存储元数据和用户数据。在Linux 2.4有个swapping问题，造成MySQL性能有严重问题。但是当时还在等high-level hardware过来，这哥们用了个临时的办法：把kernel swapping功能先关闭掉，来渡过难关知道new hardware到来。当数据读写速度越来越高时，很自然的办法是replication, 读写分离。但是如果写入速度过快的话，主从之间差异会越来越大。最后从两个方面优化：1)应用层面入手切分成为两个cluster 2) RAID优化（RAID10->5 x RAID1 ）提升20-30%的吞吐量。
 
 
 [[../images/youtube-scalability-databases-0.png]]
 
 [[../images/youtube-scalability-databases-1.png]]
 
-数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题（也就是sharding)
+数据库问题最后怎么解决呢？还是Sharding大法好啊！一拨人专注改进当前方案，另外一拨人考虑如何long term地解决这个问题(也就是sharding)

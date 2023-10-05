@@ -120,7 +120,7 @@ http://www.codership.com/wiki/doku.php?id=gcache
 
 *Swap Size Requirements*
 
-During normal operation MySQL/Galera node does not consume much more memory than a regular MySQL server. Additional memory is consumed for certification index and uncommitted writesets, but normally this should not be noticeable in a typical application. There is one exception though: （维护certification index以及没有提交的writeset)
+During normal operation MySQL/Galera node does not consume much more memory than a regular MySQL server. Additional memory is consumed for certification index and uncommitted writesets, but normally this should not be noticeable in a typical application. There is one exception though: (维护certification index以及没有提交的writeset)
 
 Writeset caching during state transfer. When a node is receiving a state transfer it cannot process and apply incoming writesets because it has no state to apply them to yet. Depending on a state transfer mechanism (e.g. mysqldump) the node that sends state transfer may not be able to apply writesets as well. Thus they need to cache those writesets for a catch-up phase. Currently the writesets are cached in memory and, if the system runs out of memory either state transfer will fail or the cluster would block waiting for the state transfer to end.(在state transfer阶段，donor是不可以写入的，所以在这期间需要缓存所有到达的writeset)
 
@@ -157,14 +157,14 @@ To control memory usage for writeset caching, check Galera parameters: *note：b
 
 There are two conceptually different ways to transfer a state from one MySQL server to another:
 - Using mysqldump. This requires the receiving server to be fully initialized and ready to accept connections *before* the transfer. This method is by definition blocking, in that it blocks donor server from modifying its own state for the duration of transfer. It is also the slowest of all, and in the loaded cluster that might be an issue in a loaded cluster.（使用mysqldump。要求在transfer之前配置好。会阻塞donor操作，速度比较慢，高负载情况下会有问题）
-- Copying data files directly. This requires that the receiving server is initialized *after* the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb_file_per_table should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.（直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)
+- Copying data files directly. This requires that the receiving server is initialized *after* the transfer. rsync, xtrabackup and other methods fall into this category. These methods a much faster than mysqldump, but they have certain limitations, like they can be used only on server startup and receiving server must be configured very similarly to the donor (e.g. innodb_file_per_table should be the same and so on). Some of these methods, e.g. xtrabackup, can be potentially made non-blocking on donor.(直接copy文件。要求transfer之后配置好？？速度比较快，但是要求配置源和目的配置相同。使用xtrabackup不会阻塞donor)
 - *Xtrabackup and rsync SST cannot be used for a running server.* It is not possible to copy datafiles under running InnoDB. Having wsrep_address set to a list of node addresses and starting replication on a running node can lead to node crash. +#todo: Xtrabackup需要停机处理吗？+  #note: xtrabackup不需要停机处理
 
 SST Donor
 - All SST methods cause some disturbance for donor node
 - By default donor accepts client connections, although committing will be prohibited for a while
 - If wsrep_sst_donor_rejects_queries is set, donor gives unknown command error to clients
-- Best practice is to dedicate a reference node for donor and backup activities（使用单独一台机器来做参照节点，这个机器上面没有负载，可以用作备份以及donor)
+- Best practice is to dedicate a reference node for donor and backup activities(使用单独一台机器来做参照节点，这个机器上面没有负载，可以用作备份以及donor)
 
 IST(Very effective)
 - If joining node had some previous state and gcache spans to that, then IST can be used.
@@ -215,7 +215,7 @@ Use wsrep_osu_method to choose either option. *ALTER TABLE to create new autoinc
 
 ** Certification Based Replication
 *** Introduction
-Certification based replication uses group communication and transaction ordering techniques to achieve synchronous replication. Transactions execute optimistically in a single node (or replica) and, at commit time, run a coordinated certification process to enforce global consistency. Global coordination is achieved with the help of a broadcast service, that establishes a global total order among concurrent transactions. (基于 *组通信* 以及 *事务顺序化* 技术来达到同步备份。事务首先是乐观地在本地执行，然后提交给其他节点做验证来保证全局一致性）
+Certification based replication uses group communication and transaction ordering techniques to achieve synchronous replication. Transactions execute optimistically in a single node (or replica) and, at commit time, run a coordinated certification process to enforce global consistency. Global coordination is achieved with the help of a broadcast service, that establishes a global total order among concurrent transactions. (基于 *组通信* 以及 *事务顺序化* 技术来达到同步备份。事务首先是乐观地在本地执行，然后提交给其他节点做验证来保证全局一致性)
 
 Pre-requisites for certification based replication: *note：that's why InnoDB is choosen？*
 - database is transactional (i.e. it can rollback uncommitted changes)（数据库必须支持事务）

@@ -5212,7 +5212,7 @@ struct iocb {
 #+END_SRC
 最常用的大概就是pread和pwrite操作。
 
-发起之后的话，可以有两种方式得到通知：1）使用我RESFD 2）使用io_getevents。我们主要看第二个方式。看看API
+发起之后的话，可以有两种方式得到通知：1)使用我RESFD 2)使用io_getevents。我们主要看第二个方式。看看API
 #+BEGIN_SRC Cpp
 int io_getevents(aio_context_t ctx_id, long min_nr, long nr,
                  struct io_event *events, struct timespec *timeout);

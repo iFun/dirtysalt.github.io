@@ -21,7 +21,7 @@
 - SSD同样内嵌有RAM存储器(RAM buffer)，通常是作为缓存和存储映射信息使用。
 - NAND闪存芯片(flash memory package)通过多个通道(channel)组织在一起。
 
-下图是the 512 GB version of the Samsung 840 Pro SSD, released in August 2013. As it can be seen on the circuit board, the main components are: # 和上面的架构图完全对应：）
+下图是the 512 GB version of the Samsung 840 Pro SSD, released in August 2013. As it can be seen on the circuit board, the main components are: # 和上面的架构图完全对应：)
 - 1 SATA 3.0 interface
 - 1 SSD controller (Samsung MDX S4LN021X01-8030)
 - 1 RAM module (256 MB DDR2 Samsung K4P4G324EB-FGC2)

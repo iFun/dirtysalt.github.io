@@ -20,7 +20,7 @@ SR pipeline框架下面，每个scan operator会提交和调度不同数量的ch
 
 但是这种模型其实有个问题，就是scan operator消费数量完全是由chunk source产生数量来决定的。也就是说，如果chunk source特别慢，那么scan operator被迫也运行的慢，两者时间其实几乎是一致的。这里我其实t0里面包含了scan operator的off cpu + on cpu时间（on cpu时间其实不太好统计）， 而chunk source统计的只有on cpu时间。我觉得这个模型如果都只统计on cpu时间的话可能可以work.
 
-UPDATE: 这里还有个问题就是，到达了某个点上，其实继续增加chunk source不一定会给带来更高的产生速度，比如IO打满或者是CPU跑满。所以想直接计算出具体的值是不可行的）
+UPDATE: 这里还有个问题就是，到达了某个点上，其实继续增加chunk source不一定会给带来更高的产生速度，比如IO打满或者是CPU跑满。所以想直接计算出具体的值是不可行的)
 
 ----------
 

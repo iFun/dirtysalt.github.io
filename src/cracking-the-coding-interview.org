@@ -1208,7 +1208,7 @@ Questions:
   - https://leetcode.com/problems/find-median-from-data-stream/description/
   - https://leetcode.com/problems/sliding-window-median/description/
   - https://www.hackerrank.com/challenges/ctci-find-the-running-median/problem
-  - 这个问题可以通过平衡树来完成，查询操作是O(1），更新操作是O(lgn)
+  - 这个问题可以通过平衡树来完成，查询操作是O(1)，更新操作是O(lgn)
 - (x) 20.10 Given two words of equal length that are in a dictionary, write a method to transform one word into another word by changing only one letter at a time. The new word you get in each step must be in the dictionary.
   - https://leetcode.com/problems/word-ladder/description/
   - https://leetcode.com/problems/word-ladder-ii/description/

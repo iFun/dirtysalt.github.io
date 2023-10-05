@@ -11,7 +11,7 @@
 -----
 language of system是什么意思？language有这么几个层面：
 - communication: programmer <-> programmer（代码的可读性）
-- programing language: programmer <-> computer (和机器的交互性）
+- programing language: programmer <-> computer (和机器的交互性)
 - system: program <-> program （这个就是系统的语言，如何在两个program之间交互）
 
 [[../images/the-lang-of-the-system-lang-def.jpg]]

@@ -8,7 +8,7 @@ It turns out that’s only one of three bad reasons (traps) why people go for th
 
 The third reason people go for shiny is because older tech isn’t advertised as aggressively as newer tech. The younger companies needs to differentiate from the old guard and be bolder, more passionate and promise to fulfill your wildest dreams. But most new tech sales pitches aren’t generally forthright about their *many* failure modes. 第三个原因则是新技术为了能够表现突出，在宣传上比旧技术要投入更多，然而他们对自己许多失败(落后)之处却避而不谈。
 
-Through the gauntlet, two of the most important lessons I learned building Pinterest were: (不要过早地瞎JB折腾，还是选择简单实在一些的技术吧！）
+Through the gauntlet, two of the most important lessons I learned building Pinterest were: (不要过早地瞎JB折腾，还是选择简单实在一些的技术吧！)
 - Don’t be the biggest. If you’re the biggest user of a technology, your challenges will be greatly amplified.
 - Keep it simple. No matter what technology you’re using, it will fail.
 

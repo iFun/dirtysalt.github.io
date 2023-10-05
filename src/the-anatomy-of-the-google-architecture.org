@@ -41,7 +41,7 @@ http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-f
 - Future: Taiwan, Malaysia, Lithuania, and Blythewood, South Carolina.
 
 - Standard Google Modular DC (Cell) holds 1160 Servers / 250KW Power Consumption in 30 racks (40U).（cell有30个rack，支持40U one side.）
-- A Data Centre would consist of 100s of Modular Cells.（每个数据中心最多100左右个cell)
+- A Data Centre would consist of 100s of Modular Cells.(每个数据中心最多100左右个cell)
 - MDCs can also be deployed autonomously at the Perimeter (stand alone). MDC可以独立部署
 
 *** Rack
@@ -131,7 +131,7 @@ Software:
   - Tablets spread over DC s for a table but expensive (both computationally and financially!) #note: 对于tablet跨数据中心的话代价非常大
 - Multiple Bigtable Clusters replicated throughout DC 数据中心之间的bigtable集群相互同步。
 - Current Status
-  - Many Hundreds may be thousands of Bigtable Cells. Late 2009 stated 500 Bigtable clusters（2009年500个多个bigtable cluster)
+  - Many Hundreds may be thousands of Bigtable Cells. Late 2009 stated 500 Bigtable clusters(2009年500个多个bigtable cluster)
   - At minimum scaled to many thousands of machine per cell in production 每个集群上面有上千台机器。
   - Cells manage Managing 3-figure TB data (0.X PB) 每个集群管理PB级别数据。
 

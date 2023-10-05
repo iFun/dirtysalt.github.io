@@ -591,7 +591,7 @@
 - 201609 [[file:mxnet-neural-art.org][MXNet Neural Art]]
 - 201609 [[file:a-little-architecture.org][A Little Architecture]]
 - 201609 [[file:laws-of-performant-software.org][Laws of Performant Software]]
-- 201608 [[file:some-non-casual-thoughts.org][一些想法（关于工作，人生，以及最近做的梦)]]
+- 201608 [[file:some-non-casual-thoughts.org][一些想法(关于工作，人生，以及最近做的梦)]]
 - 201608 [[file:the-future-of-programming.org][The Future of Programming]] by Bret Victor
 - 201608 [[file:what-makes-a-great-software-engineer.org][What Makes A Great Software Engineer?]]
 - 201607 [[file:life-is-just-a-moment.org][Life is just a Moment]]

@@ -18,7 +18,7 @@
 - Transformation. 对逻辑计划和物理计划进行改写和变换
 - Property Enforcement. 对计划进行加入限制，这个过程可能会引入算子，但是可能可以为上层优化提供机会。
 
-在开始进行搜索优化之前，一个逻辑计划的表示其实分成了好几个部分（可以认为是fragment）。每个部分是个子树，我们叫做group，里面每个可能的实现叫做group expr(group表达式）。考虑到转换和重写，所以一个group里面可能会存在多个group expressions.
+在开始进行搜索优化之前，一个逻辑计划的表示其实分成了好几个部分（可以认为是fragment）。每个部分是个子树，我们叫做group，里面每个可能的实现叫做group expr(group表达式)。考虑到转换和重写，所以一个group里面可能会存在多个group expressions.
 
 经典的优化器就是，到了这一步，我们就对group expression进行cost计算，然后选择最优解。我理解Orca的不同地方在于，如果在这些group expr上施加某些限制(enforcement)的话，虽然sub expr cost更高了，但是可能整体的cost会更低。一个例子就是，如果对sub expr加入某个hash parittion的话，虽然多了一次shuffle,  但是在join的时候效率可能会更高。
 

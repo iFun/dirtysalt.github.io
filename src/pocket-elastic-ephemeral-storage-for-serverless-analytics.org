@@ -31,7 +31,7 @@ Ephemeral Storage Requirements
 
 这个东西整个结构看上去和GFS/HDFS非常类似，只不过针对eph storage不用考虑storage server上面的高可用，然后在选择storage server上可以使用特定算法平衡吞吐和存储空间。整个系统架构如下：
 - Controller 可以认为是GFS master，但是它只负责注册/销毁Job以及进行扩缩容。存储对象的metadata都放在了metadata server上面。
-- Metadata server. 管理存储对象的metadata信息，对象按照64KB(可配置）进行拆分为block，然后选择不同的storage server进行存储。为了简化设计，每个Job下面产生的对象只会让一个metadata server来负责管理。
+- Metadata server. 管理存储对象的metadata信息，对象按照64KB(可配置)进行拆分为block，然后选择不同的storage server进行存储。为了简化设计，每个Job下面产生的对象只会让一个metadata server来负责管理。
 - Storage server. 实际存储对象block的服务器，根据Job特点可以选择不同类型的实例。
 - HA策略：controller暂时没有做HA, 理论上可以使用master-slave来做；metadata server是写WAL到NFS上故障恢复可以恢复状态；storage server则没有必要做HA。
 
@@ -53,7 +53,7 @@ Pocket offers high throughput and low latency for arbitrary size data sets, auto
 2. 怎么决定storage server扩缩容
 3. 如何在storage server/metadata server之间做load balance.
 
-第一个问题的解决方式是，是在job创建的时候传入hints，告诉controller这个job对于吞吐(T)和存储(C)的需求情况（或者是估算出来），以及是否延迟敏（放置在什么介质上S/storage media)。如果T/C不满足的话，那么就需要进行扩容(seconds ~ minutes)，扩容完成之后使用online-binpack方式对T/C/S进行拆解，这样每个storage server上就有一个权重（优先顺序是T/C/S).  然后将这个weight map传递给metadata server, 这样metadata sever每次分配的都是按照weight分配storage server大体就不会有错误。其实这个思想很好，就是先从总体上得到概率分布，然后实际执行时候按照这个概率分布去分配。
+第一个问题的解决方式是，是在job创建的时候传入hints，告诉controller这个job对于吞吐(T)和存储(C)的需求情况（或者是估算出来），以及是否延迟敏(放置在什么介质上S/storage media)。如果T/C不满足的话，那么就需要进行扩容(seconds ~ minutes)，扩容完成之后使用online-binpack方式对T/C/S进行拆解，这样每个storage server上就有一个权重(优先顺序是T/C/S).  然后将这个weight map传递给metadata server, 这样metadata sever每次分配的都是按照weight分配storage server大体就不会有错误。其实这个思想很好，就是先从总体上得到概率分布，然后实际执行时候按照这个概率分布去分配。
 
 
 所有的storage server/metadata server都会将节点状态汇报给controller. 对于storage server，如果CPU/network/capacity使用率低于60%的话，那么就会销毁；如果高于80%的话那么会就会创建新的节点。对于metadata server好像没有看到扩缩容的策略，不过可能也是类似，可能在看看CPU/memory吧，因为metadata server上面没有太多持久化的东西，job/weight map应该都是在内存中的。销毁逻辑上，controller需要等待上面job全部执行完成，之后不往这个storage server/metadata server上面指派任务，等待全部完成之后再kill. 扩容的话storage server会向metaserver/controller上面注册并且定期汇报（我觉得好像不用汇报到metaserver吧？），扩容上优先使用垂直扩展而不是水平扩展（也不知道怎么可以不停机做水平扩展）

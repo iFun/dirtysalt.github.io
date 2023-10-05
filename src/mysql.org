@@ -588,7 +588,7 @@ InnoDB可以使用未经过格式化的硬盘分区，有几个理由值得考�
 
 innodb_flush_log_at_trx_commit 可以用来控制提交事务时写入磁盘的方式
 - 0. 隔段时间log_buffer会写入log_file并且刷入磁盘
-- 1（默认值). 每次提交事务都会将log_buffer写入log_file并且刷入磁盘
+- 1(默认值). 每次提交事务都会将log_buffer写入log_file并且刷入磁盘
 - 2. 每次提交事务都会将log_buffer写入log_file, 但是隔段时间再刷入磁盘
 间隔时间由 innodb_flush_log_at_timeout 控制，默认是1s
 

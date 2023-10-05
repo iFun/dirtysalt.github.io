@@ -6,7 +6,7 @@
 
 前面说到安装过程非常顺利，那只是安装mxnet过程很顺利，只需要configure; make一下就好了，但是安装CUDA确实花了很多时间。
 这篇 [[http://phunter.farbox.com/post/mxnet-tutorial1][文章]] 说道了如何安装CUDA和mxnet. 安装完成CUDA和nvidia driver之后，一定要运行nvidia-smi来确认nvidia driver安装成功了。
-至少从我的经历来看，应该不太可能一次就安装成功，而且最后我选择了用runfile而不是deb来安装（声明我用的也是Ubuntu 14.04).
+至少从我的经历来看，应该不太可能一次就安装成功，而且最后我选择了用runfile而不是deb来安装(声明我用的也是Ubuntu 14.04).
 我建议大家也最好使用runfile来安装。
 
 安装之前一定要阅读一下nvidia官方关于CUDA安装的 [[http://developer.download.nvidia.com/compute/cuda/7.5/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf][guide]]. 确认

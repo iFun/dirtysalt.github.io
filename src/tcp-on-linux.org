@@ -48,7 +48,7 @@ Linux在2.6.17以后增加了recv Buffer自动调节机制，recv buffer的实�
 整个流程大致如下：
 - application layer将数据copy到tcp send buffer里面，如果空间不够的话那么就会出现阻塞。 *copy app buffer to tcp send buffer as app packet*
 - tcp layer等待tcp send buffer存在数据或者是需要做ack的时候，组装ip packet推送到IP layer *copy tcp send buffer to ip send buffer as tcp packet*
-- IP layer从kernel memory申请sk_buffer，将ip data包装成为packet data，然后塞到qdisc(txqueuelen控制队列长度）里面（指针）。如果队列满的话那么就会出现阻塞，反馈到tcp layer阻塞。 *copy ip send buffer to packet data as ip packet*
+- IP layer从kernel memory申请sk_buffer，将ip data包装成为packet data，然后塞到qdisc(txqueuelen控制队列长度)里面（指针）。如果队列满的话那么就会出现阻塞，反馈到tcp layer阻塞。 *copy ip send buffer to packet data as ip packet*
 - NIC driver如果检测到qdisc有数据的话，调用NIC DMA Engine将packet发送出去。发送完成之后NIC向CPU发起中断释放packet data内存到Kernel Memory
 - 其中内核参数有：
   - /proc/sys/net/ipv4/tcp_wmem 这个和rmem非常类似

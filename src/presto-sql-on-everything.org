@@ -121,7 +121,7 @@ Split Scheduling则是如何下发Splits到Leaf Tasks上。Coordinator将Data So
 ----------
 *Query Execution* 查询执行
 
-Data Source API里面每次返回的数据叫做Page(按照列式编码的多行数据, 每一列对应的数据是Block）；节点之间的数据交换是通过long-polling http来完成的，优化销量数据传输减少延迟。
+Data Source API里面每次返回的数据叫做Page(按照列式编码的多行数据, 每一列对应的数据是Block)；节点之间的数据交换是通过long-polling http来完成的，优化销量数据传输减少延迟。
 
 数据传输上的流控机制有点意思，这个流控最终是影响到到splits -> tasks上的速度，整个流控是通过coordinator来完成的。
 - 如果output buffer 很大的话，那么提供splits速度会降低，有下面两个原因要这么做

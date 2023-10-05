@@ -3,7 +3,7 @@
 - Google Bigtable (中文版) http://dblab.xmu.edu.cn/node/121
 
 ** Abstract
-- Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity servers. (针对千台机器管理PB级别数据）
+- Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity servers. (针对千台机器管理PB级别数据)
 - both in terms of data size (from URLs to web pages to satellite imagery) and latency requirements (from backend bulk processing to real-time data serving).（同时考虑了数据集大小以及响应延迟）
 
 ** Introduction
@@ -19,7 +19,7 @@
 [[../images/bigtable-data-model.png]]
 
 *** Rows
-- The row keys in a table are arbitrary strings (currently up to 64KB in size, although 10-100 bytes is a typical size for most of our users). (rowkey范围限制在64KB，但是10-100bytes是一个典型值）
+- The row keys in a table are arbitrary strings (currently up to 64KB in size, although 10-100 bytes is a typical size for most of our users). (rowkey范围限制在64KB，但是10-100bytes是一个典型值)
 - Every read or write of data under a single row key is atomic (regardless of the number of different columns being read or written in the row), a design decision that makes it easier for clients to reason about the system’s behavior in the presence of concurrent updates to the same row.（对于每一行的读写都是原子操作的，这样对于concurrent更新的话比较好reason）
 - Bigtable maintains data in lexicographic order by row key. The row range for a table is dynamically partitioned. Each row range is called a tablet, which is the unit of dis-tribution and load balancing.（对于row-key都是按照字典序排列的，并且每个row range都会动态划分。划分出来的row range对应的数据成为tablet，其实就是table里面一个连续的小部分，非常类似于chunk，作为分布以及负载均衡的最小单元）
 
@@ -139,7 +139,7 @@ compaction分为三种：
 为了加快这个过程，source tablet server在主动迁移时候发生如下行为：
 - 将memtable使用minor compaction将内容写入sstable
 - 停止对这个tablet的服务
-- 将上面时间内所有的memtable操作重新做一个minor compaction（very fast)
+- 将上面时间内所有的memtable操作重新做一个minor compaction(very fast)
 这样另外一台机器load tablet的时候就可以直接使用了。
 
 *** Exploiting immutability

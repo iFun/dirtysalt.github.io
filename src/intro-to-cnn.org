@@ -2,7 +2,7 @@
 
 http://blog.csdn.net/stdcoutzyx/article/details/41596663 是一篇非常好的关于CNN的入门文章
 
-CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结构，使用BP来做参数训练）增加了一些扩展技术： 1. 局部感知（卷积核）. 2. 参数共享 3. 多卷积核 4. pooling/subsampling(下采样).
+CNN常用于处理图像和视频数据，在DNN的基础(前向反馈网络结构，使用BP来做参数训练)增加了一些扩展技术： 1. 局部感知（卷积核）. 2. 参数共享 3. 多卷积核 4. pooling/subsampling(下采样).
 
 -----
 局部感知
@@ -76,6 +76,6 @@ As Dr. LeCun explained it, his non-complete connection scheme would force the fe
 - pooling可以引入平移(shift)以及扭曲(distortion)不变性
 - C5这层实际上是一个卷积层，只不过恰好conv kernel size = 5.
 
-没有太理解F6/Output. 不过在这两层里面值得一体的是，论文里面说如果classes太多的话（比如84种），那么最好不要采用native-bitv方式来定义输出（native-bitv是我随便取的名字，如果classes=84, 那么输出就是84长度的bit-vector，其中有一个bit为1其他全部为0），否则使用sigmoid簇函数作为loss function效果非常差（当然可以使用softmax). LeCun给的方式则是RBF/Euclidean作为loss function, 输出表示方式允许在多个bit上为1. 如果将定义输出表示称为灰度图像的话，就是下面这个样子
+没有太理解F6/Output. 不过在这两层里面值得一体的是，论文里面说如果classes太多的话（比如84种），那么最好不要采用native-bitv方式来定义输出（native-bitv是我随便取的名字，如果classes=84, 那么输出就是84长度的bit-vector，其中有一个bit为1其他全部为0），否则使用sigmoid簇函数作为loss function效果非常差(当然可以使用softmax). LeCun给的方式则是RBF/Euclidean作为loss function, 输出表示方式允许在多个bit上为1. 如果将定义输出表示称为灰度图像的话，就是下面这个样子
 
 [[../images/cnn-output-code.png]]

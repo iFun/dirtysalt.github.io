@@ -43,7 +43,7 @@ serverless & serverful computing 最关键的3个区别是：
 几个缺陷如下：
 1. Inadequate storage for fine-grained operations （没有合适的弹性存储用于帮助细粒度的操作，比如function-function之间交换比较大量数据，使用s3/dynamodb延迟都相当高）
 2. Lack of fine-grained coordination （不支持高效的细粒度协调，使用SNS/SQS延迟都非常高）
-3. Poor performance for standard communication patterns (通信上优化空间很大，没有办法做local batch或者优化拓扑结构，解决办法可能是编程模型里面支持描述拓扑结构这样）
+3. Poor performance for standard communication patterns (通信上优化空间很大，没有办法做local batch或者优化拓扑结构，解决办法可能是编程模型里面支持描述拓扑结构这样)
 4. Predictable Performance （性能上上不太稳定，启动Function开销以及预热过程等）
 
 ----------

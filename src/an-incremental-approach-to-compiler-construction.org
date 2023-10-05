@@ -105,7 +105,7 @@ can allocate a new stack segment and wire up the two stacks
 by utilizing an underflow handler. Implementing stack overflo
 and underflow handlers simplifies implementing efficient con
 tinuationscapture and reinstatement [9]. （捕获overflow/underflow异常，
-可以实现自动伸缩堆栈）
+可以实现自动伸缩堆栈)
 
 Alternatively, we can transform the input program into continuation
 passing style prior to performing closure conversion. This

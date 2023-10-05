@@ -104,7 +104,7 @@ const char *str;
 
 The basic idea behind the consistent hashing algorithm is to hash both objects and caches using the same hash function.The reason to do this is to map the cache to an interval, which will contain a number of object hashes. If the cache is removed then its interval is taken over by a cache with an adjacent interval. All the other caches remain unchanged.
 
-一致性hash基本思想就是将所有对象都使用同样的hash函数进行hash(包括要被分布的对象，以及分布到的位置）。如果某个分布位置被移除的话，那么原本在这个位置上的对象就会分布在临近的分布位置上，而其他的对象却不用移动自己的位置。如果分布位置之间interval间隔过大的话那么可以制作virtual node来使得interval映射足够小，而这些virtual node映射到同一个node节点上面。实际上上述文章中也进行实验证明interval小的话那么standard deviations也变小了，每个node均摊的object基本均匀了：）。
+一致性hash基本思想就是将所有对象都使用同样的hash函数进行hash(包括要被分布的对象，以及分布到的位置)。如果某个分布位置被移除的话，那么原本在这个位置上的对象就会分布在临近的分布位置上，而其他的对象却不用移动自己的位置。如果分布位置之间interval间隔过大的话那么可以制作virtual node来使得interval映射足够小，而这些virtual node映射到同一个node节点上面。实际上上述文章中也进行实验证明interval小的话那么standard deviations也变小了，每个node均摊的object基本均匀了：)。
 
 ** rsync core algorithm
 - http://coolshell.cn/articles/7425.html
@@ -233,7 +233,7 @@ def estimate_cardinality(values, k):
 
 CONCISE针对这个部分稍微改进了一下
 - the following 5 bits are the position of a “flipped” bit within the first 31-bit block of the fill（剩余的5个bit表示从在第几位存在一个反转，这个可以处理一些特殊情况）
-- and the remaining 25 bits count the number of 31-blocks that compose the fill minus one. （剩余的25个bit表示后面存在多少个31bit blocks)
+- and the remaining 25 bits count the number of 31-blocks that compose the fill minus one. (剩余的25个bit表示后面存在多少个31bit blocks)
 可以看到最大的范围是31 + 2^25 * 31 = 1040187423 , 如果从0开始的话，那么就是[0,1040187422]
 
 下面是一个例子， Compressed representation of the set {3, 5, 31–93, 1024, 1028, 1 040 187 422}.
@@ -462,7 +462,7 @@ print(sum(guess) * 1.0 / len(guess))
 18.11062
 #+END_EXAMPLE
 
-不过需要说明但是，(90, 3）这些magic number我都是在知道这个测试结果是[18-20]之间这个事实之后
+不过需要说明但是，(90, 3)这些magic number我都是在知道这个测试结果是[18-20]之间这个事实之后
 不断尝试出来的，这个也算是作弊吧。
 ** tfidf & bm25
 
@@ -536,4 +536,4 @@ setup(
 )
 #+END_SRC
 
-简单地对比了一下性能，运行10000个text, 原始版本的是3.2s, cython优化过的是2.5s, 没有修改任何代码就获得的了20%的性能提升：）
+简单地对比了一下性能，运行10000个text, 原始版本的是3.2s, cython优化过的是2.5s, 没有修改任何代码就获得的了20%的性能提升：)

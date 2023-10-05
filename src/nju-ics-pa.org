@@ -7,7 +7,7 @@ https://nju-projectn.github.io/ics-pa-gitbook/ics2021/index.html
 
 整个项目大概分为这么几个部分：
 - NEMU. 这个可以认为就是QEMU. 模拟计算机包括CPU和外设等硬件设备。里面有个特别强的功能就是difftest, 比如可以同时运行spike/qemu来对比CPU内存中数据，检查你的实现是否正确。
-- AM(abstract-machine). 这个东西就比较精巧了，目的是抽象底层各种计算机架构，有点类似于Windows HAL. 有了这个东西在上面开发操作系统，就可以跑在许多个系统上（qemu, spike)了甚至native系统上。提供了几个扩展：
+- AM(abstract-machine). 这个东西就比较精巧了，目的是抽象底层各种计算机架构，有点类似于Windows HAL. 有了这个东西在上面开发操作系统，就可以跑在许多个系统上(qemu, spike)了甚至native系统上。提供了几个扩展：
   - IOE(IO extension). 将外设包装起来
   - CTE(context extension). 将上下文切换包装起来
   - VME(virtual memory extension). 讲虚拟内存扩展包装起来

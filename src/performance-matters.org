@@ -12,7 +12,7 @@ https://www.youtube.com/watch?v=r-TLSBdHe1A
 
 [[../images/perf-matters-stabilizer.png]]
 
-通过增加随机性，得到某个符合正态分布的性能数据，然后通过假设检验来做t-test(如果p-value < 0.05, 那么认为之间差距是显著的）作者给出的几个程序可以看到，-O3相比-O2改进，有些是显著的，有些则没有那么显著。
+通过增加随机性，得到某个符合正态分布的性能数据，然后通过假设检验来做t-test(如果p-value < 0.05, 那么认为之间差距是显著的)作者给出的几个程序可以看到，-O3相比-O2改进，有些是显著的，有些则没有那么显著。
 
 [[../images/perf-matters-opt-level.png]]
 

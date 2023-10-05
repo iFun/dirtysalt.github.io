@@ -20,7 +20,7 @@ Process and What it controls
 [[../images/inside-look-at-modern-web-browser-0.png]]
 
 
-内存不够的时候会将相同站点的多页面跑在一个进程中（通常是一个tab对应一个render process)
+内存不够的时候会将相同站点的多页面跑在一个进程中(通常是一个tab对应一个render process)
 
 #+BEGIN_QUOTE
 Because processes have their own private memory space, they often contain copies of common infrastructure (like V8 which is a Chrome's JavaScript engine). This means more memory usage as they can't be shared the way they would be if they were threads inside the same process. In order to save memory, Chrome puts a limit on how many processes it can spin up. The limit varies depending on how much memory and CPU power your device has, but when Chrome hits the limit, it starts to run multiple tabs from the same site in one process.
@@ -49,7 +49,7 @@ The browser process has threads like the UI thread which draws buttons and input
 
 [[../images/inside-look-at-modern-web-browser-3.png]]
 
-等Network Thread拿到数据之后，UI Thread就会去查找可用的Render Process. 这个过程可以和Network Thread是并行的，这样当网络数据Ready的时候就有可用的渲染进程可用。当然这种预测会失效，因为如果出现站点跳转的话，那么必须确保站点之间不共享渲染进程）
+等Network Thread拿到数据之后，UI Thread就会去查找可用的Render Process. 这个过程可以和Network Thread是并行的，这样当网络数据Ready的时候就有可用的渲染进程可用。当然这种预测会失效，因为如果出现站点跳转的话，那么必须确保站点之间不共享渲染进程)
 
 #+BEGIN_QUOTE
 Since the network request could take several hundred milliseconds to get a response back, an optimization to speed up this process is applied. When the UI thread is sending a URL request to the network thread at step 2, it already knows which site they are navigating to. The UI thread tries to proactively find or start a renderer process in parallel to the network request. This way, if all goes as expected, a renderer process is already in standby position when the network thread received data. This standby process might not get used if the navigation redirects cross-site, in which case a different process might be needed.
@@ -61,7 +61,7 @@ Since the network request could take several hundred milliseconds to get a respo
 
 [[../images/inside-look-at-modern-web-browser-5.png]]
 
-Chrome还有一类Service Worker（这个我不太懂，https://developer.chrome.com/docs/workbox/service-worker-overview/， 浏览器可以访问这个URL看到 chrome://serviceworker-internals) 我看大概的意思就是，Service Worker是一段JS代码，和某个URL关联起来。一旦用户访问这个URL的话，那么首先会去调用这个JS代码来处理，JS运行在渲染进程。说实话我没有太明白这个东西的作用，工作流程如下图所示。
+Chrome还有一类Service Worker(这个我不太懂，https://developer.chrome.com/docs/workbox/service-worker-overview/， 浏览器可以访问这个URL看到 chrome://serviceworker-internals) 我看大概的意思就是，Service Worker是一段JS代码，和某个URL关联起来。一旦用户访问这个URL的话，那么首先会去调用这个JS代码来处理，JS运行在渲染进程。说实话我没有太明白这个东西的作用，工作流程如下图所示。
 
 [[../images/inside-look-at-modern-web-browser-6.png]]
 
@@ -124,7 +124,7 @@ Worker Thread构建过程是：
 
 ----------
 
-为了减少Main Thread(渲染进程）处理事件的频率，UI Thread会将events进行合并，合并某个时间内的所有相同事件，但是对于一些特定事件依然不会进行合并。
+为了减少Main Thread(渲染进程)处理事件的频率，UI Thread会将events进行合并，合并某个时间内的所有相同事件，但是对于一些特定事件依然不会进行合并。
 
 #+BEGIN_QUOTE
 If a continuous event like touchmove was sent to the main thread 120 times a second, then it might trigger excessive amount of hit tests and JavaScript execution compared to how slow the screen can refresh.

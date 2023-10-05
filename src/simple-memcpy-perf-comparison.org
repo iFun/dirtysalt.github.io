@@ -418,12 +418,12 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 
 
 实现上有下面这些注意点：
-- 对于小尺寸分支重要（减少分支或者是变成jmp table/switch)
-- 处理非对齐尺寸(1,3,5,7字节），通常使用重叠move
+- 对于小尺寸分支重要(减少分支或者是变成jmp table/switch)
+- 处理非对齐尺寸(1,3,5,7字节)，通常使用重叠move
 - 对于大尺寸可以使用sse/avx或者是rep movsb.（看上去大尺寸rep movsb比sse/avx要差点）
-- avx-512会造成CPU降频, 混合sse/avx使用会有开销（但是好像最新的CPU是没有这个问题了的) https://www.zhihu.com/question/37230675/answer/273654228
-- 循环展开最多8次，使用寄存器xmm0-xmm7或者是ymm0-ymm7（其实也有ymm8-ymm15). 但是这个也不是最优解。
-- 使用unaligned load和aligned store (但是好像其实两者差别不是很大）
+- avx-512会造成CPU降频, 混合sse/avx使用会有开销(但是好像最新的CPU是没有这个问题了的) https://www.zhihu.com/question/37230675/answer/273654228
+- 循环展开最多8次，使用寄存器xmm0-xmm7或者是ymm0-ymm7(其实也有ymm8-ymm15). 但是这个也不是最优解。
+- 使用unaligned load和aligned store (但是好像其实两者差别不是很大)
 - 使用好prefetch以及non-temporal store比较困难。
 
 #+BEGIN_EXAMPLE

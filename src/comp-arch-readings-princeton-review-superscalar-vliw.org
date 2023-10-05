@@ -49,7 +49,7 @@ Application Influenced ISA
 
 指令中几种阻碍深流水线的因素：
 
-- Structural Hazard: An instruction in the pipeline needs a resource being used by another instruction in the pipeline (使用到相同的运算/控制单元，解决办法如下）
+- Structural Hazard: An instruction in the pipeline needs a resource being used by another instruction in the pipeline (使用到相同的运算/控制单元，解决办法如下)
   - Schedule: Programmer explicitly avoids scheduling instructions that would create structural hazards 调整指令熟顺序
   - Stall: Hardware includes control logic that stalls until earlier instruction is no longer using contended resource 暂停流水
   - Duplicate: Add more hardware to design so that each instruction can access independent resources at the same time 冗余的运算/控制单元
@@ -72,7 +72,7 @@ Application Influenced ISA
 
 [[../images/comp-arch-readings-princeton-review-superscalar-vliw-4.png]]
 
-Cache几种Missing分类：3C, Compulsory(第一次访问), Capacity(容量不够造成的淘汰), Conflict(冲突造成的淘汰， 实际上容量是足够的）
+Cache几种Missing分类：3C, Compulsory(第一次访问), Capacity(容量不够造成的淘汰), Conflict(冲突造成的淘汰， 实际上容量是足够的)
 
 [[../images/comp-arch-readings-princeton-review-superscalar-vliw-5.png]]
 
@@ -107,9 +107,9 @@ VLIW Compiler Responsibilities
   - Typically separates operations with explicit NOPs
 
 Problems with “Classic” VLIW
-- Object-code compatibility （二进制兼容性)
+- Object-code compatibility (二进制兼容性)
   - have to recompile all code for every machine, even for two machines in same generation
-- Object code size (二进制大小）
+- Object code size (二进制大小)
     - instruction padding wastes instruction memory/cache
     - loop unrolling/software pipelining replicates code
 - Scheduling variable latency memory operations

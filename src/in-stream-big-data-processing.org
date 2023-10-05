@@ -60,7 +60,7 @@ In this section, we discuss a number of techniques that are used by streaming sy
 [[../images/in-stream-stream-replay.png]]
 
 *** Lineage Tracking
-In a streaming system, events flow through a chain of processors until the result reaches the final destination (like an external database). Each input event produces a directed graph of descendant events (lineage) that ends by the final results. To guarantee reliable data processing, it is necessary to ensure that the entire graph was processed successfully and to restart processing in case of failures. （所谓lineage tracking就是，追踪output对应的input以及对应的pipelines. 如果output失败的话那么可以从input开始重新构建这个output)
+In a streaming system, events flow through a chain of processors until the result reaches the final destination (like an external database). Each input event produces a directed graph of descendant events (lineage) that ends by the final results. To guarantee reliable data processing, it is necessary to ensure that the entire graph was processed successfully and to restart processing in case of failures. (所谓lineage tracking就是，追踪output对应的input以及对应的pipelines. 如果output失败的话那么可以从input开始重新构建这个output)
 - twitter storm lineage tracking
 - apache spark lineage tracking
 

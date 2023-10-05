@@ -248,7 +248,7 @@ x	addss	%xmm3, %xmm4
 	addl	$-3, %eax
 	jne	LBB0_1
 #+END_SRC
-同样有循环展开，但是是4条指令（mulss, divss, addss, addss)
+同样有循环展开，但是是4条指令(mulss, divss, addss, addss)
 
 *** 为什么数学运算优化版本最快？
 
@@ -393,7 +393,7 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
         y -= 0; // 因为是0，所以删除
 #+END_SRC
 
-所以现在问题就是，如何初始化xmm0, xmm1和xmm2(存放delta的值）
+所以现在问题就是，如何初始化xmm0, xmm1和xmm2(存放delta的值)
 
 *** 初始化部分代码
 
@@ -413,7 +413,7 @@ LBB0_1:                                 ## =>This Inner Loop Header: Depth=1
 - 现将y拆分 y = y0 * y1 * ... y7（divide）
 - 将[y0..y3]存放在xmm1, [y4..y7]存放在xmm0
 - 每次迭代 yi = yi * delta
-- 最终再将 yi 相乘，就可以得到最终的y.（conquer)
+- 最终再将 yi 相乘，就可以得到最终的y.(conquer)
 
 然后就要搞清楚为什么xmm2设置成为那个值。
 - 假设我们总共需要迭代N次，所以期望值是 y = y * ((x / z) ** N)

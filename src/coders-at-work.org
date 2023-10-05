@@ -66,7 +66,7 @@ problems that shouldn’t exist. Problems that were solved years ago.
 #+END_QUOTE
 
 黑盒并不意味着内部简单。messaging passing over APIs（如果编译在一个项目里面，
-你还需要了解这个APIs的很多不愿意暴露的细节）. simple interface wins!!
+你还需要了解这个APIs的很多不愿意暴露的细节). simple interface wins!!
 
 #+BEGIN_QUOTE
 

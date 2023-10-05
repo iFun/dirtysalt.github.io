@@ -37,7 +37,7 @@ transfer learning. 基于pre-trained model，根据自己的数据进行fine tun
 - Low level features from A could be helpful for learning B.
 
 
-multi-task learning. 在一个网络里面训练多个输出（注意不要使用softmax) 使用依据：
+multi-task learning. 在一个网络里面训练多个输出(注意不要使用softmax) 使用依据：
 - Training on a set of tasks that could benefit from having shared lower-level features.
 - Usually: Amount of data you have for each task is quite similar.
 - Can train a big enough neural network to do well on all the tasks.

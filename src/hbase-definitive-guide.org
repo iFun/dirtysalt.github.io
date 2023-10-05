@@ -117,8 +117,8 @@ Finally, given the current status of built-in security into Hadoop and HBase, it
     - First you should set the noatime option when mounting the file system to reduce the administrative overhead for the kernel to keep the access time for each file.（关闭access time，/etc/fstab with "/dev/sdd1  /data  ext3  defaults,noatime  0  0"）
     - By default it reserves a specific number of bytes in blocks for situations where a disk fills up but crucial system processes need this space to continue to function. This is really useful for critical disks, for example the one hosting the operating system, but it is less useful for the storage drives, and in a large enough cluster can have a significant impact on available storage capacities.（减少磁盘的预留空间，主要还是需要针对数据磁盘，不要针对系统磁盘）
     - tune2fs -m 1 <device-name> （1% reserved）
-  - Yahoo has publicly stated that it is using ext3 as their file system of choice on their large Hadoop cluster farm. This shows that although it is by far not the most current or modern file system that it does very well in large clusters. In fact, you are more likely to saturate your IO on other levels of the stack before reaching the limits of ext3.（Yahoo对ext3的使用证明还是比较稳定的，并且在ext3达到极限之前可能网络IO已经到达bottleneck)
-  - The biggest drawback of ext3 is that during the bootstrap process of the servers it requires the largest amount of time. Formatting a disk with ext3 can take minutes to complete and may become a nuisance when spinning up machines dynamically on a regular basis - although that is not very common practice. (ext3最大的缺点就在于启动server的时候消耗大量时间，并且做磁盘格式化的时候费时）
+  - Yahoo has publicly stated that it is using ext3 as their file system of choice on their large Hadoop cluster farm. This shows that although it is by far not the most current or modern file system that it does very well in large clusters. In fact, you are more likely to saturate your IO on other levels of the stack before reaching the limits of ext3.(Yahoo对ext3的使用证明还是比较稳定的，并且在ext3达到极限之前可能网络IO已经到达bottleneck)
+  - The biggest drawback of ext3 is that during the bootstrap process of the servers it requires the largest amount of time. Formatting a disk with ext3 can take minutes to complete and may become a nuisance when spinning up machines dynamically on a regular basis - although that is not very common practice. (ext3最大的缺点就在于启动server的时候消耗大量时间，并且做磁盘格式化的时候费时)
 
 - ext4
   - It is officially part of the Linux kernel since then end of 2008. To that extent it has only a few years to prove its stability and reliability. Nevertheless Google has announced to upgrade its storage infrastructure from ext2 to ext4. This can be considered a strong endorsement, but also shows the advantage of the extended filesystem (the ext in ext3, ext4, etc.) lineage to be upgradable in place. Choosing an entirely different file system like XFS would have made this impossible.（从2008年开始进入Linux kernel所以还需要一段时间的考验，但是google使用证明了其稳定性。在ext文件系统上面的升级是平滑的，而不像XFS一样不兼容的）
@@ -158,7 +158,7 @@ The HRegionServer opens the region and creates a corresponding HRegion object. W
    - Put.setWriteToWAL(boolean) 控制是否写入WAL
    - The WAL is a standard Hadoop SequenceFile and it stores HLogKey instances.
    - These keys contain a sequential number as well as the actual data and are used to replay not yet persisted data after a server crash.
-- 每个Store有一个MemStore以及多个StoreFile(HFile的包装，存放在HDFS上）
+- 每个Store有一个MemStore以及多个StoreFile(HFile的包装，存放在HDFS上)
 
 *** Files
 #+BEGIN_EXAMPLE

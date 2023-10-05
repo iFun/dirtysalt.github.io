@@ -38,7 +38,7 @@ sysbench 1.0.17 (using system LuaJIT 2.0.4)
 ----------
 
 
-使用THP的好处是可以减少TLB miss. 在Linux下面HugePage分为两种：标准大页（huge pages）和透明大页（transparent huge pages) https://plantegg.github.io/2020/11/15/Linux%E5%86%85%E5%AD%98--HugePage/ 看上去想直接使用使用标准大页好像还有点麻烦 （https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html）而使用THP的话使用 madvise / MADV_HUGEPAGE 就行（可能如果有kernel 大页的话也会直接使用？）
+使用THP的好处是可以减少TLB miss. 在Linux下面HugePage分为两种：标准大页（huge pages）和透明大页(transparent huge pages) https://plantegg.github.io/2020/11/15/Linux%E5%86%85%E5%AD%98--HugePage/ 看上去想直接使用使用标准大页好像还有点麻烦 （https://www.kernel.org/doc/html/latest/admin-guide/mm/hugetlbpage.html）而使用THP的话使用 madvise / MADV_HUGEPAGE 就行（可能如果有kernel 大页的话也会直接使用？）
 
 下图 https://en.wikipedia.org/wiki/Page_(computer_memory)#Multiple_page_sizes 是各种架构下面HP的大小，可以看到x86-64还支持1G（不知道THP能不能到1G）。x86-64使用4级page-table（地址存储在CR3寄存器上）, 每一级有9个bit，最后面12个bit用于定位page内部offset, 最高位的16bits不使用（实际使用48bits）
 

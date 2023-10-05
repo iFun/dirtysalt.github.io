@@ -4,7 +4,7 @@ https://leetcode.com/problems/adding-two-negabinary-numbers/
 
 观察得到两条重要规则：
 1. 进位规则
-  - ith上的value（假设value >= 2), 可以转换为 (i+1)th的value//2 以及(i+2)th的value // 2
+  - ith上的value(假设value >= 2), 可以转换为 (i+1)th的value//2 以及(i+2)th的value // 2
  - 2 * (-2)^(2n+1) 可以分解成为 (-2)^(2n+3) - (-2)^(2n+2).
  - 2 * (-2)^(2n) 可以分解成为 (-2)^(2n+2) - (-2)^(2n+1).
 2. 结束规则：

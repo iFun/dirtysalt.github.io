@@ -173,7 +173,7 @@ As with thread locals, Locals can be very convenient, but should almost always b
 
 *Locals are used effectively by core libraries for very common concerns — threading through RPC traces, propagating monitors, creating “stack traces” for future callbacks — where any other solution would unduly burden the user.* Locals are inappropriate in almost any other situation.
 
-Util的Local提供了一个位于特定的future派发树(dispatch tree)的引用单元(cell)。设定一个local的值，使这个值可以用于被同一个线程的Future 延迟的任何计算。有一些类似于thread locals(注：Java中的线程机制），不同的是它们的范围不是一个Java线程，而是一个 future 线程树。
+Util的Local提供了一个位于特定的future派发树(dispatch tree)的引用单元(cell)。设定一个local的值，使这个值可以用于被同一个线程的Future 延迟的任何计算。有一些类似于thread locals(注：Java中的线程机制)，不同的是它们的范围不是一个Java线程，而是一个 future 线程树。
 
 就thread locals来说，我们的Locals非常的方便，但要尽量避免使用：除非确信通过显式传递数据时问题不能被充分的解决，哪怕解决起来有些繁重。
 

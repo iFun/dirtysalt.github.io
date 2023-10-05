@@ -8,7 +8,7 @@ Existing systems come with all sorts of terrors; each time I touch something, I 
 
 Writing new systems comes with an inescapable feeling of dread. I can imagine everything failing before it has been written, and feel sorry for the person who'll maintain it—possibly me.（构建新的系统会会有一种不可避免的恐惧，甚至在写代码之前就会感觉到失败，并且为每个维护这个系统的人感到抱歉）
 
-That being said, here are fourteen lessons I've learned or live by in order to be more comfortable with the task at hand. I also recommend you read [[http://web.mit.edu/2.75/resources/random/How%20Complex%20Systems%20Fail.pdf][How Complex Systems Fail]] by Richard I. Cook. It's a much better list than mine.（另外推荐一篇文章 How Complex Systems Fail)
+That being said, here are fourteen lessons I've learned or live by in order to be more comfortable with the task at hand. I also recommend you read [[http://web.mit.edu/2.75/resources/random/How%20Complex%20Systems%20Fail.pdf][How Complex Systems Fail]] by Richard I. Cook. It's a much better list than mine.(另外推荐一篇文章 How Complex Systems Fail)
 
 -----
 *Plan for the worst*

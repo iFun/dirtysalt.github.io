@@ -112,7 +112,7 @@ You can also specify a specific level of cache the data needs to be brought to w
 
 ----------
 
-memory paging的page size对于TLB影响很大，通常有2级TLB分别是64, 2048 entries， 如果page size = 4K的话大约可以覆盖512K, 8M大小。也就是说，8MB内存内部访问，内存地址转换非常快，但是超过之后涉及到VM部分那么影响下降就比较严重。这个测试中避免了L2 cache, D >= 16. (L3 cache使用的是物理地址而不是虚拟地址）
+memory paging的page size对于TLB影响很大，通常有2级TLB分别是64, 2048 entries， 如果page size = 4K的话大约可以覆盖512K, 8M大小。也就是说，8MB内存内部访问，内存地址转换非常快，但是超过之后涉及到VM部分那么影响下降就比较严重。这个测试中避免了L2 cache, D >= 16. (L3 cache使用的是物理地址而不是虚拟地址)
 
 #+BEGIN_SRC Cpp
 const int N = (1 << 13);

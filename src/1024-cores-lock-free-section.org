@@ -69,7 +69,7 @@ Regarding loads and stores. Memory model along with instruction set specifies wh
 
 https://www.1024cores.net/home/lock-free-algorithms/so-what-is-a-memory-model-and-how-to-cook-it/visibility
 
-不太理解下面这段话的意思，如果cache-coherent可以自动工作的话，那么为什么还需要memory barrier? (这个可能和ordering差别还不大，对于visibility实际上开发者没有太多控制）
+不太理解下面这段话的意思，如果cache-coherent可以自动工作的话，那么为什么还需要memory barrier? (这个可能和ordering差别还不大，对于visibility实际上开发者没有太多控制)
 
 对于non-temporal store需要显式地加入memory fence指令
 

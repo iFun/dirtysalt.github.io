@@ -93,7 +93,7 @@ Historically, network cards had a single RX queue that was used to pass packets 
 *A note on NUMA performance*
 
 现在场景还是one rx-queue to one cpu. 来看看NUMA造成的性能差异。
-- Run receiver on another CPU, but on the same NUMA node as the RX queue. The performance as we saw above is around 360kpps.（同一个NUMA node但是另一块CPU，不同CPU Cache, pps = 360k)
+- Run receiver on another CPU, but on the same NUMA node as the RX queue. The performance as we saw above is around 360kpps.(同一个NUMA node但是另一块CPU，不同CPU Cache, pps = 360k)
 - With receiver on exactly same CPU as the RX queue we can get up to ~430kpps. But it creates high variability. The performance drops down to zero if the NIC is overwhelmed with packets.(同一块CPU，应该是相同core, pps = 430k)
 - When the receiver runs on the HT counterpart of the CPU handling RX queue, the performance is half the usual number at around 200kpps.(同一个core但是不同HT，性能减半, pps = 200k)
 - With receiver on a CPU on a different NUMA node than the RX queue we get ~330k pps. The numbers aren't too consistent though.(不同NUMA node，pps = 330k)
@@ -136,7 +136,7 @@ Udp:
     SndbufErrors: 0
     InCsumErrors: 0
 #+END_EXAMPLE
-这意味着packet可以被投递到kernel, 但是kernel没有办法投递到application，application处理packet速度太慢(386.9k + 123.8k被丢弃）
+这意味着packet可以被投递到kernel, 但是kernel没有办法投递到application，application处理packet速度太慢(386.9k + 123.8k被丢弃)
 
 -----
 *Receive from many threads*

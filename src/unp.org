@@ -1472,7 +1472,7 @@ PDF:http://www.ietf.org/proceedings/80/slides/tcpm-3.pdf
 
 TFO在client开始SYN的时候允许设在TCP选项上面设置TFO option，然后server决定是否开启TFO这个功能。如果server决定开启TFO的话，那么server回复的SYNACK里面就会标记"我 开启了TFO"，并且带上cookie。之后 google chrome虽然keepalive时间为4mim，但是35%请求还是会超过keepalive的时间然后重新发起连接，如果之前server是开启 TFO功能的话，那么client这次连接发起 的SYN会带上请求和cookie。
 
-然后RFC793虽然规定了 SYN可以带上数据，但是请求必须在3WHS之后才能够处理（一方面是为了防止过时的SYN，另外一方面是为了防止SYN flood attack)。但是TFO的实现允许在SYN就带上数据并且立刻处理，可以查看pdf里面TFO过程。为了防止SYN flood attack使用了cookie机制进行验证。而TFO并不防止过时的SYN这样的请求，允许SYN+数据发送多次并且响应，这就要求了server有能力确定是否开启TFO（server如果判断请求是幂等的话，那么就可以开启TFO)。
+然后RFC793虽然规定了 SYN可以带上数据，但是请求必须在3WHS之后才能够处理(一方面是为了防止过时的SYN，另外一方面是为了防止SYN flood attack)。但是TFO的实现允许在SYN就带上数据并且立刻处理，可以查看pdf里面TFO过程。为了防止SYN flood attack使用了cookie机制进行验证。而TFO并不防止过时的SYN这样的请求，允许SYN+数据发送多次并且响应，这就要求了server有能力确定是否开启TFO(server如果判断请求是幂等的话，那么就可以开启TFO)。
 
 Rather than trying to capture all the dubious SYN packets to make TFO
 100% compatible with TCP semantics, we've made a design decision

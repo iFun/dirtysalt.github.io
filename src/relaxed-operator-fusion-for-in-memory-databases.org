@@ -70,10 +70,10 @@ The planner can also employ prefetching optimizations using two methods. In the 
 
 我写代码对比了一下使用codegen, simd fusion, 以及simd composition的三种实现方式性能差距：https://github.com/dirtysalt/codes/blob/master/cc/xx-test/bench_codegen_simd.cpp
 - f_codegen (codegen)
-- f_simd_fusion (simd operator 融合在一起）
-- f_simd_compose (simd operator 组合在一起）
+- f_simd_fusion (simd operator 融合在一起)
+- f_simd_compose (simd operator 组合在一起)
 - f_simd_compose_noalloc （不计入内存分配开销）
-- f_simd_compose_noalloc_av （使用auto vectorization)
+- f_simd_compose_noalloc_av (使用auto vectorization)
 
 #+BEGIN_EXAMPLE
 -------------------------------------------------------------------------

@@ -64,13 +64,13 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 - git push <repo> :<branch> 将删除分支信息推送。这个可以这样理解: ':'表示null,将null推到branch相当于清空branch
 - git pull <repo> [<branch>] 将远程repo合并到本地HEAD.
 - git merge <branch> 将本地branch进行合并
-  - --no-ff 将多个commit合并成为一个commit（不进行fast-forward)
+  - --no-ff 将多个commit合并成为一个commit(不进行fast-forward)
   - --squash 将多个commit合并在一起放在WD, 之后需要用户手动发起commit.
 - git cherry-pick <commit-id> # pick commit to merge
 - git fetch <repo> <branch> 将远程repo的branch拉到本地但是并不进行任何修改
   - -p/--prune 如果远端删除分支的话，那么也删除本地分支
 
-如果合并过来的分支，是当前分支的child的话，那么执行fast-forward合并（除非指定--no-ff)，否则会执行普通的合并生成一个新的node，这个node是两个分支的共同child。
+如果合并过来的分支，是当前分支的child的话，那么执行fast-forward合并(除非指定--no-ff)，否则会执行普通的合并生成一个新的node，这个node是两个分支的共同child。
 
 如果没有指定repo的话，根据上下文可能会指代当前branch所在的远程repo, 也可能会指代所有远程repo. 同理对于branch来说，根据上下文可能会指代当前所使用的branch, 也可能会指代repo下面所有的branch.
 

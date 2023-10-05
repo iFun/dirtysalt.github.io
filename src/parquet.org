@@ -27,7 +27,7 @@ parquet实现有下面几个术语：
 - Block (hdfs block): This means a block in hdfs and the meaning is unchanged for describing this file format. The file format is designed to work well on top of hdfs.
 - File: A hdfs file that must include the metadata for the file. It does not need to actually contain the data.
 - Row group: A logical horizontal partitioning of the data into rows. There is no physical structure that is guaranteed for a row group. A row group consists of a column chunk for each column in the dataset.
-- Column chunk: A chunk of the data for a particular column. These live in a particular row group and is guaranteed to be contiguous in the file.（每个column chunk只存储一个row group下面的某一个column)
+- Column chunk: A chunk of the data for a particular column. These live in a particular row group and is guaranteed to be contiguous in the file.(每个column chunk只存储一个row group下面的某一个column)
 - Page: Column chunks are divided up into pages. A page is conceptually an indivisible unit (in terms of compression and encoding). There can be multiple page types which is interleaved in a column chunk.（在一个column chunk里面可能会有很多不同类型的page, 这些page作用也不尽相同。每个page是单独压缩和解压缩的，这样如果只需要访问部分record下面column的话就不用解压缩整个column chunk了）
 Hierarchically, a file consists of one or more row groups. A row group contains exactly one column chunk per column. Column chunks contain one or more pages.
 
@@ -130,7 +130,7 @@ Delta encoding consists of a header followed by blocks of delta encoded values b
 #+BEGIN_EXAMPLE
 <block size in values> <number of miniblocks in a block> <total value count> <first value>
 #+END_EXAMPLE
-- the block size is a multiple of 128 stored as VLQ int(values个数必须整除128）
+- the block size is a multiple of 128 stored as VLQ int(values个数必须整除128)
 - the miniblock count per block is a diviser of the block size stored as VLQ int
 - the number of values in the miniblock is a multiple of 32.（每个minblocks里面value个数整除32）
 - the total value count is stored as a VLQ int
@@ -140,9 +140,9 @@ Each block contains
 #+BEGIN_EXAMPLE
 <min delta> <list of bitwidths of miniblocks> <miniblocks>
 #+END_EXAMPLE
-- the min delta is a VLQ int (we compute a minimum as we need positive integers for bit packing) (将所有的delta转换成为正数）
-- the bitwidth of each block is stored as a byte（每个minblocks使用的bitwidth)
-- each miniblock is a list of bit packed ints according to the bit width stored at the begining of the block(minblocks里面使用bit-packed压缩）
+- the min delta is a VLQ int (we compute a minimum as we need positive integers for bit packing) (将所有的delta转换成为正数)
+- the bitwidth of each block is stored as a byte(每个minblocks使用的bitwidth)
+- each miniblock is a list of bit packed ints according to the bit width stored at the begining of the block(minblocks里面使用bit-packed压缩)
 
 每个minblocks应该都可以被向量指令处理，min-delta引入是为了处理正数加快速度。而为每个minblocks引入不同的bitwidth可以有效减少存储空间。
 

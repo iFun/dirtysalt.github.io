@@ -458,7 +458,7 @@ HRegion类似于tablet，每个HRegion有很多Store存储不同的column family
 - 如果Store里面的memstore本身比较大的话，也会进行flush
 
 scan过程大致是这样的：
-- 首先scanner得到memstore以及所有的hfile，以及这个似乎时候的timestamp（hbase使用timestamp作为version)进行归并排序。
+- 首先scanner得到memstore以及所有的hfile，以及这个似乎时候的timestamp(hbase使用timestamp作为version)进行归并排序。
 - 如果期间memstore发生写，或者是flush，或者是进行compaction的话，那么会通知scanner
 - scanner会重新组织这些内容，根据上次读取到的value,忽路duplicated的数据。
 这样的好处就是通常在scanner的时候不会阻塞其他操作。

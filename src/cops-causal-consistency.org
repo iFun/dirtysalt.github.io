@@ -19,7 +19,7 @@ https://pdos.csail.mit.edu/6.824/papers/cops.pdf
 
 [[../images/cops-deps.png]]
 
-在同一个execution thread里面，如果v6发生在t2, u1之后，那么它就依赖于t2, u1.同理z4依赖于几乎所有变量（All Deps). 不过在实际实现中，我们只需要存储离z4最近的几个deps就行，也就是nearest deps. 因为只要满足了nearest deps，那么all deps就可以满足了。这里的deps不仅仅是key, 还包括对应的version. dep = <key, version>
+在同一个execution thread里面，如果v6发生在t2, u1之后，那么它就依赖于t2, u1.同理z4依赖于几乎所有变量(All Deps). 不过在实际实现中，我们只需要存储离z4最近的几个deps就行，也就是nearest deps. 因为只要满足了nearest deps，那么all deps就可以满足了。这里的deps不仅仅是key, 还包括对应的version. dep = <key, version>
 
 Client API是上面那样，但是内部接口只有两个：
 1. put_after(key, value, [deps], nearest) -> version. 对于COPS来说只需要传入nearest_deps就行，这个只在写入时候dep_check时候有用。但是对于COPS-GT来说，除了nearest_deps，deps也需要因为这个值需要被一起写入key-value中，因为这个deps在 `get_trans` 的时候需要被使用。

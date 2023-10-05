@@ -205,7 +205,7 @@ UPDATE@202002 最近发现这个限速器在生产环境有点问题，没有对
 - https://github.com/EvoluxBR/python-redis-rate-limit
 - http://bobintornado.github.io/development/2017/05/15/Rate-Limiting-Using-Redis-in-Python.html
 
-其实这些实现都是使用固定窗口（有1s, 10s, 60s)的，在这个时间窗口内设置一个次数上限。而我上面的rate limiter是60s的近似滑动窗口，在限速上会更加平滑一些。
+其实这些实现都是使用固定窗口(有1s, 10s, 60s)的，在这个时间窗口内设置一个次数上限。而我上面的rate limiter是60s的近似滑动窗口，在限速上会更加平滑一些。
 
 滑动窗口比固定窗口有个好处是，没有办法预支流量。比如10s窗口的开始，固定窗口允许在第1s内请求10 * limit_qps的，这就是一个尖峰，但是滑动窗口会考虑到当前窗口大小，不会出现这样的情况。
 

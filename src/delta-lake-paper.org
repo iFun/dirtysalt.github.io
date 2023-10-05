@@ -56,7 +56,7 @@ z-ordering可以对每个字段都达到比较理想的效果，paper中给的�
 3. update是原子操作，但是会重写object.
 4. 支持read-after-write consistency, 但是如果GET/PUT/GET那么可能无效(negative caching)
 5. LIST是最终一致性，所以想要靠S3本身管理元数据是不行的。
-6. read延迟大约在5-10ms(我实测远比这个大，不知道是不是和region有关系），单个session带宽在50-100MB/s, 所以naturalReadSize最好是在1MB-2MB之间。
+6. read延迟大约在5-10ms(我实测远比这个大，不知道是不是和region有关系)，单个session带宽在50-100MB/s, 所以naturalReadSize最好是在1MB-2MB之间。
 7. 为了能跑满10Gbps, 那么通常需要8-10个session并行读取。
 
 #+BEGIN_QUOTE

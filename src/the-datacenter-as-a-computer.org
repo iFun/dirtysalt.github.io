@@ -229,7 +229,7 @@ many key components with the very high-volume personal computing market, and the
 more substantially from economies of scale.
 #+END_QUOTE
 
-暂时不考虑通信效率，纯粹考虑单机的计算/存储性价比（用的是TPC-C基准测试)。
+暂时不考虑通信效率，纯粹考虑单机的计算/存储性价比(用的是TPC-C基准测试)。
 - low-end servers效率是high-end servers的3x
 - 排除low-end servers存储成本的话，这个比例上升到12x（对于low-end servers来说存储占据了40%）
 - 如果再排除high-end servers因为高价格带来实际购买折扣的话，那么这个比例到了20x
@@ -557,7 +557,7 @@ is a large improvement over the status quo. Based on the current state of the ar
 1.25 probably represents the upper limit of what is economically feasible in real-world settings.
 #+END_QUOTE
 
-“成比例的能耗使用计算”(engery-proportional computing，我后面写成EPC）理想情况就是：如果idle的话，那么最好就能能耗；
+“成比例的能耗使用计算”(engery-proportional computing，我后面写成EPC)理想情况就是：如果idle的话，那么最好就能能耗；
 然后能耗使用是和load成线性比例的。EPC要求有"wide dynamic power range"，这点拿人体来做参考。
 
 #+BEGIN_QUOTE
@@ -671,7 +671,7 @@ improvements.
 
 WSCs设计者还要意识到，每个组件EPC是不断变化的。比如上图可以看到，CPU的EPC变得越来越好。但是总的来说应用软件的workload
 通常不会发生比较大的变化，对每个组件的load需求也是相对固定的。这个时候我们就要调整每个组件的能耗来适应软件的workload.
-比如CPU就可以使用DVS(dynamic voltage scaling)来降低CPU的功耗（因为CPU性能增速远好于disk和dram)
+比如CPU就可以使用DVS(dynamic voltage scaling)来降低CPU的功耗(因为CPU性能增速远好于disk和dram)
 
 #+BEGIN_QUOTE
 WSC designs, as with any machine design, attempt to achieve high energy efficiency but also to
@@ -850,7 +850,7 @@ mean time to hardware repair observed in Google’s fleet (more than 6 years) wh
 mean time to machine crash (6 months or less).
 #+END_QUOTE
 
-在预测故障的时候，我们需要平衡accuracy和recall(主要是penalty, 因为没有及时预报造成的损失）。如果软件容错处理做得好的话，那么这个penalty会比较低。
+在预测故障的时候，我们需要平衡accuracy和recall(主要是penalty, 因为没有及时预报造成的损失)。如果软件容错处理做得好的话，那么这个penalty会比较低。
 所以在预测故障方面，我们适当地关注accuracy. 而传统软件在recall上面就要做得尽可能高。但是他们也指出，他们在磁盘故障预测上做得并不好。
 
 #+BEGIN_QUOTE
