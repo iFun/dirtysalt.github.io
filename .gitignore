@@ -55,7 +55,7 @@ venv/
 .vscode
 __pycache__
 *.dSYM/
-.compressed-images
-.compress-images-cache
 ob/.obsidian/workspace.json
 .enforce-org-format.json
+images/.compress-images.json
+images/.compressed-images-staging
