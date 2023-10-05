@@ -365,7 +365,7 @@ http://sysprof.com/ a statistical, system-wide profiler for Linux.
 ** Admin
 *** rsync
 - `rsync -avrz /dir/ user@host:/dir/` # 注意目录后面需要加上/
-- `rsync -avrz /dir/file1 user@host:/dir/file
+- `rsync -avrz /dir/file1 user@host:/dir/file`
 
 *** lsof
 - lsof -nP | grep "delete" # 已被删除但是依然被某些进程打开的文件
@@ -475,7 +475,7 @@ sudo iptables -A INPUT -s "192.168.100.104" -d "192.168.100.105" -j DROP
 *** ab
 ab(apache benchmarking)
 
-`ab -c 100 -n 10000 -r localhost/` 共10k个请求, 并发数100. 结果`Requsts per second`显示QPS在13k/s
+`ab -c 100 -n 10000 -r localhost/` 共10k个请求, 并发数100. 结果 `Requsts per second` 显示QPS在13k/s
 #+BEGIN_EXAMPLE
 Server Software:        nginx/1.2.1
 Server Hostname:        localhost

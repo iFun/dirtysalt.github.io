@@ -280,7 +280,7 @@ Linux使用三级页表完成虚拟地址到物理地址的转换. 为了加快�
 ** C16 页高速缓存和页回写
 页高速缓存(page cahce)的目标是缓存任何基于页的对象, 包括各种类型的文件和各种类型的内存映射, 但是主要是为了缓存磁盘文件来加快读写速度. Linux使用address_space对象来管理页高速缓存, 内部inode指针表示对应的磁盘文件. 一个文件在整个系统中只对应一个address_space对象.
 
-页高速缓存(page cache)和块缓冲区(block cache, block buffer)之间的关系非常微妙. C14中提到了, 在2.6之前, 所以IO操作都是通过提交块缓冲区来执行的. 也就是说, 用户态写文件, 首先会写page cache, 同时也会写入block cache来发起IO操作. 一个磁盘块数据可以同时存于两个缓存中, 不仅浪费内存, 还需要考虑同步两个缓存中的数据. 2.6之后使用通过bio来管理IO请求, block cache就可以不再参与文件读写. 但是block cache依然有一些作用 a. 读写inode节点 b. 直接操作块底层(O_DIRECT). block cache和page cache大小可以从`free -t`命令中看到. 其中`buffers`对应block cache, `cached`对应page cache.
+页高速缓存(page cache)和块缓冲区(block cache, block buffer)之间的关系非常微妙. C14中提到了, 在2.6之前, 所以IO操作都是通过提交块缓冲区来执行的. 也就是说, 用户态写文件, 首先会写page cache, 同时也会写入block cache来发起IO操作. 一个磁盘块数据可以同时存于两个缓存中, 不仅浪费内存, 还需要考虑同步两个缓存中的数据. 2.6之后使用通过bio来管理IO请求, block cache就可以不再参与文件读写. 但是block cache依然有一些作用 a. 读写inode节点 b. 直接操作块底层(O_DIRECT). block cache和page cache大小可以从 `free -t` 命令中看到. 其中 `buffers` 对应block cache, `cached` 对应page cache.
 #+BEGIN_EXAMPLE
 ➜  notes git:(master) ✗ free -t
              total       used       free     shared    buffers     cached

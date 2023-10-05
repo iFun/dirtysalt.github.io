@@ -66,7 +66,7 @@ benchmark代码放在 [[https://github.com/dirtysalt/codes/blob/master/cc/sr-tes
     }
 #+END_SRC
 
-另外一个实现则需要CPU支持AVX512F特性，具体来说就是用到这个指令：`_mm512_mask_compress_epi32` 和 `_mm512_mask_compress_epi64`.  这两个指令可以支持32bit/64bit的压缩。如果需要支持epi8/epi16压缩的话，那么就需要AVX512_VBMI(icelake)特性，我看了下我们开发机器还不支持。
+另外一个实现则需要CPU支持AVX512F特性，具体来说就是用到这个指令： `_mm512_mask_compress_epi32` 和 `_mm512_mask_compress_epi64`.  这两个指令可以支持32bit/64bit的压缩。如果需要支持epi8/epi16压缩的话，那么就需要AVX512_VBMI(icelake)特性，我看了下我们开发机器还不支持。
 
 #+BEGIN_SRC Cpp
 #define AVX512_COPY(SHIFT, MASK, WIDTH)                                         \
@@ -105,7 +105,7 @@ benchmark代码放在 [[https://github.com/dirtysalt/codes/blob/master/cc/sr-tes
     }
 #+END_SRC
 
-运行时CPU特性判断可以参考 [[https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html][这里]] 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
+运行时CPU特性判断可以参考 [[https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html][这里]] 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init` ，不过我测试了如果不调用好像也没有问题）
 
 ----------
 
@@ -113,7 +113,7 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 
 在8bit/16bit这个级别上，我对比了bitmask和branchless两个版本，有这个几个发现：
 - 拷贝8bit和16bit上其实性能差别不大，16bit在bitmask版本略微高些，但是branchless差别不大。
-- branchless只有在 `bits = 8` 的情况下面比bitmask好一点，在 `bits = 16`的情况下面比bitmask好很多。
+- branchless只有在 `bits = 8` 的情况下面比bitmask好一点，在 `bits = 16` 的情况下面比bitmask好很多。
 - 但是如果在这里增加一次判断的话，造成的额外开销会比较大。
 
 [[../images/filter-range-optimization-0.jpg]]

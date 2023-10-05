@@ -13,7 +13,7 @@ JavaScript只有一个单一的数字类型(Number)。它在内部被表示为64
     1. `var p = new ClassA()` 那么 `p.__proto__ === ClassA.prototype`
     2. 然后ClassA.prototype里面有一个 `construtor` 属性 ` ClassA.prototype.constructor === ClassA`
     3. 最后 `ClassA instanceof Function`
-4. apply invocaition: `funcObj.apply(ctx, parameters)` 其中ctx绑定函数体中的`this`，这个可以改变执行上下文。
+4. apply invocaition: `funcObj.apply(ctx, parameters)` 其中ctx绑定函数体中的 `this` ，这个可以改变执行上下文。
 
 关于prototype和__proto__这个问题可以在 https://www.zhihu.com/question/34183746 里面找找
 

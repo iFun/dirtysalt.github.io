@@ -5,7 +5,7 @@
 - [[https://blog.codingnow.com/2008/04/quasi-random_sequences.html][云风的 BLOG: 不那么随机的随机数列]]
 - [[https://coolshell.cn/articles/8593.html][如何测试洗牌程序 | | 酷 壳 - CoolShell]]
 
-coolshell里面提到的 `fisher_yates` 算法，让我想起了 [[https://www.geeksforgeeks.org/reservoir-sampling/][`reservior sampling`]] 算法，都是一遍下来和交换N-1次，我隐隐地感觉两者之间是有联系的。
+coolshell里面提到的 `fisher_yates` 算法，让我想起了 [[https://www.geeksforgeeks.org/reservoir-sampling/][ `reservior sampling` ]] 算法，都是一遍下来和交换N-1次，我隐隐地感觉两者之间是有联系的。
 
 先说下第二篇文章里面的一个问题，在N次实验中，连续出现5次正面的概率多大，云风在最后面给了解法：
 - f(N) = f(N-1) * 2 + 2^(N-6) - f(N-6)

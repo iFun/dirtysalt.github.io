@@ -160,7 +160,7 @@ type service struct {
 打个比方，我们想设置service的名称，代码如下：
 1. 我们在 `micro.NewService` 里面传入一个Option `micro.Name`
 2. 这个Option操作是什么呢？调用 `options.Server.Init`, 而 `server.Name` 又是一个Option（但是和上面的Option分属两个名字空间，概念一样但是不一个东西）
-3. `server.Name` 操作是什么呢？就是把 `server.Options.Name`这个字段赋值
+3. `server.Name` 操作是什么呢？就是把 `server.Options.Name` 这个字段赋值
 所以这串操作最终是什么意思？就是把name放到了service.Options.Server.Options.Name这个字段上了。
 
 #+BEGIN_SRC Go

@@ -15,7 +15,7 @@
 - 安装了gcc
 - 安装了linux头文件和开发包. `sudo apt-get install linux-headers-$(uname -r)`
 - Disabling Nouveau. nouveau是nvidia gpu cards的一个开源驱动实现，但是估计nvidia不吃这套，坚持用自己的驱动.
-修改完成后最好再重启一下，然后再运行runfile. 安装完成后最好运行一下`nvidia-smi`命令确认CUDA安装成功。
+修改完成后最好再重启一下，然后再运行runfile. 安装完成后最好运行一下 `nvidia-smi` 命令确认CUDA安装成功。
 
 [[../images/nvidia-smi-output.png]]
 

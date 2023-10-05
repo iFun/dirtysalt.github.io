@@ -49,7 +49,7 @@ foreach $h (@hostlist) {
 
 ** A reworked deploy tool (2012)
 
-部署脚本 `push `使用python重写了，做了下面这些改进
+部署脚本 `push ` 使用python重写了，做了下面这些改进
 - 从DNS上获取hosts列表而不是hard coded
 - 不再顺序地遍历服务器部署，而是打乱列表顺序。这样可以更加安全地加快部署速度。
 - 打乱列表顺序可以使用某个seed. 这样如果修复的时候也是按照同样的顺序回滚

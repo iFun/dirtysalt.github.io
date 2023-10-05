@@ -5,10 +5,10 @@
 - [[http://dev.mysql.com/doc/refman/5.6/en/index.html][MySQL :: MySQL 5.6 Reference Manual]]
 
 ** Cheatsheet
-- alter table `userinfo` drop index `email`; -- 删除索引
+- alter table `userinfo` drop index `email` ; -- 删除索引
 - alter table `userinfo` add column `email` text not null; -- 添加列
-- ALTER TABLE `userinfo` ADD INDEX `index_key` (`field1`, `field2`) -- 增加索引
-- show indexes in `userinfo`; -- 显示表索引
+- ALTER TABLE `userinfo` ADD INDEX `index_key` ( `field1`, `field2` ) -- 增加索引
+- show indexes in `userinfo` ; -- 显示表索引
 - alter table `userinfo` change `email` `email_ext` text; -- 修改列定义
 - show variables like 'max_%'; -- 显示变量
 - set global max_allowed_packet = 2 * 1024 * 1024; -- 设置变量

@@ -59,7 +59,7 @@ https://epickrram.blogspot.com/2015/11/reducing-system-jitter-part-2.html
 
 最后面interrupts过程是这样的
 1. 通过 `cat /proc/interrupts` 观察中断次数分布
-2. 看`cat /proc/irq/47/smp_affinity_list` 某个irq的绑定情况
+2. 看 `cat /proc/irq/47/smp_affinity_list` 某个irq的绑定情况
 3. 修改smp_affinity_list. 不过这个需要看根据irq情况看是否可以修改绑定
 
 [[../images/when-the-os-gets-in-the-way-3.png]]

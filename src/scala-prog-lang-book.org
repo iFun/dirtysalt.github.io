@@ -13,7 +13,7 @@ scala标识符分为3类：
   - unary_+ used as a method name defines a unary + operator.
   - myvar_= used as method name defines an assignment operator.
 - A *literal identifier* is an arbitrary string enclosed in back ticks. #note: 解决关键字问题
-  - You cannot write Thread.yield() because yield is a reserved word in Scala. However, you can still name the method in back ticks, e.g., Thread.`yield`().
+  - You cannot write Thread.yield() because yield is a reserved word in Scala. However, you can still name the method in back ticks, e.g., Thread.`yield` ().
 
 *** 原始类型
 More generally, all of Java’s primitive types have corresponding classes in the scala package. And when you compile your Scala code to Java bytecodes, the Scala com- piler will use Java’s primitive types where possible to give you the perfor- mance benefits of the primitive types.
@@ -1438,7 +1438,7 @@ class TestCase[T](
 }
 #+END_SRC
 
-使用`javap TestCase`查看, 可以看到TestCase有哪些接口
+使用 `javap TestCase` 查看, 可以看到TestCase有哪些接口
 #+BEGIN_EXAMPLE
 ➜  ~  javap TestCase
 Compiled from "test.scala"

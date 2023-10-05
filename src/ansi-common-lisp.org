@@ -207,7 +207,7 @@ read/read-from-string 都会对输入字符进行分析。如果某个字符比�
 (in-package my-application)
 #+END_SRC
 
-lisp下面所有的关键字被单独放在一个 `keyword`的包里面。相比符号，它的好处是可以直接比较。因为两个相同字符串的符号有可能因为所属package不同而不同。关键字可以很容易地被定义出来
+lisp下面所有的关键字被单独放在一个 `keyword` 的包里面。相比符号，它的好处是可以直接比较。因为两个相同字符串的符号有可能因为所属package不同而不同。关键字可以很容易地被定义出来
 
 #+BEGIN_SRC Lisp
 

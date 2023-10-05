@@ -37,7 +37,7 @@ BN是在一个mini-batch上面对输入进行normalization，并且这个BN是�
 
 [[../images/improve-dnn-batch-norm.png]]
 
-BN在每层有两个超参数，并且最终训练完成之后也有两个参数分别是u(mean), e(std). 这两个参数会作用在预测上。如何在train阶段结合mini-batch来计算u和e呢？这个可以参考 Optimization 一节里面 `expoentially weighted average(ewa)`的计算方法：在计算mini-batch的时候每次都会得到一个u和e, 然后通过ewa最终得到最终值，这个最终值可以在一定程度上认为是每个mini-batch的平均值。
+BN在每层有两个超参数，并且最终训练完成之后也有两个参数分别是u(mean), e(std). 这两个参数会作用在预测上。如何在train阶段结合mini-batch来计算u和e呢？这个可以参考 Optimization 一节里面 `expoentially weighted average(ewa)` 的计算方法：在计算mini-batch的时候每次都会得到一个u和e, 然后通过ewa最终得到最终值，这个最终值可以在一定程度上认为是每个mini-batch的平均值。
 
 ** Hyperparameter Tunning
 超参数(hyper-param)和普通参数(param)的区别是，普通参数是我们希望最终得到的，而超参数是为了更好地获得这些参数使用的参数。

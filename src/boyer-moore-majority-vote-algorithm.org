@@ -61,7 +61,7 @@ print(majority_vote([1,2,1,1,2,2]))
 --------------------
 如果如果对第一个算法稍加改动，结合BM算法思想的话，就可以对任意区间求解majority.
 
-我们将区间用区间树来表示，节点有两个值 `freq`（表示值出现频次）和 `value` （表示具体什么值). 我们在处理节点a, b的时候
+我们将区间用区间树来表示，节点有两个值 `freq` （表示值出现频次）和 `value` （表示具体什么值). 我们在处理节点a, b的时候
 - a.val == b.val => Tree(a.val, a.freq + b.freq)
 - a.freq > b.freq => Tree(a.val, a.freq - b.freq)
 - a.freq < b.freq => Tree(b.val, b.freq - a.freq)

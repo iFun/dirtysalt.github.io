@@ -84,7 +84,7 @@ rank   self  accum   count trace method
   12  0.46% 76.91%      28 300660 org.apache.http.impl.conn.Wire.wire
 #+END_EXAMPLE
 
-因为这个工具是测试网络的，所以socketRead0很多这个也很正常，那么怀疑点就是log4j了。其实这个时候应该就可以分析出问题的原因了，但是我还有点不太相信这个结果：`org.apache.http.impl.conn.Wire.wire(Wire.java:72)` 这个地方调用了debug log，很可能就是造成CPU使用率很高的原因。但是我忽略这个过程，觉得这个工具不是特别靠谱，非常可惜，接着使用了更加复杂的profiling工具。
+因为这个工具是测试网络的，所以socketRead0很多这个也很正常，那么怀疑点就是log4j了。其实这个时候应该就可以分析出问题的原因了，但是我还有点不太相信这个结果： `org.apache.http.impl.conn.Wire.wire(Wire.java:72)` 这个地方调用了debug log，很可能就是造成CPU使用率很高的原因。但是我忽略这个过程，觉得这个工具不是特别靠谱，非常可惜，接着使用了更加复杂的profiling工具。
 
 ** Java In Flames
 

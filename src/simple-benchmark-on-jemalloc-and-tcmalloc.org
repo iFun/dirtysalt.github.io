@@ -19,7 +19,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 
 ** 测试构造
 
-测试思路是，在不同尺寸内存块上反复分配以及释放，观察执行时间以及minor page fault. 实现思路是如下，具体代码可以看 `测试代码`一节：
+测试思路是，在不同尺寸内存块上反复分配以及释放，观察执行时间以及minor page fault. 实现思路是如下，具体代码可以看 `测试代码` 一节：
 - 每个线程上有N个大小为 `BLOCK_SIZE` 的内存块
 - 每次随机挑选一个内存块进行释放或者是分配
 - 如果是分配的话，那么进行memcpy

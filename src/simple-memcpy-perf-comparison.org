@@ -248,7 +248,7 @@ static INLINE void memcpy_sse2_32(void* __restrict dst, const void* __restrict s
 
 *** memcpy_my/my2
 
-代码比较长，完整代码可以看这里 https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308. 两者实现逻辑非常接近，差别在于`memcpy_my2` 版本在
+代码比较长，完整代码可以看这里 https://github.com/dirtysalt/codes/blob/master/cc/sr-test/memcpy-bench/memcpy-impl.h#L308. 两者实现逻辑非常接近，差别在于 `memcpy_my2` 版本在
 - `if (size < 30000 || !have_avx)` 条件下面使用128字节sse2版本，因为使用avx指令会有额外开销。
 - 对于大块内存拷贝，不会再使用 `goto tail` 来单独处理尾部的字符串，而是直接使用重复拷贝来避开tail bytes的处理。
 
