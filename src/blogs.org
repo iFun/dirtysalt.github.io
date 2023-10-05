@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202310 [[file:attempt-to-work-on-windows.org][尝试迁移到Windows上]]
 - 202310 [[file:readings-at-202310.org][网络文章@202310]]
 - 202310 [[file:how-investment-make-money.org][投资是怎么赚钱的]]  30分钟讲述投资底层逻辑的科普视频
 - 202309 [[file:lc-2867-count-valid-paths-in-a-tree.org][LC 2867. 统计树中的合法路径数目]] 简单的树遍历
