@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>storm</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">storm</h1>
@@ -30,7 +31,7 @@
 <li><a href="http://www.slideshare.net/nathanmarz/storm-distributed-and-faulttolerant-realtime-computation">http://www.slideshare.net/nathanmarz/storm-distributed-and-faulttolerant-realtime-computation</a></li>
 <li><a href="http://ifeve.com/wp-content/uploads/2014/03/Getting-Started-With-Storm-Jonathan-Leibiusky-Gabriel-E_1276.pdf">Getting Started With Storm</a></li>
 <li>通常storm都是和kafka对接的，<a href="https://github.com/miguno/kafka-storm-starter">这个项目</a> 可以作为参考</li>
-<li>另外storm还支持multilang, 我这里也做了一个 <a href="https://github.com/dirtysalt/codes/tree/master/scala/kafka-streaming">demo</a></li>
+<li>另外storm还支持multilang, 我这里也做了一个 <a href="codes/scala/kafka-streaming">demo</a></li>
 </ul>
 
 <div id="outline-container-orga61b715" class="outline-2">
@@ -50,7 +51,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="org5b22b8b" class="figure">
+<div id="org12893a0" class="figure">
 <p><img src="../images/storm-cluster.png" alt="storm-cluster.png" />
 </p>
 </div>
@@ -60,7 +61,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="org91e0533" class="figure">
+<div id="orgd3ee00f" class="figure">
 <p><img src="../images/storm-topology.png" alt="storm-topology.png" />
 </p>
 </div>
@@ -91,7 +92,7 @@ storm集群由三个部分组成: 1) master(nimbus) 2) coordinator(zookeeper) 3 
 </p>
 
 
-<div id="org2ea8645" class="figure">
+<div id="org6db04da" class="figure">
 <p><img src="../images/storm-drpc-workflow.png" alt="storm-drpc-workflow.png" />
 </p>
 </div>
@@ -106,7 +107,7 @@ storm parallelism有三个概念 1) worker process 2) executor 3) task. 下面�
 </p>
 
 
-<div id="org9cf5b01" class="figure">
+<div id="org375eb02" class="figure">
 <p><img src="../images/storm-parallelism.png" alt="storm-parallelism.png" />
 </p>
 </div>
@@ -127,7 +128,7 @@ storm parallelism有三个概念 1) worker process 2) executor 3) task. 下面�
 </p>
 
 
-<div id="org0560f6d" class="figure">
+<div id="org942507b" class="figure">
 <p><img src="../images/storm-tuple-tree.png" alt="storm-tuple-tree.png" />
 </p>
 </div>
@@ -163,7 +164,7 @@ storm如何实现消息确认? storm会为每个output-tuple分配一个random 6
 <p>
 我们这里举个例子, 假设topology T如下:
 </p>
-<pre class="example" id="org2a087c9">
+<pre class="example" id="orgf4b7130">
 A -&gt; B -&gt; D
   -&gt; C
 </pre>
@@ -179,9 +180,10 @@ A -&gt; B -&gt; D
 </ul>
 
 <p>
-默认storm是启动1个acker服务来进行追踪. 但是如果消息量非常大的话那么可以启动多个acker服务来进行追踪. 一旦acker服务发现某个tuple需要重传的话, 会根据hashmap里面的spout-task-id来通知对应的spout.</p>
+默认storm是启动1个acker服务来进行追踪. 但是如果消息量非常大的话那么可以启动多个acker服务来进行追踪. 一旦acker服务发现某个tuple需要重传的话, 会根据hashmap里面的spout-task-id来通知对应的spout.
+</p>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/storm.html';this.page.identifier = 'storm.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

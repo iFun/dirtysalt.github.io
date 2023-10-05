@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>thoughts on programming language</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">thoughts on programming language</h1>
@@ -404,7 +405,7 @@ b.m()
 分派函数可以任意的，并且允许含有side-effect（但是最好不要这样做，因为不知道会调用多少次）。
 </p>
 
-<pre class="example" id="orgdd79413">
+<pre class="example" id="org7474e1a">
 user=&gt; (load-file "test.clj")
 dispatch-fn
 this is string value =&gt; world
@@ -449,7 +450,7 @@ class Test {
 </pre>
 </div>
 
-<pre class="example" id="org3791b68">
+<pre class="example" id="org7e6d53e">
 ➜  playbook javac Test.java &amp;&amp; java Test
 call_m(A)
 B::m
@@ -503,7 +504,7 @@ val _ = sphere.center.z (* kaboom! (no z field) *)
 </div>
 
 <p>
-Java是如何处理深度子类型化的呢？可以看看下面这个数组例子。这段代码是可以通过编译的，但是在运行时出现Exception， 异常出现在 `xs[0] ` new A();= 这个代码上。
+Java是如何处理深度子类型化的呢？可以看看下面这个数组例子。这段代码是可以通过编译的，但是在运行时出现Exception， 异常出现在 `xs[0] = new A();` 这个代码上。
 Java在这里增加了类型判断，先判断出xs元素的真实类型，然后确保赋值对象是子类。Java对数组做了单独处理，可能因为数组是Java里面原始类型的原因，但是对List这类容器就直接不允许了。
 </p>
 
@@ -542,7 +543,7 @@ class Test {
 </pre>
 </div>
 
-<pre class="example" id="orgd95202a">
+<pre class="example" id="org4776282">
 ➜  playbook javac Test.java &amp;&amp; java Test
 Exception in thread "main" java.lang.ArrayStoreException: A
 	at Test.reset(Test.java:8)
@@ -550,7 +551,7 @@ Exception in thread "main" java.lang.ArrayStoreException: A
 </pre>
 
 <p>
-Java在处理深度子类型上另外一个case就比较常见了，就是处理null. 在类型上，null是所有类型的子类，因为你可以创建类型类型A然后 `A a ` null=.
+Java在处理深度子类型上另外一个case就比较常见了，就是处理null. 在类型上，null是所有类型的子类，因为你可以创建类型类型A然后 `A a = null`.
 所有这些代码在编译期都可以通过类型检查，但是需要增加代码在运行期进行Null判断。
 </p>
 </div>
@@ -613,5 +614,5 @@ TODO: examples</p>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/thoughts-on-prog-lang.html';this.page.identifier = 'thoughts-on-prog-lang.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

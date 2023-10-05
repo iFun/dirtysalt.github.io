@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Brainfuck的JIT编译器</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Brainfuck的JIT编译器</h1>
@@ -37,7 +38,7 @@
 </p>
 
 <p>
-然后我还实现了一个llvm的jit, 代码在 <a href="https://github.com/dirtysalt/codes/tree/master/py/brainfuck/">这里</a>. 简单说说这个项目：
+然后我还实现了一个llvm的jit, 代码在 <a href="codes/py/brainfuck/">这里</a>. 简单说说这个项目：
 </p>
 <ol class="org-ol">
 <li>simple_bf.py 这个是使用python解释执行的版本</li>
@@ -46,7 +47,7 @@
 <ul class="org-ul">
 <li>llvm_bf.py 是将 `ptr` 作为偏移量使用</li>
 <li>llvm_bf2.py 是将 `ptr` 作为指针使用</li>
-<li>这两个版本都输出了llvm的 <a href="https://github.com/dirtysalt/codes/tree/master/py/brainfuck/llvm_bf2.ir">中间代码</a> 和 <a href="https://github.com/dirtysalt/codes/tree/master/py/brainfuck/llvm_bf2.S">汇编代码</a></li>
+<li>这两个版本都输出了llvm的 <a href="codes/py/brainfuck/llvm_bf2.ir">中间代码</a> 和 <a href="codes/py/brainfuck/llvm_bf2.S">汇编代码</a></li>
 </ul></li>
 </ol>
 
@@ -56,7 +57,7 @@
 曼德布罗特的分形图像真是美丽！
 </p>
 
-<pre class="example" id="orga163ac2">
+<pre class="example" id="org8e3e8c6">
 ➜  brainfuck git:(master) ✗ python llvm_bf2.py examples/mandelbrot.bf
 AAAAAAAAAAAAAAAABBBBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDEGFFEEEEDDDDDDCCCCCCCCCBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 AAAAAAAAAAAAAAABBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDEEEFGIIGFFEEEDDDDDDDDCCCCCCCCCBBBBBBBBBBBBBBBBBBBBBBBBBB
@@ -108,5 +109,5 @@ AAAAAAAAAAAAABBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDDDEEEEFFFI 
 AAAAAAAAAAAAAAABBBBBBBBBBBBBCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDDDDDDDDDDEEEFGIIGFFEEEDDDDDDDDCCCCCCCCCBBBBBBBBBBBBBBBBBBBBBBBBBB
 </pre>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/brainfuck-jit-compiler.html';this.page.identifier = 'brainfuck-jit-compiler.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

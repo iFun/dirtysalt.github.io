@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Timeline at Scale in Twitter</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Timeline at Scale in Twitter</h1>
@@ -27,7 +28,7 @@ twitter timeline 整体架构如下图：
 </p>
 
 
-<div id="orgd6eabc4" class="figure">
+<div id="orgd9603be" class="figure">
 <p><img src="../images/timeline-at-scale-in-twitter.png" alt="timeline-at-scale-in-twitter.png" />
 </p>
 </div>
@@ -196,7 +197,7 @@ Problem is for large cardinality graphs. @ladygaga has 31 million followers. @ka
 </blockquote>
 
 
-<div id="org5283548" class="figure">
+<div id="orge741240" class="figure">
 <p><img src="../images/timeline-at-scale-ts.png" alt="timeline-at-scale-ts.png" />
 </p>
 </div>
@@ -223,5 +224,5 @@ Monitoring
 <li>A system called VIZ monitors every cluster. Median request time to the Timeline Service to get data out of Scala cluster is 5msec. @ p99 it’s 100msec. And @ p99.9 is where they hit disk, so it takes a couple hundred of milliseconds.</li>
 </ul>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/timeline-at-scale-in-twitter.html';this.page.identifier = 'timeline-at-scale-in-twitter.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>General Algorithm</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">General Algorithm</h1>
@@ -241,7 +242,7 @@ UPDATE@201808 这篇 <a href="https://github.com/julycoding/The-Art-Of-Programmi
 </p>
 
 
-<div id="org522161a" class="figure">
+<div id="orgba37dee" class="figure">
 <p><img src="../images/simhash-exact-match.jpg" alt="simhash-exact-match.jpg" />
 </p>
 </div>
@@ -251,7 +252,7 @@ UPDATE@201808 这篇 <a href="https://github.com/julycoding/The-Art-Of-Programmi
 </p>
 
 
-<div id="org6a2886c" class="figure">
+<div id="orga95128a" class="figure">
 <p><img src="../images/simhash-search.jpg" alt="simhash-search.jpg" />
 </p>
 </div>
@@ -373,7 +374,7 @@ def estimate_cardinality(values, k):
 <li>如果只有1的话，那么前缀使用&lt;01&gt;</li>
 </ul>
 
-<div id="org8ad9a48" class="figure">
+<div id="org01b8878" class="figure">
 <p><img src="../images/concise-wah.png" alt="concise-wah.png" />
 </p>
 </div>
@@ -405,7 +406,7 @@ CONCISE针对这个部分稍微改进了一下
 <li>and word #5 for integers 1 040 187 392–1 040 187 422.</li>
 </ul>
 
-<div id="org92fedd9" class="figure">
+<div id="org93f1eb0" class="figure">
 <p><img src="../images/concise-concise.png" alt="concise-concise.png" />
 </p>
 </div>
@@ -439,7 +440,7 @@ CONCISE针对这个部分稍微改进了一下
 <p>
 对方差计算可以做如下简化, 其中Xi表示第i个元素，Xe表示平均值
 </p>
-<pre class="example" id="orgc402434">
+<pre class="example" id="orgaa7ec73">
 th^2 * n = (X1-Xe)^2 + (X2-Xe)^2 + (X3-Xe)^2 + ... (Xi-Xe)^2 + .. (Xn-Xe)^2
          = (X1^2 + X2^2 + ... Xi^2 + ... + Xn^2) - 2 * Xe * (X1 + X2 + ... Xi + ... Xn) + n * Xe^2
          = (X1^2 + X2^2 + ... Xi^2 + ... + Xn^2) - 2 * Xe * n * Xe + n * Xe^2
@@ -583,7 +584,7 @@ a1 a1 a1 a2 a2 a2 &#x2026; an an an X
 </p>
 
 <p>
-UPDATE@2015-09-08: 这个问题是 <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Monty Hall Problem</a>, 可以通过 <a href="https://github.com/dirtysalt/codes/tree/master/misc/random/monty_hall.py">模拟</a> 来计算结果
+UPDATE@2015-09-08: 这个问题是 <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem">Monty Hall Problem</a>, 可以通过 <a href="codes/misc/random/monty_hall.py">模拟</a> 来计算结果
 </p>
 </div>
 </div>
@@ -737,7 +738,7 @@ print(sum(guess) * 1.0 / len(guess))
 </pre>
 </div>
 
-<pre class="example" id="org06592c3">
+<pre class="example" id="org8d3f422">
 ➜  playbook python sim.py
 18.11062
 </pre>
@@ -850,5 +851,5 @@ setup(
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/general-algorithm.html';this.page.identifier = 'general-algorithm.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

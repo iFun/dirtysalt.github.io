@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>log4j引起高CPU使用率的问题</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">log4j引起高CPU使用率的问题</h1>
@@ -69,7 +70,7 @@
 这个东西好处就是系统自带，而且可以直接在本机上运行，不用像jvisualvm那样需要打洞和远程连接上来。这个工具可以分析CPU和heap使用情况，使用起来也非常方便  `java -agentlib:hprof=cpu=samples,depth=5` . 其中samples表示是采样方式，而depth=5表示只是对5层stack进行聚合。期间JVM会对所有活跃进程进行采样，每个stack trace形成一个TRACE，然后按照TRACE进行group by. 输出入下图所示。
 </p>
 
-<pre class="example" id="orgd9a4fa0">
+<pre class="example" id="org92c9c10">
 TRACE 300648:
     java.net.SocketInputStream.socketRead0(SocketInputStream.java:Unknown line)
     java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
@@ -154,7 +155,7 @@ perf-map-agent地址在这 <a href="https://github.com/jvm-profiling-tools/perf-
 </p>
 
 
-<div id="org859c177" class="figure">
+<div id="org2b4793b" class="figure">
 <p><img src="../images/high-cpu-utilization-by-log4j-0.png" alt="high-cpu-utilization-by-log4j-0.png" />
 </p>
 </div>
@@ -201,9 +202,10 @@ perf-map-agent地址在这 <a href="https://github.com/jvm-profiling-tools/perf-
 </div>
 
 <p>
-修复也比较简单，就是在log4j.properties里面加上 `log4j.logger.org.apache.http=WARN` 只打印出WARNING日志。</p>
+修复也比较简单，就是在log4j.properties里面加上 `log4j.logger.org.apache.http=WARN` 只打印出WARNING日志。
+</p>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/high-cpu-utilization-by-log4j.html';this.page.identifier = 'high-cpu-utilization-by-log4j.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

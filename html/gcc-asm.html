@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GCC内嵌汇编</title>
@@ -29,7 +30,7 @@
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">GCC内嵌汇编</h1>
@@ -314,7 +315,7 @@ asm大小计算错误,影响产生的代码.
 <div id="outline-container-org426e132" class="outline-3">
 <h3 id="org426e132"><span class="section-number-3">5.1.</span> gcc内嵌汇编码1</h3>
 <div class="outline-text-3" id="text-5-1">
-<pre class="example" id="orgca490a3">
+<pre class="example" id="org171783f">
 信件标题： [转贴]gcc内嵌汇编码
 发 信 人： Yong_Q@bbs.ustc.edu.cn (小忍)
 信    区： Linux视图M[997/7721]
@@ -712,7 +713,7 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 <div id="outline-container-orgba35e88" class="outline-3">
 <h3 id="orgba35e88"><span class="section-number-3">5.2.</span> gcc内嵌汇编码2</h3>
 <div class="outline-text-3" id="text-5-2">
-<pre class="example" id="org18eec2d">
+<pre class="example" id="org28ce40f">
 信件标题： [Forward]对 《gcc中的内嵌汇编语言》一文的补充说明
 发 信 人： Yong_Q@bbs.ustc.edu.cn (小忍)
 信    区： Linux视图M[998/7721]
@@ -874,7 +875,7 @@ AT&amp;T格式的汇编语言中，寄存器名以“%”作为前缀，为了�
 <div id="outline-container-orge5da138" class="outline-3">
 <h3 id="orge5da138"><span class="section-number-3">5.3.</span> 关于gcc的行内汇编(1)</h3>
 <div class="outline-text-3" id="text-5-3">
-<pre class="example" id="org0459b79">
+<pre class="example" id="org2dd587f">
 信件标题： :关于gcc的行内汇编(1)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[699/7721]
@@ -947,7 +948,7 @@ Intel:        [ebx + eax*8 + _array]
 <div id="outline-container-orgc1de695" class="outline-3">
 <h3 id="orgc1de695"><span class="section-number-3">5.4.</span> 关于gcc的行内汇编(2)</h3>
 <div class="outline-text-3" id="text-5-4">
-<pre class="example" id="orge94fd1b">
+<pre class="example" id="org2077aac">
 信件标题： 关于gcc的行内汇编(2)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[700/7721]
@@ -992,7 +993,7 @@ asm("movl $0,_booga);
 <div id="outline-container-org0e8acca" class="outline-3">
 <h3 id="org0e8acca"><span class="section-number-3">5.5.</span> 关于gcc的行内汇编(3)</h3>
 <div class="outline-text-3" id="text-5-5">
-<pre class="example" id="org9d8930b">
+<pre class="example" id="org3ee7f21">
 信件标题： 关于gcc的行内汇编(3)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[701/7721]
@@ -1086,7 +1087,7 @@ asm("leal (%%ebx,%%ebx,4),%0"
 <div id="outline-container-orgd9a111a" class="outline-3">
 <h3 id="orgd9a111a"><span class="section-number-3">5.6.</span> 关于gcc的行内汇编(4)</h3>
 <div class="outline-text-3" id="text-5-6">
-<pre class="example" id="org4ff4814">
+<pre class="example" id="org0915c15">
 信件标题： 关于gcc的行内汇编(4)
 发 信 人： Roy_G@bbs.ustc.edu.cn (想去西藏的小巴郎)
 信    区： Linux视图M[702/7721]
@@ -1181,7 +1182,7 @@ movl %esp %ebp # 调整基址
 </p>
 
 
-<div id="orga7fd168" class="figure">
+<div id="org49d66aa" class="figure">
 <p><img src="../images/cdecl-call-convention-stack.png" alt="cdecl-call-convention-stack.png" />
 </p>
 </div>
@@ -1206,11 +1207,12 @@ ret
 </ol>
 
 
-<div id="org17f0dfa" class="figure">
-<p><img src="../images/cdecl-return-struct-union.png" alt="cdecl-return-struct-union.png" /></p>
+<div id="orgf644cfb" class="figure">
+<p><img src="../images/cdecl-return-struct-union.png" alt="cdecl-return-struct-union.png" />
+</p>
 </div>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/gcc-asm.html';this.page.identifier = 'gcc-asm.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

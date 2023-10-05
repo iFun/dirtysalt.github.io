@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>systemtap</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">systemtap</h1>
@@ -79,7 +80,7 @@ systemtap使用一种触发式的工作方式，通过安装探针（probe）来
 <p>
 一个使用systemtap的简单例子
 </p>
-<pre class="example" id="org755f5a6">
+<pre class="example" id="org49ff90d">
 [dirlt@umeng-ubuntu-pc] &gt;  sudo stap -ve 'probe begin { log("hello world") exit() }'
 Pass 1: parsed user script and 76 library script(s) using 92476virt/22592res/2616shr kb, in 80usr/0sys/85real ms.
 Pass 2: analyzed script: 1 probe(s), 2 function(s), 0 embed(s), 0 global(s) using 93000virt/23472res/2816shr kb, in 0usr/0sys/4real
@@ -115,7 +116,7 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 <h3 id="orgaba7530"><span class="section-number-3">2.1.</span> Systemtap processing steps</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="orgac0733c" class="figure">
+<div id="org7fc7650" class="figure">
 <p><img src="../images/systemtap-processing-steps.png" alt="systemtap-processing-steps.png" />
 </p>
 </div>
@@ -239,7 +240,7 @@ Each probe point specification has a “dotted-functor” syntax such as kernel.
 下面是一些示例代码
 </p>
 
-<pre class="example" id="orgb281a5a">
+<pre class="example" id="orgadf7d05">
 kernel.function("sys_read").return
   a return probe on the named function.
 
@@ -268,5 +269,5 @@ Data collected from systemtap in the kernel must somehow be transmitted to users
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/systemtap.html';this.page.identifier = 'systemtap.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

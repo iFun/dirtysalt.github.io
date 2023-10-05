@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Binary Indexed Tree(Fenwick Tree)</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Binary Indexed Tree(Fenwick Tree)</h1>
@@ -78,7 +79,7 @@ Binary Indexed Tree实际上进行分段存储，每段长度都是2 ** k - 1，
 <p>
 以31为例：31 = 16 + 8 + 4 + 2 + 1. 那么可以分为五段：
 </p>
-<pre class="example" id="orgefb8838">
+<pre class="example" id="org1b70377">
 1. B[16] = nums[1] + … nums[16]
 2. B[24] = nums[17] + … nums[24]
 3. B[28] = nums[25] + … nums[28]
@@ -92,7 +93,7 @@ Binary Indexed Tree实际上进行分段存储，每段长度都是2 ** k - 1，
 <p>
 然后考虑一下对于nums[index]可能会影响到哪些B呢？假设len(nums) == 32, index = 29. 从上面例子看到
 </p>
-<pre class="example" id="org0f12088">
+<pre class="example" id="org8993172">
 1. B[30] = nums[29] + nums[30]
 2. B[32] = nums[1] + … nums[32]
 </pre>
@@ -150,9 +151,10 @@ void updateBIT(int BITree[], int n, int index, int val)
 
 
 
-<div id="org15257e2" class="figure">
-<p><img src="../images/fenwick-tree-explained.jpg" alt="fenwick-tree-explained.jpg" /></p>
+<div id="org85ac7f7" class="figure">
+<p><img src="../images/fenwick-tree-explained.jpg" alt="fenwick-tree-explained.jpg" />
+</p>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/binary-indexed-tree.html';this.page.identifier = 'binary-indexed-tree.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

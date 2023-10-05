@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caffe</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Caffe</h1>
@@ -116,7 +117,7 @@ caffe提供了许多内置layer，比如convolution layer, pool layer, dropout l
 </p>
 
 
-<div id="org2164a0a" class="figure">
+<div id="org44dc216" class="figure">
 <p><img src="../images/caffe-layer.jpg" alt="caffe-layer.jpg" />
 </p>
 </div>
@@ -147,7 +148,7 @@ caffe支持的layer完整在 <a href="http://caffe.berkeleyvision.org/tutorial/l
 net是layers组成的DAG, 并且可以使用文本格式来描述(protocol-buffers TextFormat). 比如下面文本生成的是logistic regression.
 </p>
 
-<pre class="example" id="org38bdc50">
+<pre class="example" id="orge236a13">
 name: "LogReg"
 layers {
   name: "mnist"
@@ -178,7 +179,7 @@ layers {
 </pre>
 
 
-<div id="org3d761e1" class="figure">
+<div id="org8a5d6be" class="figure">
 <p><img src="../images/caffe-net-logreg.jpg" alt="caffe-net-logreg.jpg" />
 </p>
 </div>
@@ -187,7 +188,7 @@ layers {
 Net有个初始化函数Init(). 它的作用有两个：1. 创建blosb和layers; 2. 调用layers的SetUp函数来初始化layers. 在这个过程中会打印日志来说明。注意在这个阶段并没有指明说是用GPU还是CPU来训练，指定使用什么训练是在solver层面的事情，这样可以将模型和实现分离。Net还有Forward和Backward两个函数，分别调用各个Layers的forward/backward. 最周如果我们进行预测的话，我们先填充好input blobs, 然后调用forward函数，最后获取output blobs作为预测结果。
 </p>
 
-<pre class="example" id="orga1a3e9e">
+<pre class="example" id="org702d4c1">
 I0902 22:52:17.931977 2079114000 net.cpp:39] Initializing net from parameters:
 name: "LogReg"
 [...model prototxt printout...]
@@ -229,7 +230,7 @@ I0902 22:52:17.941824 2079114000 net.cpp:220] Memory required for data: 201476
 <p>
 如果阅读caffe/models会发现，这些例子下面有train.prototxt，还有一个deploy.prototxt. 差别仅仅在于deploy.txt没有data-layer，而是在指定输入的shape.
 </p>
-<pre class="example" id="orgcf4b0bc">
+<pre class="example" id="org29ad0f9">
 input: "data"
 input_dim: 10
 input_dim: 1
@@ -298,7 +299,7 @@ solver每轮迭代做了下面这些事情：
 <p>
 下面是solver.prototxt的一个示例（从examples/mnist/修改过来的）
 </p>
-<pre class="example" id="org99b544b">
+<pre class="example" id="orga2a567b">
 # The train/test net protocol buffer definition
 net: "caffe-conf/train.prototxt"
 
@@ -368,7 +369,7 @@ caffe的python binding功能还是非常完备的
 </ul>
 
 <p>
-我写了个 <a href="https://github.com/dirtysalt/codes/tree/master/misc/kaggle/digit-recognizer">示例</a> 来解决 kaggle上 <a href="http://www.kaggle.com/c/digit-recognizer">手写数字识别</a> 问题，prototxt是在examples/mnist基础上稍作修改的（增加了一个dropout）。
+我写了个 <a href="codes/misc/kaggle/digit-recognizer">示例</a> 来解决 kaggle上 <a href="http://www.kaggle.com/c/digit-recognizer">手写数字识别</a> 问题，prototxt是在examples/mnist基础上稍作修改的（增加了一个dropout）。
 </p>
 
 <p>
@@ -384,9 +385,10 @@ LB上的0.99586不是真实成绩，这个是用mnist自带的数据跑出的模
 </p>
 
 <p>
-<img src="../images/caffe-conv2.png" alt="caffe-conv2.png" /> <img src="../images/caffe-pool2.png" alt="caffe-pool2.png" /></p>
+<img src="../images/caffe-conv2.png" alt="caffe-conv2.png" /> <img src="../images/caffe-pool2.png" alt="caffe-pool2.png" />
+</p>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/caffe.html';this.page.identifier = 'caffe.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

@@ -3,19 +3,20 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>nginx站点跳转</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">nginx站点跳转</h1>
 <p>
 从dirlt.com跳转到dirtysalt.info
 </p>
-<pre class="example" id="org619ca44">
+<pre class="example" id="org27c8141">
 http {
     server_name dirlt.com;
     rewrite ^ $scheme://dirtysalt.info$request_uri? permanent;
@@ -26,7 +27,7 @@ http {
 这样访问dirlt.com时候，返回HTTP Permanent Redirect
 </p>
 
-<pre class="example" id="org1db476c">
+<pre class="example" id="org783337a">
 ➜~  curl -v -S dirlt.com
 -* Rebuilt URL to: dirlt.com/
 -*   Trying 139.162.32.139...
@@ -53,5 +54,5 @@ http {
 &lt;/html&gt;
 </pre>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/nginx-site-redirect.html';this.page.identifier = 'nginx-site-redirect.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

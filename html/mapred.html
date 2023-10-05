@@ -3,6 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mapred</title>
@@ -29,7 +30,7 @@
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">mapred</h1>
@@ -141,7 +142,7 @@
 <h3 id="orgf352dd2"><span class="section-number-3">2.2.</span> 使用lzo</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-关于如何使用lzo可以参看代码示例 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/ReadLzoInput.java">code on github</a>. 下面几点需要说明：
+关于如何使用lzo可以参看代码示例 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/ReadLzoInput.java">code on github</a>. 下面几点需要说明：
 </p>
 <ul class="org-ul">
 <li>LzoTextInputFormat用来处理lzo压缩的文本文件，
@@ -173,7 +174,7 @@
 </p>
 
 <p>
-如果需要单独使用lzo而不是使用mapreduce来做压缩和解压缩的话，可以参考 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/UseLzoStandadlone.java">code on github</a>.
+如果需要单独使用lzo而不是使用mapreduce来做压缩和解压缩的话，可以参考 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/UseLzoStandadlone.java">code on github</a>.
 </p>
 </div>
 </div>
@@ -188,7 +189,7 @@ elephant-bird实现了protobuf+lzo组合使用方式。
 <p>
 首先创建proto文件，比如message.proto
 </p>
-<pre class="example" id="orgb3461db">
+<pre class="example" id="org0c01e34">
 package com.dirlt.java.mr.proto;
 
 // FATAL: This name works as a version number
@@ -212,7 +213,7 @@ message Message {
 此外我们还需要为这个类写几个辅助类，但是索性的是辅助类并不是很复杂。
 </p>
 <ul class="org-ul">
-<li>InputFormat <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufInputFormat.java">code on github</a></li>
+<li>InputFormat <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufInputFormat.java">code on github</a></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufInputFormat extends LzoProtobufBlockInputFormat&lt;MessageProtos1.Message&gt; {
@@ -225,7 +226,7 @@ message Message {
 </div>
 
 <ul class="org-ul">
-<li>OutputFormat <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufOutputFormat.java">code on github</a></li>
+<li>OutputFormat <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufOutputFormat.java">code on github</a></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufOutputFormat extends LzoProtobufBlockOutputFormat&lt;MessageProtos1.Message&gt; {
@@ -238,7 +239,7 @@ message Message {
 </div>
 
 <ul class="org-ul">
-<li>Writable <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufWritable.java">code on github</a></li>
+<li>Writable <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/MessageLzoProtobufWritable.java">code on github</a></li>
 </ul>
 <div class="org-src-container">
 <pre class="src src-Java">public class MessageLzoProtobufWritable extends ProtobufWritable&lt;MessageProtos1.Message&gt; {
@@ -257,7 +258,7 @@ message Message {
 </div>
 
 <p>
-关于如何使用lzo+protobuf可以参看代码示例 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/UseLzoProtobuf.java">code on github</a>. 值得注意的是如果输入为lzo文件的话，那么类型是ProtobufWritable&lt;M&gt;（泛型），如果需要取值的话必须通过setConverter提供类信息。
+关于如何使用lzo+protobuf可以参看代码示例 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/UseLzoProtobuf.java">code on github</a>. 值得注意的是如果输入为lzo文件的话，那么类型是ProtobufWritable&lt;M&gt;（泛型），如果需要取值的话必须通过setConverter提供类信息。
 </p>
 </div>
 </div>
@@ -271,7 +272,7 @@ message Message {
 <h3 id="orgfecb094"><span class="section-number-3">3.1.</span> MultipleInputs</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
-<li>参考代码 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs1.java">code on github</a></li>
+<li>参考代码 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs1.java">code on github</a></li>
 <li>支持一个htable和多个文件（但是对于htable不支持设置scan范围）</li>
 <li>代码大致过程：
 <ul class="org-ul">
@@ -294,8 +295,8 @@ message Message {
 <h3 id="orgfd025c8"><span class="section-number-3">3.2.</span> MultipleTableInputFormat</h3>
 <div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
-<li>参考代码 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs2.java">code on github</a></li>
-<li>在cdh4.3.0下面运行的代码略有变动，存放在 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr2/src/main/java/com/dirlt/java/mr2/RunMultipleInputs2.java">code on github</a>
+<li>参考代码 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleInputs2.java">code on github</a></li>
+<li>在cdh4.3.0下面运行的代码略有变动，存放在 <a href="codes/java/mr2/src/main/java/com/dirlt/java/mr2/RunMultipleInputs2.java">code on github</a>
 <ul class="org-ul">
 <li>需要配合MultipleInputs使用</li>
 <li>使用这个InputFormat可以同时支持多文件输入和多表输入</li>
@@ -331,7 +332,7 @@ message Message {
 <h3 id="org3a32563"><span class="section-number-3">4.1.</span> MultipleOutputs</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
-<li>参考代码 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleOutputs.java">code on github</a></li>
+<li>参考代码 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleOutputs.java">code on github</a></li>
 <li>支持多个htable和多个文件</li>
 <li>如果使用write(String namedOutput, K key, V value)会写到FileOutputFormat设置的目录下面，文件附上前缀namedOutput-，</li>
 <li>如果使用write(String namedOutput, K key, V value, String baseOutputPath)
@@ -352,7 +353,7 @@ message Message {
 <h3 id="org5421041"><span class="section-number-3">4.2.</span> MultipleTableOutputFormat</h3>
 <div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
-<li>参考代码 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleTableOutput.java">code on github</a></li>
+<li>参考代码 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/RunMultipleTableOutput.java">code on github</a></li>
 <li>支持多个htable</li>
 <li>调用context.write的key需要指定outputTable
 <ul class="org-ul">
@@ -368,7 +369,7 @@ message Message {
 <h2 id="orgc9af341"><span class="section-number-2">5.</span> 获取集群运行状况</h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
-<li>参考代码 <a href="https://github.com/dirtysalt/codes/tree/master/java/mr/src/main/java/com/dirlt/java/mr/ClusterSummary.java">code on github</a></li>
+<li>参考代码 <a href="codes/java/mr/src/main/java/com/dirlt/java/mr/ClusterSummary.java">code on github</a></li>
 <li>获取更多信息可以阅读JobClient API</li>
 </ul>
 </div>
@@ -480,7 +481,7 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 集群中出现job中少数几个任务卡在reduce的copy阶段，并且这几个任务都是在同一个机器执行。tasktracker log日志如下： <b>可以看到有两个task,49和50</b>
 </p>
 
-<pre class="example" id="org589d9a1">
+<pre class="example" id="orgaa0eea4">
 2013-04-26 13:57:01,144 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000050_1 0.1976251% reduce &gt; copy (466 of 786 at 24.13 MB/s) &gt;
 2013-04-26 13:57:03,595 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000049_1 0.1976251% reduce &gt; copy (466 of 786 at 24.40 MB/s) &gt;
 2013-04-26 13:57:04,179 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_24403_r_000050_1 0.1976251% reduce &gt; copy (466 of 786 at 24.13 MB/s) &gt;
@@ -491,7 +492,7 @@ streaming允许用户使用脚本来编写mapper/reducer，使用stdin/stdout作
 检查网卡，CPU，IO，内存都非常正常。使用kill -QUIT &lt;pid&gt;然后到userlogs stdout察看stacktrace，日志如下：
 </p>
 
-<pre class="example" id="orgf44818d">
+<pre class="example" id="org86637b0">
 2013-04-26 14:08:07
 Full thread dump Java HotSpot(TM) 64-Bit Server VM (20.12-b01 mixed mode):
 
@@ -720,7 +721,7 @@ Heap
 <p>
 一旦tt被blacklist之后，会出现如下日志。从语义上看就是删除在这个tt上面所有执行的job(in purgeJob)
 </p>
-<pre class="example" id="org87682d9">
+<pre class="example" id="org7a62e0d">
 2013-05-02 11:55:18,170 INFO org.apache.hadoop.mapred.TaskTracker: Received 'KillJobAction' for job: job_201301231102_25218
 2013-05-02 11:55:18,170 WARN org.apache.hadoop.mapred.TaskTracker: Unknown job job_201301231102_25218 being deleted.
 </pre>
@@ -728,7 +729,7 @@ Heap
 <p>
 而在jt里面会出现如下日志
 </p>
-<pre class="example" id="org71029aa">
+<pre class="example" id="org1ecdbe3">
 2013-05-14 03:19:37,493 INFO org.apache.hadoop.mapred.JobTracker: Adding dp31.umeng.com to the blacklist across all jobs
 2013-05-14 03:19:37,493 INFO org.apache.hadoop.mapred.JobTracker: Blacklisting tracker : dp31.umeng.com Reason for blacklisting is : EXCEEDING_FAILURES
 </pre>
@@ -759,7 +760,7 @@ dp24 OOM
 <p>
 dp31
 </p>
-<pre class="example" id="org9b06a04">
+<pre class="example" id="orga4ea61f">
 dp@dp31:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   34G  1.7T   2% /
@@ -780,7 +781,7 @@ none             24G     0   24G   0% /run/shm
 <p>
 dp34
 </p>
-<pre class="example" id="org9efbbcc">
+<pre class="example" id="orgd26ce38">
 dp@dp34:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   33G  1.7T   2% /
@@ -802,7 +803,7 @@ none             24G     0   24G   0% /run/shm
 dp36 2013-05-07就挂了，在也没有起来过，但是从当时FATAL日志看来已经是没有磁盘空间了。
 </p>
 
-<pre class="example" id="orgdaf3f84">
+<pre class="example" id="org3356cbb">
 dp@dp36:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   32G  1.7T   2% /
@@ -823,7 +824,7 @@ none             24G     0   24G   0% /run/shm
 <p>
 dp41
 </p>
-<pre class="example" id="org04660ec">
+<pre class="example" id="org39fbf24">
 dp@dp41:~$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 /dev/sda6       1.9T   34G  1.7T   2% /
@@ -861,7 +862,7 @@ dp41上面出现如下错误日志，可以看到dp41在作为map output server�
 <li>map task attempt_201301231102_33841_m_000331_0</li>
 <li>reduce task id = 15</li>
 </ul>
-<pre class="example" id="org814189f">
+<pre class="example" id="org8c67e35">
 2013-05-13 12:23:06,708 WARN org.apache.hadoop.mapred.TaskTracker: getMapOutput(attempt_201301231102_33841_m_000331_0,15) failed :
 org.mortbay.jetty.EofException
         at org.mortbay.jetty.HttpGenerator.flush(HttpGenerator.java:791)
@@ -981,7 +982,7 @@ java.lang.IllegalStateException: Committed
 <p>
 <code>=mapper in dp41=</code>
 </p>
-<pre class="example" id="orgf8d7b26">
+<pre class="example" id="orgef18830">
 monitor
 by pass counter	2,557,788
 
@@ -1011,7 +1012,7 @@ Records Read	3,155,527
 <p>
 <code>=reducer in dp16=</code>
 </p>
-<pre class="example" id="org9a6411c">
+<pre class="example" id="org2331a35">
 FileSystemCounters
 FILE_BYTES_READ	28,468,696,830
 FILE_BYTES_WRITTEN	28,468,769,783
@@ -1033,7 +1034,7 @@ Reduce input records	321,140,243
 <p>
 性能数据非常正常. 然后察看dp16对应时刻的日志，发现这个getMapOutput只不过是一个偶然的失败。但是其实从dp16上面的日志来看，可能只是取map output部分block没有成功，但是后续还是成功的，观察 <b>attempt_201301231102_33841_r_000015_0</b> 传输百分比和block数目。
 </p>
-<pre class="example" id="org47853cf">
+<pre class="example" id="orga4d2e10">
 2013-05-13 12:23:04,575 INFO org.apache.hadoop.mapred.TaskTracker: attempt_201301231102_33841_r_000015_0 0.01798942% reduce &gt; copy (102 of 1890 at 19.63 MB/s) &gt;
 2013-05-13 12:23:04,620 INFO org.apache.hadoop.mapred.TaskTracker.clienttrace: src: 10.11.0.16:50060, dest: 10.11.0.50:29582, bytes: 28814, op: MAPRED_SHUFFLE, cliID: attempt_201301231102_33841_m_000480_0, duration: 3011431376
 2013-05-13 12:23:05,438 INFO org.apache.hadoop.mapred.TaskTracker.clienttrace: src: 10.11.0.16:50060, dest: 10.11.0.54:38101, bytes: 13541361, op: MAPRED_SHUFFLE, cliID: attempt_201301231102_33841_m_000480_0, duration: 28773030913
@@ -1062,7 +1063,7 @@ Reduce input records	321,140,243
 <p>
 dp31出现如下日志，这个过程是非常诡异的。从stacktrace上面可以看到过程是在创建job directory时候正要修改权限，但是文件找不到了。从dp31的df -h可以看到剩余磁盘空间如下
 </p>
-<pre class="example" id="orgcf64653">
+<pre class="example" id="orgb9e8cf9">
 /dev/sdf1       1.8T  1.7T  904M 100% /data/data5
 /dev/sdb1       1.8T  1.7T  681M 100% /data/data1
 /dev/sdc1       1.8T  1.7T  902M 100% /data/data2
@@ -1075,7 +1076,7 @@ dp31出现如下日志，这个过程是非常诡异的。从stacktrace上面可
 所以我怀疑是因为磁盘过满出现的一些诡异问题。 #note: 容易造成node被blacklisted.
 </p>
 
-<pre class="example" id="orgab246fe">
+<pre class="example" id="org9ac89b3">
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: LaunchTaskAction (registerTask): attempt_201301231102_34166_m_000000_0 task's state:UNASSIGNED
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: Trying to launch : attempt_201301231102_34166_m_000000_0 which needs 1 slots
 2013-05-14 00:20:56,266 INFO org.apache.hadoop.mapred.TaskTracker: In TaskLauncher, current free slots : 12 and trying to launch attempt_201301231102_34166_m_000000_0 which needs 1 slots
@@ -1129,7 +1130,7 @@ ENOENT: No such file or directory
 <ul class="org-ul">
 <li>Users - Shuffle In Memory OutOfMemoryError : <a href="http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html">http://hadoop-common.472056.n3.nabble.com/Shuffle-In-Memory-OutOfMemoryError-td433197.html</a></li>
 </ul>
-<pre class="example" id="org3481625">
+<pre class="example" id="org6afa9be">
 2013-06-19 07:16:17,180 FATAL org.apache.hadoop.mapred.Task: attempt_201306141608_1574_r_009039_0 : Map output copy failure : java.lang.OutOfMemoryError: Java heap space
 	at org.apache.hadoop.mapred.ReduceTask$ReduceCopier$MapOutputCopier.shuffleInMemory(ReduceTask.java:1612)
 	at org.apache.hadoop.mapred.ReduceTask$ReduceCopier$MapOutputCopier.getMapOutput(ReduceTask.java:1472)
@@ -1169,5 +1170,5 @@ Number of Reduces：
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/mapred.html';this.page.identifier = 'mapred.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

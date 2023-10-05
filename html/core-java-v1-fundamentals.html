@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java核心技术卷1-基础知识</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Java核心技术卷1-基础知识</h1>
@@ -210,7 +211,7 @@ Java有下面4个访问修饰符可以用来控制可见性：
 <p>
 所谓静态导入，就是可以导入某个类下面的静态方法以及静态域，通常来说这样可以使得代码更容易阅读，比如
 </p>
-<pre class="example" id="orgf96c7b1">
+<pre class="example" id="orgc9ed698">
 import static java.lang.Math.*;
 class App {
   public static void main(String[] args){
@@ -230,8 +231,8 @@ equqls编写建议：
 </p>
 <ol class="org-ol">
 <li>对于参数必须是Object arg.  `boolean equals(Object arg)`</li>
-<li>检测两个对象是否相同，可以节省判断开销。 `if(this <code>` arg) return true;</code></li>
-<li>判断arg是否为null. `if(arg <code>` null) return false;</code></li>
+<li>检测两个对象是否相同，可以节省判断开销。 `if(this == arg) return true;`</li>
+<li>判断arg是否为null. `if(arg == null) return false;`</li>
 <li>如果要求判断两者类型必须相同，那么通过getClass判断Class对象是否相同。 `if(getClass()!=arg.getClass()) return false;`</li>
 <li>如果仅仅是想在语义上判断相同的话,那么使用instanceof判断。
 <ul class="org-ul">
@@ -812,5 +813,5 @@ public class CyclicBarrierTest {
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/core-java-v1-fundamentals.html';this.page.identifier = 'core-java-v1-fundamentals.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

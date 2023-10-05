@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Find LCA using RMQ</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Find LCA using RMQ</h1>
@@ -17,7 +18,7 @@
 </p>
 
 <p>
-LCA可以使用 <a href="https://www.geeksforgeeks.org/tarjans-off-line-lowest-common-ancestors-algorithm/">Tarjan</a> 的离线 <a href="https://github.com/dirtysalt/codes/tree/master/misc/random/tarjan_lca.py">算法</a>，也可以将这个问题转变成为RMQ. 这个过程并不复杂，但是还比较有启发性。
+LCA可以使用 <a href="https://www.geeksforgeeks.org/tarjans-off-line-lowest-common-ancestors-algorithm/">Tarjan</a> 的离线 <a href="codes/misc/random/tarjan_lca.py">算法</a>，也可以将这个问题转变成为RMQ. 这个过程并不复杂，但是还比较有启发性。
 </p>
 
 <p>
@@ -25,7 +26,7 @@ LCA可以使用 <a href="https://www.geeksforgeeks.org/tarjans-off-line-lowest-c
 </p>
 
 
-<div id="org360524d" class="figure">
+<div id="org80316e3" class="figure">
 <p><img src="../images/find-lca-using-rmq-example.png" alt="find-lca-using-rmq-example.png" />
 </p>
 </div>
@@ -36,7 +37,7 @@ LCA可以使用 <a href="https://www.geeksforgeeks.org/tarjans-off-line-lowest-c
 </p>
 
 
-<div id="org3b4d407" class="figure">
+<div id="org6439793" class="figure">
 <p><img src="../images/find-lca-using-rmq-eulertour.png" alt="find-lca-using-rmq-eulertour.png" />
 </p>
 </div>
@@ -60,7 +61,7 @@ We require three arrays for implementation:
 </ol>
 
 
-<div id="orgbfa8053" class="figure">
+<div id="org4018e12" class="figure">
 <p><img src="../images/find-lca-using-rmq-fo.png" alt="find-lca-using-rmq-fo.png" />
 </p>
 </div>
@@ -78,5 +79,5 @@ Algorithm:
 <li>Once the algorithm return the index of the minimum level in the range, we use it to determine the LCA using Euler tour array.</li>
 </ol>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/find-lca-using-rmq.html';this.page.identifier = 'find-lca-using-rmq.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

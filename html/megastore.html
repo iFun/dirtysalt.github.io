@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Megastore: Providing Scalable, Highly Available Storage for Interactive Services</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">Megastore: Providing Scalable, Highly Available Storage for Interactive Services</h1>
@@ -123,7 +124,7 @@
 </ul>
 
 
-<div id="org0d4c024" class="figure">
+<div id="org8bbd0ad" class="figure">
 <p><img src="../images/megastore-scalable-replication.png" alt="megastore-scalable-replication.png" />
 </p>
 </div>
@@ -133,7 +134,7 @@
 </ul>
 
 
-<div id="org1747a6f" class="figure">
+<div id="org0d46d31" class="figure">
 <p><img src="../images/megastore-operations-across-entity-groups.png" alt="megastore-operations-across-entity-groups.png" />
 </p>
 </div>
@@ -173,7 +174,7 @@
 <h3 id="org1f5fb15"><span class="section-number-3">4.2.</span> Data Model</h3>
 <div class="outline-text-3" id="text-4-2">
 
-<div id="org7e84ed9" class="figure">
+<div id="org4bfe583" class="figure">
 <p><img src="../images/megastore-sample-schema.png" alt="megastore-sample-schema.png" />
 </p>
 </div>
@@ -230,7 +231,7 @@
 </ul>
 
 
-<div id="org9fdb85e" class="figure">
+<div id="orgdbc26bc" class="figure">
 <p><img src="../images/megastore-sample-data-layout.png" alt="megastore-sample-data-layout.png" />
 </p>
 </div>
@@ -334,9 +335,10 @@ This section details the heart of our synchronous replica-tion scheme: a low-lat
 <h2 id="orgdfdfa6e"><span class="section-number-2">8.</span> CONCLUSION</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-&lt;大规模分布式存储系统&gt;: Megastore主要创新点包括：1) 提出实体组的数据模型。通过实体组划分数据，实体组内部维持关系数据库的ACID特性，实体组之间维持类似NoSQL的弱一致性，有效地融合了SQL和NoSQL两者的优势。另外实体组的定义方式也在很大程度上规避了影响性能和可扩展性的Join操作。 2) 通过Paxos协议同时保证高可靠性和高可用性，既把数据强同步到多个机房，又做到发生故障时自动切换不影响读写服务。另外通过协调者和优化Paxos协议使得读写操作都比较高效。当然Megastore也有一些问题，其中一些问题来源于bigtable比如单副本服务，SSD支持较弱导致Megastore在线实时服务能力上有一定的改进空间，整体架构过于复杂，协调者对读写服务和运维复杂度的影响。</p>
+&lt;大规模分布式存储系统&gt;: Megastore主要创新点包括：1) 提出实体组的数据模型。通过实体组划分数据，实体组内部维持关系数据库的ACID特性，实体组之间维持类似NoSQL的弱一致性，有效地融合了SQL和NoSQL两者的优势。另外实体组的定义方式也在很大程度上规避了影响性能和可扩展性的Join操作。 2) 通过Paxos协议同时保证高可靠性和高可用性，既把数据强同步到多个机房，又做到发生故障时自动切换不影响读写服务。另外通过协调者和优化Paxos协议使得读写操作都比较高效。当然Megastore也有一些问题，其中一些问题来源于bigtable比如单副本服务，SSD支持较弱导致Megastore在线实时服务能力上有一定的改进空间，整体架构过于复杂，协调者对读写服务和运维复杂度的影响。
+</p>
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/megastore.html';this.page.identifier = 'megastore.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

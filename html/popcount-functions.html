@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>几个PopCount函数的实现</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">几个PopCount函数的实现</h1>
@@ -274,7 +275,7 @@ uint32_t avx512_vpopcnt(const uint32_t* data, size_t size) {
 <hr />
 
 <p>
-下面是性能数据，代码可以看这里 <a href="https://github.com/dirtysalt/codes/tree/master/cc/misc/PopCountTest.cpp">这里</a>
+下面是性能数据，代码可以看这里 <a href="codes/cc/misc/PopCountTest.cpp">这里</a>
 </p>
 
 <ul class="org-ul">
@@ -288,7 +289,7 @@ uint32_t avx512_vpopcnt(const uint32_t* data, size_t size) {
 可以看到分治实现比内置实现效率还要高点
 </p>
 
-<pre class="example" id="org42f03f3">
+<pre class="example" id="orgb2b3a47">
 [level-2] N = 1000, took: 82ms, avg 82ns/N, ans = 443894796
 [level-1] N = 1000, took: 106ms, avg 106ns/N, ans = 443894796
 [level0] N = 1000, took: 337ms, avg 337ns/N, ans = 443894796
@@ -297,5 +298,5 @@ uint32_t avx512_vpopcnt(const uint32_t* data, size_t size) {
 [level4] N = 1000, took: 32ms, avg 32ns/N, ans = 443894796
 </pre>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/popcount-functions.html';this.page.identifier = 'popcount-functions.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>

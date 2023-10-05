@@ -3,12 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
+<!-- 2023-10-05 Thu 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>In-Stream Big Data Processing</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
-<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+</head>
 <body>
 <div id="content" class="content">
 <h1 class="title">In-Stream Big Data Processing</h1>
@@ -62,7 +63,7 @@ At Grid Dynamics, we recently faced a necessity to build an in-stream data proce
 </p>
 
 
-<div id="orgfcc831d" class="figure">
+<div id="orgab99941" class="figure">
 <p><img src="../images/in-stream-big-data-processing-arch.png" alt="in-stream-big-data-processing-arch.png" />
 </p>
 </div>
@@ -109,7 +110,7 @@ Disjoint data partitioning technique shuffles the data into several partitions i
 </p>
 
 
-<div id="orgfe27d78" class="figure">
+<div id="orgdb66d25" class="figure">
 <p><img src="../images/in-stream-disjoint-data-partitioning.png" alt="in-stream-disjoint-data-partitioning.png" />
 </p>
 </div>
@@ -119,7 +120,7 @@ The divide and broadcast join algorithm is illustrated in the figure below. This
 </p>
 
 
-<div id="org25f8ef7" class="figure">
+<div id="org70e8bd6" class="figure">
 <p><img src="../images/in-stream-divide-and-broadcast-join.png" alt="in-stream-divide-and-broadcast-join.png" />
 </p>
 </div>
@@ -135,7 +136,7 @@ on disk.  <b>Some operations like sorting are inherently incompatible with this 
 </p>
 
 
-<div id="orgd8ff0a4" class="figure">
+<div id="orge719ecd" class="figure">
 <p><img src="../images/in-stream-simple-hash-join.png" alt="in-stream-simple-hash-join.png" />
 </p>
 </div>
@@ -149,7 +150,7 @@ In relational databases, join operation can take advantage of pipelining by usin
 </p>
 
 
-<div id="org378addc" class="figure">
+<div id="orgeee75b9" class="figure">
 <p><img src="../images/in-stream-symmetric-hash-join.png" alt="in-stream-symmetric-hash-join.png" />
 </p>
 </div>
@@ -177,7 +178,7 @@ In this section, we discuss a number of techniques that are used by streaming sy
 <h3 id="org6022c73"><span class="section-number-3">2.1.</span> Stream Replay</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="orgeb11dd5" class="figure">
+<div id="org398518b" class="figure">
 <p><img src="../images/in-stream-stream-replay.png" alt="in-stream-stream-replay.png" />
 </p>
 </div>
@@ -231,7 +232,7 @@ In a streaming system, events flow through a chain of processors until the resul
 </p>
 
 
-<div id="orgb503c00" class="figure">
+<div id="orgec1698f" class="figure">
 <p><img src="../images/in-stream-twitter-lineage-tracking.png" alt="in-stream-twitter-lineage-tracking.png" />
 </p>
 </div>
@@ -246,7 +247,7 @@ The idea is to consider the final result as a function of the incoming data. To 
 </p>
 
 
-<div id="orgfa89bb1" class="figure">
+<div id="org1ad1cda" class="figure">
 <p><img src="../images/in-stream-spark-lineage-tracking.png" alt="in-stream-spark-lineage-tracking.png" />
 </p>
 </div>
@@ -294,7 +295,7 @@ Instead of maintaining in-memory event buffers, one can simply save all incoming
 </p>
 
 
-<div id="orgeff4512" class="figure">
+<div id="org431594f" class="figure">
 <p><img src="../images/in-stream-aggregation-in-a-persistent-store.png" alt="in-stream-aggregation-in-a-persistent-store.png" />
 </p>
 </div>
@@ -313,7 +314,7 @@ It is important to understand that such techniques can defeat the whole purpose 
 </p>
 
 
-<div id="org5504d36" class="figure">
+<div id="orge64bf36" class="figure">
 <p><img src="../images/in-stream-aggregation-on-a-sliding-window.png" alt="in-stream-aggregation-on-a-sliding-window.png" />
 </p>
 </div>
@@ -345,7 +346,7 @@ frameworks:
 </p>
 
 
-<div id="orgb70c5d4" class="figure">
+<div id="orgcd1b3f1" class="figure">
 <p><img src="../images/in-stream-unified-big-data-processing-arch.png" alt="in-stream-unified-big-data-processing-arch.png" />
 </p>
 </div>
@@ -383,5 +384,5 @@ scripts into efficient query processing pipelines instead of sequences of MapRed
 </div>
 </div>
 </div>
-<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/in-stream-big-data-processing.html';this.page.identifier = 'in-stream-big-data-processing.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</body>
 </html>
