@@ -62,7 +62,7 @@ sandbox-sql :: ~/work/run-bench ‹master› » ls /boot/initramfs-* -l
 
 如果发现内核和perf版本不同的话，那么可能就需要重启机器了，版本不同很多PMU/hardward events就没有办法使用。
 
-为了避免系统自动更新，可以使用这篇文章的方法 [CentOS 7禁止内核自动更新升级 LiuJason'sBlog](https://www.liujason.com/article/742.html) ：
+为了避免系统自动更新，可以使用这篇文章的方法 [[https://www.liujason.com/article/742.html][CentOS 7禁止内核自动更新升级 LiuJason'sBlog]] ：
 
 执行更新的时候加上exclude参数 `sudo yum --exclude=kernel* update`
 

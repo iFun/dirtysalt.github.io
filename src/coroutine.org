@@ -44,8 +44,8 @@ libpcl里面的co_exit/co_exit_to/co_resume里面存放了caller和restarget这�
 
 相关链接：
 
-- [muduo 后续有在现有代码上增加协程能力的计划吗 · Discussion #579 · chenshuo/muduo](https://github.com/chenshuo/muduo/discussions/579)
-- [陈硕 2022 C++ 技术大会演讲：C++ 性能、工具、库【现场直播版】 - YouTube](https://www.youtube.com/watch?v=3hLWhwL1l8s&t=962s)
+- [[https://github.com/chenshuo/muduo/discussions/579][muduo 后续有在现有代码上增加协程能力的计划吗 · Discussion #579 · chenshuo/muduo]]
+- [[https://www.youtube.com/watch?v=3hLWhwL1l8s&t=962s][陈硕 2022 C++ 技术大会演讲：C++ 性能、工具、库【现场直播版】 - YouTube]]
 
 #+BEGIN_QUOTE
 

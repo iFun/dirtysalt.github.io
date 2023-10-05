@@ -183,7 +183,7 @@ youtube: https://youtu.be/x2EOOJg8FkA
 
 -----
 
-[【李自然说】《富人思维》解读，千倍回报投资人养成攻略 - YouTube](https://www.youtube.com/watch?v=zMhCnb-TcUs&list=WL&index=9)
+[[https://www.youtube.com/watch?v=zMhCnb-TcUs&list=WL&index=9][【李自然说】《富人思维》解读，千倍回报投资人养成攻略 - YouTube]]
 
 1. 富人思维与穷人思维最重要的是参与，不能旁观，打嘴炮。
 2. 大部分对自己的能力都是高估的，如果你觉得他跟你一样厉害，大概率就是他比你厉害很多。
@@ -191,7 +191,7 @@ youtube: https://youtu.be/x2EOOJg8FkA
 
 -----
 
-[【李自然说】人生如逆旅，我亦是行人 - YouTube](https://www.youtube.com/watch?v=JGHTcNmCcLU)
+[[https://www.youtube.com/watch?v=JGHTcNmCcLU][【李自然说】人生如逆旅，我亦是行人 - YouTube]]
 
 帮大家总结下：
 1. 要敢于表达自己
@@ -201,7 +201,7 @@ youtube: https://youtu.be/x2EOOJg8FkA
 
 -----
 
-[【李自然说】如何获得更好前途？CEO的职场建议 - YouTube](https://www.youtube.com/watch?v=_JFQEPYmQ9I)
+[[https://www.youtube.com/watch?v=_JFQEPYmQ9I][【李自然说】如何获得更好前途？CEO的职场建议 - YouTube]]
 
 1. 不要向平庸者要建議幾十年工人的建議也許對現代產業無效，不屬於這時代的經驗也往往是錯的，要向最優秀的人且願意幫助你的人請益，不要問身邊的人。 有兩種人是最值得請教的 1.成功的人或是說視角更高的 2.專業的人。
 2. 不要同時打幾份工應該把時間投注學習，而不是用勞力去換取單位低的收入。
@@ -222,7 +222,7 @@ youtube: https://youtu.be/x2EOOJg8FkA
 
 -----
 
-[Scylla 的容器化成本 | 通过 ScyllaDB | 中等的](https://scylladb.medium.com/the-cost-of-containerization-for-your-scylla-a24559d17d01)
+[[https://scylladb.medium.com/the-cost-of-containerization-for-your-scylla-a24559d17d01][Scylla 的容器化成本 | 通过 ScyllaDB | 中等的]]
 
 如何修改docker配置来减少容器化带来的性能影响：
 - 绑定cpu core, 之后相差10%

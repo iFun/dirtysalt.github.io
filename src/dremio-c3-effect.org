@@ -110,9 +110,9 @@ running Q15-WITH-AS on dremio
     2. zero-copy + sendfile？可能，或许也可能是缓存在了buffer cache的原因。
     3. 重启机器之后，可以看有大量磁盘读取。
 2. dremio-worker读没有完全做到Local Read, 所以导致worker之间读取需要去另外一个worker里面要部分数据，所以存在网络输出
-3. dremio-worker的cache disk并不是使用EBS，而是使用[instance storage](https://aws.amazon.com/cn/premiumsupport/knowledge-center/ec2-linux-instance-store-volumes/)，相当于本地盘这个东西吧。
+3. dremio-worker的cache disk并不是使用EBS，而是使用[[https://aws.amazon.com/cn/premiumsupport/knowledge-center/ec2-linux-instance-store-volumes/][instance storage]]，相当于本地盘这个东西吧。
 
-下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看[dremio.conf](https://docs.dremio.com/software/deployment/cloud-cache-config/), 的确是使用了这两个盘来做cache的。
+下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看[[https://docs.dremio.com/software/deployment/cloud-cache-config/][dremio.conf]], 的确是使用了这两个盘来做cache的。
 
 #+BEGIN_EXAMPLE
 [ec2-user@ip-172-31-13-89 ~]$ df -h

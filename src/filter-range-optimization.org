@@ -1,8 +1,8 @@
 #+title: filter range实现优化
 
-基本代码都来自于 [StarRocks](https://github.com/StarRocks/starrocks/blob/main/be/src/column/column_helper.h#L315)
+基本代码都来自于 [[https://github.com/StarRocks/starrocks/blob/main/be/src/column/column_helper.h#L315][StarRocks]]
 
-benchmark代码放在 [Github](https://github.com/dirtysalt/codes/blob/master/cc/sr-test/filter_range_perf.cpp)
+benchmark代码放在 [[https://github.com/dirtysalt/codes/blob/master/cc/sr-test/filter_range_perf.cpp][Github]]
 
 所谓filter range就是类似下面这样的代码：
 - 基于0/1数组来选择目标数组里面的元素
@@ -105,7 +105,7 @@ benchmark代码放在 [Github](https://github.com/dirtysalt/codes/blob/master/cc
     }
 #+END_SRC
 
-运行时CPU特性判断可以参考 [这里](https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html) 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
+运行时CPU特性判断可以参考 [[https://gcc.gnu.org/onlinedocs/gcc/x86-Built-in-Functions.html][这里]] 的 `__builtin_cpu_supports` 函数（注意需要初始化调用 `__builtin_cpu_init`，不过我测试了如果不调用好像也没有问题）
 
 ----------
 

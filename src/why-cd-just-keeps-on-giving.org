@@ -1,6 +1,6 @@
 #+title: Why Continuous Deployment just keeps on giving
 
-[原文地址](https://blog.intercom.io/why-continuous-deployment-just-keeps-on-giving/) 主题: 论持续部署的好处.
+[[https://blog.intercom.io/why-continuous-deployment-just-keeps-on-giving/][原文地址]] 主题: 论持续部署的好处.
 
 *持续部署最主要的好处是可以很快获得反馈*
 

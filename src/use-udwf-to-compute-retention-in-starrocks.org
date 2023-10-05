@@ -79,7 +79,7 @@ MySQL [zya]> select * from user_activity;
 
 ** 留存SQL
 
-这里我们需要使用到窗口函数 [Window function @ Window_function @ StarRocks Docs](https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/Window_function)
+这里我们需要使用到窗口函数 [[https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/Window_function][Window function @ Window_function @ StarRocks Docs]]
 
 但是窗口函数有个限制，就是一行数据只能输出一个值，但是我们可能想知道 T 这天之后，T+1, T+2 ... 这些天的留存情况。
 

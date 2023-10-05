@@ -1,6 +1,6 @@
 #+title: Learn to stop using shiny new things and love MySQL
 
-[原文地址](https://engineering.pinterest.com/blog/learn-stop-using-shiny-new-things-and-love-mysql)
+[[https://engineering.pinterest.com/blog/learn-stop-using-shiny-new-things-and-love-mysql][原文地址]]
 
 They have awesome new ideas with down-to-earth technical requirements, so I kept wondering why they choose this shiny (and risky) new stuff when all they need is a good ol’ trustworthy database. I think it’s because many assume that building the latest and greatest needs the latest and greatest! 人们通常认为实现最新需求就要用最新技术
 

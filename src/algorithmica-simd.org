@@ -40,7 +40,7 @@ Humans prefer #1 because it is simpler and results in less code, and compilers p
 
 大部分SIMD指令的名字规则还是有迹可循的
 
-- [Intel® Intrinsics Guide](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html)
+- [[https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html][Intel® Intrinsics Guide]]
 - [x86 intrinsics cheat sheet v1.0.pdf](chrome-extension://mhjfbmdgcfjbbpaeojofohoefgiehjai/index.html)
 
 #+BEGIN_QUOTE

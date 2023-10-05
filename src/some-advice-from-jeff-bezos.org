@@ -1,6 +1,6 @@
 #+title: Some advice from Jeff Bezos
 
-[原文地址](https://medium.com/@jasonfried/some-advice-from-jeff-bezos-28b3c2938968)
+[[https://medium.com/@jasonfried/some-advice-from-jeff-bezos-28b3c2938968][原文地址]]
 
 He said people who were right a lot of the time *were people who often changed their minds.* He doesn’t think consistency of thought is a particularly positive trait. It’s perfectly healthy — encouraged, even — to have an idea tomorrow that contradicted your idea today. 那些right a lot的人想法经常会改变，明天的idea可能和今天的idea完全相悖。
 

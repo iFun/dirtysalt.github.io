@@ -1,6 +1,6 @@
 #+title: Climbing The Wrong Hill
 
-[原文地址](https://medium.com/@cdixon/climbing-the-wrong-hill-2f69de430f51)
+[[https://medium.com/@cdixon/climbing-the-wrong-hill-2f69de430f51][原文地址]]
 
 爬山算法：通过寻找附近的upward step可能使得你只是找到local optimal解。相反如果可以随机地放弃一些附近的upward step, 有可能得到global optimal解。
 

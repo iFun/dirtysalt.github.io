@@ -1,6 +1,6 @@
 #+title: OSTEP / Virt-段式系统
 
-[OSTEP](http://pages.cs.wisc.edu/~remzi/OSTEP/)
+[[http://pages.cs.wisc.edu/~remzi/OSTEP/][OSTEP]]
 
 *段式分配*
 

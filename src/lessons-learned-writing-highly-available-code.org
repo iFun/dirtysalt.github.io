@@ -1,6 +1,6 @@
 #+title: Lessons learned writing highly available code
 
-[原文地址](https://medium.com/imgur-engineering/lessons-learned-writing-highly-available-code-7eaf3d7aae00)
+[[https://medium.com/imgur-engineering/lessons-learned-writing-highly-available-code-7eaf3d7aae00][原文地址]]
 
 - Put limits on everything.
 - Retry, but with exponential back-off.

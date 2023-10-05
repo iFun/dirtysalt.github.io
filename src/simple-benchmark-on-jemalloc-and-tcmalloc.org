@@ -6,14 +6,14 @@
 
 [[../images/simple-benchmark-on-jemalloc-and-tcmalloc-0.jpg]]
 
-这个函数是KVM在处理page fault. [KVM async page fault](https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault) 因为整个dataset其实都是放在内存里面的，所以这些page fault都是minor page fault, 物理内存分配速度跟不上导致的。
+这个函数是KVM在处理page fault. [[https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault][KVM async page fault]] 因为整个dataset其实都是放在内存里面的，所以这些page fault都是minor page fault, 物理内存分配速度跟不上导致的。
 
 #+BEGIN_EXAMPLE
 sr@dla-cache01 ~]$ systemd-detect-virt
 kvm
 #+END_EXAMPLE
 
-目前我们jemalloc的配置如下 [JEMALLOC](https://jemalloc.net/jemalloc.3.html)
+目前我们jemalloc的配置如下 [[https://jemalloc.net/jemalloc.3.html][JEMALLOC]]
 
 export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:5000,dirty_decay_ms:5000,metadata_thp:auto,background_thread:true"
 

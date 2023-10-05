@@ -4,7 +4,7 @@
 -----
 Kamal 1.0 --- 卡迈勒1.0 https://world.hey.com/dhh/kamal-1-0-5304ff9e
 
-Now that might sound sarcastic, but I'm being earnest here. So many of the best opportunities in life only reveal themselves when the easy path is blocked. We are creatures in search of the least resistance, so to reach higher, we usually need a little push. That dance with the enterprisey sales people at SUSE was such a push for [our cloud exit](https://world.hey.com/dhh/we-have-left-the-cloud-251760fb) adventure at [37signals](https://37signals.com/).
+Now that might sound sarcastic, but I'm being earnest here. So many of the best opportunities in life only reveal themselves when the easy path is blocked. We are creatures in search of the least resistance, so to reach higher, we usually need a little push. That dance with the enterprisey sales people at SUSE was such a push for [[https://world.hey.com/dhh/we-have-left-the-cloud-251760fb][our cloud exit]] adventure at [37signals](https://37signals.com/).
 
 这听起来可能有点讽刺，但我是认真的。生活中许多最好的机会只有在容易的道路受阻时才会显现出来。我们是寻求最小阻力的生物，所以为了达到更高的目标，我们通常需要一点推动。与 SUSE 富有进取心的销售人员的那次舞蹈极大地推动了我们在 37signals 的云退出冒险。
 

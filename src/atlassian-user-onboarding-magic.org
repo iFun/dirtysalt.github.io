@@ -1,6 +1,6 @@
 #+title: Atlassian $5.5b user onboarding magic
 
-[原文链接](http://www.appcues.com/blog/atlassian-5-billion-dollar-user-onboarding-magic/)
+[[http://www.appcues.com/blog/atlassian-5-billion-dollar-user-onboarding-magic/][原文链接]]
 
 **先看看这个公司的表现**
 

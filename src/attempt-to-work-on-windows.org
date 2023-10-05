@@ -6,7 +6,7 @@
 
 ** MSYS2的问题
 
-为了解决ssh tunnel这个问题，可以安装一个 [MSYS2](https://www.msys2.org/) 。这个东西和cygwin很像，可以在windows环境下面提供linux环境，以及提供各种linux命令等等。最常用的就是git/ssh这类。安装完了之后可以在windows terminal里面配置这个shell，可以配置使用zsh作为默认的shell.
+为了解决ssh tunnel这个问题，可以安装一个 [[https://www.msys2.org/][MSYS2]] 。这个东西和cygwin很像，可以在windows环境下面提供linux环境，以及提供各种linux命令等等。最常用的就是git/ssh这类。安装完了之后可以在windows terminal里面配置这个shell，可以配置使用zsh作为默认的shell.
 
 #+BEGIN_SRC Json
 {
@@ -69,7 +69,7 @@ WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 
 ** 快捷键冲突
 
-[Win 10 Ctrl + Shift + F快捷键占用-百度经验](https://jingyan.baidu.com/article/d71306351f002b52fcf4755b.html)
+[[https://jingyan.baidu.com/article/d71306351f002b52fcf4755b.html][Win 10 Ctrl + Shift + F快捷键占用-百度经验]]
 
 几个输入法会将一些快捷键全局修改掉，比如 "Ctrl+Shift+F" 这个，在Intellij/VSCode下面特别有用，但是都被映射走了。如果对输入法要求比较低的话，那么可以将输入法的快捷键全部禁掉。其实这个问题也不仅仅是Windows下面的，Mac下面也有。
 

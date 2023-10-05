@@ -2,9 +2,9 @@
 
 ** 测试代码
 
-测试代码是在Clickhouse memcpy-bench基础上改造过来的  [ClickHouse/utils/memcpy-bench at master · ClickHouse/ClickHouse](https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench)
+测试代码是在Clickhouse memcpy-bench基础上改造过来的  [[https://github.com/ClickHouse/ClickHouse/tree/master/utils/memcpy-bench][ClickHouse/utils/memcpy-bench at master · ClickHouse/ClickHouse]]
 
-不过我们这里没有使用clickhouse的统计方式，而是使用google benchmark驱动。代码放在了这里 [codes/cc/sr-test/memcpy-bench at master · dirtysalt/codes](https://github.com/dirtysalt/codes/tree/master/cc/sr-test/memcpy-bench)
+不过我们这里没有使用clickhouse的统计方式，而是使用google benchmark驱动。代码放在了这里 [[https://github.com/dirtysalt/codes/tree/master/cc/sr-test/memcpy-bench][codes/cc/sr-test/memcpy-bench at master · dirtysalt/codes]]
 
 这个测试相比CK测试会简化一些，只关注单线程上的memcpy性能，然后选择了几种尺寸进行测试，并且在每种尺寸上做了微调确保没有完全对齐。 UPDATE: 后面增加了多线程场景下的比较。
 

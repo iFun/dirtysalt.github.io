@@ -1,6 +1,6 @@
 #+title: Data Infrastructure at Airbnb
 
-[原文链接](https://medium.com/airbnb-engineering/data-infrastructure-at-airbnb-8adfb34f169c#.enuzhz135)
+[[https://medium.com/airbnb-engineering/data-infrastructure-at-airbnb-8adfb34f169c#.enuzhz135][原文链接]]
 
 **Part 1: Philosophy Behind our Data Infrastructure**
 

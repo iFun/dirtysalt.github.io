@@ -4,7 +4,7 @@
 
 这个问题是从github issue上来的.
 
-[Hudi fails to read Merge On Read table after adding logs files · Issue #27556 · StarRocks/starrocks](https://github.com/StarRocks/starrocks/issues/27556)
+[[https://github.com/StarRocks/starrocks/issues/27556][Hudi fails to read Merge On Read table after adding logs files · Issue #27556 · StarRocks/starrocks]]
 
 目前我们读取hudi table有两个代码分支：
 1. 对于COW表(_ro)，因为里面只有parquet文件，那么使用我们的native C++ code.
@@ -63,7 +63,7 @@ public class HudiSliceScannerFactory implements ScannerFactory {
 
 ** 引入hadoop-aws的问题
 
-所以解决办法就是让hadoop也支持s3这个协议，我们需要引入 hadoop-aws 这个包。 [Apache Hadoop Amazon Web Services support – Hadoop-AWS module: Integration with Amazon Web Services](https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html).
+所以解决办法就是让hadoop也支持s3这个协议，我们需要引入 hadoop-aws 这个包。 [[https://hadoop.apache.org/docs/stable/hadoop-aws/tools/hadoop-aws/index.html][Apache Hadoop Amazon Web Services support – Hadoop-AWS module: Integration with Amazon Web Services]].
 
 这个比较简单，修改pom.xml就行。并且为了和presto自带的hadoop兼容，我们需要使用相同的版本 2.7.4.
 
@@ -138,7 +138,7 @@ Exception in thread "main" java.lang.NoSuchFieldError: LOG
         at com.starrocks.hudi.reader.HudiSliceScanner.open(HudiSliceScanner.java:205)
 #+END_EXAMPLE
 
-我在github上看了一下 [代码](https://github.com/apache/hadoop/blob/release-2.7.4-RC0/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PerformanceAdvisory.java)， 这个类里面的确是有LOG字段的。
+我在github上看了一下 [[https://github.com/apache/hadoop/blob/release-2.7.4-RC0/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/util/PerformanceAdvisory.java][代码]]， 这个类里面的确是有LOG字段的。
 
 我遍历了一下hudi-reader-lib下面所有的jar, 看看那个jar里面包含了 `PerformanceAdvisory.java` 这个类
 - 一个是 `hadoop-apache2-2.7.4-11.jar` 这个是pom.xml里面显示指定的
