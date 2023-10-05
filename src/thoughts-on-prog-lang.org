@@ -305,7 +305,7 @@ val _ = setToOrigin(sphere)
 val _ = sphere.center.z (* kaboom! (no z field) *)
 #+END_SRC
 
-Java是如何处理深度子类型化的呢？可以看看下面这个数组例子。这段代码是可以通过编译的，但是在运行时出现Exception， 异常出现在 `xs[0] ` new A();= 这个代码上。
+Java是如何处理深度子类型化的呢？可以看看下面这个数组例子。这段代码是可以通过编译的，但是在运行时出现Exception， 异常出现在 `xs[0] = new A();` 这个代码上。
 Java在这里增加了类型判断，先判断出xs元素的真实类型，然后确保赋值对象是子类。Java对数组做了单独处理，可能因为数组是Java里面原始类型的原因，但是对List这类容器就直接不允许了。
 
 #+BEGIN_SRC Java
@@ -349,7 +349,7 @@ Exception in thread "main" java.lang.ArrayStoreException: A
 	at Test.main(Test.java:12)
 #+END_EXAMPLE
 
-Java在处理深度子类型上另外一个case就比较常见了，就是处理null. 在类型上，null是所有类型的子类，因为你可以创建类型类型A然后 `A a ` null=.
+Java在处理深度子类型上另外一个case就比较常见了，就是处理null. 在类型上，null是所有类型的子类，因为你可以创建类型类型A然后 `A a = null`.
 所有这些代码在编译期都可以通过类型检查，但是需要增加代码在运行期进行Null判断。
 
 ** 协变性(covariant)和逆变性(contravariant)

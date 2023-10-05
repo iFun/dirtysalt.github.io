@@ -106,8 +106,8 @@ class App {
 
 equqls编写建议：
 1. 对于参数必须是Object arg.  `boolean equals(Object arg)`
-2. 检测两个对象是否相同，可以节省判断开销。 `if(this =` arg) return true;=
-3. 判断arg是否为null. `if(arg =` null) return false;=
+2. 检测两个对象是否相同，可以节省判断开销。 `if(this == arg) return true;`
+3. 判断arg是否为null. `if(arg == null) return false;`
 4. 如果要求判断两者类型必须相同，那么通过getClass判断Class对象是否相同。 `if(getClass()!=arg.getClass()) return false;`
 5. 如果仅仅是想在语义上判断相同的话,那么使用instanceof判断。
   - 通常情况是，好比A,B都是容器实现，B extends A.只不过B是A另外一种实现。
