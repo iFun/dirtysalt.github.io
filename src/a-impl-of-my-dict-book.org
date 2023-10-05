@@ -1,6 +1,6 @@
 #+title: 一个生词本的实现
 
-我有一个习惯是在本地搭建一个HTTP服务器，然后建立一个index.html文件里面存储一些常用链接。然后在hosts里面添加一个`127.0.0.1 gw`映射。这样我只要输入gw:8080就可以跳到index.html页面（chrome还会存储历史记录，所以时间长了，只要键入gw就可以看到），非常方便。
+我有一个习惯是在本地搭建一个HTTP服务器，然后建立一个index.html文件里面存储一些常用链接。然后在hosts里面添加一个 `127.0.0.1 gw` 映射。这样我只要输入gw:8080就可以跳到index.html页面（chrome还会存储历史记录，所以时间长了，只要键入gw就可以看到），非常方便。
 
 [[../images/dict-query-history-desktop.png]]
 

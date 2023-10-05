@@ -26,9 +26,9 @@ TL;DR 因为checkpoint出现了瞬时的大量磁盘写入导致响应时间出�
 
 *机器状况*
 
-接着我们希望上机器去观察进一步的情况，结合 `dstat` 和 `mongostat` 看看primary/secondary到底发生了什么事情
+接着我们希望上机器去观察进一步的情况，结合dsta和mongostat看看primary/secondary到底发生了什么事情
 
-观察primary节点，每隔接近1min的时候，active writer会突然增长持续大约3s左右掉下去。然后观察 `dstat` 的这个时候情况，可以看到disk write大约写入了36M + 35M + 32M ~= 103M 数据，并且这个写入占据了很多sys cpu(也占用了部分usr cpu), 导致cpu idle掉了0. 这也可以解释为什么从监控面板上看cpu idle出现尖峰的情况。
+观察primary节点，每隔接近1min的时候，active writer会突然增长持续大约3s左右掉下去。然后观察dstat的这个时候情况，可以看到disk write大约写入了36M + 35M + 32M ~= 103M 数据，并且这个写入占据了很多sys cpu(也占用了部分usr cpu), 导致cpu idle掉了0. 这也可以解释为什么从监控面板上看cpu idle出现尖峰的情况。
 
 [[../images/mongodb34-perf-issue-checkpoint-2.jpg]]
 

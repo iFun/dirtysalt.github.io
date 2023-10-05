@@ -529,7 +529,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 
 ** 改进方案设计
 
-个人觉得可以根据 `memcpy_my` 这个版本 ~~，然后在某些区间上使用erms特性来做改善~~。
+个人觉得可以根据 `memcpy_my` 这个版本为基础， **然后在某些区间上使用erms特性来做改善** 。
 
 实现放在了这个PR里面 [[Enhancement] improve performance of `inline_memcpy` by dirtysalt · Pull Request #13330 · StarRocks/starrocks](https://github.com/StarRocks/starrocks/pull/13330)
 

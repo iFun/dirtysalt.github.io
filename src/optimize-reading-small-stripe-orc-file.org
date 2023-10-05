@@ -26,7 +26,9 @@ Optimize small read on ORC(small row group index/stripe/file) by dirtysalt · Pu
                 writer.write(tuple(row))
 #+END_SRC
 
-使用脚本 `java -jar ~/installed/orc-tools-1.7.0-SNAPSHOT-uber.jar meta test_many_columns.orc | grep -P "Stripe"` 或者是 `hive --orcfiledump test_many_columns.orc | grep -P "Stripe"` 可以看到stripe情况。
+使用下面任何一个命令，都可以看到stripe情况：
+- java -jar ~/installed/orc-tools-1.7.0-SNAPSHOT-uber.jar meta test_many_columns.orc | grep -P "Stripe"
+- hive --orcfiledump test_many_columns.orc | grep -P "Stripe"
 
 #+BEGIN_EXAMPLE
   Stripe 350:
