@@ -58,3 +58,4 @@ __pycache__
 .compressed-images
 .compress-images-cache
 ob/.obsidian/workspace.json
+.enforce-org-format.json
