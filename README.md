@@ -1,5 +1,5 @@
 ## 目录安排
-- `src` *org-mode* 组织的源文件
+- `src` **org-mode** 组织的源文件
 - `html` 从源文件生成的html文件
 - `scripts`
    - `publish/publish.el` 发布脚本
