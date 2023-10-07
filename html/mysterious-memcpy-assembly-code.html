@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org305131b">1. 问题出现</a></li>
-<li><a href="#orgfe7039a">2. 避免使用vector</a></li>
-<li><a href="#org4c2c703">3. 反汇编 0x16181e0 地址</a></li>
-<li><a href="#org21279e0">4. 手工使用memcpy</a></li>
+<li><a href="#orge56111a">1. 问题出现</a></li>
+<li><a href="#org7b72f60">2. 避免使用vector</a></li>
+<li><a href="#org1be1576">3. 反汇编 0x16181e0 地址</a></li>
+<li><a href="#orgd53d74d">4. 手工使用memcpy</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org305131b" class="outline-2">
-<h2 id="org305131b"><span class="section-number-2">1.</span> 问题出现</h2>
+<div id="outline-container-orge56111a" class="outline-2">
+<h2 id="orge56111a"><span class="section-number-2">1.</span> 问题出现</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 下面代码在profile的时候发现，每次循环的时候rax在和奇怪的地址进行比较 0x16181e0
@@ -53,15 +53,15 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </p>
 
 
-<div id="org6094b87" class="figure">
+<div id="orgd297b86" class="figure">
 <p><img src="../images/mysterious-memcpy-asm-code-0.jpg" alt="mysterious-memcpy-asm-code-0.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgfe7039a" class="outline-2">
-<h2 id="orgfe7039a"><span class="section-number-2">2.</span> 避免使用vector</h2>
+<div id="outline-container-org7b72f60" class="outline-2">
+<h2 id="org7b72f60"><span class="section-number-2">2.</span> 避免使用vector</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 改成下面这样的写法，似乎也不太行，那个奇怪的地址比较还在。不过代码好像清爽不少。
@@ -86,7 +86,7 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </div>
 
 
-<div id="org0447ebd" class="figure">
+<div id="org5a68d0c" class="figure">
 <p><img src="../images/mysterious-memcpy-asm-code-0.jpg" alt="mysterious-memcpy-asm-code-0.jpg" />
 </p>
 </div>
@@ -94,8 +94,8 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </div>
 
 
-<div id="outline-container-org4c2c703" class="outline-2">
-<h2 id="org4c2c703"><span class="section-number-2">3.</span> 反汇编 0x16181e0 地址</h2>
+<div id="outline-container-org1be1576" class="outline-2">
+<h2 id="org1be1576"><span class="section-number-2">3.</span> 反汇编 0x16181e0 地址</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 使用命令 `objdump -S &#x2013;start-address=0x16181e0 &#x2013;stop-address=0x16281e0 output/be/lib/starrocks_be` 可以看到这个奇怪地址对应的汇编/代码，就是这个memcpy_inlined，并且是针对长度为1的特定代码。
@@ -148,8 +148,8 @@ uint32_t FixedLengthColumnBase&lt;T&gt;::serialize_default(uint8_t* pos) {
 </div>
 </div>
 
-<div id="outline-container-org21279e0" class="outline-2">
-<h2 id="org21279e0"><span class="section-number-2">4.</span> 手工使用memcpy</h2>
+<div id="outline-container-orgd53d74d" class="outline-2">
+<h2 id="orgd53d74d"><span class="section-number-2">4.</span> 手工使用memcpy</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-Cpp">template &lt;typename T&gt;
@@ -174,7 +174,7 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </p>
 
 
-<div id="org76a67d2" class="figure">
+<div id="orgb00bb26" class="figure">
 <p><img src="../images/mysterious-memcpy-asm-code-2.jpg" alt="mysterious-memcpy-asm-code-2.jpg" />
 </p>
 </div>

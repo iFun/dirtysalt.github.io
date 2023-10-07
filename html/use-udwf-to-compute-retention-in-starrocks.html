@@ -16,17 +16,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgde66cb5">1. 问题定义</a></li>
-<li><a href="#orga84fa06">2. 测试数据</a></li>
-<li><a href="#orga944c0d">3. 留存SQL</a></li>
-<li><a href="#orgf9abbea">4. 测试UDWF</a></li>
-<li><a href="#org71ec4d1">5. UDWF实现</a></li>
+<li><a href="#org02b3479">1. 问题定义</a></li>
+<li><a href="#org70ca993">2. 测试数据</a></li>
+<li><a href="#org227526c">3. 留存SQL</a></li>
+<li><a href="#orga9b516f">4. 测试UDWF</a></li>
+<li><a href="#org94a3692">5. UDWF实现</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgde66cb5" class="outline-2">
-<h2 id="orgde66cb5"><span class="section-number-2">1.</span> 问题定义</h2>
+<div id="outline-container-org02b3479" class="outline-2">
+<h2 id="org02b3479"><span class="section-number-2">1.</span> 问题定义</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 假设用户的table schema是下面这样的：
@@ -50,8 +50,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga84fa06" class="outline-2">
-<h2 id="orga84fa06"><span class="section-number-2">2.</span> 测试数据</h2>
+<div id="outline-container-org70ca993" class="outline-2">
+<h2 id="org70ca993"><span class="section-number-2">2.</span> 测试数据</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 使用python脚本来生成测试数据
@@ -96,7 +96,7 @@ main()
 大概数就就是这样的
 </p>
 
-<pre class="example" id="orgf0eaf51">
+<pre class="example" id="org53ef746">
 MySQL [zya]&gt; select * from user_activity;
 +------+------------+
 | uid  | date       |
@@ -123,8 +123,8 @@ MySQL [zya]&gt; select * from user_activity;
 </div>
 
 
-<div id="outline-container-orga944c0d" class="outline-2">
-<h2 id="orga944c0d"><span class="section-number-2">3.</span> 留存SQL</h2>
+<div id="outline-container-org227526c" class="outline-2">
+<h2 id="org227526c"><span class="section-number-2">3.</span> 留存SQL</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 这里我们需要使用到窗口函数 <a href="https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/Window_function">Window function @ Window_function @ StarRocks Docs</a>
@@ -157,8 +157,8 @@ MySQL [zya]&gt; select * from user_activity;
 </div>
 </div>
 
-<div id="outline-container-orgf9abbea" class="outline-2">
-<h2 id="orgf9abbea"><span class="section-number-2">4.</span> 测试UDWF</h2>
+<div id="outline-container-orga9b516f" class="outline-2">
+<h2 id="orga9b516f"><span class="section-number-2">4.</span> 测试UDWF</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 使用 global function 机制将这个UDWF测试到SR里面
@@ -187,7 +187,7 @@ properties
 然后我们看一下 1，2 天的留存情况
 </p>
 
-<pre class="example" id="orge2235af">
+<pre class="example" id="org54e4dd9">
 MySQL [zya]&gt; select * from user_activity;
 +------+------------+
 | uid  | date       |
@@ -239,8 +239,8 @@ MySQL [zya]&gt; with Rte as (select uid, date as date , RetentionEncode(date)  o
 </div>
 </div>
 
-<div id="outline-container-org71ec4d1" class="outline-2">
-<h2 id="org71ec4d1"><span class="section-number-2">5.</span> UDWF实现</h2>
+<div id="outline-container-org94a3692" class="outline-2">
+<h2 id="org94a3692"><span class="section-number-2">5.</span> UDWF实现</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <a href="https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/JAVA_UDF#use-a-udwf">https://docs.starrocks.io/en-us/latest/sql-reference/sql-functions/JAVA_UDF#use-a-udwf</a>

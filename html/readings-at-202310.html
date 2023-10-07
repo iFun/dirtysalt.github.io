@@ -13,6 +13,170 @@
 <div id="content" class="content">
 <h1 class="title">网络文章@202310</h1>
 <hr />
+
+<p>
+<a href="https://brooker.co.za/blog/2023/03/23/economics.html">Surprising Scalability of Multitenancy - Marc's Blog &#x2014; 多租户令人惊讶的可扩展性 - Marc 的博客</a>
+</p>
+
+<p>
+When most folks talk about the economics of cloud systems, their focus is on automatically scaling for long-term seasonality: changes on the order of days (_fewer people buy things at night_), weeks (_fewer people visit the resort on weekdays_), seasons, and holidays. Scaling for this kind of seasonality is useful and important, but there's another factor that can be even more important and is often overlooked: short-term peak-to-average. Roughly speaking, the cost of a system scales with its (short-term<a href="https://brooker.co.za/blog/2023/03/23/economics.html#foot1">1</a>) peak traffic, but for most applications the value the system generates scales with the (long-term) average traffic.
+</p>
+
+<p>
+当大多数人谈论云系统的经济性时，他们的重点是针对长期季节性的自动扩展：按天（晚上买东西的人减少）、周（工作日访问度假村的人减少）、季节变化和假期。针对这种季节性进行调整是有用且重要的，但还有另一个因素可能更重要且经常被忽视：短期峰值与平均值。粗略地说，系统的成本随其（短期 <a href="https://brooker.co.za/blog/2023/03/23/economics.html#foot1">1</a> ）峰值流量而变化，但对于大多数应用程序来说，系统产生的价值随（长期）平均流量而变化。
+</p>
+
+<p>
+The gap between "paying for peak" and "earning on average" is critical to understand how the economics of large-scale cloud systems differ from traditional single-tenant systems.
+“支付高峰费用”和“平均收入”之间的差距对于理解大规模云系统的经济性与传统单租户系统有何不同至关重要。
+</p>
+
+<p>
+It's important because multi-tenancy (i.e. running a lot of different workloads on the same system) very effectively reduces the peak-to-average ratio that the overall system sees. This is highly beneficial for two reasons. The first-order reason is that it improves the economics of the underlying system, by bringing costs (proportional to <span class="underline">peak</span>) closer to value (proportional to <span class="underline">average</span>). The second-order benefit, and the one that is most directly beneficial to cloud customers, is that it allows individual workloads to have higher peaks without breaking the economics of the system.
+</p>
+
+<p>
+这很重要，因为多租户（即在同一系统上运行许多不同的工作负载）非常有效地降低了整个系统的峰值与平均比率。由于两个原因，这是非常有益的。第一个原因是它通过使成本（与峰值成比例）更接近价值（与平均值成比例）来改善基础系统的经济性。第二个好处，也是对云客户最直接有利的好处，是它允许单个工作负载拥有更高的峰值，而不会破坏系统的经济性。
+</p>
+
+<p>
+Most people would call that <span class="underline">scalability</span>.
+</p>
+
+<p>
+大多数人会称之为可扩展性。
+</p>
+
+<p>
+Andy makes a lot of interesting point here, but the key one has got to do with the difference between the <span class="underline">per object</span> heat distribution, the <span class="underline">per aggregate</span> heat distribution, and the <span class="underline">system-wide</span> heat distribution.
+</p>
+
+<p>
+安迪在这里提出了很多有趣的观点，但关键的一点与每个对象的热量分布、每个聚合的热量分布和系统范围的热量分布之间的差异有关。
+</p>
+
+<blockquote>
+<p>
+Scale allows us to deliver performance for customers that would otherwise be prohibitive to build.
+</p>
+
+<p>
+规模使我们能够为客户提供原本难以实现的性能。
+</p>
+</blockquote>
+
+<p>
+Here, Andy is talking about that second-order benefit. By spreading customers workloads over large numbers of storage devices, S3 is able to support individual workloads with peak-to-average ratios that would be prohibitively expensive in any other architecture. Importantly, this happens without increasing the peak-to-average of the overall system, and so comes without additional cost to customers or the operator.
+</p>
+
+<p>
+在这里，安迪谈论的是二阶效益。通过将客户工作负载分散到大量存储设备上，S3 能够以峰值平均比支持单个工作负载，而这在任何其他架构中都极其昂贵。重要的是，这种情况的发生不会增加整个系统的峰均比，因此不会给客户或运营商带来额外成本。
+</p>
+
+<hr />
+
+<p>
+<a href="https://jack-vanlightly.com/blog/2023/9/25/on-the-future-of-cloud-services-and-byoc">On the future of cloud services and BYOC — Jack Vanlightly</a>
+</p>
+
+<p>
+下面是ChatGPT的总结内容，我觉得写的挺好的。BYOC安全性和可控性相比SaaS要好点，但是这种安全性本质上还是比较低的，BYOC上的代码其实可以做许多事情。BYOC的运行成本，网络复杂性，以及计费方式其实都比SaaS要复杂许多，感觉对于中小客户来说，SaaS应该是更好的选择。对于大客户，如果运行服务的公司足够reliable的话，那么其实选择SaaS本身没有什么安全问题。
+</p>
+
+<p>
+<b><b>下面是对这篇文章的总结</b></b>
+</p>
+
+<p>
+BYOC（Bring Your Own Cloud）的概念
+</p>
+<ul class="org-ul">
+<li>BYOC是一种部署模型，介于SaaS云服务和现场部署之间。</li>
+<li>供应商在客户账户的VPC中部署其软件，但为客户管理大部分管理工作。</li>
+<li>BYOC并非新概念，与90年代的MSP（Managed Service Provider）类似，指的是在客户或第三方数据中心部署IT基础架构的管理和运营的外包通用术语。</li>
+<li>BYOC对于习惯于现场、自托管模型的客户而言可能具有吸引力，这些客户希望保留一定程度的控制和可见性，但不再希望自己操作软件。</li>
+</ul>
+
+<p>
+BYOC的承诺和挑战
+</p>
+<ul class="org-ul">
+<li>**安全性**：虽然BYOC模型看似通过保留数据在您的账户中提供更好的安全性，但深入探讨后，这一点并不完全站得住脚。关键的风险（如谁可以访问数据所在的机器？谁可以将代码安装到这些机器上？代码的作用是什么？等）仍然存在。</li>
+<li>**运营效率**：BYOC在运营模型中引入了额外的开销和摩擦，这可能表现为较差的服务质量和业务难以保持其动力并发展服务。</li>
+<li>**责任边界的明确性**：这也是一个需要考虑的问题。</li>
+</ul>
+
+<p>
+BYOC的安全性
+</p>
+<ul class="org-ul">
+<li>BYOC模型下，供应商可以在两个极端运作：极度封闭（供应商无法部署代码、更改基础架构、调试等）和极度开放（供应商可以全权部署、更改、调试、访问运行实例和数据等）。</li>
+<li>无论是BYOC还是SaaS云服务，极度封闭的限制在实践中都不起作用，因为您不能让供应商对您的服务的运营负责；而在这些限制下的可靠性也会受到严重损害。</li>
+<li>极度开放的限制由于更直观的原因而不起作用：简单地说，没有任何东西阻止任何人（无论是BYOC还是SaaS）访问他们想要的任何东西。</li>
+</ul>
+
+<p>
+BYOC的网络复杂性和成本
+</p>
+<ul class="org-ul">
+<li>BYOC依赖于私有网络进行VPC间的连接（这在SaaS中是可以避免的），这对客户来说是一个额外的头痛，因为现在他们必须找出一个VPC间连接策略。</li>
+<li>BYOC的网络选项（例如VPC Peering、VPC Sharing、Private Link（PL）或Transit Gateways（TGW））或带来额外的操作负担，或带来安全风险，或带来额外的费用。</li>
+</ul>
+
+<p>
+BYOC的成本承诺
+</p>
+<ul class="org-ul">
+<li>BYOC的定价基于软件的订阅，不包括其所需的基础设施或私有网络和安全的额外开销。</li>
+<li>BYOC的初始价格不是客户最终要支付的真实成本。更糟的是，客户会收到两次账单，并且必须整理出哪些费用属于BYOC服务，这些真实的BYOC成本最终被埋在其他CSP成本的山中。</li>
+</ul>
+
+
+<p>
+<b><b>以下是一些关于SaaS相对于BYOC的优势的讨论：</b></b>
+</p>
+
+<p>
+安全性
+</p>
+<ul class="org-ul">
+<li>文章指出，尽管BYOC模型在表面上看起来通过保留数据在您的账户中提供更好的安全性，但这并不意味着您解决了安全问题。关键的风险（例如谁可以访问数据所在的机器？谁可以将代码安装到这些机器上？代码的作用是什么？等）仍然存在。</li>
+<li>SaaS云服务通过一种机制处理这个问题，即**客户控制的数据加密**。例如，在Confluent、Snowflake、Mongo和大多数其他SaaS数据产品中，您可以随时撤销加密密钥，以关闭供应商对数据的访问。</li>
+</ul>
+
+<p>
+运营效率
+</p>
+<ul class="org-ul">
+<li>文章提到，BYOC在运营模型中引入了额外的开销和摩擦，这可能表现为较差的服务质量和业务难以保持其动力并发展服务。</li>
+<li>SaaS模型通常包括所有成本，包括底层的计算、存储、网络、安全人员/基础设施和支持，这可能使其在运营效率方面具有优势。</li>
+</ul>
+
+<p>
+责任边界的明确性
+</p>
+<ul class="org-ul">
+<li>SaaS提供商通常会负责软件的所有方面，包括安全、维护和更新，这为客户提供了一个清晰的责任边界。</li>
+<li>相比之下，BYOC模型可能在这方面存在一些模糊性，因为它部署在客户的环境中，但并不完全处于与他们其他代码相同的信任级别。</li>
+</ul>
+
+<p>
+网络复杂性和成本
+</p>
+<ul class="org-ul">
+<li>文章强调，BYOC依赖于私有网络进行VPC间的连接，这对客户来说是一个额外的头痛，因为现在他们必须找出一个VPC间连接策略。</li>
+<li>SaaS模型通常不需要客户处理这些网络复杂性和成本。</li>
+</ul>
+
+<p>
+成本和计费
+</p>
+<ul class="org-ul">
+<li>BYOC的定价基于软件的订阅，不包括其所需的基础设施或私有网络和安全的额外开销。</li>
+<li>SaaS提供商通常包括所有成本，包括底层的计算、存储、网络、安全人员/基础设施和支持，这可能使其在成本和计费的透明度和简单性方面具有优势。</li>
+</ul>
+
+<hr />
 <p>
 <a href="https://justinyan.me/post/5750">枫影夜读 #186 胡安焉 – 《我在北京送快递》 | 枫言枫语</a>
 </p>

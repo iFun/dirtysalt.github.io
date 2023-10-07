@@ -16,23 +16,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgffe2aa3">1. ten commandments</a></li>
-<li><a href="#org3e96cdb">2. 自然语言，数学语言和编程语言</a></li>
-<li><a href="#orgbd2db83">3. continuation</a></li>
-<li><a href="#org90ac280">4. call/cc</a></li>
-<li><a href="#org5a6686a">5. partial function</a></li>
-<li><a href="#org3fb8e96">6. halting problem</a></li>
-<li><a href="#org361bc1e">7. y combinator</a>
+<li><a href="#org392c554">1. ten commandments</a></li>
+<li><a href="#org114785c">2. 自然语言，数学语言和编程语言</a></li>
+<li><a href="#org624026f">3. continuation</a></li>
+<li><a href="#org3affc27">4. call/cc</a></li>
+<li><a href="#orga2498de">5. partial function</a></li>
+<li><a href="#orga58e475">6. halting problem</a></li>
+<li><a href="#org86177ef">7. y combinator</a>
 <ul>
-<li><a href="#org1f6bf10">7.1. Step 1</a></li>
-<li><a href="#org2e766cb">7.2. Step 2</a></li>
-<li><a href="#org6d2f163">7.3. Step 3</a></li>
-<li><a href="#org83908f1">7.4. Step 4</a></li>
-<li><a href="#org8d0a8a5">7.5. Step 5</a></li>
-<li><a href="#orgf1f83ee">7.6. Step 6</a></li>
-<li><a href="#org6bfc3c1">7.7. Step 7</a></li>
-<li><a href="#org96fdccb">7.8. Step 8</a></li>
-<li><a href="#org3ab639e">7.9. Step 9</a></li>
+<li><a href="#org065fa98">7.1. Step 1</a></li>
+<li><a href="#org356ca6a">7.2. Step 2</a></li>
+<li><a href="#org99a791f">7.3. Step 3</a></li>
+<li><a href="#org034a953">7.4. Step 4</a></li>
+<li><a href="#org84c51e8">7.5. Step 5</a></li>
+<li><a href="#org3c6a838">7.6. Step 6</a></li>
+<li><a href="#org28f1d5a">7.7. Step 7</a></li>
+<li><a href="#orgb1c4e04">7.8. Step 8</a></li>
+<li><a href="#org623431d">7.9. Step 9</a></li>
 </ul>
 </li>
 </ul>
@@ -51,19 +51,19 @@
 <li>Chapter10 # interpreter</li>
 </ul>
 
-<div id="outline-container-orgffe2aa3" class="outline-2">
-<h2 id="orgffe2aa3"><span class="section-number-2">1.</span> ten commandments</h2>
+<div id="outline-container-org392c554" class="outline-2">
+<h2 id="org392c554"><span class="section-number-2">1.</span> ten commandments</h2>
 <div class="outline-text-2" id="text-1">
 
-<div id="orgdb3bcbd" class="figure">
+<div id="org90ff4a4" class="figure">
 <p><img src="../images/the-little-schemer-ten-commandments.jpg" alt="the-little-schemer-ten-commandments.jpg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3e96cdb" class="outline-2">
-<h2 id="org3e96cdb"><span class="section-number-2">2.</span> 自然语言，数学语言和编程语言</h2>
+<div id="outline-container-org114785c" class="outline-2">
+<h2 id="org114785c"><span class="section-number-2">2.</span> 自然语言，数学语言和编程语言</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The goal of this book is to teach the reader to think recursively. Our first task is to decide which language to use to communicate this concept. There are three obvious choices: a natural language, such as English; formal mathematics; or a programming language. Natural languages are ambiguous, imprecise, and sometimes awkwardly verbose. These are all virtues for general communication, but something of a drawback for communicating concisely as precise a concept a s recursion. The language of mathematics is the opposite of natural language: it can express powerful formal ideas with only a few symbols. Unfortunately, the language of mathematics is often cryptic and barely accessible without special training. The marriage of technology and mathematics presents us with a third, almost ideal choice: a programming language. We believe that programming languages are the best way to convey the concept of recursion. They share with mathematics the ability to give a formal meaning to a set of symbols. But unlike mathematics, programming languages can be directly experienced-you can take the programs in this book, observe their behavior, modify them, and experience the effect of these modifications.
@@ -71,8 +71,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-orgbd2db83" class="outline-2">
-<h2 id="orgbd2db83"><span class="section-number-2">3.</span> continuation</h2>
+<div id="outline-container-org624026f" class="outline-2">
+<h2 id="org624026f"><span class="section-number-2">3.</span> continuation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 书中给出的continuation例子大致如下. 假设这个函数是从一个list中移除满足test-f?的元素.
@@ -114,8 +114,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org90ac280" class="outline-2">
-<h2 id="org90ac280"><span class="section-number-2">4.</span> call/cc</h2>
+<div id="outline-container-org3affc27" class="outline-2">
+<h2 id="org3affc27"><span class="section-number-2">4.</span> call/cc</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 另外一个和continuation相关的函数就是call-with-current-continuation(or call/cc). 关于call/cc介绍这里参考 <a href="http://www.ccs.neu.edu/home/dorai/t-y-scheme/t-y-scheme-Z-H-15.html#node_chap_13">这里</a>. call/cc就是说以当前程序的continuation(或者说运行位置)作为参数发起一个函数调用，在这个函数调用里面可以使用这个continuation. 如果一旦使用这个continuation的话，那么就带上continuation的参数调回到原来程序的运行位置继续执行。以链接中给出的例子来说明
@@ -152,8 +152,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org5a6686a" class="outline-2">
-<h2 id="org5a6686a"><span class="section-number-2">5.</span> partial function</h2>
+<div id="outline-container-orga2498de" class="outline-2">
+<h2 id="orga2498de"><span class="section-number-2">5.</span> partial function</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 偏序函数在这里的意思是，对于函数f(x)来说，不是所有的x都可以得到一个y（这个函数根本就不会有任何返回）。比如类似eternity这样的函数：
@@ -194,8 +194,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org3fb8e96" class="outline-2">
-<h2 id="org3fb8e96"><span class="section-number-2">6.</span> halting problem</h2>
+<div id="outline-container-orga58e475" class="outline-2">
+<h2 id="orga58e475"><span class="section-number-2">6.</span> halting problem</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 停机问题学习cs的同学都不会陌生：是否能够写出一个函数will-stop?，然后对于任意函数f, will-stop?都可以判断出f是否会终止。这本书里面给出了一段比较有意思的程序，来说明我们实际上不能写出这个will-stop?函数。我们这里给出三个函数 1)will-stop? 2)eternity 3)last-try. 其中eternity是一个无限循环函数, 而last-try则是反证程序。
@@ -226,16 +226,16 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org361bc1e" class="outline-2">
-<h2 id="org361bc1e"><span class="section-number-2">7.</span> y combinator</h2>
+<div id="outline-container-org86177ef" class="outline-2">
+<h2 id="org86177ef"><span class="section-number-2">7.</span> y combinator</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 书中引入y combinator的例子比较有趣，要求我们编写一个计算列表长度的函数但是不允许define。我始终不太明白yc到底有什么现实用途，或许是可以体现某种运算或者是表达能力吧。
 </p>
 </div>
 
-<div id="outline-container-org1f6bf10" class="outline-3">
-<h3 id="org1f6bf10"><span class="section-number-3">7.1.</span> Step 1</h3>
+<div id="outline-container-org065fa98" class="outline-3">
+<h3 id="org065fa98"><span class="section-number-3">7.1.</span> Step 1</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 我们可以通过枚举列表长度来完成，大致程序如下. 不过这里的问题是我们没有办法穷举长度，下面程序能处理的长度&lt;=1. 如果&gt;1的话那么就会调用eternity(露馅了!)
@@ -259,8 +259,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org2e766cb" class="outline-3">
-<h3 id="org2e766cb"><span class="section-number-3">7.2.</span> Step 2</h3>
+<div id="outline-container-org356ca6a" class="outline-3">
+<h3 id="org356ca6a"><span class="section-number-3">7.2.</span> Step 2</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 上面程序其实是有个pattern的(lambda (xs) (cond &#x2026;)). 我们抽取这个pattern出来。同样如果处理长度&gt;1的列表也会陷入eternity.
@@ -283,8 +283,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org6d2f163" class="outline-3">
-<h3 id="org6d2f163"><span class="section-number-3">7.3.</span> Step 3</h3>
+<div id="outline-container-org99a791f" class="outline-3">
+<h3 id="org99a791f"><span class="section-number-3">7.3.</span> Step 3</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 上面程序(lambda (length) &#x2026; ) 其实也是一个pattern. 同样如果处理长度&gt;1的列表也会陷入eternity当中。
@@ -304,8 +304,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org83908f1" class="outline-3">
-<h3 id="org83908f1"><span class="section-number-3">7.4.</span> Step 4</h3>
+<div id="outline-container-org034a953" class="outline-3">
+<h3 id="org034a953"><span class="section-number-3">7.4.</span> Step 4</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 然后我们反思，其实我们为的就是不陷入eternity. 并且最终结果肯定不会陷入eternity, 所以这里eternity其实可以是任意函数，比如mk-length:). 同时我们将内部函数参数名字换为mk-length. 那么上面程序就变化称为
@@ -328,8 +328,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org8d0a8a5" class="outline-3">
-<h3 id="org8d0a8a5"><span class="section-number-3">7.5.</span> Step 5</h3>
+<div id="outline-container-org84c51e8" class="outline-3">
+<h3 id="org84c51e8"><span class="section-number-3">7.5.</span> Step 5</h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
 那么如果要处理&gt;0的列表该怎么修正呢？我们这里可以在调用mk-length作用在(cdr xs)之前，将mk-length作用在eternity上，也就是如下代码. 但是这个代码只能处理&lt;=1的列表
@@ -348,8 +348,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-orgf1f83ee" class="outline-3">
-<h3 id="orgf1f83ee"><span class="section-number-3">7.6.</span> Step 6</h3>
+<div id="outline-container-org3c6a838" class="outline-3">
+<h3 id="org3c6a838"><span class="section-number-3">7.6.</span> Step 6</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 和Step 4对比一下，如果我们这里不调用eternity而是调用mk-length, 那么是否可以处理&gt;1的列表呢? 答案是可以的。至此我们可以得到一个工作的函数。
@@ -368,8 +368,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org6bfc3c1" class="outline-3">
-<h3 id="org6bfc3c1"><span class="section-number-3">7.7.</span> Step 7</h3>
+<div id="outline-container-org28f1d5a" class="outline-3">
+<h3 id="org28f1d5a"><span class="section-number-3">7.7.</span> Step 7</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 然后我们尝试简化上面的函数。我们尽量将mk-length抽离出来，其他部分形成一个单独的函数.
@@ -407,8 +407,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org96fdccb" class="outline-3">
-<h3 id="org96fdccb"><span class="section-number-3">7.8.</span> Step 8</h3>
+<div id="outline-container-orgb1c4e04" class="outline-3">
+<h3 id="orgb1c4e04"><span class="section-number-3">7.8.</span> Step 8</h3>
 <div class="outline-text-3" id="text-7-8">
 <p>
 现在我们基本上可以看到(lambda (length) &#x2026;) 部分和mk-length没有任何关系，所以我们可以尝试将(lambda (length) &#x2026;) 部分外提
@@ -433,8 +433,8 @@ The goal of this book is to teach the reader to think recursively. Our first tas
 </div>
 </div>
 
-<div id="outline-container-org3ab639e" class="outline-3">
-<h3 id="org3ab639e"><span class="section-number-3">7.9.</span> Step 9</h3>
+<div id="outline-container-org623431d" class="outline-3">
+<h3 id="org623431d"><span class="section-number-3">7.9.</span> Step 9</h3>
 <div class="outline-text-3" id="text-7-9">
 <p>
 我们把y-combinator部分用更短的字符来表示的话就是如下形式

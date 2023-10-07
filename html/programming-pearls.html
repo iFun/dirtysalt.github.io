@@ -183,7 +183,7 @@ int search3(int* x, int n, int t) {
 <p>
 先看-O0的效果，展开效果还是非常明显的，甚至比设置哨兵还要好。
 </p>
-<pre class="example" id="org4598847">
+<pre class="example" id="org8b2c50c">
 ➜  misc git:(master) ✗ g++ opt_linear_search.cc -O0 --std=c++0x
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 211.902 ms
@@ -196,7 +196,7 @@ int search3(int* x, int n, int t) {
 <p>
 然后看-O2的效果. 展开效果似乎就没有那么明显了，甚至还有副作用。相比展开步长8和16的情况，发现步长并不是越长越好。
 </p>
-<pre class="example" id="org892277b">
+<pre class="example" id="org515a80a">
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 34.7623 ms
 [ search11]Wall clock time passed: 35.4613 ms
@@ -345,7 +345,7 @@ inline void partial_sort(RandomAccessIterator first,
 如果找到重复字符串可以使用后缀数组，比如 banana 可以保存每个字符串的后缀
 </p>
 
-<pre class="example" id="org9ffb18d">
+<pre class="example" id="org8defac5">
 banana
 anana
 nana
@@ -358,7 +358,7 @@ a
 然后我们排序然后比较相邻的后缀元素，就能找到ana. 第二长的是na
 </p>
 
-<pre class="example" id="org2f5979b">
+<pre class="example" id="orgc2979ab">
 a
 ana
 anana

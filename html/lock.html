@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org31c7313">1. spinlock</a></li>
-<li><a href="#org28ca152">2. lock-free</a></li>
-<li><a href="#orge88124d">3. linux futex</a></li>
-<li><a href="#orge6bca4d">4. 使用自选锁来实现信号量</a></li>
+<li><a href="#org2253c44">1. spinlock</a></li>
+<li><a href="#org20b7a20">2. lock-free</a></li>
+<li><a href="#org9806b89">3. linux futex</a></li>
+<li><a href="#orge535264">4. 使用自选锁来实现信号量</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org31c7313" class="outline-2">
-<h2 id="org31c7313"><span class="section-number-2">1.</span> spinlock</h2>
+<div id="outline-container-org2253c44" class="outline-2">
+<h2 id="org2253c44"><span class="section-number-2">1.</span> spinlock</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="http://lwn.net/Articles/267968/">Ticket spinlocks</a></li>
@@ -40,8 +40,8 @@ update@201509: 通过xchg/cmpxchg这种原子指令可以很容易实现一个sp
 </div>
 </div>
 
-<div id="outline-container-org28ca152" class="outline-2">
-<h2 id="org28ca152"><span class="section-number-2">2.</span> lock-free</h2>
+<div id="outline-container-org20b7a20" class="outline-2">
+<h2 id="org20b7a20"><span class="section-number-2">2.</span> lock-free</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li><a href="http://www.ibm.com/developerworks/cn/linux/l-cn-lockfree/">透过 Linux 内核看无锁编程</a></li>
@@ -75,8 +75,8 @@ lock-free顾名思义就是在多个执行体访问共享变量的时候，不�
 </div>
 </div>
 
-<div id="outline-container-orge88124d" class="outline-2">
-<h2 id="orge88124d"><span class="section-number-2">3.</span> linux futex</h2>
+<div id="outline-container-org9806b89" class="outline-2">
+<h2 id="org9806b89"><span class="section-number-2">3.</span> linux futex</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="http://en.wikipedia.org/wiki/Futex">Wikipedia Futex</a></li>
@@ -95,8 +95,8 @@ futex(fast userspace mutex)快速用户态互斥锁，需要用户态和内核�
 </div>
 </div>
 
-<div id="outline-container-orge6bca4d" class="outline-2">
-<h2 id="orge6bca4d"><span class="section-number-2">4.</span> 使用自选锁来实现信号量</h2>
+<div id="outline-container-orge535264" class="outline-2">
+<h2 id="orge535264"><span class="section-number-2">4.</span> 使用自选锁来实现信号量</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-Cpp">typedef struct sema

@@ -16,14 +16,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org54e80d7">1. Reactor</a></li>
-<li><a href="#orgde95821">2. IReactor</a></li>
-<li><a href="#orge4ed1d9">3. DTEV_ITEM</a></li>
-<li><a href="#org0bb2f3b">4. EventScheduler</a></li>
-<li><a href="#org38f2e94">5. DemuxTable</a></li>
-<li><a href="#orgb955a34">6. SignalSet</a></li>
-<li><a href="#org44acb52">7. SignalInfo</a></li>
-<li><a href="#org641d608">8. How it works</a></li>
+<li><a href="#org6ba947a">1. Reactor</a></li>
+<li><a href="#org6542285">2. IReactor</a></li>
+<li><a href="#org2391ef7">3. DTEV_ITEM</a></li>
+<li><a href="#org9eb7682">4. EventScheduler</a></li>
+<li><a href="#orgd884953">5. DemuxTable</a></li>
+<li><a href="#org800ba7d">6. SignalSet</a></li>
+<li><a href="#orgf2edfbf">7. SignalInfo</a></li>
+<li><a href="#orgce05ca3">8. How it works</a></li>
 </ul>
 </div>
 </div>
@@ -50,8 +50,8 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 因为对于每一种信号必须产生一个EventHandler实例。不过还好我们关注的信号还是比较有限的，所以开辟的EventHandler还不算太多。这个从samples/signal-handler.cpp就可以看出来。
 </p>
 
-<div id="outline-container-org54e80d7" class="outline-2">
-<h2 id="org54e80d7"><span class="section-number-2">1.</span> Reactor</h2>
+<div id="outline-container-org6ba947a" class="outline-2">
+<h2 id="org6ba947a"><span class="section-number-2">1.</span> Reactor</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-Cpp">class CReactor
@@ -74,8 +74,8 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 </div>
 </div>
 
-<div id="outline-container-orgde95821" class="outline-2">
-<h2 id="orgde95821"><span class="section-number-2">2.</span> IReactor</h2>
+<div id="outline-container-org6542285" class="outline-2">
+<h2 id="org6542285"><span class="section-number-2">2.</span> IReactor</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-Cpp">class IReactor_Imp
@@ -103,8 +103,8 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 </div>
 </div>
 
-<div id="outline-container-orge4ed1d9" class="outline-2">
-<h2 id="orge4ed1d9"><span class="section-number-2">3.</span> DTEV_ITEM</h2>
+<div id="outline-container-org2391ef7" class="outline-2">
+<h2 id="org2391ef7"><span class="section-number-2">3.</span> DTEV_ITEM</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-Cpp">struct DTEV_ITEM // event item structure
@@ -124,8 +124,8 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 </div>
 </div>
 
-<div id="outline-container-org0bb2f3b" class="outline-2">
-<h2 id="org0bb2f3b"><span class="section-number-2">4.</span> EventScheduler</h2>
+<div id="outline-container-org9eb7682" class="outline-2">
+<h2 id="org9eb7682"><span class="section-number-2">4.</span> EventScheduler</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-Cpp">class IEventScheduler
@@ -163,8 +163,8 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 </div>
 </div>
 
-<div id="outline-container-org38f2e94" class="outline-2">
-<h2 id="org38f2e94"><span class="section-number-2">5.</span> DemuxTable</h2>
+<div id="outline-container-orgd884953" class="outline-2">
+<h2 id="orgd884953"><span class="section-number-2">5.</span> DemuxTable</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 我们注册fd和对应的event handler的时候，那么event item在什么地方开辟呢？这个event item就是在DemuxTable上面开辟。DemuxTable就是一个
@@ -192,8 +192,8 @@ class CDemuxTable
 </div>
 </div>
 
-<div id="outline-container-orgb955a34" class="outline-2">
-<h2 id="orgb955a34"><span class="section-number-2">6.</span> SignalSet</h2>
+<div id="outline-container-org800ba7d" class="outline-2">
+<h2 id="org800ba7d"><span class="section-number-2">6.</span> SignalSet</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 对于信号来说，并不是将fd和DTEV_ITEM进行绑定，而是将EventHandler和DTEV_ITEM进行绑定。映射关系就维护在SignalSet里面
@@ -215,8 +215,8 @@ class CDemuxTable
 </div>
 </div>
 
-<div id="outline-container-org44acb52" class="outline-2">
-<h2 id="org44acb52"><span class="section-number-2">7.</span> SignalInfo</h2>
+<div id="outline-container-orgf2edfbf" class="outline-2">
+<h2 id="orgf2edfbf"><span class="section-number-2">7.</span> SignalInfo</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 对于我们关心的信号都往这里面注册即可。我们注册的对象是DTEV_ITEM,但是我们可以根据DTEV_ITEM找到对应的handler,然后
@@ -268,8 +268,8 @@ reactor的active_event函数。SignalInfo应该会自己安装自己的信号处
 </div>
 </div>
 
-<div id="outline-container-org641d608" class="outline-2">
-<h2 id="org641d608"><span class="section-number-2">8.</span> How it works</h2>
+<div id="outline-container-orgce05ca3" class="outline-2">
+<h2 id="orgce05ca3"><span class="section-number-2">8.</span> How it works</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 我们主要关注Reactor的RunForever.RunForever里面会一遍一遍地调用EventLoopOnce这个过程，每次调用的时候都会检查是否需要退出。

@@ -37,21 +37,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc284912">1. 初识Hadoop</a></li>
-<li><a href="#org1f41d6d">2. 关于MapReduce</a></li>
-<li><a href="#org4fbe9b0">3. Hadoop分布式文件系统</a></li>
-<li><a href="#org9a11887">4. Hadoop IO</a></li>
-<li><a href="#orgbb837df">5. MapReduce应用开发</a></li>
-<li><a href="#orgefd4927">6. MapReduce的工作机制</a></li>
-<li><a href="#orge364c71">7. MapReduce的类型与格式</a></li>
-<li><a href="#orgb9556ba">8. MapReduce的特性</a></li>
-<li><a href="#org8d214d9">9. 构建Hadoop集群</a></li>
-<li><a href="#org24dd75e">10. 管理Hadoop</a></li>
+<li><a href="#orgbd7419a">1. 初识Hadoop</a></li>
+<li><a href="#org7d13fac">2. 关于MapReduce</a></li>
+<li><a href="#orgabf6e93">3. Hadoop分布式文件系统</a></li>
+<li><a href="#orga7301ce">4. Hadoop IO</a></li>
+<li><a href="#org3747a94">5. MapReduce应用开发</a></li>
+<li><a href="#org46174b5">6. MapReduce的工作机制</a></li>
+<li><a href="#org266378f">7. MapReduce的类型与格式</a></li>
+<li><a href="#orged78838">8. MapReduce的特性</a></li>
+<li><a href="#orgde13ec2">9. 构建Hadoop集群</a></li>
+<li><a href="#org6d323f3">10. 管理Hadoop</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc284912" class="outline-2">
-<h2 id="orgc284912"><span class="section-number-2">1.</span> 初识Hadoop</h2>
+<div id="outline-container-orgbd7419a" class="outline-2">
+<h2 id="orgbd7419a"><span class="section-number-2">1.</span> 初识Hadoop</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 古代，人们用牛来拉中午，当一头牛拉不动一根圆木的时候，他们不曾想过培育更大更壮的牛。同样，我们也不需要尝试开发超级计算机，而应试着结合使用更多计算机系统。
@@ -59,8 +59,8 @@
 </div>
 </div>
 
-<div id="outline-container-org1f41d6d" class="outline-2">
-<h2 id="org1f41d6d"><span class="section-number-2">2.</span> 关于MapReduce</h2>
+<div id="outline-container-org7d13fac" class="outline-2">
+<h2 id="org7d13fac"><span class="section-number-2">2.</span> 关于MapReduce</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>设置HADOOP_CLASSPATH就可以直接使用hadoop CLASSNAME来在本地运行mapreduce程序。</li>
@@ -83,8 +83,8 @@
 </div>
 </div>
 
-<div id="outline-container-org4fbe9b0" class="outline-2">
-<h2 id="org4fbe9b0"><span class="section-number-2">3.</span> Hadoop分布式文件系统</h2>
+<div id="outline-container-orgabf6e93" class="outline-2">
+<h2 id="orgabf6e93"><span class="section-number-2">3.</span> Hadoop分布式文件系统</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>使用hadoop archive能够将大量小文档打包，存档文件之能够只读访问
@@ -107,8 +107,8 @@
 </div>
 </div>
 
-<div id="outline-container-org9a11887" class="outline-2">
-<h2 id="org9a11887"><span class="section-number-2">4.</span> Hadoop IO</h2>
+<div id="outline-container-orga7301ce" class="outline-2">
+<h2 id="orga7301ce"><span class="section-number-2">4.</span> Hadoop IO</h2>
 <div class="outline-text-2" id="text-4">
 <hr />
 <ul class="org-ul">
@@ -240,8 +240,8 @@ mapred.output.compress.type = BLOCK/RECORD 可以用来控制压缩方式
 </div>
 </div>
 
-<div id="outline-container-orgbb837df" class="outline-2">
-<h2 id="orgbb837df"><span class="section-number-2">5.</span> MapReduce应用开发</h2>
+<div id="outline-container-org3747a94" class="outline-2">
+<h2 id="org3747a94"><span class="section-number-2">5.</span> MapReduce应用开发</h2>
 <div class="outline-text-2" id="text-5">
 <hr />
 <ul class="org-ul">
@@ -407,8 +407,8 @@ job，task and attempt
 </div>
 </div>
 
-<div id="outline-container-orgefd4927" class="outline-2">
-<h2 id="orgefd4927"><span class="section-number-2">6.</span> MapReduce的工作机制</h2>
+<div id="outline-container-org46174b5" class="outline-2">
+<h2 id="org46174b5"><span class="section-number-2">6.</span> MapReduce的工作机制</h2>
 <div class="outline-text-2" id="text-6">
 <hr />
 <p>
@@ -416,7 +416,7 @@ Hadoop运行MapReduce作业的工作原理
 </p>
 
 
-<div id="orgdadb36f" class="figure">
+<div id="orgc01459a" class="figure">
 <p><img src="../images/mapreduce-workflow-architecture.png" alt="mapreduce-workflow-architecture.png" />
 </p>
 </div>
@@ -432,7 +432,7 @@ Hadoop运行MapReduce作业的工作原理
 </ul>
 
 
-<div id="org46fdfa9" class="figure">
+<div id="orgd6e946c" class="figure">
 <p><img src="../images/mapreduce-streamming-pipes.jpg" alt="mapreduce-streamming-pipes.jpg" />
 </p>
 </div>
@@ -523,13 +523,13 @@ shuffle和排序
 </p>
 
 
-<div id="orgc58697f" class="figure">
+<div id="orgd888e85" class="figure">
 <p><img src="../images/mapreduce-shuffle-sort.jpg" alt="mapreduce-shuffle-sort.jpg" />
 </p>
 </div>
 
 
-<div id="orgf5bb659" class="figure">
+<div id="orgeaa88d0" class="figure">
 <p><img src="../images/mapreduce-shuffle-sort-2.png" alt="mapreduce-shuffle-sort-2.png" />
 </p>
 </div>
@@ -601,8 +601,8 @@ shuffle和排序
 </div>
 </div>
 
-<div id="outline-container-orge364c71" class="outline-2">
-<h2 id="orge364c71"><span class="section-number-2">7.</span> MapReduce的类型与格式</h2>
+<div id="outline-container-org266378f" class="outline-2">
+<h2 id="org266378f"><span class="section-number-2">7.</span> MapReduce的类型与格式</h2>
 <div class="outline-text-2" id="text-7">
 <hr />
 <p>
@@ -782,8 +782,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-orgb9556ba" class="outline-2">
-<h2 id="orgb9556ba"><span class="section-number-2">8.</span> MapReduce的特性</h2>
+<div id="outline-container-orged78838" class="outline-2">
+<h2 id="orged78838"><span class="section-number-2">8.</span> MapReduce的特性</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>计数器
@@ -837,8 +837,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org8d214d9" class="outline-2">
-<h2 id="org8d214d9"><span class="section-number-2">9.</span> 构建Hadoop集群</h2>
+<div id="outline-container-orgde13ec2" class="outline-2">
+<h2 id="orgde13ec2"><span class="section-number-2">9.</span> 构建Hadoop集群</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>很多教程说hadoop集群需要配置ssh,但是配置这个前提是你希望使用start-all.sh这个脚本来启动集群
@@ -942,8 +942,8 @@ public abstract class RecordReader&lt;KEYIN, VALUEIN&gt; implements Closeable {
 </div>
 </div>
 
-<div id="outline-container-org24dd75e" class="outline-2">
-<h2 id="org24dd75e"><span class="section-number-2">10.</span> 管理Hadoop</h2>
+<div id="outline-container-org6d323f3" class="outline-2">
+<h2 id="org6d323f3"><span class="section-number-2">10.</span> 管理Hadoop</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>永久性数据结构
