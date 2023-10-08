@@ -2,9 +2,9 @@
 # publish org files.
 
 echo "********** check references **********"
-python ./scripts/check-ref-images.py
+python $HOME/.private/project/pyscript/utils/check-image-ref.py `pwd`
 if [ $? != 0 ]; then
-    echo "resolve ref issues!"
+    echo "resolve image ref issues!"
     exit 1
 fi
 
