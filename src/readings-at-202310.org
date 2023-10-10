@@ -1,5 +1,14 @@
 #+title: 网络文章@202310
 
+------
+
+[[https://select.dev/posts/snowflake-range-join-optimization][How to speed up range joins joins in Snowflake by 300x --- 如何将 Snowflake 中的范围连接速度加快 300 倍]]
+
+大概看懂了意思，就是如果是范围连接的话：
+1. 将范围首先映射成为一个unique id
+2. 然后在范围连接之前，首先使用unique id来做等值连接
+3. 等值连接完成之后其实就可以排除了大部分数据，之后的范围连接就比较快
+4. 这里的假设就是等值连接比范围连接要快。
 
 ------
 
