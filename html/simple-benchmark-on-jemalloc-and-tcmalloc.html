@@ -37,7 +37,7 @@
 </p>
 
 
-<div id="org922c00f" class="figure">
+<div id="org63bedc3" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-0.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-0.jpg" />
 </p>
 </div>
@@ -46,7 +46,7 @@
 这个函数是KVM在处理page fault. <a href="https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault">KVM async page fault</a> 因为整个dataset其实都是放在内存里面的，所以这些page fault都是minor page fault, 物理内存分配速度跟不上导致的。
 </p>
 
-<pre class="example" id="org1d1df92">
+<pre class="example" id="org4090faf">
 sr@dla-cache01 ~]$ systemd-detect-virt
 kvm
 </pre>
@@ -134,7 +134,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="org8ef726d" class="figure">
+<div id="org839f3a2" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-1.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-1.jpg" />
 </p>
 </div>
@@ -144,7 +144,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="orgcd2e9d5" class="figure">
+<div id="orgf1edc31" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-2.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-2.jpg" />
 </p>
 </div>
@@ -163,7 +163,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 因为运行的时候没有办法确定cpu cores, 会出现如下错误：
 </p>
 
-<pre class="example" id="org46ae4e9">
+<pre class="example" id="orgf600bf2">
 === jemalloc: percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:5000,dirty_decay_ms:5000,metadata_thp:auto,background_thread:true ===
 &lt;jemalloc&gt;: Number of CPUs detected is not deterministic. Per-CPU arena disabled.
 </pre>
@@ -201,7 +201,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="orgb190bda" class="figure">
+<div id="org9e37892" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-3.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-3.jpg" />
 </p>
 </div>
@@ -211,7 +211,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="org06362e9" class="figure">
+<div id="orgc88bf92" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-4.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-4.jpg" />
 </p>
 </div>
@@ -222,7 +222,7 @@ UDPATE: 64线程下面增加mimalloc
 </p>
 
 
-<div id="org20e2446" class="figure">
+<div id="org1357a15" class="figure">
 <p><img src="../images/simple-benchmark-on-jemalloc-and-tcmalloc-5.jpg" alt="simple-benchmark-on-jemalloc-and-tcmalloc-5.jpg" />
 </p>
 </div>

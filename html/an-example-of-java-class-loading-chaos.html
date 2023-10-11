@@ -178,7 +178,7 @@
 但是今天早上daily出错了，而且是在访问hdfs文件系统出错的，错误信息如下
 </p>
 
-<pre class="example" id="orgb206b01">
+<pre class="example" id="orga4da64a">
 Exception in thread "main" java.lang.NoSuchFieldError: LOG
         at org.apache.hadoop.hdfs.shortcircuit.DomainSocketFactory.&lt;init&gt;(DomainSocketFactory.java:110)
         at org.apache.hadoop.hdfs.ClientContext.&lt;init&gt;(ClientContext.java:117)
@@ -218,7 +218,7 @@ Exception in thread "main" java.lang.NoSuchFieldError: LOG
 <li>一个是 `hadoop-common-2.7.4.jar` 这个pom.xml是hadoop-aws间接引入的</li>
 </ul>
 
-<pre class="example" id="org380811c">
+<pre class="example" id="org31ef5b3">
 hadoop-apache2-2.7.4-11.jar
 org/apache/hadoop/util/PerformanceAdvisory.class
 
@@ -230,7 +230,7 @@ org/apache/hadoop/util/PerformanceAdvisory.class
 如果用javap查看这两个类，可以发现其实都有LOG，差别就是两者的类型不同
 </p>
 
-<pre class="example" id="org9c380c7">
+<pre class="example" id="orgf591ed8">
 sandbox-cloud :: be/lib/hudi-reader-lib ‹main*› » javap hadoop-apache2-PerformanceAdvisory.class
 Compiled from "PerformanceAdvisory.java"
 public class org.apache.hadoop.util.PerformanceAdvisory {
@@ -280,7 +280,7 @@ public class org.apache.hadoop.util.PerformanceAdvisory {
 但是自测s3的时候又发现一个问题，错误信息如下
 </p>
 
-<pre class="example" id="org7b7c832">
+<pre class="example" id="orgc8656f3">
 Exception in thread "Thread-9" java.lang.NoClassDefFoundError: org/apache/commons/lang/StringUtils
         at org.apache.hadoop.fs.s3a.BasicAWSCredentialsProvider.getCredentials(BasicAWSCredentialsProvider.java:37)
         at com.amazonaws.auth.AWSCredentialsProviderChain.getCredentials(AWSCredentialsProviderChain.java:101)
@@ -328,7 +328,7 @@ Exception in thread "Thread-9" java.lang.NoClassDefFoundError: org/apache/common
 hadoop-apache2 jar其实里面也用到了StringUtils, 但是被放在了另外一个package下面
 </p>
 
-<pre class="example" id="org56ce84a">
+<pre class="example" id="org9c448ee">
 hadoop-apache2-2.7.4-11.jar
 org/apache/hadoop/util/StringUtils.class
 org/apache/hadoop/util/StringUtils$TraditionalBinaryPrefix.class

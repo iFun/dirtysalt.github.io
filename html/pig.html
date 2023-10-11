@@ -108,7 +108,7 @@
 <p>
 SQL
 </p>
-<pre class="example" id="orgef8d77a">
+<pre class="example" id="org0977225">
 SELECT category, AVG(pagerank)
 FROM urls WHERE pagerank &gt; 0.2
 GROUP BY category HAVING COUNT(*) &gt; 106
@@ -117,7 +117,7 @@ GROUP BY category HAVING COUNT(*) &gt; 106
 <p>
 Pig Latin
 </p>
-<pre class="example" id="org027a9f9">
+<pre class="example" id="orgfb5a656">
 good_urls = FILTER urls BY pagerank &gt; 0.2;
 groups = GROUP good_urls BY category;
 big_groups = FILTER groups BY COUNT(good_urls)&gt;106 ;
@@ -228,7 +228,7 @@ Pig has a rich, yet simple data model consisting of the following four types:
 </ul>
 
 
-<div id="orgfb8ab3c" class="figure">
+<div id="orgb0cc70e" class="figure">
 <p><img src="../images/pig-latin-expressions.png" alt="pig-latin-expressions.png" />
 </p>
 </div>
@@ -238,7 +238,7 @@ Pig has a rich, yet simple data model consisting of the following four types:
 <div id="outline-container-org7fbf7bb" class="outline-3">
 <h3 id="org7fbf7bb"><span class="section-number-3">4.2.</span> Specifying Input Data: LOAD</h3>
 <div class="outline-text-3" id="text-4-2">
-<pre class="example" id="org4d7a84d">
+<pre class="example" id="org44f71b9">
 queries = LOAD ‘query_log.txt’
           USING myLoad()
           AS (userId, queryString, timestamp);
@@ -255,7 +255,7 @@ queries = LOAD ‘query_log.txt’
 <div id="outline-container-orgb54aac5" class="outline-3">
 <h3 id="orgb54aac5"><span class="section-number-3">4.3.</span> Per-tuple Processing: FOREACH</h3>
 <div class="outline-text-3" id="text-4-3">
-<pre class="example" id="org3f6668d">
+<pre class="example" id="org12ac6c9">
 expanded_queries = FOREACH queries GENERATE
                    userId, expandQuery(queryString);
 
@@ -269,7 +269,7 @@ expanded_queries = FOREACH queries GENERATE
 </ul>
 
 
-<div id="org5b6ef9a" class="figure">
+<div id="orgd8a1014" class="figure">
 <p><img src="../images/pig-latin-flattening-in-foreach.png" alt="pig-latin-flattening-in-foreach.png" />
 </p>
 </div>
@@ -279,7 +279,7 @@ expanded_queries = FOREACH queries GENERATE
 <div id="outline-container-org42cdb76" class="outline-3">
 <h3 id="org42cdb76"><span class="section-number-3">4.4.</span> Discarding Unwanted Data: FILTER</h3>
 <div class="outline-text-3" id="text-4-4">
-<pre class="example" id="org6a00071">
+<pre class="example" id="org57b6b7e">
 real_queries = FILTER queries BY userId neq ‘bot’;
 </pre>
 <ul class="org-ul">
@@ -291,7 +291,7 @@ real_queries = FILTER queries BY userId neq ‘bot’;
 <div id="outline-container-org171bbf7" class="outline-3">
 <h3 id="org171bbf7"><span class="section-number-3">4.5.</span> Getting Related Data Together: COGROUP</h3>
 <div class="outline-text-3" id="text-4-5">
-<pre class="example" id="org638da7b">
+<pre class="example" id="org13137b2">
 grouped_data =  COGROUP results BY queryString,
                 revenue BY queryString;
 
@@ -300,7 +300,7 @@ url_revenues = FOREACH grouped_data GENERATE
 </pre>
 
 
-<div id="org396ba93" class="figure">
+<div id="orga358118" class="figure">
 <p><img src="../images/pig-latin-cogroup-versus-join.png" alt="pig-latin-cogroup-versus-join.png" />
 </p>
 </div>
@@ -315,7 +315,7 @@ url_revenues = FOREACH grouped_data GENERATE
 <div id="outline-container-org2afd13a" class="outline-4">
 <h4 id="org2afd13a"><span class="section-number-4">4.5.1.</span> Special Case of COGROUP: GROUP</h4>
 <div class="outline-text-4" id="text-4-5-1">
-<pre class="example" id="org4f6500c">
+<pre class="example" id="orgf35a458">
 grouped_revenue = GROUP revenue BY queryString;
 query_revenues = FOREACH grouped_revenue GENERATE
                  queryString,
@@ -331,7 +331,7 @@ query_revenues = FOREACH grouped_revenue GENERATE
 <div id="outline-container-org2bde078" class="outline-4">
 <h4 id="org2bde078"><span class="section-number-4">4.5.2.</span> JOIN in Pig Latin</h4>
 <div class="outline-text-4" id="text-4-5-2">
-<pre class="example" id="orge31aeec">
+<pre class="example" id="orgcb565ba">
 join_result = JOIN results BY queryString, revenue BY queryString;
 
 temp_var = COGROUP results BY queryString,
@@ -348,7 +348,7 @@ join_result = FOREACH temp_var GENERATE
 #note: 上面JOIN那个图输出结果是错误的，我们可以使用下面的例子做验证
 </p>
 
-<pre class="example" id="orged78cbc">
+<pre class="example" id="org77b6d5d">
 ---sample1.txt---
 hello	world	dirlt
 
@@ -356,7 +356,7 @@ hello	world	dirlt
 hello	love	cjy
 </pre>
 
-<pre class="example" id="orged38015">
+<pre class="example" id="org6920e92">
 grunt&gt; s1 = LOAD 'sample.txt' AS (key,v1,v2);
 grunt&gt; s2 = LOAD 'sample2.txt' AS (key,v1,v2);
 grunt&gt; s1 = LOAD 'sample1.txt' AS (key,v1,v2);
@@ -390,7 +390,7 @@ Pig Latin has a number of other commands that are very similar to their SQL coun
 <div id="outline-container-org5a94229" class="outline-3">
 <h3 id="org5a94229"><span class="section-number-3">4.7.</span> Nested Operations</h3>
 <div class="outline-text-3" id="text-4-7">
-<pre class="example" id="orgb4b6526">
+<pre class="example" id="org0bfc463">
 grouped_revenue = GROUP revenue BY queryString;
 query_revenues = FOREACH grouped_revenue{
                  top_slot = FILTER revenue BY
@@ -410,7 +410,7 @@ query_revenues = FOREACH grouped_revenue{
 <div id="outline-container-org7bbd4bf" class="outline-3">
 <h3 id="org7bbd4bf"><span class="section-number-3">4.8.</span> Asking for Output: STORE</h3>
 <div class="outline-text-3" id="text-4-8">
-<pre class="example" id="org5a22c13">
+<pre class="example" id="org622ef49">
 STORE query_revenues INTO ‘myoutput’
                      USING myStore();
 </pre>
@@ -465,7 +465,7 @@ STORE query_revenues INTO ‘myoutput’
 </ul>
 
 
-<div id="org30ed36d" class="figure">
+<div id="orgca427e9" class="figure">
 <p><img src="../images/pig-latin-mapreduce-compilation.png" alt="pig-latin-mapreduce-compilation.png" />
 </p>
 </div>

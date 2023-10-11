@@ -42,7 +42,7 @@ Many operating systems provide interface to control access over memory regions t
 <p>
 <a href="http://www.cs.nyu.edu/exact/core/doc/stackOverflow.txt">http://www.cs.nyu.edu/exact/core/doc/stackOverflow.txt</a> 给出了每个平台默认stack大小以及修改方法
 </p>
-<pre class="example" id="orgca05690">
+<pre class="example" id="org6103f9c">
 Stack Overflow Problems
 =======================
 This file gives some hints on addressing this problem on different platforms.
@@ -157,7 +157,7 @@ inline __attribute__((always _inline)) 可以强制inline.
 <p>
 SIMD指令操作参数通常要求字节对齐（比如16字节），头文件里面应该都会定义这些数据类型
 </p>
-<pre class="example" id="org5f62176">
+<pre class="example" id="org89c18aa">
 /* SSE2 */
 typedef double __v2df __attribute__ ((__vector_size__ (16)));
 typedef long long __v2di __attribute__ ((__vector_size__ (16)));

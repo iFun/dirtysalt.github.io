@@ -329,7 +329,7 @@ AOF则类似于redo-log的工作方式，所有对于server数据的修改都会
 2)每秒都会将收集的log进行fsync. 3)不调用fsync让OS操作。不同的策略在crash情况下面会造成不同比率数据的丢失，作者推荐使用2方法。
 AOF都会写到appendonly.aof文件里面，我们可以看看一个aof的example.很显然这是一个human-readable的格式(但是我没有兴趣分析其格式).
 </p>
-<pre class="example" id="org990e071">
+<pre class="example" id="org69bf546">
 dirlt@dirlt-virtual-machine:~/utils/redis/bin$ cat appendonly.aof
 *2
 $6

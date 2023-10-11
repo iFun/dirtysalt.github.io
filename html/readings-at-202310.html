@@ -15,6 +15,22 @@
 <hr />
 
 <p>
+<a href="https://select.dev/posts/snowflake-range-join-optimization">How to speed up range joins joins in Snowflake by 300x &#x2014; 如何将 Snowflake 中的范围连接速度加快 300 倍</a>
+</p>
+
+<p>
+大概看懂了意思，就是如果是范围连接的话：
+</p>
+<ol class="org-ol">
+<li>将范围首先映射成为一个unique id</li>
+<li>然后在范围连接之前，首先使用unique id来做等值连接</li>
+<li>等值连接完成之后其实就可以排除了大部分数据，之后的范围连接就比较快</li>
+<li>这里的假设就是等值连接比范围连接要快。</li>
+</ol>
+
+<hr />
+
+<p>
 <a href="https://brooker.co.za/blog/2023/03/23/economics.html">Surprising Scalability of Multitenancy - Marc's Blog &#x2014; 多租户令人惊讶的可扩展性 - Marc 的博客</a>
 </p>
 

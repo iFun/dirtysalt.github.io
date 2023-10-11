@@ -135,25 +135,25 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org762061f" class="figure">
+<div id="orgab8d334" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
 </p>
 </div>
 
 
-<div id="orgb01e655" class="figure">
+<div id="orgd464e61" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
 </p>
 </div>
 
 
-<div id="org78838d8" class="figure">
+<div id="orgdf85dce" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
 </p>
 </div>
 
 
-<div id="org4b4e244" class="figure">
+<div id="orgb30ad89" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
 </p>
 </div>
@@ -178,19 +178,19 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="org9549618" class="figure">
+<div id="org5a5dbf5" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
 </p>
 </div>
 
 
-<div id="org072855c" class="figure">
+<div id="org816cb64" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
 </p>
 </div>
 
 
-<div id="orgc660b26" class="figure">
+<div id="orgb3b2fcd" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
 </p>
 </div>
@@ -214,19 +214,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org22869a3" class="figure">
+<div id="org1ff7545" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
 </p>
 </div>
 
 
-<div id="org7e45792" class="figure">
+<div id="orgb113145" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
 </p>
 </div>
 
 
-<div id="orgb5aed73" class="figure">
+<div id="org3ee72e2" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
 </p>
 </div>
@@ -249,19 +249,19 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="org890c39a" class="figure">
+<div id="orga055c91" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
 </p>
 </div>
 
 
-<div id="org4607918" class="figure">
+<div id="orgf690be3" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
 </p>
 </div>
 
 
-<div id="org09c32a3" class="figure">
+<div id="org1721178" class="figure">
 <p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
 </p>
 </div>
@@ -629,7 +629,7 @@ goto tail;
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="orgc5b811a">
+<pre class="example" id="orgbb4840b">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ goto tail;
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="org0cef0cd">
+<pre class="example" id="org32fa61c">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -671,7 +671,7 @@ goto tail;
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="orgf106562">
+<pre class="example" id="org589529d">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ goto tail;
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="orga01b171">
+<pre class="example" id="org3a41db4">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -778,7 +778,7 @@ goto tail;
 </p>
 
 
-<div id="orgb6e63f3" class="figure">
+<div id="orga1089aa" class="figure">
 <p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
 </p>
 </div>
@@ -788,7 +788,7 @@ goto tail;
 </p>
 
 
-<div id="org7b5123c" class="figure">
+<div id="orgb28708b" class="figure">
 <p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
 </p>
 </div>
@@ -850,13 +850,13 @@ goto tail;
 </ul>
 
 
-<div id="orgcda1e1e" class="figure">
+<div id="org408dbd7" class="figure">
 <p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
 </p>
 </div>
 
 
-<div id="orgd345938" class="figure">
+<div id="orgef7cb42" class="figure">
 <p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
 </p>
 </div>

@@ -25,7 +25,7 @@
 <li><a href="#org79b07fd">3.3. 挑选索引</a></li>
 </ul>
 </li>
-<li><a href="#orgb47a0e9">4. 存储引擎</a>
+<li><a href="#org6649d21">4. 存储引擎</a>
 <ul>
 <li><a href="#org453edb2">4.1. MyISAM</a></li>
 <li><a href="#orgfd0e2bb">4.2. InnoDB</a></li>
@@ -73,7 +73,7 @@
 <ul>
 <li><a href="#org96412e5">14.1. 日志相关</a></li>
 <li><a href="#org7f16914">14.2. 系统相关</a></li>
-<li><a href="#org6649d21">14.3. 存储引擎</a></li>
+<li><a href="#org5162475">14.3. 存储引擎</a></li>
 </ul>
 </li>
 <li><a href="#org5dee0da">15. 编程接口</a>
@@ -260,8 +260,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb47a0e9" class="outline-2">
-<h2 id="orgb47a0e9"><span class="section-number-2">4.</span> 存储引擎</h2>
+<div id="outline-container-org6649d21" class="outline-2">
+<h2 id="org6649d21"><span class="section-number-2">4.</span> 存储引擎</h2>
 <div class="outline-text-2" id="text-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -677,7 +677,7 @@ The default replication type in MySQL is statement-based replication, and this r
 可以将information_schema看作一个虚拟数据库，里面的数据表是不同数据库的元数据所构成的视图。各个存储引擎还会在这里面添加它们专用的数据表。
 </p>
 
-<pre class="example" id="org6c9546d">
+<pre class="example" id="orgf76f4dd">
 mysql&gt; show tables in information_schema;
 +---------------------------------------+
 | Tables_in_information_schema          |
@@ -734,7 +734,7 @@ mysql&gt; show tables in information_schema;
 #todo:
 </p>
 
-<pre class="example" id="org7db1d03">
+<pre class="example" id="org3055e49">
 mysql&gt; show tables in mysql;
 +---------------------------+
 | Tables_in_mysql           |
@@ -894,7 +894,7 @@ EXPLAIN语句提供的信息可以帮助我们了解优化器为处理各种语�
 假设t1数据有1000条记录k=[1,50], 而t2数据有10条记录k=[1,10]
 </p>
 
-<pre class="example" id="org870312f">
+<pre class="example" id="orgc9fd664">
 #!/bin/bash
 echo "DROP DATABASE test;"
 echo "CREATE DATABASE test;"
@@ -915,7 +915,7 @@ done
 <p>
 t1开始没有索引，然后我们使用EXAPLAIN来察看效果
 </p>
-<pre class="example" id="org734ba49">
+<pre class="example" id="org6a4ad96">
 mysql&gt; explain SELECT * from t1 WHERE k &lt; 20 AND k &gt; 10;
 +----+-------------+-------+------+---------------+------+---------+------+------+-------------+
 | id | select_type | table | type | possible_keys | key  | key_len | ref  | rows | Extra       |
@@ -937,7 +937,7 @@ mysql&gt; explain SELECT * from t1 WHERE k &lt; 20 AND k &gt; 10;
 可以看到这个检索只能够使用全表扫描，下面来看看加上索引的效果
 </p>
 
-<pre class="example" id="org49f87b0">
+<pre class="example" id="orgf64a1fe">
 mysql&gt; ALTER TABLE t1 ADD INDEX (k);
 Query OK, 0 rows affected (0.18 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -959,7 +959,7 @@ mysql&gt; explain SELECT * from t1 WHERE k &lt; 20 AND k &gt; 10;
 <p>
 为t1加上索引之后，然后看看语句2的效果
 </p>
-<pre class="example" id="orgeb1c1db">
+<pre class="example" id="org768267d">
 mysql&gt; explain SELECT * from t1 INNER JOIN t2 WHERE t1.k = t2.k;
 +----+-------------+-------+------+---------------+------+---------+-----------+------+-------+
 | id | select_type | table | type | possible_keys | key  | key_len | ref       | rows | Extra |
@@ -1412,8 +1412,8 @@ binlog &amp; relaylog
 </div>
 </div>
 
-<div id="outline-container-org6649d21" class="outline-3">
-<h3 id="org6649d21"><span class="section-number-3">14.3.</span> 存储引擎</h3>
+<div id="outline-container-org5162475" class="outline-3">
+<h3 id="org5162475"><span class="section-number-3">14.3.</span> 存储引擎</h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 <a href="http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html">http://dev.mysql.com/doc/refman/5.6/en/innodb-parameters.html</a>
@@ -1585,7 +1585,7 @@ Caused by: com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: The last pac
 mysql最大连接数目可以通过参数max_connections进行配置，默认的连接数目是比较低的，对于需要处理大量请求的web服务来说需要增大。 <b>修改之后需要重启</b>
 </p>
 
-<pre class="example" id="org70aebe7">
+<pre class="example" id="org5978b16">
 mysql&gt; show variables like 'max_connections';
 +-----------------+-------+
 | Variable_name   | Value |
@@ -1623,7 +1623,7 @@ mysql&gt; show status like '%connect%';
 <p>
 修改最大连接数目之后，连接端可能会出现如下错误
 </p>
-<pre class="example" id="orgd442c34">
+<pre class="example" id="org0b05aa6">
 2013-04-16 19:55:29,772 FATAL com.umeng.dp.umid.UmidHandler: Connection to database failed.
 java.sql.SQLException: null,  message from server: "Can't create a new thread (errno 11); if you are not out of available memory, you can consult the manual for a possible OS-dependent bug"
     at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1074)

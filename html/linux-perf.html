@@ -104,7 +104,7 @@ perf查看cache之间冲突 (<a href="https://joemario.github.io/blog/2016/09/01
 <div id="outline-container-org934af5c" class="outline-3">
 <h3 id="org934af5c"><span class="section-number-3">3.1.</span> 确保perf版本和内核版本匹配</h3>
 <div class="outline-text-3" id="text-3-1">
-<pre class="example" id="org99e6e14">
+<pre class="example" id="org7faa70d">
 sandbox-sql :: ~/work/run-bench ‹master› » uname -r
 3.10.0-1160.42.2.el7.x86_64
 sandbox-sql :: ~/work/run-bench ‹master› » perf -v
@@ -115,7 +115,7 @@ perf version 3.10.0-1160.42.2.el7.x86_64.debug
 某些情况下内核会自动升级（可能也是执行了yum update时候触发的），从我的经验来看就会在/boot目录下面产生多个启动配置
 </p>
 
-<pre class="example" id="org453ab93">
+<pre class="example" id="orgaa3c85e">
 sandbox-sql :: ~/work/run-bench ‹master› » ls /boot/config-3.10.0-11* -l
 -rw-r--r--  1 root root 153567 Aug 26  2020 /boot/config-3.10.0-1127.19.1.el7.x86_64
 -rw-r--r--. 1 root root 153562 Apr  1  2020 /boot/config-3.10.0-1127.el7.x86_64
@@ -145,7 +145,7 @@ sandbox-sql :: ~/work/run-bench ‹master› » ls /boot/initramfs-* -l
 或者是在 `/etc/yum.conf` 文件里面 [main] section里面增加
 </p>
 
-<pre class="example" id="orgc25779d">
+<pre class="example" id="org6c0ea27">
 #禁止更新内核
 exclude=kernel*
 # 禁止更新系统
@@ -210,7 +210,7 @@ yum repolist
 用系统自带的objdump出现下面这个错误
 </p>
 
-<pre class="example" id="org4a04f28">
+<pre class="example" id="orgdbbd2d9">
 sandbox-sql :: ~/DorisDB ‹ext-planner-profile› » objdump -d ./output/be/lib/starrocks_be
 objdump: ./output/be/lib/starrocks_be: unable to initialize decompress status for section .debug_aranges
 objdump: ./output/be/lib/starrocks_be: unable to initialize decompress status for section .debug_aranges
@@ -226,7 +226,7 @@ google了一下这个问题，发现golang社区也有，<a href="https://github
 <li>yum install devtoolset-9-binutils</li>
 </ul>
 
-<pre class="example" id="org9037ca2">
+<pre class="example" id="org63042b5">
 sandbox-sql :: ~/DorisDB ‹ext-planner-profile› » /opt/rh/devtoolset-9/root/usr/bin/objdump -d ./output/be/lib/starrocks_be &gt; x
 sandbox-sql :: ~/DorisDB ‹ext-planner-profile*› » head x
 

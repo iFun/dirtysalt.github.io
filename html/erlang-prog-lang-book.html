@@ -62,7 +62,7 @@
 <p>
 除了编译/运行方式外，还可以以script方式执行，比如下面
 </p>
-<pre class="example" id="org9859f37">
+<pre class="example" id="org9889cf9">
 #!/usr/bin/env escript
 
 main(Args) -&gt;
@@ -72,7 +72,7 @@ main(Args) -&gt;
 <p>
 此外我们还可以在erl里面执行某个模块的函数. c(test).用来编译这个模块，test:my_func().来运行这个函数。erlang里面使用.表示结束。
 </p>
-<pre class="example" id="orgd570d2a">
+<pre class="example" id="org9e29152">
 3&gt; c(test).
 {ok,test}
 4&gt; test:my_func().
@@ -145,7 +145,7 @@ P = 1, Q = 2ok
 <p>
 函数定义. 可以看到函数定义也有点类似模式匹配，可以列举各种模式来决定执行行为
 </p>
-<pre class="example" id="org32af844">
+<pre class="example" id="orgb87fac9">
 myfunc(Pattern1) -&gt; Expression1;
 myfunc(Pattern3) when Predicate1 -&gt; Expression3;
 myfunc(Pattern2) -&gt; Expression2.
@@ -165,7 +165,7 @@ myfunc(Pattern2) -&gt; Expression2.
 <p>
 case和if表达式的结构如下，两者其实挺像的
 </p>
-<pre class="example" id="org20cc2d9">
+<pre class="example" id="org8f9badf">
 case Expression of
   Pattern1 [when Guard1] -&gt; Expression1;
   Pattern2 [when Guard2] -&gt; Expression2;
@@ -190,7 +190,7 @@ end
 <p>
 try/catch的结构如下
 </p>
-<pre class="example" id="orga59f8bf">
+<pre class="example" id="org2967395">
 try Expression of
   Pattern1 [when Guard1] -&gt; Expression1;
   ...
@@ -208,7 +208,7 @@ end
 <p>
 模式匹配里面有一个实用的小trick, 就是可以多次匹配。书中的例子是
 </p>
-<pre class="example" id="org7f2b988">
+<pre class="example" id="org17f42be">
 func1([{tag, {one, A}, B} | T]) -&gt;
     ...
     func2(... {tag, {one, A}, B} ...)
@@ -216,7 +216,7 @@ func1([{tag, {one, A}, B} | T]) -&gt;
 <p>
 就是其实{tag&#x2026; B}这个里面匹配了一次，但是在func2的时候又要重新构造一次元组。如果使用多次匹配的话，就可以避免这个问题
 </p>
-<pre class="example" id="org38008fb">
+<pre class="example" id="org6351f5c">
 func1([{tag, {one, A} = Z1, B} = Z2 | T]) -&gt;
     ...
     func2(... Z2 ...)

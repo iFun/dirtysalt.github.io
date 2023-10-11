@@ -26,7 +26,7 @@
 <li><a href="#org5928184">5.2. Keys</a></li>
 <li><a href="#org685a62b">5.3. Streams</a></li>
 <li><a href="#orge1321b9">5.4. Persistent State</a></li>
-<li><a href="#orgf91272b">5.5. Low Watermarks</a></li>
+<li><a href="#orgee8e730">5.5. Low Watermarks</a></li>
 <li><a href="#org5c76efd">5.6. Timers</a></li>
 </ul>
 </li>
@@ -48,7 +48,7 @@
 <li><a href="#org55cace2">8. SYSTEM IMPLEMENTATION</a>
 <ul>
 <li><a href="#orgf635833">8.1. Architecture</a></li>
-<li><a href="#orgee8e730">8.2. Low Watermarks</a></li>
+<li><a href="#orga40b379">8.2. Low Watermarks</a></li>
 </ul>
 </li>
 <li><a href="#orga929092">9. EVALUATION</a>
@@ -88,7 +88,7 @@ define an arbitrary, dynamic topology. Records are delivered con-tinuously along
 </p>
 
 
-<div id="org2c02468" class="figure">
+<div id="org956dcb3" class="figure">
 <p><img src="../images/millwheel-google-zeitgeist.png" alt="millwheel-google-zeitgeist.png" />
 </p>
 </div>
@@ -185,8 +185,8 @@ In its most basic form, persistent state in MillWheel is an opaque byte string t
 </div>
 </div>
 
-<div id="outline-container-orgf91272b" class="outline-3">
-<h3 id="orgf91272b"><span class="section-number-3">5.5.</span> Low Watermarks</h3>
+<div id="outline-container-orgee8e730" class="outline-3">
+<h3 id="orgee8e730"><span class="section-number-3">5.5.</span> Low Watermarks</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 The low watermark for a computation provides a bound on the timestamps of future records arriving at that computation. # LW用来给出未来会参与计算的记录的时间戳界限。
@@ -214,7 +214,7 @@ By waiting for the low watermark of a computation to advance　past a certain va
 </p>
 
 
-<div id="orge97308f" class="figure">
+<div id="org8199093" class="figure">
 <p><img src="../images/millwheel-low-watermark-evolve.png" alt="millwheel-low-watermark-evolve.png" />
 </p>
 </div>
@@ -238,7 +238,7 @@ The use of timers is optional – applications that do not have the need for tim
 <div id="outline-container-orgbc36a7d" class="outline-2">
 <h2 id="orgbc36a7d"><span class="section-number-2">6.</span> API</h2>
 <div class="outline-text-2" id="text-6">
-<pre class="example" id="org21ec523">
+<pre class="example" id="orgca5ea8b">
 class Computation {
   // Hooks called by the system.
   void ProcessRecord(Record data); // 处理记录
@@ -256,7 +256,7 @@ class Computation {
 <h3 id="org4d201c8"><span class="section-number-3">6.1.</span> Computation API</h3>
 <div class="outline-text-3" id="text-6-1">
 
-<div id="org1121f38" class="figure">
+<div id="org541ac1c" class="figure">
 <p><img src="../images/millwheel-api-illustraed.png" alt="millwheel-api-illustraed.png" />
 </p>
 </div>
@@ -349,7 +349,7 @@ WP是向下游发送时候，在持久化状态和productions之前，乐观地�
 </p>
 
 
-<div id="org2134459" class="figure">
+<div id="orgbeb92b0" class="figure">
 <p><img src="../images/millwheel-weak-production-checkpoint.png" alt="millwheel-weak-production-checkpoint.png" />
 </p>
 </div>
@@ -405,8 +405,8 @@ MillWheel recovers from machine failures efficiently by scan-ning metadata from 
 </div>
 </div>
 
-<div id="outline-container-orgee8e730" class="outline-3">
-<h3 id="orgee8e730"><span class="section-number-3">8.2.</span> Low Watermarks</h3>
+<div id="outline-container-orga40b379" class="outline-3">
+<h3 id="orga40b379"><span class="section-number-3">8.2.</span> Low Watermarks</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 注意LW是对应于computation而非key的，所以虽然每个computation节点可以自己推测出自己的LW, 但是这个LW仅仅是局部的(无效的). 所以计算LW只能由master或者是中央节点来完成。
@@ -456,7 +456,7 @@ for records when running over 200 CPUs. Median record delay is 3.6 milliseconds 
 </p>
 
 
-<div id="orgcb417e1" class="figure">
+<div id="orgb1c95aa" class="figure">
 <p><img src="../images/millwheel-output-latency.png" alt="millwheel-output-latency.png" />
 </p>
 </div>
@@ -470,7 +470,7 @@ To verify that MillWheel’s latency profile scales well with the system’s res
 </p>
 
 
-<div id="org8d2b570" class="figure">
+<div id="orgc0c1759" class="figure">
 <p><img src="../images/millwheel-latency-scalability.png" alt="millwheel-latency-scalability.png" />
 </p>
 </div>
@@ -486,7 +486,7 @@ gates. For these computations, the low watermark’s lag behind real time bounds
 </p>
 
 
-<div id="org2f5c844" class="figure">
+<div id="org23ec6e8" class="figure">
 <p><img src="../images/millwheel-low-watermark-lag.png" alt="millwheel-low-watermark-lag.png" />
 </p>
 </div>
@@ -505,7 +505,7 @@ Due to its high rate of checkpointing, MillWheel generates sig-nificant amounts 
 </p>
 
 
-<div id="orgddd1431" class="figure">
+<div id="org6313292" class="figure">
 <p><img src="../images/millwheel-framework-level-cache.png" alt="millwheel-framework-level-cache.png" />
 </p>
 </div>

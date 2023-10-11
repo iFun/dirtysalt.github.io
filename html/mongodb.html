@@ -105,7 +105,7 @@ mongodb采用一个线程处理一个请求的模型，不太确定mongodb是否
 文件组织上每个database使用一个文件前缀，每个databses里面可以存在多个namespace.然后在多个namespace下面可以有多个collection.
 对于一个collection而言的话就是一个bson文档。
 </p>
-<pre class="example" id="orgd9214c6">
+<pre class="example" id="orgebdee9c">
 dirlt@dirlt-virtual-machine:~/utils/mongodb/data/db$ ll -h
 total 209M
 drwxrwxr-x 4 dirlt dirlt 4.0K  6月  1 11:48 ./
@@ -152,7 +152,7 @@ mongodb所有的数据修改都是in-place的，这样的random write对于普�
 mdb引入journal机制来做system crash recovery.如果不适用journal的话那么如果databases出现crash的话，那么需要适用database repairs(类似于fsck)或者是数据全copy.
 journal机制就是redo log.启动之后如果发现存在journal的话那么就会做redo,期间所有的操作都是journal.当mdb正常退出的话，会将这些journal删除。journal功能会预分配3G文件。
 </p>
-<pre class="example" id="org59f715d">
+<pre class="example" id="org7b0971c">
 dirlt@dirlt-virtual-machine:~/utils/mongodb/data/db/journal$ ll -h
 total 3.1G
 drwxrwxr-x 2 dirlt dirlt 4.0K  6月  1 11:47 ./
