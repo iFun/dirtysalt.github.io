@@ -16,9 +16,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8b04cd3">1. Overview</a></li>
-<li><a href="#org3e0b99a">2. Compress</a></li>
-<li><a href="#org2760000">3. Decompress</a></li>
+<li><a href="#org76de5d2">1. Overview</a></li>
+<li><a href="#orgc4ac7c0">2. Compress</a></li>
+<li><a href="#org9bf6a06">3. Decompress</a></li>
 </ul>
 </div>
 </div>
@@ -26,8 +26,8 @@
 <a href="http://oldhome.schmorp.de/marc/liblzf.html">http://oldhome.schmorp.de/marc/liblzf.html</a>
 </p>
 
-<div id="outline-container-org8b04cd3" class="outline-2">
-<h2 id="org8b04cd3"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-org76de5d2" class="outline-2">
+<h2 id="org76de5d2"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这个压缩库非常轻量
@@ -45,10 +45,10 @@
 </div>
 </div>
 
-<div id="outline-container-org3e0b99a" class="outline-2">
-<h2 id="org3e0b99a"><span class="section-number-2">2.</span> Compress</h2>
+<div id="outline-container-orgc4ac7c0" class="outline-2">
+<h2 id="orgc4ac7c0"><span class="section-number-2">2.</span> Compress</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="org5ed2f85">
+<pre class="example" id="orgb1964e1">
 /*
  * Compress in_len bytes stored at the memory block starting at
  * in_data and write the result to out_data, up to a maximum length
@@ -83,7 +83,7 @@ lzf_compress (const void *const in_data,  unsigned int in_len,
 <p>
 压缩数据节(data section)有三种标识 a. literal b. short backref c. long backref.
 </p>
-<pre class="example" id="org514e791">
+<pre class="example" id="org67854d0">
 /*
  * compressed format
  *
@@ -341,8 +341,8 @@ literal处理比较有趣，大致方式如下
 </div>
 </div>
 
-<div id="outline-container-org2760000" class="outline-2">
-<h2 id="org2760000"><span class="section-number-2">3.</span> Decompress</h2>
+<div id="outline-container-org9bf6a06" class="outline-2">
+<h2 id="org9bf6a06"><span class="section-number-2">3.</span> Decompress</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 相对于压缩函数，解压缩函数就没有那么多策略，完全是数据驱动。同样我把代码稍作整理添加少注释

@@ -16,23 +16,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7c2dd5d">1. 线性SVM（Linear Support Vector Machine）</a></li>
-<li><a href="#org820058e">2. 对偶SVM（Dual Support Vector Machine）</a></li>
-<li><a href="#org65a29ef">3. 核SVM（Kernel Support Vector Machine）</a></li>
-<li><a href="#org716a02f">4. 软间隔SVM(Soft-Margin Support Vector Machine)</a></li>
-<li><a href="#orgd6c285b">5. 核逻辑回归(Kernel Logistic Regression)</a></li>
-<li><a href="#org356db39">6. 支持向量回归(Support Vector Regression)</a></li>
-<li><a href="#org9ec4d55">7. 线性模型和核模型总结(Map of Linear/Kernel Models)</a></li>
-<li><a href="#org57a1e66">8. 混合和装袋(Blending and Bagging)</a></li>
-<li><a href="#orgd2f2f5d">9. 自适应提升(Adaptive Boosting)</a></li>
-<li><a href="#orga8b4616">10. 决策树(Decision Tree)</a></li>
-<li><a href="#org7514eff">11. 随机森林(Random Forest)</a></li>
-<li><a href="#orgc2674d5">12. 梯度增强决策树(Gradient Boosted Decision Tree)</a></li>
-<li><a href="#org34a655f">13. 神经网络(Neural Network)</a></li>
-<li><a href="#orged34f09">14. 深度学习(Deep Learning)</a></li>
-<li><a href="#orgf271f6a">15. 径向基函数网络(Radial Basis Function Network)</a></li>
-<li><a href="#org8f4019c">16. 矩阵分解(Matrix Factorization)</a></li>
-<li><a href="#orgd9fbd8f">17. 完结篇(Finale)</a></li>
+<li><a href="#org5c41c54">1. 线性SVM（Linear Support Vector Machine）</a></li>
+<li><a href="#orgc5a182f">2. 对偶SVM（Dual Support Vector Machine）</a></li>
+<li><a href="#org901ca58">3. 核SVM（Kernel Support Vector Machine）</a></li>
+<li><a href="#org61f254f">4. 软间隔SVM(Soft-Margin Support Vector Machine)</a></li>
+<li><a href="#orgac5fa90">5. 核逻辑回归(Kernel Logistic Regression)</a></li>
+<li><a href="#org648705b">6. 支持向量回归(Support Vector Regression)</a></li>
+<li><a href="#orge9b8e37">7. 线性模型和核模型总结(Map of Linear/Kernel Models)</a></li>
+<li><a href="#org52affb0">8. 混合和装袋(Blending and Bagging)</a></li>
+<li><a href="#org7c1a11c">9. 自适应提升(Adaptive Boosting)</a></li>
+<li><a href="#org8ef2803">10. 决策树(Decision Tree)</a></li>
+<li><a href="#org6109f35">11. 随机森林(Random Forest)</a></li>
+<li><a href="#org27f3294">12. 梯度增强决策树(Gradient Boosted Decision Tree)</a></li>
+<li><a href="#org63c5b1c">13. 神经网络(Neural Network)</a></li>
+<li><a href="#orga59fec4">14. 深度学习(Deep Learning)</a></li>
+<li><a href="#org23086c2">15. 径向基函数网络(Radial Basis Function Network)</a></li>
+<li><a href="#org174d8cf">16. 矩阵分解(Matrix Factorization)</a></li>
+<li><a href="#orgf39d0c4">17. 完结篇(Finale)</a></li>
 </ul>
 </div>
 </div>
@@ -45,8 +45,8 @@
 <li>在林老师的 <a href="https://www.csie.ntu.edu.tw/~htlin/mooc/">主页</a> 上这两门课程的所有材料和视频</li>
 </ul>
 
-<div id="outline-container-org7c2dd5d" class="outline-2">
-<h2 id="org7c2dd5d"><span class="section-number-2">1.</span> <a href="../images/201_handout.pdf">线性SVM（Linear Support Vector Machine）</a></h2>
+<div id="outline-container-org5c41c54" class="outline-2">
+<h2 id="org5c41c54"><span class="section-number-2">1.</span> <a href="../images/201_handout.pdf">线性SVM（Linear Support Vector Machine）</a></h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>将w0单独剥离出来，wx + w0. 那么w称为coefficient（系数），w0称为bias/intercept(截距)</li>
@@ -63,8 +63,8 @@
 </div>
 </div>
 
-<div id="outline-container-org820058e" class="outline-2">
-<h2 id="org820058e"><span class="section-number-2">2.</span> <a href="../images/202_handout.pdf">对偶SVM（Dual Support Vector Machine）</a></h2>
+<div id="outline-container-orgc5a182f" class="outline-2">
+<h2 id="orgc5a182f"><span class="section-number-2">2.</span> <a href="../images/202_handout.pdf">对偶SVM（Dual Support Vector Machine）</a></h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>使用在正则化中使用的Lagrange Multiplier技术，引入L(b,w,a) = 0.5 * w' * w + a * (1 - y(wz + b))，svm策略函数变为min{b,w} (max{a&gt;=0} L(b, w, a)).</li>
@@ -84,8 +84,8 @@
 </div>
 </div>
 
-<div id="outline-container-org65a29ef" class="outline-2">
-<h2 id="org65a29ef"><span class="section-number-2">3.</span> <a href="../images/203_handout.pdf">核SVM（Kernel Support Vector Machine）</a></h2>
+<div id="outline-container-org901ca58" class="outline-2">
+<h2 id="org901ca58"><span class="section-number-2">3.</span> <a href="../images/203_handout.pdf">核SVM（Kernel Support Vector Machine）</a></h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>高维向量内积部分是zn .* zm = p(xn) .*  p(xm). 引入核函数K(xn, xm) = p(xn) .* p(xm). 并且K的计算代价相对更小。</li>
@@ -112,8 +112,8 @@
 </div>
 </div>
 
-<div id="outline-container-org716a02f" class="outline-2">
-<h2 id="org716a02f"><span class="section-number-2">4.</span> <a href="../images/204_handout.pdf">软间隔SVM(Soft-Margin Support Vector Machine)</a></h2>
+<div id="outline-container-org61f254f" class="outline-2">
+<h2 id="org61f254f"><span class="section-number-2">4.</span> <a href="../images/204_handout.pdf">软间隔SVM(Soft-Margin Support Vector Machine)</a></h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>因为硬间隔(Hard-Margin)必须要完美地分类数据，所以容易学习到复杂判定函数出现overfitting. 软间隔则放开这个条件允许部分数据错误分类。</li>
@@ -129,8 +129,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd6c285b" class="outline-2">
-<h2 id="orgd6c285b"><span class="section-number-2">5.</span> <a href="../images/205_handout.pdf">核逻辑回归(Kernel Logistic Regression)</a></h2>
+<div id="outline-container-orgac5fa90" class="outline-2">
+<h2 id="orgac5fa90"><span class="section-number-2">5.</span> <a href="../images/205_handout.pdf">核逻辑回归(Kernel Logistic Regression)</a></h2>
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>之前线性SVM已经提到和正规化的关系，这里再看看广义SVM和正则化之间的联系，以及各个相式和系数之间的关系。</li>
@@ -144,8 +144,8 @@
 </div>
 </div>
 
-<div id="outline-container-org356db39" class="outline-2">
-<h2 id="org356db39"><span class="section-number-2">6.</span> <a href="../images/206_handout.pdf">支持向量回归(Support Vector Regression)</a></h2>
+<div id="outline-container-org648705b" class="outline-2">
+<h2 id="org648705b"><span class="section-number-2">6.</span> <a href="../images/206_handout.pdf">支持向量回归(Support Vector Regression)</a></h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>使用上一节最后说的：“任何L2正规化线性模型都可以使用核技巧”，我们可以同样为ridge regression引入核技巧，叫做Kernel Ridge Regression(LSSVM, Least-Squares SVM)。不过引入核技巧之后在计算效率和灵活性上和原有的线性模型有点差别。</li>
@@ -159,15 +159,15 @@
 </div>
 </div>
 
-<div id="outline-container-org9ec4d55" class="outline-2">
-<h2 id="org9ec4d55"><span class="section-number-2">7.</span> 线性模型和核模型总结(Map of Linear/Kernel Models)</h2>
+<div id="outline-container-orge9b8e37" class="outline-2">
+<h2 id="orge9b8e37"><span class="section-number-2">7.</span> 线性模型和核模型总结(Map of Linear/Kernel Models)</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 下图是线性模型的总结，包括使用的误差函数以及常用算法。其中linear-SVM(soft-margin), linear-ridge-regression(LRR), regularized LR算法实现在LIBLINEAR里面可以找到。通常来说我们不太可能使用PLA或者是linear-SVR，因为linear-SVM和LRR相对于它们性能更好。
 </p>
 
 
-<div id="org2d111f7" class="figure">
+<div id="org62ccf56" class="figure">
 <p><img src="../images/ntuml-linear-models.png" alt="ntuml-linear-models.png" />
 </p>
 </div>
@@ -177,15 +177,15 @@
 </p>
 
 
-<div id="org3f33335" class="figure">
+<div id="orge425eb0" class="figure">
 <p><img src="../images/ntuml-linear-kernel-models.png" alt="ntuml-linear-kernel-models.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org57a1e66" class="outline-2">
-<h2 id="org57a1e66"><span class="section-number-2">8.</span> <a href="../images/207_handout.pdf">混合和装袋(Blending and Bagging)</a></h2>
+<div id="outline-container-org52affb0" class="outline-2">
+<h2 id="org52affb0"><span class="section-number-2">8.</span> <a href="../images/207_handout.pdf">混合和装袋(Blending and Bagging)</a></h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>我们可以通过聚合(aggregation)方式，也就是混合(blending)各种假设来提高假设准确性。这个和selection有点不太一样：selection是从各种假设中挑选一个假设出来，而aggregation则是将各种假设做组合。</li>
@@ -205,8 +205,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd2f2f5d" class="outline-2">
-<h2 id="orgd2f2f5d"><span class="section-number-2">9.</span> <a href="../images/208_handout.pdf">自适应提升(Adaptive Boosting)</a></h2>
+<div id="outline-container-org7c1a11c" class="outline-2">
+<h2 id="org7c1a11c"><span class="section-number-2">9.</span> <a href="../images/208_handout.pdf">自适应提升(Adaptive Boosting)</a></h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>为每个实例分配权值w进行训练得到假设h0（使用一个相对比较弱的学习算法）。对于错误的点我们加重权值，对于正确的点我们降低权值。然后如果往复得到h1, h2, h3&#x2026;</li>
@@ -218,8 +218,8 @@
 </div>
 </div>
 
-<div id="outline-container-orga8b4616" class="outline-2">
-<h2 id="orga8b4616"><span class="section-number-2">10.</span> <a href="../images/209_handout.pdf">决策树(Decision Tree)</a></h2>
+<div id="outline-container-org8ef2803" class="outline-2">
+<h2 id="org8ef2803"><span class="section-number-2">10.</span> <a href="../images/209_handout.pdf">决策树(Decision Tree)</a></h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li>Disclaimers about Decision Tree # 决策树的优缺点
@@ -242,8 +242,8 @@
 </div>
 </div>
 
-<div id="outline-container-org7514eff" class="outline-2">
-<h2 id="org7514eff"><span class="section-number-2">11.</span> <a href="../images/210_handout.pdf">随机森林(Random Forest)</a></h2>
+<div id="outline-container-org6109f35" class="outline-2">
+<h2 id="org6109f35"><span class="section-number-2">11.</span> <a href="../images/210_handout.pdf">随机森林(Random Forest)</a></h2>
 <div class="outline-text-2" id="text-11">
 <ul class="org-ul">
 <li>RF通过Bagging方式将多个DT组合在一起。这些DT都是没有经过剪枝，所以有比较大的偏差(variance). 但是这个问题可以通过Bagging来缓解，因为Bagging通过平均可以降低偏差。在学习DT的时候，可以随机选择部分features做decision. 更有甚者可以引入随机矩阵P：这个随机矩阵通过将features空间映射到新的空间，而这个新空间不仅仅是垂直的投影，可以是几个features的线性组合。</li>
@@ -254,8 +254,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc2674d5" class="outline-2">
-<h2 id="orgc2674d5"><span class="section-number-2">12.</span> <a href="../images/211_handout.pdf">梯度增强决策树(Gradient Boosted Decision Tree)</a></h2>
+<div id="outline-container-org27f3294" class="outline-2">
+<h2 id="org27f3294"><span class="section-number-2">12.</span> <a href="../images/211_handout.pdf">梯度增强决策树(Gradient Boosted Decision Tree)</a></h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>AdaBoost算法中我们看到需要为每个实例赋予权值，但是DTree算法中很难处理具有权重的实例。虽然我们可以修改DTree内部算法来处理权重，但是有个相对更简单的办法来处理权重：使用权重来对原来数据集合重新采样或者是重新分布，使得这个权重可以直接反应在数据集合上。这样最后DTree算法只需要处理没有权重的数据集合即可。</li>
@@ -273,8 +273,8 @@
 </div>
 </div>
 
-<div id="outline-container-org34a655f" class="outline-2">
-<h2 id="org34a655f"><span class="section-number-2">13.</span> <a href="../images/212_handout.pdf">神经网络(Neural Network)</a></h2>
+<div id="outline-container-org63c5b1c" class="outline-2">
+<h2 id="org63c5b1c"><span class="section-number-2">13.</span> <a href="../images/212_handout.pdf">神经网络(Neural Network)</a></h2>
 <div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>激活函数除了sigmoid之外，还可以是tanh(Hyperbolic Tangent, 双曲正切). tanh(x)=e^x-e^-x / e^x+e^-x. 两者之间还有一些联系tanh(x)=2*sigmoid(2x)-1.</li>
@@ -284,8 +284,8 @@
 </div>
 </div>
 
-<div id="outline-container-orged34f09" class="outline-2">
-<h2 id="orged34f09"><span class="section-number-2">14.</span> <a href="../images/213_handout.pdf">深度学习(Deep Learning)</a></h2>
+<div id="outline-container-orga59fec4" class="outline-2">
+<h2 id="orga59fec4"><span class="section-number-2">14.</span> <a href="../images/213_handout.pdf">深度学习(Deep Learning)</a></h2>
 <div class="outline-text-2" id="text-14">
 <ul class="org-ul">
 <li>Challenges and Key Techniques for Deep Learning
@@ -321,8 +321,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf271f6a" class="outline-2">
-<h2 id="orgf271f6a"><span class="section-number-2">15.</span> <a href="../images/214_handout.pdf">径向基函数网络(Radial Basis Function Network)</a></h2>
+<div id="outline-container-org23086c2" class="outline-2">
+<h2 id="org23086c2"><span class="section-number-2">15.</span> <a href="../images/214_handout.pdf">径向基函数网络(Radial Basis Function Network)</a></h2>
 <div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li>RBF Network就是将多个径向函数假设进行线性组合。径向函数(Radial Function)是一种只和中心点距离相关的函数, 所以Gaussian函数是径向函数的一种(Gaussian SVM也是RBF Network的一种).</li>
@@ -337,8 +337,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8f4019c" class="outline-2">
-<h2 id="org8f4019c"><span class="section-number-2">16.</span> <a href="../images/215_handout.pdf">矩阵分解(Matrix Factorization)</a></h2>
+<div id="outline-container-org174d8cf" class="outline-2">
+<h2 id="org174d8cf"><span class="section-number-2">16.</span> <a href="../images/215_handout.pdf">矩阵分解(Matrix Factorization)</a></h2>
 <div class="outline-text-2" id="text-16">
 <ul class="org-ul">
 <li>回到推荐问题。其实推荐问题也可以表示成为类似AutoEncoder神经网络。因为输入相对比较稀疏，所以我们可以考虑在隐藏层不使用非线性变换，类似使用linear-autoencoder. 说明一下X实际上是n*n的单位矩阵，y就是users-items矩阵。</li>
@@ -352,8 +352,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgd9fbd8f" class="outline-2">
-<h2 id="orgd9fbd8f"><span class="section-number-2">17.</span> <a href="../images/216_handout.pdf">完结篇(Finale)</a></h2>
+<div id="outline-container-orgf39d0c4" class="outline-2">
+<h2 id="orgf39d0c4"><span class="section-number-2">17.</span> <a href="../images/216_handout.pdf">完结篇(Finale)</a></h2>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/ml-techniques.html';this.page.identifier = 'ml-techniques.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

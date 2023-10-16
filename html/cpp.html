@@ -16,47 +16,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org48153a6">1. philosphy</a></li>
-<li><a href="#orge4690bc">2. language</a>
+<li><a href="#orgb83f513">1. philosphy</a></li>
+<li><a href="#orgdbfe0de">2. language</a>
 <ul>
-<li><a href="#org4fd68d3">2.1. new/delete</a>
+<li><a href="#orgf5e32d6">2.1. new/delete</a>
 <ul>
-<li><a href="#org76c1ea2">2.1.1. new重载</a></li>
-<li><a href="#org97629d2">2.1.2. new异常规格</a></li>
-<li><a href="#orga1d8396">2.1.3. 内存分配失败</a></li>
-<li><a href="#org0a625a1">2.1.4. operator new与new operator</a></li>
+<li><a href="#orgdd45b31">2.1.1. new重载</a></li>
+<li><a href="#orgcd13a8c">2.1.2. new异常规格</a></li>
+<li><a href="#orgcc58b40">2.1.3. 内存分配失败</a></li>
+<li><a href="#orga8b5cc4">2.1.4. operator new与new operator</a></li>
 </ul>
 </li>
-<li><a href="#orga0fea74">2.2. static assert</a></li>
-<li><a href="#orgf62860e">2.3. 正确使用cast</a>
+<li><a href="#orgabdbcff">2.2. static assert</a></li>
+<li><a href="#orgcde5303">2.3. 正确使用cast</a>
 <ul>
-<li><a href="#orgff2e4ed">2.3.1. 问题抽象</a></li>
-<li><a href="#orgf19b546">2.3.2. 多重继承</a></li>
-<li><a href="#orgf73f8da">2.3.3. 正确使用</a></li>
+<li><a href="#org6eaff38">2.3.1. 问题抽象</a></li>
+<li><a href="#org9afb3e1">2.3.2. 多重继承</a></li>
+<li><a href="#org9f2fac4">2.3.3. 正确使用</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org27db2cc">3. runtime</a>
+<li><a href="#orga14e3af">3. runtime</a>
 <ul>
-<li><a href="#org95d4570">3.1. local static object</a></li>
-<li><a href="#orgd655d17">3.2. hook function</a></li>
-<li><a href="#org625406d">3.3. undefined reference to static const class member</a></li>
-<li><a href="#org3cece1d">3.4. malloc warmup performance</a></li>
+<li><a href="#org1b495c3">3.1. local static object</a></li>
+<li><a href="#orgb1bbd74">3.2. hook function</a></li>
+<li><a href="#orgfd3dc3c">3.3. undefined reference to static const class member</a></li>
+<li><a href="#org33abc5c">3.4. malloc warmup performance</a></li>
 </ul>
 </li>
-<li><a href="#org2472bd0">4. library</a>
+<li><a href="#orgb16cc8a">4. library</a>
 <ul>
-<li><a href="#orgc7c9e88">4.1. boost::bind</a></li>
-<li><a href="#orgf664d28">4.2. boost::python</a></li>
-<li><a href="#org666b150">4.3. 几个logging实现</a></li>
+<li><a href="#orgc376cba">4.1. boost::bind</a></li>
+<li><a href="#orgd9a1c5b">4.2. boost::python</a></li>
+<li><a href="#orge55e391">4.3. 几个logging实现</a></li>
 </ul>
 </li>
-<li><a href="#org63ff6cd">5. C++11 update</a>
+<li><a href="#org95573c5">5. C++11 update</a>
 <ul>
-<li><a href="#org9da8d96">5.1. suffix return type syntax(返回值类型后置语法)</a></li>
-<li><a href="#org366179a">5.2. lambda expression(lambda表达式，匿名函数)</a></li>
-<li><a href="#orgca62809">5.3. rvalue references and move semantics(右值引用以及移动语义)</a></li>
+<li><a href="#org405873c">5.1. suffix return type syntax(返回值类型后置语法)</a></li>
+<li><a href="#org4759a29">5.2. lambda expression(lambda表达式，匿名函数)</a></li>
+<li><a href="#orge6fe021">5.3. rvalue references and move semantics(右值引用以及移动语义)</a></li>
 </ul>
 </li>
 </ul>
@@ -72,8 +72,8 @@
 <li><a href="https://isocpp.org/get-started">https://isocpp.org/get-started</a></li>
 </ul>
 
-<div id="outline-container-org48153a6" class="outline-2">
-<h2 id="org48153a6"><span class="section-number-2">1.</span> philosphy</h2>
+<div id="outline-container-orgb83f513" class="outline-2">
+<h2 id="orgb83f513"><span class="section-number-2">1.</span> philosphy</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 C++语言设计上有两个基本点： <a href="https://www.stroustrup.com/ETAPS-corrected-draft.pdf">https://www.stroustrup.com/ETAPS-corrected-draft.pdf</a>
@@ -108,12 +108,12 @@ OOP允许程序员用问题本身的属于来描述问题，而不是要用运�
 </div>
 </div>
 
-<div id="outline-container-orge4690bc" class="outline-2">
-<h2 id="orge4690bc"><span class="section-number-2">2.</span> language</h2>
+<div id="outline-container-orgdbfe0de" class="outline-2">
+<h2 id="orgdbfe0de"><span class="section-number-2">2.</span> language</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4fd68d3" class="outline-3">
-<h3 id="org4fd68d3"><span class="section-number-3">2.1.</span> new/delete</h3>
+<div id="outline-container-orgf5e32d6" class="outline-3">
+<h3 id="orgf5e32d6"><span class="section-number-3">2.1.</span> new/delete</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 new/delete和C的内存分配有很多区别，主要的改进在进行了很多可定制化的内容:
@@ -130,8 +130,8 @@ new/delete和C的内存分配有很多区别，主要的改进在进行了很多
 </ul>
 </div>
 
-<div id="outline-container-org76c1ea2" class="outline-4">
-<h4 id="org76c1ea2"><span class="section-number-4">2.1.1.</span> new重载</h4>
+<div id="outline-container-orgdd45b31" class="outline-4">
+<h4 id="orgdd45b31"><span class="section-number-4">2.1.1.</span> new重载</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 用户可以重载new/delete来实现全局new/delete或者是某个类的new/delete.原型有下面这些
@@ -194,8 +194,8 @@ int main(){
 </div>
 </div>
 
-<div id="outline-container-org97629d2" class="outline-4">
-<h4 id="org97629d2"><span class="section-number-4">2.1.2.</span> new异常规格</h4>
+<div id="outline-container-orgcd13a8c" class="outline-4">
+<h4 id="orgcd13a8c"><span class="section-number-4">2.1.2.</span> new异常规格</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <p>
 从new的异常规格可以看到，如果是普通的调用的话可能会抛出std::bad_alloc这个异常，但是原型里面还有
@@ -220,8 +220,8 @@ void* p=new (std::nothrow) int(); // 这里std::nothrow就是std::nothrow_t的�
 </div>
 </div>
 
-<div id="outline-container-orga1d8396" class="outline-4">
-<h4 id="orga1d8396"><span class="section-number-4">2.1.3.</span> 内存分配失败</h4>
+<div id="outline-container-orgcc58b40" class="outline-4">
+<h4 id="orgcc58b40"><span class="section-number-4">2.1.3.</span> 内存分配失败</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <p>
 C++来提供了内存分配失败的回调函数，但是这个只能够处理全局new分配失败的情况
@@ -237,8 +237,8 @@ new_handler set_new_handler(new_handler) throw();
 </div>
 </div>
 
-<div id="outline-container-org0a625a1" class="outline-4">
-<h4 id="org0a625a1"><span class="section-number-4">2.1.4.</span> operator new与new operator</h4>
+<div id="outline-container-orga8b5cc4" class="outline-4">
+<h4 id="orga8b5cc4"><span class="section-number-4">2.1.4.</span> operator new与new operator</h4>
 <div class="outline-text-4" id="text-2-1-4">
 <p>
 此外在很多书籍里面会提到operator new和new operator这两个说法，这两个是不一样的概念。operator new就是我们重写运算符函数，而new operator使我们调用new这个表达式。本质上说new这个表达式调用了分配类型里面的operator new函数，同时调用这个类型的初始化构造函数。同理operator delete和delete operator差别也是一样的。通常new operator的动作是这样的:
@@ -262,8 +262,8 @@ new_handler set_new_handler(new_handler) throw();
 </div>
 </div>
 
-<div id="outline-container-orga0fea74" class="outline-3">
-<h3 id="orga0fea74"><span class="section-number-3">2.2.</span> static assert</h3>
+<div id="outline-container-orgabdbcff" class="outline-3">
+<h3 id="orgabdbcff"><span class="section-number-3">2.2.</span> static assert</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-Cpp">#define STATIC_ASSERT(_cond,_name)      typedef char STATIC_ASSERT_FAILED_ ## _name [ (_cond) ? 1 : -1 ]
@@ -286,7 +286,7 @@ new_handler set_new_handler(new_handler) throw();
 <p>
 那么编译就会出现
 </p>
-<pre class="example" id="orgc98f3d4">
+<pre class="example" id="orgadf48d5">
 main.cc:5: error: size of array `STATIC_ASSERT_FAILED_int_MUST_BE_8_BYTES’ is negative
 </pre>
 
@@ -300,16 +300,16 @@ c++0x(&#x2013;std=c++0x)在语言层面上支持static_assert.
 </div>
 </div>
 
-<div id="outline-container-orgf62860e" class="outline-3">
-<h3 id="orgf62860e"><span class="section-number-3">2.3.</span> 正确使用cast</h3>
+<div id="outline-container-orgcde5303" class="outline-3">
+<h3 id="orgcde5303"><span class="section-number-3">2.3.</span> 正确使用cast</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 学习C的时候总是认为强转不过就是二进制层面的强转。开始学习C++之后就认为C语言的强转对应的就是reinterpret_cast.而static_cast和reinterpret_cast的差别不过就是static_cast可以做一些类型上面的检查，所以在大多数的时候都习惯使用reinterpret_cast而非static_cast.直到在编写itachi（一个异步网络编程框架）的时候，才发现并不是这么回事。下面的例子是我遇到问题的一个抽象。
 </p>
 </div>
 
-<div id="outline-container-orgff2e4ed" class="outline-4">
-<h4 id="orgff2e4ed"><span class="section-number-4">2.3.1.</span> 问题抽象</h4>
+<div id="outline-container-org6eaff38" class="outline-4">
+<h4 id="org6eaff38"><span class="section-number-4">2.3.1.</span> 问题抽象</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
 <pre class="src src-Cpp">#include &lt;cstdio&gt;
@@ -338,7 +338,7 @@ int main() {
 <p>
 运行结果是
 </p>
-<pre class="example" id="org146fa66">
+<pre class="example" id="org07904a2">
 [dirlt@localhost ~]$ ./a.out
 0xbff031b0
 0xbff031b0
@@ -350,8 +350,8 @@ int main() {
 </div>
 </div>
 
-<div id="outline-container-orgf19b546" class="outline-4">
-<h4 id="orgf19b546"><span class="section-number-4">2.3.2.</span> 多重继承</h4>
+<div id="outline-container-org9afb3e1" class="outline-4">
+<h4 id="org9afb3e1"><span class="section-number-4">2.3.2.</span> 多重继承</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 处理B类型没有问题，但是处理B的子类型的话，那么上面代码可能就会出现问题。因为对于B子类型而言的话很可能在 <b>对象模型</b> 之前添加了一些字段，按照reintrepret_cast语义的话是直接二进制映射，字段没有虚方法所以是直接按照偏移来取的，因此可能存在问题。但是看看下面这个例子
@@ -389,7 +389,7 @@ int main() {
 <p>
 运行结果
 </p>
-<pre class="example" id="org6557e5c">
+<pre class="example" id="org00a1040">
 [dirlt@localhost ~]$ ./a.out
 o:0xbfff9aa0 pb-&gt;g:0xbfff9aa0
 c:0xbfff9a9c c.g:0xbfff9aa0
@@ -401,8 +401,8 @@ c:0xbfff9a9c c.g:0xbfff9aa0
 </div>
 </div>
 
-<div id="outline-container-orgf73f8da" class="outline-4">
-<h4 id="orgf73f8da"><span class="section-number-4">2.3.3.</span> 正确使用</h4>
+<div id="outline-container-org9f2fac4" class="outline-4">
+<h4 id="org9f2fac4"><span class="section-number-4">2.3.3.</span> 正确使用</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 <b>因为自己也缺乏C++对象模型方面的知识，所以也没有办法从底层解释原因。</b> 但是结论却非常简单，就是应该尽量地执行static_cast而非reinterpret_cast. reinterpret_cast对于继承方面基本没有做任何事情，而使用static_cast的话则能够检测到类型系统，然后根据类型系统来进行正确的转换。 要是想对于static_cast有更多认识的话，需要了解C++对象模型的实现。
@@ -422,12 +422,12 @@ c:0xbfff9a9c c.g:0xbfff9aa0
 </div>
 </div>
 
-<div id="outline-container-org27db2cc" class="outline-2">
-<h2 id="org27db2cc"><span class="section-number-2">3.</span> runtime</h2>
+<div id="outline-container-orga14e3af" class="outline-2">
+<h2 id="orga14e3af"><span class="section-number-2">3.</span> runtime</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org95d4570" class="outline-3">
-<h3 id="org95d4570"><span class="section-number-3">3.1.</span> local static object</h3>
+<div id="outline-container-org1b495c3" class="outline-3">
+<h3 id="org1b495c3"><span class="section-number-3">3.1.</span> local static object</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 局部静态对象在C里面初始化只允许是常数，所以这个在编译期就可以搞定。在C++里面局部静态对象允许是一个类对象，那么就涉及到类的初始化等问题，这个是在编译期搞不定的只能够在运行期解决。
@@ -507,8 +507,8 @@ _Z3foov:
 </div>
 </div>
 
-<div id="outline-container-orgd655d17" class="outline-3">
-<h3 id="orgd655d17"><span class="section-number-3">3.2.</span> hook function</h3>
+<div id="outline-container-orgb1bbd74" class="outline-3">
+<h3 id="orgb1bbd74"><span class="section-number-3">3.2.</span> hook function</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 hook函数调用有两种方式，一种是hook我们代码内部的函数，这意味这这个函数是由我们来编译的，当然我们不能够修改需要hook的函数实现否则就没有意义了。另外一种hook函数是动态库里面的函数，静态库里面的函数因为完全进入了可执行程序，所以修改起来比较麻烦一些。我们QA写过这样的程序用libbfd库修改可执行程序本身，在函数调用之间加上跳板，但是相比本文介绍的两种方式更加复杂。（复杂就以为着容易出错，而且这种修改可执行程序应该是不值得提倡的）。
@@ -599,8 +599,8 @@ void free(void *p){
 </div>
 </div>
 
-<div id="outline-container-org625406d" class="outline-3">
-<h3 id="org625406d"><span class="section-number-3">3.3.</span> undefined reference to static const class member</h3>
+<div id="outline-container-orgfd3dc3c" class="outline-3">
+<h3 id="orgfd3dc3c"><span class="section-number-3">3.3.</span> undefined reference to static const class member</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 类型静态常量成员只允许是标量内容,而不允许是字符串数组或者是结构体等。但是下面代码会存在链接问题
@@ -646,8 +646,8 @@ int main() {
 </div>
 </div>
 
-<div id="outline-container-org3cece1d" class="outline-3">
-<h3 id="org3cece1d"><span class="section-number-3">3.4.</span> malloc warmup performance</h3>
+<div id="outline-container-org33abc5c" class="outline-3">
+<h3 id="org33abc5c"><span class="section-number-3">3.4.</span> malloc warmup performance</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 下面是我之前碰到的因为malloc warmup导致的性能差异巨大的问题。
@@ -723,7 +723,7 @@ int main() {
 <p>
 在自己的Ubuntu机器下面使用g++4.6编译运行结果如下。可以看到测试组1里面action2运行时间为2.9s左右，而测试组2里面action2运行时间为8.5s 时间差别很大
 </p>
-<pre class="example" id="org3b80d0f">
+<pre class="example" id="org7cacbf7">
 ➜  tomb git:(master) ✗ g++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 19764.38
@@ -736,7 +736,7 @@ int main() {
 <p>
 可能是编译器的原因？ 在自己的Ubuntu机器下面clang++来编译，时间差别同样很大
 </p>
-<pre class="example" id="orga2cd113">
+<pre class="example" id="orgf86b67f">
 ➜  tomb git:(master) ✗ clang++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 19494.99
@@ -749,7 +749,7 @@ int main() {
 <p>
 在自己的macbook air下面使用clang重新编译，时间是差不多的
 </p>
-<pre class="example" id="org0d04315">
+<pre class="example" id="org92d824a">
 ➜  tomb git:(master) ✗ g++ map_perf_test.cc -O2
 ➜  tomb git:(master) ✗ ./a.out
 22759.82
@@ -777,12 +777,12 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 </div>
 </div>
 </div>
-<div id="outline-container-org2472bd0" class="outline-2">
-<h2 id="org2472bd0"><span class="section-number-2">4.</span> library</h2>
+<div id="outline-container-orgb16cc8a" class="outline-2">
+<h2 id="orgb16cc8a"><span class="section-number-2">4.</span> library</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgc7c9e88" class="outline-3">
-<h3 id="orgc7c9e88"><span class="section-number-3">4.1.</span> boost::bind</h3>
+<div id="outline-container-orgc376cba" class="outline-3">
+<h3 id="orgc376cba"><span class="section-number-3">4.1.</span> boost::bind</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 之前看到陈硕同学在<a href="http://blog.csdn.net/solstice/">博客</a> 给出的C++工程实践推荐，使用boost::function和boost::bind代替虚函数。之所以我们需要使用虚函数，无非就是希望统一执行接口。统一接口通过虚函数是一种方法，而使用boost::function和boost::bind也可以达到相同的目的。
@@ -837,8 +837,8 @@ UPDATE: 现在C++17已经内置了 `std::bind` , 使用方法上和boost差不�
 </div>
 </div>
 
-<div id="outline-container-orgf664d28" class="outline-3">
-<h3 id="orgf664d28"><span class="section-number-3">4.2.</span> boost::python</h3>
+<div id="outline-container-orgd9a1c5b" class="outline-3">
+<h3 id="orgd9a1c5b"><span class="section-number-3">4.2.</span> boost::python</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 <a href="http://www.boost.org/doc/libs/1_58_0/libs/python/doc/index.html">http://www.boost.org/doc/libs/1_58_0/libs/python/doc/index.html</a>
@@ -850,8 +850,8 @@ UPDATE: 现在C++17已经内置了 `std::bind` , 使用方法上和boost差不�
 </div>
 </div>
 
-<div id="outline-container-org666b150" class="outline-3">
-<h3 id="org666b150"><span class="section-number-3">4.3.</span> 几个logging实现</h3>
+<div id="outline-container-orge55e391" class="outline-3">
+<h3 id="orge55e391"><span class="section-number-3">4.3.</span> 几个logging实现</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 @2015-07-26 最近一段时间使用C++编写Python扩展时候，发现原来的日志库(easyloggingpp)封装存在一些问题。修改完成日志库的封装之后，顺便就看了一下C/C++下面有什么可用的日志库。我粗略地看了下面几种，然后总结了一下优缺点以及自己的想法。
@@ -892,8 +892,8 @@ log4cpp/log4cplus/log4cxx # log4j的C++实现.
 </div>
 </div>
 
-<div id="outline-container-org63ff6cd" class="outline-2">
-<h2 id="org63ff6cd"><span class="section-number-2">5.</span> C++11 update</h2>
+<div id="outline-container-org95573c5" class="outline-2">
+<h2 id="org95573c5"><span class="section-number-2">5.</span> C++11 update</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在自己的主页上列出了这些改进的 <a href="http://www.stroustrup.com/C++11FAQ.html">细节</a>, 有位国内开发者把它翻译成了 <a href="http://www.chenlq.net/cpp11-faq-chs">中文</a> (非常感谢).
@@ -934,8 +934,8 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 </p>
 </div>
 
-<div id="outline-container-org9da8d96" class="outline-3">
-<h3 id="org9da8d96"><span class="section-number-3">5.1.</span> suffix return type syntax(返回值类型后置语法)</h3>
+<div id="outline-container-org405873c" class="outline-3">
+<h3 id="org405873c"><span class="section-number-3">5.1.</span> suffix return type syntax(返回值类型后置语法)</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 一开始我以为这个语法，是为了解决编写模板函数的时候，auto不能自动推导函数返回类型而设计的。比如下面这段程序
@@ -971,8 +971,8 @@ auto A::foo() -&gt; B { return B(); }
 </div>
 </div>
 
-<div id="outline-container-org366179a" class="outline-3">
-<h3 id="org366179a"><span class="section-number-3">5.2.</span> lambda expression(lambda表达式，匿名函数)</h3>
+<div id="outline-container-org4759a29" class="outline-3">
+<h3 id="org4759a29"><span class="section-number-3">5.2.</span> lambda expression(lambda表达式，匿名函数)</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 语法大致是这样的[capture](parameters) [-&gt; suffix-return-type] { body }. 就像之前说的那样，C++11类型推导能力非常强大，所以suffix-return-type通常是可选的。
@@ -1035,8 +1035,8 @@ int main() {
 </div>
 </div>
 
-<div id="outline-container-orgca62809" class="outline-3">
-<h3 id="orgca62809"><span class="section-number-3">5.3.</span> rvalue references and move semantics(右值引用以及移动语义)</h3>
+<div id="outline-container-orge6fe021" class="outline-3">
+<h3 id="orge6fe021"><span class="section-number-3">5.3.</span> rvalue references and move semantics(右值引用以及移动语义)</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 右值引用比较奇怪的一个地方是，你可以认为它是一个非常容易挥发的东西。因为一旦你使用A&amp;&amp; a = foo();获得右值引用的时候，其实你已经获得了左值a（并且发生了copy ctor或者是move ctor, 这个根据是否有move ctor决定的）. 只有在move ctor或者是move assignment时候我们才能够瞬间捕获到右值引用。想要把一个左值变为右值可以使用std::move函数。下面是我的实验代码，可以加深理解。
@@ -1174,7 +1174,7 @@ int main() {
 针对上面的代码分别使用c++2a和c++03选项进行编译，主要是看foo2的输出上的差异。使用c++2a编译的输出结果如下，可以看到大部分地方都使用到了move操作。
 </p>
 
-<pre class="example" id="org2c5b150">
+<pre class="example" id="org565e6d9">
 mac :: ~/utils » g++ test2.cpp -std=c++2a ; ./a.out
 ----- foo1(test c++0x) -----
 inside bar: 0x7ffee2b658d8
@@ -1211,7 +1211,7 @@ pb = 0x7ffee2b659b8
 而使用c++03编译的输出结果如下，可以看到foo2大部分地方都是copy操作。
 </p>
 
-<pre class="example" id="orgb02d3a1">
+<pre class="example" id="org1b87e88">
 mac :: ~/utils » g++ test2.cpp -std=c++03 ; ./a.out
 ----- foo2(test c++03&amp;0x) ----
 inside bar: 0x7ffee9f60918

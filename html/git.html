@@ -16,25 +16,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd84304e">1. links</a></li>
-<li><a href="#orgc898a54">2. git repo</a></li>
-<li><a href="#org4de1f17">3. git branch</a></li>
-<li><a href="#org0e6894c">4. git tag</a></li>
-<li><a href="#org67eea72">5. git flow</a></li>
-<li><a href="#org28a70d6">6. tricks</a>
+<li><a href="#orgb42d8a0">1. links</a></li>
+<li><a href="#orgd153c15">2. git repo</a></li>
+<li><a href="#orgdb5b679">3. git branch</a></li>
+<li><a href="#orge9795ae">4. git tag</a></li>
+<li><a href="#org4705833">5. git flow</a></li>
+<li><a href="#orga4d1611">6. tricks</a>
 <ul>
-<li><a href="#orgd2b39d2">6.1. 合并多个commit</a></li>
-<li><a href="#org92bcd15">6.2. https信任</a></li>
-<li><a href="#org49ba075">6.3. 仓库打包</a></li>
-<li><a href="#org4efa0a0">6.4. 自建git仓库</a></li>
+<li><a href="#orgc2d2c5f">6.1. 合并多个commit</a></li>
+<li><a href="#org1e0962a">6.2. https信任</a></li>
+<li><a href="#org5dfce58">6.3. 仓库打包</a></li>
+<li><a href="#org3e1cc4a">6.4. 自建git仓库</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgd84304e" class="outline-2">
-<h2 id="orgd84304e"><span class="section-number-2">1.</span> links</h2>
+<div id="outline-container-orgb42d8a0" class="outline-2">
+<h2 id="orgb42d8a0"><span class="section-number-2">1.</span> links</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Git – Fast Version Control System. <a href="http://git.or.cz/index.html">http://git.or.cz/index.html</a></li>
@@ -48,8 +48,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgc898a54" class="outline-2">
-<h2 id="orgc898a54"><span class="section-number-2">2.</span> git repo</h2>
+<div id="outline-container-orgd153c15" class="outline-2">
+<h2 id="orgd153c15"><span class="section-number-2">2.</span> git repo</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内容到本地仓库，并且也可以推送本地仓库到不同的远程仓库去。
@@ -111,8 +111,8 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 </div>
 </div>
 
-<div id="outline-container-org4de1f17" class="outline-2">
-<h2 id="org4de1f17"><span class="section-number-2">3.</span> git branch</h2>
+<div id="outline-container-orgdb5b679" class="outline-2">
+<h2 id="orgdb5b679"><span class="section-number-2">3.</span> git branch</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 默认来说git包含一个master分支，也可以很容易地创建和删除分支。当从远程clone到本地的时候，
@@ -151,8 +151,8 @@ git分为远程仓库和本地仓库。可以从不同的远程仓库拉下内�
 </div>
 </div>
 
-<div id="outline-container-org0e6894c" class="outline-2">
-<h2 id="org0e6894c"><span class="section-number-2">4.</span> git tag</h2>
+<div id="outline-container-orge9795ae" class="outline-2">
+<h2 id="orge9795ae"><span class="section-number-2">4.</span> git tag</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Git使用的标签有两种类型：轻量级的（lightweight）和含附注的（annotated）。轻量级标签就像是个不会变化的分支，实际上它就是个指向特 定提交对象的引用。而含附注标签，实际上是存储在仓库中的一个独立对象，它有自身的校验和信息，包含着标签的名字，电子邮件地址和日期，以及标签说明，标签本身也允许使用 GNU Privacy Guard (GPG) 来签署或验证。一般我们都建议使用含附注型的标签，以便保留相关信息；当然，如果只是临时性加注标签，或者不需要旁注额外信息，用轻量级标签也没问题。
@@ -168,8 +168,8 @@ Git使用的标签有两种类型：轻量级的（lightweight）和含附注的
 </div>
 </div>
 
-<div id="outline-container-org67eea72" class="outline-2">
-<h2 id="org67eea72"><span class="section-number-2">5.</span> git flow</h2>
+<div id="outline-container-org4705833" class="outline-2">
+<h2 id="org4705833"><span class="section-number-2">5.</span> git flow</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 参考资源
@@ -233,12 +233,12 @@ git-flow主要推行的就是一种开发方式，然后通过工具来配合这
 </div>
 </div>
 
-<div id="outline-container-org28a70d6" class="outline-2">
-<h2 id="org28a70d6"><span class="section-number-2">6.</span> tricks</h2>
+<div id="outline-container-orga4d1611" class="outline-2">
+<h2 id="orga4d1611"><span class="section-number-2">6.</span> tricks</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgd2b39d2" class="outline-3">
-<h3 id="orgd2b39d2"><span class="section-number-3">6.1.</span> 合并多个commit</h3>
+<div id="outline-container-orgc2d2c5f" class="outline-3">
+<h3 id="orgc2d2c5f"><span class="section-number-3">6.1.</span> 合并多个commit</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 合并两个commit
@@ -262,22 +262,22 @@ $ git rebase -i HEAD~n
 </div>
 </div>
 
-<div id="outline-container-org92bcd15" class="outline-3">
-<h3 id="org92bcd15"><span class="section-number-3">6.2.</span> https信任</h3>
+<div id="outline-container-org1e0962a" class="outline-3">
+<h3 id="org1e0962a"><span class="section-number-3">6.2.</span> https信任</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 <a href="http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials">http://support.beanstalkapp.com/article/856-how-do-i-make-git-remember-my-credentials</a>
 </p>
 
-<pre class="example" id="org75e09d0">
+<pre class="example" id="org76f577e">
 git config --global credential.helper cache # 默认超时15分钟
 git config --global credential.helper 'cache --timeout=3600' # 将超时时间提高到1小时
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org49ba075" class="outline-3">
-<h3 id="org49ba075"><span class="section-number-3">6.3.</span> 仓库打包</h3>
+<div id="outline-container-org5dfce58" class="outline-3">
+<h3 id="org5dfce58"><span class="section-number-3">6.3.</span> 仓库打包</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 git archive &#x2013;format HEAD &gt; output.zip
@@ -285,8 +285,8 @@ git archive &#x2013;format HEAD &gt; output.zip
 </div>
 </div>
 
-<div id="outline-container-org4efa0a0" class="outline-3">
-<h3 id="org4efa0a0"><span class="section-number-3">6.4.</span> 自建git仓库</h3>
+<div id="outline-container-org3e1cc4a" class="outline-3">
+<h3 id="org3e1cc4a"><span class="section-number-3">6.4.</span> 自建git仓库</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 假设我们有一台开了ssh服务的机器my-node, 在这台机器上 `git &#x2013;bare init /home/user/project`

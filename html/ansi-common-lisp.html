@@ -37,14 +37,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7cc1c5f">1. C1-C4(简介，欢迎来到Lisp，列表，特殊数据结构)</a></li>
-<li><a href="#orgf64b487">2. C5（控制流）</a></li>
-<li><a href="#orge19720c">3. C6(函数)</a></li>
-<li><a href="#orgd4091a9">4. C7-C8（符号和IO）</a></li>
-<li><a href="#org2e7ee37">5. C10(Macro)</a></li>
-<li><a href="#org917548d">6. C11(CLOS)</a></li>
-<li><a href="#orgfc8c57d">7. C13（速度）</a></li>
-<li><a href="#org97f7a36">8. C14（进阶议题）</a></li>
+<li><a href="#org91f9c2e">1. C1-C4(简介，欢迎来到Lisp，列表，特殊数据结构)</a></li>
+<li><a href="#orgd182e36">2. C5（控制流）</a></li>
+<li><a href="#org9c76a94">3. C6(函数)</a></li>
+<li><a href="#org14cfc08">4. C7-C8（符号和IO）</a></li>
+<li><a href="#org70799c1">5. C10(Macro)</a></li>
+<li><a href="#org752833f">6. C11(CLOS)</a></li>
+<li><a href="#org4c4b7a5">7. C13（速度）</a></li>
+<li><a href="#orgb9277d3">8. C14（进阶议题）</a></li>
 </ul>
 </div>
 </div>
@@ -52,8 +52,8 @@
 <a href="https://acl.readthedocs.io/en/latest/zhCN/index.html">简体中文 — ANSI Common Lisp 中文版</a>
 </p>
 
-<div id="outline-container-org7cc1c5f" class="outline-2">
-<h2 id="org7cc1c5f"><span class="section-number-2">1.</span> C1-C4(简介，欢迎来到Lisp，列表，特殊数据结构)</h2>
+<div id="outline-container-org91f9c2e" class="outline-2">
+<h2 id="org91f9c2e"><span class="section-number-2">1.</span> C1-C4(简介，欢迎来到Lisp，列表，特殊数据结构)</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 符号(symbol)比如abc默认地会被求值。如果不希望求值的话，那么加上’或者是(quote)=&gt; ‘abc or (quote abc)。
@@ -104,8 +104,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf64b487" class="outline-2">
-<h2 id="orgf64b487"><span class="section-number-2">2.</span> C5（控制流）</h2>
+<div id="outline-container-orgd182e36" class="outline-2">
+<h2 id="orgd182e36"><span class="section-number-2">2.</span> C5（控制流）</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 return有这个几个形式
@@ -179,8 +179,8 @@ do/do*/dolist/dotimes
 </div>
 </div>
 
-<div id="outline-container-orge19720c" class="outline-2">
-<h2 id="orge19720c"><span class="section-number-2">3.</span> C6(函数)</h2>
+<div id="outline-container-org9c76a94" class="outline-2">
+<h2 id="org9c76a94"><span class="section-number-2">3.</span> C6(函数)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 每个函数通常会关联一个符号，比如 `(defun add1)` 这样。为了获取某个符号对应的函数，有两种方式
@@ -278,8 +278,8 @@ compile/compiled-function-p 编译函数/文件和判断函数是否被编译
 </div>
 </div>
 
-<div id="outline-container-orgd4091a9" class="outline-2">
-<h2 id="orgd4091a9"><span class="section-number-2">4.</span> C7-C8（符号和IO）</h2>
+<div id="outline-container-org14cfc08" class="outline-2">
+<h2 id="org14cfc08"><span class="section-number-2">4.</span> C7-C8（符号和IO）</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 read/read-from-string 都会对输入字符进行分析。如果某个字符比较特殊的话，那么read会调用某个特殊过程对接下来的内容做处理。这类比较特殊的字符称为宏字符(macro character), 遇到宏字符的时候会出发读取宏(read-macro).
@@ -318,7 +318,7 @@ read/read-from-string 都会对输入字符进行分析。如果某个字符比�
 </p>
 
 
-<div id="orgc0eec87" class="figure">
+<div id="org98481e5" class="figure">
 <p><img src="../images/acl-symbol-storage.png" alt="acl-symbol-storage.png" />
 </p>
 </div>
@@ -353,8 +353,8 @@ Lisp 有一件可能会使你困惑的事情是，符号与变量的从两个非
 </div>
 </div>
 
-<div id="outline-container-org2e7ee37" class="outline-2">
-<h2 id="org2e7ee37"><span class="section-number-2">5.</span> C10(Macro)</h2>
+<div id="outline-container-org70799c1" class="outline-2">
+<h2 id="org70799c1"><span class="section-number-2">5.</span> C10(Macro)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 调用 eval 是跨越代码与列表界线的一种方法。但它不是一个好方法:
@@ -406,8 +406,8 @@ defmacro / macroexpand-1 定义宏和展开宏。在宏里面通常使用backquo
 </div>
 </div>
 
-<div id="outline-container-org917548d" class="outline-2">
-<h2 id="org917548d"><span class="section-number-2">6.</span> C11(CLOS)</h2>
+<div id="outline-container-org752833f" class="outline-2">
+<h2 id="org752833f"><span class="section-number-2">6.</span> C11(CLOS)</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 defclass可以用来创建类，可以指定从哪些类进行继承，以及有哪些字段。相比C++/Java但是这样创建出来的类是没有方法的，但是CLOS提供了比方法更强大的通用函数(Generic Functions)来实现方法。
@@ -499,8 +499,8 @@ defclass里面还有一个关键字很有意思是 :allocation :class/:instance(
 </div>
 </div>
 
-<div id="outline-container-orgfc8c57d" class="outline-2">
-<h2 id="orgfc8c57d"><span class="section-number-2">7.</span> C13（速度）</h2>
+<div id="outline-container-org4c4b7a5" class="outline-2">
+<h2 id="org4c4b7a5"><span class="section-number-2">7.</span> C13（速度）</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <a href="https://stackoverflow.com/questions/14813801/proclaim-declaim-declare">https://stackoverflow.com/questions/14813801/proclaim-declaim-declare</a> 这篇文章看起来declare/declaim都是用来做declaration的，只不过一个是local一个是global的，一个是symbol而另外一个macro.
@@ -547,8 +547,8 @@ lisp可以在针对文件或者某个block来调整编译选项：0-3重要程�
 </div>
 </div>
 
-<div id="outline-container-org97f7a36" class="outline-2">
-<h2 id="org97f7a36"><span class="section-number-2">8.</span> C14（进阶议题）</h2>
+<div id="outline-container-orgb9277d3" class="outline-2">
+<h2 id="orgb9277d3"><span class="section-number-2">8.</span> C14（进阶议题）</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 类型标识符(Type Specifiers): 可以通过类型组合+表达式(比如and, or, cond, if等)来定义某一类类型。我理解是它可以用来做静态分析，在编译期间就可以发现问题。

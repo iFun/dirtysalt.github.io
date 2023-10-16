@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8293cfc">1. Move data: big and small</a></li>
-<li><a href="#org6a67e59">2. Real-time transactions: 1000s per second</a></li>
-<li><a href="#orge3fcfb0">3. Isolation between programs</a></li>
-<li><a href="#orgb63c357">4. Measurement underpinnings</a></li>
+<li><a href="#org19b815f">1. Move data: big and small</a></li>
+<li><a href="#org9d058ad">2. Real-time transactions: 1000s per second</a></li>
+<li><a href="#org42e8219">3. Isolation between programs</a></li>
+<li><a href="#org7ed66fe">4. Measurement underpinnings</a></li>
 </ul>
 </div>
 </div>
@@ -41,15 +41,15 @@ Data Center环境下面对于CPU设计的挑战。虽然是标题是关于CPU设
 <li>Measurement underpinnings 更好的测量方式(sampling vs tracing) <a href="http://danluu.com/perf-tracing/">http://danluu.com/perf-tracing/</a></li>
 </ol>
 
-<div id="outline-container-org8293cfc" class="outline-2">
-<h2 id="org8293cfc"><span class="section-number-2">1.</span> Move data: big and small</h2>
+<div id="outline-container-org19b815f" class="outline-2">
+<h2 id="org19b815f"><span class="section-number-2">1.</span> Move data: big and small</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 数据中心的Server好像是下面这样的，CPU L3 Cache(i7 12MB)相比RAM简直没有办法比，大量的money也放在RAM上。
 </p>
 
 
-<div id="orgbeb5e4d" class="figure">
+<div id="org1447f1f" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-0.png" alt="data-center-computers-modern-cpu-design-0.png" />
 </p>
 </div>
@@ -65,7 +65,7 @@ Data Center环境下面对于CPU设计的挑战。虽然是标题是关于CPU设
 </ol>
 
 
-<div id="org92ff70d" class="figure">
+<div id="org2e68d21" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-1.png" alt="data-center-computers-modern-cpu-design-1.png" />
 </p>
 </div>
@@ -75,7 +75,7 @@ Data Center环境下面对于CPU设计的挑战。虽然是标题是关于CPU设
 </p>
 
 
-<div id="org7ff85f0" class="figure">
+<div id="org38b641f" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-2.png" alt="data-center-computers-modern-cpu-design-2.png" />
 </p>
 </div>
@@ -85,21 +85,21 @@ Data Center环境下面对于CPU设计的挑战。虽然是标题是关于CPU设
 </p>
 
 
-<div id="org7abd189" class="figure">
+<div id="org95504c3" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-3.png" alt="data-center-computers-modern-cpu-design-3.png" />
 </p>
 </div>
 
 
-<div id="org243cb91" class="figure">
+<div id="org5917410" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-4.png" alt="data-center-computers-modern-cpu-design-4.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org6a67e59" class="outline-2">
-<h2 id="org6a67e59"><span class="section-number-2">2.</span> Real-time transactions: 1000s per second</h2>
+<div id="outline-container-org9d058ad" class="outline-2">
+<h2 id="org9d058ad"><span class="section-number-2">2.</span> Real-time transactions: 1000s per second</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 如何更好地控制长尾延迟：锁持有时间，调度延迟， 以及共享资源之间相互影响（这个和后面资源隔离性有关系）
@@ -124,8 +124,8 @@ Modern challenges in CPU design
 </div>
 
 
-<div id="outline-container-orge3fcfb0" class="outline-2">
-<h2 id="orge3fcfb0"><span class="section-number-2">3.</span> Isolation between programs</h2>
+<div id="outline-container-org42e8219" class="outline-2">
+<h2 id="org42e8219"><span class="section-number-2">3.</span> Isolation between programs</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 影响主要来自于软件，但是硬件上需要提供机制来进行隔离，比如CPU Cache可以根据cpu thread来进行隔离
@@ -168,28 +168,28 @@ Modern challenges in CPU design
 </blockquote>
 
 
-<div id="org81473e4" class="figure">
+<div id="org3866fdd" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-5.png" alt="data-center-computers-modern-cpu-design-5.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgb63c357" class="outline-2">
-<h2 id="orgb63c357"><span class="section-number-2">4.</span> Measurement underpinnings</h2>
+<div id="outline-container-org7ed66fe" class="outline-2">
+<h2 id="org7ed66fe"><span class="section-number-2">4.</span> Measurement underpinnings</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Samples只能看到大体状况，而Traces则可以提供更多的细节。 <a href="http://danluu.com/perf-tracing/">http://danluu.com/perf-tracing/</a>
 </p>
 
 
-<div id="org1f521c7" class="figure">
+<div id="org028c3ae" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-6.png" alt="data-center-computers-modern-cpu-design-6.png" />
 </p>
 </div>
 
 
-<div id="org1a78b95" class="figure">
+<div id="org458c4e1" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-7.png" alt="data-center-computers-modern-cpu-design-7.png" />
 </p>
 </div>
@@ -200,7 +200,7 @@ Samples只能看到大体状况，而Traces则可以提供更多的细节。 <a 
 </p>
 
 
-<div id="org4e66a06" class="figure">
+<div id="orga5aecff" class="figure">
 <p><img src="../images/data-center-computers-modern-cpu-design-8.png" alt="data-center-computers-modern-cpu-design-8.png" />
 </p>
 </div>

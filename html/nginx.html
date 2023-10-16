@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org35f559a">1. 站点跳转</a></li>
-<li><a href="#org635c397">2. 支持软链接</a></li>
-<li><a href="#orge602e26">3. 正向代理</a></li>
-<li><a href="#org91a9cb5">4. 请求缓存</a></li>
+<li><a href="#org46c8f0b">1. 站点跳转</a></li>
+<li><a href="#org9212d05">2. 支持软链接</a></li>
+<li><a href="#org709fbc2">3. 正向代理</a></li>
+<li><a href="#org8237847">4. 请求缓存</a></li>
 </ul>
 </div>
 </div>
@@ -27,13 +27,13 @@
 <a href="http://nginx.org/">http://nginx.org/</a>
 </p>
 
-<div id="outline-container-org35f559a" class="outline-2">
-<h2 id="org35f559a"><span class="section-number-2">1.</span> 站点跳转</h2>
+<div id="outline-container-org46c8f0b" class="outline-2">
+<h2 id="org46c8f0b"><span class="section-number-2">1.</span> 站点跳转</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 从dirlt.com跳转到dirtysalt.info
 </p>
-<pre class="example" id="org32128bb">
+<pre class="example" id="org8075edb">
 http {
     server_name dirlt.com;
     rewrite ^ $scheme://dirtysalt.info$request_uri? permanent;
@@ -44,7 +44,7 @@ http {
 这样访问dirlt.com时候，返回HTTP Permanent Redirect
 </p>
 
-<pre class="example" id="orgdd60ed1">
+<pre class="example" id="org3f1fdf0">
 ➜~  curl -v -S dirlt.com
 -* Rebuilt URL to: dirlt.com/
 -*   Trying 139.162.32.139...
@@ -73,23 +73,23 @@ http {
 </div>
 </div>
 
-<div id="outline-container-org635c397" class="outline-2">
-<h2 id="org635c397"><span class="section-number-2">2.</span> 支持软链接</h2>
+<div id="outline-container-org9212d05" class="outline-2">
+<h2 id="org9212d05"><span class="section-number-2">2.</span> 支持软链接</h2>
 <div class="outline-text-2" id="text-2">
-<pre class="example" id="orgb819b57">
+<pre class="example" id="org896adf8">
 http {
     disable_symlinks off;
 }
 </pre>
 </div>
 </div>
-<div id="outline-container-orge602e26" class="outline-2">
-<h2 id="orge602e26"><span class="section-number-2">3.</span> 正向代理</h2>
+<div id="outline-container-org709fbc2" class="outline-2">
+<h2 id="org709fbc2"><span class="section-number-2">3.</span> 正向代理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 用nginx做一个http proxy. `resolver` 这个字段是必要的。
 </p>
-<pre class="example" id="org08ae213">
+<pre class="example" id="org2c4c4a6">
 server {
     resolver 8.8.8.8;
     resolver_timeout 5s;
@@ -107,7 +107,7 @@ server {
 <p>
 然后来测试一下
 </p>
-<pre class="example" id="orgbddc3b5">
+<pre class="example" id="orgcdccbe3">
 In [10]: import requests
 
 In [11]: r = requests.get('http://www.baidu.com', **{'proxies': {'http': 'http://127.0.0.1:64441'}})
@@ -118,14 +118,14 @@ Out[12]: &lt;Response [200]&gt;
 </div>
 </div>
 
-<div id="outline-container-org91a9cb5" class="outline-2">
-<h2 id="org91a9cb5"><span class="section-number-2">4.</span> 请求缓存</h2>
+<div id="outline-container-org8237847" class="outline-2">
+<h2 id="org8237847"><span class="section-number-2">4.</span> 请求缓存</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 可以针对某个路径下面的请求进行缓存。不过我还没有搞清楚缓存规则是怎么样的，默认应该是对query做key.
 </p>
 
-<pre class="example" id="orge4afc7c">
+<pre class="example" id="org3177870">
 proxy_cache_path /root/ngx-cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=1d;
 server {
   listen 80;

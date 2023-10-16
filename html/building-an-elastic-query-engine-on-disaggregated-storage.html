@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge35ed5b">1. 主要内容</a></li>
-<li><a href="#org1c24e70">2. 实现细节</a></li>
-<li><a href="#org039ff4b">3. 多个角度解读数据</a></li>
-<li><a href="#org93b92ef">4. 关于Multi-tennancy</a></li>
+<li><a href="#org99dd8b3">1. 主要内容</a></li>
+<li><a href="#org8ab753f">2. 实现细节</a></li>
+<li><a href="#orgb121165">3. 多个角度解读数据</a></li>
+<li><a href="#orgca50981">4. 关于Multi-tennancy</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge35ed5b" class="outline-2">
-<h2 id="orge35ed5b"><span class="section-number-2">1.</span> 主要内容</h2>
+<div id="outline-container-org99dd8b3" class="outline-2">
+<h2 id="org99dd8b3"><span class="section-number-2">1.</span> 主要内容</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这篇文章主要是对历史上Snowflake使用情况进行数据分析，数据是2018年2月份内连续14天大约70M条query的执行情况。根据这些数据以及客户反馈，介绍一下他们现在当前实现以及未来工作。 <a href="https://github.com/resource-disaggregation/snowset">https://github.com/resource-disaggregation/snowset</a>
@@ -53,15 +53,15 @@
 </div>
 </div>
 
-<div id="outline-container-org1c24e70" class="outline-2">
-<h2 id="org1c24e70"><span class="section-number-2">2.</span> 实现细节</h2>
+<div id="outline-container-org8ab753f" class="outline-2">
+<h2 id="org8ab753f"><span class="section-number-2">2.</span> 实现细节</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 文章里面Snowflake把这个存储系统称为Distributed Ephemeral Storage(DES). 不过可能这个Distributed纯粹就是概念上的，每个instance还是各自管理自己的ephemeral storage/instance storage,  使用consistent hashing来解决cache hit/reshuffle问题。后面为了方便指代，还是使用local storage/instance storage来称呼。
 </p>
 
 
-<div id="orgbc5eb00" class="figure">
+<div id="org216ad43" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-0.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-0.png" />
 </p>
 </div>
@@ -107,22 +107,22 @@ Snowflake resolves this challenge using a lazy consistent hashing mechanism, tha
 </blockquote>
 
 
-<div id="org17a2e62" class="figure">
+<div id="org1db765a" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-1.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-1.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org039ff4b" class="outline-2">
-<h2 id="org039ff4b"><span class="section-number-2">3.</span> 多个角度解读数据</h2>
+<div id="outline-container-orgb121165" class="outline-2">
+<h2 id="orgb121165"><span class="section-number-2">3.</span> 多个角度解读数据</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 读写情况如下图，看上去Read &gt; Write. Read-Only都是在weekdays:)
 </p>
 
 
-<div id="org2a6ed3b" class="figure">
+<div id="orgdf85061" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-2.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-2.png" />
 </p>
 </div>
@@ -132,7 +132,7 @@ Read/Write在Eph Storage/Remote Storage上的比例. Read大部分都可以从Ep
 </p>
 
 
-<div id="orgea5063f" class="figure">
+<div id="org77171f6" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-3.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-3.png" />
 </p>
 </div>
@@ -143,7 +143,7 @@ Read/Write在Eph Storage/Remote Storage上的比例. Read大部分都可以从Ep
 </p>
 
 
-<div id="org0a0aecb" class="figure">
+<div id="orgfaceb3b" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-4.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-4.png" />
 </p>
 </div>
@@ -153,7 +153,7 @@ Persistent data cache hit rate情况，说实话我没有太看懂这个图，�
 </p>
 
 
-<div id="orgdb8507c" class="figure">
+<div id="org26ac859" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-5.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-5.png" />
 </p>
 </div>
@@ -166,8 +166,8 @@ Even though our ephemeral storage capacity is significantly lower than that of a
 </div>
 </div>
 
-<div id="outline-container-org93b92ef" class="outline-2">
-<h2 id="org93b92ef"><span class="section-number-2">4.</span> 关于Multi-tennancy</h2>
+<div id="outline-container-orgca50981" class="outline-2">
+<h2 id="orgca50981"><span class="section-number-2">4.</span> 关于Multi-tennancy</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 为啥要做multi-tennancy有几个理由：
@@ -202,7 +202,7 @@ resize 粒度和query arrival 粒度不太匹配
 </p>
 
 
-<div id="org17a2455" class="figure">
+<div id="orgd53573c" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-6.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-6.png" />
 </p>
 </div>
@@ -212,7 +212,7 @@ resize 粒度和query arrival 粒度不太匹配
 </p>
 
 
-<div id="orgbd4c04e" class="figure">
+<div id="org29c36df" class="figure">
 <p><img src="../images/building-an-elastic-query-engine-on-disaggregated-storage-7.png" alt="building-an-elastic-query-engine-on-disaggregated-storage-7.png" />
 </p>
 </div>
