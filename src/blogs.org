@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202310 [[file:lc-2902-count-of-sub-multisets-with-bounded-sum.org][LC 2902. 和带限制的子多重集合的数目]] 多重背包：滚动数组和前缀和优化
+- 202310 [[file:lc-8026-construct-product-matrix.org][LC 8026. 构造乘积矩阵]] 前后缀算法和模逆元算法
 - 202310 [[file:attempt-to-work-on-windows.org][尝试迁移到Windows上]]
 - 202310 [[file:readings-at-202310.org][网络文章@202310]]
 - 202310 [[file:how-investment-make-money.org][投资是怎么赚钱的]]  30分钟讲述投资底层逻辑的科普视频

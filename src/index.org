@@ -1145,3 +1145,5 @@
 - 202309 [[file:lc-8020-string-transformation.org][LC 8020. 字符串转换]] KMP + 矩阵求幂
 - 202309 [[file:lc-2867-count-valid-paths-in-a-tree.org][LC 2867. 统计树中的合法路径数目]] 简单的树遍历
 - 202309 [[file:lc-2866-beautiful-towers-ii.org][LC 2866. 美丽塔 II]] 寻找最近的不大于自己的点（二叉树是不行的）
+- 202310 [[file:lc-8026-construct-product-matrix.org][LC 8026. 构造乘积矩阵]] 前后缀算法和模逆元算法
+- 202310 [[file:lc-2902-count-of-sub-multisets-with-bounded-sum.org][LC 2902. 和带限制的子多重集合的数目]] 多重背包：滚动数组和前缀和优化
