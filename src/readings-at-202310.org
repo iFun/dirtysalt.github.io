@@ -1,5 +1,51 @@
 #+title: 网络文章@202310
 
+
+------
+
+[[https://jack-vanlightly.com/blog/2023/5/9/is-sequential-io-dead-in-the-era-of-the-nvme-drive][Is sequential IO dead in the era of the NVMe drive? — Jack Vanlightly --- 在 NVMe 驱动器时代，顺序 IO 是否已经死亡？- 杰克·范莱特利]]
+
+顺序IO在SSD上面依然有效，不过这种有效只是针对SSD GC的某种优化，可以让GC负载更小一些。
+
+纯粹从设计角度上来看，看上去顺序IO其实是没啥必要了。你看这个DB为了顺序IO设计出来的LSM，带来了多少写放大，可能还不如BTree来的实在。
+
+--------
+
+[[https://world.hey.com/dhh/buying-the-seller-1520e9dd][Buying the seller --- 购买卖家]]
+
+This in-person encounter made me reflect on modern commerce. How impersonal it is most of the time. Which is probably more efficient, and, as an introvert, preferable much of the time. I usually would rather deal with a web form than a salesperson, but it's different when you can establish a connection to someone actually running the show.
+
+这次面对面的相遇让我反思了现代商业。大多数时候它是多么没有人情味。哪个可能更有效率，而且，作为一个内向的人，大多数时候更可取。我通常更愿意处理网络表单而不是销售人员，但是当您可以与实际运行节目的人建立联系时，情况就不同了。
+
+
+This is one of those unique advantages available to small and medium-sized businesses, and any type of startup. You can far more easily cultivate and maintain these personal connections. Make the exceptions when that's needed. Be available when it matters. And by doing so, you allow your customers to buy the seller rather than just the product or service. That's a powerful advantage, especially in commodity markets (like payment processing or podcast hosting!).
+
+这是中小型企业和任何类型的初创公司可获得的独特优势之一。您可以更轻松地培养和维护这些人际关系。在需要时例外。在关键时刻随时待命。通过这样做，您可以让您的客户购买卖家，而不仅仅是产品或服务。这是一个强大的优势，尤其是在商品市场（如支付处理或播客托管！
+
+This also represents an opportunity for buyers to directly vote with their wallet for what they'd like to see more of in this world. I'd like to see more businesses run by people like Tom or Bryan, so I've voted for their success with my dollars. It feels good.
+
+这也为买家提供了一个机会，可以直接用他们的钱包投票选出他们希望在这个世界上看到更多的东西。我希望看到更多像汤姆或布莱恩这样的人经营的企业，所以我用我的钱投票支持他们的成功。感觉很好。
+
+------
+
+[[https://mp.weixin.qq.com/s/5ZQkzA_qnbmEqgXAwIWNeg][投资中的节奏与结构]]
+
+**所以生活中的诸多烦恼，很多是因为我们误判了问题的节奏性和结构性，进而做出错误的行为：该面对的时候没有面对，该坚持的时候没有坚持。**
+
+工业革命能不能继续下去？今天看来很简单的问题，当年却受到社会广泛质疑。27 年里，瓦特一步步改良他的蒸汽机，但整个社会层面的质疑从来没有停止过。1781 年，蒸汽机的效率大幅提升，依然有知名化学家质疑能源消耗太大、效率太低。所以如果我们回顾科技发展史，革命性产品从来不是想象中的灵光一现或万众瞩目。科技发展史从来都是以年为单位的日拱一卒。
+
+如果我们在场的创业者、投资人生活在那个时代，都把时间精力花在追逐蒸汽机每天的改良上，我们注定是焦虑的，就像我们今天专注在大模型的进展上一样。因为回头来看，这些都是节奏性问题，我们真正应该花时间的是思考这些科技带给整个社会的结构性改变。
+
+退回 1763 年，你是创业者，你是投资人，你真的需要关注蒸汽机有什么进展吗？真的需要关注效率和能耗问题吗？这些问题真的重要吗？今天在场的每一个人真正应该花时间去思考：我是纺织业的人，还是零售行业的人。在巨大的浪潮里，社会的结构性机会到底是什么？
+
+**所以太多人强调科技的节奏性问题，而忽略了社会的结构性变化。**
+
+--------
+
+[[https://viralinstruction.com/posts/hardware/][What scientists must know about hardware to write fast code 科学家必须了解有关硬件的知识才能编写快速代码]]
+
+挺好的内容，就是没有时间看：)不过好像新东西也不是很多的那种。
+
 ----------
 [[https://world.hey.com/dhh/we-tried-that-didn-t-work-d9c42fe1][We tried that, didn’t work --- 我们尝试过，但没有成功]]
 
