@@ -1,6 +1,32 @@
 #+title: 网络文章@202310
 
 
+--------
+
+[[http://nathanmarz.com/blog/recipe-for-a-great-programmer.html][Recipe for a great programmer - thoughts from the red planet - thoughts from the red planet --- 一个伟大程序员的秘诀 - 来自红色星球的想法 - 来自红色星球的想法]]
+
+#+BEGIN_EXAMPLE
+- Pick an editor 选择一个编辑器
+- Choose a project beyond current capabilities. Good ways to push boundaries:
+    选择一个超出当前功能的项目。突破界限的好方法：
+    - Unfamiliar domain (e.g. large scale data processing, UI programming, high performance computing, games)
+        不熟悉的领域（例如大规模数据处理、UI 编程、高性能计算、游戏）
+    - Exotic programming language
+        异国情调的编程语言
+    - Larger in scope than any project before
+        范围比之前的任何项目都大
+
+When stuck:  卡住时：
+    Paste stack traces into Google
+    将堆栈跟踪粘贴到谷歌中
+    Find appropriate mailing list to get guidance
+    查找合适的邮件列表以获取指导
+    Realize that real learning happens when you are stuck, uncomfortable, and/or frustrated
+    意识到真正的学习发生在你陷入困境、不舒服和/或沮丧的时候
+    Seek out books, classes, or other resources AFTER you have a good understanding of your deficiencies
+    在你对自己的不足有很好的了解之后，寻找书籍、课程或其他资源
+
+#+END_EXAMPLE
 ------
 
 [[https://jack-vanlightly.com/blog/2023/5/9/is-sequential-io-dead-in-the-era-of-the-nvme-drive][Is sequential IO dead in the era of the NVMe drive? — Jack Vanlightly --- 在 NVMe 驱动器时代，顺序 IO 是否已经死亡？- 杰克·范莱特利]]
