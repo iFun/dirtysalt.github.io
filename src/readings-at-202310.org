@@ -1,6 +1,56 @@
 #+title: 网络文章@202310
 
 
+----------
+
+[[http://nathanmarz.com/blog/the-limited-value-of-a-computer-science-education.html][The limited value of a computer science education - thoughts from the red planet - thoughts from the red planet --- 计算机科学教育的有限价值 - 来自红色星球的思想 - 来自红色星球的思想]]
+
+Of course there are some fields for which having a computer science education is much more relevant on a daily basis – distributed systems is one that comes to mind. But even in that field, the vast majority of your work is forming good abstractions and avoiding complexity – those two crucial skills that you don't learn in a computer science education. The benefits of a computer science education are limited to the value you get out of a small percentage of situations. For me those situations were very high value, but most programmers don't even run into them.
+
+当然，在某些领域，计算机科学教育在日常工作中更为重要——分布式系统是我想到的一个。但即使在这个领域，你的绝大多数工作都是形成良好的抽象和避免复杂性——这是你在计算机科学教育中没有学到的两项关键技能。计算机科学教育的好处仅限于您从一小部分情况下获得的价值。对我来说，这些情况非常有价值，但大多数程序员甚至没有遇到过它们。
+
+In my experience, the only way to become a good programmer is to do it... a lot. Reading books and taking classes won't make you a better programmer – they might provide some guidance, but real improvement will come from the grueling hours you put into real projects. I could read books all day about how to execute a perfect barrel roll, but it will all be meaningless until I put on a parachute and get in the cockpit. Programming is the same way.
+
+根据我的经验，成为一名优秀程序员的唯一方法就是这样做......好多。读书和上课不会让你成为一个更好的程序员——它们可能会提供一些指导，但真正的进步将来自你在实际项目中投入的艰苦时间。我可以整天阅读有关如何执行完美桶滚的书籍，但在我戴上降落伞并进入驾驶舱之前，这一切都毫无意义。编程也是同样的方式。
+
+Overall I have mixed feelings about the value of a computer science education, mostly because of the personal benefit I have gotten from mine. For most cases though, I think it is severely overvalued. It's very strange to observe an industry with major talent shortages, and then to know perfectly good self-taught programmers get prematurely rejected in interviews because they don't have a computer science background. I hope to see the industry improve in this respect, but in the meantime I'm happy to exploit this imbalance as a competitive advantage.
+
+总的来说，我对计算机科学教育的价值有着复杂的感觉，主要是因为我从我那里得到了个人利益。但在大多数情况下，我认为它被严重高估了。观察一个人才严重短缺的行业，然后知道完全优秀的自学成才的程序员在面试中过早被拒绝，因为他们没有计算机科学背景，这是非常奇怪的。我希望看到行业在这方面有所改善，但与此同时，我很高兴利用这种不平衡作为竞争优势。
+
+----------
+
+[[http://nathanmarz.com/blog/how-becoming-a-pilot-made-me-a-better-programmer.html][How becoming a pilot made me a better programmer - thoughts from the red planet - thoughts from the red planet --- 成为一名飞行员如何让我成为一名更好的程序员 - 来自红色星球的想法 - 来自红色星球的想法]]
+
+In software I don't think anything is treated more like a black box than the database. Programmers want to store and retrieve data using the database interface and then leave it to the ops guys to get it running robustly. However, a database's interface only tells a small part of what it means to use that database, and there's a lot of crucial information it doesn't tell you. Which queries will run efficiently? Which queries will consume large amounts of resources? What happens if there are hardware failures? If one application has a bug that triggers an accidental denial-of-service attack on the database, what will happen to other applications? Will just the one application fail, or will it trigger a larger cascading failure? If the database is distributed, how is data partitioned among nodes? What happens when there is data skew?
+
+在软件中，我认为任何东西都比数据库更像黑匣子。程序员希望使用数据库接口存储和检索数据，然后将其留给运维人员以使其稳健运行。但是，数据库的界面只告诉了使用该数据库的一小部分含义，并且有很多关键信息没有告诉您。哪些查询将高效运行？哪些查询会消耗大量资源？如果出现硬件故障会怎样？如果一个应用程序存在触发对数据库的意外拒绝服务攻击的错误，那么其他应用程序会发生什么情况？只会一个应用程序失败，还是会触发更大的级联故障？如果数据库是分布式的，如何在节点之间对数据进行分区？当存在数据倾斜时会发生什么？
+
+Understanding the answers to these questions is critical to architecting robust systems, and you need to know how the database works to answer them effectively. When you understand the mechanisms underlying the databases you use, you understand their limits and failure modes much better, and you can use this knowledge to architect better systems.
+
+了解这些问题的答案对于构建健壮的系统至关重要，您需要了解数据库如何工作以有效地回答这些问题。当您了解所使用的数据库的基础机制时，您就会更好地理解它们的限制和故障模式，并且您可以使用这些知识来构建更好的系统。
+
+
+There's an even bigger reason to understand how your tools work. Too many programmers treat their tools like [[https://en.wikipedia.org/wiki/Lego_Duplo][LEGO DUPLO]] pieces and limit solutions to how those tools can be used and combined. But when you understand how your tools work, then you can reason in terms of what would be the ideal solution if ideal tools existed. Software becomes clay instead of LEGOs. Something I've found repeatedly in my career is the languages, databases, and other tools we use are so far removed from ideal that the opportunities for fundamental innovation are constant. Thinking this way led me directly to creating [[http://storm.apache.org][Storm]], [[https://github.com/nathanmarz/cascalog][Cascalog]], and [[https://github.com/nathanmarz/elephantdb][ElephantDB]], all of which gave myself and my team huge leverage. Even when constructing the ideal tools yourself isn't practical, knowing what would be ideal is hugely helpful when evaluating possible solutions.
+
+了解您的工具如何工作还有一个更大的原因。太多的程序员将他们的工具视为乐高得宝碎片，并将解决方案限制为如何使用和组合这些工具。但是，当您了解工具的工作原理时，您可以推断如果存在理想的工具，那么理想的解决方案是什么。软件变成了粘土而不是乐高。在我的职业生涯中，我反复发现，我们使用的语言、数据库和其他工具与理想相去甚远，以至于基础创新的机会是不断的。这种想法促使我直接创建了Storm，Cascalog和ElephantDB，所有这些都给了我自己和我的团队巨大的影响力。即使自己构建理想的工具并不切实际，在评估可能的解决方案时，了解什么是理想的工具也非常有帮助。
+
+I'm a big fan of [[https://twitter.com/mjpt777][Martin Thompson]]'s term "mechanical sympathy". The kind of high performance work he's known for is absolutely impossible without a deep understanding of implementation. And performance optimization in general is much easier the more you understand the implementation of your dependencies.
+
+我是马丁·汤普森（Martin Thompson）的“机械同情”一词的忠实粉丝。如果没有对实施的深刻理解，他所熟知的那种高性能工作是绝对不可能完成的。一般来说，您越了解依赖项的实现，性能优化就越容易。
+
+If you read my [[http://nathanmarz.com/blog/the-limited-value-of-a-computer-science-education.html][last post]] about the limited value of computer science educations, you might think I'm contradicting myself by arguing for understanding the internals of your dependencies. After all, that's a major focus of a computer science education. My answer is I advocate for a computer science education for programmers to the same extent I advocate for an aeronautical engineering degree for pilots. The degrees are relevant, useful, and helpful, but on their own do little to make you a good programmer or a good pilot. You can learn how your tools work, oftentimes much more effectively, in the trenches as opposed to on a whiteboard. Where abstract education pays its dividends is when you push the boundaries of your field. The deep problem solving and algorithm skills I gained from my computer science education helped me greatly in that regard, and if I were a test pilot I imagine a formal aeronautical engineering education would be essential.
+
+如果你读过我上一篇关于计算机科学教育价值有限的文章，你可能会认为我主张理解你的依赖的内部结构是在自相矛盾。毕竟，这是计算机科学教育的一个主要焦点。我的回答是，我提倡对程序员进行计算机科学教育，就像我主张为飞行员提供航空工程学位一样。这些学位是相关的、有用的和有用的，但就它们本身并不能让你成为一个好的程序员或一个好的飞行员。您可以了解工具的工作原理，通常更有效，在战壕中而不是在白板上。抽象教育的红利在于你突破你的领域的界限。我从计算机科学教育中获得的深层次的问题解决和算法技能在这方面帮助了我很大，如果我是一名试飞员，我想正规的航空工程教育是必不可少的。
+
+When I construct software now, I don't consider any part of what I build to be robust unless I can verify it with measurements in production. I've seen way too many crazy things happen in production to believe testing is sufficient to making software robust. Monitoring is critical to finding how the expectation of production behavior differs from the reality. Making the expected properties of software measurable is not always easy, and it often has major effects on software design. For this reason I account for it in all stages of the development process.
+
+当我现在构建软件时，我不认为我构建的任何部分都是健壮的，除非我可以通过生产中的测量来验证它。我见过太多疯狂的事情发生在生产中，以至于相信测试足以使软件健壮。监控对于发现生产行为的期望与现实有何不同至关重要。使软件的预期属性可测量并不总是那么容易，它通常会对软件设计产生重大影响。出于这个原因，我在开发过程的所有阶段都考虑到了这一点。
+
+This can be captured as a general philosophy of life: consistently find ways to get outside your comfort zone and do things that challenge and frustrate you. Besides learning new things, you'll become better at everything you do because of the surprising overlaps of knowledge. The most extreme example of this for me happened three years ago when I did standup comedy for three months straight. The lessons I learned from standup have been invaluable in improving my skill as a technical speaker. And surprisingly, it's helped me become a better writer as well.
+
+这可以概括为一种一般的人生哲学：始终如一地想办法走出你的舒适区，做一些挑战和挫败你的事情。除了学习新事物之外，由于知识的惊人重叠，您所做的一切都会变得更好。对我来说，最极端的例子发生在三年前，当时我连续三个月做单口喜剧。我从站立中学到的经验教训对于提高我作为技术演讲者的技能非常宝贵。令人惊讶的是，它也帮助我成为一名更好的作家。
+
+
 --------
 
 [[http://nathanmarz.com/blog/recipe-for-a-great-programmer.html][Recipe for a great programmer - thoughts from the red planet - thoughts from the red planet --- 一个伟大程序员的秘诀 - 来自红色星球的想法 - 来自红色星球的想法]]
