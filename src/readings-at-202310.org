@@ -3,6 +3,30 @@
 
 ----------
 
+[[https://justinyan.me/post/5790][每个人每天都只有24小时，希望我的选择真的是我的选择 | 枫言枫语]]
+
+可是人生并不是一个与外部竞争的游戏啊。英国纽卡斯尔大学的行为科学教授 Daniel Nettle (丹尼尔·列托)在 2005 年出版的 _Happiness: The Science Behind Your Smile_ （简体译为[[https://book.douban.com/subject/4737101/][《追究幸福：微笑中的科学》]]）提出的观点我十分认同：幸福并不主要产生于这个世界，而是来自于对待这个世界的方式。
+
+也就是说，通过向外的追寻，比较，竞争，我们再怎么努力也追不到真正的幸福。刷短视频可以满足一时的娱乐放松，但无限刷短视频刷不来真正的快乐。在多巴胺的刺激下，我们“想要”更多不确定的内容，“想要”看看下一个短视频是什么，但“想要”不等于喜爱。
+
+有一次我跟朋友聊天，我提到冥想与前面几本书。他说这几部作品的逻辑都源自佛教，并推荐我阅读斯里兰卡德宝法师(Henepola Gunaratana)的作品: Mindfulness in Plain English（简体译为《观呼吸》）。这是一本针对禅修方法的指南，冥想是其中一种。有些人可能是抱着“学习放松的方法”的想法来学习正念，但在佛教禅修当中，冥想并不仅仅是放松，放松只是它带来的副作用之一罢了。德宝法师的这本书，书如其名，In Plain English，非常平易近人，是学习冥想的人非常适合的读物。
+
+现代社会因为科技的发展带动经济、政治、文化的社会变革，在我们有生之年的观测窗口，可见变化速率呈上升趋势。这种巨变随着全球化的进展让全世界多数国家都面对相似的问题。东亚国家的发展时间比西方国家更短，于是产生的“压缩的现代性”问题更加突出。
+
+个体处于巨变当中，一方面要面临“传统规范”与“自由新世界”的拉扯，渴望自由的同时又期望获得传统的保护；另一方面要面对个人内心的发展，在浪潮汹涌的现代向内探索，寻找坚实的立足点。
+
+带着几万年前就定型的大脑与身体，我们要穿越现代社会种种诱惑与陷阱，要排除外部世界的强大势力加持下的欲望施加（尤其是来自消费社会的外部势力），要从自己的内心寻得出自己真正想要的人生。
+
+这并不容易，但可以做到。
+
+首先要从随波逐流中抽离出来反观自己，哪怕最终作出的选择结果是一样的，但随大流的选择和自己仔细思考过后的选择，其主动性却截然不同。然后要在向内探索的过程中，通过训练与实践，逐步建立“我的想法能行”的自信心，慢慢具备探索未知世界的勇气。最后在勇敢的试错中，弯弯曲曲地走出属于自己的人生道路。
+
+人生是自己的。每个人每天都只有24小时。
+
+选择做什么是我的选择，但我希望确保真的是我的选择。
+
+----------
+
 [[http://nathanmarz.com/blog/the-limited-value-of-a-computer-science-education.html][The limited value of a computer science education - thoughts from the red planet - thoughts from the red planet --- 计算机科学教育的有限价值 - 来自红色星球的思想 - 来自红色星球的思想]]
 
 Of course there are some fields for which having a computer science education is much more relevant on a daily basis – distributed systems is one that comes to mind. But even in that field, the vast majority of your work is forming good abstractions and avoiding complexity – those two crucial skills that you don't learn in a computer science education. The benefits of a computer science education are limited to the value you get out of a small percentage of situations. For me those situations were very high value, but most programmers don't even run into them.
