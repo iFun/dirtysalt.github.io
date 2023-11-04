@@ -1147,3 +1147,4 @@
 - 202309 [[file:lc-2866-beautiful-towers-ii.org][LC 2866. 美丽塔 II]] 寻找最近的不大于自己的点（二叉树是不行的）
 - 202310 [[file:lc-8026-construct-product-matrix.org][LC 8026. 构造乘积矩阵]] 前后缀算法和模逆元算法
 - 202310 [[file:lc-2902-count-of-sub-multisets-with-bounded-sum.org][LC 2902. 和带限制的子多重集合的数目]] 多重背包：滚动数组和前缀和优化
+- 202311 [[file:lc-2916-subarrays-distinct-element-sum-of-squares-ii.org][LC 2916. 子数组不同元素数目的平方和 II]] 数学+线段树（终于会写线段树了）
