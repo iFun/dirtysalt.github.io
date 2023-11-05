@@ -12,6 +12,6 @@
 
 ## 入口链接
 
-[An Amateur Programmer's Blogs](./src/blogs.org)
+[An Amateur Alchemist’s Adventure](./src/blogs.org)
 
 [计算机科学主题列表](./src/index.org)
