@@ -548,6 +548,7 @@ https://dirtysalt.github.io/html/lang-reflects-your-subconscious.html
 https://dirtysalt.github.io/html/large-scale-data-and-computation-chanllenges-and-opportunities.html
 https://dirtysalt.github.io/html/large-scale-deep-learning-for-intelligent-computer-systems.html
 https://dirtysalt.github.io/html/laws-of-performant-software.html
+https://dirtysalt.github.io/html/lc-100112-maximum-balanced-subsequence-sum.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
 https://dirtysalt.github.io/html/lc-1027-longest-arithmetic-sequence.html
