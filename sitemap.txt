@@ -55,6 +55,7 @@ https://dirtysalt.github.io/html/alleged-rc4.html
 https://dirtysalt.github.io/html/alpha-beta-pruning.html
 https://dirtysalt.github.io/html/amazon-aurora-paper.html
 https://dirtysalt.github.io/html/amazon-dynamodb.html
+https://dirtysalt.github.io/html/amazon-firecracker.html
 https://dirtysalt.github.io/html/amazon-redshift-reinvented-paper.html
 https://dirtysalt.github.io/html/america-alone-talk.html
 https://dirtysalt.github.io/html/amsuing-ourselves-to-death.html
