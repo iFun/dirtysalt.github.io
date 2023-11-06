@@ -283,6 +283,7 @@
 - 202210 [[file:jit-compiling-sql-queries-in-pgsql-using-llvm.org][JIT-Compiling SQL Queries in PostgreSQL Using LLVM]]
 - 202210 [[file:instruction-set-wants-to-be-free-riscv-case.org][Instruction Sets Want To Be Free: A Case for RISC-V]]
 - 202212 [[file:filter-range-optimization.org][filter range实现优化]]
+- 202311 [[file:amazon-firecracker.org][amazon firecracker论文笔记]]
 
 *** Linux系统
 - [[file:linux.org][linux]] Linux上的各种问题

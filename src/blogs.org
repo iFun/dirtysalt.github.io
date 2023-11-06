@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202311 [[file:amazon-firecracker.org][amazon firecracker论文笔记]]
 - 202311 [[file:lc-100112-maximum-balanced-subsequence-sum.org][LC 100112. 平衡子序列的最大和]] （离散化 + 线段树）
 - 202311 [[file:lc-2916-subarrays-distinct-element-sum-of-squares-ii.org][LC 2916. 子数组不同元素数目的平方和 II]] 数学+线段树（终于会写线段树了）
 - 202310 [[file:lc-2902-count-of-sub-multisets-with-bounded-sum.org][LC 2902. 和带限制的子多重集合的数目]] 多重背包：滚动数组和前缀和优化
