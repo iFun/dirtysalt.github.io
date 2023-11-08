@@ -373,7 +373,7 @@
 - [[file:ffmpeg.org][ffmpeg]] 视频/音频处理的瑞士军刀.
 - 202212 [[file:inside-look-at-modern-web-browser.org][Inside look at modern web browser]] @ 2018
 
-** 网络编程
+** 网络系统
 
 - [[file:unp.org][UNP]] Unix网络编程(Unix Network Programming), W. Richard Stevens的神作。包含了TCP Illustrated v1里面和TCP相关的部分章节内容。
 - [[file:codes/cc/itachi/][itachi]] 自己两天时间写完的异步网络编程框架内核。
@@ -392,7 +392,7 @@
 - 202206 [[file:introduction-to-http2.org][Introduction to HTTP/2]]
 - 202302 [[file:about-network-latency-and-bandwidth.org][对于网络延迟和带宽的理解]]
 
-** 存储系统
+** 数据库和存储
 
 - [[file:storage-system-reading.org][Storage System Reading]] 存储系统方面的一些文章
   - [[http://redbook.cs.berkeley.edu/][Readings in Database Systems]]
@@ -468,6 +468,7 @@
 - 202301 [[file:fsst-fast-random-access-string-compression.org][FSST: Fast Random Access String Compression]] @ 2020
 - 202301 [[file:the-five-minute-rule-1987.org][The Five Minute Rule 1987]] @ 1987
 - 202301 [[file:the-five-minute-rule-1997.org][The Five Minute Rule 1997]] @ 1997
+- 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]
 
 ** 算法数据结构
 
