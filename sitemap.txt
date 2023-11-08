@@ -320,6 +320,7 @@ https://dirtysalt.github.io/html/eureka-on-career.html
 https://dirtysalt.github.io/html/excellent-advice-for-living-kevin-kelly.html
 https://dirtysalt.github.io/html/experience-of-research-from-outsider.html
 https://dirtysalt.github.io/html/experience-of-running-coffee-shop-for-40-years.html
+https://dirtysalt.github.io/html/exploiting-cloud-object-storage-for-high-performance-analytics.html
 https://dirtysalt.github.io/html/extended-gcd.html
 https://dirtysalt.github.io/html/f1-query-declarative-quqey-at-scale.html
 https://dirtysalt.github.io/html/f1-talk.html
