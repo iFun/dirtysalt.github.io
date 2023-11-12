@@ -551,6 +551,7 @@ https://dirtysalt.github.io/html/large-scale-data-and-computation-chanllenges-an
 https://dirtysalt.github.io/html/large-scale-deep-learning-for-intelligent-computer-systems.html
 https://dirtysalt.github.io/html/laws-of-performant-software.html
 https://dirtysalt.github.io/html/lc-100112-maximum-balanced-subsequence-sum.html
+https://dirtysalt.github.io/html/lc-100124-maximum-strong-pair-xor-ii.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
 https://dirtysalt.github.io/html/lc-1027-longest-arithmetic-sequence.html
