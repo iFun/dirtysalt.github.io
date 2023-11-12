@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202311 [[file:lc-100124-maximum-strong-pair-xor-ii.org][LC 100124. 找出强数对的最大异或值 II]] 区间更新+线段树
 - 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]
 - 202311 [[file:amazon-firecracker.org][amazon firecracker论文笔记]]
 - 202311 [[file:lc-100112-maximum-balanced-subsequence-sum.org][LC 100112. 平衡子序列的最大和]] （离散化 + 线段树）
