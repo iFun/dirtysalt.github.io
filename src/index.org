@@ -469,6 +469,8 @@
 - 202301 [[file:the-five-minute-rule-1987.org][The Five Minute Rule 1987]] @ 1987
 - 202301 [[file:the-five-minute-rule-1997.org][The Five Minute Rule 1997]] @ 1997
 - 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]
+- 202311 [[file:the-story-of-aws-glue.org][The Story of AWS Glue]]
+
 
 ** 算法数据结构
 
