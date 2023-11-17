@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202311 [[file:use-byte-buddy-to-intercept-method-of-java-class.org][使用ByteBuddy来截获Java类实现]]
 - 202311 [[file:the-story-of-aws-glue.org][The Story of AWS Glue]]
 - 202311 [[file:lc-100124-maximum-strong-pair-xor-ii.org][LC 100124. 找出强数对的最大异或值 II]] 区间更新+线段树
 - 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]

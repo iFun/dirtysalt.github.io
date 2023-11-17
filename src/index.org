@@ -471,7 +471,6 @@
 - 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]
 - 202311 [[file:the-story-of-aws-glue.org][The Story of AWS Glue]]
 
-
 ** 算法数据结构
 
 - [[file:general-algorithm.org][General Algorithm]] 通用算法
@@ -753,6 +752,7 @@
   - [[file:jvm.org][JVM]] Java Virtual Machine
   - 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
   - 202301 [[file:best-practices-for-using-the-jni.org][Best practices for using the Java Native Interface]]
+  - 202311 [[file:use-byte-buddy-to-intercept-method-of-java-class.org][使用ByteBuddy来截获Java类实现]]
 
 - [[file:clojure.org][Clojure]]
 - [[file:python.org][Python]]
