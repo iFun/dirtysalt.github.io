@@ -17,6 +17,7 @@ https://dirtysalt.github.io/html/a-better-way-to-learn-math.html
 https://dirtysalt.github.io/html/a-comparison-of-approaches-to-large-scale-data-analysis.html
 https://dirtysalt.github.io/html/a-conversation-with-werner-vogels.html
 https://dirtysalt.github.io/html/a-decade-at-google.html
+https://dirtysalt.github.io/html/a-deep-dive-into-common-open-formats-for-olap.html
 https://dirtysalt.github.io/html/a-few-days-at-village.html
 https://dirtysalt.github.io/html/a-great-developer-can-come-from-anywhere.html
 https://dirtysalt.github.io/html/a-guide-to-making-your-science-matter.html

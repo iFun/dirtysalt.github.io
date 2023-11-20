@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202311 [[file:a-deep-dive-into-common-open-formats-for-olap.org][A Deep Dive into Common Open Formats for Analytical DBMSs]]
 - 202311 [[file:lc-2939-maximum-xor-product.org][LC 2939. 最大异或乘积]]
 - 202311 [[file:use-byte-buddy-to-intercept-method-of-java-class.org][使用ByteBuddy来截获Java类实现]]
 - 202311 [[file:the-story-of-aws-glue.org][The Story of AWS Glue]]
