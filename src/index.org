@@ -719,13 +719,13 @@
 - [[file:swig.org][swig]] C/C++多语言扩展接口生成器. 使用起来非常方便, 但是本身不太完善, 比较适合用于原型系统.
 - [[file:lua-prog-lang-book.org][Lua程序设计]] by Roberto 译 周惟迪
 - [[file:openresty-best-practices-lua.org][OpenResty最佳实践/Lua]]
-- 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
-- 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
 - [[file:virtual-machine-design-and-implementation-in-c-cpp.org][虚拟机设计与实现(Virtual Machine Design and Implementation in C/C++)]]
-- 201907 [[file:lua-applicaiton-programming.org][Lua Application Programming]]
-- 201909 [[file:little-prolog-code.org][一些Prolog代码]]
 - [[file:the-impl-lua5.org][The Implementation of Lua 5.0 中译]]
 - [[file:an-incremental-approach-to-compiler-construction.org][An Incremental Approach to Compiler Construction]] by Abdulaziz Ghuloum
+- 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
+- 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
+- 201907 [[file:lua-applicaiton-programming.org][Lua Application Programming]]
+- 201909 [[file:little-prolog-code.org][一些Prolog代码]]
 - 202006 [[file:spring-in-action-v3.org][Spring实战第三版]]
 - 202006 [[file:plai-notes.org][PLAI笔记]] Programming Langauge Application and Interpretation
 - 202106 [[file:notes-on-programming.org][Notes on Programming]] by Alexander Stepanov
