@@ -471,6 +471,7 @@
 - 202311 [[file:exploiting-cloud-object-storage-for-high-performance-analytics.org][Exploiting Cloud Object Storage for High-Performance Analytics]]
 - 202311 [[file:the-story-of-aws-glue.org][The Story of AWS Glue]]
 - 202311 [[file:a-deep-dive-into-common-open-formats-for-olap.org][A Deep Dive into Common Open Formats for Analytical DBMSs]]
+- 202311 [[file:efficient-external-sorting-in-duckdb.org][Efficient External Sorting in DuckDB]]
 
 ** 算法数据结构
 
