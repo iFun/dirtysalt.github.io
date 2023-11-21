@@ -304,6 +304,7 @@ https://dirtysalt.github.io/html/effective-programming-more-than-writing-code.ht
 https://dirtysalt.github.io/html/effective-scala.html
 https://dirtysalt.github.io/html/efficiency-is-a-fragile-game.html
 https://dirtysalt.github.io/html/efficient-bit-unpacking.html
+https://dirtysalt.github.io/html/efficient-external-sorting-in-duckdb.html
 https://dirtysalt.github.io/html/efficiently-compiling-efficient-query-plans-for-modern-hardware.html
 https://dirtysalt.github.io/html/efficiently-exploiting-multiple-cores-with-python.html
 https://dirtysalt.github.io/html/elastic-search.html
