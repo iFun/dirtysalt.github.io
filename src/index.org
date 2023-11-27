@@ -1157,3 +1157,4 @@
 - 202311 [[file:lc-100112-maximum-balanced-subsequence-sum.org][LC 100112. 平衡子序列的最大和]] （离散化 + 线段树）
 - 202311 [[file:lc-100124-maximum-strong-pair-xor-ii.org][LC 100124. 找出强数对的最大异或值 II]] 区间更新+线段树
 - 202311 [[file:lc-2939-maximum-xor-product.org][LC 2939. 最大异或乘积]]
+- 202311 [[file:lc-2945-find-maximum-non-decreasing-array-length.org][LC 2945. 找到最大非递减数组的长度]] 数学推导单调性
