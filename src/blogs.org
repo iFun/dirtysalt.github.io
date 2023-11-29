@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202311 [[file:chimp-floating-point-compression.org][Chimp: Efficient Lossless Floating Point Compression for Time Series Databases]]
 - 202311 [[file:lc-2945-find-maximum-non-decreasing-array-length.org][LC 2945. 找到最大非递减数组的长度]] 数学推导单调性
 - 202311 [[file:efficient-external-sorting-in-duckdb.org][Efficient External Sorting in DuckDB]]
 - 202311 [[file:a-deep-dive-into-common-open-formats-for-olap.org][A Deep Dive into Common Open Formats for Analytical DBMSs]]
