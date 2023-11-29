@@ -176,6 +176,7 @@ https://dirtysalt.github.io/html/chatgpt-prompt-design-doc.html
 https://dirtysalt.github.io/html/chatgpt-prompt-engineering-for-developers.html
 https://dirtysalt.github.io/html/chengdu-travel.html
 https://dirtysalt.github.io/html/chenyu-on-internet-finance.html
+https://dirtysalt.github.io/html/chimp-floating-point-compression.html
 https://dirtysalt.github.io/html/chn-24-season-times.html
 https://dirtysalt.github.io/html/chubby.html
 https://dirtysalt.github.io/html/church-counter.html
