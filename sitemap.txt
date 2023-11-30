@@ -1098,6 +1098,7 @@ https://dirtysalt.github.io/html/sparser.html
 https://dirtysalt.github.io/html/sphinx-search.html
 https://dirtysalt.github.io/html/splay-tree-visualization.html
 https://dirtysalt.github.io/html/spring-in-action-v3.html
+https://dirtysalt.github.io/html/sql-memory-management-in-oracle9i.html
 https://dirtysalt.github.io/html/squid-https-forwarding-proxy.html
 https://dirtysalt.github.io/html/sre-how-google-runs-production-systems.html
 https://dirtysalt.github.io/html/ssd-and-distributed-data-systems.html
