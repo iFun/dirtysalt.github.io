@@ -474,6 +474,7 @@
 - 202311 [[file:efficient-external-sorting-in-duckdb.org][Efficient External Sorting in DuckDB]]
 - 202311 [[file:chimp-floating-point-compression.org][Chimp: Efficient Lossless Floating Point Compression for Time Series Databases]]
 - 202311 [[file:sql-memory-management-in-oracle9i.org][SQL MM in Oracle9i]]
+- 202312 [[file:adaptive-self-tunning-memory-in-db2.org][Adaptive self-tuning memory in DB2]]
 
 ** 算法数据结构
 
