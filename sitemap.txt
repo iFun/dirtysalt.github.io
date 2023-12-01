@@ -44,6 +44,7 @@ https://dirtysalt.github.io/html/about-network-latency-and-bandwidth.html
 https://dirtysalt.github.io/html/about-storage-system-iops-and-performance.html
 https://dirtysalt.github.io/html/ace.html
 https://dirtysalt.github.io/html/achieving-rapid-response-times-in-large-online-services.html
+https://dirtysalt.github.io/html/adaptive-self-tunning-memory-in-db2.html
 https://dirtysalt.github.io/html/advice-for-ambitious-19-years-olds.html
 https://dirtysalt.github.io/html/albis-high-perf-file-format-for-big-data-sys.html
 https://dirtysalt.github.io/html/algorithm-design-steps-in-interview.html
