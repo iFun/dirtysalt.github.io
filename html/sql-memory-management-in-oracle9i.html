@@ -16,15 +16,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgebec262">1. introduction</a></li>
-<li><a href="#org705d1b6">2. related work</a></li>
-<li><a href="#org123fb34">3. Oracle MA</a></li>
-<li><a href="#orgff49461">4. PGA MM</a>
+<li><a href="#org6b7a97c">1. introduction</a></li>
+<li><a href="#org7a2b470">2. related work</a></li>
+<li><a href="#org07a6def">3. Oracle MA</a></li>
+<li><a href="#orgddc26b9">4. PGA MM</a>
 <ul>
-<li><a href="#org408141c">4.1. overview</a></li>
-<li><a href="#orgdc52a54">4.2. memory bound</a></li>
-<li><a href="#orgbbd4bc8">4.3. drift management</a></li>
-<li><a href="#org5ca8840">4.4. memory adaptive operator</a></li>
+<li><a href="#orge39ddd0">4.1. overview</a></li>
+<li><a href="#org7210e19">4.2. memory bound</a></li>
+<li><a href="#orgb5cbc03">4.3. drift management</a></li>
+<li><a href="#org1402777">4.4. memory adaptive operator</a></li>
 </ul>
 </li>
 </ul>
@@ -37,15 +37,15 @@
 <p>
 2002年VLDB，Oracle9i这个产品2001年就出来了，所以这篇论文的实现估计有点过时，但是我感觉SQL MM大体架构应该是不变的。可以认为是两层调度： a. 先确定每个process可用内存 b. 确定每个operator的memory bound c. operator进行自适应实现。
 </p>
-<div id="outline-container-orgebec262" class="outline-2">
-<h2 id="orgebec262"><span class="section-number-2">1.</span> introduction</h2>
+<div id="outline-container-org6b7a97c" class="outline-2">
+<h2 id="org6b7a97c"><span class="section-number-2">1.</span> introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 sql operator都是可以针对内存情况有不同的自适应实现，比如sort可以切换成为one-pass/multi-pass, hash-join可以切换成为hybrid hash join的方式将一部分workset spill出去等等。sql operator必须有自适应的实现，这个是实现mm的前提。
 </p>
 
 
-<div id="orgf35b414" class="figure">
+<div id="org108719e" class="figure">
 <p><img src="../images/Pasted-Image-20231130184447.png" alt="Pasted-Image-20231130184447.png" />
 </p>
 </div>
@@ -68,8 +68,8 @@ In Oracle9i, we introduced a new memory manager that dynamically adapts the memo
 </div>
 </div>
 
-<div id="outline-container-org705d1b6" class="outline-2">
-<h2 id="org705d1b6"><span class="section-number-2">2.</span> related work</h2>
+<div id="outline-container-org7a2b470" class="outline-2">
+<h2 id="org7a2b470"><span class="section-number-2">2.</span> related work</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 文章提到了几种MM的方法，都有各自的问题：
@@ -94,15 +94,15 @@ In Oracle9i, we introduced a new memory manager that dynamically adapts the memo
 </p>
 
 
-<div id="org253c3d7" class="figure">
+<div id="orgec6913d" class="figure">
 <p><img src="../images/Pasted-Image-20231130185237.png" alt="Pasted-Image-20231130185237.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org123fb34" class="outline-2">
-<h2 id="org123fb34"><span class="section-number-2">3.</span> Oracle MA</h2>
+<div id="outline-container-org07a6def" class="outline-2">
+<h2 id="org07a6def"><span class="section-number-2">3.</span> Oracle MA</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Oracle MM结构大致如下
@@ -121,7 +121,7 @@ Oracle MM结构大致如下
 
 
 
-<div id="orgd149276" class="figure">
+<div id="orgb56204f" class="figure">
 <p><img src="../images/Pasted-Image-20231130185510.png" alt="Pasted-Image-20231130185510.png" />
 </p>
 </div>
@@ -132,12 +132,12 @@ PGA总体大小是固定的，文章接下来说的就是怎么控制每个PGA�
 </div>
 </div>
 
-<div id="outline-container-orgff49461" class="outline-2">
-<h2 id="orgff49461"><span class="section-number-2">4.</span> PGA MM</h2>
+<div id="outline-container-orgddc26b9" class="outline-2">
+<h2 id="orgddc26b9"><span class="section-number-2">4.</span> PGA MM</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org408141c" class="outline-3">
-<h3 id="org408141c"><span class="section-number-3">4.1.</span> overview</h3>
+<div id="outline-container-orge39ddd0" class="outline-3">
+<h3 id="orge39ddd0"><span class="section-number-3">4.1.</span> overview</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 整体交互逻辑是这样的：
@@ -154,7 +154,7 @@ PGA总体大小是固定的，文章接下来说的就是怎么控制每个PGA�
 </p>
 
 
-<div id="org470b2e5" class="figure">
+<div id="org3724dfd" class="figure">
 <p><img src="../images/Pasted-Image-20231130190544.png" alt="Pasted-Image-20231130190544.png" />
 </p>
 </div>
@@ -185,8 +185,8 @@ The feedback loop is closed by the local memory manager. It uses the current val
 </div>
 </div>
 
-<div id="outline-container-orgdc52a54" class="outline-3">
-<h3 id="orgdc52a54"><span class="section-number-3">4.2.</span> memory bound</h3>
+<div id="outline-container-org7210e19" class="outline-3">
+<h3 id="org7210e19"><span class="section-number-3">4.2.</span> memory bound</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 operator memory bound 分为两步来计算：
@@ -197,7 +197,7 @@ operator memory bound 分为两步来计算：
 </ul>
 
 
-<div id="orgd314110" class="figure">
+<div id="org2713d70" class="figure">
 <p><img src="../images/Pasted-Image-20231130191152.png" alt="Pasted-Image-20231130191152.png" />
 </p>
 </div>
@@ -208,7 +208,7 @@ operator memory bound 分为两步来计算：
 </p>
 
 
-<div id="orge837d18" class="figure">
+<div id="org4147b3b" class="figure">
 <p><img src="../images/Pasted-Image-20231130191905.png" alt="Pasted-Image-20231130191905.png" />
 </p>
 </div>
@@ -234,8 +234,8 @@ Based on the work area profile and the bound value, the Expect- edWorkareaSize f
 </div>
 </div>
 
-<div id="outline-container-orgbbd4bc8" class="outline-3">
-<h3 id="orgbbd4bc8"><span class="section-number-3">4.3.</span> drift management</h3>
+<div id="outline-container-orgb5cbc03" class="outline-3">
+<h3 id="orgb5cbc03"><span class="section-number-3">4.3.</span> drift management</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 后台刷新滞后会导致sql memory target超限，这个是结合前后进行刷新。如果前台检测到overall total memory 超过了PGA的话，并且超过10%的话，那么就会前台刷新进行调整。
@@ -254,15 +254,15 @@ To tackle this issue, Oracle has also the ability to automat- ically refresh the
 </blockquote>
 
 
-<div id="org18ef02c" class="figure">
+<div id="org64de8a3" class="figure">
 <p><img src="../images/Pasted-Image-20231130193314.png" alt="Pasted-Image-20231130193314.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org5ca8840" class="outline-3">
-<h3 id="org5ca8840"><span class="section-number-3">4.4.</span> memory adaptive operator</h3>
+<div id="outline-container-org1402777" class="outline-3">
+<h3 id="org1402777"><span class="section-number-3">4.4.</span> memory adaptive operator</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 这个要求operator可以根据memory bound来选择实现。下图是sort operator的自适应实现：
@@ -274,7 +274,7 @@ To tackle this issue, Oracle has also the ability to automat- ically refresh the
 </ul>
 
 
-<div id="org10f5d2e" class="figure">
+<div id="org2b38972" class="figure">
 <p><img src="../images/Pasted-Image-20231130193743.png" alt="Pasted-Image-20231130193743.png" />
 </p>
 </div>
