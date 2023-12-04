@@ -1162,3 +1162,6 @@
 - 202311 [[file:lc-100124-maximum-strong-pair-xor-ii.org][LC 100124. 找出强数对的最大异或值 II]] 区间更新+线段树
 - 202311 [[file:lc-2939-maximum-xor-product.org][LC 2939. 最大异或乘积]]
 - 202311 [[file:lc-2945-find-maximum-non-decreasing-array-length.org][LC 2945. 找到最大非递减数组的长度]] 数学推导单调性
+- 202312 [[file:lc-2954-count-the-number-of-infection-sequences.org][LC 2954. 统计感冒序列的数目]] 排列组合 + 乘法逆元
+- 202312 [[file:lc-2953-count-complete-substrings.org][LC 2953. 统计完全子字符串]] 枚举可能 + 滑动窗口（本周赛太难）
+- 202312 [[file:lc-2952-minimum-number-of-coins-to-be-added.org][LC 2952. 需要添加的硬币的最小数量]] 数学归纳（本周赛太难）
