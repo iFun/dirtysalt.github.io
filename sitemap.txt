@@ -710,6 +710,7 @@ https://dirtysalt.github.io/html/lcp-14-qie-fen-shu-zu.html
 https://dirtysalt.github.io/html/lcp-65-2022-fall-5.html
 https://dirtysalt.github.io/html/lcp-69-hello-leetcode.html
 https://dirtysalt.github.io/html/lean-in.html
+https://dirtysalt.github.io/html/leanstore-in-memory-data-management-beyond-main-memory.html
 https://dirtysalt.github.io/html/learn-stop-using-shiny-new-things-and-love-mysql.html
 https://dirtysalt.github.io/html/leaving-from-china-amazon.html
 https://dirtysalt.github.io/html/leetcode-hhrc-2022.html
