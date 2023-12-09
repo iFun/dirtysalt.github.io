@@ -1,5 +1,4 @@
-#+title: amazon firecracker论文笔记
-
+#+title: Firecracker: Lightweight Virtualization for Serverless Applications
 
 [[https://www.usenix.org/conference/nsdi20/presentation/agache][Firecracker: Lightweight Virtualization for Serverless Applications | USENIX]]
 
