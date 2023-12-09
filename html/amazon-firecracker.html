@@ -5,22 +5,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>amazon firecracker论文笔记</title>
+<title>Firecracker: Lightweight Virtualization for Serverless Applications</title>
 <meta name="author" content="dirtysalt" />
 <meta name="generator" content="Org Mode" />
 <link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
 <body>
 <div id="content" class="content">
-<h1 class="title">amazon firecracker论文笔记</h1>
+<h1 class="title">Firecracker: Lightweight Virtualization for Serverless Applications</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1933908">1. abstract</a></li>
-<li><a href="#org584648a">2. introduction</a></li>
-<li><a href="#orgdc9bfde">3. isolation</a></li>
-<li><a href="#orgc08019e">4. firecracker vm</a></li>
-<li><a href="#org3c9b45d">5. inside lambda</a></li>
+<li><a href="#org51f0f00">1. abstract</a></li>
+<li><a href="#orgc7275e2">2. introduction</a></li>
+<li><a href="#org83261a0">3. isolation</a></li>
+<li><a href="#org68e91bb">4. firecracker vm</a></li>
+<li><a href="#orgda8bf59">5. inside lambda</a></li>
 </ul>
 </div>
 </div>
@@ -28,8 +28,8 @@
 <a href="https://www.usenix.org/conference/nsdi20/presentation/agache">Firecracker: Lightweight Virtualization for Serverless Applications | USENIX</a>
 </p>
 
-<div id="outline-container-org1933908" class="outline-2">
-<h2 id="org1933908"><span class="section-number-2">1.</span> abstract</h2>
+<div id="outline-container-org51f0f00" class="outline-2">
+<h2 id="org51f0f00"><span class="section-number-2">1.</span> abstract</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 传统观点认为虚拟化和容器化之间各有好处，容器化性能好，虚拟化安全性好。但是现在虚拟化也可以做到比较高的性能，前提是有内核支持比如KVM.
@@ -53,8 +53,8 @@ We have deployed Firecracker in two publically-available serverless compute serv
 </div>
 </div>
 
-<div id="outline-container-org584648a" class="outline-2">
-<h2 id="org584648a"><span class="section-number-2">2.</span> introduction</h2>
+<div id="outline-container-orgc7275e2" class="outline-2">
+<h2 id="orgc7275e2"><span class="section-number-2">2.</span> introduction</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 云上需要实现多租户的功能，资源共享和隔离是是最关键的功能，目前大部分云厂商使用qemu/kvm或者是kvm这样的hypervisor-based虚拟化方案。
@@ -108,8 +108,8 @@ Firecracker is probably most notable for what it does not of- fer, especially co
 </div>
 </div>
 
-<div id="outline-container-orgdc9bfde" class="outline-2">
-<h2 id="orgdc9bfde"><span class="section-number-2">3.</span> isolation</h2>
+<div id="outline-container-org83261a0" class="outline-2">
+<h2 id="org83261a0"><span class="section-number-2">3.</span> isolation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 这节谈到了一些隔离要求和实现方案，lxc, language vm(jvm), 以及virtualization. 这个是隔离要求以及性能要求：
@@ -155,7 +155,7 @@ lxc和kvm之间架构区别如下，lxc最大的难点在于做好沙箱管理. 
 </p>
 
 
-<div id="orgf1704ee" class="figure">
+<div id="orgae50009" class="figure">
 <p><img src="../images/Pasted-Image-20231106084307.png" alt="Pasted-Image-20231106084307.png" />
 </p>
 </div>
@@ -196,8 +196,8 @@ Firecracker’s approach to these problems is to use KVM (for reasons we discuss
 </div>
 </div>
 
-<div id="outline-container-orgc08019e" class="outline-2">
-<h2 id="orgc08019e"><span class="section-number-2">4.</span> firecracker vm</h2>
+<div id="outline-container-org68e91bb" class="outline-2">
+<h2 id="org68e91bb"><span class="section-number-2">4.</span> firecracker vm</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 总体结构就是 fvm + kvm. fvm里面模拟出来了各种设备，还提供rest api进行控制
@@ -265,8 +265,8 @@ While Firecracker’s rate limiters and machine configuration provide the flexib
 </div>
 </div>
 
-<div id="outline-container-org3c9b45d" class="outline-2">
-<h2 id="org3c9b45d"><span class="section-number-2">5.</span> inside lambda</h2>
+<div id="outline-container-orgda8bf59" class="outline-2">
+<h2 id="orgda8bf59"><span class="section-number-2">5.</span> inside lambda</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这节主要说如何在lambda里面使用fk. 都是一些lambda vm启动相关的细节问题，lambda worker结构体现了fk如何和lambda结合的。
@@ -277,7 +277,7 @@ fk启动micro vm之后，在kernerl image里面还提供了一个lambda shim的�
 </p>
 
 
-<div id="org266e617" class="figure">
+<div id="orge21bbfe" class="figure">
 <p><img src="../images/Pasted-Image-20231106111826.png" alt="Pasted-Image-20231106111826.png" />
 </p>
 </div>
