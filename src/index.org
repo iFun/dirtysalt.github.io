@@ -285,6 +285,7 @@
 - 202210 [[file:instruction-set-wants-to-be-free-riscv-case.org][Instruction Sets Want To Be Free: A Case for RISC-V]]
 - 202212 [[file:filter-range-optimization.org][filter range实现优化]]
 - 202311 [[file:amazon-firecracker.org][Firecracker: Lightweight Virtualization for Serverless Applications]]
+- 202312 [[file:producing-wrong-data-without-doing-anything-obviously-wrong.org][Producing Wrong Data Without Doing Anything Obviously Wrong!]]
 
 *** Linux系统
 - [[file:linux.org][linux]] Linux上的各种问题
