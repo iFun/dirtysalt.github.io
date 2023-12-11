@@ -1,0 +1,25 @@
+#+title: 网络文章@202312
+
+
+----------
+
+[[https://world.hey.com/dhh/workfeed-goes-to-america-84b381d9][Workfeed goes to America --- Workfeed 前往美国]]
+
+What I found interesting about employee scheduling software is how localized much of it is. You need integrations with payroll and other employee systems to make inroads, and many of those solutions are anchored in the particulars of local labor laws, customs, and industry standards. It's quite unlike the universality afforded Jason and I working on something like Basecamp.
+我发现员工排班软件的有趣之处在于它的本地化程度。您需要与薪资和其他员工系统集成才能取得进展，其中许多解决方案都基于当地劳动法、海关和行业标准的细节。这与 Jason 和我在 Basecamp 等项目上工作所提供的普遍性完全不同。
+
+That also means entering a new territory is much harder. Workfeed got started in Denmark, quickly became the top-rated system there, blazed past a bunch of stale competitors, and built a profitable, successful business primarily on the basis of this market alone. But Denmark is tiny. Less than 6 million people. So since day one, I've been pushing them to get ready for the biggest software market in the world: America.
+这也意味着进入新领域要困难得多。 Workfeed 在丹麦起步，很快成为那里最受好评的系统，超越了一批陈旧的竞争对手，并主要在这个市场的基础上建立了一个盈利的、成功的业务。但丹麦很小。不到600万人。因此，从第一天起，我就一直敦促他们为世界上最大的软件市场：美国做好准备。
+
+------
+
+[[https://world.hey.com/dhh/negative-visualization-in-practice-60f11cb7][Negative visualization in practice --- 实践中的负面形象化]]
+
+The point of visualizing the consequences of an accident, the loss of a loved one, or the bankruptcy of your business is not to stew in despair, but to prepare yourself for the inevitability of hardship. Nobody makes it through life entirely on easy mode, and if you haven't done any manner of mental preparation, even small setbacks can seem calamitous. So you really ought to prepare.
+想象事故、失去亲人或企业破产的后果的目的不是让自己陷入绝望，而是为不可避免的困难做好准备。没有人能完全以轻松的方式度过一生，如果你没有做好任何心理准备，即使是很小的挫折也可能看起来是灾难性的。所以你真的应该做好准备。
+
+In this way, negative visualization is like the dojo in The Matrix. It's a way to level up your skills inside a simulation running within your mind's eye. A chance to realize that "there is no spoon" in the sense that a given external event forces a given internal response. With enough training, you can disconnect the two, and become far better at choosing your response to almost any stimuli. In my book, that's even better than knowing Kung Fu!
+这样，负面想象就像《黑客帝国》中的道场。这是一种在你的脑海中运行的模拟中提升你的技能的方法。有机会认识到“没有勺子”，即给定的外部事件会迫使给定的内部反应。经过足够的训练，你可以将两者分开，并且能够更好地选择对几乎任何刺激的反应。在我的书中，这甚至比了解功夫更好！
+
+In addition to building up your resilience, negative visualization also offers a path to gratitude. However bad things might seem in the moment, you can usually imagine something even worse, which should make the present seem far more tolerable.
+除了增强你的适应力之外，消极想象还提供了一条感恩之路。无论当下的事情看起来多么糟糕，你通常都可以想象更糟糕的事情，这应该会让现在看起来更容易忍受。
