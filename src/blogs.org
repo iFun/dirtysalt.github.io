@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:from-cloud-computing-to-sky-computing.org][From Cloud Computing to Sky Computing]] by Ion Stocia
 - 202312 [[file:always-measure-one-level-deeper.org][Always Measure One Level Deeper]] by JOHN OUSTERHOUT
 - 202312 [[file:readings-at-202312.org][网络文章@202312]]
 - 202312 [[file:lc-100136-count-the-number-of-good-partitions.org][LC 100136. 统计好分割方案的数目]]

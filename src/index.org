@@ -191,6 +191,7 @@
 - 202012 [[file:the-passionate-programmer.org][我编程，我快乐(The Passionate Programmer)]] by Chad Fowler
 - 202012 [[file:programmer-self-cultivation.org][程序员的自我修养]] by 陈逸鹤
 - 202101 [[file:beautiful-code.org][代码之美(Beautiful Code)]] by Grey Wilson
+- 202312 [[file:from-cloud-computing-to-sky-computing.org][From Cloud Computing to Sky Computing]] by Ion Stocia
 
 *** 其他笔记
 - [[file:cv.org][个人介绍(about me)]]
