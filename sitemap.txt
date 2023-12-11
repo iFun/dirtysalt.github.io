@@ -361,6 +361,7 @@ https://dirtysalt.github.io/html/flumejava.html
 https://dirtysalt.github.io/html/forces-of-habit.html
 https://dirtysalt.github.io/html/ford-fulkerson-network-flow-problem.html
 https://dirtysalt.github.io/html/frangipani.html
+https://dirtysalt.github.io/html/from-cloud-computing-to-sky-computing.html
 https://dirtysalt.github.io/html/from-running-to-life.html
 https://dirtysalt.github.io/html/from-zero-to-one.html
 https://dirtysalt.github.io/html/fsst-fast-random-access-string-compression.html
