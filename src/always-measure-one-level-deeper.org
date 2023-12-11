@@ -20,7 +20,7 @@ A good performance evaluation provides a deep understanding of a system’s beha
 - Mistake 2: Guessing instead of measuring. 喜欢猜测/推测而不是进行测量和实验。
 - Mistake 3: Superficial measurements. 太过于肤浅的测量而没有做定性和定量分析。
 - Mistake 4: Confirmation bias. 确认偏误，这个也可以理解，毕竟要赶在deadline之前写一篇好文章。
-- Mistake 5: Haste. 草率，作者主要说的就是测量不够充分时间不够长。
+- Mistake 5: Haste. 草率，作者主要说的就是测量不够充分时间不够长。（你就说论文发表重不重要吧！）
 
 然后提出了4点改进意见：
 - Rule 1: Allow lots of time. 作者建议至少要给出2~3个月的时间来做充分测试，强度也够高的。

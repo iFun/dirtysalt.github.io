@@ -55,6 +55,7 @@ https://dirtysalt.github.io/html/algorithmica-simd.html
 https://dirtysalt.github.io/html/alibaba-hbase-practice.html
 https://dirtysalt.github.io/html/alleged-rc4.html
 https://dirtysalt.github.io/html/alpha-beta-pruning.html
+https://dirtysalt.github.io/html/always-measure-one-level-deeper.html
 https://dirtysalt.github.io/html/amazon-aurora-paper.html
 https://dirtysalt.github.io/html/amazon-dynamodb.html
 https://dirtysalt.github.io/html/amazon-firecracker.html
@@ -996,6 +997,7 @@ https://dirtysalt.github.io/html/readings-at-202308.html
 https://dirtysalt.github.io/html/readings-at-202309.html
 https://dirtysalt.github.io/html/readings-at-202310.html
 https://dirtysalt.github.io/html/readings-at-202311.html
+https://dirtysalt.github.io/html/readings-at-202312.html
 https://dirtysalt.github.io/html/readings-dbms-fifth-edition.html
 https://dirtysalt.github.io/html/real-life-of-startup-with-baby.html
 https://dirtysalt.github.io/html/realtime-big-data-analytics-emerging-architecture.html
