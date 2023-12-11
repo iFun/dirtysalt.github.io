@@ -954,6 +954,7 @@
 - 202101 [[file:beautiful-code.org][代码之美(Beautiful Code)]] by Grey Wilson
 - 202205 [[file:garbage-collect-algorithm-and-implementation-book.org][垃圾回收的算法和实现]] by 中村成洋
 - 202208 [[file:code-simplicity.org][Code Simplicity]] by Max Kanat-Alex
+- 202312 [[file:always-measure-one-level-deeper.org][Always Measure One Level Deeper]] by JOHN OUSTERHOUT
 
 ** 网络资源
 *** Blogs
