@@ -1,4 +1,5 @@
-#+title: SQLite: Past, Present, and Future
+#+title: SQL
+ite: Past, Present, and Future
 
 
 https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf

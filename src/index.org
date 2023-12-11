@@ -1169,3 +1169,4 @@
 - 202312 [[file:lc-2954-count-the-number-of-infection-sequences.org][LC 2954. 统计感冒序列的数目]] 排列组合 + 乘法逆元
 - 202312 [[file:lc-2953-count-complete-substrings.org][LC 2953. 统计完全子字符串]] 枚举可能 + 滑动窗口（本周赛太难）
 - 202312 [[file:lc-2952-minimum-number-of-coins-to-be-added.org][LC 2952. 需要添加的硬币的最小数量]] 数学归纳（本周赛太难）
+- 202312 [[file:lc-100136-count-the-number-of-good-partitions.org][LC 100136. 统计好分割方案的数目]]
