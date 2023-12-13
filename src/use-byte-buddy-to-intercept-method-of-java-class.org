@@ -106,3 +106,11 @@ public static FileSystem createFSProxy(FileSystem target, UserGroupInformation u
     return fs;
 }
 #+END_SRC
+
+----------
+
+UPDATE@202312: 后面我发现这里面限制其实特别大，问题大致有两个：
+- 这个很难把所有的调用链全部都hook上，为了将全部调用链全部hook上，你可能还需要替换许多字段。
+- final 方法是没有办法改写的。gpt的回答是jvm对final方法做了内联，没有办法进行子类化改写。
+
+所以感觉这种对象截获方法的实现，通常只能在第一层进行捕捉，而且需要确保还不是final方法，可以说限制比较大。
