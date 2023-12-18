@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:lc-2968-apply-operations-to-maximize-frequency-score.org][LC 2968. 执行操作使频率分数最大]]
+- 202312 [[file:lc-2967-minimum-cost-to-make-array-equalindromic.org][LC 2967. 使数组成为等数数组的最小代价]]
 - 202312 [[file:from-cloud-computing-to-sky-computing.org][From Cloud Computing to Sky Computing]] by Ion Stocia
 - 202312 [[file:always-measure-one-level-deeper.org][Always Measure One Level Deeper]] by JOHN OUSTERHOUT
 - 202312 [[file:readings-at-202312.org][网络文章@202312]]
