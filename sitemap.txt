@@ -1081,6 +1081,7 @@ https://dirtysalt.github.io/html/simple-benchmark-on-jemalloc-and-tcmalloc.html
 https://dirtysalt.github.io/html/simple-made-easy.html
 https://dirtysalt.github.io/html/simple-memcpy-perf-comparison.html
 https://dirtysalt.github.io/html/simple-treap.html
+https://dirtysalt.github.io/html/singlestore-paper.html
 https://dirtysalt.github.io/html/sit-boost-your-tech-career.html
 https://dirtysalt.github.io/html/six-easy-pieces.html
 https://dirtysalt.github.io/html/skin-in-the-game-book.html
@@ -1123,6 +1124,7 @@ https://dirtysalt.github.io/html/ssh-proxycommand-on-ssr.html
 https://dirtysalt.github.io/html/ssh-tunneling-python.html
 https://dirtysalt.github.io/html/stack-overflow-the-architecture-2016-edition.html
 https://dirtysalt.github.io/html/star-wars.html
+https://dirtysalt.github.io/html/starrocks-primary-key-storage-for-realtime-update.html
 https://dirtysalt.github.io/html/start-from-simple.html
 https://dirtysalt.github.io/html/starters-and-maintainers.html
 https://dirtysalt.github.io/html/statistical-learning-method.html
