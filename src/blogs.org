@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:singlestore-paper.org][Cloud-Native Transactions and Analytics in SingleStore]]
 - 202312 [[file:starrocks-primary-key-storage-for-realtime-update.org][StarRocks Primary Key：实时更新不可缺少的利器]]
 - 202312 [[file:lc-2968-apply-operations-to-maximize-frequency-score.org][LC 2968. 执行操作使频率分数最大]]
 - 202312 [[file:lc-2967-minimum-cost-to-make-array-equalindromic.org][LC 2967. 使数组成为等数数组的最小代价]]
