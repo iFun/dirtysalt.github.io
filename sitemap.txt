@@ -404,6 +404,7 @@ https://dirtysalt.github.io/html/google-borg-paper.html
 https://dirtysalt.github.io/html/google-io-2009-tx-across-dc.html
 https://dirtysalt.github.io/html/google-mesa.html
 https://dirtysalt.github.io/html/google-napa-paper.html
+https://dirtysalt.github.io/html/google-photon-paper.html
 https://dirtysalt.github.io/html/google-secret-and-linear-algebra.html
 https://dirtysalt.github.io/html/google-the-dataflow-model-paper.html
 https://dirtysalt.github.io/html/gperftools.html
@@ -934,7 +935,6 @@ https://dirtysalt.github.io/html/performance-degradation-by-denormal-floating-po
 https://dirtysalt.github.io/html/performance-matters.html
 https://dirtysalt.github.io/html/peter-thiel-on-competition-obsession.html
 https://dirtysalt.github.io/html/pf-thoughts-on-cn.html
-https://dirtysalt.github.io/html/photon.html
 https://dirtysalt.github.io/html/pic-code.html
 https://dirtysalt.github.io/html/piccolo-builing-fast-distributed-programs-with-partitioned-tables.html
 https://dirtysalt.github.io/html/pieces-of-advice-from-yq.html
