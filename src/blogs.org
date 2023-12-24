@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:google-the-dataflow-model-paper.org][The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing]] @ 2015
 - 202312 [[file:singlestore-paper.org][Cloud-Native Transactions and Analytics in SingleStore]]
 - 202312 [[file:starrocks-primary-key-storage-for-realtime-update.org][StarRocks Primary Key：实时更新不可缺少的利器]]
 - 202312 [[file:lc-2968-apply-operations-to-maximize-frequency-score.org][LC 2968. 执行操作使频率分数最大]]
