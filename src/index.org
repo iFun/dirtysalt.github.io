@@ -668,7 +668,7 @@
 - [[file:voldemort.org][Serving Large-scale Batch Computed Data with Project Voldemort]] @ 2012
 - [[file:millwheel.org][MillWheel: Fault-Tolerant Stream Processing at Internet Scale]] @ 2013
 - [[file:haystack.org][Finding a needle in Haystack: Facebook's photo storage]] @ 2010
-- [[file:photon.org][Photon: Fault-tolerant and Scalable Joining of Continuous Data Streams]] @ 2013
+- [[file:google-photon-paper.org][Photon: Fault-tolerant and Scalable Joining of Continuous Data Streams]] @ 2013
 - [[file:flumejava.org][FlumeJava: Easy, Efficient Data-Parallel Pipelines]] @ 2010
 - [[file:ceph.org][Ceph: A Scalable, High-Performance Distributed File System]] @ 2006
 - 202106 [[file:google-borg-paper.org][Large-scale cluster management at Google with Borg]] (revisited) @ 2015
