@@ -482,6 +482,7 @@
 - 202312 [[file:google-napa-paper.org][Napa: Powering Scalable Data Warehousing with Robust Query Performance at Google]]
 - 202312 [[file:sqlite-past-present-and-future.org][SQLite: Past, Present, and Future]]
 - 202312 [[file:singlestore-paper.org][Cloud-Native Transactions and Analytics in SingleStore]]
+- 202312 [[file:databricks-photon-paper.org][Photon: A Fast Query Engine for Lakehouse Systems]]
 
 ** 算法数据结构
 
