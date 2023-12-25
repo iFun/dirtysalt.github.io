@@ -190,11 +190,11 @@ def collect():
 
 产生的数字序列符合高斯分布N(10, 5)，所以估计出来的rate应该是100.
 
-[[../images/throttle-in-python0.png]]
+[[../images/Pasted-Image-20231225103921.png]]
 
 throttle的rate_limit设置为50, 所以在50上会被削平.
 
-[[../images/throttle-in-python1.png]]
+[[../images/Pasted-Image-20231225103953.png]]
 
 
 ----------

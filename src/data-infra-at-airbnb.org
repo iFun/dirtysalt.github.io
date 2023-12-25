@@ -12,7 +12,7 @@ Leave some headroom: we oversubscribe resources to our clusters in order to fos
 
 **Part 2: Infrastructure Overview**
 
-[[../images/airbnb-data-infra.png]]
+[[../images/Pasted-Image-20231225104854.png]]
 
 gold存储原始数据，然后在silver上做各种加工等
 

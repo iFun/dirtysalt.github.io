@@ -21,7 +21,7 @@ Procella的需要包括下面这几个（我觉得可以说是对一个数据分
     - WAL之后会被compaction和base进行合并，此时实时数据才真正进入离线部分。
 整个查询流程大致是：1. RS解析SQL生成执行计划 2. 去MDS上查询文件metadata信息进行pruning  3. 将执行计划交给DS执行。执行计划基本是树状结构，发送到DS之后，DS可能还要发送到其他DS做底层的工作，这样不断地fanout出去直到叶子节点。服务器之间使用stubby rpc进行通信，使用RDMA进行shuffle（好像RDMA可以减少数据从内核到用户的拷贝）
 
-[[../images/youtube-procella-arch.png]]
+[[../images/Pasted-Image-20231225103444.png]]
 
 因为计算存储分离，所以Caching少不了，而且cache的东西还不少包括：1. colossus metadata caching(chunk -> chunk server) 2. data file header 3. data file 4. metadata caching 另外就是affinity scheduling 确保涉及到某个data file的操作都由一个data server来进行处理。我看他们给的数据比较有意思：虽然只有2%的数据可以fit到内存，但是99%+ file handle cache hit(不知道这个是什么东西)和90%的data cache hit. 如果真的是90%的data cache hit的话，也就是说实际情况通常只需要处理很少的部分数据，大部分数据基本都不会touch的。
 

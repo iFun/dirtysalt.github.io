@@ -28,7 +28,7 @@ http://research.google.com/pubs/pub36575.html @ 2010
   - Additionally, we can derive higher-level data to more complex but interesting questions, such as which compilers were used for applications in the fleet, whether there are more 32-bit or 64-bit applications running, and how much utilization is being lost by suboptimal job scheduling
 
 ** Infrastructure
-[[../images/gwp-architecture.png]]
+[[../images/Pasted-Image-20231225104158.png]]
 
 *** Collector
 - GWP samples in two dimensions. At any moment, profiling occurs only on a small subset of all machines in the fleet, and event-based sampling is used at the machine level.（采样是在两个维度上进行的，首先每次只是在一部分机器上进行采样，其次在每台机器上针对事件进行采样）。
@@ -66,7 +66,7 @@ http://research.google.com/pubs/pub36575.html @ 2010
 **** Query view
 This page supplies links that let users refine the query to more specific data. For example, the user can restrict the query to only report samples for a specific executable collected within a desired time period. Additionally, the user can modify or refine any of the parameters to the current query to create a custom profile view.
 
-[[../images/gwp-query-view.png]]
+[[../images/Pasted-Image-20231225104249.png]]
 
 **** Call graph view
 **** Source annotation
@@ -92,7 +92,7 @@ The low-level information GWP provides about how CPU cycles (and other machine r
 - Some applications run better on a partic- ular hardware platform due to sensitivity to architectural details, such as processor micro- architecture or cache size. It’s generally very hard or impossible to predict which applica- tion will fare best on which platform. In- stead, we measure an efficiency metric, CPI, for each application and platform com- bination. We can then improve job schedul- ing so that applications are scheduled on platforms where they do best, subject to availability.（一些应用程序可能在某些机器硬件上面执行效率更好，因为CPU架构或者是cache size等）
 - The example in Table 1 shows how the total number of cycles needed to run a fixed number of instructions on a fixed machine capacity drops from 500 to 400 using preferential scheduling. Specifi- cally, although the application NumCrunch runs just as well on Platform1 as on Plat- form2, application MemBench does poorly on Platform2 because of the smaller L2 cache. Thus, the scheduler should give Mem- Bench preference to Platform1.
 
-[[../images/gwp-platform-affinity.png]]
+[[../images/Pasted-Image-20231225104159.png]]
 
 
 - We use a simulated annealing solver that approximates the optimal solution in seconds for workloads of around 100 jobs running on thousands of machines of four different platforms over one month. Although appli- cation developers already mapped major applications to their best platform through manual assignment, we’ve measured 10 to 15 percent potential improvement in most cases where many jobs run on multiple plat- forms. Similarly, users can use GWP data to identify how to colocate multiple applica- tions on a single machine to achieve the best throughput.(本质上这个问题是一个多约束优化问题，使用退火算法计算出了一个近似解决方案，然后通过人工assignment，发现在某些case下面提高10-15%的效率)

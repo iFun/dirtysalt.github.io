@@ -29,7 +29,7 @@ http://storageconference.org/2010/Papers/MSST/Shvachko.pdf @ 2010
 - When an application reads a file, the HDFS client first asks the NameNode for the list of DataNodes that host replicas of the blocks of the file. It then contacts a DataNode directly and requests the transfer of the desired block. （选择任意一个datanode进行交互）
 - When a client writes, it first asks the NameNode to choose DataNodes to host repli-cas of the first block of the file. The client organizes a pipeline from node-to-node and sends the data. When the first block is filled, the client requests new DataNodes to be chosen to host replicas of the next block.
 
-[[../images/hdfs-data-flow.png]]
+[[../images/Pasted-Image-20231225104627.png]]
 
 - Unlike conventional file systems, HDFS provides an API that exposes the locations of a file blocks. This allows applica-tions like the MapReduce framework to schedule a task to where the data are located, thus improving the read perform-ance. （提供API能够知道每个文件block的分布位置，这样在mapreduce时候可以尽可能地locally来访问文件）
 - It also allows an application to set the replication factor of a file. By default a file’s replication factor is three. For criti-cal files or files which are accessed very often, having a higher replication factor improves their tolerance against faults and increase their read bandwidth.（通过增加副本数量的话可以用来提高错误容忍并且提高读带宽，但是同时也会增加写带宽）
@@ -64,7 +64,7 @@ http://storageconference.org/2010/Papers/MSST/Shvachko.pdf @ 2010
 - An HDFS file consists of blocks. When there is a need for a new block, the NameNode allocates a block with a unique block ID and determines a list of DataNodes to host replicas of the block.（每个chunk都是通过master分配id的，并且决定那些datanodes来host这些chunk）
 - The DataNodes form a pipeline, the order of which minimizes the total network distance from the client to the last DataNode. Bytes are pushed to the pipeline as a sequence of packets. The bytes that an application writes first buffer at the client side. After a packet buffer is filled (typically 64 KB), the data are pushed to the pipeline. The next packet can be pushed to the pipeline before receiving the acknowledgement for the previous packets. The number of outstanding packets is limited by the outstanding packets window size of the client.（pipeline实现方式是client首先写到D0，D0一旦接收完成之后就会向D1发送，同时ACK给client。这样client继续发送下一个packet。每个packet占据64KB.当然这里有一个窗口概念（前面说的窗口大小=1），这个窗口的大小也是可以配置的。）
 - After data are written to an HDFS file, HDFS does not pro-vide any guarantee that data are visible to a new reader until the file is closed. If a user application needs the visibility guaran-tee, it can explicitly call the hflush operation. Then the current packet is immediately pushed to the pipeline, and the hflush operation will wait until all DataNodes in the pipeline ac-knowledge the successful transmission of the packet. (写入的数据并不一定保证就可以被看到，除非这个文件关闭了。如果希望可以立刻可见的话，那么可以使用hflush调用。hflush调用的话会等待到所有的datanodes都确认所有的消息才会返回)
-[[../images/hdfs-data-pipeline.png]]
+[[../images/Pasted-Image-20231225103305.png]]
 
 - When a client opens a file to read, it fetches the list of blocks and the locations of each block replica from the NameNode. The locations of each block are ordered by their distance from the reader. When reading the content of a block, the client tries the closest replica first. If the read attempt fails, the client tries the next replica in sequence. A read may fail if the target DataNode is unavailable, the node no longer hosts a replica of the block, or the replica is found to be corrupt when checksums are tested.（client读取文件的时候会获得这个文件所有chunk的位置，从离client最近的chunkserver开始尝试）
 - HDFS permits a client to read a file that is open for writing. When reading a file open for writing, the length of the last block still being written is unknown to the NameNode. In this case, the client asks one of the replicas for the latest length be-fore starting to read its content.（如果这个文件在写的时候同时在读的话，那么client读取到最后一个chunkEOF之后，需要重新询问一个replics当前chunk的长度，这样才能够继续往前读。如果跨越chunk的话，那么可能还需要和NameNode之间进行通信。
@@ -72,7 +72,7 @@ http://storageconference.org/2010/Papers/MSST/Shvachko.pdf @ 2010
 *** Block Placement
 - HDFS estimates the network bandwidth between two nodes by their distance. The distance from a node to its parent node is assumed to be one. A distance between two nodes can be cal- culated by summing up their distances to their closest common ancestor. A shorter distance between two nodes means that the greater bandwidth they can utilize to transfer data.（node和node之间的距离用来评估之间的网络带宽。两个node距离是通常是通过计算两个点到共同祖先的距离。node到switch距离通常计算为1，这只是简单的算法）
 
-[[../images/hdfs-cluster-topology-example.png]]
+[[../images/Pasted-Image-20231225103442.png]]
 
 - HDFS allows an administrator to configure a script that re-turns a node’s rack identification given a node’s address. The NameNode is the central place that resolves the rack location of each DataNode. When a DataNode registers with the NameNode, the NameNode runs a configured script to decide which rack the node belongs to. If no such a script is config-ured, the NameNode assumes that all the nodes belong to a default single rack.(HDFS允许配置脚本来计算两个node之间的距离。对于默认计算的方式就是按照所有的node都在相同的rack下面)
 

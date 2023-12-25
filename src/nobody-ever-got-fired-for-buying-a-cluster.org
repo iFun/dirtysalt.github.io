@@ -28,7 +28,7 @@ While vanilla Hadoop performs poorly in a scale-up configurations, a series of o
 
 这节作者选了几个比较典型的分析jobs，附上input/shuffle/output数据量大小。具体每个job在论文里面有详细的描述。
 
-[[../images/scale-up-vs-out-jobs.png]]
+[[../images/Pasted-Image-20231225104448.png]]
 
 ** Optimizing for scale-up
 
@@ -54,13 +54,13 @@ The key difference from a private cluster is that in the cloud, HDFS is unlikely
 
 可以看到运行在public/private cluster的scale-up方案，性能差别并不是很大(92%)
 
-[[../images/scale-up-vs-out-on-public-cluster.png]]
+[[../images/Pasted-Image-20231225104752.png]]
 
 More importantly, the scale-up configuration when reading data from the network comes close (92%) to that of a scale-up configuration when using SSDs. Hence we believe that with a 10 Gbps NIC, and a scalable stor- age back-end that can deliver high bandwidth, our results from the private cluster also hold for the cloud.
 
 scale-up的问题在于memory access会成为瓶颈，这个时候scale-out就会更加合适。并且随着输入数据量的增大，memory-bound就会成为问题，而这个时候scale-out的优势才会显现出来。
 
-[[../images/scale-up-vs-out-on-tera-sort.png]]
+[[../images/Pasted-Image-20231225103159.png]]
 
 These results tell us two things. First, even with “big memory”, the scale-up configuration can become memory-bound for large jobs. However we would ex- pect this point to shift upwards as DRAM prices continue to fall and multiple terabytes of DRAM per machine be- come feasible. Second, for TeraSort, scale-out begins to be competitive at around the 100 GB mark with current hardware.
 

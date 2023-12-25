@@ -45,7 +45,7 @@ Calcite的架构图如下，可以看到除了优化器还有其他组件：
 - Operator Expression被送入Query Optimizer, 结合Meta信息以及Rules进行优化
 - 最终产生的物理计划Physical Operator Expression被送到Data Processig System
 
-[[../images/apache-calcite-design.png]]
+[[../images/Pasted-Image-20231225103217.png]]
 
 (这个traits可能就是volcano里面说的properties)
 

@@ -9,7 +9,7 @@
 
 以下图为例，9->4->8->1->6->2就是一条增广路径
 
-[[../images/bipartite-max-matching-0.png]] [[../images/bipartite-max-matching-1.png]]
+[[../images/Pasted-Image-20231225103657.png]] [[../images/Pasted-Image-20231225103719.png]]
 
 - (4,8),(1,6)是匹配节点
 - 利用增广路径的话，我们可以增加一对匹配节点（多一条匹配边）

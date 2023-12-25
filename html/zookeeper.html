@@ -102,8 +102,8 @@ zookeeper上的数据组织成为一个类似于文件系统的树(但是实际�
 </p>
 
 
-<div id="orgdc03f37" class="figure">
-<p><img src="../images/zookeeper-znode.png" alt="zookeeper-znode.png" />
+<div id="org0b82df0" class="figure">
+<p><img src="../images/Pasted-Image-20231225104519.png" alt="Pasted-Image-20231225104519.png" />
 </p>
 </div>
 
@@ -185,8 +185,8 @@ In this section, we show how to use the ZooKeeper API to implement more powerful
 <h2 id="org40eb4ab"><span class="section-number-2">5.</span> ZooKeeper Implementation</h2>
 <div class="outline-text-2" id="text-5">
 
-<div id="org9394052" class="figure">
-<p><img src="../images/zookeeper-components.png" alt="zookeeper-components.png" />
+<div id="orgd3de2b7" class="figure">
+<p><img src="../images/Pasted-Image-20231225104400.png" alt="Pasted-Image-20231225104400.png" />
 </p>
 </div>
 
@@ -248,7 +248,7 @@ ZooKeeper does not assume that servers can be Byzantine, but we do employ mechan
 关于zxid
 </p>
 
-<pre class="example" id="orgbbcc12c">
+<pre class="example" id="orgf578def">
 Linearizable writes
   clients send writes to the leader
   the leader chooses an order, numbered by "zxid"
@@ -267,7 +267,7 @@ A few consequences:
 关于API设计
 </p>
 
-<pre class="example" id="org401858e">
+<pre class="example" id="org55b063b">
 ZooKeeper API well tuned to synchronization:
   + exclusive file creation; exactly one concurrent create returns success
   + getData()/setData(x, version) supports mini-transactions
@@ -292,7 +292,7 @@ ZooKeeper is a successful design.
 关于性能似乎也不错
 </p>
 
-<pre class="example" id="org1ad5aea">
+<pre class="example" id="orgd7efe4b">
 Is the resulting performance good?
   Table 1
   High read throughput -- and goes up with number of servers!

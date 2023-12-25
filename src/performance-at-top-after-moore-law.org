@@ -4,7 +4,7 @@ https://www.researchgate.net/publication/341939320_There's_plenty_of_room_at_the
 
 后摩尔定律的时代，来自底层半导体技术的性能改进空间已经非常小了，但是在上层进行性能改进的空间依然非常大。在上层进行性能改进的有三个方面：分别是Softwre, Algorithm, Hardware Arch.
 
-[[../images/performance-at-top-and-bottom.png]]
+[[../images/Pasted-Image-20231225103621.png]]
 
 软件方面：使用执行效率更高的语言比如C/C++，优化好cache locality以及使用好SIMD技术
 

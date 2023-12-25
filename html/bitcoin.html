@@ -62,8 +62,8 @@ The network itself requires minimal structure. Messages are broadcast on a best 
 <h2 id="orgb63f8df"><span class="section-number-2">3.</span> Transactions</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="orgc63744c" class="figure">
-<p><img src="../images/bitcoin-coin-model.png" alt="bitcoin-coin-model.png" />
+<div id="org59c1c3b" class="figure">
+<p><img src="../images/Pasted-Image-20231225103703.png" alt="Pasted-Image-20231225103703.png" />
 </p>
 </div>
 
@@ -97,14 +97,14 @@ A timestamp server works by taking a hash of a block of items to be timestamped 
 </p>
 
 
-<div id="orgecf779c" class="figure">
-<p><img src="../images/bitcoin-ts.png" alt="bitcoin-ts.png" />
+<div id="org369f074" class="figure">
+<p><img src="../images/Pasted-Image-20231225104130.png" alt="Pasted-Image-20231225104130.png" />
 </p>
 </div>
 
 
 <p>
-<img src="../images/bitcoin-latest-blocks.png" alt="bitcoin-latest-blocks.png" /> <img src="../images/bitcoin-trxs-in-block.png" alt="bitcoin-trxs-in-block.png" />
+<img src="../images/Pasted-Image-20231225103623.png" alt="Pasted-Image-20231225103623.png" /> <img src="../images/Pasted-Image-20231225104131.png" alt="Pasted-Image-20231225104131.png" />
 </p>
 
 <p>
@@ -125,15 +125,15 @@ For our timestamp network, we implement the proof-of-work by incrementing a nonc
 </p>
 
 
-<div id="orgc9f0599" class="figure">
-<p><img src="../images/bitcoin-pow-chain.png" alt="bitcoin-pow-chain.png" />
+<div id="org15d14c9" class="figure">
+<p><img src="../images/Pasted-Image-20231225104206.png" alt="Pasted-Image-20231225104206.png" />
 </p>
 </div>
 
 
 
-<div id="org4a98304" class="figure">
-<p><img src="../images/bitcoin-block.png" alt="bitcoin-block.png" />
+<div id="orgfbf350b" class="figure">
+<p><img src="../images/Pasted-Image-20231225104121.png" alt="Pasted-Image-20231225104121.png" />
 </p>
 </div>
 
@@ -192,8 +192,8 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 </p>
 
 
-<div id="org5ccaa91" class="figure">
-<p><img src="../images/bitcoin-trxs-in-block.png" alt="bitcoin-trxs-in-block.png" />
+<div id="org092ffce" class="figure">
+<p><img src="../images/Pasted-Image-20231225104131.png" alt="Pasted-Image-20231225104131.png" />
 </p>
 </div>
 
@@ -211,8 +211,8 @@ The incentive may help encourage nodes to stay honest. If a greedy attacker is a
 </p>
 
 
-<div id="org6a4af96" class="figure">
-<p><img src="../images/bitcoin-merkel-tree.png" alt="bitcoin-merkel-tree.png" />
+<div id="org719aa8f" class="figure">
+<p><img src="../images/Pasted-Image-20231225104904.png" alt="Pasted-Image-20231225104904.png" />
 </p>
 </div>
 
@@ -234,8 +234,8 @@ It is possible to verify payments without running a full network node. A user on
 </p>
 
 
-<div id="org4785b8b" class="figure">
-<p><img src="../images/bitcoin-spv.png" alt="bitcoin-spv.png" />
+<div id="orge821222" class="figure">
+<p><img src="../images/Pasted-Image-20231225104017.png" alt="Pasted-Image-20231225104017.png" />
 </p>
 </div>
 
@@ -253,8 +253,8 @@ As such, the verification is reliable as long as honest nodes control the networ
 </p>
 
 
-<div id="org0f260e0" class="figure">
-<p><img src="../images/bitcoin-trx-detail.png" alt="bitcoin-trx-detail.png" />
+<div id="org9cb52a4" class="figure">
+<p><img src="../images/Pasted-Image-20231225103746.png" alt="Pasted-Image-20231225103746.png" />
 </p>
 </div>
 
@@ -288,7 +288,7 @@ As an additional firewall, a new key pair should be used for each transaction to
 第一个是如果q=0.1/0.3, 那么等待z个网络之后被反超的概率分布。q=0.1大约在3个blocks出来之后被反超的概率就是0.013，这个就非常小了。而q=0.3则需要等到大约15个blocks出来。
 </p>
 
-<pre class="example" id="orgc58e54a">
+<pre class="example" id="orgd6d3b95">
 q=0.1
  z=0 P=1.0000000
  z=1 P=0.2045873
@@ -320,7 +320,7 @@ q=0.3
 换个角度，如果我们希望被反超的概率P&lt;0.01的话，那么需要等待多少个blocks出来
 </p>
 
-<pre class="example" id="org782f1be">
+<pre class="example" id="org887333c">
 P &lt; 0.001
  q=0.10 z=5
  q=0.15 z=8

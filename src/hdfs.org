@@ -9,7 +9,7 @@
 - HadoopOperations < Storage < TWiki https://www.opensciencegrid.org/bin/view/Storage/HadoopOperations
 如果hdfs文件系统出现损坏的话，可以在webpage上面看到报警提示
 
-[[../images/hdfs-filesystem-corruption-and-missing-blocks.png]]
+[[../images/Pasted-Image-20231225104138.png]]
 
 或者可以通过运行命令hadoop dfsadmin -report看到系统状况
 #+BEGIN_EXAMPLE

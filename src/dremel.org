@@ -34,7 +34,7 @@
 ** Background
 行式和列式存储
 
-[[../images/dremel-columnar-representation.png]]
+[[../images/Pasted-Image-20231225103340.png]]
 
 ** Data Model
 
@@ -51,9 +51,9 @@ https://github.com/protocolbuffers/protobuf
 - Definition levels.
 后面以下图为例
 
-[[../images/dremel-sample-record.png]]
+[[../images/Pasted-Image-20231225103945.png]]
 
-[[../images/dremel-sample-column.png]]
+[[../images/Pasted-Image-20231225104454.png]]
 
 所谓r的意思就是说，最近包含这个value，并且repeat的field，是第几个。0表示record开始，有特殊意义。我们以Name.Language.Country为例。
 - 第一个us是开始的记录，所以为r==0
@@ -81,7 +81,7 @@ r,d的定义差不多看懂了：
 
 类似搜索引擎的树形架构，特征就是fanout比较大，可以做到特别高的并行度。这种树形结构，在一定程度上是独立的：每个节点上可以自己解析物理计划，以及判断是否需要拆分，当然也可以强制拆分。关于树形结构的fanout层级和个数，在实验那节有介绍。
 
-[[../images/dremel-tree-architecture.png]]
+[[../images/Pasted-Image-20231225104247.png]]
 
 Query dispatcher. Dremel is a multi-user system, i.e., usually several queries are executed simultaneously. A query dispatcher schedules queries based on their priorities and balances the load. Its other important role is to provide fault tolerance when one server becomes much slower than others or a tablet replica becomes un-reachable. （一方面可以用来处理优先级以及平衡负载，另外一方面可以用来监控哪些server运行比较慢来完成容错处理。文中提到的模型类似于threadpool机制，每个server上面启动多少个thread，每个thread相当于一个slot。和MR差别就是，因为这个thread可以执行任何工作，所以可以把thread看作slot，而在MR里面只能将process看做slot）
 
@@ -103,11 +103,11 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 
 下图是行/列解析之间差异，可以看到如果选择10个列，列解析优势非常明显。按照这个趋势，估计要到上百列，可能行/列解析代价才会接近。
 
-[[../images/dremel-experiment-0.png]]
+[[../images/Pasted-Image-20231225104210.png]]
 
 对于了MR record/column oriented以及Dremel的差异，可以看到MR改成了列式之后性能提升一个量级，而Dremel比MR column又提升一个量级
 
-[[../images/dremel-experiment-1.png]]
+[[../images/Pasted-Image-20231225104148.png]]
 
 fanout对比了2/3/4-levels:
 - 2L: 1:2900
@@ -122,12 +122,12 @@ Q2: SELECT country, SUM(item.amount) FROM T2 GROUP BY country
 Q3: SELECT domain, SUM(item.amount) FROM T2 WHERE domain CONTAINS ’.net’ GROUP BY domain
 #+END_EXAMPLE
 
-[[../images/dremel-experiment-2.png]]
+[[../images/Pasted-Image-20231225104245.png]]
 
 ** Observations
 Dremel scans quadrillions of records per month. Figure 15 shows the query response time distribution in a typical monthly workload of one Dremel system, on a logarithmic scale. As the figure indi-cates, most queries are processed under 10 seconds, well within the interactive range. Some queries achieve a scan throughput close to 100 billion records per second on a shared cluster, and even higher on dedicated machines. （可以看到大部分的读取时间都非常小，没有长尾）
 
-[[../images/dremel-query-response-time-distribution.png]]
+[[../images/Pasted-Image-20231225104813.png]]
 
 - Scan-based queries can be executed at interactive speeds on disk-resident datasets of up to a trillion records.
 - Near-linear scalability in the number of columns and servers is achievable for systems containing thousands of nodes.

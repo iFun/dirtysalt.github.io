@@ -100,7 +100,7 @@ perf-map-agent地址在这 https://github.com/jvm-profiling-tools/perf-map-agent
 
 最后跑下来火焰图也是这样的，大部分时间都在 `org.apache.http.impl.conn.Wire:::wire` 这个函数上，看来这次应该能确定问题在这了。
 
-[[../images/high-cpu-utilization-by-log4j-0.png]]
+[[../images/Pasted-Image-20231225103209.png]]
 
 ** Wire::wire函数实现
 

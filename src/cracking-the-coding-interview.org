@@ -542,7 +542,7 @@ public:
 #+END_SRC
 
 *** Bit Manipulation
-[[../images/bitop.png]]
+[[../images/Pasted-Image-20231225104257.png]]
 
 Questions:
 - 5.1 You are given two 32-bit numbers, N and M, and two bit positions, i and j Write a method to set all bits between i and j in N equal to M. Input: N = 10000000000, M = 10101, i = 2, j = 6. Output: N = 10001010100

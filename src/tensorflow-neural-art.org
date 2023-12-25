@@ -74,8 +74,8 @@ def adjust_image(input_path, output_path, limit = 640):
 -----
 几张我们处理的照片对比.
 
-[[../images/tf-neural-art-getturban0.jpg]] [[../images/tf-neural-art-getturban.jpg]]
+[[../images/Pasted-Image-20231225105102.png]] [[../images/Pasted-Image-20231225105246.png]]
 
-[[../images/tf-neural-art-the-scream0.jpg]] [[../images/tf-neural-art-the-scream.jpg]]
+[[../images/Pasted-Image-20231225105350.png]] [[../images/Pasted-Image-20231225105423.png]]
 
-[[../images/tf-neural-art-udnie0.jpg]] [[../images/tf-neural-art-udnie.jpg]]
+[[../images/Pasted-Image-20231225105057.png]] [[../images/Pasted-Image-20231225105228.png]]

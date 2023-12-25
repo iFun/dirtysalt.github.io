@@ -15,7 +15,7 @@ b. Force Policy: 对于那些committed txn是否一定要把内容写回到数�
 
 为了能用ARIES，我们在WAL上还需要引入LSN(log sequence number)这个东西，而且这个东西还不仅仅是在WAL里面使用，还需要记录在Page以及其他地方维护：page写入到磁盘之前必须保证 pageLSN  <= flushedLSN. 关于commit/abort的具体操作这里就不写了。
 
-[[../images/cmudb-log-sequence-numbers.png]]
+[[../images/Pasted-Image-20231225103543.png]]
 
 理论上Checkpoint内部数据必须是完全一致的，但是这样会阻塞其他事务，所以常使用fuzzy checkpoint的技术。简单地说就是内部数据可能不一致，所以不能用来走replica, 但是却可以用来进行恢复。做Fuzzy ckpt的时候，不仅仅需要数据备份之外，还需要记录当前正在运行那些txn(ATT, Active Txn Table)以及哪些page被改写了(DPT, Dirty Page Table, recLSN > ckpt LSN). 这样在恢复的时候需要对这些ATT以及DPT做特殊处理。
 

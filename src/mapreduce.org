@@ -37,7 +37,7 @@ The Map invocations are distributed across multiple machines by automatically pa
 
 Reduce invoca-tions are distributed by partitioning the intermediate key space into R pieces using a partitioning function (e.g.,hash(key) mod R). The number of partitions (R) and the partitioning function are specified by the user.（reducer的实例个数可以指定，分布在各个机器上面处理落到这个reducer上面所有的key/value pairs。其中partition函数用户可以指定）
 
-[[../images/mapreduce-execution-overview.png]]
+[[../images/Pasted-Image-20231225103252.png]]
 
 
 整个工作逻辑是：
@@ -184,11 +184,11 @@ Users have found the counter facility useful for sanity checking the behavior of
   - extraction of properties of web pages for new exper-iments and products (e.g. extraction of geographi-cal locations from a large corpus of web pages for localized search), and
   - large-scale graph computations.（大规模图计算）
 
-[[../images/mapreduce-instances-overtime.png]]
+[[../images/Pasted-Image-20231225104422.png]]
 
 在2004.9月份达到了900个mapreduce程序。下面是2004.8里面部分mapreduce程序运行数据。
 
-[[../images/mapreduce-jobs-run.png]]
+[[../images/Pasted-Image-20231225103629.png]]
 
 改写了线上索引程序，处理文档大小在20TB，大约使用了5~10个mapreduce程序。带来效果是这样的：
 - 代码少了很多，比如很多错误恢复代码。（通信代码应该没有太大节省，因为google库本身就应该比较完善）。其中一个计算过程的代码从3800掉至700行。

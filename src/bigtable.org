@@ -16,7 +16,7 @@
 ** Data Model
 - A Bigtable is a sparse, distributed, persistent multi-dimensional sorted map. The map is indexed by a row key, column key, and a timestamp; each value in the map is an uninterpreted array of bytes.（本质上是稀疏的，分布式，可持久化的多维sorted-map。通过row-key和column-key找到对应的cell，在这个cell上面通过timestamp来从多维数据中取出一维） (row:string, column:string, time:int64) => string
 
-[[../images/bigtable-data-model.png]]
+[[../images/Pasted-Image-20231225104604.png]]
 
 *** Rows
 - The row keys in a table are arbitrary strings (currently up to 64KB in size, although 10-100 bytes is a typical size for most of our users). (rowkey范围限制在64KB，但是10-100bytes是一个典型值)
@@ -62,7 +62,7 @@
 - client直接和tablet server进行交互。因为client并不依赖于master来进行location定位，所以大部分时候不需要和master交互，因此master负载非常轻。
 
 *** Tablet Location
-[[../images/bigtable-tablet-location-hierarchy.png]]
+[[../images/Pasted-Image-20231225103529.png]]
 
 - root tablet是比较特殊的METADATA tablet从来不进行分裂
 - METADATA tablet是kv结构并且是有序的。其中k是table identifier+end row key，v则是对应志向的位置（位置信息应该都是GFS的地址）

@@ -116,13 +116,13 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 - branchless只有在 `bits = 8` 的情况下面比bitmask好一点，在 `bits = 16` 的情况下面比bitmask好很多。
 - 但是如果在这里增加一次判断的话，造成的额外开销会比较大。
 
-[[../images/filter-range-optimization-0.jpg]]
+[[../images/Pasted-Image-20231225105112.png]]
 
 在32bit/64bit级别上，则对比了3个版本，有这么几个发现：
 1. branchless和bitmask差别和上麦差不多，branchless只有在 `bits=16` 的时候才更好。
 2. 32bit上，似乎只有 `bits=1` 的情况会稍差写，其他情况都比bitmask好。
 3. 64bit上，似乎要满足 `bits>=8` 才会比bitmask好。
 
-[[../images/filter-range-optimization-1.jpg]]
+[[../images/Pasted-Image-20231225105108.png]]
 
-[[../images/filter-range-optimization-2.jpg]]
+[[../images/Pasted-Image-20231225105124.png]]

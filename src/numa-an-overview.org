@@ -42,7 +42,7 @@ However, there are multiple challenges in coding for noncache-coherent NUMA syst
 ourselves here to the common cache-coherent NUMA systems.（进程决定如何将内存分配给NUMA节点成为NUMA放置，这个只会影响到性能而不会影响到正确性。
 但是对于noncache-coherent NUMA系统来说是不成立的，因为对于不同节点写入顺序不同会造成结果不同。我们这里只考虑cache-coherent NUMA系统)
 
-[[../images/numa-illustrated.png]]
+[[../images/Pasted-Image-20231225103835.png]]
 
 ** HOW OPERATING SYSTEMS HANDLE NUMA MEMORY
 
@@ -97,7 +97,7 @@ recently used pages trying to free a certain number of pages. Counters that show
 of memory in various nodes/zones can also be seen in /proc/zoneinfo. Figure 2 shows types of
 memory in a zone/node.（看上去每个zone都是独立管理内存区域）
 
-[[../images/numa-linux-zone.png]]
+[[../images/Pasted-Image-20231225104232.png]]
 
 ** MEMORY POLICIES
 

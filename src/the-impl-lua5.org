@@ -21,7 +21,7 @@ Lua 用一种称为upvalue 的结构来实现闭包。对任何外层局部变�
 部变量来说，该链表至少包含一个与其对应的入口（upvalue）。一旦某个关闭的
 upvalue 不再被任何闭包所引用，那么它的存储空间就立刻被回收。
 
-[[../images/lua-upvalue-for-closure.png]]
+[[../images/Pasted-Image-20231225104605.png]]
 
 ----------
 
@@ -52,4 +52,4 @@ upvalue 不再被任何闭包所引用，那么它的存储空间就立刻被回
 不会等到下一个分派周期（while-switch 循环）。图6 显示了一个Lua 源码和字节
 码的例子。注意观察上述无条件跳转指令紧随分支跳转指令的情况。
 
-[[../images/lua-branching-opcode.png]]
+[[../images/Pasted-Image-20231225104708.png]]

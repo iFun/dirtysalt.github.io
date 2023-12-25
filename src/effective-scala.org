@@ -45,7 +45,7 @@ The collections library is large: in addition to an elaborate hierarchy — the 
 
 Iterable[T] 是所有可遍历的集合，它提供了迭代的方法(foreach)。Seq[T] 是有序集合，Set[T]是数学上的集合(无序且不重复)，Map[T]是关联数组，也是无序的。
 
-[[../images/scala-collection-hierarchy-simple.png]]
+[[../images/Pasted-Image-20231225104640.png]]
 
 
 - Iterable[T] is any collection that may be iterated over, they provide an iterator method (and thus foreach).

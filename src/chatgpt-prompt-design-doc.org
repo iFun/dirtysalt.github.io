@@ -28,12 +28,12 @@ Check your settings. The temperature and top_p settings control how deterministi
 
 **Factual responses**
 
-[[../images/chat-gpt-prompt-design-doc-0.png]]
+[[../images/Pasted-Image-20231225103630.png]]
 
 **Conversation**
 
-[[../images/chat-gpt-prompt-design-doc-1.png]]
+[[../images/Pasted-Image-20231225103533.png]]
 
 **Transformation**
 
-[[../images/chat-gpt-prompt-design-doc-2.png]]
+[[../images/Pasted-Image-20231225103427.png]]

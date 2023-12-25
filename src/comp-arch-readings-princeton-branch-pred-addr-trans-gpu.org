@@ -14,9 +14,9 @@ Hardware (SPARC v8, x86, PowerPC)
 - A memory management unit (MMU) walks the page tables and reloads the TLB
 - If a missing (data or PT) page is encountered during the TLB reloading, MMU gives up and signals a Page-Fault exception for the original instruction
 
-[[../images/comp-arch-readings-princeton-branch-pred-addr-trans-gpu-0.png]]
+[[../images/Pasted-Image-20231225103946.png]]
 
-[[../images/comp-arch-readings-princeton-branch-pred-addr-trans-gpu-1.png]]
+[[../images/Pasted-Image-20231225103928.png]]
 
 ----------
 
@@ -25,6 +25,6 @@ GPU结构看上去有点类似一个多线程的SIMD处理器（单核视角）�
 https://www.nvidia.com/content/PDF/fermi_white_papers/NVIDIA_Fermi_Compute_Architecture_Whitepaper.pdf
 
 
-[[../images/comp-arch-readings-princeton-branch-pred-addr-trans-gpu-2.png]]
+[[../images/Pasted-Image-20231225104038.png]]
 
-[[../images/comp-arch-readings-princeton-branch-pred-addr-trans-gpu-3.png]]
+[[../images/Pasted-Image-20231225104056.png]]

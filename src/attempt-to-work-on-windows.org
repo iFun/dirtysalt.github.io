@@ -37,7 +37,7 @@ export MSYS=winsymlinks:lnk
 
 打开WSL环境下面的Java项目没啥问题，甚至还可以使用WSL里面的JDK，这个真的是太方便了。遇到的唯一问题就是，maven的settings.xml文件我使用的是WSL下面的软链接，这个intellij没有识别，需要使用WSL下面的真实路径。
 
-[[../images/attempt-move-work-to-windows.png]]
+[[../images/Pasted-Image-20231225103446.png]]
 
 WSL下面的Python项目稍微有点麻烦，大致是两个问题：
 1. 没有办法发现WSL下面的Python环境，只能使用Windows下面的Python环境。这个可以理解，毕竟Windows/Linux下面的Python二进制差别是非常大的。

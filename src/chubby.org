@@ -184,7 +184,7 @@ KeepAlive reply spent in flight, and the rate at which the master's clock is adv
 - If a client holds a handle H on a node and any oper-ation on H fails because the associated session has ex-pired, all subsequent operations on H (except Close() andPoison()) will fail in the same way. Clients can use this to guarantee that network and server outages cause only a suffix of a sequence of operations to be lost, rather than an arbitrary subsequence, thus allowing complex changes to be marked as committed with a final write.
 
 *** Fail-overs
-[[../images/chubby-grace-period-in-master-fail-over.png]]
+[[../images/Pasted-Image-20231225104335.png]]
 
 - When a master fails or otherwise loses mastership, it dis-cards its in-memory state about sessions, handles, and locks. The authoritative timer for session leases runs at the master, so until a new master is elected the session lease timer is stopped; this is legal because it is equiva-lent to extending the client’s leas.(如果master fail的话那么会丢弃内存内部的状态，其lease也会停止计时)
 - If a master election occurs quickly, clients can contact the new master before their local (approximate) lease timers expire. If the elec-tion takes a long time, clients flush their caches and wait for the grace period while trying to find the new master. Thus the grace period allows sessions to be maintained across fail-overs that exceed the normal lease timeout.(如果master在grace period之前选举出来的话，那么client就可以在session断开之前连接上master.但是如果选举使用了很长时间的话，那么session就断开了，对于client来说的话就需要重新进行连接。因此引入grace period的意图就是为能够在master failover期间依然保持session).
@@ -257,7 +257,7 @@ newly replaced replica without placing load on replicas that are in service.
 
 ** Use, surprises and design errors
 *** Use and behaviour
-[[../images/chubby-statistics.png]]
+[[../images/Pasted-Image-20231225103645.png]]
 
 - The following table gives statistics taken as a snapshot of a Chubby cell; the RPC rate was a seen over a ten-minute period. The numbers are typical of cells in Google. Several things can be seen:(论文中给出了一个cell使用统计情况，RPC一段时间内观察的数据):
   - 大部分文件都用来做name service.

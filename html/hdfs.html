@@ -49,15 +49,15 @@
 </p>
 
 
-<div id="org879d6fb" class="figure">
-<p><img src="../images/hdfs-filesystem-corruption-and-missing-blocks.png" alt="hdfs-filesystem-corruption-and-missing-blocks.png" />
+<div id="org9505f6a" class="figure">
+<p><img src="../images/Pasted-Image-20231225104138.png" alt="Pasted-Image-20231225104138.png" />
 </p>
 </div>
 
 <p>
 或者可以通过运行命令hadoop dfsadmin -report看到系统状况
 </p>
-<pre class="example" id="org87271d2">
+<pre class="example" id="org55990d4">
 dp@dp1:~$ hadoop dfsadmin -report
 Configured Capacity: 487173353816064 (443.08 TB)
 Present Capacity: 466468596971008 (424.25 TB)
@@ -72,7 +72,7 @@ Missing blocks: 1
 <p>
 按照提示可以运行hadoop fsck来检查整个文件系统。首先使用hadoop fsck /察看整个文件系统的状态如何。如果某个文件出现问题的话那么会报告
 </p>
-<pre class="example" id="org20ad10c">
+<pre class="example" id="orgd27644f">
 /hbase/.corrupt/dp18.umeng.com%3A60020.1349065853563: CORRUPT block blk_6229461233186357508
 /hbase/.corrupt/dp18.umeng.com%3A60020.1349065853563:  Under replicated blk_6229461233186357508_18529950. Target Replicas is 3 but found 1 replica(s).
 </pre>
@@ -83,7 +83,7 @@ Missing blocks: 1
 <p>
 我们可以进一步察看这个文件的状态。使用下面的命令 hadoop fsck <i>hbase</i>.corrupt/dp18.umeng.com%3A60020.1349065853563 -files -locations -blocks -racks
 </p>
-<pre class="example" id="org9448400">
+<pre class="example" id="orgc8fce5d">
 dp@dp2:~$ hadoop fsck /hbase/.corrupt/dp18.umeng.com%3A60020.1349065853563 -files -locations -blocks -racks
 FSCK started by dp (auth:SIMPLE) from /10.18.10.55 for path /hbase/.corrupt/dp18.umeng.com%3A60020.1349065853563 at Mon Oct 08 15:17:07 CST 2012
 /hbase/.corrupt/dp18.umeng.com%3A60020.1349065853563 66050 bytes, 1 block(s):
@@ -159,7 +159,7 @@ HDFS文件系统的操作步骤主要如下：
 <p>
 以 com.dirlt.java.hdfs.GetFS 为例，如果使用java -cp方式运行的话，那么结果如下
 </p>
-<pre class="example" id="org472afb9">
+<pre class="example" id="org85231b7">
 fs.default.name = file:///
 uri = file:///
 uri = file:///
@@ -168,7 +168,7 @@ uri = file:///
 <p>
 而如果以hadoop来运行的话，因为configuration首先会加载conf/core-site.xml里面存在fs.default.name，因此运行结果如下
 </p>
-<pre class="example" id="orgfbda5f1">
+<pre class="example" id="org06abf36">
 ➜  hdfs git:(master) ✗ export HADOOP_CLASSPATH=./target/classes
 ➜  hdfs git:(master) ✗ hadoop com.dirlt.java.hdfs.GetFS
 fs.default.name = hdfs://localhost:9000
@@ -231,7 +231,7 @@ uri = file:///
 当时的情况是增加了datanode的处理线程数目但是没有重启regionserver.怀疑原因可能是文件句柄数量不够，重启regionserver之后恢复正常。
 </p>
 
-<pre class="example" id="org20d4355">
+<pre class="example" id="org65d9e1c">
 2013-06-05 03:45:16,866 FATAL org.apache.hadoop.hbase.regionserver.wal.HLog: Could not append. Requesting close of hlog
 java.io.IOException: All datanodes 10.11.0.41:50010 are bad. Aborting...
         at org.apache.hadoop.hdfs.DFSClient$DFSOutputStream.processDatanodeError(DFSClient.java:3088)

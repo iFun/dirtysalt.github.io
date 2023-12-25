@@ -2,7 +2,7 @@
 
 非常有趣的一个复古终端实现, 看上去非常有感觉. 就是一屏显示的字符数有点少, 不太适合现代编程.
 
-[[../images/cool-retro-term-00.png]]
+[[../images/Pasted-Image-20231225104057.png]]
 
 项目地址是 https://github.com/Swordfish90/cool-retro-term.
 

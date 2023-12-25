@@ -8,7 +8,7 @@ http://highscalability.com/blog/2013/7/8/the-architecture-twitter-uses-to-deal-w
 
 twitter timeline 整体架构如下图：
 
-[[../images/timeline-at-scale-in-twitter.png]]
+[[../images/Pasted-Image-20231225104537.png]]
 
 按照功能分成了很多services, 每个service由不同的service group来管理：Timeline Service, Tweet Service, User Service, Social Graph Service, 这些service可以说是见名知意。
 
@@ -94,7 +94,7 @@ high fanout是因为名人产生的，他们有很多的粉丝。这个问题的
 Problem is for large cardinality graphs. @ladygaga has 31 million followers. @katyperry has 28 million followers. @justinbieber has 28 million followers. @barackobama has 23 million followers.
 #+END_QUOTE
 
-[[../images/timeline-at-scale-ts.png]]
+[[../images/Pasted-Image-20231225103634.png]]
 
 根据上面一节的分析，Search/Pull可以认为是逆操作，所以对于high fanout tweet, 可以使用search不是pull模型。这样taylor swift发推就不是问题了。
 

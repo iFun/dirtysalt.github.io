@@ -13,7 +13,7 @@ https://oi-wiki.org/graph/euler/
 4. 那么将e(x->..->x)替换成为这个节点x
 5. 跳转回2，直到所有路径都被选择完
 
-[[../images/euler-hierholzer-algorithm.png]]
+[[../images/Pasted-Image-20231225104653.png]]
 
 原理比较好理解，但是我始终没有想到比较好的数据结构，因为每次选择出来回路需要覆盖回去。如果不考虑这个部分的实现，
 算法复杂度好像还可以，大约是在O(N)左右。

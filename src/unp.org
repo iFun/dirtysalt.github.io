@@ -1402,7 +1402,7 @@ struct tcp_header_t{
 #todo:
 
 *** TCP状态
-[[../images/tcp-status-transmission.png]]
+[[../images/Pasted-Image-20231225103615.png]]
 
 注意这里的图表示和TCP/IP详解v1里面的图有点不同，少了两条通路
 - SYN_RCVD->FIN_WAIT1,TCP/IPv1可以直接发送FIN分节。就是假设一个client连接上但是没有完成三次握手但是放在incomplete queue里面，然后服务器主动将这个连接断开。
@@ -1414,7 +1414,7 @@ struct tcp_header_t{
 
 **** 连接的建立和终止
 
-[[../images/tcp-connection-flow.jpg]]
+[[../images/Pasted-Image-20231225104955.png]]
 
 首先服务器必须准备好接受外来的连接，这个过程称为被动打开(passive open),通常包括socket,bind,listen,accept这4个步骤。
 而客户端通过调用socket,connect来链接服务端，这个过程称为主动打开(active open).建立连接的过程大致是这样的，下面我们使用

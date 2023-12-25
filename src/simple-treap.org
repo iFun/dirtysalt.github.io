@@ -98,4 +98,4 @@ def test_pprint_tree():
 
 #+END_SRC
 
-[[../images/treap-visualization.png]]
+[[../images/Pasted-Image-20231225104805.png]]

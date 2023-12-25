@@ -52,7 +52,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 - 幸存者乐园 s0/s1(from/to)
 - 终身园 old generation
 
-[[../images/java-gc-gen.png]]
+[[../images/Pasted-Image-20231225104500.png]]
 
 关于Major/Minor GC:
 - 新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，因为Java对象大多都具备朝生夕灭的特性，所以Minor GC非常频繁，一般回收速度也比较快。
@@ -170,7 +170,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 -XX:+UseZGC 使用 ZGC 垃圾回收器
 #+END_EXAMPLE
 
-[[../images/jvm-gc-options-and-effects.jpg]]
+[[../images/Pasted-Image-20231225105340.png]]
 
 ----------
 

@@ -12,7 +12,7 @@ http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-f
 - Latency is VERY evil
 
 ** The Basic Glue
-[[../images/the-anatomy-of-google-architecture-basic-glue.png]]
+[[../images/Pasted-Image-20231225104529.png]]
 
    1. Exterior Network (Perimeter Architecture) （外部接入层）
    2. Data Centre（数据中心）
@@ -22,7 +22,7 @@ http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-f
    6. Interior Network Architecture（内部网络架构）
 
 *** Exterior Network
-[[../images/google-architecture-exterior-network.png]]
+[[../images/Pasted-Image-20231225104456.png]]
 
 - DNS Load Balanced splits traffic (country, .com multiple DNS, other X1) to FW
 - Firewall filters traffic (http/s, smtp,pop etc)
@@ -45,7 +45,7 @@ http://www.slideshare.net/hasanveldstra/the-anatomy-of-the-google-architecture-f
 - MDCs can also be deployed autonomously at the Perimeter (stand alone). MDC可以独立部署
 
 *** Rack
-[[../images/google-architecture-rack.png]]
+[[../images/Pasted-Image-20231225104430.png]]
 
 - Mini Server Size
   - Old Servers are Custom 1U
@@ -113,7 +113,7 @@ Software:
 - ipvs (ip virtual server)
 
 ** The Major Glue
-[[../images/the-anatomy-of-google-architecture-major-glue.png]]
+[[../images/Pasted-Image-20231225104200.png]]
 
 - Google File System Architecture - GFS II
 - Google Database - Bigtable
@@ -152,7 +152,7 @@ saw --program code.szl --workqueue testing
 #+END_EXAMPLE
 
 ** BUILD YOUR OWN GOOGLE
-[[../images/the-open-source-google-stack.png]]
+[[../images/Pasted-Image-20231225104010.png]]
 
 - Google PROFITS US $16M A DAY
 - “Libraries are the predominant way of building programs”

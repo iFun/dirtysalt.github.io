@@ -30,14 +30,14 @@ Increased variability is also due to several hardware trends:
     - If a user request must collect responses from 100 such servers in parallel, then 63% of user requests will take more than one second (marked "x" in the figure).（如果需要请求100个服务的话，那么只有63%的概率能够在1s内返回） (0.99 ^^ 100 = 0.63)
     - Even for services with only one in 10,000 requests experiencing more than one-second latencies at the single-server level, a service with 2,000 such servers will see almost one in five user requests taking more than one second (marked "o" in the figure).（如果99.99%里面最大是1s的话，如果在2000台规模的话，那么也有1/5的请求不能够正常返回）
 
-[[../images/tail-at-scale-latency-amplified-at-service-level.png]]
+[[../images/Pasted-Image-20231225104506.png]]
 
 - Table 1 lists measurements from a real Google service that is logically similar to this idealized scenario;
   - root servers distribute a request through intermediate servers to a very large number of leaf servers. The table shows the effect of large fan-out on latency distributions.
   - The 99th-percentile latency for a single random request to finish, measured at the root, is 10ms. However, the 99th-percentile latency for all requests to finish is 140ms, and the 99th-percentile latency for 95% of the requests finishing is 70ms, meaning that waiting for the slowest 5% of the requests to complete is responsible for half of the total 99%-percentile latency.
   - Techniques that concentrate on these slow outliers can yield dramatic reductions in overall service performance.
 
-[[../images/tail-at-scale-fanout-latency.png]]
+[[../images/Pasted-Image-20231225103452.png]]
 
 - Overprovisioning of resources, careful real-time engineering of software, and improved reliability can all be used at all levels and in all components to reduce the base causes of variability.
 
@@ -79,7 +79,7 @@ Interactive response-time variability can be reduced by ensuring interactive req
 - There is a brief window of one average network message delay where both servers may start executing the request while the cancellation messages are both in flight to the other server. A common case where this situation can occur is if both server queues are completely empty. It is useful therefore for the client to introduce a small delay of two times the average network message delay (1ms or less in modern data-center networks) between sending the first request and sending the second request.（但是上面方法如果在queue都比较空的时候会造成两个server都在计算，两个server都发送取消信息。解决办法是client在等待一小段时间之后再次发送）
 
 *** Experiments
-[[../images/tail-at-scale-read-latency-comparision.png]]
+[[../images/Pasted-Image-20231225104521.png]]
 
 - Google's implementation of this technique in the context of its cluster-level distributed file system is effective at reducing both median and tail latencies.
 - Table 2 lists the times for servicing a small read request from a BigTable where the data is not cached in memory but must be read from the underlying file system; each file chunk has three replicas on distinct machines.

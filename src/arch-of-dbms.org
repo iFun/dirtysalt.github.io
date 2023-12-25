@@ -14,7 +14,7 @@ For a number of reasons, the lessons of database systems architec- ture are not 
 3. Transaction Storage Manager
 4. Shared Components & Utilities
 
-[[../images/main-components-of-dbms.png]]
+[[../images/Pasted-Image-20231225104610.png]]
 
 ** Process Models
 

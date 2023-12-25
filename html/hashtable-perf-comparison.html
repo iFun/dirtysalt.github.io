@@ -67,7 +67,7 @@ ska::flat_hash_map 源代码地址是在这里 <a href="https://github.com/skaru
 <li>run_insert_random_ck 表示CK</li>
 </ul>
 
-<pre class="example" id="orgcc3ec15">
+<pre class="example" id="orgfb5416c">
 -----------------------------------------------------------------------------------
 Benchmark                                         Time             CPU   Iterations
 -----------------------------------------------------------------------------------
@@ -107,7 +107,7 @@ run_insert_random_ck/65536000/960000000  3743974165 ns   3743242838 ns          
 空间上看，CK有点低
 </p>
 
-<pre class="example" id="org4badb52">
+<pre class="example" id="org845f9e2">
 run_insert_random/65536000/960            219113702 ns    219081575 ns            3
 run_insert_random_ska/65536000/960        304808498 ns    304779963 ns            2
 run_insert_precompute/65536000/960        234825202 ns    234803423 ns            3
@@ -174,7 +174,7 @@ run_insert_random_ck: hash set size = 960, load factor = 0.234375
 空间上看, ck/ska都比较低
 </p>
 
-<pre class="example" id="org339677b">
+<pre class="example" id="orgdcfe0e7">
 run_insert_random/65536000/96000          322532514 ns    322502376 ns            2
 run_insert_random_ska/65536000/96000      906551339 ns    906459594 ns            1
 run_insert_precompute/65536000/96000      270961498 ns    270920370 ns            3
@@ -240,7 +240,7 @@ run_insert_random_ck: hash set size = 96000, load factor = 0.366211
 空间上看, ck/ska依然比较低
 </p>
 
-<pre class="example" id="orgb5222f5">
+<pre class="example" id="orgbe2efaa">
 run_insert_random/65536000/9600000       2223202526 ns   2222753516 ns            1
 run_insert_random_ska/65536000/9600000   2044231505 ns   2044013964 ns            1
 run_insert_precompute/65536000/9600000   1086953992 ns   1086852808 ns            1
@@ -307,7 +307,7 @@ run_insert_random_ck: hash set size = 9589629, load factor = 0.285793
 空间上看，此时内存分配比较多，大家在在内存分配上都比较保守
 </p>
 
-<pre class="example" id="orgd322b6b">
+<pre class="example" id="org9da9b1f">
 run_insert_random/65536000/960000000     6454115631 ns   6453461530 ns            1
 run_insert_random_ska/65536000/960000000 6683883384 ns   6682989324 ns            1
 run_insert_precompute/65536000/960000000 3963008998 ns   3962379163 ns            1
@@ -424,8 +424,8 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 </p>
 
 
-<div id="org3fcc9e2" class="figure">
-<p><img src="../images/hashtable-perf-comparison.jpg" alt="hashtable-perf-comparison.jpg" />
+<div id="org4824182" class="figure">
+<p><img src="../images/Pasted-Image-20231225105223.png" alt="Pasted-Image-20231225105223.png" />
 </p>
 </div>
 
@@ -438,14 +438,14 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 </ol>
 
 
-<div id="org07b04cc" class="figure">
-<p><img src="../images/prefetchers-101.jpg" alt="prefetchers-101.jpg" />
+<div id="orga8aa43b" class="figure">
+<p><img src="../images/Pasted-Image-20231225105126.png" alt="Pasted-Image-20231225105126.png" />
 </p>
 </div>
 
 
-<div id="org4477860" class="figure">
-<p><img src="../images/kernel-software-prefetching.jpg" alt="kernel-software-prefetching.jpg" />
+<div id="orgdd4dd8f" class="figure">
+<p><img src="../images/Pasted-Image-20231225105150.png" alt="Pasted-Image-20231225105150.png" />
 </p>
 </div>
 </div>

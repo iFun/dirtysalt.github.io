@@ -6,8 +6,8 @@
 
 实现也比较容易理解，我贴一下论文里面的伪代码。下面是插入的过程，它这个理论是要求插入的两个位置 h1(x) xor h2(x) = fingerprint(x). 这样根据一个bucket可以算出另外一个bucket. 查询的时候，只需要同时去这两个bucket里面看看有没有就行。如果使用16bit的fingerprint的话，那么bucket设置成为16也还能使用SIMD来加速匹配。删除也比较容易，直接从bucket里面清空就好(是不是0x0可以作为特殊的deleted fingerprint?)
 
-[[../images/cuckoo-filter-insert.png]]
+[[../images/Pasted-Image-20231225103330.png]]
 
-[[../images/cuckoo-filter-lookup-delete.png]]
+[[../images/Pasted-Image-20231225103833.png]]
 
 交换期间许多value在它们应该所在的2 buckets之间不断地被倒腾，知道能倒腾出空闲位置出来为止。

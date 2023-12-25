@@ -2,7 +2,7 @@
 
 原理可以看这篇 [[https://codingsec.net/2016/05/perform-ssh-tunneling-python/][文章]], 里面的配图一目了然.
 
-[[../images/ssh-tunneling.png]]
+[[../images/Pasted-Image-20231225103316.png]]
 
 "ssh -L 8008:web:80 justin@sshserver" 命令意味着：
 1. 本地连接到sshserver这台机器上, 本地对应端口是8008.

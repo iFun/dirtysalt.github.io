@@ -29,7 +29,7 @@
 <ul>
 <li><a href="#org55fb60a">4.1. Peer to Peer Systems</a></li>
 <li><a href="#orgeb72256">4.2. Distributed File Systems and Databases</a></li>
-<li><a href="#orgf88a38d">4.3. Discussion</a></li>
+<li><a href="#orgd587c36">4.3. Discussion</a></li>
 </ul>
 </li>
 <li><a href="#org72e2f38">5. SYSTEM ARCHITECTURE</a>
@@ -60,7 +60,7 @@
 <li><a href="#orga58ffca">7.4. Divergent Versions: When and How Many?</a></li>
 <li><a href="#org4c051bc">7.5. Client-driven or Server-driven Coordination</a></li>
 <li><a href="#orga0ca418">7.6. Balancing background vs. foreground tasks</a></li>
-<li><a href="#orgfb4cd7b">7.7. Discussion</a></li>
+<li><a href="#org8018603">7.7. Discussion</a></li>
 </ul>
 </li>
 <li><a href="#org1333b00">8. CONCLUSIONS</a></li>
@@ -147,8 +147,8 @@ We are extremely fortunate that the paper was selected for publication in SOSP; 
 </ul>
 
 
-<div id="org4bb784b" class="figure">
-<p><img src="../images/soa-amazon-platform.png" alt="soa-amazon-platform.png" />
+<div id="org275203a" class="figure">
+<p><img src="../images/Pasted-Image-20231225104631.png" alt="Pasted-Image-20231225104631.png" />
 </p>
 </div>
 
@@ -210,8 +210,8 @@ We are extremely fortunate that the paper was selected for publication in SOSP; 
 <div id="outline-container-orgeb72256" class="outline-3">
 <h3 id="orgeb72256"><span class="section-number-3">4.2.</span> Distributed File Systems and Databases</h3>
 </div>
-<div id="outline-container-orgf88a38d" class="outline-3">
-<h3 id="orgf88a38d"><span class="section-number-3">4.3.</span> Discussion</h3>
+<div id="outline-container-orgd587c36" class="outline-3">
+<h3 id="orgd587c36"><span class="section-number-3">4.3.</span> Discussion</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Dynamo differs from the aforementioned decentralized storage systems in terms of its target requirements.
@@ -259,8 +259,8 @@ Describing the details of each of the solutions is not possible, so this paper f
 </ul>
 
 
-<div id="org345f2db" class="figure">
-<p><img src="../images/dynamo-techniques-summary.png" alt="dynamo-techniques-summary.png" />
+<div id="orgd33efb3" class="figure">
+<p><img src="../images/Pasted-Image-20231225103844.png" alt="Pasted-Image-20231225103844.png" />
 </p>
 </div>
 </div>
@@ -325,8 +325,8 @@ To address these issues, Dynamo uses a variant of consistent hashing (similar to
 </ul>
 
 
-<div id="org50f7843" class="figure">
-<p><img src="../images/dynamo-partition-and-replication.png" alt="dynamo-partition-and-replication.png" />
+<div id="org55a0de9" class="figure">
+<p><img src="../images/Pasted-Image-20231225104829.png" alt="Pasted-Image-20231225104829.png" />
 </p>
 </div>
 
@@ -364,8 +364,8 @@ In Dynamo, when a client wishes to update an object, it must specify which versi
 </p>
 
 
-<div id="orge23a321" class="figure">
-<p><img src="../images/dynamo-version-evolution-illustration.png" alt="dynamo-version-evolution-illustration.png" />
+<div id="orgf0f372d" class="figure">
+<p><img src="../images/Pasted-Image-20231225103600.png" alt="Pasted-Image-20231225103600.png" />
 </p>
 </div>
 
@@ -566,8 +566,8 @@ The common (N,R,W) configuration used by several instances of Dynamo is (3,2,2).
 </ul></li>
 </ul>
 
-<div id="org3f055e5" class="figure">
-<p><img src="../images/dynamo-latency-distribution.png" alt="dynamo-latency-distribution.png" />
+<div id="org245c0eb" class="figure">
+<p><img src="../images/Pasted-Image-20231225104538.png" alt="Pasted-Image-20231225104538.png" />
 </p>
 </div>
 
@@ -585,8 +585,8 @@ This optimization has resulted in lowering the 99.9th percentile latency by a fa
 </p>
 
 
-<div id="org18e54ab" class="figure">
-<p><img src="../images/dynamo-write-optimization.png" alt="dynamo-write-optimization.png" />
+<div id="orgbe0240b" class="figure">
+<p><img src="../images/Pasted-Image-20231225103934.png" alt="Pasted-Image-20231225103934.png" />
 </p>
 </div>
 </div>
@@ -600,8 +600,8 @@ To study the load imbalance and its correlation with request load, the total num
 </p>
 
 
-<div id="org0ce7587" class="figure">
-<p><img src="../images/dynamo-balance.png" alt="dynamo-balance.png" />
+<div id="org02e3134" class="figure">
+<p><img src="../images/Pasted-Image-20231225103737.png" alt="Pasted-Image-20231225103737.png" />
 </p>
 </div>
 
@@ -616,8 +616,8 @@ This section discusses how Dynamo’s partitioning scheme has evolved over time 
 </p>
 
 
-<div id="org96b1748" class="figure">
-<p><img src="../images/dynamo-partition-strategy.png" alt="dynamo-partition-strategy.png" />
+<div id="org504b7da" class="figure">
+<p><img src="../images/Pasted-Image-20231225104325.png" alt="Pasted-Image-20231225104325.png" />
 </p>
 </div>
 
@@ -656,8 +656,8 @@ The results are given in Figure 8. As seen in the figure, strategy 3 achieves th
 </p>
 
 
-<div id="orgddde611" class="figure">
-<p><img src="../images/dynamo-partition-strategy-evaluation.png" alt="dynamo-partition-strategy-evaluation.png" />
+<div id="orgb600cd5" class="figure">
+<p><img src="../images/Pasted-Image-20231225103506.png" alt="Pasted-Image-20231225103506.png" />
 </p>
 </div>
 
@@ -727,8 +727,8 @@ Table 2 shows the latency improvements at the 99.9th  percentile and averages th
 </p>
 
 
-<div id="org2e92504" class="figure">
-<p><img src="../images/dynamo-client-and-server-driven.png" alt="dynamo-client-and-server-driven.png" />
+<div id="orgf479b1d" class="figure">
+<p><img src="../images/Pasted-Image-20231225104323.png" alt="Pasted-Image-20231225104323.png" />
 </p>
 </div>
 </div>
@@ -751,8 +751,8 @@ The admission controller constantly monitors the behavior of resource accesses w
 </div>
 </div>
 
-<div id="outline-container-orgfb4cd7b" class="outline-3">
-<h3 id="orgfb4cd7b"><span class="section-number-3">7.7.</span> Discussion</h3>
+<div id="outline-container-org8018603" class="outline-3">
+<h3 id="org8018603"><span class="section-number-3">7.7.</span> Discussion</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 In particular, applications have received successful responses (without timing out) for 99.9995% of its requests and no data loss event has occurred to date.

@@ -66,7 +66,7 @@ image.save("Maze_" + str(mx) + "x" + str(my) + ".png", "PNG")
 
 #+END_SRC
 
-[[../images/GenMaze100x100.png]]
+[[../images/Pasted-Image-20231225104729.png]]
 
 ----------
 
@@ -253,4 +253,4 @@ height = 600
 make_maze('maze.svg', nx, ny, ix, iy, height)
 #+END_SRC
 
-[[../images/GenMaze30x30.svg]]
+[[../images/Pasted-Image-20231225105550.svg]]

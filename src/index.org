@@ -352,7 +352,7 @@
 
 *** 并发系统
 - [[file:concurrency.org][concurrency]] / [[file:coroutine.org][coroutine]] / [[file:lock.org][lock]]
-- [[../images/single-multi-thread-event-driven.jpg][One picture explain Single-Thread, Multiple-Thread, Event-Driven]] 一张图看懂单线程，多线程和事件驱动
+- [[../images/Pasted-Image-20231225105104.png][One picture explain Single-Thread, Multiple-Thread, Event-Driven]] 一张图看懂单线程，多线程和事件驱动
 - [[https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html][Is Parallel Programming Hard, And, If So, What Can You Do About It?]]
 - [[file:concurrency-hazards.org][Concurrency Hazards: Solving 11 Likely Problems In Your Multithreaded Code]]
 - [[file:seven-concurrency-models-in-seven-weeks.org][七周七并发模型(Seven Concurrency Models in Seven Weeks)]] by Paul Butcher
@@ -525,8 +525,8 @@
   - [[https://www.dropbox.com/s/l7h13igyjoywq1v/Getting%20Started%20With%20MachineLearning%20(all%20in%20one)_V0.91.pdf?dl=0][Getting Started with Machine Learning]] by Jim Liang
   - [[file:best-practices-for-applying-deep-learning-for-novel-applications.org][Best Practices for Applying Deep Learning to Novel Applications]]
   - [[https://developers.google.com/machine-learning/rules-of-ml/][机器学习规则 (Rules of Machine Learning)：关于机器学习工程的最佳实践]]
-  - [[../images/GAN-basic-idea.jpg][Generative Adversarial Networks: The Basic Idea]]
-  - [[../images/sklearn-mlalgs.png][Choosing the right estimator(sklearn)]]
+  - [[../images/Pasted-Image-20231225105058.png][Generative Adversarial Networks: The Basic Idea]]
+  - [[../images/Pasted-Image-20231225103927.png][Choosing the right estimator(sklearn)]]
   - [[https://en.wikipedia.org/wiki/Receiver_operating_characteristic][ROC各种指标]] TPR, FPR, Precision, Recall
 - [[file:sklearn.org][sklearn]] python scikit learn. Python的机器学习包.
 - [[file:caffe.org][caffe]] C++实现的深度学习框架，有python和matlab的扩展接口

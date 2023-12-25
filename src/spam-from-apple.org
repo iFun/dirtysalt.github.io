@@ -4,11 +4,11 @@
 
 "支付寶花贝套现提现需要联系ＱＱ７１８８０６５３提供在线蚂蚁花贝套现服务诚信交易快速安全"
 
-[[../images/spam-from-apple-0.png]]
+[[../images/Pasted-Image-20231225103836.png]]
 
 我的第一个反应是很可能这封邮件不是来自apple的, 发送者将发送人修改成为apple的邮箱. 但是我又看了gmail的验证确认这封邮件是来自apple的.
 
-[[../images/spam-from-apple-1.png]]
+[[../images/Pasted-Image-20231225103802.png]]
 
 于是很好奇地把这两张图片post到了weibo上, 很快 @sky_infall 就给出了比较靠谱的解释.
 #+BEGIN_QUOTE

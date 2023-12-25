@@ -41,7 +41,7 @@ In summary, Google clusters follow three key design principles:
   - We’ll concentrate on the characteristics of the index server, the component of our infra-structure whose price/performance most heav-ily impacts overall price/performance. （主要是针对index server这个部件来进行分析，因为这个部分对于性价比的影响非常大）
   - The main activity in the index server consists of decoding compressed information in the inverted index and finding matches against a set of documents that could satisfy a query. （index server主要的功能就是decode反向索引信息然后做一些聚合操作）
 
-[[../images/google-index-server-measurements.png]]
+[[../images/Pasted-Image-20231225103412.png]]
 
 - The application has a moderately high CPI, considering that the Pentium III is capable of issuing three instructions per cycle. 考虑到P3能够一个cycle执行3条指令，现在每个cycle执行1.1条指令算是相对比较高的CPI了。
 - We expect such behavior, considering that the applica-tion traverses dynamic data structures and that control flow is data dependent, creating a sig-nificant number of difficult-to-predict branches.（对于这个CPI的解释是因为进行遍历了太多动态的数据结构并且有数据以依赖，造成了非常多难以预测的分支）

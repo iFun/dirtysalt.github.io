@@ -43,4 +43,4 @@ zhpengg：回复@dirlt:哥原生支持bash的，包管理器也有mac port或是
 
 桌面截图 ;)
 
-[[../images/my-mba-desktop.png]]
+[[../images/Pasted-Image-20231225104856.png]]

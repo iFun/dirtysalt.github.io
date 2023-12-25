@@ -22,11 +22,11 @@ http://www.beareyes.com.cn/2/lib/201207/06/20120706203_0.htm
 
 下面是不支持TRIM指令SSD的工作过程
 
-[[../images/ssd-without-trim.jpg]]
+[[../images/Pasted-Image-20231225105217.png]]
 
 可以看到当向上面复写E的时候，SSD才会知道C需要删除（而不是在OS删除C的时候）。所以在此之前如果发生GC的话，C还是需要被移动的。虽然C对OS来说已经是无用的，可是SSD设备本身却不知道。如果支持TRIM指令的话，OS就可以标记C删除，并且通知SSD设备C已经删除，这样每次GC就就不用在移动C，减少数据写入量。
 
-[[../images/ssd-with-trim.jpg]]
+[[../images/Pasted-Image-20231225104948.png]]
 
 这将会产生三大优点：
 1. 降低写入放大。更少的数据被重写，更多的空闲空间为垃圾回收所利用。更多的空间可用也意味着不需要重新写入更多的数据。

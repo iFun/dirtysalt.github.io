@@ -63,7 +63,7 @@ Pick one and prevent (some) losses. Pick one and guide your entire strategy towa
 
 In [[https://www.goodreads.com/book/show/18273109-programming-forth?from_search=true][Programming Forth (Stephen Pelc, 2011)]], the author says "Debugging isn't an art, it's a science!" and provides the following (reproduced) diagram:
 
-[[../images/debug-process.png]]
+[[../images/Pasted-Image-20231225103220.png]]
 
 By far, the easiest bit is 'find a problem'. The difficult bit is to form the right hypothesis that will let you design a proper experiment and prove your fix works. It's especially true of [[https://en.wikipedia.org/wiki/Heisenbug][Heisenbugs]] that ruin your life by disappearing as you observe them.（发现问题非常容易，难的是如果形成正确假设，然后来设计合理的实验，证明fix是有效的）
 

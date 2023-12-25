@@ -83,7 +83,7 @@ All of these features help users to understand and debug the behavior of Borg an
 ** Borg architecture
 A Borg cell consists of a set of machines, a logically central-ized controller called the Borgmaster, and an agent process called the Borglet that runs on each machine in a cell (see Figure 1). All components of Borg are written in C++. # master-slave结构，使用C++编写
 
-[[../images/borg-arch.png]]
+[[../images/Pasted-Image-20231225104848.png]]
 
 *** Borgmaster
 Each cell’s Borgmaster consists of two processes: the main Borgmaster process and a separate scheduler (§3.2). The main Borgmaster process handles client RPCs that either mutate state (e.g., create job) or provide read-only access to data (e.g., lookup job). It also manages state machines for all of the objects in the system (machines, tasks, allocs, etc.), communicates with the Borglets, and offers a web UI as a backup to Sigma. # Borgmaster有两个进程，一个是主进程一个是调度进程。主进程处理客户RPC并且提供数据只读服务，和所有的Borglet通信维护当前所有cell的资源情况，然后提供WebUI作为Sigma后备.

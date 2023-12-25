@@ -38,7 +38,7 @@ libpcl里面的co_exit/co_exit_to/co_resume里面存放了caller和restarget这�
 
 [[https://github.com/hnes/libaco][libaco]] 项目里面给出一个模型图，stack可以分为standalone stack和share stack. 其中share stack是可以和其他coroutine共享的， 而standalone stack则是private。我的粗浅理解可能是, share stack这样的可以直接在stack上开辟，而private stack则需要在heap上分配。
 
-[[../images/libaco_model.png]]
+[[../images/Pasted-Image-20231225103456.png]]
 
 ** 陈硕对coroutine的看法
 

@@ -22,14 +22,14 @@
 <ul>
 <li><a href="#orgf5052bc">3.1. Resilient Distributed Datasets (RDDs)</a></li>
 <li><a href="#org7a023d1">3.2. Parallel Operations</a></li>
-<li><a href="#org7fae2af">3.3. Shared Variables</a></li>
+<li><a href="#org72e86a1">3.3. Shared Variables</a></li>
 </ul>
 </li>
 <li><a href="#org452984f">4. Examples</a></li>
 <li><a href="#org01004de">5. Implementation</a>
 <ul>
 <li><a href="#orge2df0f6">5.1. RDD</a></li>
-<li><a href="#orgcbc7a11">5.2. Shared Variables</a></li>
+<li><a href="#org4d1dbb0">5.2. Shared Variables</a></li>
 <li><a href="#org5b4bf2d">5.3. Interpret Intergation</a></li>
 </ul>
 </li>
@@ -136,8 +136,8 @@ We note that Spark does not currently support a grouped reduce operation as in M
 </div>
 </div>
 
-<div id="outline-container-org7fae2af" class="outline-3">
-<h3 id="org7fae2af"><span class="section-number-3">3.3.</span> Shared Variables</h3>
+<div id="outline-container-org72e86a1" class="outline-3">
+<h3 id="org72e86a1"><span class="section-number-3">3.3.</span> Shared Variables</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Programmers invoke operations like map, filter and re- duce by passing closures (functions) to Spark. As is typi- cal in functional programming, these closures can refer to variables in the scope where they are created. Normally, when Spark runs a closure on a worker node, these vari- ables are copied to the worker.（closure使用的变量会被复制到worker上）
@@ -161,8 +161,8 @@ However, Spark also lets programmers create two restricted types of shared vari-
 <h2 id="org01004de"><span class="section-number-2">5.</span> Implementation</h2>
 <div class="outline-text-2" id="text-5">
 
-<div id="orgb7c0ca6" class="figure">
-<p><img src="../images/spark-cluster-overview.png" alt="spark-cluster-overview.png" />
+<div id="org476404c" class="figure">
+<p><img src="../images/Pasted-Image-20231225104623.png" alt="Pasted-Image-20231225104623.png" />
 </p>
 </div>
 </div>
@@ -188,8 +188,8 @@ These datasets will be stored as a chain of objects cap- turing the lineage of e
 </p>
 
 
-<div id="org65cd086" class="figure">
-<p><img src="../images/spark-rdd-code-examples.png" alt="spark-rdd-code-examples.png" />
+<div id="orgfe8819e" class="figure">
+<p><img src="../images/Pasted-Image-20231225103750.png" alt="Pasted-Image-20231225103750.png" />
 </p>
 </div>
 
@@ -223,8 +223,8 @@ Finally, shipping tasks to workers requires shipping closures to them—both the
 </div>
 </div>
 
-<div id="outline-container-orgcbc7a11" class="outline-3">
-<h3 id="orgcbc7a11"><span class="section-number-3">5.2.</span> Shared Variables</h3>
+<div id="outline-container-org4d1dbb0" class="outline-3">
+<h3 id="org4d1dbb0"><span class="section-number-3">5.2.</span> Shared Variables</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The two types of shared variables in Spark, broadcast variables and accumulators, are imple- mented using classes with custom serialization formats.

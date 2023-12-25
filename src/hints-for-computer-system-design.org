@@ -10,7 +10,7 @@ Designing a computer system is very different from designing an algorithm: （�
 - Why it helps in making a good system: with functionality (does it work?), speed (is it fast enough?), or fault-tolerance (does it keep working?).
 - Where in the system design it helps: in ensuring completeness, in choosing interfaces, or in devising implementations.
 
-[[../images/hints-for-computer-system-design-summary-of-slogans.png]]
+[[../images/Pasted-Image-20231225103526.png]]
 
 我没有特别多的精力来阅读这篇文章，而且是线性地阅读下来，所以没有像作者这样认真考虑每个slogan之间的相互关系。
 我把作者里面写的bulletpoints列举在这里，在有些点的后面增加一些补充和说明。

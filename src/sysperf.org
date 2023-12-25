@@ -2,4 +2,4 @@
 
 ** Not all CPU Operations are created equal
 
-[[../images/not-all-cpu-ops-are-created-equal.jpg]]
+[[../images/Pasted-Image-20231225105050.png]]

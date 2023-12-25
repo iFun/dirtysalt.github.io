@@ -6,7 +6,7 @@ https://leetcode-cn.com/problems/maximum-running-time-of-n-computers/
 
 其实这个放置如果画出来的话，可能就容易理解了。比如这个 [[https://leetcode-cn.com/problems/maximum-running-time-of-n-computers/solution/er-fen-da-an-de-checkhan-shu-de-si-kao-f-g8no/][链接]] 里面给出的图片
 
-[[../images/lc-2141-pic.png]]
+[[../images/Pasted-Image-20231225103706.png]]
 
 - 假设我们二分查找是进行 `check(k)`
 - 虽然红色进行了迁移，但是如果把红色挪回来的话，还是可以看红色最多使用 k 个

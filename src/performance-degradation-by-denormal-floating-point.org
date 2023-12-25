@@ -12,7 +12,7 @@ The IEEE 754 standard specifies a binary32 as having:
 - Exponent width: 8 bits
 - Significand precision: 24 bits (23 explicitly stored)（默认是1.xxxx）
 
-[[../images/single-precision-floating-point-repr.png]]
+[[../images/Pasted-Image-20231225103558.png]]
 
 Exponent encoding（指数部分的编码格式）
 The single-precision binary floating-point exponent is encoded using an offset-binary representation, with the zero offset being 127; also known as exponent bias in the IEEE 754 standard.

@@ -4,7 +4,7 @@
 - Manual: http://opentsdb.net/manual.html
 
 ** Overview
-[[../images/opentsdb-architecture.png]]
+[[../images/Pasted-Image-20231225103957.png]]
 
 从上图来看整个架构还是比较简单的
 - Collector as agent. (python framework tcollector https://github.com/OpenTSDB/tcollector)

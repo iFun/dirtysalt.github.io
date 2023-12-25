@@ -52,11 +52,11 @@ Pros/Cons:
 
 Cheney GC(1970). 改进了上面递归调用问题，维护两个指针scan/free. scan表示搜索复制完成的对象指针，而free则是还需要搜索对象指针，最开始都指向堆空间的起始地址start。two-pointer-chasing, 这样维护了一个隐式的队列，将之前的DFS问题变为BFS问题。至于某个对象是否已经copy过去了，可以通过判断是否在[start, scan] range之间。虽然解决了递归调用问题，但是缺点就是相关对象在这次复制中，并没有放置在一起， 造成缓存局部性不好。
 
-[[../images/garbage-collect-algorithm-and-implementation-book-0.png]]
+[[../images/Pasted-Image-20231225104516.png]]
 
 近似深度优先搜索方法(1991). 最大的改进是增加了一个$local_scan变量（数组），表示每个page下一次应该搜索的位置，优先搜索当前page下面对应的local_scan指向的对象。过程稍微有点复杂，最终效果是这样的。我的理解是在page内部按照深度搜索策略，而外侧策略还是使用Cheney的方法。
 
-[[../images/garbage-collect-algorithm-and-implementation-book-1.png]]
+[[../images/Pasted-Image-20231225104432.png]]
 
 
 ** GC标记-压缩算法(Mark-and-Compact)
@@ -121,9 +121,9 @@ MostlyCopyingGC(1989) 算法同样我没有细看实现，看上去大体意思�
 增量式垃圾回收(Incremental GC)是一种通过逐渐推进垃圾回收来控制 mutator 最大暂停时间的方法。虽然可以控制最大暂停时间，但是却会降低内存回收的吞吐。
 
 
-[[../images/garbage-collect-algorithm-and-implementation-book-2.png]]
+[[../images/Pasted-Image-20231225104332.png]]
 
-[[../images/garbage-collect-algorithm-and-implementation-book-3.png]]
+[[../images/Pasted-Image-20231225104416.png]]
 
 几个算法都是基于三色标记算法(Tri-color marking, Dijsktra)实现的，而且全部都是基于mark-and-sweep来实现的，可能因为实现上需要将mark阶段切分成为多次完成，如果之间指针发生变化的话会有问题。我觉得仔细想想，应该也可以改变成为mark-and-compact/copying的实现吧。比如mark-compact-sweep, mark-compact作为一个步骤，sweep作为一个单独步骤？
 

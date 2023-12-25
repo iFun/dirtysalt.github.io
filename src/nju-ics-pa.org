@@ -206,7 +206,7 @@ typedef union {
 - 每次上下文切换会有使用到stack保存Context. use process在user stack上保存，kernel process在kernel stack上保存。
 - 所以stack必须确保至少有个 CONTEXT_SIZE 大小，否则上下文切换会出问题。
 
-[[../images/nju-ics-pa-pcb.jpg]]
+[[../images/Pasted-Image-20231225105241.png]]
 
 虚拟内存有几件事情比较重要：
 - 正确实现页表结构，对于riscv64来说有3级页表

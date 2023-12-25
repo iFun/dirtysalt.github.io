@@ -4,7 +4,7 @@
 - All documentation pages http://netty.io/wiki/all-documents.html
 
 ** architecture
-[[../images/netty-components.png]]
+[[../images/Pasted-Image-20231225103758.png]]
 
 ** concepts
 *** Channel

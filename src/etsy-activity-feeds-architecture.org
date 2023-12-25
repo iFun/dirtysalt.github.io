@@ -15,7 +15,7 @@ Entity, Connection and Activity.
 
 Connection是有向的，边上面有权重值，这个信息可以帮助排序。而Activity可以表示成为元组，除了(subject, verb, object)之外，还可以加入owner字段（表示这个activity谁产生的）方便对feeds进行解释。
 
-[[../images/etsy-activity-feeds-arch-0.png]] [[../images/etsy-activity-feeds-arch-1.png]]
+[[../images/Pasted-Image-20231225103931.png]] [[../images/Pasted-Image-20231225103943.png]]
 
 
 有了各种各样的activites之后，我们就可以开始制作feeds，无非就是将自己和自己相关的activies聚合(aggregation)起来。
@@ -30,4 +30,4 @@ Aggregation的触发时间有两个：用户操作或者是登录，以及cron�
 
 展现的时候如果使用naive方式的话，效果会非常糟糕。对于相同owner的activities，可以折叠起来，形成一个Story。实现上可以将整个feeds切分成为多个sections. 对每个section内容相同的owner可以进行折叠。
 
-[[../images/etsy-activity-feeds-arch-2.png]] [[../images/etsy-activity-feeds-arch-3.png]]
+[[../images/Pasted-Image-20231225104054.png]] [[../images/Pasted-Image-20231225104041.png]]

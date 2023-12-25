@@ -21,11 +21,11 @@ Ephemeral Storage Requirements
 
 下图可以看到eph object size变化非常大(100B~100MB)，并且生命周期很短(<100s)
 
-[[../images/pocket-elastic-ephemeral-storage-for-serverless-analytics-0.png]]
+[[../images/Pasted-Image-20231225104507.png]]
 
 目前还没有这类针对Eph storage设计的存储系统，看完Pocket实现细节之后，我觉得可能Apache Crail还是比较适合做distributed eph storage的，就是弹性不够。如果弹性上来的话，cost可能是可以下来的。
 
-[[../images/pocket-elastic-ephemeral-storage-for-serverless-analytics-1.png]]
+[[../images/Pasted-Image-20231225104442.png]]
 
 ** 整体结构
 
@@ -44,7 +44,7 @@ Pocket offers high throughput and low latency for arbitrary size data sets, auto
 2. Job中间可能会有许多tasks, 每个tasks可以分配bucket, 然后task将自己产生的对象放置到这个bucket下面，其他task可以enumerate bucket看到下面所有的对象。
 3. task可以读写某个object. 因为object size可能很大，所以期间还可能多次和metadata server进行交互选择storage server进行读写，也可以一次性分配拿到多个storage servers地址。如果blocks size = 64KB, 那么对于小对象只需要一次交互就行，这个可以进行优化。PERSIST是是否需要持久化， DELETE是读取之后是否就立刻删除。
 
-[[../images/pocket-elastic-ephemeral-storage-for-serverless-analytics-2.png]]
+[[../images/Pasted-Image-20231225104344.png]]
 
 ** 资源配置
 
@@ -70,7 +70,7 @@ controller并不主动做load balance. 对于已经分配的资源不做任何�
 
 我理解论文好像是系统运行最初需要选择storage server instance type，如果延迟要求低的话那么可以选择大内存的，如果比较平衡的可以选择NVMe/SSD，如果关心吞吐就搞HDD. 在内存如果整个系统还可以自动选择new allocate哪个类型的storage server那就更好了，不过也就会更加复杂吧，异构系统资源分配的确是不太好做。实验中几种instance type如下：
 
-[[../images/pocket-elastic-ephemeral-storage-for-serverless-analytics-3.png]]
+[[../images/Pasted-Image-20231225104408.png]]
 
 ** 实现细节
 

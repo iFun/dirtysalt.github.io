@@ -19,4 +19,4 @@
 - inet_sk_port_offset()：根据源IP、目的IP、目的端口，采用MD5计算出一个随机数，作为端口的初始偏移值。
 - __inet_check_established()：判断正在使用中的端口是否允许重用。
 
-[[../images/socket-port-reuse.png]]
+[[../images/Pasted-Image-20231225103932.png]]

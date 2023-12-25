@@ -34,7 +34,7 @@
     - We support both the point-topoint delivery model in which multiple consumers jointly consume a single copy of all messages in a topic, as well as the publish/subscribe model in which multiple consumers each retrieve its own copy of a topic.（多个consumer可以共同消费一份，或者是各自消费一份）
 - Since Kafka is distributed in nature, an Kafka cluster typically consists of multiple brokers. To balance load, a topic is divided into multiple partitions and each broker stores one or more of those partitions. Multiple producers and consumers can publish and retrieve messages at the same time.(一个topic被分割成多个partition, 每个broker上面可以host多个partition)
 
-[[../images/kafka-architecture.png]]
+[[../images/Pasted-Image-20231225104135.png]]
 
 Producer Code
 #+BEGIN_SRC Java
@@ -61,7 +61,7 @@ for (message : streams[0]) {
   - A consumer always consumes messages from a particular partition sequentially. If the consumer acknowledges a particular message offset, it implies that the consumer has received all messages prior to that offset in the partition.（consumer只能通过偏移顺序读取内容） Under the covers, the consumer is issuing asynchronous pull requests to the broker to have a buffer of data ready for the application to consume. Each pull request contains the offset of the message from which the consumption begins and an acceptable number of bytes to fetch.
   - Each broker keeps in memory a sorted list of offsets, including the offset of the first message in every segment file. The broker locates the segment file where the requested message resides by searching the offset list, and sends the data back to the consumer. After a consumer receives a message, it computes the offset of the next message to consume and uses it in the next pull request.（每个broker在内存保存各个文件的起始的offset，这样就可以很容易地进行定位）
 
-[[../images/kafka-log-layout.png]]
+[[../images/Pasted-Image-20231225103839.png]]
 
 - Efficient transfer
   - Although the end consumer API iterates one message at a time, under the covers, each pull request from a consumer also retrieves multiple messages up to a certain size, typically hundreds of kilobytes.(批量传输)
@@ -92,7 +92,7 @@ for (message : streams[0]) {
    - When there are multiple consumers within a group, each of them will be notified of a broker or a consumer change. However, the notification may come at slightly different times at the consumers. So, it is possible that one consumer tries to take ownership of a partition still owned by another consumer. When this happens, the first consumer simply releases all the partitions that it currently owns, waits a bit and retries the rebalance process. In practice, the rebalance process often stabilizes after only a few retries.（可能会出现一些颠簸的情况，但是这个情况最终是会稳定下来的）
    - When a new consumer group is created, no offsets are available in the offset registry. In this case, the consumers will begin with either the smallest or the largest offset (depending on a configuration) available on each subscribed partition, using an API that we provide on the brokers.（新增的consume group可以选择最老的点开始读取，也可以选择最新的点开始读取）
 
-[[../images/kafka-coordination-algorithm.png]]
+[[../images/Pasted-Image-20231225103805.png]]
 
 *** Delivery Guarantees
 - In general, Kafka only guarantees at-least-once delivery. Exactly- once delivery typically requires two-phase commits and is not necessary for our applications.（至少保证一次投递）
@@ -102,7 +102,7 @@ for (message : streams[0]) {
 - If a broker goes down, any message stored on it not yet consumed becomes unavailable. If the storage system on a broker is permanently damaged, any unconsumed message is lost forever. In the future, we plan to add built-in replication in Kafka to redundantly store each message on multiple brokers.（现在broker没有做replication, 也就是说如果down的话那么上面数据读取不到，如果磁盘坏的话那么数据就发生丢失）
 
 ** Kafka Usage at LinkedIn
-[[../images/kafka-deployment.png]]
+[[../images/Pasted-Image-20231225104524.png]]
 
 - We rely on a hardware load-balancer to distribute the publish requests to the set of Kafka brokers evenly. （硬件负载均衡）
 - We also deploy a cluster of Kafka in a separate datacenter for offline analysis, located geographically close to our Hadoop cluster and other data warehouse infrastructure. Without too much tuning, the end-to-end latency for the complete pipeline is about 10 seconds on average, good enough for our requirements.（跨机房数据延迟在10s以内）

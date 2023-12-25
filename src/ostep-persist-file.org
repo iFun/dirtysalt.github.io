@@ -9,7 +9,7 @@ extend-based有点类似虚拟内存里面的段式分配, pointer-based类似�
 - 少量大文件占据主要空间.
 - 目录里的项目数量基本<20 (in a block)
 
-[[../images/ostep-fs-measurement-summary.png]]
+[[../images/Pasted-Image-20231225103748.png]]
 
 *Fast File System(FFS)*
 
@@ -19,7 +19,7 @@ extend-based有点类似虚拟内存里面的段式分配, pointer-based类似�
 
 在一个磁道(track)上如何安排block id也是非常有意思的事情. 下图左边是最简单的实现.
 
-[[../images/ostep-fs-param-placement.png]]
+[[../images/Pasted-Image-20231225104651.png]]
 
 这个实现问题是, 如果我们想顺序访问所有block时候, 会发现rotation位置不对. 首先磁盘是不断旋转地, 当我们transfer block0的时候盘片依然在转动. 当我们要读取block1时, 磁头位置可能已经到了block3, 这就意味着还要等待一圈才能读block1. 所以合理的方式应该是, 将所有blocks, 按照tranfer block时间和rotate speed计算出的间隔, 均匀地分散开.
 
@@ -46,15 +46,15 @@ To achieve this end, LFS uses an ancient technique known as write buffering. Bef
 Here is an example, in which LFS buffers two sets of updates into a small segment; actual segments are larger (a few MB). The first update is of four block writes to file j; the second is one block being added to file k. LFS then commits the entire segment of seven blocks to disk at once. The resulting on-disk layout of these blocks is as follows:
 #+END_QUOTE
 
-[[../images/ostep-fs-lfs-seg.png]]
+[[../images/Pasted-Image-20231225104804.png]]
 
 LFS会将多个data block写入聚合在一起写下，一次写入生成一个segment. segment里面不仅仅包括data blocks, 还可能包括对应的inode block, 以及inode map. 因为每次更新inode block都会在新的地方重写一份，inode block位置在不断发生变化。inode map里面记录了这个信息，记录了inode no到inode block address的映射关系。最终会存储在一个checkpoint-region(CR)的地方。这个CR会定期flush下去，虽然这个写入是随机写，但是因为间隔时间比较长所以不会影响性能。
 
-[[../images/ostep-fs-lfs-file.png]]
+[[../images/Pasted-Image-20231225103414.png]]
 
 目录存储结构和文件存储结构很类似。在一个目录下面创建一个文件需要写入5个block. (file data block, file inode block, dir data block, dir inode block, imap).
 
-[[../images/ostep-fs-lfs-dir.png]]
+[[../images/Pasted-Image-20231225103352.png]]
 
 #+BEGIN_QUOTE
 Specifically, LFS includes, for each data block D, its inode number (which file it belongs to) and its offset (which block of the file this is). This information is recorded in a structure at the head of the segment known as the segment summary block.

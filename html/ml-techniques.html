@@ -71,13 +71,13 @@
 <li>上面那个策略函数的Lagrange对偶问题（广义拉格朗日函数的极大极小问题）是将min和max调换位置：min{b,w}(max{a&gt;=0} L(b,w,a)) &gt;= max{a&gt;=0}(min{b,w} L(b,w,a)).</li>
 <li>上面不等式中的=如果满足的话（限制条件），那么称两个问题之间有强对偶关系。如果上面两个函数有强对偶关系的话，那么我们只需要求解后面一个函数即可。</li>
 <li>将max{a&gt;=0}(min{b,w} L(b,w,a))做推导简化就可以得到a的最优解，这个最优解a和b,w之间的关系称为KKT最优化条件。</li>
-<li><img src="../images/ntuml-svm-kkt.png" alt="ntuml-svm-kkt.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104229.png" alt="Pasted-Image-20231225104229.png" /></li>
 
 <li>如果将上面的式子展开并且将max转换称为min的话，就可以看到我们实际上得到了一个N个变量，N+1个约束条件的二次规划问题。</li>
-<li><img src="../images/ntuml-svm-dual-form.png" alt="ntuml-svm-dual-form.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104740.png" alt="Pasted-Image-20231225104740.png" /></li>
 
 <li>下面是SVM的原始形式(Primal)和对偶形式(Dual)的比较。可以看到两个形式在意义和实现上都存在差别。</li>
-<li><img src="../images/ntuml-svm-primal-dual.png" alt="ntuml-svm-primal-dual.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104221.png" alt="Pasted-Image-20231225104221.png" /></li>
 
 <li>注意Dual形式里面并没有避开高维特征的计算，只不过将高维特征计算隐藏到了高维向量内积计算中。我们可以通过核方法来加速这个部分的计算。</li>
 </ul>
@@ -89,7 +89,7 @@
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>高维向量内积部分是zn .* zm = p(xn) .*  p(xm). 引入核函数K(xn, xm) = p(xn) .* p(xm). 并且K的计算代价相对更小。</li>
-<li><img src="../images/ntuml-kernel-svm-with-qp.png" alt="ntuml-kernel-svm-with-qp.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104549.png" alt="Pasted-Image-20231225104549.png" /></li>
 
 <li>Polynomial Kernel. 多项式核函数
 <ul class="org-ul">
@@ -102,10 +102,10 @@
 <ul class="org-ul">
 <li>我们对高斯核函数进行分解，看到高斯核函数其实是无限多维度多项式映射函数。不过这样一来我们也比较难解释w的意义。</li>
 </ul></li>
-<li><img src="../images/ntuml-gaussian-kernel-intuition0.png" alt="ntuml-gaussian-kernel-intuition0.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104831.png" alt="Pasted-Image-20231225104831.png" /></li>
 
 <li>但是如果我们判定函数来看这个高斯核函数的话，则是以# of SV个以xn为中心的高斯函数的线性组合。也叫做RBF(Radial Basis Function).</li>
-<li><img src="../images/ntuml-gaussian-kernel-intuition1.png" alt="ntuml-gaussian-kernel-intuition1.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104741.png" alt="Pasted-Image-20231225104741.png" /></li>
 
 <li>如果r越大的话，说明方差越小。如果r很大的话：从RBF角度考虑的话，边界就是只是围绕那些SV的高维曲面；从多项式考虑的话，就是用了非常高维的多项式来做你和。最终结果就是泛化能力非常差。</li>
 </ul>
@@ -118,11 +118,11 @@
 <ul class="org-ul">
 <li>因为硬间隔(Hard-Margin)必须要完美地分类数据，所以容易学习到复杂判定函数出现overfitting. 软间隔则放开这个条件允许部分数据错误分类。</li>
 <li>引入e来放宽限制，但是同时将e加入到极小值部分，我们就得到下面的公式。其中C代表对错误的惩罚：C越大表示我们越不能容忍错误，C越小则表示我们希望容忍错误来达到margin更大。因为我们只是引入了e一次式，所以我们依然可以通过QP来求解。</li>
-<li><img src="../images/ntuml-svm-soft-margin.png" alt="ntuml-svm-soft-margin.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104355.png" alt="Pasted-Image-20231225104355.png" /></li>
 
 <li>参考Hard-Margin SVM中的推导方法，我们同样可以对上面不等式求解对偶形式，引入核函数。</li>
 <li>下图是对a物理意义的解释，并且将点进行分类：对于violated的点还可以分为两类，一类是归类正确但是在margin里面，另外一类则是归类错误。</li>
-<li><img src="../images/ntuml-svm-soft-points.png" alt="ntuml-svm-soft-points.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104553.png" alt="Pasted-Image-20231225104553.png" /></li>
 
 <li>E{loocv} &lt;= nSV / N. 所以利用nSV可以来估计错误上限。如果做CV比较花时间的话，那么可以参考nSV来做安全检查。如果nSV比较大的话那么就需要小心过拟合。</li>
 </ul>
@@ -134,7 +134,7 @@
 <div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li>之前线性SVM已经提到和正规化的关系，这里再看看广义SVM和正则化之间的联系，以及各个相式和系数之间的关系。</li>
-<li><img src="../images/ntuml-svm-as-reg.png" alt="ntuml-svm-as-reg.png" /></li>
+<li><img src="../images/Pasted-Image-20231225103755.png" alt="Pasted-Image-20231225103755.png" /></li>
 
 <li>SVM的损失函数也是err0/1损失函数的上限，但是效果比逻辑回归损失函数要稍微好些。我们可以近似地认为，求解了一个正规化的逻辑回归，相当于求解了一个SVM.</li>
 <li>概率SVM(Probabilistic SVM): 先求解出w,b 然后将计算出z = w * p(x) + b（可以修改为使用核函数），之后将(z,y)作为逻辑回归训练数据给出概率。但是使用这个办法，我们需要费劲力气求解SVM，然后带入逻辑回归。我们观察，如果w可以表示称为p(x)的线性组合的话，那么在w * p(x)的时候就可以使用核技巧了。</li>
@@ -149,10 +149,10 @@
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li>使用上一节最后说的：“任何L2正规化线性模型都可以使用核技巧”，我们可以同样为ridge regression引入核技巧，叫做Kernel Ridge Regression(LSSVM, Least-Squares SVM)。不过引入核技巧之后在计算效率和灵活性上和原有的线性模型有点差别。</li>
-<li><img src="../images/ntuml-linear-kernel-ridge-reg.png" alt="ntuml-linear-kernel-ridge-reg.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104202.png" alt="Pasted-Image-20231225104202.png" /></li>
 
 <li>LSSVM和KLR一样，b也非常稠密，预测时复杂度也是O(N). 并且SVs数量也更多。那么我们是否有办法得到稀疏的b来加快回归预测。</li>
-<li><img src="../images/ntuml-svm-and-lssvm.png" alt="ntuml-svm-and-lssvm.png" /></li>
+<li><img src="../images/Pasted-Image-20231225104236.png" alt="Pasted-Image-20231225104236.png" /></li>
 
 <li>上面的问题可以通过引入Tube Regression来解决，这个模型糅合了Ridge Regression和Soft-Margin的特性，来得到最终的SVR. SVR的b相对更加稀疏，SVs数量也更少。</li>
 </ul>
@@ -167,8 +167,8 @@
 </p>
 
 
-<div id="org62ccf56" class="figure">
-<p><img src="../images/ntuml-linear-models.png" alt="ntuml-linear-models.png" />
+<div id="org540bcee" class="figure">
+<p><img src="../images/Pasted-Image-20231225104215.png" alt="Pasted-Image-20231225104215.png" />
 </p>
 </div>
 
@@ -177,8 +177,8 @@
 </p>
 
 
-<div id="orge425eb0" class="figure">
-<p><img src="../images/ntuml-linear-kernel-models.png" alt="ntuml-linear-kernel-models.png" />
+<div id="org8ea0c34" class="figure">
+<p><img src="../images/Pasted-Image-20231225104559.png" alt="Pasted-Image-20231225104559.png" />
 </p>
 </div>
 </div>
@@ -191,7 +191,7 @@
 <li>我们可以通过聚合(aggregation)方式，也就是混合(blending)各种假设来提高假设准确性。这个和selection有点不太一样：selection是从各种假设中挑选一个假设出来，而aggregation则是将各种假设做组合。</li>
 <li>可以认为selection是aggregation一种具体方式，除此之外还包括：uniformaly mix(相同的常数权重), non-uniformaly mix(不同的常数权重), conditionally mix(权重是函数)</li>
 <li>我们可以先从训练数据得到各种hypothesis, blending则可以在CV数据上完成：现将这些h作用在x上得到各种z, 然后利用(z, y)作为输入数据，求解出一个线性(linear-blending)/非线性(any-blending, 也称为stacking)系数。这个线性/非线性稀疏就是各个h的组合系数。注意any-blending方式容易过拟合。</li>
-<li><img src="../images/ntuml-any-blending.png" alt="ntuml-any-blending.png" /></li>
+<li><img src="../images/Pasted-Image-20231225103321.png" alt="Pasted-Image-20231225103321.png" /></li>
 
 <li>为了设计出不同的h, 我们通常会使用下面这几种方法
 <ul class="org-ul">
@@ -326,7 +326,7 @@
 <div class="outline-text-2" id="text-15">
 <ul class="org-ul">
 <li>RBF Network就是将多个径向函数假设进行线性组合。径向函数(Radial Function)是一种只和中心点距离相关的函数, 所以Gaussian函数是径向函数的一种(Gaussian SVM也是RBF Network的一种).</li>
-<li><img src="../images/ntuml-nn-and-rbfn.png" alt="ntuml-nn-and-rbfn.png" /></li>
+<li><img src="../images/Pasted-Image-20231225103317.png" alt="Pasted-Image-20231225103317.png" /></li>
 
 <li>RBF和Kernel Function都是衡量相似性的函数：RBF是在原始特征空间上的衡量，KernelF则是在非线性变换之后空间上的相似性。</li>
 <li>我们如何选择这些RBF的中心点呢？Full RBF Network就是以每个实例点作为中心的RBF Network.</li>
@@ -344,10 +344,10 @@
 <li>回到推荐问题。其实推荐问题也可以表示成为类似AutoEncoder神经网络。因为输入相对比较稀疏，所以我们可以考虑在隐藏层不使用非线性变换，类似使用linear-autoencoder. 说明一下X实际上是n*n的单位矩阵，y就是users-items矩阵。</li>
 <li>这样最终我们将问题化简成为y = W * V' * X. 其中V是第一层系数矩阵，W是第二层系数矩阵。如果用户数量是n, 推荐物品数量是m, 我们使用隐藏特征数量为d, 那么矩阵大小是V={n*d}, W={m*d}. 因为X是I, 所以y = W * V'. 所以可以看到我们要做的问题其实就变成了矩阵分解。矩阵分解常用于抽取抽象特征。</li>
 <li>这里的矩阵分解和linear autoencoder给出的矩阵分解不同，下图是两者之间的差别。这里矩阵分解我们只能用交替梯度下降方法来求解V和W。</li>
-<li><img src="../images/ntuml-linear-autoencoder-and-matrix-factorization.png" alt="ntuml-linear-autoencoder-and-matrix-factorization.png" /></li>
+<li><img src="../images/Pasted-Image-20231225103920.png" alt="Pasted-Image-20231225103920.png" /></li>
 
 <li>矩阵分解可以使用SGD来做求解，并且SGD似乎是来做大规模矩阵分解最有效的方式。另外作者提到NTU在KDDCup上关于SGD的一个改进：在那次比赛的应用中，越接近现在的实例权重越大。因此他们修改矩阵分解算法，只是使用离现在最近的部分实例来做梯度下降。</li>
-<li><img src="../images/ntuml-sgd-for-matrix-factorization.png" alt="ntuml-sgd-for-matrix-factorization.png" /></li>
+<li><img src="../images/Pasted-Image-20231225103250.png" alt="Pasted-Image-20231225103250.png" /></li>
 </ul>
 </div>
 </div>

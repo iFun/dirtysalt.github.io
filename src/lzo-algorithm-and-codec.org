@@ -10,7 +10,7 @@
 
 在看 [[https://github.com/nemequ/lzo/tree/master/src][lzo]] 仓库的时候发现下面有许多算法实现，一眼看过去还不太清楚之间的差别
 
-[[../images/lzo-diff-impl.png]]
+[[../images/Pasted-Image-20231225103306.png]]
 
 后来知道lzo1b_8.c 表示: 1b类型的算法，压缩级别为8的实现。目前大概有下面几种实现，下面是chatgpt给的回答：
 - lzo1：是最早的LZO版本，具有较高的压缩速度和较小的内存占用，但压缩比不如后续版本。

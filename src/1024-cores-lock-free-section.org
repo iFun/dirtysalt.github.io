@@ -95,7 +95,7 @@ So, a memory model determines what re-orderings are possible (relatively to prog
 
 bi-directional fences是为了避免一类指令重排，比如store-load是个X，那么不允许把X之前的store挪到下面，也不允许把X之后的load挪到上面，但是X之前的load可以挪到下面，之后的load可以挪上面. 下图是 store-load
 
-[[../images/1024-cores-lock-free-bi-fence.jpg]]
+[[../images/Pasted-Image-20231225105215.png]]
 
 #+BEGIN_QUOTE
 Fences tied to memory accesses prevent all memory accesses from moving above (acquire fence) or below (release fence); for example, load-acquire is a load which simultaneously prevents any other memory accesses from hoisting above it (while any memory accesses can sink below it).
@@ -103,7 +103,7 @@ Fences tied to memory accesses prevent all memory accesses from moving above (ac
 
 tied-to-memory-access fences则是组织所有的指令重排， 比如load-acquire是X，那么这个指令本身是load指令，不允许X下面所有的内存访问放在前面，但是允许X之前的内存访问放在后面，同理store-release. 下图是 load-acquire
 
-[[../images/1024-cores-lock-free-acq-rel.jpg]]
+[[../images/Pasted-Image-20231225104930.png]]
 
 ** scalability prerequisites 扩展性前提
 

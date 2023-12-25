@@ -6,7 +6,7 @@
 
 想要验证DNS被污染了其实也非常简单，最好有个WireShark. 先将DNS修改成为8.8.8.8, 然后请求一个被墙的地址比如data.castbox.fm. `dig data.castbox.fm`
 
-[[../images/dns-poisoning-wireshark.png]]
+[[../images/Pasted-Image-20231225104322.png]]
 
 可以看到首先返回了两个A分别是66.*** 和 199.***，这两个IP如果查询地理位置的话发现都是facebook.com的IP，而第三个CNAME才是正确的内容.
 

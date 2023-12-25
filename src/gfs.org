@@ -83,7 +83,7 @@ Architecture
 - Clients interact with the master for metadata opera-tions, but all data-bearing communication goes directly to the chunkservers. We do not provide the POSIX API and therefore need not hook into the Linux vnode layer. （和master之间交换控制指令，而cs之间交换数据指令）
 - Neither the client nor the chunkserver caches file data. Client caches offer little benefit because most applications stream through huge files or have working sets too large to be cached. Chunkservers need not cache file data because chunks are stored as local files and so Linux’s buffer cache already keeps frequently accesseddata in memory.
 
-[[../images/gfs-architecture.png]]
+[[../images/Pasted-Image-20231225104736.png]]
 
 ----------
 Single Master
@@ -193,7 +193,7 @@ The lease mechanism is designed to minimize manage-ment overhead at the master. 
 
 If a write by the application is large or straddles a chunk boundary, GFS client code breaks it down into multiple write operations. They all follow the control flow described above but may be interleaved with and overwritten by concurrent operations from other clients. Therefore, the shared file region may end up containing fragments from different clients, although the replicas will be identical because the individual operations are completed successfully in the same order on all replicas.
 
-[[../images/gfs-write-control-and-data-flow.png]]
+[[../images/Pasted-Image-20231225104034.png]]
 
 ----------
 Data Flow

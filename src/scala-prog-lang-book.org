@@ -895,7 +895,7 @@ abstract class Hello {
 与抽象类相对应的是final类，这个类不能够再被继承。同时final字段还能够用在方法和字段上面这样可以不被override.
 
 *** 类型层次
-[[../images/scala-class-hierarchy.png]]
+[[../images/Pasted-Image-20231225103557.png]]
 
 所有的基类是Any，定义了下面这些方法
 #+BEGIN_SRC Scala
@@ -1032,7 +1032,7 @@ trait FourLegged extends HasLegs
 class Cat extends Animal with Furry with FourLegged
 #+END_EXAMPLE
 
-[[../images/scala-linearization.png]]
+[[../images/Pasted-Image-20231225104405.png]]
 
 以Cat直接继承和混入类型， *从左向右分析*
    1. Animal linear order = Animal -> AnyRef -> Any

@@ -52,7 +52,7 @@ Pass 5: run completed in 0usr/10sys/586real ms.
 
 ** Architecture of systemtap a Linux trace probe tool
 *** Systemtap processing steps
-[[../images/systemtap-processing-steps.png]]
+[[../images/Pasted-Image-20231225104035.png]]
 
 Probe language
 - The language describes an association of handler subroutines with probe points. 类似AWK的工作方式，绑定一些handle到probe points上面

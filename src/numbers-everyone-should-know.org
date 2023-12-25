@@ -20,7 +20,7 @@ https://www.slideshare.net/parallellabs/dean-keynoteladis2009jeffdean/10-The_Joy
 - Read 1 MB sequentially from disk 30,000,000 ns
 - Send packet CA->Netherlands->CA 150,000,000 ns
 
-[[../images/numbers-everyone-should-know.jpg]]
+[[../images/Pasted-Image-20231225104943.png]]
 
 ----------
 

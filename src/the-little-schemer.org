@@ -10,7 +10,7 @@ http://www.ccs.neu.edu/home/matthias/BTLS/
 - Chapter10 # interpreter
 
 ** ten commandments
-[[../images/the-little-schemer-ten-commandments.jpg]]
+[[../images/Pasted-Image-20231225105308.png]]
 
 ** 自然语言，数学语言和编程语言
 

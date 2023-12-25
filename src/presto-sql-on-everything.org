@@ -55,7 +55,7 @@ Developer/Advertiser Analytics 开发者/广告主分析
 - 延迟在50ms-5s内，99.999%的可用性
 
 ----------
-[[../images/presto-arch.png]]
+[[../images/Pasted-Image-20231225103214.png]]
 
 
 运行过程是：
@@ -166,7 +166,7 @@ TPCDS 30TB, 100节点，28core,  2.4GHz, 1.6TB SSD, 256GB 内存
 
 Every query is run with three settings on a 100-node test cluster: (1) Data stored in Raptor with table shards randomly distributed between nodes. (2) Data stored in Hive/HDFS with no statistics. (3) Data stored in Hive/HDFS along with table and column statistics. Presto’s optimizer can make cost- based decisions about join order and join strategy when these statistics are available. Every node is configured with a 28- core IntelTM XeonTM E5-2680 v4 CPU running at 2.40GHz, 1.6TB of flash storage and 256GB of DDR4 RAM.
 
-[[../images/presto-tpcds-time.png]]
+[[../images/Pasted-Image-20231225103555.png]]
 
 各种Case的延迟分布，如果以75%为界限的话
 - Dev/Adv Analytics 延迟在1s左右
@@ -174,10 +174,10 @@ Every query is run with three settings on a 100-node test cluster: (1) Data stor
 - Interactive Analytics 在10s左右
 - Batch ETL在1min
 
-[[../images/presto-cases-conf.png]]
+[[../images/Pasted-Image-20231225104147.png]]
 
-[[../images/presto-cases-time.png]]
+[[../images/Pasted-Image-20231225104754.png]]
 
 资源管理上，下图是Interactive Analytics的4小时资源使用记录，并发查询最高点是44，而CPU使用率可以始终保持在90%左右。（单纯地从CPU利用率上看是很不错的，但是前提必须是CPU完全合理，如果a lot of waste那么就比较糟糕了，没有办法反应真实情况）
 
-[[../images/presto-resource-usage.png]]
+[[../images/Pasted-Image-20231225103237.png]]

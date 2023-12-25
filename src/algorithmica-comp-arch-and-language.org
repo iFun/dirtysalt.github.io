@@ -6,7 +6,7 @@ https://en.algorithmica.org/hpc/complexity/hardware/
 
 Die shot of a Zen CPU core by AMD (~1,400,000,000 transistors)
 
-[[../images/algorithmica-comp-arch-and-lang-0.png]]
+[[../images/Pasted-Image-20231225103810.png]]
 
 ----------
 
@@ -102,7 +102,7 @@ Instruction Tables 主要是分析每个指令的延迟和吞吐
 2. 如果latency=0的话通常以为这CPU只是在FE上，不会到BE execution engine上
 3. 有些指令latency是可变的，并且通常认为数据是在L1 cache上
 
-[[../images/algorithmica-comp-arch-and-lang-1.png]]
+[[../images/Pasted-Image-20231225103826.png]]
 
 #+BEGIN_QUOTE
 Some comments:

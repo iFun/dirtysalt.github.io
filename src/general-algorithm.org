@@ -148,11 +148,11 @@ UPDATE@201808 这篇 [[https://github.com/julycoding/The-Art-Of-Programming-By-J
 
 我们可以把 64 位的二进制simhash签名均分成4块，每块16位。根据鸽巢原理（也称抽屉原理），如果两个签名的海明距离在 3 以内，它们必有一块完全相同。如下图所示：
 
-[[../images/simhash-exact-match.jpg]]
+[[../images/Pasted-Image-20231225105125.png]]
 
 然后把分成的4 块中的每一个块分别作为前16位来进行查找，建倒排索引。
 
-[[../images/simhash-search.jpg]]
+[[../images/Pasted-Image-20231225105212.png]]
 
 ** HyperLogLog
 - http://algo.inria.fr/flajolet/Publications/FlFuGaMe07.pdf
@@ -227,7 +227,7 @@ def estimate_cardinality(values, k):
 - 如果block里面有0和1的话，那么使用<1> block表示
 - 如果block里面只有0的话，并且连续n个block都是这样的话，那么使用<00> <n>
 - 如果只有1的话，那么前缀使用<01>
-[[../images/concise-wah.png]]
+[[../images/Pasted-Image-20231225103735.png]]
 
 可以看到其实<n>最长为2^30-1（肯定不会为0）.但是实际上大部分到不了这么长。剩余的空间就会存在浪费。
 
@@ -243,7 +243,7 @@ CONCISE针对这个部分稍微改进了一下
 - word #3 for integers 1023–1053,
 - word #4 for integers 1054–1 040 187 391,
 - and word #5 for integers 1 040 187 392–1 040 187 422.
-[[../images/concise-concise.png]]
+[[../images/Pasted-Image-20231225104457.png]]
 
 论文后面还给了一些 *直接在这种压缩表示* 上面的算法。
 

@@ -11,9 +11,9 @@ https://leetcode.cn/problems/maximum-number-of-groups-with-increasing-length/des
 - 如果当前不够预期值的话，那么可以从后面的找补回来。
 - 但是填充的时候应该使用当前值。
 
-[[../images/maximum-number-of-groups-with-increasing-length-0.png]]
+[[../images/Pasted-Image-20231225104310.png]]
 
-[[../images/maximum-number-of-groups-with-increasing-length-1.png]]
+[[../images/Pasted-Image-20231225104235.png]]
 
 #+BEGIN_SRC Python
 

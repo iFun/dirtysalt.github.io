@@ -25,7 +25,7 @@ Modern Internet services are often implemented as com- plex, large-scale distrib
 ** Distributed Tracing in Dapper
 A tracing infrastructure for distributed services needs to record information about all the work done in a sys-￼tem on behalf of a given initiator. A simple yet useful distributed trace for this request would be a collection of message identifiers and timestamped events for every message sent and received at each server.
 
-[[../images/dapper-illustration.png]]
+[[../images/Pasted-Image-20231225104417.png]]
 
 Two classes of solutions have been proposed to ag- gregate this information so that one can associate all record entries with a given initiator (e.g., RequestX in Figure 1), black-box and annotation-based monitoring schemes.（有两种办法可以将所有的记录和initiator联系起来，这样就知道某个请求是谁发送的）
 - Black-box schemes assume there is no additional information other than the message record described above, and use statistical regression techniques to infer that association.（黑盒方案就是假设所有的record都没有附加信息，通过统计回归技术建立关联）
@@ -41,7 +41,7 @@ Two classes of solutions have been proposed to ag- gregate this information so t
   - Dapper records a human-readable span name for each span, as well as a span id and parent id in order to reconstruct the causal relationships between the individual spans in a single distributed trace. （每个span上面还能够附带一个span name方便阅读，并且带上span id以及parent id这样可以方便建立起关系）Spans created without a parent id are known as root spans.
   - All spans associated with a specific trace also share a com- mon trace id (not shown in the figure). All of these ids are probabilistically unique 64-bit integers.(每次trace都会带上一个概率上唯一的trace id)
 
-[[../images/dapper-trace-tree.png]]
+[[../images/Pasted-Image-20231225104108.png]]
 
 *** Instrumentation points
 - Dapper is able to follow distributed control paths with near-zero intervention from application developers by re- lying almost entirely on instrumentation of a few com- mon libraries:
@@ -59,7 +59,7 @@ Two classes of solutions have been proposed to ag- gregate this information so t
 - Therefore, besides making the basic instrumentation overhead of Dapper collection as small as possible, we further control overhead by recording only a fraction of all traces.
 
 *** Trace collection
-[[../images/dapper-collection-pipeline.png]]
+[[../images/Pasted-Image-20231225104811.png]]
 
 - The Dapper trace logging and collection pipeline is a three-stage process
   - First, span data is written (1) to local log files.
@@ -99,14 +99,14 @@ Two classes of solutions have been proposed to ag- gregate this information so t
   - Writes to local disk are the most expensive operation in Dapper’s runtime library, but their visible overhead is much reduced since each disk write coalesces multiple log file write operations and executes asynchronously with respect to the traced application. Nevertheless, log write activity can have a perceptible impact on highthroughput application performance, especially if all requests are being traced.（磁盘可以通过聚合以及异步写来减少影响）
 
 *** Trace collection overhead
-[[../images/dapper-cpu-usage.png]]
+[[../images/Pasted-Image-20231225103521.png]]
 
 
 - The daemon never uses more than 0:3% of one core of a production machine during collection, and has a very small memory footprint (within the noise of heap fragmentation). We also restrict the Dapper daemon to the lowest possible priority in the kernel scheduler in case CPU contention arises within a heavily-loaded host machine.
 - Dapper is also a light consumer of network resources, with each span in our repository corresponding to only 426 bytes on average. Taken as a fraction of the network activity in the applications we’re monitoring, Dapper trace data collection is responsible for less than 0:01% of the network trafﬁc in Google’s production environment.
 
 *** Effect on production workloads
-[[../images/dapper-production-workload.png]]
+[[../images/Pasted-Image-20231225103815.png]]
 
 - We see that although the impact on throughput is not very signiﬁcant, in order to avoid noticeable latency degradation, trace sampling is indeed necessary.(做采样还是必须的)
 - However, the latency and throughput penalties associated with sampling frequencies less than 1/16 are all within the experimental error. In practice, we have found that there is still an adequate amount of trace data for high-volume services when using a sampling rate as low as 1/1024.（即使使用1/1024采样概率的话依然存在许多分析数据）

@@ -2,7 +2,7 @@
 
 我有一个习惯是在本地搭建一个HTTP服务器，然后建立一个index.html文件里面存储一些常用链接。然后在hosts里面添加一个 `127.0.0.1 gw` 映射。这样我只要输入gw:8080就可以跳到index.html页面（chrome还会存储历史记录，所以时间长了，只要键入gw就可以看到），非常方便。
 
-[[../images/dict-query-history-desktop.png]]
+[[../images/Pasted-Image-20231225104149.png]]
 
 然后为了方便查找单词，我通常会将chrome settings里面的默认搜索引擎设置成为“金山词霸”。这样如果有不懂单词的话，只要选中右键即可查询。
 
@@ -10,11 +10,11 @@
 
 首先修改默认搜索引擎到 `gw:8080` 上，分配一个固定的path.
 
-[[../images/dict-query-history-chrome.png]]
+[[../images/Pasted-Image-20231225103939.png]]
 
 然后选中右键点击就就是这样了
 
-[[../images/dict-query-history-selection.png]]
+[[../images/Pasted-Image-20231225103627.png]]
 
 修改后的服务器代码如下，启动命令为 `python local_server.py 8080`. 代码是仿照SimpleHTTPServer.py写的，继承了它的Handler然后改写send_head方法。
 

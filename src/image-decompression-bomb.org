@@ -14,6 +14,6 @@ In [20]: im = Image.open('decompression_bomb.png')
 #+END_QUOTE
 
 
-[[../images/image-decompression-bomb0.png]]
+[[../images/Pasted-Image-20231225103242.png]]
 
-[[../images/image-decompression-bomb1.jpg]]
+[[../images/Pasted-Image-20231225104925.png]]

@@ -10,7 +10,7 @@ AB剪枝是基于min-max搜索策略的优化方法，原理就是根据上层�
 
 参考下面代码的话，10-71对应的剪枝是alpha cut-off, 10-72对应的是beta cut-off.
 
-[[../images/alpha-beta-pruning-alpha-cutoff.png]] [[../images/alpha-beta-pruning-beta-cutoff.png]]
+[[../images/Pasted-Image-20231225104723.png]] [[../images/Pasted-Image-20231225104646.png]]
 
 #+BEGIN_SRC Algol
 function alphabeta(node, depth, α, β, maximizingPlayer) is

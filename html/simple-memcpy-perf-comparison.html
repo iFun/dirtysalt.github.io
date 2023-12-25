@@ -135,26 +135,26 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="orge5741ee" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_16.png" alt="memcpy_size_16.png" />
+<div id="org6b53ec5" class="figure">
+<p><img src="../images/Pasted-Image-20231225103255.png" alt="Pasted-Image-20231225103255.png" />
 </p>
 </div>
 
 
-<div id="org3d9341f" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_64.png" alt="memcpy_size_64.png" />
+<div id="org9a88fa4" class="figure">
+<p><img src="../images/Pasted-Image-20231225103250.png" alt="Pasted-Image-20231225103250.png" />
 </p>
 </div>
 
 
-<div id="orgf648abb" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_256.png" alt="memcpy_size_256.png" />
+<div id="org0c566b4" class="figure">
+<p><img src="../images/Pasted-Image-20231225103251.png" alt="Pasted-Image-20231225103251.png" />
 </p>
 </div>
 
 
-<div id="org6f3fc7f" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_1024.png" alt="memcpy_size_1024.png" />
+<div id="org9f6cf97" class="figure">
+<p><img src="../images/Pasted-Image-20231225103302.png" alt="Pasted-Image-20231225103302.png" />
 </p>
 </div>
 </div>
@@ -178,20 +178,20 @@ VARIANT(5, memcpy_jart)
 
 
 
-<div id="orgc248dbb" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_4096.png" alt="memcpy_size_4096.png" />
+<div id="org6d4e451" class="figure">
+<p><img src="../images/Pasted-Image-20231225103256.png" alt="Pasted-Image-20231225103256.png" />
 </p>
 </div>
 
 
-<div id="org416f824" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_16384.png" alt="memcpy_size_16384.png" />
+<div id="orgfe58082" class="figure">
+<p><img src="../images/Pasted-Image-20231225103258.png" alt="Pasted-Image-20231225103258.png" />
 </p>
 </div>
 
 
-<div id="org16d6027" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_65536.png" alt="memcpy_size_65536.png" />
+<div id="org56e4ada" class="figure">
+<p><img src="../images/Pasted-Image-20231225103301.png" alt="Pasted-Image-20231225103301.png" />
 </p>
 </div>
 </div>
@@ -214,20 +214,20 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="orgd3a6502" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_262144.png" alt="memcpy_size_262144.png" />
+<div id="orgc3a2679" class="figure">
+<p><img src="../images/Pasted-Image-20231225103259.png" alt="Pasted-Image-20231225103259.png" />
 </p>
 </div>
 
 
-<div id="org6e7e299" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_1048576.png" alt="memcpy_size_1048576.png" />
+<div id="org6b540df" class="figure">
+<p><img src="../images/Pasted-Image-20231225103254.png" alt="Pasted-Image-20231225103254.png" />
 </p>
 </div>
 
 
-<div id="org550f8cb" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_4194304.png" alt="memcpy_size_4194304.png" />
+<div id="orgcb6edc7" class="figure">
+<p><img src="../images/Pasted-Image-20231225103253.png" alt="Pasted-Image-20231225103253.png" />
 </p>
 </div>
 </div>
@@ -249,20 +249,20 @@ VARIANT(5, memcpy_jart)
 </ul>
 
 
-<div id="orgaed136b" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_16777216.png" alt="memcpy_size_16777216.png" />
+<div id="org336909f" class="figure">
+<p><img src="../images/Pasted-Image-20231225103252.png" alt="Pasted-Image-20231225103252.png" />
 </p>
 </div>
 
 
-<div id="org0e8ad5c" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_67108864.png" alt="memcpy_size_67108864.png" />
+<div id="orgb06706e" class="figure">
+<p><img src="../images/Pasted-Image-20231225103300.png" alt="Pasted-Image-20231225103300.png" />
 </p>
 </div>
 
 
-<div id="org9387421" class="figure">
-<p><img src="../images/media/16684889455769/memcpy_size_134217728.png" alt="memcpy_size_134217728.png" />
+<div id="org5588f4b" class="figure">
+<p><img src="../images/Pasted-Image-20231225103257.png" alt="Pasted-Image-20231225103257.png" />
 </p>
 </div>
 </div>
@@ -629,7 +629,7 @@ goto tail;
 <li>提升整体查询性能</li>
 </ol>
 
-<pre class="example" id="orgc7fa205">
+<pre class="example" id="orgb59dfb2">
 * It has the following benefits over using glibc's implementation:
 * 1. Avoiding dependency on specific version of glibc's symbol, like memcpy@@GLIBC_2.14 for portability.
 * 2. Avoiding indirect call via PLT due to shared linking, that can be less efficient.
@@ -642,7 +642,7 @@ goto tail;
 但是自己编写memcpy并不容易：CPU型号，size, 并行度等等，并且想要做到全面/正确的microbenchmark不容易。
 </p>
 
-<pre class="example" id="orgbefa8e2">
+<pre class="example" id="orgd5e6c30">
 * Writing our own memcpy is extremely difficult for the following reasons:
 * 1. The optimal variant depends on the specific CPU model.
 * 2. The optimal variant depends on the distribution of size arguments.
@@ -671,7 +671,7 @@ goto tail;
 <li>使用好prefetch以及non-temporal store比较困难。</li>
 </ul>
 
-<pre class="example" id="orgc597fa0">
+<pre class="example" id="org1dde1f8">
 * Let's look at the details:
 *
 * For small size, the order of branches in code is important.
@@ -722,7 +722,7 @@ goto tail;
 关于memcpy使用asm写好还是C/C++写好
 </p>
 
-<pre class="example" id="org864d6c0">
+<pre class="example" id="orgf335228">
 * memcpy can be written in asm, C or C++. The latter can also use inline asm.
 * The asm implementation can be better to make sure that compiler won't make the code worse,
 * to ensure the order of branches, the code layout, the usage of all required registers.
@@ -778,8 +778,8 @@ goto tail;
 </p>
 
 
-<div id="orgaa79ca2" class="figure">
-<p><img src="../images/media/16684889455769/16685679306882.jpg" alt="16685679306882.jpg" />
+<div id="org4a65e2e" class="figure">
+<p><img src="../images/Pasted-Image-20231225103308.png" alt="Pasted-Image-20231225103308.png" />
 </p>
 </div>
 
@@ -788,8 +788,8 @@ goto tail;
 </p>
 
 
-<div id="org649aa08" class="figure">
-<p><img src="../images/media/16684889455769/16685680484758.jpg" alt="16685680484758.jpg" />
+<div id="orga4661b6" class="figure">
+<p><img src="../images/Pasted-Image-20231225103305.png" alt="Pasted-Image-20231225103305.png" />
 </p>
 </div>
 </div>
@@ -816,8 +816,8 @@ goto tail;
 </ul>
 
 <p>
-<img src="../images/media/16684889455769/16686035679546.jpg" alt="16686035679546.jpg" />
-<img src="../images/media/16684889455769/16686035738395.jpg" alt="16686035738395.jpg" />
+<img src="../images/Pasted-Image-20231225103306.png" alt="Pasted-Image-20231225103306.png" />
+<img src="../images/Pasted-Image-20231225103310.png" alt="Pasted-Image-20231225103310.png" />
 </p>
 </div>
 </div>
@@ -850,14 +850,14 @@ goto tail;
 </ul>
 
 
-<div id="org0aff15a" class="figure">
-<p><img src="../images/media/16684889455769/16686528258206.jpg" alt="16686528258206.jpg" />
+<div id="org2aabcfa" class="figure">
+<p><img src="../images/Pasted-Image-20231225103309.png" alt="Pasted-Image-20231225103309.png" />
 </p>
 </div>
 
 
-<div id="org0889ab1" class="figure">
-<p><img src="../images/media/16684889455769/16686528488477.jpg" alt="16686528488477.jpg" />
+<div id="org593a4f5" class="figure">
+<p><img src="../images/Pasted-Image-20231225103304.png" alt="Pasted-Image-20231225103304.png" />
 </p>
 </div>
 </div>
@@ -875,8 +875,8 @@ goto tail;
 </ul>
 
 <p>
-<img src="../images/media/16684889455769/16686546607635.jpg" alt="16686546607635.jpg" />
-<img src="../images/media/16684889455769/16686546707508.jpg" alt="16686546707508.jpg" />
+<img src="../images/Pasted-Image-20231225103307.png" alt="Pasted-Image-20231225103307.png" />
+<img src="../images/Pasted-Image-20231225103311.png" alt="Pasted-Image-20231225103311.png" />
 </p>
 </div>
 </div>
@@ -894,8 +894,8 @@ goto tail;
 </ul>
 
 <p>
-<img src="../images/media/16684889455769/16686553116226.jpg" alt="16686553116226.jpg" />
-<img src="../images/media/16684889455769/16686553169239.jpg" alt="16686553169239.jpg" />
+<img src="../images/Pasted-Image-20231225103303.png" alt="Pasted-Image-20231225103303.png" />
+<img src="../images/Pasted-Image-20231225103312.png" alt="Pasted-Image-20231225103312.png" />
 </p>
 </div>
 </div>

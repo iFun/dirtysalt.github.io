@@ -48,7 +48,7 @@ Moreover, some recent work explored processing-in-memory (PIM) to push computati
 
 架构图示
 
-[[../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-0.png]]
+[[../images/Pasted-Image-20231225104533.png]]
 
 - Caching Table Data or Query Results. 是缓存Table Data还是缓存结果，FPDB选择了缓存Table Data. 如果选择Query Results并且是中间节点结果的话，其实就相当于是MV.
 - Storage and Caching Granularity. 将table拆分成为许多个partition, 每个partition下面的column data作为cache unit. 可以使用(table name, partition name, colum name)  tuple作为cache key,  使用Apache Arrow作为cache file.
@@ -97,13 +97,13 @@ Cache Eviction策略叫做Benefit-Based Caching Framework, 这个东西的好处
 - LFU  把benefit 设置成为 (frequency * 1/(segment size)). 这里把segment size考虑进去
 - Belady 把benefit 设置成为 1/(下次使用这个cache的时间). 这个是理想的情况
 
-[[../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-1.png]]
+[[../images/Pasted-Image-20231225104628.png]]
 
 Weighted-LFU算法则考虑了：如果这个cache被evicted出去之后，使用pushdown的代价如何，包括网络传输，扫描代价，计算predicates代价。每次访问都需要更新这个benefit.
 
 但是我觉得好像有个点没有考虑进去，就是考虑data freshness/recency.  如果某个file对应的数据特别老，再次被访问的几率很小的话，那么需要花很长时间才能evicted出去。
 
-[[../images/flexpushdowndb-hybrid-pushdown-and-caching-in-cloud-dbms-2.png]]
+[[../images/Pasted-Image-20231225104737.png]]
 
 ** 实现和实验细节
 

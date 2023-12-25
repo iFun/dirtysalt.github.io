@@ -35,7 +35,7 @@
   - abstract class Filter[-ReqIn, +RepOut, +ReqOut, -RepIn] extends ((ReqIn, Service[ReqOut, RepIn]) => Future[RepOut])
   - trait SimpleFilter[Req, Rep] extends Filter[Req, Rep, Req, Rep]
   - Composing filters and services / *andThen*
-[[../images/finagle-filter-overview.png]]
+[[../images/Pasted-Image-20231225104713.png]]
 
 *** Anatomy of a Server
 *** Anatomy of a Client

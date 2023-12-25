@@ -11,4 +11,4 @@ To avoid latency, Impala circumvents MapReduce to directly access the data throu
 
 Unlike Dremel as described in the 2010 paper, which could only handle single-table queries, Impala already supports the full set of join operators that are one of the factors that make SQL so popular.（dremel只是支持在一个table上面的query，而impala可以支持SQL里面所有的join操作）
 
-[[../images/impala-high-level-architecture.png]]
+[[../images/Pasted-Image-20231225104438.png]]

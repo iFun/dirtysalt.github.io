@@ -34,7 +34,7 @@ Therefore, what Linux and most other schedulers do is pe- riodically run a load-
 
 因为多核有不同的性质(share L2 cache, share L3 cache, socket, NUMA)，根据这些性质引入了scheduling domain概念，大约就是一个domain下面某些core的性质是相似的。
 
-[[../images/the-linux-scheduler-decade-of-wasted-cores-0.png]]
+[[../images/Pasted-Image-20231225103822.png]]
 
 #+BEGIN_QUOTE
 The cores are logically organized in a hierarchy, at the bottom of which is a single core. How the cores are grouped in the next levels of the hierarchy depends on how they share the machine’s physical resources. In the example pro- vided here we describe the hierarchy on our experimental machine (see Table 5), where pairs of cores share functional units (e.g., FPU), and groups of eight cores share a last-level cache (LLC). A group of eight cores sharing an LLC form a NUMA node. Different NUMA nodes have varying connec- tivity as explained below and as shown in Figure 4. Conse- quently, on our target system, at the second level of the hier- archy we have pairs of cores, and at the next level we have groups of eight cores, each sharing an LLC (e.g., a NUMA node). NUMA nodes are further grouped according to their level of connectivity [23]. Nodes that are one hop apart from each other will be at the next level, and so on. An example of such a hierarchy is shown in Figure 1. Each level of the hierarchy is called a scheduling domain.
@@ -42,11 +42,11 @@ The cores are logically organized in a hierarchy, at the bottom of which is a si
 
 简化之后的load balancing算法如下，大约就是从每个SG里面选择一个代表CPU，然后这个CPU对这个SG里面的CPU runqueue进行负载均衡。
 
-[[../images/the-linux-scheduler-decade-of-wasted-cores-1.png]]
+[[../images/Pasted-Image-20231225103813.png]]
 
 文章作者发现的几个bugs如下，这些bugs我没有仔细看
 
-[[../images/the-linux-scheduler-decade-of-wasted-cores-2.png]]
+[[../images/Pasted-Image-20231225103705.png]]
 
 
 ----------

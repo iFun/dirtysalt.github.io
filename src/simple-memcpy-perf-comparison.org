@@ -57,13 +57,13 @@ VARIANT(5, memcpy_jart)
 - avx_unaligned
 - avx_unaligned_erms
 
-[[../images/media/16684889455769/memcpy_size_16.png]]
+[[../images/Pasted-Image-20231225103255.png]]
 
-[[../images/media/16684889455769/memcpy_size_64.png]]
+[[../images/Pasted-Image-20231225103250.png]]
 
-[[../images/media/16684889455769/memcpy_size_256.png]]
+[[../images/Pasted-Image-20231225103251.png]]
 
-[[../images/media/16684889455769/memcpy_size_1024.png]]
+[[../images/Pasted-Image-20231225103302.png]]
 
 
 *** 小尺寸
@@ -75,11 +75,11 @@ VARIANT(5, memcpy_jart)
 - 64K上，my/my2/avx_unaligned/AVX2表现都不错
 
 
-[[../images/media/16684889455769/memcpy_size_4096.png]]
+[[../images/Pasted-Image-20231225103256.png]]
 
-[[../images/media/16684889455769/memcpy_size_16384.png]]
+[[../images/Pasted-Image-20231225103258.png]]
 
-[[../images/media/16684889455769/memcpy_size_65536.png]]
+[[../images/Pasted-Image-20231225103301.png]]
 
 *** 中尺寸
 
@@ -90,11 +90,11 @@ VARIANT(5, memcpy_jart)
 - 1MB上 erms/avx_unaligned_erms 最好，my版本表现也可以
 - 4MB上 my/my2/AVX2/avx_unaligned 表现都可以
 
-[[../images/media/16684889455769/memcpy_size_262144.png]]
+[[../images/Pasted-Image-20231225103259.png]]
 
-[[../images/media/16684889455769/memcpy_size_1048576.png]]
+[[../images/Pasted-Image-20231225103254.png]]
 
-[[../images/media/16684889455769/memcpy_size_4194304.png]]
+[[../images/Pasted-Image-20231225103253.png]]
 
 *** 大尺寸
 
@@ -104,11 +104,11 @@ VARIANT(5, memcpy_jart)
 - 单线程上 my/my2/AVX2 似乎实现比较好
 - 多线程上 avx_unaligned/erms 似乎比较好
 
-[[../images/media/16684889455769/memcpy_size_16777216.png]]
+[[../images/Pasted-Image-20231225103252.png]]
 
-[[../images/media/16684889455769/memcpy_size_67108864.png]]
+[[../images/Pasted-Image-20231225103300.png]]
 
-[[../images/media/16684889455769/memcpy_size_134217728.png]]
+[[../images/Pasted-Image-20231225103257.png]]
 
 *** 初步总结
 
@@ -521,11 +521,11 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 
 如果放在 https://gcc.godbolt.org/ 里面编译会发现，这个编译结果是有问题的。汇编代码的40行，如果<=256那么进入L7, 但是L7直接就ret了。说明这个部分其实是没有做任何处理的。如果在 asm 关键字后面加上 volatile 关键字则没有问题。
 
-[[../images/media/16684889455769/16685679306882.jpg]]
+[[../images/Pasted-Image-20231225103308.png]]
 
 增加了volatile关键字之后就没有问题
 
-[[../images/media/16684889455769/16685680484758.jpg]]
+[[../images/Pasted-Image-20231225103305.png]]
 
 ** 改进方案设计
 
@@ -538,8 +538,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 - memcpy_my(noavx) 当前CK使用的版本
 - memcpy_sr PR里面提交的版本
 
-[[../images/media/16684889455769/16686035679546.jpg]]
-[[../images/media/16684889455769/16686035738395.jpg]]
+[[../images/Pasted-Image-20231225103306.png]]
+[[../images/Pasted-Image-20231225103310.png]]
 
 ** 细粒度分析
 
@@ -557,9 +557,9 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 - memcpy_my 有个问题就是4KB左右会存在一定的波动
 - memcpy_sr 相对比较平稳，总体比memcpy_my(avx)版本差些，但是没有尖峰出现
 
-[[../images/media/16684889455769/16686528258206.jpg]]
+[[../images/Pasted-Image-20231225103309.png]]
 
-[[../images/media/16684889455769/16686528488477.jpg]]
+[[../images/Pasted-Image-20231225103304.png]]
 
 *** 32KB~2MB
 
@@ -567,8 +567,8 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 - 因为 memcpy_gutil 差距比较大，所以就删除了这个
 - 从512KB到2MB区间内，erms版本不不管是单线程还是多线程都好。
 
-[[../images/media/16684889455769/16686546607635.jpg]]
-[[../images/media/16684889455769/16686546707508.jpg]]
+[[../images/Pasted-Image-20231225103307.png]]
+[[../images/Pasted-Image-20231225103311.png]]
 
 *** 2MB~64MB
 
@@ -577,5 +577,5 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 - 多线程版本 avx_unaligned和erms版本更好些
 - 很难选择一个比较general的版本
 
-[[../images/media/16684889455769/16686553116226.jpg]]
-[[../images/media/16684889455769/16686553169239.jpg]]
+[[../images/Pasted-Image-20231225103303.png]]
+[[../images/Pasted-Image-20231225103312.png]]

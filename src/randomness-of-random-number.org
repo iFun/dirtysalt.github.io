@@ -46,7 +46,7 @@ def gen_halton_random(low, high, size):
 
 第一张图是numpy产生的，第二张图是halton产生的，差异还是蛮明显的
 
-[[../images/numpy_random.jpg]] [[../images/halton_random.jpg]]
+[[../images/Pasted-Image-20231225105328.png]] [[../images/Pasted-Image-20231225105137.png]]
 
 为了更好地产生随机数，ghalton可以指定dimension, 因为我们要产生二维图像所以inDim=2.
 

@@ -39,7 +39,7 @@ for E in Es:
 _ = df.hist(bins = 10, figsize=(20, 10))
 #+END_SRC
 
-[[../images/lottery-exp-dist.png]]
+[[../images/Pasted-Image-20231225104828.png]]
 
 但是无论如何，最终得到的分布肯定都不再是指数分布了，因为长尾没有了。粗略估计，如果真正要满足指数分布的话，那么应该给予N=9无穷大的概率，E应该是大约在4.5左右才符合指数分布。
 

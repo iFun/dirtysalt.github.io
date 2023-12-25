@@ -20,13 +20,13 @@ So we have to choose between work-stealing and work-requesting. Work-stealing ha
 
 There are also 2 problems with work-stealing due to it's asynchronous nature. First, it inherently incurs some observable per-task overhead, because every pop operation from a thread's work deque must be synchronized with a potential asynchronous steal operation from another thread. Stealing is rare, but one still has to pay that price on every pop operation. The price is at least a single store-load style memory fence (MFENCE instruction for x86 architecture), or a single atomic RMW operation (LOCK prefixed instruction on x86). Here is an illustration of the problem:
 
-[[../images/task-scheduling-strategies-0.png]]
+[[../images/Pasted-Image-20231225103918.png]]
 
 Work-requesting is free of the problem. Task deque is completely local to a thread and requires no synchronization.
 
 The second problem has similar nature and relates to a join phase of parallel algorithms. Traditional handling of task completion involves decrement of a pending child counter of a parent task. Due to asynchronous nature of work-stealing, the decrement has to be synchronized with other potential concurrent decrement operations. Here is an illustration of the problem:
 
-[[../images/task-scheduling-strategies-1.png]]
+[[../images/Pasted-Image-20231225103958.png]]
 
 Work-requesting is free of the problem. During execution of work-requesting protocol a victim thread can mark a parent task with a 'has_stolen_children' flag, and synchronization will be used only for such tasks. While great bulk of tasks will proceed without any synchronization.
 

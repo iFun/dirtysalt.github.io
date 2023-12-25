@@ -6,7 +6,7 @@ https://en.algorithmica.org/hpc/simd/
 
 CPU支持指令集合情况，以及每种指令集处理宽度
 
-[[../images/algorithmica-simd-isa-evolution.jpg]]
+[[../images/Pasted-Image-20231225104929.png]]
 
 检查是否支持某个指令集
 
@@ -88,7 +88,7 @@ void print(__m256i v) {
 
 对于Non-Contiguous Load需要使用gather-scatter操作，这些操作主要优势体现在复杂计算上，如果gather起来只是简单的操作，那么意义不是很大。Gather在AVX2上有了，Scatter在AVX512上才有，看来还是初步阶段。如果scatter性能不行的话，那么工程师就需要花精力在平衡各种操作的数据布局上。
 
-[[../images/algorithmica-simd-scatter-gather.jpg]]
+[[../images/Pasted-Image-20231225105015.png]]
 
 #+BEGIN_QUOTE
 Later SIMD extensions added special “gather” and “scatter instructions that read/write data non-sequentially using arbitrary array indices. These don’t work 8 times faster though and are usually limited by the memory rather than the CPU, but they are still helpful for certain applications such as sparse linear algebra.

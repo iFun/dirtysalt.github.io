@@ -4,7 +4,7 @@ http://duartes.org/gustavo/blog/post/what-your-computer-does-while-you-wait
 
 作者大致介绍了一下目前计算机组成部分的性能指标以及大致优化思路
 
-[[../images/LatencyAndThroughputFull.png]]
+[[../images/Pasted-Image-20231225104629.png]]
 
 | 指标                     | 数据              |
 |--------------------------+-------------------|

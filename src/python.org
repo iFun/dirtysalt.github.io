@@ -551,7 +551,7 @@ python logging主要有下面几个类
 
 Logger支持层次结构，层次结构是根据name来判断的。比如a就是a.b, a.c, a.d的父logger. 通常来说子logger打印日志都会传递到上层logger(也可以通过disable propagate来关闭), 带来的好处是用户只需要在最上层设置一次handler, format, filter之后，子logger就都可以使用它们而不必单独设置。下图是logging流程
 
-[[../images/python-logging-flow.png]]
+[[../images/Pasted-Image-20231225104101.png]]
 
 内置的FileHandler只能够正确地处理一个解释器中多个线程向一个文件打印的情况，但是却不能解决多个进程向同一个文件打印。社区有一些Handler实现来解决这个问题比如 [[https://github.com/jruere/multiprocessing-logging][multiprocessing-logging]] 和 [[https://pypi.python.org/pypi/ConcurrentLogHandler/0.8.3][ConcurrentLogHandler]].
 

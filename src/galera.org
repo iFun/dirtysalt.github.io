@@ -8,7 +8,7 @@ Code
 - https://code.launchpad.net/~codership/codership-mysql/5.6
 - [[file:galera-code.org][Galera代码分析]]
 
-[[../images/galera-code-structure.png]]
+[[../images/Pasted-Image-20231225103228.png]]
 
 Official
 - Index http://www.codership.com/wiki/doku.php
@@ -49,7 +49,7 @@ Info.(@2012)
   - Severalnines
 
 ** Replicator Architecture
-[[../images/galera-overview.png]] [[../images/galera-library.png]]
+[[../images/Pasted-Image-20231225103655.png]] [[../images/Pasted-Image-20231225103334.png]]
 
 - 完成事务在集群内的广播
 - 应用从其他节点接收并全局验证通过的事件到本地
@@ -59,9 +59,9 @@ Info.(@2012)
 
 -----
 
-[[../images/galera-gcs2.png]]
+[[../images/Pasted-Image-20231225104223.png]]
 
-[[../images/galera-gcs.jpg]]
+[[../images/Pasted-Image-20231225105103.png]]
 
 - Group Communication层实现统一全局数据同步策略和集群内所有事务的排序，便于生成GTID。
   - Galera cluster is built on top of *a proprietary group communication system* layer which implements virtual synchrony QoS.
@@ -72,7 +72,7 @@ Info.(@2012)
 
 -----
 
-[[../images/galera-certification.png]] [[../images/galera-certification-en.png]]
+[[../images/Pasted-Image-20231225103511.png]] [[../images/Pasted-Image-20231225104905.png]]
 
 在数据库事务提交时，会使用2阶段提交方式，在ha_trans_commit中，首先会针对每一个存储引擎执行一个ht->prepare函数，而对于Galera，在内部实现也是当作一个内嵌的存储引擎使用的，所以它执行的是wsrep_prepare，这个函数的功能是将在执行过程中产生的binlog通过下面会介绍到的接口append_data传到其它节点上面去（或者没有传过去，只是将这些数据对象存储在本地，等待提交操作），然后再通过下面这个接口pre_commit去与其它节点的Galera通讯检查有没有冲突，这个过程也就是在 *介绍Galera的文章中说到的certification阶段* 。 *note:是在本地先提交吗？*
 - Transactions process independently in each cluster node
@@ -88,7 +88,7 @@ http://en.wikipedia.org/wiki/Virtual_synchrony
 - http://www.codership.com/wiki/doku.php?id=node_failure
 - http://www.codership.com/wiki/doku.php?id=node_provisioning_recovery
 
-[[../images/galera-fsm.png]]
+[[../images/Pasted-Image-20231225103929.png]]
 
 1. Node establishes connection to a primary component.
 2. Node succeeds in state transfer request. It starts to cache the writesets.
@@ -172,7 +172,7 @@ IST(Very effective)
 - A short asynchronous replication session. If communication is bad quality, node can drop and join back fast with IST.
 
 *** Parallel Applying
-[[../images/galera-parallel-applying.png]]
+[[../images/Pasted-Image-20231225104747.png]]
 
 - Galera assigns non-conflicting WS tasks to parallel appliers
 - Works not on database, not on table, but on row level
@@ -202,7 +202,7 @@ Use wsrep_osu_method to choose either option. *ALTER TABLE to create new autoinc
 - Each node will get the DDL statement and must process the DDL at same slot in transaction stream
 - Galera will isolate the affected table/database for the duration of DDL processing
 
-[[../images/galera-schema-upgrade-toi.png]] [[../images/galera-schema-upgrade-toi2.png]]
+[[../images/Pasted-Image-20231225103809.png]] [[../images/Pasted-Image-20231225104018.png]]
 
 *Rolling Schema Upgrade* （节点首先desync，DDL作用在节点上之后，然后resync）
 - DDL is not replicated
@@ -211,7 +211,7 @@ Use wsrep_osu_method to choose either option. *ALTER TABLE to create new autoinc
 - DBA should roll RSU operation over allnodes
 - Requires backwards compatible schema changes
 
-[[../images/galera-schema-upgrade-rsu.png]] [[../images/galera-schema-upgrade-rsu2.png]] [[../images/galera-schema-upgrade-rsu3.png]] [[../images/galera-schema-upgrade-rsu4.png]]
+[[../images/Pasted-Image-20231225103322.png]] [[../images/Pasted-Image-20231225104751.png]] [[../images/Pasted-Image-20231225104819.png]] [[../images/Pasted-Image-20231225104554.png]]
 
 ** Certification Based Replication
 *** Introduction
@@ -233,7 +233,7 @@ Database Hot-Spots
 Certification based replication (or more precisely, certification-based conflict resolution) is based on academic research, in particular on Fernando Pedone's Ph.D. thesis http://www.inf.usi.ch/faculty/pedone/Paper/199x/These-2090-Pedone.pdf
 
 *** Consistent read(read causality)
-[[../images/galera-consistent-read.png]]
+[[../images/Pasted-Image-20231225103909.png]]
 
 There is causal dependency between operations on two database connections:
 - One thread does a database operation
@@ -272,11 +272,11 @@ Possible methods:
 
 *Disconnecting a node for backup*
 
-[[../images/galera-backup-disconnect-node.png]] [[../images/galera-backup-backup.png]]
+[[../images/Pasted-Image-20231225104532.png]] [[../images/Pasted-Image-20231225104620.png]]
 
 *Backup by SST API*
 
-[[../images/galera-backup-by-sst-api.png]]
+[[../images/Pasted-Image-20231225103404.png]]
 
 *Backup by xtrabackup*
 - Xtrabackup is hot backup method and can be used anytime

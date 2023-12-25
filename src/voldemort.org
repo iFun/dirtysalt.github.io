@@ -26,7 +26,7 @@
 - This approach has also been extended to various databases. Konstantinou et al. and Barbuzzi et al. suggest building HFiles offline in Hadoop, then shipping them to HBase, an open source database modeled af-ter BigTable . These works do not explore the data pipeline, particularly data refreshes and rollback.（HBase bulkload缺少rollback机制）
 
 ** Project Voldemort
-[[../images/voldemort-pluggabe-architecture.png]]
+[[../images/Pasted-Image-20231225103211.png]]
 
 ** Alternative Approaches
 Before we started building our own custom storage engine, we decided to evaluate the existing read-write storage engines supported in Voldemort, namely, MySQL and Berkeley DB. Our criteria for success was the ability to bulk load massive data sets with minimal disk space overhead, while still serving live traffic.（MySQL和BDB在作为存储引擎上的问题）
@@ -56,7 +56,7 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 - *Ability to handle large data sets*: The easy access to scalable computing through Hadoop, along with the growing use of complex algorithms has resulted in large data sets being used as part of many core products. Classic examples of this, in the context of social networks, include storing relationships be-tween a pair of users, or between users and an entity. When dealing with millions of users, these pairs can easily reach billions of tuples, motivating our storage engine to support terabytes of data and perform well under a large data to memory ratio.（存储格式假设数据大小远大于可用内存大小）
 
 ** Read-only Extensions
-[[../images/voldemort-read-only-extensions-architecture.png]]
+[[../images/Pasted-Image-20231225104059.png]]
 
 *** Storage Format
 - Many storage formats try to build data structures that keep the data memory resident in the process’s address space, ignoring the effects of the operating system’s page cache. The several orders of magnitude latency gap be-tween page cache and disk means that most of the real performance benefit by maintaining our own structure is for elements already in the page cache. In fact, this cus-tom structure may even start taking memory away from the page cache. This potential interference motivated the need for our storage engine to exploit the page cache in-stead of maintaining our own complex heap-based data structure. Because our data is immutable, Voldemort memory maps the entire index into the address space. Ad-ditionally, because Voldemort is written in Java and runs on the JVM, delegating the memory management to the operating system eases garbage collection tuning.（充分利用os page cache一方面可以简化代码而不用自己去维护比较复杂的cache结构，另外一方面因为page cache不是通过JVM来管理的所以可以缓解JVM GC的压力来提高效率） #note: 用JVM编写的存储系统最好不要来自己管理cache，或者由上层来管理cache，或者由JNI来间接管理cache，因为cache对JVM GC的影响会非常大
@@ -68,7 +68,7 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
   - We had initially started by using the full 16 bytes of the MD5 signature, but saw performance problems as the number of stores grew. In particular, the indexes for all stores were not page cache resident, and thrashing behavior was seen for certain stores due to other high-throughput stores. To alleviate this problem, we needed to cut down on the amount of data being memory mapped, which could be achieved by reducing the available key-space and accepting collisions in the data file.（之所以选用前8个字节来做index key是考虑到index文件大小和冲突概率的折衷）
   - The data file is also a very highly-packed structure where we store the number of collided tuples followed by a list of collided tuples (key size, value size, key, value). The order of these multiple lists is the same as the corre-sponding 8 bytes of MD5 of key in the index file. Here, we need to store the key bytes instead of the MD5 in the tuples to distinguish collided tuples during reads.
 
-[[../images/voldemort-storage-format.png]]
+[[../images/Pasted-Image-20231225104119.png]]
 
 
 *** Chunk Set Generation

@@ -61,7 +61,7 @@ It’s also important to ensure you get the right collocation. In many markets, 
 
 局域网内交换机一个最大的问题，就是会出现correlated burst. 一个很小的操作，会造成很多连锁反应，带来连锁操作，网络packets会不断地被放大。下面是一个packet burst的例子。
 
-[[../images/barbarians-at-the-gateways-0.png]]
+[[../images/Pasted-Image-20231225104410.png]]
 
 多个交易所之间的数据传输有两种方式：fiber（光纤）和micromave（微波），前者解决的是大吞吐问题，而后者解决的是低延迟问题（光纤内部折射导致路程增加而延迟增加）。
 
@@ -69,7 +69,7 @@ It’s also important to ensure you get the right collocation. In many markets, 
 a high-throughput path and a lower-throughput fast path. For the high-throughput path, private point-to-point fiber—10GbE (gigabit Ethernet) is preferred. For the fast path, each location allows for options. In the New York metro area, both millimeter and microwave solutions are available. These technologies are commonplace for HFT fast-path links, since the reduced refractive index allows for lower latency.
 #+END_QUOTE
 
-[[../images/barbarians-at-the-gateways-1.png]]
+[[../images/Pasted-Image-20231225104342.png]]
 
 软件上有两个组件feed handler以及ticket plant, 前者是生成ticket order信息，而后者则是将ticket order信息推送到不同的app上。整个结构如下图，为了加速feed的解析， 也使用了FGPA电路，整个解析和处理过程可以在25us以下。
 
@@ -77,7 +77,7 @@ a high-throughput path and a lower-throughput fast path. For the high-throughput
 The feed handler is often the first bit of code to be implemented by an HFT group. As shown in figure 4, the feed handler subscribes to a market-data feed, parses the feed, and constructs a “clean” book. This is traditionally implemented on an FPGA and has now become a commodity for the industry (http://www.exegy.com). Most feed handlers for U.S. equities are able to parse multiple market-data feeds and build a consolidated book in less than 25 microseconds.
 #+END_QUOTE
 
-[[../images/barbarians-at-the-gateways-2.png]]
+[[../images/Pasted-Image-20231225104441.png]]
 
 交易所的技术和HFT差别不大，但是更加注意安全性。比如network上不允许做snoop, gateway的设计上也会监视每个client是否存在恶意操作(因为gateway是共享的，如果client A恶意操作，可以影响到上面共享的client B).
 
@@ -89,7 +89,7 @@ The gateway is the first exchange subsystem that client flow encounters. Gateway
 Gateways are often shared across customers, as a gateway for each and every exchange participant would likely require a massive data-center footprint. As such, gateways must be closely monitored for malicious manipulation. An example of gateway “gaming” is shown in figure 11. In figure 11a, client A is connected to two distinct gateways. In 11b, Client A induces extreme load on Gateway 1, causing Client B traffic to slow. In 11c, Gateway 1, not under load, slows all attempts for Client B to cancel resting markets. Client A has an advantage with the self-made fast path.
 #+END_QUOTE
 
-[[../images/barbarians-at-the-gateways-3.png]]
+[[../images/Pasted-Image-20231225104510.png]]
 
 Gateway在传输协议上和格式协议上都有许多定制化的实现
 

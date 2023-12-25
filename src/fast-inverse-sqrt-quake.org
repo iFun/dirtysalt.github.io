@@ -37,7 +37,7 @@ float Q_rsqrt( float number )
 
 总之整来整去得到的就是下面这个式子（牛顿迭代法之前一步）
 
-[[../images/fast-inverse-sqrt-equation.png]]
+[[../images/Pasted-Image-20231225103448.png]]
 
 这里u是log(1+x) - x的估算。如果假设u=0的话，那么计算出来的浮点数如下，M部分误差在6%左右
 

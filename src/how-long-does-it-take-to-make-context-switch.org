@@ -47,11 +47,11 @@ static inline void switch_mm(struct mm_struct *prev, struct mm_struct *next,
 
 之后作者尝试测试在不同规模memory footprint下cache pollution对context switch的性能影响.下面是没有设置affinity在5150上的测试结果. 可以看到workset大小超过32k之后写入时间没有太大变化，但是cs时间却持续上升。
 
-[[../images/cs-wo-affinity-on-5150.png]]
+[[../images/Pasted-Image-20231225103203.png]]
 
 下面是设置affinity在5150上的测试结果，可以看到workset超过32k之后变化cs时间变化增速很慢
 
-[[../images/cs-w-affinity-on-5150.png]]
+[[../images/Pasted-Image-20231225104255.png]]
 
 其中5150参数是(5150: L1i & L1d = 32K each, L2 = 4M). note: 我没有办法解释为什么出现这些拐点
 

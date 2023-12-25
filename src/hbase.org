@@ -294,7 +294,7 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 #+END_EXAMPLE
 下面是从ganglia里面来的当时的负载情况
 
-[[../images/hbase-dp48-high-cpu-load.png]]
+[[../images/Pasted-Image-20231225103704.png]]
 
 ** lease expired exception
 #+BEGIN_EXAMPLE
@@ -449,7 +449,7 @@ org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: ja
 ** dyq's hbase representation
 @ 2012-08-16
 
-[[../images/hbase-architecture.png]]
+[[../images/Pasted-Image-20231225104528.png]]
 
 HRegion类似于tablet，每个HRegion有很多Store存储不同的column family。
 

@@ -3,7 +3,7 @@
 
 Open your mind, and open your eyes. (放眼未来, 自由想象)
 
-[[../images/valve-logo.jpg]]
+[[../images/Pasted-Image-20231225104931.png]]
 
 Email: dirtysalt1987 AT gmail DOT com
 
@@ -91,7 +91,7 @@ Optimize cluster recovery process regarding data center outage case, and reduce 
 
 - Design and implement FastHBaseRest. It is a high-performance service for accessing HBase based on HTTP/protobuf, using asynchbase for asynchronous access to HBase to improve throughput, using google guava written at the application level LRU cache to reduce access latency. The service is modular and easily extensible, and supports rewrite request/response functionality. Compared to HBase/rest, access latency is reduced by 20%-70%, and traffic data is reduced by 40%-60%.
 
-*** [[../images/baidu-inf-com-2010q4.jpg][Senior Software Engineer]], [[https://www.baidu.com/][Baidu]], 2008.7 - 2012.6
+*** [[../images/Pasted-Image-20231225105147.png][Senior Software Engineer]], [[https://www.baidu.com/][Baidu]], 2008.7 - 2012.6
 
 - Design and implement the internal build system comake2. In principle this system is very similar to maven in the Java ecosystem: you can use it to build projects and use it to manage internal dependencies. comake2 is written in Python and is very extensible, with dozens of plugins contributed by several departments, and is widely used within the company.
 
@@ -162,7 +162,7 @@ Data Lake Team:
 
 - [[http://galeracluster.com/][Galera]], 2014.4 - 2014.11. 针对DC断电这种情况改进集群恢复机制，将集群恢复时间从30s降低到3s以内。
 
-*** [[../images/baidu-inf-com-2010q4.jpg][高级软件工程师]], 百度, 2008.7 - 2012.6
+*** [[../images/Pasted-Image-20231225105147.png][高级软件工程师]], 百度, 2008.7 - 2012.6
 
 - 设计和实现内部构建系统comake2. 从原理上说这个系统非常类似于Java生态系统中的maven：可以使用它来构建项目，同时可以使用它来管理内部依赖。comake2使用Python语言编写，具有非常强的可扩展性，由多个部门贡献了超过数十种插件，在公司内部被广泛使用。
 

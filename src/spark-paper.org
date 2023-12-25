@@ -54,7 +54,7 @@ However, Spark also lets programmers create two restricted types of shared vari-
 
 ** Examples
 ** Implementation
-[[../images/spark-cluster-overview.png]]
+[[../images/Pasted-Image-20231225104623.png]]
 
 *** RDD
 The core of Spark is the implementation of resilient dis- tributed datasets. As an example, suppose that we define a cached dataset called cachedErrs representing error messages in a log file, and that we count its elements us- ing map and reduce, as in Section 3.1:
@@ -69,7 +69,7 @@ val count = ones.reduce(_+_)
 
 These datasets will be stored as a chain of objects cap- turing the lineage of each RDD, shown in Figure 1. Each dataset object contains a pointer to its parent and informa- tion about how the parent was transformed.
 
-[[../images/spark-rdd-code-examples.png]]
+[[../images/Pasted-Image-20231225103750.png]]
 
 Internally, each RDD object implements the same sim- ple interface, which consists of three operations:(RDD interface)
 - getPartitions, which returns a list of partition IDs.(这个RDD有哪些partitions)
