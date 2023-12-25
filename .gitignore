@@ -45,7 +45,7 @@ Podfile.lock
 Pods
 *.mov
 *.mp4
-*.gif
+# *.gif
 .DS_Store
 .ipynb_checkpoints
 *.tsv
