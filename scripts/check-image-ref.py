@@ -30,8 +30,7 @@ def process_directory(dir):
     for f, src in used_images:
         if f not in repo_images_set:
             print('Image ref missing: %s  ==>  %s' % (f, src))
-            if not f.endswith('.gif'):
-                fail = True
+            fail = True
 
     for f in repo_images:
         if f not in used_images_set:
@@ -43,7 +42,7 @@ def process_directory(dir):
 
 def parse_used_images(file):
     ref_pfx = "[[../images/"
-    bad_pfx_list = ["[[file:images/", "[[file:../images/", "[[imaes/"]
+    bad_pfx_list = ["[[file:images/", "[[file:../images/", "[[images/"]
     used_images = []
 
     with open(file) as fh:
