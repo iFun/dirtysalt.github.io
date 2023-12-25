@@ -1,6 +1,11 @@
 #!/bin/bash
 # publish org files.
 
+# clean trash files
+rm -rf images/\.#*
+rm -rf src/\.#*
+rm -rf html/\.#*
+
 echo "********** check references **********"
 python3 ./scripts/check-image-ref.py `pwd`
 if [ $? != 0 ]; then
