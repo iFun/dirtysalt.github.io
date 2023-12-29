@@ -16,15 +16,15 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7ff2484">1. Abstract</a></li>
-<li><a href="#org9754161">2. Introduction</a></li>
-<li><a href="#orgee5fe38">3. Programming Model</a></li>
-<li><a href="#org1f12c73">4. Implementation</a></li>
-<li><a href="#orgfaf2a9d">5. Refinements</a></li>
-<li><a href="#orgadf821f">6. Performance</a></li>
-<li><a href="#org6b2b9fe">7. Experience</a></li>
-<li><a href="#org651f959">8. Related Work</a></li>
-<li><a href="#org4b5641c">9. Conclusions</a></li>
+<li><a href="#orgd8641af">1. Abstract</a></li>
+<li><a href="#org61fdf7a">2. Introduction</a></li>
+<li><a href="#org0404c28">3. Programming Model</a></li>
+<li><a href="#org2659515">4. Implementation</a></li>
+<li><a href="#orge63a717">5. Refinements</a></li>
+<li><a href="#org3c31dc5">6. Performance</a></li>
+<li><a href="#org327f7a9">7. Experience</a></li>
+<li><a href="#orgd3b522a">8. Related Work</a></li>
+<li><a href="#orgc132053">9. Conclusions</a></li>
 </ul>
 </div>
 </div>
@@ -36,14 +36,14 @@
 <a href="https://pdos.csail.mit.edu/6.824/notes/l01.txt">https://pdos.csail.mit.edu/6.824/notes/l01.txt</a>
 </p>
 
-<div id="outline-container-org7ff2484" class="outline-2">
-<h2 id="org7ff2484"><span class="section-number-2">1.</span> Abstract</h2>
+<div id="outline-container-orgd8641af" class="outline-2">
+<h2 id="orgd8641af"><span class="section-number-2">1.</span> Abstract</h2>
 </div>
-<div id="outline-container-org9754161" class="outline-2">
-<h2 id="org9754161"><span class="section-number-2">2.</span> Introduction</h2>
+<div id="outline-container-org61fdf7a" class="outline-2">
+<h2 id="org61fdf7a"><span class="section-number-2">2.</span> Introduction</h2>
 </div>
-<div id="outline-container-orgee5fe38" class="outline-2">
-<h2 id="orgee5fe38"><span class="section-number-2">3.</span> Programming Model</h2>
+<div id="outline-container-org0404c28" class="outline-2">
+<h2 id="org0404c28"><span class="section-number-2">3.</span> Programming Model</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The computation takes a set of input key/value pairs, and produces a set of output key/value pairs. The user of the MapReduce library expresses the computation as two functions: Map and Reduce.
@@ -71,8 +71,8 @@ Map/Reduce的输入输出类型是：
 </div>
 </div>
 
-<div id="outline-container-org1f12c73" class="outline-2">
-<h2 id="org1f12c73"><span class="section-number-2">4.</span> Implementation</h2>
+<div id="outline-container-org2659515" class="outline-2">
+<h2 id="org2659515"><span class="section-number-2">4.</span> Implementation</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Many different implementations of the MapReduce in-terface are possible. The right choice depends on the environment. For example, one implementation may be suitable for a small shared-memory machine, another for a large NUMA multi-processor, and yet another for an even larger collection of networked machines.（mapreduce可以有很多实现，这个取决于环境。）
@@ -105,7 +105,7 @@ Reduce invoca-tions are distributed by partitioning the intermediate key space i
 </p>
 
 
-<div id="orgf31a339" class="figure">
+<div id="org500a3cd" class="figure">
 <p><img src="../images/Pasted-Image-20231225103252.png" alt="Pasted-Image-20231225103252.png" />
 </p>
 </div>
@@ -230,8 +230,8 @@ When a MapReduce operation is close to completion, the master schedules backup e
 </div>
 </div>
 
-<div id="outline-container-orgfaf2a9d" class="outline-2">
-<h2 id="orgfaf2a9d"><span class="section-number-2">5.</span> Refinements</h2>
+<div id="outline-container-orge63a717" class="outline-2">
+<h2 id="orge63a717"><span class="section-number-2">5.</span> Refinements</h2>
 <div class="outline-text-2" id="text-5">
 <hr />
 <p>
@@ -351,11 +351,11 @@ Users have found the counter facility useful for sanity checking the behavior of
 </div>
 </div>
 
-<div id="outline-container-orgadf821f" class="outline-2">
-<h2 id="orgadf821f"><span class="section-number-2">6.</span> Performance</h2>
+<div id="outline-container-org3c31dc5" class="outline-2">
+<h2 id="org3c31dc5"><span class="section-number-2">6.</span> Performance</h2>
 </div>
-<div id="outline-container-org6b2b9fe" class="outline-2">
-<h2 id="org6b2b9fe"><span class="section-number-2">7.</span> Experience</h2>
+<div id="outline-container-org327f7a9" class="outline-2">
+<h2 id="org327f7a9"><span class="section-number-2">7.</span> Experience</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>We wrote the first version of the MapReduce library in February of 2003, and made significant enhancements to it in August of 2003, including the locality optimization, dynamic load balancing of task execution across worker machines, etc. （03年二月份完成，03年8月份将本地优化，动态负载均衡加入）</li>
@@ -370,7 +370,7 @@ Users have found the counter facility useful for sanity checking the behavior of
 </ul>
 
 
-<div id="org979fcc1" class="figure">
+<div id="org688d7ae" class="figure">
 <p><img src="../images/Pasted-Image-20231225104422.png" alt="Pasted-Image-20231225104422.png" />
 </p>
 </div>
@@ -380,7 +380,7 @@ Users have found the counter facility useful for sanity checking the behavior of
 </p>
 
 
-<div id="org7ea1486" class="figure">
+<div id="org93dc964" class="figure">
 <p><img src="../images/Pasted-Image-20231225103629.png" alt="Pasted-Image-20231225103629.png" />
 </p>
 </div>
@@ -396,8 +396,8 @@ Users have found the counter facility useful for sanity checking the behavior of
 </div>
 </div>
 
-<div id="outline-container-org651f959" class="outline-2">
-<h2 id="org651f959"><span class="section-number-2">8.</span> Related Work</h2>
+<div id="outline-container-orgd3b522a" class="outline-2">
+<h2 id="orgd3b522a"><span class="section-number-2">8.</span> Related Work</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Our locality optimization draws its inspiration from techniques such as active disks [12, 15], where computation is pushed into processing elements that are close to local disks, to reduce the amount of data sent across I/O subsystems or the network. We run on commodity processors to which a small number of disks are directly connected instead of running directly on disk controller processors, but the general approach is similar.
@@ -409,8 +409,8 @@ The MapReduce implementation relies on an in-house cluster management system tha
 </div>
 </div>
 
-<div id="outline-container-org4b5641c" class="outline-2">
-<h2 id="org4b5641c"><span class="section-number-2">9.</span> Conclusions</h2>
+<div id="outline-container-orgc132053" class="outline-2">
+<h2 id="orgc132053"><span class="section-number-2">9.</span> Conclusions</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 We have learned several things from this work.（从中得到的经验）：

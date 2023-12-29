@@ -16,18 +16,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3f1423e">1. FPDB设计思路</a></li>
-<li><a href="#org63b6458">2. Cache or Pushdown</a></li>
-<li><a href="#orgc153de0">3. FPDB架构和设计要点：</a></li>
-<li><a href="#org0d03764">4. FPDB Separable Operators</a></li>
-<li><a href="#orgc7e65ef">5. FPDB Caching Framework</a></li>
-<li><a href="#org9bd66ac">6. 实现和实验细节</a></li>
+<li><a href="#org7ec068c">1. FPDB设计思路</a></li>
+<li><a href="#org10dcc6a">2. Cache or Pushdown</a></li>
+<li><a href="#orgf06ad70">3. FPDB架构和设计要点：</a></li>
+<li><a href="#orgd509d80">4. FPDB Separable Operators</a></li>
+<li><a href="#org3156da0">5. FPDB Caching Framework</a></li>
+<li><a href="#orge23d242">6. 实现和实验细节</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3f1423e" class="outline-2">
-<h2 id="org3f1423e"><span class="section-number-2">1.</span> FPDB设计思路</h2>
+<div id="outline-container-org7ec068c" class="outline-2">
+<h2 id="org7ec068c"><span class="section-number-2">1.</span> FPDB设计思路</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这篇文章的背景是：现在许多remote storage都支持pushdown功能，过去许多系统是将caching和pushdown分开考虑的，但是实际运行中pushdown和caching关系还是很大的。比如从latency上考虑做point query, 可能pushdown可能就比caching要好，这个会影响到cache淘汰策略。如何平衡两者是这篇文章的主要焦点。
@@ -59,8 +59,8 @@ Separable operators open up new possibilities for caching. Tra- ditional cache r
 </div>
 </div>
 
-<div id="outline-container-org63b6458" class="outline-2">
-<h2 id="org63b6458"><span class="section-number-2">2.</span> Cache or Pushdown</h2>
+<div id="outline-container-org10dcc6a" class="outline-2">
+<h2 id="org10dcc6a"><span class="section-number-2">2.</span> Cache or Pushdown</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Cache和Pushdown之间的关系大约是这样：
@@ -104,15 +104,15 @@ Moreover, some recent work explored processing-in-memory (PIM) to push computati
 </div>
 </div>
 
-<div id="outline-container-orgc153de0" class="outline-2">
-<h2 id="orgc153de0"><span class="section-number-2">3.</span> FPDB架构和设计要点：</h2>
+<div id="outline-container-orgf06ad70" class="outline-2">
+<h2 id="orgf06ad70"><span class="section-number-2">3.</span> FPDB架构和设计要点：</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 架构图示
 </p>
 
 
-<div id="org0608293" class="figure">
+<div id="orga5ad56b" class="figure">
 <p><img src="../images/Pasted-Image-20231225104533.png" alt="Pasted-Image-20231225104533.png" />
 </p>
 </div>
@@ -146,8 +146,8 @@ The basic caching unit in FPDB is a segment, which contains data for a particula
 </div>
 </div>
 
-<div id="outline-container-org0d03764" class="outline-2">
-<h2 id="org0d03764"><span class="section-number-2">4.</span> FPDB Separable Operators</h2>
+<div id="outline-container-orgd509d80" class="outline-2">
+<h2 id="orgd509d80"><span class="section-number-2">4.</span> FPDB Separable Operators</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 所谓的Separable Operators就是这个operator可以分解为cache和pushdown两路：
@@ -180,8 +180,8 @@ Although our heuristics are simple and effective, we do note that they may not a
 </div>
 </div>
 
-<div id="outline-container-orgc7e65ef" class="outline-2">
-<h2 id="orgc7e65ef"><span class="section-number-2">5.</span> FPDB Caching Framework</h2>
+<div id="outline-container-org3156da0" class="outline-2">
+<h2 id="org3156da0"><span class="section-number-2">5.</span> FPDB Caching Framework</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 执行的时候如果Cache不存在，那么优先使用pushdown, 之后后台异步进行cache population.
@@ -203,7 +203,7 @@ Cache Eviction策略叫做Benefit-Based Caching Framework, 这个东西的好处
 </ul>
 
 
-<div id="orgf23907b" class="figure">
+<div id="orgb969300" class="figure">
 <p><img src="../images/Pasted-Image-20231225104628.png" alt="Pasted-Image-20231225104628.png" />
 </p>
 </div>
@@ -217,15 +217,15 @@ Weighted-LFU算法则考虑了：如果这个cache被evicted出去之后，使�
 </p>
 
 
-<div id="org27cdcc2" class="figure">
+<div id="orgd9e42a6" class="figure">
 <p><img src="../images/Pasted-Image-20231225104737.png" alt="Pasted-Image-20231225104737.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org9bd66ac" class="outline-2">
-<h2 id="org9bd66ac"><span class="section-number-2">6.</span> 实现和实验细节</h2>
+<div id="outline-container-orge23d242" class="outline-2">
+<h2 id="orge23d242"><span class="section-number-2">6.</span> 实现和实验细节</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Gandiva这个东西多线程做codegen有点问题， 而且似乎很难调试。

@@ -16,18 +16,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org52dc334">1. Abstract</a></li>
-<li><a href="#org0225931">2. Introduction</a></li>
-<li><a href="#orgeab2428">3. Background</a></li>
-<li><a href="#org39eccbe">4. Data Model</a></li>
-<li><a href="#orgf3e3b65">5. Nested Columnar Storage</a></li>
-<li><a href="#org9dbcfeb">6. Query Language</a></li>
-<li><a href="#org80b6287">7. Query Execution</a></li>
-<li><a href="#org161a6b3">8. Experiments</a></li>
-<li><a href="#org75e2d8d">9. Observations</a></li>
-<li><a href="#org762b9e1">10. Related Work</a></li>
-<li><a href="#org1bd29e7">11. Conclusion</a></li>
-<li><a href="#orgeea6484">12. Appendix</a></li>
+<li><a href="#org9282876">1. Abstract</a></li>
+<li><a href="#org88a5a94">2. Introduction</a></li>
+<li><a href="#orgda3df0f">3. Background</a></li>
+<li><a href="#org1e2caf3">4. Data Model</a></li>
+<li><a href="#orgeb508a6">5. Nested Columnar Storage</a></li>
+<li><a href="#org434ef51">6. Query Language</a></li>
+<li><a href="#orgbd95b0a">7. Query Execution</a></li>
+<li><a href="#org21f6cf8">8. Experiments</a></li>
+<li><a href="#org39f9299">9. Observations</a></li>
+<li><a href="#org0be813c">10. Related Work</a></li>
+<li><a href="#orgb8f5c41">11. Conclusion</a></li>
+<li><a href="#org285ee0d">12. Appendix</a></li>
 </ul>
 </div>
 </div>
@@ -36,8 +36,8 @@
 <li><a href="http://www.yankay.com/google-dremel-rationale">http://www.yankay.com/google-dremel-rationale</a></li>
 </ul>
 
-<div id="outline-container-org52dc334" class="outline-2">
-<h2 id="org52dc334"><span class="section-number-2">1.</span> Abstract</h2>
+<div id="outline-container-org9282876" class="outline-2">
+<h2 id="org9282876"><span class="section-number-2">1.</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Dremel is a scalable, interactive ad-hoc query system for analy-sis of read-only nested data. （着重处理只读的嵌套数据，主要针对交互式的ad-hoc查询，并且有良好的可扩展性）</li>
@@ -47,8 +47,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0225931" class="outline-2">
-<h2 id="org0225931"><span class="section-number-2">2.</span> Introduction</h2>
+<div id="outline-container-org88a5a94" class="outline-2">
+<h2 id="org88a5a94"><span class="section-number-2">2.</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>This paper describes a system called Dremel1 that supports inter-active analysis of very large datasets over shared clusters of com-modity machines. （允许在廉价的集群上面进行大规模数据的交互式分析）</li>
@@ -85,23 +85,23 @@
 </div>
 </div>
 
-<div id="outline-container-orgeab2428" class="outline-2">
-<h2 id="orgeab2428"><span class="section-number-2">3.</span> Background</h2>
+<div id="outline-container-orgda3df0f" class="outline-2">
+<h2 id="orgda3df0f"><span class="section-number-2">3.</span> Background</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 行式和列式存储
 </p>
 
 
-<div id="orgf13b3c7" class="figure">
+<div id="org163fae6" class="figure">
 <p><img src="../images/Pasted-Image-20231225103340.png" alt="Pasted-Image-20231225103340.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org39eccbe" class="outline-2">
-<h2 id="org39eccbe"><span class="section-number-2">4.</span> Data Model</h2>
+<div id="outline-container-org1e2caf3" class="outline-2">
+<h2 id="org1e2caf3"><span class="section-number-2">4.</span> Data Model</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <a href="https://github.com/protocolbuffers/protobuf">https://github.com/protocolbuffers/protobuf</a>
@@ -109,8 +109,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf3e3b65" class="outline-2">
-<h2 id="orgf3e3b65"><span class="section-number-2">5.</span> Nested Columnar Storage</h2>
+<div id="outline-container-orgeb508a6" class="outline-2">
+<h2 id="orgeb508a6"><span class="section-number-2">5.</span> Nested Columnar Storage</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 这节讲的内容主要就是说，如何在行式存储和为列式存储之间无损地进行转换。
@@ -132,13 +132,13 @@
 </p>
 
 
-<div id="orgbb35ddf" class="figure">
+<div id="org1cd412f" class="figure">
 <p><img src="../images/Pasted-Image-20231225103945.png" alt="Pasted-Image-20231225103945.png" />
 </p>
 </div>
 
 
-<div id="orge59008d" class="figure">
+<div id="org425bf0e" class="figure">
 <p><img src="../images/Pasted-Image-20231225104454.png" alt="Pasted-Image-20231225104454.png" />
 </p>
 </div>
@@ -182,18 +182,18 @@ r,d的定义差不多看懂了：
 </div>
 </div>
 
-<div id="outline-container-org9dbcfeb" class="outline-2">
-<h2 id="org9dbcfeb"><span class="section-number-2">6.</span> Query Language</h2>
+<div id="outline-container-org434ef51" class="outline-2">
+<h2 id="org434ef51"><span class="section-number-2">6.</span> Query Language</h2>
 </div>
-<div id="outline-container-org80b6287" class="outline-2">
-<h2 id="org80b6287"><span class="section-number-2">7.</span> Query Execution</h2>
+<div id="outline-container-orgbd95b0a" class="outline-2">
+<h2 id="orgbd95b0a"><span class="section-number-2">7.</span> Query Execution</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 类似搜索引擎的树形架构，特征就是fanout比较大，可以做到特别高的并行度。这种树形结构，在一定程度上是独立的：每个节点上可以自己解析物理计划，以及判断是否需要拆分，当然也可以强制拆分。关于树形结构的fanout层级和个数，在实验那节有介绍。
 </p>
 
 
-<div id="org75da20c" class="figure">
+<div id="org7eec2d8" class="figure">
 <p><img src="../images/Pasted-Image-20231225104247.png" alt="Pasted-Image-20231225104247.png" />
 </p>
 </div>
@@ -216,8 +216,8 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </div>
 </div>
 
-<div id="outline-container-org161a6b3" class="outline-2">
-<h2 id="org161a6b3"><span class="section-number-2">8.</span> Experiments</h2>
+<div id="outline-container-org21f6cf8" class="outline-2">
+<h2 id="org21f6cf8"><span class="section-number-2">8.</span> Experiments</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 对比了下面节点：
@@ -236,7 +236,7 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </p>
 
 
-<div id="org711844b" class="figure">
+<div id="org13ac119" class="figure">
 <p><img src="../images/Pasted-Image-20231225104210.png" alt="Pasted-Image-20231225104210.png" />
 </p>
 </div>
@@ -246,7 +246,7 @@ The query dispatcher honors a parameter that specifies the min-imum percentage o
 </p>
 
 
-<div id="org1d44846" class="figure">
+<div id="org2bdc088" class="figure">
 <p><img src="../images/Pasted-Image-20231225104148.png" alt="Pasted-Image-20231225104148.png" />
 </p>
 </div>
@@ -264,29 +264,29 @@ fanout对比了2/3/4-levels:
 其中Q2/Q3分别是, 都是project-select-agg, 不过Q2 country结果集在100左右，而Q3在1.1M左右.
 </p>
 
-<pre class="example" id="orgbc1f21f">
+<pre class="example" id="org5d5fe03">
 Q2: SELECT country, SUM(item.amount) FROM T2 GROUP BY country
 
 Q3: SELECT domain, SUM(item.amount) FROM T2 WHERE domain CONTAINS ’.net’ GROUP BY domain
 </pre>
 
 
-<div id="org9364192" class="figure">
+<div id="orgb671628" class="figure">
 <p><img src="../images/Pasted-Image-20231225104245.png" alt="Pasted-Image-20231225104245.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org75e2d8d" class="outline-2">
-<h2 id="org75e2d8d"><span class="section-number-2">9.</span> Observations</h2>
+<div id="outline-container-org39f9299" class="outline-2">
+<h2 id="org39f9299"><span class="section-number-2">9.</span> Observations</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Dremel scans quadrillions of records per month. Figure 15 shows the query response time distribution in a typical monthly workload of one Dremel system, on a logarithmic scale. As the figure indi-cates, most queries are processed under 10 seconds, well within the interactive range. Some queries achieve a scan throughput close to 100 billion records per second on a shared cluster, and even higher on dedicated machines. （可以看到大部分的读取时间都非常小，没有长尾）
 </p>
 
 
-<div id="orgc8f7a44" class="figure">
+<div id="orgb30b8e8" class="figure">
 <p><img src="../images/Pasted-Image-20231225104813.png" alt="Pasted-Image-20231225104813.png" />
 </p>
 </div>
@@ -305,15 +305,15 @@ Dremel scans quadrillions of records per month. Figure 15 shows the query respon
 </div>
 </div>
 
-<div id="outline-container-org762b9e1" class="outline-2">
-<h2 id="org762b9e1"><span class="section-number-2">10.</span> Related Work</h2>
+<div id="outline-container-org0be813c" class="outline-2">
+<h2 id="org0be813c"><span class="section-number-2">10.</span> Related Work</h2>
 </div>
-<div id="outline-container-org1bd29e7" class="outline-2">
-<h2 id="org1bd29e7"><span class="section-number-2">11.</span> Conclusion</h2>
+<div id="outline-container-orgb8f5c41" class="outline-2">
+<h2 id="orgb8f5c41"><span class="section-number-2">11.</span> Conclusion</h2>
 </div>
 
-<div id="outline-container-orgeea6484" class="outline-2">
-<h2 id="orgeea6484"><span class="section-number-2">12.</span> Appendix</h2>
+<div id="outline-container-org285ee0d" class="outline-2">
+<h2 id="org285ee0d"><span class="section-number-2">12.</span> Appendix</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 TODO: 这里面几个算法都有点没有太看懂:
