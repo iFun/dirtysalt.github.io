@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:optimize-data-skew-hash-join.org][data skew hash join优化方法]]
 - 202312 [[file:databricks-photon-paper.org][Photon: A Fast Query Engine for Lakehouse Systems]]
 - 202312 [[file:google-the-dataflow-model-paper.org][The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing]] @ 2015
 - 202312 [[file:singlestore-paper.org][Cloud-Native Transactions and Analytics in SingleStore]]
