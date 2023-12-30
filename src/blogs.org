@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2023
+- 202312 [[file:lc-2977-minimum-cost-to-convert-string-ii.org][LC 2977. 转换字符串的最小成本 II]]
+- 202312 [[file:lc-2972-count-the-number-of-incremovable-subarrays-ii.org][LC 2972. 统计移除递增子数组的数目 II]]
 - 202312 [[file:optimize-data-skew-hash-join.org][data skew hash join优化方法]]
 - 202312 [[file:databricks-photon-paper.org][Photon: A Fast Query Engine for Lakehouse Systems]]
 - 202312 [[file:google-the-dataflow-model-paper.org][The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing]] @ 2015

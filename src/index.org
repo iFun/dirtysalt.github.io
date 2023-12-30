@@ -1177,3 +1177,5 @@
 - 202312 [[file:lc-100136-count-the-number-of-good-partitions.org][LC 100136. 统计好分割方案的数目]]
 - 202312 [[file:lc-2968-apply-operations-to-maximize-frequency-score.org][LC 2968. 执行操作使频率分数最大]]
 - 202312 [[file:lc-2967-minimum-cost-to-make-array-equalindromic.org][LC 2967. 使数组成为等数数组的最小代价]]
+- 202312 [[file:lc-2977-minimum-cost-to-convert-string-ii.org][LC 2977. 转换字符串的最小成本 II]]
+- 202312 [[file:lc-2972-count-the-number-of-incremovable-subarrays-ii.org][LC 2972. 统计移除递增子数组的数目 II]]
