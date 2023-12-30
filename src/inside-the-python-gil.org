@@ -23,7 +23,7 @@ Python解释器会保存当前执行线程的全局变量，为了避免这个�
 
 >>> Thread Execution
 - The interpreter has a global variable that simply points to the ThreadState structure of the currently running thread
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* Python/pystate.c */
 ...
 PyThreadState *_PyThreadState_Current = NULL;

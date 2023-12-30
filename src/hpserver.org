@@ -15,7 +15,7 @@ event handler,event item,handle(fd或者是信号编号)分开了，但是阅读
 因为对于每一种信号必须产生一个EventHandler实例。不过还好我们关注的信号还是比较有限的，所以开辟的EventHandler还不算太多。这个从samples/signal-handler.cpp就可以看出来。
 
 ** Reactor
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class CReactor
 {
     IReactor_Imp *m_pImp; // real implementation.内部有一个Reactor实现，主要是负责进行poll方面的工作
@@ -34,7 +34,7 @@ class CReactor
 #+END_SRC
 
 ** IReactor
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class IReactor_Imp
 {
     // initialize I/O method and set event factory
@@ -56,7 +56,7 @@ class IReactor_Imp
 在include目录下面有一个IReactor_Imp的实现，有select和epoll两个版本实现。对于我们来说没有必要仔细阅读，了解到这个接口就足够了。
 
 ** DTEV_ITEM
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 struct DTEV_ITEM // event item structure
 {
     const void *pHandler; // event handler/completion handler the handle binded to.绑定到一个Handler上面
@@ -72,7 +72,7 @@ struct DTEV_ITEM // event item structure
 #+END_SRC
 
 ** EventScheduler
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class IEventScheduler
 {
   public:
@@ -85,7 +85,7 @@ class IEventScheduler
 };
 #+END_SRC
 参数就是按照优先级区分的活动链表，然后hpserver内部实现了一个默认的Scheduler非常简单，就是按照优先级然后遍历活动event即可。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void CDefScheduler::ScheduleActiveEvents(std::vector<DTEV_ITEM *> *pVecActiveList, int size){
     // iterate all active lists and process based on scheduler
     for(int i = size-1; i >= 0; --i){ // 按照优先级下来
@@ -104,7 +104,7 @@ void CDefScheduler::ScheduleActiveEvents(std::vector<DTEV_ITEM *> *pVecActiveLis
 我们注册fd和对应的event handler的时候，那么event item在什么地方开辟呢？这个event item就是在DemuxTable上面开辟。DemuxTable就是一个
 将fd映射到event item的地方并且提供每个fd相关的event item.对于内部实现的话非常简单，因为在Linux上面fd都是连续的，所以我们可以使用
 数组来映射，而在Windows上面fd不是连续的那么使用std::map来进行映射。这里我们关心Linux上面的，大致看看是怎么样的。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #define ELE_SET_SIZE 4096
 #define ELE_SET_SIZE_SHIFT 12
 #define ELE_SET_ARRAY_NUM 256
@@ -122,7 +122,7 @@ class CDemuxTable
 
 ** SignalSet
 对于信号来说，并不是将fd和DTEV_ITEM进行绑定，而是将EventHandler和DTEV_ITEM进行绑定。映射关系就维护在SignalSet里面
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class CSignalSet
 {
   public:
@@ -140,7 +140,7 @@ class CSignalSet
 对于我们关心的信号都往这里面注册即可。我们注册的对象是DTEV_ITEM,但是我们可以根据DTEV_ITEM找到对应的handler,然后
 找到对应的信号量，然后注册我们关注这个信号。然后SignalInfo里面有ProcessSignals能够遍历捕获到的信号，然后feed_event调用
 reactor的active_event函数。SignalInfo应该会自己安装自己的信号处理函数，然后再自己的信号处理函数里进行标记，然后统一交给Reactor处理。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class CSignalInfo
 {
   public:
@@ -159,7 +159,7 @@ class CSignalInfo
 };
 #+END_SRC
 我们看看sig_handler里面做了什么事情
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void CSignalInfo::sig_handler(int signum)
 {
     //record occur counts of signum

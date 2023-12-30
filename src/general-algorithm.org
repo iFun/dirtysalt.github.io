@@ -3,7 +3,7 @@
 ** strlen in glibc
 参考链接 http://www.kuqin.com/language/20071113/2308.html. 这里和链接有点不太一样的就是，这个版本glibc实现考虑了非ASCII字符。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 size_t strlen(str)
 const char *str;
 {
@@ -277,7 +277,7 @@ a1 a1 a2 a2 ... an an X
 
 http://oj.leetcode.com/problems/single-number/
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class Solution {
  public:
   int singleNumber(int A[], int n) {
@@ -313,7 +313,7 @@ a1 a1 a1 a2 a2 a2 ... an an an X
 
 http://oj.leetcode.com/problems/single-number-ii/
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class Solution {
  public:
   int singleNumber(int A[], int n) {
@@ -379,7 +379,7 @@ Case General: If c = 3, then each man is unsure whether c = 2 or 3. If it were 2
 https://www.geeksforgeeks.org/reservoir-sampling/
 
 等概率选取未知长度的链表中的元素，要求是只能够遍历这个链表一次。下面是代码， *注意这里的wanted会不断地被更新*
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 int nmatch = 0;
 for ( p=list; p!=NULL; p=p->next ){
     if ( rand() % ++nmatch == 0 ){

@@ -180,7 +180,7 @@ run_insert_random_ck: hash set size = 63273163, load factor = 0.471422
 
 ** 测试代码
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <benchmark/benchmark.h>
 #include <emmintrin.h>
 #include <immintrin.h>

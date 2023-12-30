@@ -1,7 +1,7 @@
 #+title: GCC内嵌汇编
 
 ** 基本形式
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
       __asm__ __volatile__(
           "xorps %%xmm0,%%xmm1\n\t"
           "1:\n\t"
@@ -88,12 +88,12 @@
 - = 操作数是write only的
 - + 操作数是可读可写的
 - & 常用于输出限定符,表示某个寄存器不会被输入所使用.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __asm__ __volatile__ ("call func\n\tmovl %%ebx,%1","=a"(foo),"r"(bar));
 #+END_SRC
 我们本来想把func返回值给foo,保存在eax寄存器.但是因为bar分配到了eax寄存器,
 所以foo最终是ebx寄存器结果.为了避免这个问题,我们可以使用&修饰符.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __asm__ __volatile__ ("call func\n\tmovl %%ebx,%1","=&a"(foo),"r"(bar));
 #+END_SRC
 
@@ -110,7 +110,7 @@ b表示backward,f表示foreward.比如jnz 1b.使用1,2,3来命名的标签都是
 
 *** 输入/输出使用同一个寄存器
 如果想输入和输出使用同一个寄存器的话,存在两种方式.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __asm__ __volatile__ ("cpuid":"+r"(a)::)
 __asm__ __volatile__ ("cpuid":"=r"(a):"0"(a):)
 #+END_SRC
@@ -128,7 +128,7 @@ __asm__ __volatile__ ("cpuid":"=r"(a):"0"(a):)
 
 使用"memory"作为clobber部分另外一个作用是可以让在这条指令之后的指令,告诉gcc应该刷新
 内存状态.内存的状态可能发生修改,如果需要操作的话,需要重新把内存内容载入寄存器.比如
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __asm__ __volatile__ ("":::"memory")
 #+END_SRC
 

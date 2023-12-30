@@ -18,7 +18,7 @@ When compressing a sparse bitmap, e.g., corresponding to the set {0, 2(w − 1),
 
 将array变为bitmap的过程中，需要将value里面的bit筛选出来，这个代码如下：
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void foo(int x) {
     while (x) {
         int t = x & -x; // 只留下最低1位的1

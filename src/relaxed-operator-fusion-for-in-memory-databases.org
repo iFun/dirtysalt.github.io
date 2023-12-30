@@ -101,7 +101,7 @@ simd_compose_noalloc_av/409600    1158468 ns      1158346 ns          603
 - no_alloc和no_alloc_av差别不大，但是和codegen/simd_fusion相比随着尺寸越大差距越大
 - simd_compose 也可以看到内存分配损失也是比较大的
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <benchmark/benchmark.h>
 #include <immintrin.h>
 

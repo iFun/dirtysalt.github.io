@@ -975,7 +975,7 @@ class C extends A with B {
 #+END_SRC
 
 trait的引入解决了一些多重继承的问题，最重要的问题就是如何解释super. 多重继承里面最麻烦的就是菱形继承问题A->B,A->C,B->D,C->D. 下面是一段C++代码
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */

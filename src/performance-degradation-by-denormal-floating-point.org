@@ -61,7 +61,7 @@ assert (i == 1066192077)
 
 可以有下面几种方式设置
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // ====================
 // both DAZ and FTZ.
 #include <fenv.h>

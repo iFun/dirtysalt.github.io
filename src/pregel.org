@@ -46,7 +46,7 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
   - In addition, the need to coordinate the steps of a chained MapReduce adds programming complex-ity that is avoided by Pregel’s iteration over supersteps.（使用MR还需要其他协调机制来保证同步，而pregel可以通过基于superstep的iteration来解决）
 
 ** The C++ API
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 template <typename VertexValue,
           typename EdgeValue,
           typename MessageValue>
@@ -139,7 +139,7 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 
 ** Applications
 *** PageRank
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class PageRankVertex
     : public Vertex<double, void, double> {
  public:

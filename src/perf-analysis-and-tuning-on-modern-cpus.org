@@ -207,7 +207,7 @@ TSC有个重要特性就是，它是独立于CPU frequency的，也就是说即�
 
 clokc diff = 88405377(HZ=2000000000, T=44.203 ms), sys ns = 35.443 ms
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 #include <cassert>
 #include <chrono>
@@ -277,7 +277,7 @@ int main() {
 我看了一下我的macbook air, DDR3-1600(1600MT/s), 我不知道memory channel的情况，假设只有一个64bit channel, 那么peak bandwidth应该就是12.8GB/s.
 写了个小程序来做测试，只能做到一半 `bandwidth ` 6.653GB/s= ，不知道是否可以认为channel应该是32bit而不是64bit.
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 int main() {
     const int N = 32 * 1024 * 1024;
     char* src = new char[N];

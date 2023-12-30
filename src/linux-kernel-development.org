@@ -101,7 +101,7 @@ MIS:          0
 这里只说后面三种. tasklet依赖于软中断, 原理上两者相同, 只是稍有细微差别.
 
 软中断(soft irq)相对应的应该是硬中断(hard irq, 那些来自硬件设备触发的中断), 和系统调用软件中断(software interrupt)是两个不同概念. 软中断是在编译期静态分配的, 最多只能有32个软中断.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 struct softirq_action {
     void (*action)(struct softirq_action*);
     // 调用方式 my_softirq->action(my_softirq);

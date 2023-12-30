@@ -65,7 +65,7 @@ percolator API封装了对于bigtable的访问，但是和bigtable api非常类�
 
 *** Transactions
 下面是使用percolator transactions功能一个example code
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 bool UpdateDocument(Document doc) {
   Transaction t(&cluster);
   t.Set(doc.url(), "contents", "document", doc.contents());
@@ -132,7 +132,7 @@ Snapshot isolation does not provide serializability，这个问题以下面的ps
 
 
 下面是Transaction具体实现，关于一些说明会以注释的形式标记在代码上面。 #todo: BackoffAndMaybeCleanupLock如何实现？
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class Transaction {
   struct Write { Row row; Column col; string value; };
   vector<Write> writes ;

@@ -15,7 +15,7 @@ USSR(User Strings Self-Aligned Reion): 说白了就是把一个执行逻辑内�
 
 计算hash可以取前面8个字节，比较的时候判断是不是落在一个USSR内，如果是的话直接比较指针即可。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 
 inline uint64_t hash(char* s) {
     if (((uintptr_t)s & USSR_MASK) != ussr_prefix)

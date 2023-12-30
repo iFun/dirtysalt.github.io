@@ -45,7 +45,7 @@ WHERE text contains \"Trump\" AND text contains \"Putin\"";
 #+END_SRC
 
 对应地这个SQL会有两个关键字符串在filter时候会用到
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 static const char **sparser_demo_query1(int *count) {
     static const char *_1 = "Trump";
     static const char *_2 = "Putin";
@@ -59,7 +59,7 @@ static const char **sparser_demo_query1(int *count) {
 但是如果仅仅是使用关键字符串去scan的话，如果字符串很长那么开销依然很大，所以考虑是否可以只scan关键字符串的substring, 这些substring不能太长。
 长度的话最好可以使用SIMD，所以类似长度为4/8/16字节比较好。所有可能的substring加上关键字符串都变成了rawfilters, 然后我们在从这些rawfilters中挑出最好的组合。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // The length of produced substrings.
 #define REGSZ 4
 
@@ -154,7 +154,7 @@ ascii_rawfilters_t decompose(const char **predicates, int num_predicates) {
   - processed/skipped. 评估最优组合的数量
   - total 执行calibrate的时间
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /** Returns a search query given a sample input and a set of predicates. The
  * returned search query
  * attempts to jointly minimize the search time and false positive rate.
@@ -306,7 +306,7 @@ sparser_query_t *sparser_calibrate(BYTE *sample, long length, BYTE delimiter,
 这里面最重要的逻辑就是评估rawfilters组合的cost. 在寻找rawfilters组合的时候，还考虑了这些RFs的顺序，因为不同的顺序带来scan
 的开销是不同的。一个RF的开销很简单，就是 `8.0 * len`.
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /** Cost in CPU cycles of a raw filter which searches for a term of length
  * `len`. */
 double rf_cost(const size_t len) { return len * 8.0; }

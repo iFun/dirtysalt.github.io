@@ -152,7 +152,7 @@ server
 但是对于底层存储的话kv都表示成为redisObject存在，但是key永远不会swap出去只会将value swap出去。swap实现方面也借鉴了OS，
 按照page进行swap.redis-server允许配置page size以及swap page number.对于触发swap条件是在主线程定期会判断当前占用内存大小，
 如果占用内存过多的话，那么会开始将部分redisObject swap到disk上面去直到满足条件。对于这个object会扫描整个keyspace，权重按照下面公式
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 swappability = age*log(size_in_memory)
 #+END_SRC
 其中age是距离上次访问的时间，size_in_memory是一种快速计算占用内存大小的估值。每个换出的对象都会计算出序列化成为.rdb格式的大小，

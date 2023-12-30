@@ -99,7 +99,7 @@ riscv64里面的中断例程大约就是这样的 (abstract-machine/am/src/riscv
   - 在 Context 中设置 mstatus 中MPIE位，还可以在mret的时候把中断打开
   - 在 Context 中的 mepc 中可以记录上次切换的PC地址，然后mret的时候又可以切换回去
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // abstract-machine/am/include/arch/riscv64-nemu.h
 
 struct Context {
@@ -185,7 +185,7 @@ __am_asm_trap:
 
 这个Context是如何和进程关联起来的呢？下面是进程结构体PCB定义(nanos-lite/include/proc.h)
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 typedef union {
     uint8_t stack[STACK_SIZE] PG_ALIGN;
     struct {

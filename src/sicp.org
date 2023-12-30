@@ -314,7 +314,7 @@ Scheme的变形：非确定性计算
 存储分配和废料收集
 
 使用机器指令给出了一个停止-复制GC实现。感觉使用机器指令来描述这个过程就有点琐碎了，所以在这里就用C语言来描述一下。我们假设在老内存区域使用的内存都可以使用root追踪到。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 typedef struct memory_cell {
     char mark; // if it's already moved.
     struct memory_cell* back; // if moved, what's the new cell.

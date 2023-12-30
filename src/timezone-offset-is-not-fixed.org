@@ -18,7 +18,7 @@
 
 C++程序可以参考下面的，需要google cctz实现 [[https://github.com/google/cctz][google/cctz: CCTZ is a C++ library for translating between absolute and civil times using the rules of a time zone.]]
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void TimestampValue::from_unixtime(int64_t second, const cctz::time_zone& ctz) {
     static const cctz::time_point<cctz::sys_seconds> epoch =
             std::chrono::time_point_cast<cctz::sys_seconds>(std::chrono::system_clock::from_time_t(0));

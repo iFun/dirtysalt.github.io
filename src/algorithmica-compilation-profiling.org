@@ -13,7 +13,7 @@ https://en.algorithmica.org/hpc/compilation/flags/
 
 可以针对不用的target做不同的实现，如果使用 `-mpopcnt` 的话那么就会使用下面那个版本。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __attribute__(( target("default") )) // fallback implementation
 int popcnt(int x) {
     int s = 0;

@@ -61,7 +61,7 @@ drwxrwxr-x 2 dirlt dirlt 4.0K  6月  1 11:48 _tmp/
 剩下的部分用于存储具体的数据(BSON文档)，具体数据之间也是通过双向链表来进行连接，索引也存在数据块内部但是组织成为btree格式而不是用双向链表连接。
 在名字空间文件中，保存的是一个hash table，保存了每个名字空间的存储信息元数据，包括其大小，块数，第一块位置，最后一块位置，被删除的块的链表以及索引信息。
 关于位置信息都是通过DiskLoc数据结构进行存储，存储了数据文件编号和块在文件中的位置。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 struct DiskLoc {
   int fileNum; // 文件编号
   int offset; // 文件偏移

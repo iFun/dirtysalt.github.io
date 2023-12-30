@@ -8,7 +8,7 @@
 
 这个测试相比CK测试会简化一些，只关注单线程上的memcpy性能，然后选择了几种尺寸进行测试，并且在每种尺寸上做了微调确保没有完全对齐。 UPDATE: 后面增加了多线程场景下的比较。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #define BM(IMPL)                                                                                \
     void BM**IMPL(benchmark::State& state) {                                                    \
         size_t size = state.range(0);                                                           \
@@ -36,7 +36,7 @@ static constexpr size_t MB = 1024 * 1024;
 
 其中有好几个版本是glibc自带的，后面就不分析了，他们都是汇编实现，比较难看懂。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 VARIANT(21, __memcpy_erms)
 VARIANT(22, __memcpy_sse2_unaligned)
 VARIANT(23, __memcpy_ssse3)
@@ -127,7 +127,7 @@ VARIANT(5, memcpy_jart)
 
 这个实现比较简单，不过只是对于x86有效
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 static void* memcpy_erms(void* dst, const void* src, size_t size) {
     asm volatile("rep movsb" : "=D"(dst), "=S"(src), "=c"(size) : "0"(dst), "1"(src), "2"(size) : "memory");
     return dst;
@@ -141,7 +141,7 @@ static void* memcpy_erms(void* dst, const void* src, size_t size) {
 - 按照32字节对齐，然后每次拷贝32字节
 - 对最后尾部继续使用 `memcpy_tiny` 进行拷贝
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 static void* memcpyAVX2(void* __restrict destination, const void* __restrict source, size_t size) {
     unsigned char* dst = reinterpret_cast<unsigned char*>(destination);
     const unsigned char* src = reinterpret_cast<const unsigned char*>(source);
@@ -184,7 +184,7 @@ static void* memcpyAVX2(void* __restrict destination, const void* __restrict sou
 - 对于16,32,64字节则使用sse2_16,sse2_32,sse2_64函数来拷贝
 - 这种实现问题在于展开text段会比较大，对于icache不是特别好。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 //---------------------------------------------------------------------
 // tiny memory copy with jump table optimized
 //---------------------------------------------------------------------
@@ -257,7 +257,7 @@ static INLINE void memcpy_sse2_32(void* __restrict dst, const void* __restrict s
 **** 16字节以内
 16字节以内走下面这个逻辑，使用的是 `__builtin_memcpy` 感觉这个部分应该是足够高效了。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 tail:
     if (size <= 16) {
         if (size >= 8) {
@@ -277,7 +277,7 @@ tail:
 **** 32字节以内
 32字节以内先拷贝16字节，然后走上面的小于16字节的逻辑。但是这个部分并没有使用sse(m128i)
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
         if (size <= 32) {
             __builtin_memcpy(dst, src, 8);
             __builtin_memcpy(dst + 8, src + 8, 8);
@@ -294,7 +294,7 @@ tail:
 
 avx版本是先对 `dst+size-32` 和 `src+size-32` 进行单独处理，然后分别按照32字节进行拷贝，这样会出现重复拷贝，但是没有tail bytes判断情况。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
         if (size <= 256) {
             __asm__("vmovups    -0x20(%[s],%[size],1), %%ymm0\n"
                     "vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"
@@ -317,7 +317,7 @@ avx版本是先对 `dst+size-32` 和 `src+size-32` 进行单独处理，然后�
 #+END_SRC
 
 sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷贝，同样不会有tail bytes的情况。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
         if (size <= 128) {
             _mm_storeu_si128(reinterpret_cast<__m128i*>(dst + size - 16),
                              _mm_loadu_si128(reinterpret_cast<const __m128i*>(src + size - 16)));
@@ -339,7 +339,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 - 然后每次拷贝128字节，并且使用循环展开的方式
 - 对于之后剩余的字节，使用 `goto tail` 进行单独处理。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
             /// Align destination to 16 bytes boundary.
             size_t padding = (16 - (reinterpret_cast<size_t>(dst) & 15)) & 15;
 
@@ -498,7 +498,7 @@ sse2版本和avx版本其实是差不过的，只不过按照16字节进行拷�
 
 测试的时候发现 `memcpy_my` 的AVX版本有正确行问题，问题在下面这段代码上
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
         if (size <= 256) {
             __asm__("vmovups    -0x20(%[s],%[size],1), %%ymm0\n"
                     "vmovups    %%ymm0, -0x20(%[d],%[size],1)\n"

@@ -35,13 +35,13 @@ NMSTL和Asio一样都是template-heavy code,大部分都是头文件。NMSTL设�
 http://www.eecs.harvard.edu/~mdw/proj/seda/.
 
 SEDA并不是NMSTL提出的，SEDA主要思想就是提出动态线程池这个概念。动态线程池可以在吞吐和响应上平衡，而划分成为stage的话可以让整个设计更加灵活，甚至一个stage都可以使用block方式处理(如果异步编写比较麻烦的话)通过线程来支持，当然一个stage推荐还是使用nonblock方式处理。我们这里看看NMSTL怎么实现动态线程池的。首先看看SEDAStage这么一个概念。在NMSTL里面定义是这样的
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 template<class In, class Out = void>
 class SEDAStage;
 #+END_SRC
 
 一个SEDAStage和一个In/Out类型绑定形成一个stage.这个stage允许不断地插入In对象，实现起来内部能够非常高效地处理这些In对象生成Out对象。然后一个stage可能后面会挂上一个next stage,这个next stage接收Out对象然后不断地继续。对于这里的高效处理就是使用异步队列+线程池模型来处理了，我们可以看看处理这个部分的代码
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     class my_thread : public Thread {
 	bool quit;
 	bool pending;
@@ -72,7 +72,7 @@ class SEDAStage;
 #+END_SRC
 
 然后我们看看多个Stage是如何相连在一起的.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 template<class In, class Out>
 class SEDAStage : public SEDAStage<In, void> {
     SEDAStage<Out>* next;
@@ -110,7 +110,7 @@ class SEDAStage : public SEDAStage<In, void> {
 我们主要关注第三个参数。rc初始化为0.然后我们开始进行输出In对象
 
 *** 增加线程
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     /// Injects an element into the queue.
     void inject(In& in) {
 	if (!inq.push(in)) // 如果异步队列push返回false的话，那么就会调用clogged.
@@ -145,7 +145,7 @@ class SEDAStage : public SEDAStage<In, void> {
 然后我们看看异步队列返回false和和waiter_pending的操作是如何的。从上面看到waiter_pending就是
 增加线程的数量，所以这里waiters可以认为是可以使用的线程数目。而waiters>=q.size()表示工作线程数目
 大于task数量，那么这个时候可以认为没有必要增加线程。不过这里我们没有分析extra_capacity这个意思。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     /// Adds an item to the back of the queue.  Returns true if the item
     /// will be immediately dispatched.
     bool push(const value_type& v) {
@@ -165,7 +165,7 @@ class SEDAStage : public SEDAStage<In, void> {
 
 *** 回收线程
 然后我们还是回来看看导致线程减少的这部分逻辑
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 	    while (true) {
 		In in;
 		if (!stage.inq.wait(in, &pending))
@@ -175,7 +175,7 @@ class SEDAStage : public SEDAStage<In, void> {
 	    }
 #+END_SRC
 如果异步队列在wait返回false的话那么就会取消线程。阅读wait这个部分代码的话就会发现只有两个地方是返回false
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     /// Waits for the queue to become non-empty, then atomically
     /// retrieves an item from the queue, sets out, and returns true; or
     /// returns false if the queue has been closed.
@@ -217,7 +217,7 @@ class SEDAStage : public SEDAStage<In, void> {
     }
 #+END_SRC
 我们什么时候设置waiters_starve的呢？是在starve这个函数里面
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     /// Starves one waiter, causing its "wait" to return false.
     void starve() {
 	locking (m) {
@@ -229,7 +229,7 @@ class SEDAStage : public SEDAStage<In, void> {
 #+END_SRC
 所以可以认为调用一次starve的话那么就会回收一个线程。然后我们看看starve是在什么时候触发的。
 在seda下面存在seda_clock_thread这个类，这个类单独起一个线程然后定时(默认5s)会调用SEDAStage::scan方法。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     /// Periodic scan to see whether to kill a Thread.
     void scan() {
 	locking (this) {

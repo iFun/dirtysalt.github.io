@@ -240,7 +240,7 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 -----
 1.6 clockwise
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <vector>
 using namespace std;
 
@@ -265,7 +265,7 @@ public:
 
 1.7
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 #include <vector>
 using namespace std;
@@ -321,7 +321,7 @@ Questions:
 
 2.5
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 struct ListNode {
     ListNode* next;
@@ -477,7 +477,7 @@ def checkBST(root):
 
 我觉得上面这个写起来还是太丑了，下面是更加简洁的写法
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 
 boolean isValid(Node root) {
     return isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -500,7 +500,7 @@ boolean isValidHelper(Node curr, int min, int max) {
 -----
 4.6
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 struct TreeNode {
     int val;
@@ -718,7 +718,7 @@ Questions:
 -----
 6.5
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -839,7 +839,7 @@ Questions:
 
 8.4
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -934,7 +934,7 @@ Questions:
 -----
 9.3 这个题目很tricky, 有很多corner case. 最好在纸上画出所有可能的情况。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 
 /* coding:utf-8
  * Copyright (C) dirlt
@@ -1097,7 +1097,7 @@ print('max size = {}'.format(max_size))
 -----
 16.9
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -1183,7 +1183,7 @@ Questions:
 -----
 19.3
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 int zeros(int n) {
   int c = 0;
   for(int k = 5; n >= k; k *= 5) {
@@ -1220,7 +1220,7 @@ Questions:
 -----
 20.1
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -1361,7 +1361,7 @@ class MedianFinder:
 - S(r2,c2) - S(r1,c2) - S(r2,c1) + S(r1,c1) = S'(r1+1,c1+1,r2,c2)
 - S(r,c) = 0 if r < 0 or c < 0
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 int m[N][N];
 int dp[N][N]; // dp[s][e] = sum from (0,0) to (s,e).
 

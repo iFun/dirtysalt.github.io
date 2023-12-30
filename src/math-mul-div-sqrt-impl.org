@@ -4,7 +4,7 @@
 
 乘法通过shift和add来实现：
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
     function void init() {
         let tt = Array.new(16);
         tt[0] = 1;

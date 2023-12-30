@@ -30,7 +30,7 @@ http://www.cnblogs.com/Solstice/archive/2010/08/21/muduo_thread_lib.html
 - BoundedBlockingQueue.h // 异步队列，但是使用循环数组来实现，有大小限制
 - Condition.h // pthread_cond封装
 - CountDownLatch.h // 可以用作类似于起跑线机制，值得学习一下
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void CountDownLatch::wait() // latchdown之后然后调用wait.等待最后一个线程notifyAll,
 // 然后多个线程同时解除锁定就可以同时开始执行了
 {
@@ -53,7 +53,7 @@ void CountDownLatch::countDown() // 每个线程在开始都latchdown,最后一�
 - Mutex.h // 互斥锁
 - ProcessInfo.h // 进程信息
 - Singleton.h // 单例模式，实现上比较有特色
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
   static T& instance()
   {
     pthread_once(&ponce_, &Singleton::init); // 使用pthread_once来进行构造
@@ -64,7 +64,7 @@ void CountDownLatch::countDown() // 每个线程在开始都latchdown,最后一�
 - ThreadLocal.h // 线程局部变量封装，不用在使用pthread_get/setspecific
 - ThreadLocalSignleton.h // 线程局部单例，不用考虑多个线程同时创建
 - ThreadPool.h // 线程池包装，内部维护了一个异步队列，多个线程的工作就是取出task来执行
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // 外部丢入Task放到线程池内部
 void ThreadPool::run(const Task& task)
 {
@@ -127,7 +127,7 @@ Buffer设计的非常精巧。Buffer内部是一个std::vector<char*>表示的�
 就好比现在没有任何数据写入。一旦开始要写入数据的话，那么writerIndex+=size(要写入的字节数)这个buffer会动态地增长。readerIndex标记的就是我们
 可以读的下标，如果readerIndex==writerIndex就表示没有数据了。但是很明显这个Buffer并不是无限增长的，在makeSpace函数里面的话就可以看到，实际上
 是会进行压缩的。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void makeSpace(size_t len)
 {
     if (writableBytes() + prependableBytes() < len + kCheapPrepend) // 如果当前不能够通过压缩合并的话
@@ -150,7 +150,7 @@ void makeSpace(size_t len)
 #+END_SRC
 
 ** Channel
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class Channel : boost::noncopyable
 {
   public:
@@ -175,7 +175,7 @@ class Channel : boost::noncopyable
 #+END_SRC
 一旦EventLoop通知Channel触发事件的话那么就会调用handleEvent这个函数。参数receiveTime本身只对ReadEventCallback有效并且作为参数使用，
 代表接收超时时间，对于write而言的话没有超时时间。内部的话handleEvent会根据revents触发的事件来分别决定调用哪些回调
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
     eventHandling_ = true;
@@ -206,7 +206,7 @@ void Channel::handleEventWithGuard(Timestamp receiveTime)
 
 ** Poller
 Poller本身也是一个抽象类，然后底层支持poll和epoll.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class Poller : boost::noncopyable
 {
   public:
@@ -233,7 +233,7 @@ poll操作的timeoutMs就是epoll_wait超时时间，而activeChannels就是活�
 queueInLoop的功能，将一些task加入到这个event loop对应的线程中执行。这样就很地然地引入了pendingFunctors字段。因为需要跨线程激活，
 那么就需要线程之间的通知机制，这个使用eventfd来完成，对应字段就是wakeFd并且内部绑定了一个wakeupChannel.如果没有eventfd的话，通常也可以使用
 pipe来完成。然后我们还允许向EventLoop里面添加定时器任务，就是runAt,runAfter和runEvery三个函数，我们只需要关注其中一个即可。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class EventLoop : boost::noncopyable
 {
   public:
@@ -297,7 +297,7 @@ class EventLoop : boost::noncopyable
 
 *** 单线程单EventLoop
 作者建议一个线程绑定一个EventLoop,这个实现呢？其实还是使用线程局部变量。首先定义线程局部变量
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 __thread EventLoop* t_loopInThisThread = 0;
 #+END_SRC
 然后在EventLoop构造函数的时候判断这个是否==0,如果不为=0的话说明在这个线程已经构造过一个EventLoop了。
@@ -306,7 +306,7 @@ __thread EventLoop* t_loopInThisThread = 0;
 *** 跨线程激活
 首先我们看看跨线程激活是怎么操作的。在EventLoop的初始化函数内部初始化了wakeupFd并且创建了channel.但是如果不仔细阅读，
 很可能觉得的这个channel没有注册。而实际上这个channel在enableReading()就会注册的。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 EventLoop::EventLoop()
   : wakeupFd_(createEventfd()),
     wakeupChannel_(new Channel(this, wakeupFd_))
@@ -318,7 +318,7 @@ EventLoop::EventLoop()
 }
 #+END_SRC C++
 跨线程激活的函数是wakeUp.我们看看怎么实现
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void EventLoop::wakeup()
 {
   uint64_t one = 1;
@@ -327,7 +327,7 @@ void EventLoop::wakeup()
 #+END_SRC
 一旦wakeup完成之后那么wakeUpFd_就是可读的，这样EventLoop就会被通知到并且立刻跳出epoll_wait开始处理。当然我们需要将这个wakeupFd_
 上面数据读出来，不然的话下一次又会被通知到，读取函数就是handleRead
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void EventLoop::handleRead()
 {
   uint64_t one = 1;
@@ -337,7 +337,7 @@ void EventLoop::handleRead()
 
 *** 跨线程任务
 runInLoop和queueInLoop就是跨线程任务。内容非常简单
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void EventLoop::runInLoop(const Functor& cb){
   if (isInLoopThread()){ // 如果这个函数在自己的线程调用，那么就可以立即执行
     cb();
@@ -361,7 +361,7 @@ void EventLoop::queueInLoop(const Functor& cb){
 
 *** 定时器任务
 定时器任务都是交给了TimerQueue来处理的，在TimerQueue这个部分我们会简要地分析一下
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 TimerId EventLoop::runAt(const Timestamp& time, const TimerCallback& cb)
 {
   return timerQueue_->addTimer(cb, time, 0.0); // time是在之后什么时候开始，0.0表示以后每次运行时间(0.0表示不会repeat).
@@ -375,7 +375,7 @@ muduo没有调用器(其实也不需要，本来就没有优先级概念)，仅�
 
 ** TimerQueue
 TimerQueue里面最主要的方法就是addTimer.我们看看addTimer里面做了哪些事情，整个过程有点绕
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 TimerId TimerQueue::addTimer(const TimerCallback& cb,
                              Timestamp when,
                              double interval)
@@ -397,7 +397,7 @@ void TimerQueue::scheduleInLoop(Timer* timer)
 }
 #+END_SRC
 然后一旦timerfd可读的时候，就会调用下面这个函数
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void TimerQueue::handleRead()
 {
   loop_->assertInLoopThread();
@@ -417,7 +417,7 @@ void TimerQueue::handleRead()
 ** EventLoopThread
 EventLoopThread就是将一个EventLoop和Thread包装在一起的对象。这个内容到没有什么，不过觉得代码方面有点技巧。
 我们在启动startLoop这个样就会执行线程threadFunc,但是我们必须等待threadFunc将栈上面的EventLoop绑定之后才可以返回，所以这里用到了条件变量。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 EventLoop* EventLoopThread::startLoop(){
     thread_.start();
     {
@@ -445,7 +445,7 @@ void EventLoopThread::threadFunc(){
 ** Acceptor
 Acceptor帮助简化了搭建服务器accept这个部分的逻辑。通常这个逻辑是在单个线程里面完成的，所以抽取出来蛮有必要的。
 代码不是很麻烦，用户要做的就是编写一个回调，这个回调在新建立连接时候出发，参数分别是链接fd和连接地址。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 typedef boost::function<void (int sockfd,const InetAddress&)> NewConnectionCallback;
 #+END_SRC
 原理很简单，初始化socket和对应的channel并且监听READ事件，然后开始进行listen.一旦触发read事件的话那么就证明我们无阻塞
@@ -453,7 +453,7 @@ typedef boost::function<void (int sockfd,const InetAddress&)> NewConnectionCallb
 
 ** Connector
 Connector也是为了简化客户端编写，用户只需要提供这个逻辑即可，这个回调函数在建立链接成功的时候使用
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 typedef boost::function<void (int sockfd)> NewConnectionCallback;
 #+END_SRC
 Connector初始化以EventLoop和服务器地址初始化，然后在start的时候的话开始尝试进行connect.如果返回非阻塞的错误码的话，那么
@@ -462,7 +462,7 @@ Connector初始化以EventLoop和服务器地址初始化，然后在start的时
 
 ** TcpConnection
 TcpConnection完成的工作就是当TCP连接建立之后处理socket的读写以及关闭。同样我们看看TcpConnection的结构
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class TcpConnection : boost::noncopyable,
                       public boost::enable_shared_from_this<TcpConnection>
 {
@@ -515,7 +515,7 @@ TcpConnection一次最多读取64K字节的内容，然后交给上层。上层�
 
 ** TcpClient
 一旦我们了解了TcpConnection之后的话，这个托管了建立好连接之后所需要的处理的所有事情，那么我们对于client关心的重点就是如果触发连接的建立以及连接是如何断开的。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 TcpClient::TcpClient(EventLoop* loop,
                      const InetAddress& serverAddr,
                      const string& name)
@@ -540,7 +540,7 @@ TcpConnection::connectEstablished,之后的所有操作都交给TcpConnection了
 
 ** TcpServer
 从分析上我们和TcpClient一样只是关心连接是如何建立这个过程。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 TcpServer::TcpServer(EventLoop* loop,
                      const InetAddress& listenAddr,
                      const string& nameArg)
@@ -560,7 +560,7 @@ TcpServer::TcpServer(EventLoop* loop,
 #+END_SRC
 同样是建立好acceptor这个对象然后设置好回调为TcpServer::newConnection,同时在外部设置好TcpConnection的各个回调。然后调用start来启动服务器，start
 会调用acceptor::listen这个方法，一旦有连接建立的话那么会调用newConnection.下面是newConnection代码
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void TcpServer::newConnection(int sockfd, const InetAddress& peerAddr)
 {
     loop_->assertInLoopThread();

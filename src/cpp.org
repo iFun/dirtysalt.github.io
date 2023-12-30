@@ -40,7 +40,7 @@ new/delete和C的内存分配有很多区别，主要的改进在进行了很多
 
 **** new重载
 用户可以重载new/delete来实现全局new/delete或者是某个类的new/delete.原型有下面这些
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // #include <new>
 void* operator new(std::size_t) throw (std::bad_alloc);
 void* operator new[](std::size_t) throw (std::bad_alloc);
@@ -62,7 +62,7 @@ inline void  operator delete[](void*, void*) throw() { }
 
 new/delete如果作为类成员的话被重载的话，始终是静态成员，即使你不这样声明也是如此，这个事实意味着这些运算符不接受this指针。其实这也是非常容易考虑到的，new/delete本来就是来分配内存使用的。new在初始化构造之前调用，而delete是在析构函数调用之后调用，所以非静态数据成员肯定不能够被访问:-)此外new/delete是可以继承的,调用的还是基类的new/delete函数，只不过内存大小不同。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <iostream>
 #include <new>
 class A{
@@ -94,11 +94,11 @@ int main(){
 
 **** new异常规格
 从new的异常规格可以看到，如果是普通的调用的话可能会抛出std::bad_alloc这个异常，但是原型里面还有
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 void* operator new(std::size_t, const std::nothrow_t&) throw();
 #+END_SRC
 这种使用placement来通知new不抛出异常的的接口，语义是返回NULL来告诉app分配失败。要使用这个函数也非常简单
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // #include <new>
 //  struct nothrow_t { };
 //  extern const nothrow_t nothrow;
@@ -108,7 +108,7 @@ void* p=new (std::nothrow) int(); // 这里std::nothrow就是std::nothrow_t的�
 
 **** 内存分配失败
 C++来提供了内存分配失败的回调函数，但是这个只能够处理全局new分配失败的情况
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
   /** If you write your own error handler to be called by @c new, it must
    *  be of this type.  */
   typedef void (*new_handler)();
@@ -127,14 +127,14 @@ C++来提供了内存分配失败的回调函数，但是这个只能够处理�
 说到这里，我们需要清楚为什么需要有new []和delete []的方法了。对于operator new和delete来说真的不关心这些，因为只是分配内存，而对于new operator和delete operator就需要关心了，因为需要关心有多少个对象，这样的话才能够调用每个对象的构造函数。调用了new []分配的对象也一定需要使用delete []来释放，不然只会调用第一个元素析构函数和释放它的空间。
 
 *** static assert
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #define STATIC_ASSERT(_cond,_name)      typedef char STATIC_ASSERT_FAILED_ ## _name [ (_cond) ? 1 : -1 ]
 #define STATIC_SIZE_ASSERT(_type,_size) STATIC_ASSERT ( sizeof(_type)==_size, _type ## _MUST_BE_ ## _size ## _BYTES )
 #+END_SRC
 
 这个宏用来检测sizeof(_type)==_size这个假设，这个可以在编译代码的时候可以进行断言。好比下面这段程序
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 int main() {
   STATIC_SIZE_ASSERT(int,8);
   return 0;
@@ -154,7 +154,7 @@ c++0x(--std=c++0x)在语言层面上支持static_assert.
 学习C的时候总是认为强转不过就是二进制层面的强转。开始学习C++之后就认为C语言的强转对应的就是reinterpret_cast.而static_cast和reinterpret_cast的差别不过就是static_cast可以做一些类型上面的检查，所以在大多数的时候都习惯使用reinterpret_cast而非static_cast.直到在编写itachi（一个异步网络编程框架）的时候，才发现并不是这么回事。下面的例子是我遇到问题的一个抽象。
 
 **** 问题抽象
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 struct A{
 }; // class A
@@ -188,7 +188,7 @@ int main() {
 
 **** 多重继承
 处理B类型没有问题，但是处理B的子类型的话，那么上面代码可能就会出现问题。因为对于B子类型而言的话很可能在 *对象模型* 之前添加了一些字段，按照reintrepret_cast语义的话是直接二进制映射，字段没有虚方法所以是直接按照偏移来取的，因此可能存在问题。但是看看下面这个例子
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 struct A{
 }; // class A
@@ -239,7 +239,7 @@ c:0xbfff9a9c c.g:0xbfff9aa0
 *** local static object
 局部静态对象在C里面初始化只允许是常数，所以这个在编译期就可以搞定。在C++里面局部静态对象允许是一个类对象，那么就涉及到类的初始化等问题，这个是在编译期搞不定的只能够在运行期解决。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <iostream>
 class A{
  public:
@@ -316,7 +316,7 @@ hook函数调用有两种方式，一种是hook我们代码内部的函数，这
 - __cyg_profile_func_enter
 - __cyg_profile_func_exit
 这两个函数是gcc内置函数，_enter函数能够在函数调用之前进行调用，_exit函数能够在函数调用退出之后调用，原型分别是
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 // this是这个callee函数地址
 // callsite是caller函数调用点地址(不是函数地址)
 void __cyg_profile_func_enter(void *this, void *callsite);
@@ -325,7 +325,7 @@ void __cyg_profile_func_exit(void *this, void *callsite);
 
 如果不希望函数被hook的话，那么可以在函数属性之后加上__attribute__((no _instrument _function)).尤其是这个函数如果在enter和exit里面调用的话，最好加上这个属性，不然非常容易出现递归调用
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 #include <cstdlib>
 void foo() __attribute__((no_instrument_function));
@@ -351,7 +351,7 @@ extern "C" {
 *运行时hook*
 
 可以使用dlopen截获函数入口，然后使用dlsym(RTLD_NEXT)来获得下一个入口.我们以截获malloc为例。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <unistd.h>
 #include <dlfcn.h>
 #include <cstring>
@@ -379,7 +379,7 @@ void free(void *p){
 *** undefined reference to static const class member
 类型静态常量成员只允许是标量内容,而不允许是字符串数组或者是结构体等。但是下面代码会存在链接问题
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <vector>
 using namespace std;
 class Foo {
@@ -398,7 +398,7 @@ int main(){
 关于这个问题解释可以参看 http://stackoverflow.com/questions/272900/c-undefined-reference-to-static-class-member
 
 大致解释是这样，对于第一种用法的话，因为push_back需要是一个const int&,因为需要传入的内容存在地址。而这种情况下面MEMBER仅仅是一个constant,没有任何地址所以会出现链接错误。而对于第二种情况的话，因为强制转换之后那么就存在一个临时对象可以被引用。说到这里我们一定需要注意临时对象，好比下面这种用法
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <string>
 int main() {
   std::string s1="h";
@@ -415,7 +415,7 @@ int main() {
 程序有两个函数，action是为了测试一下以string为key的map性能，action2是为了测试一下以int为key的map性能。然后我们分两组测试运行：
 - 运行action，然后运行action2
 - 只运行action2
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 /* coding:utf-8
  * Copyright (C) dirlt
  */
@@ -519,7 +519,7 @@ tomb git:(master) ✗ g++ map_perf_test.cc -O2
 之前看到陈硕同学在[[http://blog.csdn.net/solstice/][博客]] 给出的C++工程实践推荐，使用boost::function和boost::bind代替虚函数。之所以我们需要使用虚函数，无非就是希望统一执行接口。统一接口通过虚函数是一种方法，而使用boost::function和boost::bind也可以达到相同的目的。
 
 首先我们假设存在一个Executor类，里面有一个执行队列，所有的Task首先被push进来然后遍历执行。对于这个Task我们本身只需要一个执行接口void fun(Executor*).如果通过虚函数实现的话，我们需要定义一个abstract class含有virtual函数，然后在具体的类里面实现它。但是如果很不幸的话我们原本定义的类不是这样的，而是
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class A{
  public:
   void fun(Executor* x,std::string s){
@@ -538,7 +538,7 @@ class B{
 那我们必须重新定义AdapterA以及AdapterB封装一下。实现上可能非常简单，内部存下std::string以及int的内容，外加一个A,B的指针，在fun里面调用A,B的fun实现并且把内容传进去调用。
 
 这是一种蹩脚的方法，类的个数会急剧膨胀。但是如果我们使用boost::function和boost::bind的话，可以不用添加新的Adapter类来解决这个问题。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
   x.push(boost::bind(&A::fun,&a,_1,"hello"));
   x.push(boost::bind(&A::fun,&a,_1,"world"));
   x.push(boost::bind(&B::fun,&b,_1,123));
@@ -610,7 +610,7 @@ C++11在C++03上做了许多改进，而且都是非常实用的改进。BS在�
 *** suffix return type syntax(返回值类型后置语法)
 
 一开始我以为这个语法，是为了解决编写模板函数的时候，auto不能自动推导函数返回类型而设计的。比如下面这段程序
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 template<typename T1, typename T2>
 auto bar(const T1 a, const T2 b) -> decltype(a + b) {
     return a + b;
@@ -619,7 +619,7 @@ auto bar(const T1 a, const T2 b) -> decltype(a + b) {
 如果我们不使用"-> decltype(a+b)"这个后置语法的话，那么编译器就不知道bar应该返回什么类型。但是事实却是，编译器已经足够强大到推测返回类型了，所以我们不告诉编译器返回值类型也可以（但是会有warning）
 
 实际按照BS的 [[http://www.stroustrup.com/C++11FAQ.html#suffix-return][想法]], 一开始这个语法的引入，却是为了解决作用域问题的。比如下面这段程序
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 class A {
   public:
     class B {};
@@ -640,7 +640,7 @@ auto A::foo() -> B { return B(); }
 在capture这个部分中，&v表示使用变量v的引用，=v表示使用v的copy(read-only). 如果是[&]表示所有外部变量的使用都是引用方式，如果是[=]表示所有外部变量使用都是传值方式。
 
 匿名函数类型是std::function<[actual-type>].(defined in <functional>). 比如[](int a, int b) { return a + b; }的类型就是std::function<int(int,int)>. 虽然匿名函数可以捕获变量，但是并不意味着实现了闭包。下面这个程序中，lambda引用了count，但是在调用的时候count已经被销毁了，所以会出现运行错误。
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <functional>
 #include <iostream>
 using namespace std;
@@ -662,7 +662,7 @@ int main() {
 #+END_SRC
 
 这里还想说一下就是，C++11也把bind纳入stl了（smart pointers, atomic, thread这些原来都在boost的组件都纳入stl了）.
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <functional>
 #include <iostream>
 using namespace std;
@@ -686,7 +686,7 @@ int main() {
 
 UPDATE@2021: 右值引用的类型写为 `A&& x`. 而 `std::move` 这个操作就是将类型从A类型变为A的右值引用类型。引入右值引用类型的目的是节省对象的拷贝开销，然后开发者可以在构造函数里面指明，如果是move语义的话应该如何进行对象构造。本质来说，就是允许开发者告诉编译器，我是希望copy还是move对象。
 
-#+BEGIN_SRC Cpp
+#+BEGIN_SRC C++
 #include <cstdio>
 #include <iostream>
 
