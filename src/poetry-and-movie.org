@@ -1,7 +1,7 @@
 #+title: 诗歌和电影
 ** A Hard Rain’s A-Gonna Fall (Bob Dylan)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 
 Oh, where have you been, my blue-eyed son?
 Oh, where have you been, my darling young one?
@@ -65,11 +65,11 @@ But I'll know my song well before I start singin'
 And it's a hard, it's a hard, it's a hard, it's a hard
 It's a hard rain's a-gonna fall
 
-#+END_QUOTE
+#+END_EXAMPLE
 
 ** Mr Tambourine Man (Bob Dylan)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Hey! Mr. Tambourine man, play a song for me
 I'm not sleepy and there is no place I'm going to
 Hey! Mr. Tambourine man, play a song for me
@@ -134,10 +134,10 @@ Hey! Mr. Tambourine man, play a song for me
 I'm not sleepy and there is no place I'm going to
 Hey! Mr. Tambourine man, play a song for me
 In the jingle jangle morning I'll come following you
-#+END_QUOTE
+#+END_EXAMPLE
 
 ** Desolation Row (Bob Dylan)
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 They’re selling postcards of the hanging
 They’re painting the passports brown
 The beauty parlor is filled with sailors
@@ -267,11 +267,11 @@ Right now I can’t read too good
 Don’t send me no more letters, no
 Not unless you mail them
 From Desolation Row
-#+END_QUOTE
+#+END_EXAMPLE
 
 ** 俾面派对 (Beyond)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 穿起一身金衣装
 取消今天的工作
 挤身缤纷的色彩
@@ -314,10 +314,10 @@ From Desolation Row
 至惊至惊你地唔俾面
 至惊至惊你地唔俾面
 至惊至惊你地唔俾面
-#+END_QUOTE
+#+END_EXAMPLE
 ** Stairway to Heaven (Led Zepplin)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 There's a lady who's sure all that glitters is gold（有一位姑娘她相信闪光的都是金子）
 And she's buying a stairway to heaven（她想买一架通往天堂的阶梯）
 When she gets there she knows if the stores are all closed（她明白即使商店都已关门）
@@ -371,10 +371,10 @@ The tune will come to you at last（你最终会听到那曲调）
 When all are one and one is all yeah（当万物合一一即万物）
 To be a rock and not to roll（你就会成为磐石岿然不动）
 And she's buying a stairway to heaven（她想买一架通往天堂的阶梯）
-#+END_QUOTE
+#+END_EXAMPLE
 ** Do not go gentle into that good night (Dylan Thomas)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Do not go gentle into that good night, 不要温和地走进那个良夜,
 Old age should burn and rave at close of day; 白昼将尽,暮年仍应燃烧咆哮;
 Rage, rage against the dying of the light. 怒斥吧,怒斥光的消逝。
@@ -399,7 +399,7 @@ And you, my father, there on the sad height, 而您,我的父亲,在生命那悲
 Curse, bless, me now with your fierce tears, I pray. 我求您现在用您的热泪诅咒我,祝福我吧
 Do not go gentle into that good night. 不要温和地走进那个良夜。
 Rage, rage against the dying of the light. 怒斥吧,怒斥光的消逝。
-#+END_QUOTE
+#+END_EXAMPLE
 ** 赛德克巴莱(Seediq Bale) 魏德圣
 
 -----
@@ -484,7 +484,7 @@ Every great magic trick consists of three acts. The first act is called The Pled
 #+END_EXPORT
 
 ** Guess I’m Doing Fine (Bob Dylan)
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Well, I ain’t got my childhood
 Or friends I once did know
 No, I ain’t got my childhood
@@ -537,27 +537,27 @@ The stones might cut my face
 But as some folks ain’t got no road at all
 They gotta stand in the same old place
 Hey, hey, so I guess I’m doin’ fine
-#+END_QUOTE
+#+END_EXAMPLE
 ** 白日梦想家(The Secret Life of Walter Mitty)
 美好的事物不要轻易惊扰。
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Beautiful things don't ask for attention.
-#+END_QUOTE
+#+END_EXAMPLE
 
 开拓视野，冲破艰险，洞悉所有，贴近生活，寻找真爱，感受彼此。 这就是人生的目的。
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 To see the world,
 things dangerous to come to,
 to see behind walls,
 to draw closer,
 to find each other and to feel.
 That is the purpose of LIFE.
-#+END_QUOTE
+#+END_EXAMPLE
 
 ** Boots of Spanish Leather (Bob Dylan)
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Oh, I’m sailin’ away my own true love
 I’m sailin’ away in the morning
 Is there something I can send you from across the sea
@@ -610,9 +610,9 @@ So take heed, take heed of the western wind
 Take heed of the stormy weather
 And yes, there’s something you can send back to me
 Spanish boots of Spanish leather
-#+END_QUOTE
+#+END_EXAMPLE
 ** The Times They Are A-Changin’ (Bob Dylan)
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Come gather ’round people
 Wherever you roam
 And admit that the waters
@@ -666,10 +666,10 @@ Will later be past
 The order is rapidly fadin’
 And the first one now will later be last
 For the times they are a-changin’
-#+END_QUOTE
+#+END_EXAMPLE
 ** It Ain’t Me, Babe (Bob Dylan)
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Go ’way from my window
 Leave at your own chosen speed
 I’m not the one you want, babe
@@ -710,10 +710,10 @@ A lover for your life an’ nothing more
 But it ain’t me, babe
 No, no, no, it ain’t me, babe
 It ain’t me you’re lookin’ for, babe
-#+END_QUOTE
+#+END_EXAMPLE
 ** OP『红莲の弓矢』
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 （他们是猎物而我们是猎人！）
 花谢凋零终遭人践 残瓣之名至今难辨
 坠地之鸟顾影自怜 急盼风起以了夙愿
@@ -731,10 +731,10 @@ It ain’t me you’re lookin’ for, babe
 点燃其身 肆意地宣泄
 贯穿于暮天 绯红之烈焰
 艳若红莲 疾似箭
-#+END_QUOTE
+#+END_EXAMPLE
 ** 猜火车 Trainspotting
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Choose life.
 
 选择生活。
@@ -824,4 +824,4 @@ I choose not to choose life: I choose something else.
 And the reasons? There are no reasons.
 
 理由？没有理由。
-#+END_QUOTE
+#+END_EXAMPLE

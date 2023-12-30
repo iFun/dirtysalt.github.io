@@ -8,7 +8,7 @@ Question: How do you approach utilizing and researching machine learning techniq
 
 Answer: You have to realize that our theoretical tools are very weak. Sometimes, we have good mathematical intuitions for why a particular technique should work. Sometimes our intuition ends up being wrong [...] The questions become: how well does my method work on this particular problem, and how large is the set of problems on which it works well.
 
-- [[http://www.reddit.com/r/MachineLearning/comments/25lnbt/ama_yann_lecun/chivdv7][Question and answer]] with neural networks researcher Yann LeCun
+Source: [[http://www.reddit.com/r/MachineLearning/comments/25lnbt/ama_yann_lecun/chivdv7][Question and answer]] with neural networks researcher Yann LeCun
 
 #+END_QUOTE
 

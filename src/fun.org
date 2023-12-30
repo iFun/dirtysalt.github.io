@@ -51,7 +51,7 @@ https://www.zhihu.com/question/20613891/answer/66352281
 
 感谢您表示有兴趣让我作为你的女朋友。 然而，由于我今年收到了大量的爱情表白，我很遗憾地告诉你，现在无法接受你的表白。请注意，这种拒绝并不反映对你的任何负面评价。 今年，我特别幸运地接受了大量的爱情表白。 由于这种多样且富有希望的结果，我不可能接受所有的表白，无论他们如何的出色。
 
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Dear Sir,
 
 Thank you for expressing your interest in offering me a place as a girlfriend. However, due to the large amount of love confessions I received this year, I regret to inform you that I am unable to accept your confession at this time.
@@ -65,7 +65,7 @@ Best,XXX
 Dean of Love Confession Acceptance and Financial Aid
 
 Please do NOT reply directly to this email.
-#+END_QUOTE
+#+END_EXAMPLE
 
 
 -----
@@ -430,7 +430,7 @@ alphaGo这样的项目在国内做的话: A厂:"老板我要做围棋项目。""
 2.头像包括相册上传几张杀马特自拍，最好自己加上几个词或者让人看不懂的几句话，例如「说走就走的旅行」「殇」之类的，用夸张的滤镜调一下也行
 
 3.QQ空间不定时发表说说，内容示例如下
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 《给你的、我再也给不了第二个人这么多》
 《你爱上了别人。告诉我、即使心很痛》
 《永远也不放手，因为我爱你》
@@ -438,11 +438,11 @@ alphaGo这样的项目在国内做的话: A厂:"老板我要做围棋项目。""
 《我放弃你！因为你的不珍惜》
 《你不是我的空气，为何没有了你，我会窒息》
 《亲爱的，我的眼泪不多，请不要我再为你流泪好吗？》
-#+END_QUOTE
+#+END_EXAMPLE
 仅供参考
 
 4.QQ空间不定时转载日志，内容示例如下
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 《他们说，这样的女孩比较真》
 《要珍惜胸前有痣的女孩》
 《要珍惜脖子后面有痣的女孩》
@@ -497,7 +497,7 @@ alphaGo这样的项目在国内做的话: A厂:"老板我要做围棋项目。""
 《你一定不知道的XXX》
 《XXX都不懂的XXX》
 《XXX的同学（朋友XXX）注意了》
-#+END_QUOTE
+#+END_EXAMPLE
 摘自网上，仅供参考
 
 同样是祖国的花朵，穷孩子却穿不起QQ秀，买不起欢乐豆，甚至充不起会员。春节将至，请让我们帮助这个孩子，让他能穿上好看的衣服，玩得起游戏~每个人请帮QQ帐号985786354的小朋友充值10QB，献上一份爱心，让世界充满爱。好人一生平安，世界因你而美丽！
@@ -657,7 +657,7 @@ Linus在LKML最常见的发言就两类：你的code很屎我不会merge对了�
 之前邮寄东西经常被摔的不能看，后来想了个办法，给别人送瓷器时都会在箱子每一面上用粗体字写上"开光法器，镇物在内，永世压制，不得启封"几个字，再画几个郑重其事的符，这样的包裹送出去，通常都是完好无损的一路到朋友手中……一朋友反馈说快递师傅电话里带着哭腔问箱子磨穿了一点怎么办……
 
 -----
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 媳妇：老公，我把人家车刮了！
 老公：一天尽给我找些鬼事，啥车啊？
 媳妇：不认识，就带个B字。
@@ -670,7 +670,7 @@ Linus在LKML最常见的发言就两类：你的code很屎我不会merge对了�
 老公：去你妈的，媳妇我不要了，你看着办吧
 老婆：是他刮倒我的自行车，我躺地上了，动不了，车主说只能赔我500万，想找你商量来着……
 老公：媳妇，在哪里呀，别怕，有老公在，我现在马上过来
-#+END_QUOTE
+#+END_EXAMPLE
 
 -----
 这两年创业各种努力各种焦虑，真是不容易。想想也应该换台新车了，一咬牙一跺脚，趁小长假把车提回来了。有人说人到中年车型太拉风了不好，不管了揪着青春的尾巴也犒赏自己一把。别问我为什么买银色，耐脏。
@@ -2090,7 +2090,7 @@ http://abcnews.go.com/International/taliban-accidentally-reveal-identities-maili
 今夏巨星扎堆发片，乐坛型男潮叔包青天携新专《Judge Bao》空降本周华语榜中榜：1.你永远不懂爷的黑(Black Forever) 2.看我脸色72变(Poker Face) 3.本府是碳，黑到忧伤(Black Tragedy) 4.开封府之夏(Summer in KaiFeng) 5.升堂（RAP）6.王朝马汉今何在(Pray for My Soldiers) (via 谁允许你直视本蜀黍)
 
 -----
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 冰清玉洁武藤兰，三贞九烈小泽圆。
 不近女色陈冠希，天生丽质金喜善。
 坚持原创郭小四，低调沉稳数韩寒。
@@ -2125,7 +2125,7 @@ http://abcnews.go.com/International/taliban-accidentally-reveal-identities-maili
 强身健体俯卧撑，安全游戏躲猫猫。
 爱管闲事酱油党，不明真相老百姓。
 水深火热蛮夷众，欢欣鼓舞天朝民。
-#+END_QUOTE
+#+END_EXAMPLE
 
 -----
 都说骂人要文明，于是某同学把"真TMD不爽"译为"诚其母之不悦！"

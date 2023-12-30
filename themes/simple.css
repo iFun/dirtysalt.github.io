@@ -22,11 +22,18 @@ body {
     width: 1000px;
 }
 
+pre {
+    border-left: 5px grey solid;
+    padding-left: 30px;
+    padding-top: 1.2em;
+}
+
 pre.src {
     border-left: 5px blue solid;
     padding-left: 30px;
     padding-top: 1.2em;
 }
+
 
 li {
     line-height: 150%
