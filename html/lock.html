@@ -99,42 +99,42 @@ futex(fast userspace mutex)快速用户态互斥锁，需要用户态和内核�
 <h2 id="orge6bca4d"><span class="section-number-2">4.</span> 使用自选锁来实现信号量</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-Cpp">typedef struct sema
+<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span> <span class="org-type">sema</span>
 {
-  lock_t lock;
-  int count;
-  queue q;
-} sema_t;
+  <span class="org-type">lock_t</span> <span class="org-variable-name">lock</span>;
+  <span class="org-type">int</span> <span class="org-variable-name">count</span>;
+  <span class="org-type">queue</span> <span class="org-variable-name">q</span>;
+} <span class="org-type">sema_t</span>;
 
-void init_sema(sema_t* sema, int init_cnt)
+<span class="org-type">void</span> <span class="org-function-name">init_sema</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>, <span class="org-type">int</span> <span class="org-variable-name">init_cnt</span>)
 {
   init_lock(&amp;sema-&gt;lock);
   init_queue(&amp;sema-&gt;q);
   sema-&gt;count=init_cnt;
 }
 
-void p(sema_t* sema)
+<span class="org-type">void</span> <span class="org-function-name">p</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>)
 {
   lock(&amp;sema-&gt;lock);
   sema-&gt;count--;
-  if (sema-&gt;count &lt; 0) {
+  <span class="org-keyword">if</span> (sema-&gt;count &lt; 0) {
     q.push(current_process_context());
     unlock(&amp;sema-&gt;lock);
-    swtch(); // switch to another process.
-    return;
+    swtch(); <span class="org-comment-delimiter">// </span><span class="org-comment">switch to another process.</span>
+    <span class="org-keyword">return</span>;
   }
   unlock(&amp;sema-&gt;lock);
 }
 
-void v(sema_t* sema)
+<span class="org-type">void</span> <span class="org-function-name">v</span>(<span class="org-type">sema_t</span>* <span class="org-variable-name">sema</span>)
 {
   lock(&amp;sema-&gt;lock);
   sema-&gt;count++;
-  if (sema-&gt;count &lt;= 0) {
-    pcs_ctx* ctx = q.pop();
+  <span class="org-keyword">if</span> (sema-&gt;count &lt;= 0) {
+    <span class="org-type">pcs_ctx</span>* <span class="org-variable-name">ctx</span> = q.pop();
     unlock(&amp;sema-&gt;lock);
     enqueue(&amp;running_queue, ctx);
-    return ;
+    <span class="org-keyword">return</span> ;
   }
   unlock(&amp;sema-&gt;lock);
 }

@@ -21,12 +21,12 @@
 <li><a href="#org7d7cca0">3. Resilient Distributed Datasets (RDDs)</a>
 <ul>
 <li><a href="#orgee85da3">3.1. RDD Abstraction</a></li>
-<li><a href="#org75d0053">3.2. Spark Programming Interface</a></li>
+<li><a href="#org52a6e7c">3.2. Spark Programming Interface</a></li>
 <li><a href="#org84f5398">3.3. Advantages of the RDD Model</a></li>
 <li><a href="#org564763c">3.4. Applications Not Suitable for RDDs</a></li>
 </ul>
 </li>
-<li><a href="#org52a6e7c">4. Spark Programming Interface</a>
+<li><a href="#orgffb59c0">4. Spark Programming Interface</a>
 <ul>
 <li><a href="#org7d61474">4.1. RDD Operations in Spark</a></li>
 </ul>
@@ -118,8 +118,8 @@ The main challenge in designing RDDs is defining a programming interface that ca
 </div>
 </div>
 
-<div id="outline-container-org75d0053" class="outline-3">
-<h3 id="org75d0053"><span class="section-number-3">3.2.</span> Spark Programming Interface</h3>
+<div id="outline-container-org52a6e7c" class="outline-3">
+<h3 id="org52a6e7c"><span class="section-number-3">3.2.</span> Spark Programming Interface</h3>
 </div>
 <div id="outline-container-org84f5398" class="outline-3">
 <h3 id="org84f5398"><span class="section-number-3">3.3.</span> Advantages of the RDD Model</h3>
@@ -131,7 +131,7 @@ The main challenge in designing RDDs is defining a programming interface that ca
 </ol>
 
 
-<div id="org02f66cb" class="figure">
+<div id="orge9f2cd3" class="figure">
 <p><img src="../images/Pasted-Image-20231225103522.png" alt="Pasted-Image-20231225103522.png" />
 </p>
 </div>
@@ -153,15 +153,15 @@ As discussed in the Introduction, RDDs are best suited for batch applications th
 </div>
 
 
-<div id="outline-container-org52a6e7c" class="outline-2">
-<h2 id="org52a6e7c"><span class="section-number-2">4.</span> Spark Programming Interface</h2>
+<div id="outline-container-orgffb59c0" class="outline-2">
+<h2 id="orgffb59c0"><span class="section-number-2">4.</span> Spark Programming Interface</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 To use Spark, developers write a driver program that connects to a cluster of workers, as shown in Figure 2. The driver defines one or more RDDs and invokes ac- tions on them. Spark code on the driver also tracks the RDDs’ lineage. The workers are long-lived processes that can store RDD partitions in RAM across operations.
 </p>
 
 
-<div id="orgd396164" class="figure">
+<div id="orgbf7c6ce" class="figure">
 <p><img src="../images/Pasted-Image-20231225103413.png" alt="Pasted-Image-20231225103413.png" />
 </p>
 </div>
@@ -175,7 +175,7 @@ Table 2 lists the main RDD transformations and actions available in Spark. We gi
 </p>
 
 
-<div id="orgfb2dd1f" class="figure">
+<div id="orgc94b74e" class="figure">
 <p><img src="../images/Pasted-Image-20231225104656.png" alt="Pasted-Image-20231225104656.png" />
 </p>
 </div>
@@ -202,7 +202,7 @@ In a nutshell, we propose representing each RDD through a common interface that 
 </ul>
 
 
-<div id="org505ff5b" class="figure">
+<div id="org4e9517d" class="figure">
 <p><img src="../images/Pasted-Image-20231225103553.png" alt="Pasted-Image-20231225103553.png" />
 </p>
 </div>
@@ -233,7 +233,7 @@ For example, map leads to a narrow dependency, while join leads to to wide depen
 </p>
 
 
-<div id="org3c8e470" class="figure">
+<div id="org0ab8215" class="figure">
 <p><img src="../images/Pasted-Image-20231225104536.png" alt="Pasted-Image-20231225104536.png" />
 </p>
 </div>
@@ -264,7 +264,7 @@ This common interface for RDDs made it possible to implement most transformation
 <p>
 这里我们使用spark-1.4.1运行一个例子, 来看看RDD中的这些概念. 首先我们用hdfs中读取一个文本文件上来, 指定分区数量为10.
 </p>
-<pre class="example" id="orgc7cd3ed">
+<pre class="example" id="org0db4c09">
 scala&gt; val rdd = sc.textFile("hdfs://192.168.3.3:8020/tmp/spark.org", 10)
 15/09/11 16:53:21 INFO MemoryStore: ensureFreeSpace(231336) called with curMem=758866, maxMem=278302556
 15/09/11 16:53:21 INFO MemoryStore: Block broadcast_12 stored as values in memory (estimated size 225.9 KB, free 264.5 MB)
@@ -278,7 +278,7 @@ rdd: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[20] at textFile at &lt;
 <p>
 然后我们可以查看这个rdd的partitions信息.
 </p>
-<pre class="example" id="orgdbe11e2">
+<pre class="example" id="org8be663b">
 scala&gt; rdd.partitions.size
 15/09/11 16:53:42 INFO FileInputFormat: Total input paths to process : 1
 res42: Int = 10
@@ -302,7 +302,7 @@ res44: Int = 0
 <p>
 我们尝试找到这个rdd的HadoopRDD来看看它的preferredLocations. 可以看到这里Dependency是OneToOne, 也就是Narrow Dependency. paritioner为None, 表示使用默认分区函数
 </p>
-<pre class="example" id="orgb56f9f2">
+<pre class="example" id="org28a0ad7">
 scala&gt; rdd.dependencies
 res45: Seq[org.apache.spark.Dependency[_]] = List(org.apache.spark.OneToOneDependency@4fec36f6)
 
@@ -337,7 +337,7 @@ Overall, our scheduler is similar to Dryad’s, but it additionally takes into a
 </p>
 
 
-<div id="orgc476dd1" class="figure">
+<div id="orgcb5b077" class="figure">
 <p><img src="../images/Pasted-Image-20231225103519.png" alt="Pasted-Image-20231225103519.png" />
 </p>
 </div>
@@ -376,7 +376,7 @@ Figure 6 shows how the interpreter translates a set of lines typed by the user t
 </p>
 
 
-<div id="org6918f83" class="figure">
+<div id="orgf5a312a" class="figure">
 <p><img src="../images/Pasted-Image-20231225104703.png" alt="Pasted-Image-20231225104703.png" />
 </p>
 </div>

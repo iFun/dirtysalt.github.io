@@ -50,7 +50,7 @@
 <p>
 NMSTL和Asio一样都是template-heavy code,大部分都是头文件。NMSTL设计者考虑到使用这种东西编写C++代码出错的话，很容易在模板的错误中迷失，所以在bin目录下面用perl编写了一个wtf工具，可以将g++编译错误信息很好地表现出来。使用也非常简单，分析效果比原来的g++错误信息好多了。
 </p>
-<pre class="example" id="orgab690a4">
+<pre class="example" id="org2dce21b">
 ./bin/wtf g++ &lt;command&gt;
 </pre>
 
@@ -89,8 +89,8 @@ NMSTL和Asio一样都是template-heavy code,大部分都是头文件。NMSTL设�
 SEDA并不是NMSTL提出的，SEDA主要思想就是提出动态线程池这个概念。动态线程池可以在吞吐和响应上平衡，而划分成为stage的话可以让整个设计更加灵活，甚至一个stage都可以使用block方式处理(如果异步编写比较麻烦的话)通过线程来支持，当然一个stage推荐还是使用nonblock方式处理。我们这里看看NMSTL怎么实现动态线程池的。首先看看SEDAStage这么一个概念。在NMSTL里面定义是这样的
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">template&lt;class In, class Out = void&gt;
-class SEDAStage;
+<pre class="src src-C++"><span class="org-keyword">template</span>&lt;<span class="org-keyword">class</span> <span class="org-type">In</span>, <span class="org-keyword">class</span> <span class="org-type">Out</span> = <span class="org-type">void</span>&gt;
+<span class="org-keyword">class</span> <span class="org-type">SEDAStage</span>;
 </pre>
 </div>
 
@@ -98,30 +98,30 @@ class SEDAStage;
 一个SEDAStage和一个In/Out类型绑定形成一个stage.这个stage允许不断地插入In对象，实现起来内部能够非常高效地处理这些In对象生成Out对象。然后一个stage可能后面会挂上一个next stage,这个next stage接收Out对象然后不断地继续。对于这里的高效处理就是使用异步队列+线程池模型来处理了，我们可以看看处理这个部分的代码
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">class my_thread : public Thread {
-bool quit;
-bool pending;
-SEDAStage&lt;In&gt;&amp; stage;
+<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">my_thread</span> : <span class="org-keyword">public</span> <span class="org-type">Thread</span> {
+<span class="org-type">bool</span> <span class="org-variable-name">quit</span>;
+<span class="org-type">bool</span> <span class="org-variable-name">pending</span>;
+<span class="org-type">SEDAStage</span>&lt;In&gt;&amp; <span class="org-variable-name">stage</span>;
 
-  public:
-my_thread(SEDAStage&lt;In&gt;&amp; stage) :
-    quit(false), pending(true), stage(stage) {}
+  <span class="org-keyword">public</span>:
+<span class="org-function-name">my_thread</span>(<span class="org-type">SEDAStage</span>&lt;In&gt;&amp; <span class="org-variable-name">stage</span>) :
+    quit(<span class="org-constant">false</span>), pending(<span class="org-constant">true</span>), stage(stage) {}
 
-virtual void run() {
-    while (true) {
-    In in;
-    if (!stage.inq.wait(in, &amp;pending)) // 其中这里的stage.inq就是异步队列
-        break; // 注意这个地方，这个地方能够通过异步队列的返回值来通知线程是否需要自己销毁。
+<span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">run</span>() {
+    <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
+    <span class="org-type">In</span> <span class="org-variable-name">in</span>;
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>stage.inq.wait(in, &amp;pending)) <span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#20013;&#36825;&#37324;&#30340;stage.inq&#23601;&#26159;&#24322;&#27493;&#38431;&#21015;</span>
+        <span class="org-keyword">break</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#27880;&#24847;&#36825;&#20010;&#22320;&#26041;&#65292;&#36825;&#20010;&#22320;&#26041;&#33021;&#22815;&#36890;&#36807;&#24322;&#27493;&#38431;&#21015;&#30340;&#36820;&#22238;&#20540;&#26469;&#36890;&#30693;&#32447;&#31243;&#26159;&#21542;&#38656;&#35201;&#33258;&#24049;&#38144;&#27585;&#12290;</span>
 
-    stage.handle(in); // 从异步队列取出in之后交给stage::handle来处理。
+    stage.handle(in); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20174;&#24322;&#27493;&#38431;&#21015;&#21462;&#20986;in&#20043;&#21518;&#20132;&#32473;stage::handle&#26469;&#22788;&#29702;&#12290;</span>
     }
 
-    if (!stage.inq.is_closed()) { // 如果stage本身没有关闭的话，那么说明是动态取消线程
-    delete_on_completion(); // 那么线程需要在退出做一些事情。主动退出的话通常线程需要detach.
-    stage.thread_dying(this); // 然后从线程池中移除这个线程。
-    } else { // 如果是stage主动挂掉的话，那么就需要让线程自己销毁，根据状态决定是否需要join.
-    // The stage is dying; let the destructor reap this
-    // Thread
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>stage.inq.is_closed()) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;stage&#26412;&#36523;&#27809;&#26377;&#20851;&#38381;&#30340;&#35805;&#65292;&#37027;&#20040;&#35828;&#26126;&#26159;&#21160;&#24577;&#21462;&#28040;&#32447;&#31243;</span>
+    delete_on_completion(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#37027;&#20040;&#32447;&#31243;&#38656;&#35201;&#22312;&#36864;&#20986;&#20570;&#19968;&#20123;&#20107;&#24773;&#12290;&#20027;&#21160;&#36864;&#20986;&#30340;&#35805;&#36890;&#24120;&#32447;&#31243;&#38656;&#35201;detach.</span>
+    stage.thread_dying(<span class="org-keyword">this</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#20174;&#32447;&#31243;&#27744;&#20013;&#31227;&#38500;&#36825;&#20010;&#32447;&#31243;&#12290;</span>
+    } <span class="org-keyword">else</span> { <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#26159;stage&#20027;&#21160;&#25346;&#25481;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#38656;&#35201;&#35753;&#32447;&#31243;&#33258;&#24049;&#38144;&#27585;&#65292;&#26681;&#25454;&#29366;&#24577;&#20915;&#23450;&#26159;&#21542;&#38656;&#35201;join.</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">The stage is dying; let the destructor reap this</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Thread</span>
     }
 }
 };
@@ -132,29 +132,29 @@ virtual void run() {
 然后我们看看多个Stage是如何相连在一起的.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">template&lt;class In, class Out&gt;
-class SEDAStage : public SEDAStage&lt;In, void&gt; {
-    SEDAStage&lt;Out&gt;* next;
+<pre class="src src-C++"><span class="org-keyword">template</span>&lt;<span class="org-keyword">class</span> <span class="org-type">In</span>, <span class="org-keyword">class</span> <span class="org-type">Out</span>&gt;
+<span class="org-keyword">class</span> <span class="org-type">SEDAStage</span> : <span class="org-keyword">public</span> <span class="org-type">SEDAStage</span>&lt;<span class="org-type">In</span>, <span class="org-type">void</span>&gt; {
+    <span class="org-type">SEDAStage</span>&lt;<span class="org-type">Out</span>&gt;* <span class="org-variable-name">next</span>;
 
-  public:
-    SEDAStage(string name = string()) :
-    SEDAStage&lt;In, void&gt;(name)
+  <span class="org-keyword">public</span>:
+    <span class="org-function-name">SEDAStage</span>(<span class="org-type">string</span> <span class="org-variable-name">name</span> = string()) :
+    SEDAStage&lt;<span class="org-type">In</span>, <span class="org-type">void</span>&gt;(name)
     {
     }
-    // 设置下一个阶段Stage
-    /// Specifies the stage to be used after this stage.
-    /// This stage will be used when the handler invokes
-    /// output(Out&amp; out).
-    void set_next(SEDAStage&lt;Out&gt;&amp; next) { this-&gt;next = &amp;next; }
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#35774;&#32622;&#19979;&#19968;&#20010;&#38454;&#27573;Stage</span>
+    <span class="org-comment-delimiter">/// </span><span class="org-comment">Specifies the stage to be used after this stage.</span>
+    <span class="org-comment-delimiter">/// </span><span class="org-comment">This stage will be used when the handler invokes</span>
+    <span class="org-comment-delimiter">/// </span><span class="org-comment">output(Out&amp; out).</span>
+    <span class="org-type">void</span> <span class="org-function-name">set_next</span>(<span class="org-type">SEDAStage</span>&lt;<span class="org-type">Out</span>&gt;&amp; <span class="org-variable-name">next</span>) { <span class="org-keyword">this</span>-&gt;next = &amp;next; }
 
-  protected:
-    // 这样允许我们在handle之后得到Out结果之后，output(handle(in))
-    // 这样Out部分又可以放到下一个步骤进行处理了。
-    // 不过从代码上看类型上面有点问题，如果是多个stage级联的话
-    // 类型上看需要进行强转。
-    /// Injects the output element into the queue which has
-    /// previous been specified by set_next(SEDAStage&lt;Out&gt;&amp;).
-    void output(Out&amp; out) {
+  <span class="org-keyword">protected</span>:
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;&#20801;&#35768;&#25105;&#20204;&#22312;handle&#20043;&#21518;&#24471;&#21040;Out&#32467;&#26524;&#20043;&#21518;&#65292;output(handle(in))</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;Out&#37096;&#20998;&#21448;&#21487;&#20197;&#25918;&#21040;&#19979;&#19968;&#20010;&#27493;&#39588;&#36827;&#34892;&#22788;&#29702;&#20102;&#12290;</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#19981;&#36807;&#20174;&#20195;&#30721;&#19978;&#30475;&#31867;&#22411;&#19978;&#38754;&#26377;&#28857;&#38382;&#39064;&#65292;&#22914;&#26524;&#26159;&#22810;&#20010;stage&#32423;&#32852;&#30340;&#35805;</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#31867;&#22411;&#19978;&#30475;&#38656;&#35201;&#36827;&#34892;&#24378;&#36716;&#12290;</span>
+    <span class="org-comment-delimiter">/// </span><span class="org-comment">Injects the output element into the queue which has</span>
+    <span class="org-comment-delimiter">/// </span><span class="org-comment">previous been specified by set_next(SEDAStage&lt;Out&gt;&amp;).</span>
+    <span class="org-type">void</span> <span class="org-function-name">output</span>(<span class="org-type">Out</span>&amp; <span class="org-variable-name">out</span>) {
     ASSERT(next != 0);
     next-&gt;inject(out);
     }
@@ -184,30 +184,30 @@ class SEDAStage : public SEDAStage&lt;In, void&gt; {
 <h3 id="org33c6f2d"><span class="section-number-3">3.1.</span> 增加线程</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">/// Injects an element into the queue.
-void inject(In&amp; in) {
-if (!inq.push(in)) // 如果异步队列push返回false的话，那么就会调用clogged.
+<pre class="src src-C++"><span class="org-comment-delimiter">/// </span><span class="org-comment">Injects an element into the queue.</span>
+<span class="org-type">void</span> <span class="org-function-name">inject</span>(<span class="org-type">In</span>&amp; <span class="org-variable-name">in</span>) {
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>inq.push(in)) <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#24322;&#27493;&#38431;&#21015;push&#36820;&#22238;false&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#20250;&#35843;&#29992;clogged.</span>
     clogged(in);
 }
 
-/// Called when someone tries to inject an element into the queue,
-/// but there are no handlers available to service it.  This is
-/// invoked on the same Thread which calls inject (before inject
-/// returns) so it must return very quickly.
-virtual void clogged(In&amp; in) {
-locking (this) {
-    reached_capacity = 0; // rc=0
-    add_threads(); // 增加线程
+<span class="org-comment-delimiter">/// </span><span class="org-comment">Called when someone tries to inject an element into the queue,</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">but there are no handlers available to service it.  This is</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">invoked on the same Thread which calls inject (before inject</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">returns) so it must return very quickly.</span>
+<span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">clogged</span>(<span class="org-type">In</span>&amp; <span class="org-variable-name">in</span>) {
+locking (<span class="org-keyword">this</span>) {
+    reached_capacity = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">rc=0</span>
+    add_threads(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#22686;&#21152;&#32447;&#31243;</span>
 }
 }
-void add_threads() {
-// Requires lock on this
-while (num_threads &lt; min_threads ||
+<span class="org-type">void</span> <span class="org-function-name">add_threads</span>() {
+<span class="org-comment-delimiter">// </span><span class="org-comment">Requires lock on this</span>
+<span class="org-keyword">while</span> (num_threads &lt; min_threads ||
        (num_threads &lt; max_threads &amp;&amp; inq.extra_capacity() &lt; 0))
 {
     inq.waiter_pending();
     ++num_threads;
-    my_thread *th = new my_thread(*this);
+    <span class="org-type">my_thread</span> *<span class="org-variable-name">th</span> = <span class="org-keyword">new</span> <span class="org-type">my_thread</span>(*<span class="org-keyword">this</span>);
     threads.insert(th);
 
     th-&gt;start();
@@ -222,19 +222,19 @@ while (num_threads &lt; min_threads ||
 大于task数量，那么这个时候可以认为没有必要增加线程。不过这里我们没有分析extra_capacity这个意思。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">/// Adds an item to the back of the queue.  Returns true if the item
-/// will be immediately dispatched.
-bool push(const value_type&amp; v) {
+<pre class="src src-C++"><span class="org-comment-delimiter">/// </span><span class="org-comment">Adds an item to the back of the queue.  Returns true if the item</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">will be immediately dispatched.</span>
+<span class="org-type">bool</span> <span class="org-function-name">push</span>(<span class="org-keyword">const</span> <span class="org-type">value_type</span>&amp; <span class="org-variable-name">v</span>) {
 locking(m) {
     q.push(v);
         c.signal();
-        return waiters &gt;= q.size();
+        <span class="org-keyword">return</span> waiters &gt;= q.size();
 }
 }
 
-void waiter_pending() {
+<span class="org-type">void</span> <span class="org-function-name">waiter_pending</span>() {
 locking(m)
-    ++waiters; // waiters是已经开辟的线程数目
+    ++waiters; <span class="org-comment-delimiter">// </span><span class="org-comment">waiters&#26159;&#24050;&#32463;&#24320;&#36767;&#30340;&#32447;&#31243;&#25968;&#30446;</span>
 }
 </pre>
 </div>
@@ -251,10 +251,10 @@ locking(m)
 然后我们还是回来看看导致线程减少的这部分逻辑
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">while (true) {
-In in;
-if (!stage.inq.wait(in, &amp;pending))
-    break;
+<pre class="src src-C++"><span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
+<span class="org-type">In</span> <span class="org-variable-name">in</span>;
+<span class="org-keyword">if</span> (<span class="org-negation-char">!</span>stage.inq.wait(in, &amp;pending))
+    <span class="org-keyword">break</span>;
 
 stage.handle(in);
 }
@@ -264,38 +264,38 @@ stage.handle(in);
 如果异步队列在wait返回false的话那么就会取消线程。阅读wait这个部分代码的话就会发现只有两个地方是返回false
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">/// Waits for the queue to become non-empty, then atomically
-/// retrieves an item from the queue, sets out, and returns true; or
-/// returns false if the queue has been closed.
-bool wait(T&amp; out, bool *pending = 0) {
+<pre class="src src-C++"><span class="org-comment-delimiter">/// </span><span class="org-comment">Waits for the queue to become non-empty, then atomically</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">retrieves an item from the queue, sets out, and returns true; or</span>
+<span class="org-comment-delimiter">/// </span><span class="org-comment">returns false if the queue has been closed.</span>
+<span class="org-type">bool</span> <span class="org-function-name">wait</span>(<span class="org-type">T</span>&amp; <span class="org-variable-name">out</span>, <span class="org-type">bool</span> *<span class="org-variable-name">pending</span> = 0) {
 locking(m) {
-    if (pending &amp;&amp; *pending) {
+    <span class="org-keyword">if</span> (<span class="org-type">pending</span> &amp;&amp; *<span class="org-variable-name">pending</span>) {
     --waiters;
-    *pending = false;
+    *pending = <span class="org-constant">false</span>;
     }
 
-    while (1) {
-    if (waiters_starve) { // 一种情况是存在waiters_starve.
+    <span class="org-keyword">while</span> (1) {
+    <span class="org-keyword">if</span> (waiters_starve) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#19968;&#31181;&#24773;&#20917;&#26159;&#23384;&#22312;waiters_starve.</span>
         --waiters_starve;
 
-        // Because starve decremented waiters, and we
-        // decremented it again in this loop...
+        <span class="org-comment-delimiter">// </span><span class="org-comment">Because starve decremented waiters, and we</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">decremented it again in this loop...</span>
         ++waiters;
 
-        return false;
+        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
     }
 
-    if (!q.empty()) {
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>q.empty()) {
         out = q.front();
         q.pop();
-        return true;
+        <span class="org-keyword">return</span> <span class="org-constant">true</span>;
     }
 
-    if (closed) // 另外一种就是这个异步队列关闭
-        return false;
+    <span class="org-keyword">if</span> (closed) <span class="org-comment-delimiter">// </span><span class="org-comment">&#21478;&#22806;&#19968;&#31181;&#23601;&#26159;&#36825;&#20010;&#24322;&#27493;&#38431;&#21015;&#20851;&#38381;</span>
+        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
 
-            // Can only get to this point if the queue is empty
-            // but has not been closed.
+            <span class="org-comment-delimiter">// </span><span class="org-comment">Can only get to this point if the queue is empty</span>
+            <span class="org-comment-delimiter">// </span><span class="org-comment">but has not been closed.</span>
 
     ++waiters;
     c.wait(m);
@@ -309,8 +309,8 @@ locking(m) {
 我们什么时候设置waiters_starve的呢？是在starve这个函数里面
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">/// Starves one waiter, causing its "wait" to return false.
-void starve() {
+<pre class="src src-C++"><span class="org-comment-delimiter">/// </span><span class="org-comment">Starves one waiter, causing its "wait" to return false.</span>
+<span class="org-type">void</span> <span class="org-function-name">starve</span>() {
 locking (m) {
     ++waiters_starve;
     --waiters;
@@ -324,10 +324,10 @@ locking (m) {
 在seda下面存在seda_clock_thread这个类，这个类单独起一个线程然后定时(默认5s)会调用SEDAStage::scan方法。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">/// Periodic scan to see whether to kill a Thread.
-void scan() {
-locking (this) {
-    if (reached_capacity &gt; 5 &amp;&amp; num_threads &gt; min_threads) {
+<pre class="src src-C++"><span class="org-comment-delimiter">/// </span><span class="org-comment">Periodic scan to see whether to kill a Thread.</span>
+<span class="org-type">void</span> <span class="org-function-name">scan</span>() {
+locking (<span class="org-keyword">this</span>) {
+    <span class="org-keyword">if</span> (reached_capacity &gt; 5 &amp;&amp; num_threads &gt; min_threads) {
     inq.starve();
     --num_threads;
     }

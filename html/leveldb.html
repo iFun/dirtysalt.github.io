@@ -148,7 +148,7 @@ meta block存放了bloom filter信息，这样可以减少磁盘读取。关于T
 <p>
 leveldb是这么分配filter block的.以base(2KB)计算.如果block offset在[base*i,base*(i+1)-1]之间的话，那么就在filter i上面。存储格式是这样的。
 </p>
-<pre class="example" id="org2d264d6">
+<pre class="example" id="orgc5429f9">
 [filter 0]
 [filter 1]
 [filter 2]
@@ -175,10 +175,10 @@ lg(base)                              : 1 byte
 对于Table在初始化之前会调用StartBlock.并且在每次进行Flush Data Block时候也会根据Data Block offset调用。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">void FilterBlockBuilder::StartBlock(uint64_t block_offset) {
-  uint64_t filter_index = (block_offset / kFilterBase);
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">FilterBlockBuilder</span>::<span class="org-function-name">StartBlock</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">block_offset</span>) {
+  <span class="org-type">uint64_t</span> <span class="org-variable-name">filter_index</span> = (block_offset / kFilterBase);
   assert(filter_index &gt;= filter_offsets_.size());
-  while (filter_index &gt; filter_offsets_.size()) {
+  <span class="org-keyword">while</span> (filter_index &gt; filter_offsets_.size()) {
     GenerateFilter();
   }
 }
@@ -192,8 +192,8 @@ lg(base)                              : 1 byte
 然后每次Table在AddKey时候也会调用FilterBlock::AddKey
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">void FilterBlockBuilder::AddKey(const Slice&amp; key) {
-  Slice k = key;
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">FilterBlockBuilder</span>::<span class="org-function-name">AddKey</span>(<span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">key</span>) {
+  <span class="org-type">Slice</span> <span class="org-variable-name">k</span> = key;
   start_.push_back(keys_.size());
   keys_.append(k.data(), k.size());
 }
@@ -207,25 +207,25 @@ lg(base)                              : 1 byte
 然后每次Flush的时候都会产生filter.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">void FilterBlockBuilder::GenerateFilter() {
-  const size_t num_keys = start_.size();
-  if (num_keys == 0) {
-    // Fast path if there are no keys for this filter
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-constant">FilterBlockBuilder</span>::<span class="org-function-name">GenerateFilter</span>() {
+  <span class="org-keyword">const</span> <span class="org-type">size_t</span> <span class="org-variable-name">num_keys</span> = start_.size();
+  <span class="org-keyword">if</span> (num_keys == 0) {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Fast path if there are no keys for this filter</span>
     filter_offsets_.push_back(result_.size());
-    return;
+    <span class="org-keyword">return</span>;
   }
 
-  // Make list of keys from flattened key structure
-  start_.push_back(keys_.size());  // Simplify length computation
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Make list of keys from flattened key structure</span>
+  start_.push_back(keys_.size());  <span class="org-comment-delimiter">// </span><span class="org-comment">Simplify length computation</span>
   tmp_keys_.resize(num_keys);
-  for (size_t i = 0; i &lt; num_keys; i++) {
-    const char* base = keys_.data() + start_[i];
-    size_t length = start_[i+1] - start_[i];
+  <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; num_keys; i++) {
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">base</span> = keys_.data() + start_[i];
+    <span class="org-type">size_t</span> <span class="org-variable-name">length</span> = start_[i+1] - start_[i];
     tmp_keys_[i] = Slice(base, length);
   }
 
-  // Generate filter for current set of keys and append to result_.
-  filter_offsets_.push_back(result_.size()); // 记录每个filter的偏移.
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Generate filter for current set of keys and append to result_.</span>
+  filter_offsets_.push_back(result_.size()); <span class="org-comment-delimiter">// </span><span class="org-comment">&#35760;&#24405;&#27599;&#20010;filter&#30340;&#20559;&#31227;.</span>
   policy_-&gt;CreateFilter(&amp;tmp_keys_[0], num_keys, &amp;result_);
 
   tmp_keys_.clear();
@@ -239,21 +239,21 @@ lg(base)                              : 1 byte
 最后filter block需要刷新出去调用Flush方法。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">Slice FilterBlockBuilder::Finish() {
-  if (!start_.empty()) {
+<pre class="src src-C++"><span class="org-type">Slice</span> <span class="org-constant">FilterBlockBuilder</span>::<span class="org-function-name">Finish</span>() {
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>start_.empty()) {
     GenerateFilter();
   }
 
-  // Append array of per-filter offsets
-  const uint32_t array_offset = result_.size();
-  for (size_t i = 0; i &lt; filter_offsets_.size(); i++) {
-    PutFixed32(&amp;result_, filter_offsets_[i]); // 这里使用Fixed32表示也非常好理解
-    // 这样才能快速地映射到对应的filter上面。
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Append array of per-filter offsets</span>
+  <span class="org-keyword">const</span> <span class="org-type">uint32_t</span> <span class="org-variable-name">array_offset</span> = result_.size();
+  <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; filter_offsets_.size(); i++) {
+    PutFixed32(&amp;result_, filter_offsets_[i]); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;&#20351;&#29992;Fixed32&#34920;&#31034;&#20063;&#38750;&#24120;&#22909;&#29702;&#35299;</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#26679;&#25165;&#33021;&#24555;&#36895;&#22320;&#26144;&#23556;&#21040;&#23545;&#24212;&#30340;filter&#19978;&#38754;&#12290;</span>
   }
 
-  PutFixed32(&amp;result_, array_offset); // 这个array offset表示filter offset的起始地址
-  result_.push_back(kFilterBaseLg);  // Save encoding parameter in result
-  return Slice(result_); // 这个slice就是最终需要write的数据.
+  PutFixed32(&amp;result_, array_offset); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;array offset&#34920;&#31034;filter offset&#30340;&#36215;&#22987;&#22320;&#22336;</span>
+  result_.push_back(kFilterBaseLg);  <span class="org-comment-delimiter">// </span><span class="org-comment">Save encoding parameter in result</span>
+  <span class="org-keyword">return</span> Slice(result_); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;slice&#23601;&#26159;&#26368;&#32456;&#38656;&#35201;write&#30340;&#25968;&#25454;.</span>
 }
 </pre>
 </div>
@@ -267,18 +267,18 @@ lg(base)                              : 1 byte
 了解上面的filter block的存储格式之后Reader就非常简单。构造函数首先计算出各个参数。simple huh?
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">FilterBlockReader::FilterBlockReader(const FilterPolicy* policy,
-                                     const Slice&amp; contents)
+<pre class="src src-C++"><span class="org-constant">FilterBlockReader</span>::<span class="org-function-name">FilterBlockReader</span>(<span class="org-keyword">const</span> <span class="org-type">FilterPolicy</span>* <span class="org-variable-name">policy</span>,
+                                     <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">contents</span>)
     : policy_(policy),
-      data_(NULL),
-      offset_(NULL),
+      data_(<span class="org-constant">NULL</span>),
+      offset_(<span class="org-constant">NULL</span>),
       num_(0),
       base_lg_(0) {
-  size_t n = contents.size();
-  if (n &lt; 5) return;  // 1 byte for base_lg_ and 4 for start of offset array
+  <span class="org-type">size_t</span> <span class="org-variable-name">n</span> = contents.size();
+  <span class="org-keyword">if</span> (n &lt; 5) <span class="org-keyword">return</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">1 byte for base_lg_ and 4 for start of offset array</span>
   base_lg_ = contents[n-1];
-  uint32_t last_word = DecodeFixed32(contents.data() + n - 5);
-  if (last_word &gt; n - 5) return;
+  <span class="org-type">uint32_t</span> <span class="org-variable-name">last_word</span> = DecodeFixed32(contents.data() + n - 5);
+  <span class="org-keyword">if</span> (last_word &gt; n - 5) <span class="org-keyword">return</span>;
   data_ = contents.data();
   offset_ = data_ + last_word;
   num_ = (n - 5 - last_word) / 4;
@@ -291,20 +291,20 @@ lg(base)                              : 1 byte
 所以这里filter就是判断某个offset的data block是否含所有key.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">bool FilterBlockReader::KeyMayMatch(uint64_t block_offset, const Slice&amp; key) {
-  uint64_t index = block_offset &gt;&gt; base_lg_;
-  if (index &lt; num_) {
-    uint32_t start = DecodeFixed32(offset_ + index*4); // filter起始地址
-    uint32_t limit = DecodeFixed32(offset_ + index*4 + 4); // filter终止地址
-    if (start &lt;= limit &amp;&amp; limit &lt;= (offset_ - data_)) {
-      Slice filter = Slice(data_ + start, limit - start);
-      return policy_-&gt;KeyMayMatch(key, filter); // filter判断是否存在key.
-    } else if (start == limit) {
-      // Empty filters do not match any keys
-      return false;
+<pre class="src src-C++"><span class="org-type">bool</span> <span class="org-constant">FilterBlockReader</span>::<span class="org-function-name">KeyMayMatch</span>(<span class="org-type">uint64_t</span> <span class="org-variable-name">block_offset</span>, <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">key</span>) {
+  <span class="org-type">uint64_t</span> <span class="org-variable-name">index</span> = block_offset &gt;&gt; base_lg_;
+  <span class="org-keyword">if</span> (index &lt; num_) {
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">start</span> = DecodeFixed32(offset_ + index*4); <span class="org-comment-delimiter">// </span><span class="org-comment">filter&#36215;&#22987;&#22320;&#22336;</span>
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">limit</span> = DecodeFixed32(offset_ + index*4 + 4); <span class="org-comment-delimiter">// </span><span class="org-comment">filter&#32456;&#27490;&#22320;&#22336;</span>
+    <span class="org-keyword">if</span> (start &lt;= limit &amp;&amp; limit &lt;= (offset_ - data_)) {
+      <span class="org-type">Slice</span> <span class="org-variable-name">filter</span> = Slice(data_ + start, limit - start);
+      <span class="org-keyword">return</span> policy_-&gt;KeyMayMatch(key, filter); <span class="org-comment-delimiter">// </span><span class="org-comment">filter&#21028;&#26029;&#26159;&#21542;&#23384;&#22312;key.</span>
+    } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (start == limit) {
+      <span class="org-comment-delimiter">// </span><span class="org-comment">Empty filters do not match any keys</span>
+      <span class="org-keyword">return</span> <span class="org-constant">false</span>;
     }
   }
-  return true;  // Errors are treated as potential matches
+  <span class="org-keyword">return</span> <span class="org-constant">true</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">Errors are treated as potential matches</span>
 }
 </pre>
 </div>
@@ -345,7 +345,7 @@ memtable在leveldb内部实现就是一个skiplist.所有的update都不是in-pl
 但是其实这也反应了leveldb的定位，就是针对fault-tolerant的分布式系统设计。这些分布式系统架在commodity PC上面，磁盘可能很容易出现问题。
 在文档最后作者也给给出了这种block存储方式(recordio)的利弊。
 </p>
-<pre class="example" id="org1240704">
+<pre class="example" id="orgbe42607">
 Some benefits over the recordio format:
 
 (1) We do not need any heuristics for resyncing - just go to next
@@ -475,7 +475,7 @@ seperator可以设置成为ac.seperator的生成可以参考Comparator.使用尽
 那么做compaction需要耗费5s时间。假设用户写速度也在10MS/s的话，那么会生成50MB数据相当于25个sst level0文件。这样对读来说会造成很大影响。
 作者给出的建议包括：
 </p>
-<pre class="example" id="org3915bae">
+<pre class="example" id="orge06f386">
 Solution 1: To reduce this problem, we might want to increase the log switching threshold when the number of level-0 files is large.
 Though the downside is that the larger this threshold, the more memory we will need to hold the corresponding memtable.
 
@@ -488,17 +488,17 @@ in the cache and we will only need to worry about the O(N) complexity in the mer
 其中第二点感觉非常好就是认为控制写入速度当level0文件过多的时候。在db_impl.cc DBImpl::MakeRoomForWrite这个应该是在memtable缺少空间的时候的函数.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">  allow_delay &amp;&amp;
-  versions_-&gt;NumLevelFiles(0) &gt;= config::kL0_SlowdownWritesTrigger) {
-// We are getting close to hitting a hard limit on the number of
-// L0 files.  Rather than delaying a single write by several
-// seconds when we hit the hard limit, start delaying each
-// individual write by 1ms to reduce latency variance.  Also,
-// this delay hands over some CPU to the compaction thread in
-// case it is sharing the same core as the writer.
+<pre class="src src-C++">  allow_delay &amp;&amp;
+  versions_-&gt;NumLevelFiles(0) &gt;= <span class="org-constant">config</span>::kL0_SlowdownWritesTrigger) {
+<span class="org-comment-delimiter">// </span><span class="org-comment">We are getting close to hitting a hard limit on the number of</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">L0 files.  Rather than delaying a single write by several</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">seconds when we hit the hard limit, start delaying each</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">individual write by 1ms to reduce latency variance.  Also,</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">this delay hands over some CPU to the compaction thread in</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">case it is sharing the same core as the writer.</span>
 mutex_.Unlock();
 env_-&gt;SleepForMicroseconds(1000);
-allow_delay = false;  // Do not delay a single write more than once
+allow_delay = <span class="org-constant">false</span>;  <span class="org-comment-delimiter">// </span><span class="org-comment">Do not delay a single write more than once</span>
 mutex_.Lock();
 </pre>
 </div>
@@ -618,7 +618,7 @@ leveldb通过iterator遍历，对于相同的key如何保证获取到最新的�
 <b>Question</b>
 </p>
 
-<pre class="example" id="org657ac35">
+<pre class="example" id="org392b3e7">
 我在看LevelDB代码的时候遇到了一个问题，百思不得其解，也找不到可以探讨请教的人，所以冒昧的给您发了这封邮件，希望得到您的帮助。
 我遇到的问题是这样的：
 在
@@ -659,11 +659,11 @@ void Version::AddIterators(const ReadOptions&amp; options,
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// 对于version来说可能存在很多文件需要遍历.
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;version&#26469;&#35828;&#21487;&#33021;&#23384;&#22312;&#24456;&#22810;&#25991;&#20214;&#38656;&#35201;&#36941;&#21382;.</span>
 versions_-&gt;current()-&gt;AddIterators(options, &amp;list);
-// 将这些内容构造称为一个merge iterator.
-// 注意这里的内容都加了引用计数.
-Iterator* internal_iter =
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#23558;&#36825;&#20123;&#20869;&#23481;&#26500;&#36896;&#31216;&#20026;&#19968;&#20010;merge iterator.</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#27880;&#24847;&#36825;&#37324;&#30340;&#20869;&#23481;&#37117;&#21152;&#20102;&#24341;&#29992;&#35745;&#25968;.</span>
+<span class="org-type">Iterator</span>* <span class="org-variable-name">internal_iter</span> =
     NewMergingIterator(&amp;internal_comparator_, &amp;list[0], list.size());
 </pre>
 </div>
@@ -673,23 +673,23 @@ Iterator* internal_iter =
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">int InternalKeyComparator::Compare(const Slice&amp; akey, const Slice&amp; bkey) const {
-  // Order by:
-  //    increasing user key (according to user-supplied comparator)
-  //    decreasing sequence number
-  //    decreasing type (though sequence# should be enough to disambiguate)
-  int r = user_comparator_-&gt;Compare(ExtractUserKey(akey), ExtractUserKey(bkey));
-  if (r == 0) {
-    const uint64_t anum = DecodeFixed64(akey.data() + akey.size() - 8);
-    const uint64_t bnum = DecodeFixed64(bkey.data() + bkey.size() - 8);
-    if (anum &gt; bnum) { // 按照sequence number比较.
-     // 之前我们在MemTableInserter里面可以看到sequence number是不断增加的.
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-constant">InternalKeyComparator</span>::<span class="org-function-name">Compare</span>(<span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">akey</span>, <span class="org-keyword">const</span> <span class="org-type">Slice</span>&amp; <span class="org-variable-name">bkey</span>) <span class="org-keyword">const</span> {
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Order by:</span>
+  <span class="org-comment-delimiter">//    </span><span class="org-comment">increasing user key (according to user-supplied comparator)</span>
+  <span class="org-comment-delimiter">//    </span><span class="org-comment">decreasing sequence number</span>
+  <span class="org-comment-delimiter">//    </span><span class="org-comment">decreasing type (though sequence# should be enough to disambiguate)</span>
+  <span class="org-type">int</span> <span class="org-variable-name">r</span> = user_comparator_-&gt;Compare(ExtractUserKey(akey), ExtractUserKey(bkey));
+  <span class="org-keyword">if</span> (r == 0) {
+    <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">anum</span> = DecodeFixed64(akey.data() + akey.size() - 8);
+    <span class="org-keyword">const</span> <span class="org-type">uint64_t</span> <span class="org-variable-name">bnum</span> = DecodeFixed64(bkey.data() + bkey.size() - 8);
+    <span class="org-keyword">if</span> (anum &gt; bnum) { <span class="org-comment-delimiter">// </span><span class="org-comment">&#25353;&#29031;sequence number&#27604;&#36739;.</span>
+     <span class="org-comment-delimiter">// </span><span class="org-comment">&#20043;&#21069;&#25105;&#20204;&#22312;MemTableInserter&#37324;&#38754;&#21487;&#20197;&#30475;&#21040;sequence number&#26159;&#19981;&#26029;&#22686;&#21152;&#30340;.</span>
       r = -1;
-    } else if (anum &lt; bnum) {
+    } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (anum &lt; bnum) {
       r = +1;
     }
   }
-  return r;
+  <span class="org-keyword">return</span> r;
 }
 
 </pre>

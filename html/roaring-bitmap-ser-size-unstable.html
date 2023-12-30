@@ -38,7 +38,7 @@
 <li>`(bitmap ^ bitmap2).cardinality() = 0` 可以认为两个bitmap语义上完全一致。</li>
 </ul>
 
-<pre class="example" id="org0b3b2e4">
+<pre class="example" id="orgf3ceacf">
 allocate size 1073
 write size 1073
 =========
@@ -60,26 +60,26 @@ check equality. card = 0
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">size_t roaring_bitmap_size_in_bytes(const roaring_bitmap_t *r) {
-    size_t portablesize = roaring_bitmap_portable_size_in_bytes(r); // &lt;-- container格式
-    uint64_t sizeasarray = roaring_bitmap_get_cardinality(r) * sizeof(uint32_t) +
-                         sizeof(uint32_t); // &lt;-- array of uint32 格式
-    return portablesize &lt; sizeasarray ? portablesize + 1 : (size_t)sizeasarray + 1;
+<pre class="src src-C++"><span class="org-type">size_t</span> <span class="org-function-name">roaring_bitmap_size_in_bytes</span>(<span class="org-keyword">const</span> <span class="org-type">roaring_bitmap_t</span> *<span class="org-variable-name">r</span>) {
+    <span class="org-type">size_t</span> <span class="org-variable-name">portablesize</span> = roaring_bitmap_portable_size_in_bytes(r); <span class="org-comment-delimiter">// </span><span class="org-comment">&lt;-- container&#26684;&#24335;</span>
+    <span class="org-type">uint64_t</span> <span class="org-variable-name">sizeasarray</span> = roaring_bitmap_get_cardinality(r) * <span class="org-keyword">sizeof</span>(uint32_t) +
+                         <span class="org-keyword">sizeof</span>(uint32_t); <span class="org-comment-delimiter">// </span><span class="org-comment">&lt;-- array of uint32 &#26684;&#24335;</span>
+    <span class="org-keyword">return</span> portablesize &lt; sizeasarray ? portablesize + 1 : (<span class="org-type">size_t</span>)sizeasarray + 1;
 }
 
-size_t roaring_bitmap_serialize(const roaring_bitmap_t *r, char *buf) {
-    size_t portablesize = roaring_bitmap_portable_size_in_bytes(r);
-    uint64_t cardinality = roaring_bitmap_get_cardinality(r);
-    uint64_t sizeasarray = cardinality * sizeof(uint32_t) + sizeof(uint32_t);
-    if (portablesize &lt; sizeasarray) {
+<span class="org-type">size_t</span> <span class="org-function-name">roaring_bitmap_serialize</span>(<span class="org-keyword">const</span> <span class="org-type">roaring_bitmap_t</span> *<span class="org-variable-name">r</span>, <span class="org-type">char</span> *<span class="org-variable-name">buf</span>) {
+    <span class="org-type">size_t</span> <span class="org-variable-name">portablesize</span> = roaring_bitmap_portable_size_in_bytes(r);
+    <span class="org-type">uint64_t</span> <span class="org-variable-name">cardinality</span> = roaring_bitmap_get_cardinality(r);
+    <span class="org-type">uint64_t</span> <span class="org-variable-name">sizeasarray</span> = cardinality * <span class="org-keyword">sizeof</span>(uint32_t) + <span class="org-keyword">sizeof</span>(uint32_t);
+    <span class="org-keyword">if</span> (portablesize &lt; sizeasarray) {
         buf[0] = SERIALIZATION_CONTAINER;
-        return roaring_bitmap_portable_serialize(r, buf + 1) + 1;
-    } else {
+        <span class="org-keyword">return</span> roaring_bitmap_portable_serialize(r, buf + 1) + 1;
+    } <span class="org-keyword">else</span> {
         buf[0] = SERIALIZATION_ARRAY_UINT32;
-        memcpy(buf + 1, &amp;cardinality, sizeof(uint32_t));
+        memcpy(buf + 1, &amp;cardinality, <span class="org-keyword">sizeof</span>(uint32_t));
         roaring_bitmap_to_uint32_array(
-            r, (uint32_t *)(buf + 1 + sizeof(uint32_t)));
-        return 1 + (size_t)sizeasarray;
+            r, (<span class="org-type">uint32_t</span> *)(buf + 1 + <span class="org-keyword">sizeof</span>(uint32_t)));
+        <span class="org-keyword">return</span> 1 + (<span class="org-type">size_t</span>)sizeasarray;
     }
 }
 </pre>
@@ -125,17 +125,17 @@ roaring bitmap里面有3类container: bitset(B), array(A), run(R) (可以认为�
 <h2 id="org8d87287"><span class="section-number-2">3.</span> 复现代码</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;cstdio&gt;
-#include &lt;roaring/roaring.hh&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;roaring/roaring.hh&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
 
-int main() {
-    std::vector&lt;int&gt; values = {
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-constant">std</span>::<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">values</span> = {
             4380909, 33259,   1918485, 1918841, 3980353, 7167248, 8504382, 3337731, 7722088, 2698368, 2379295, 3098644,
             4410101, 3955405, 6664357, 2401359, 4041201, 6014068, 7332661, 6256905, 69988,   8198997, 2929553, 1170061,
             2358844, 3352643, 2703215, 3093874, 47508,   48529,   77104,   4412211, 110702,  7627175, 7954476, 3501454,
@@ -160,31 +160,31 @@ int main() {
             7476084, 71753,   3924414, 41938,   4062251, 4076051, 3920738, 7239759, 7611121, 5809363, 4078132, 3678115,
             33254,   3592097, 8504384,
     };
-    Roaring bitmap;
-    for (int v : values) {
-        bitmap.add(static_cast&lt;uint64_t&gt;(v));
+    <span class="org-type">Roaring</span> <span class="org-variable-name">bitmap</span>;
+    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">v</span> : values) {
+        bitmap.add(<span class="org-keyword">static_cast</span>&lt;<span class="org-type">uint64_t</span>&gt;(v));
     }
 
-    printf("=========\n");
+    printf(<span class="org-string">"=========\n"</span>);
     bitmap.runOptimize();
     bitmap.shrinkToFit();
-    bool portable = false;
-    size_t old_size = bitmap.getSizeInBytes(portable);
-    printf("alloc size %zu\n", old_size);
+    <span class="org-type">bool</span> <span class="org-variable-name">portable</span> = <span class="org-constant">false</span>;
+    <span class="org-type">size_t</span> <span class="org-variable-name">old_size</span> = bitmap.getSizeInBytes(portable);
+    printf(<span class="org-string">"alloc size %zu\n"</span>, old_size);
 
-    std::string buffer;
+    <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">buffer</span>;
     buffer.reserve(old_size);
-    size_t write_size = bitmap.write(buffer.data(), portable);
-    printf("write size %zu\n", write_size);
+    <span class="org-type">size_t</span> <span class="org-variable-name">write_size</span> = bitmap.write(buffer.data(), portable);
+    printf(<span class="org-string">"write size %zu\n"</span>, write_size);
 
-    printf("=========\n");
-    Roaring bitmap2 = Roaring::read(buffer.data(), portable);
-    size_t new_size = bitmap2.getSizeInBytes(portable);
-    printf("---&gt; new alloc size %zu\n", new_size);
+    printf(<span class="org-string">"=========\n"</span>);
+    <span class="org-type">Roaring</span> <span class="org-variable-name">bitmap2</span> = <span class="org-constant">Roaring</span>::read(buffer.data(), portable);
+    <span class="org-type">size_t</span> <span class="org-variable-name">new_size</span> = bitmap2.getSizeInBytes(portable);
+    printf(<span class="org-string">"---&gt; new alloc size %zu\n"</span>, new_size);
 
     bitmap2 ^= bitmap;
-    printf("check equality. card = %llu\n", bitmap2.cardinality());
-    return 0;
+    printf(<span class="org-string">"check equality. card = %llu\n"</span>, bitmap2.cardinality());
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>

@@ -123,75 +123,75 @@ What this means is that you should always think in terms of "servers" as stable 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">//============================================================
-//client.cc.send 'hello' always to server,which hosts on localhost:19870
-//============================================================
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">client.cc.send 'hello' always to server,which hosts on localhost:19870</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
 
-#include &lt;zmq.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;unistd.h&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;zmq.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
 
-int main() {
-    void* ctx=zmq_init(1);
-    printf("connect to server 'localhost:19870'\n");
-    void* req=zmq_socket(ctx,ZMQ_REQ);
-    zmq_connect(req,"tcp://localhost:19870");
-    for(int i=0; i&lt;10; i++) {
-        zmq_msg_t request;
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    printf(<span class="org-string">"connect to server 'localhost:19870'\n"</span>);
+    <span class="org-type">void</span>* <span class="org-variable-name">req</span>=zmq_socket(ctx,ZMQ_REQ);
+    zmq_connect(req,<span class="org-string">"tcp://localhost:19870"</span>);
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0; i&lt;10; i++) {
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">request</span>;
         zmq_msg_init_size(&amp;request,6);
-        //including trailing '\0'.
-        memcpy(zmq_msg_data(&amp;request),"hello",6);
-        printf("[C]send 'hello'\n");
-        // 0 means in block way.
+        <span class="org-comment-delimiter">//</span><span class="org-comment">including trailing '\0'.</span>
+        memcpy(zmq_msg_data(&amp;request),<span class="org-string">"hello"</span>,6);
+        printf(<span class="org-string">"[C]send 'hello'\n"</span>);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">0 means in block way.</span>
         zmq_send(req,&amp;request,0);
         zmq_msg_close(&amp;request);
-        zmq_msg_t reply;
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">reply</span>;
         zmq_msg_init(&amp;reply);
-        // 0 means in block way.
+        <span class="org-comment-delimiter">// </span><span class="org-comment">0 means in block way.</span>
         zmq_recv(req,&amp;reply,0);
-        printf("[C]recv '%s'\n",zmq_msg_data(&amp;reply));
+        printf(<span class="org-string">"[C]recv '%s'\n"</span>,zmq_msg_data(&amp;reply));
         zmq_msg_close(&amp;reply);
     }
     zmq_close(req);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
-//============================================================
-//server.cc which hosts on *:19870
-//============================================================
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">server.cc which hosts on *:19870</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
 
-#include &lt;zmq.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;unistd.h&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;zmq.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;stdio.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
 
-int main() {
-    void* ctx=zmq_init(1);
-    printf("bind to '*:19870'\n");
-    void* rep=zmq_socket(ctx,ZMQ_REP);
-    zmq_bind(rep,"tcp://*:19870");
-    while(1){
-        zmq_msg_t request;
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    printf(<span class="org-string">"bind to '*:19870'\n"</span>);
+    <span class="org-type">void</span>* <span class="org-variable-name">rep</span>=zmq_socket(ctx,ZMQ_REP);
+    zmq_bind(rep,<span class="org-string">"tcp://*:19870"</span>);
+    <span class="org-keyword">while</span>(1){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">request</span>;
         zmq_msg_init(&amp;request);
-        // 0 means in block way
+        <span class="org-comment-delimiter">// </span><span class="org-comment">0 means in block way</span>
         zmq_recv(rep,&amp;request,0);
-        const char* s=(const char*)zmq_msg_data(&amp;request);
-        printf("[S]recv '%s'\n",s);
-        zmq_msg_t reply;
-        // include trailing '\0'.
+        <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">s</span>=(<span class="org-keyword">const</span> <span class="org-type">char</span>*)zmq_msg_data(&amp;request);
+        printf(<span class="org-string">"[S]recv '%s'\n"</span>,s);
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">reply</span>;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">include trailing '\0'.</span>
         zmq_msg_init_size(&amp;reply,strlen(s)+1);
         memcpy(zmq_msg_data(&amp;reply),s,strlen(s)+1);
         zmq_msg_close(&amp;request);
-        // 0 means in block way.
-        printf("[S]send '%s'\n",s);
+        <span class="org-comment-delimiter">// </span><span class="org-comment">0 means in block way.</span>
+        printf(<span class="org-string">"[S]send '%s'\n"</span>,s);
         zmq_send(rep,&amp;reply,0);
         zmq_msg_close(&amp;reply);
     }
     zmq_close(rep);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -255,15 +255,15 @@ pgm的实现需要访问原始的IP套接字（socket）。附加的功能可能
 我们可以非常容易地切换到其他通信协议上，而不需要修改任何代码。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">zmq_connect(req,"ipc://fuck"); // client.cc
-zmq_bind(req,"ipc://fuck"); // server.cc
+<pre class="src src-C++">zmq_connect(req,<span class="org-string">"ipc://fuck"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">client.cc</span>
+zmq_bind(req,<span class="org-string">"ipc://fuck"</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">server.cc</span>
 </pre>
 </div>
 
 <p>
 可以在系统上查看的确有 `fuck` 这个文件。
 </p>
-<pre class="example" id="org5041c1b">
+<pre class="example" id="orgb32fe09">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ stat fuck
   File: `fuck'
   Size: 0               Blocks: 0          IO Block: 4096   socket
@@ -295,9 +295,9 @@ There is however a good answer to the question, "how can I make profitable use o
 ZMQ的消息格式是这样的
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">struct msg{
-    msg_size_t size; // 但是为了效率的话会使用特殊的方法进行压缩
-    msg_data_t data[0];
+<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">msg</span>{
+    <span class="org-type">msg_size_t</span> <span class="org-variable-name">size</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#20294;&#26159;&#20026;&#20102;&#25928;&#29575;&#30340;&#35805;&#20250;&#20351;&#29992;&#29305;&#27530;&#30340;&#26041;&#27861;&#36827;&#34892;&#21387;&#32553;</span>
+    <span class="org-type">msg_data_t</span> <span class="org-variable-name">data</span>[0];
 };
 </pre>
 </div>
@@ -314,67 +314,67 @@ ZMQ允许一条message按照多个部分进行发送(multipart message),为了�
 我们使用下面的例子来说明如何进行multipart message传输和接收的。multipart message对于理解后面的路由非常重要。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//  Convert C string to ZMQ string and send to socket
-static int
-s_send (void *socket, char *string) {
-    int rc;
-    zmq_msg_t message;
+<pre class="src src-C++"><span class="org-comment-delimiter">//  </span><span class="org-comment">Convert C string to ZMQ string and send to socket</span>
+<span class="org-keyword">static</span> <span class="org-type">int</span>
+<span class="org-function-name">s_send</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">char</span> *<span class="org-variable-name">string</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">rc</span>;
+    <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">message</span>;
     zmq_msg_init_size (&amp;message, strlen (string));
     memcpy (zmq_msg_data (&amp;message), string, strlen (string));
     rc = zmq_send (socket, &amp;message, 0);
     zmq_msg_close (&amp;message);
-    return (rc);
+    <span class="org-keyword">return</span> (rc);
 }
 
-//  Sends string as ZMQ string, as multipart non-terminal
-static int
-s_sendmore (void *socket, char *string) {
-    int rc;
-    zmq_msg_t message;
+<span class="org-comment-delimiter">//  </span><span class="org-comment">Sends string as ZMQ string, as multipart non-terminal</span>
+<span class="org-keyword">static</span> <span class="org-type">int</span>
+<span class="org-function-name">s_sendmore</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">char</span> *<span class="org-variable-name">string</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">rc</span>;
+    <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">message</span>;
     zmq_msg_init_size (&amp;message, strlen (string));
     memcpy (zmq_msg_data (&amp;message), string, strlen (string));
     rc = zmq_send (socket, &amp;message, ZMQ_SNDMORE);
     zmq_msg_close (&amp;message);
-    return (rc);
+    <span class="org-keyword">return</span> (rc);
 }
 
-//  Receives all message parts from socket, prints neatly
-//
-static void
-s_dump (void *socket)
+<span class="org-comment-delimiter">//  </span><span class="org-comment">Receives all message parts from socket, prints neatly</span>
+<span class="org-comment-delimiter">//</span>
+<span class="org-keyword">static</span> <span class="org-type">void</span>
+<span class="org-function-name">s_dump</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>)
 {
-    puts ("----------------------------------------");
-    while (1) {
-        //  Process all parts of the message
-        zmq_msg_t message;
+    puts (<span class="org-string">"----------------------------------------"</span>);
+    <span class="org-keyword">while</span> (1) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Process all parts of the message</span>
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">message</span>;
         zmq_msg_init (&amp;message);
         zmq_recv (socket, &amp;message, 0);
 
-        //  Dump the message as text or binary
-        char *data = (char*) zmq_msg_data (&amp;message);
-        int size = zmq_msg_size (&amp;message);
-        int is_text = 1;
-        int char_nbr;
-        for (char_nbr = 0; char_nbr &lt; size; char_nbr++)
-            if ((unsigned char) data [char_nbr] &lt; 32
-            ||  (unsigned char) data [char_nbr] &gt; 127)
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Dump the message as text or binary</span>
+        <span class="org-type">char</span> *<span class="org-variable-name">data</span> = (<span class="org-type">char</span>*) zmq_msg_data (&amp;message);
+        <span class="org-type">int</span> <span class="org-variable-name">size</span> = zmq_msg_size (&amp;message);
+        <span class="org-type">int</span> <span class="org-variable-name">is_text</span> = 1;
+        <span class="org-type">int</span> <span class="org-variable-name">char_nbr</span>;
+        <span class="org-keyword">for</span> (char_nbr = 0; char_nbr &lt; size; char_nbr++)
+            <span class="org-keyword">if</span> ((<span class="org-type">unsigned</span> <span class="org-type">char</span>) data [char_nbr] &lt; 32
+            ||  (<span class="org-type">unsigned</span> <span class="org-type">char</span>) data [char_nbr] &gt; 127)
                 is_text = 0;
 
-        printf ("[%03d] ", size);
-        for (char_nbr = 0; char_nbr &lt; size; char_nbr++) {
-            if (is_text)
-                printf ("%c", data [char_nbr]);
-            else
-                printf ("%02X", (unsigned char) data [char_nbr]);
+        printf (<span class="org-string">"[%03d] "</span>, size);
+        <span class="org-keyword">for</span> (char_nbr = 0; char_nbr &lt; size; char_nbr++) {
+            <span class="org-keyword">if</span> (is_text)
+                printf (<span class="org-string">"%c"</span>, data [char_nbr]);
+            <span class="org-keyword">else</span>
+                printf (<span class="org-string">"%02X"</span>, (<span class="org-type">unsigned</span> <span class="org-type">char</span>) data [char_nbr]);
         }
-        printf ("\n");
+        printf (<span class="org-string">"\n"</span>);
 
-        int64_t more;           //  Multipart detection
-        size_t more_size = sizeof (more);
+        <span class="org-type">int64_t</span> <span class="org-variable-name">more</span>;           <span class="org-comment-delimiter">//  </span><span class="org-comment">Multipart detection</span>
+        <span class="org-type">size_t</span> <span class="org-variable-name">more_size</span> = <span class="org-keyword">sizeof</span> (more);
         zmq_getsockopt (socket, ZMQ_RCVMORE, &amp;more, &amp;more_size);
         zmq_msg_close (&amp;message);
-        if (!more)
-            break;      //  Last message part
+        <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>more)
+            <span class="org-keyword">break</span>;      <span class="org-comment-delimiter">//  </span><span class="org-comment">Last message part</span>
     }
 }
 </pre>
@@ -400,7 +400,7 @@ Identity可以用来表示一个socket的身份，对于ZMQ是非常有用途的
 关于Identity似乎如何影响到上面两个方面的，我们会在后面的各个小节仔细描述。我们看看如何设置Identity的。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">zmq_setsockopt(socket,ZMQ_IDENTITY,"dirlt",5);
+<pre class="src src-C++">zmq_setsockopt(socket,ZMQ_IDENTITY,<span class="org-string">"dirlt"</span>,5);
 </pre>
 </div>
 
@@ -429,27 +429,27 @@ ZMQ里面内置的Device有下面三种：
 使用device也非常简单。下面是段示例代码
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">#include "zhelpers.h"
-int main (void)
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
+<span class="org-type">int</span> <span class="org-function-name">main</span> (<span class="org-type">void</span>)
 {
-    void *context = zmq_init (1);
+    <span class="org-type">void</span> *<span class="org-variable-name">context</span> = zmq_init (1);
 
-    // Socket facing clients
-    void *frontend = zmq_socket (context, ZMQ_ROUTER);
-    zmq_bind (frontend, "tcp://*:5559");
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Socket facing clients</span>
+    <span class="org-type">void</span> *<span class="org-variable-name">frontend</span> = zmq_socket (context, ZMQ_ROUTER);
+    zmq_bind (frontend, <span class="org-string">"tcp://*:5559"</span>);
 
-    // Socket facing services
-    void *backend = zmq_socket (context, ZMQ_DEALER);
-    zmq_bind (backend, "tcp://*:5560");
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Socket facing services</span>
+    <span class="org-type">void</span> *<span class="org-variable-name">backend</span> = zmq_socket (context, ZMQ_DEALER);
+    zmq_bind (backend, <span class="org-string">"tcp://*:5560"</span>);
 
-    // Start built-in device
+    <span class="org-comment-delimiter">// </span><span class="org-comment">Start built-in device</span>
     zmq_device (ZMQ_QUEUE, frontend, backend);
 
-    // We never get here…
+    <span class="org-comment-delimiter">// </span><span class="org-comment">We never get here&#8230;</span>
     zmq_close (frontend);
     zmq_close (backend);
     zmq_term (context);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -458,21 +458,21 @@ int main (void)
 ZMQ Guide里面提到了不要将不同Device和socket进行混用. If you're like most 01MQ users, at this stage your mind is starting to think, "what kind of evil stuff can I do if I plug random socket types into devices?" The short answer is: don't do it. You can mix socket types but the results are going to be weird. So stick to using ROUTER/DEALER for queue devices, SUB/PUB for forwarders and PULL/PUSH for streamers. 如果实际阅读代码的话，会发现这个部分的逻辑都是一样的，也就是事实上在现在ZMQ版本里面是可以混用的。用户在使用的时候需要注意好模式的搭配。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq_device (int device_, void *insocket_, void *outsocket_)
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zmq_device</span> (<span class="org-type">int</span> <span class="org-variable-name">device_</span>, <span class="org-type">void</span> *<span class="org-variable-name">insocket_</span>, <span class="org-type">void</span> *<span class="org-variable-name">outsocket_</span>)
 {
-    if (!insocket_ || !outsocket_) {
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>insocket_ || <span class="org-negation-char">!</span>outsocket_) {
         errno = EFAULT;
-        return -1;
+        <span class="org-keyword">return</span> -1;
     }
 
-    if (device_ != ZMQ_FORWARDER &amp;&amp; device_ != ZMQ_QUEUE &amp;&amp;
+    <span class="org-keyword">if</span> (device_ != ZMQ_FORWARDER &amp;&amp; device_ != ZMQ_QUEUE &amp;&amp;
           device_ != ZMQ_STREAMER) {
        errno = EINVAL;
-       return -1;
+       <span class="org-keyword">return</span> -1;
     }
 
-    return zmq::device ((zmq::socket_base_t*) insocket_,
-        (zmq::socket_base_t*) outsocket_);
+    <span class="org-keyword">return</span> <span class="org-constant">zmq</span>::device ((<span class="org-constant">zmq</span>::<span class="org-type">socket_base_t</span>*) insocket_,
+        (<span class="org-constant">zmq</span>::<span class="org-type">socket_base_t</span>*) outsocket_);
 }
 </pre>
 </div>
@@ -481,20 +481,20 @@ ZMQ Guide里面提到了不要将不同Device和socket进行混用. If you're li
 而zmq::device逻辑也非常简单，就是之前提到pipe工作机制。内部使用了ZMQ本身提供的zmq_poll机制来进行通知哪个socket上面有数据。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq::device (class socket_base_t *insocket_,
-        class socket_base_t *outsocket_)
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-constant">zmq</span>::<span class="org-function-name">device</span> (<span class="org-keyword">class</span> <span class="org-type">socket_base_t</span> *<span class="org-variable-name">insocket_</span>,
+        <span class="org-keyword">class</span> <span class="org-type">socket_base_t</span> *<span class="org-variable-name">outsocket_</span>)
 {
-    zmq_msg_t msg;
-    int rc = zmq_msg_init (&amp;msg);
+    <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">rc</span> = zmq_msg_init (&amp;msg);
 
-    if (rc != 0) {
-        return -1;
+    <span class="org-keyword">if</span> (rc != 0) {
+        <span class="org-keyword">return</span> -1;
     }
 
-    int64_t more;
-    size_t moresz;
+    <span class="org-type">int64_t</span> <span class="org-variable-name">more</span>;
+    <span class="org-type">size_t</span> <span class="org-variable-name">moresz</span>;
 
-    zmq_pollitem_t items [2];
+    <span class="org-type">zmq_pollitem_t</span> <span class="org-variable-name">items</span> [2];
     items [0].socket = insocket_;
     items [0].fd = 0;
     items [0].events = ZMQ_POLLIN;
@@ -504,72 +504,72 @@ ZMQ Guide里面提到了不要将不同Device和socket进行混用. If you're li
     items [1].events = ZMQ_POLLIN;
     items [1].revents = 0;
 
-    while (true) {
+    <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
-        //  Wait while there are either requests or replies to process.
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Wait while there are either requests or replies to process.</span>
         rc = zmq_poll (&amp;items [0], 2, -1);
-        if (unlikely (rc &lt; 0)) {
-            return -1;
+        <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+            <span class="org-keyword">return</span> -1;
         }
 
-        //  The algorithm below asumes ratio of request and replies processed
-        //  under full load to be 1:1. Although processing requests replies
-        //  first is tempting it is suspectible to DoS attacks (overloading
-        //  the system with unsolicited replies).
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">The algorithm below asumes ratio of request and replies processed</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">under full load to be 1:1. Although processing requests replies</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">first is tempting it is suspectible to DoS attacks (overloading</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">the system with unsolicited replies).</span>
 
-        //  Process a request.
-        if (items [0].revents &amp; ZMQ_POLLIN) {
-            while (true) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Process a request.</span>
+        <span class="org-keyword">if</span> (items [0].revents &amp; ZMQ_POLLIN) {
+            <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
                 rc = insocket_-&gt;recv (&amp;msg, 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                moresz = sizeof (more);
+                moresz = <span class="org-keyword">sizeof</span> (more);
                 rc = insocket_-&gt;getsockopt (ZMQ_RCVMORE, &amp;more, &amp;moresz);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
                 rc = outsocket_-&gt;send (&amp;msg, more ? ZMQ_SNDMORE : 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                if (!more)
-                    break;
+                <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>more)
+                    <span class="org-keyword">break</span>;
             }
         }
 
-        //  Process a reply.
-        if (items [1].revents &amp; ZMQ_POLLIN) {
-            while (true) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Process a reply.</span>
+        <span class="org-keyword">if</span> (items [1].revents &amp; ZMQ_POLLIN) {
+            <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
                 rc = outsocket_-&gt;recv (&amp;msg, 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                moresz = sizeof (more);
+                moresz = <span class="org-keyword">sizeof</span> (more);
                 rc = outsocket_-&gt;getsockopt (ZMQ_RCVMORE, &amp;more, &amp;moresz);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
                 rc = insocket_-&gt;send (&amp;msg, more ? ZMQ_SNDMORE : 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                if (!more)
-                    break;
+                <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>more)
+                    <span class="org-keyword">break</span>;
             }
         }
 
     }
 
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -622,58 +622,58 @@ Exclusive-Pair是最简单的1:1通信模式，你可以认为就是一个TCPCon
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;zmq.h&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;pthread.h&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;zmq.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;pthread.h&gt;</span>
 
-void* second(void* arg){
-    void* ctx=arg;
-    void* pair=zmq_socket(ctx,ZMQ_PAIR);
-    zmq_connect(pair,"inproc://channel");
-    for(int i=0;i&lt;2;i++){
-        zmq_msg_t msg;
+<span class="org-type">void</span>* <span class="org-function-name">second</span>(<span class="org-type">void</span>* <span class="org-variable-name">arg</span>){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=arg;
+    <span class="org-type">void</span>* <span class="org-variable-name">pair</span>=zmq_socket(ctx,ZMQ_PAIR);
+    zmq_connect(pair,<span class="org-string">"inproc://channel"</span>);
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;2;i++){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
         zmq_msg_init(&amp;msg);
         zmq_recv(pair,&amp;msg,0);
-        printf("[S]recv '%s'\n",zmq_msg_data(&amp;msg));
+        printf(<span class="org-string">"[S]recv '%s'\n"</span>,zmq_msg_data(&amp;msg));
         zmq_msg_close(&amp;msg);
     }
-    for(int i=0;i&lt;2;i++){
-        zmq_msg_t msg;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;2;i++){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
         zmq_msg_init_size(&amp;msg,6);
-        memcpy(zmq_msg_data(&amp;msg),"world",6);
-        printf("[S]send '%s'\n",zmq_msg_data(&amp;msg));
+        memcpy(zmq_msg_data(&amp;msg),<span class="org-string">"world"</span>,6);
+        printf(<span class="org-string">"[S]send '%s'\n"</span>,zmq_msg_data(&amp;msg));
         zmq_send(pair,&amp;msg,0);
         zmq_msg_close(&amp;msg);
     }
     zmq_close(pair);
 }
-int main(){
-    void* ctx=zmq_init(2);
-    void* pair=zmq_socket(ctx,ZMQ_PAIR);
-    zmq_bind(pair,"inproc://channel");
-    pthread_t id;
-    pthread_create(&amp;id,NULL,&amp;second,ctx);
-    for(int i=0;i&lt;2;i++){
-        zmq_msg_t msg;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(2);
+    <span class="org-type">void</span>* <span class="org-variable-name">pair</span>=zmq_socket(ctx,ZMQ_PAIR);
+    zmq_bind(pair,<span class="org-string">"inproc://channel"</span>);
+    <span class="org-type">pthread_t</span> <span class="org-variable-name">id</span>;
+    pthread_create(&amp;id,<span class="org-constant">NULL</span>,&amp;second,ctx);
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;2;i++){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
         zmq_msg_init_size(&amp;msg,6);
-        memcpy(zmq_msg_data(&amp;msg),"world",6);
-        printf("[M]send '%s'\n",zmq_msg_data(&amp;msg));
+        memcpy(zmq_msg_data(&amp;msg),<span class="org-string">"world"</span>,6);
+        printf(<span class="org-string">"[M]send '%s'\n"</span>,zmq_msg_data(&amp;msg));
         zmq_send(pair,&amp;msg,0);
         zmq_msg_close(&amp;msg);
     }
-    for(int i=0;i&lt;2;i++){
-        zmq_msg_t msg;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;2;i++){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
         zmq_msg_init(&amp;msg);
         zmq_recv(pair,&amp;msg,0);
-        printf("[M]recv '%s'\n",zmq_msg_data(&amp;msg));
+        printf(<span class="org-string">"[M]recv '%s'\n"</span>,zmq_msg_data(&amp;msg));
         zmq_msg_close(&amp;msg);
     }
-    pthread_join(id,NULL);
+    pthread_join(id,<span class="org-constant">NULL</span>);
     zmq_close(pair);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -694,7 +694,7 @@ Pub-Sub模式非常简单，Pub不断地发布消息而Sub那么就不断地接�
 如果不想进行过滤的话，那么可以将ZMQ_SUBSCRIBE内容设置为空
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE, "", 0);
+<pre class="src src-C++">zmq_setsockopt (subscriber, ZMQ_SUBSCRIBE, <span class="org-string">""</span>, 0);
 </pre>
 </div>
 
@@ -712,22 +712,22 @@ In the current versions of ZMQ, filtering happens at the subscriber side, not th
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">//============================================================
-// publisher.cc,faster speed.
-//============================================================
-#include "zhelpers.h"
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">publisher.cc,faster speed.</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
 
-int main(){
-    void* ctx=zmq_init(1);
-    void* pub=zmq_socket(ctx,ZMQ_PUB);
-    zmq_bind(pub,"tcp://*:19870");
-    const int header=10001;
-    for(int i=0;i&lt;10;i++){
-        char message[20];
-        snprintf(message,sizeof(message),"%d %d",header,i);
-        printf("send '%s'\n",message);
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    <span class="org-type">void</span>* <span class="org-variable-name">pub</span>=zmq_socket(ctx,ZMQ_PUB);
+    zmq_bind(pub,<span class="org-string">"tcp://*:19870"</span>);
+    <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">header</span>=10001;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;10;i++){
+        <span class="org-type">char</span> <span class="org-variable-name">message</span>[20];
+        snprintf(message,<span class="org-keyword">sizeof</span>(message),<span class="org-string">"%d %d"</span>,header,i);
+        printf(<span class="org-string">"send '%s'\n"</span>,message);
         {
-            zmq_msg_t msg;
+            <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
             zmq_msg_init_size(&amp;msg,strlen(message)+1);
             memcpy(zmq_msg_data(&amp;msg),message,strlen(message)+1);
             zmq_send(pub,&amp;msg,0);
@@ -737,35 +737,35 @@ int main(){
     }
     zmq_close(pub);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
-//============================================================
-// subscriber.cc,litte speed.
-//============================================================
-#include "zhelpers.h"
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">subscriber.cc,litte speed.</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
 
-int main(){
-    void* ctx=zmq_init(1);
-    void* sub=zmq_socket(ctx,ZMQ_SUB);
-    zmq_setsockopt(sub,ZMQ_SUBSCRIBE,"10001",5);
-    zmq_connect(sub,"tcp://localhost:19870");
-    for(int i=0;i&lt;10;i++){
-        zmq_msg_t msg;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    <span class="org-type">void</span>* <span class="org-variable-name">sub</span>=zmq_socket(ctx,ZMQ_SUB);
+    zmq_setsockopt(sub,ZMQ_SUBSCRIBE,<span class="org-string">"10001"</span>,5);
+    zmq_connect(sub,<span class="org-string">"tcp://localhost:19870"</span>);
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;i&lt;10;i++){
+        <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
         zmq_msg_init(&amp;msg);
         zmq_recv(sub,&amp;msg,0);
-        printf("recv '%s'\n",zmq_msg_data(&amp;msg));
+        printf(<span class="org-string">"recv '%s'\n"</span>,zmq_msg_data(&amp;msg));
         zmq_msg_close(&amp;msg);
         sleep(1);
     }
     zmq_close(sub);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
 
-<pre class="example" id="org465ac26">
+<pre class="example" id="org55aa630">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./publisher
 send '10001 0'
 send '10001 1'
@@ -817,24 +817,24 @@ A more robust model could be:
 之前我们提到拥塞控制，对于PUB来说的话如果达到了HWM的话那么会直接进行丢弃。我们简单地修改一下上面的代码，让subscriber连接上但是不进行处理，而publisher不断地发送消息。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//============================================================
-// publisher.cc,faster speed.
-//============================================================
-#include "zhelpers.h"
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">publisher.cc,faster speed.</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
 
-int main(){
-    void* ctx=zmq_init(1);
-    void* pub=zmq_socket(ctx,ZMQ_PUB);
-    zmq_bind(pub,"tcp://*:19870");
-    const int header=10001;
-    int i=0;
-    while(1){
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    <span class="org-type">void</span>* <span class="org-variable-name">pub</span>=zmq_socket(ctx,ZMQ_PUB);
+    zmq_bind(pub,<span class="org-string">"tcp://*:19870"</span>);
+    <span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">header</span>=10001;
+    <span class="org-type">int</span> <span class="org-variable-name">i</span>=0;
+    <span class="org-keyword">while</span>(1){
         i++;
-        char message[20];
-        snprintf(message,sizeof(message),"%d %d",header,i);
-        printf("send '%s'\n",message);
+        <span class="org-type">char</span> <span class="org-variable-name">message</span>[20];
+        snprintf(message,<span class="org-keyword">sizeof</span>(message),<span class="org-string">"%d %d"</span>,header,i);
+        printf(<span class="org-string">"send '%s'\n"</span>,message);
         {
-            zmq_msg_t msg;
+            <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
             zmq_msg_init_size(&amp;msg,strlen(message)+1);
             memcpy(zmq_msg_data(&amp;msg),message,strlen(message)+1);
             zmq_send(pub,&amp;msg,0);
@@ -843,23 +843,23 @@ int main(){
     }
     zmq_close(pub);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
-//============================================================
-// subscriber.cc,litte speed.
-//============================================================
-#include "zhelpers.h"
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">subscriber.cc,litte speed.</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">============================================================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
 
-int main(){
-    void* ctx=zmq_init(1);
-    void* sub=zmq_socket(ctx,ZMQ_SUB);
-    zmq_setsockopt(sub,ZMQ_SUBSCRIBE,"10001",5);
-    zmq_connect(sub,"tcp://localhost:19870");
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">void</span>* <span class="org-variable-name">ctx</span>=zmq_init(1);
+    <span class="org-type">void</span>* <span class="org-variable-name">sub</span>=zmq_socket(ctx,ZMQ_SUB);
+    zmq_setsockopt(sub,ZMQ_SUBSCRIBE,<span class="org-string">"10001"</span>,5);
+    zmq_connect(sub,<span class="org-string">"tcp://localhost:19870"</span>);
     sleep(100000);
     zmq_close(sub);
     zmq_term(ctx);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -873,7 +873,7 @@ subscriber在sub这端进行缓存。如果一旦disconnect掉subscriber的话�
 我们可以通过设置Identity来强迫publisher进行缓存，在subscriber.cc部分加上
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">zmq_setsockopt(sub,ZMQ_IDENTITY,"luck",4);
+<pre class="src src-C++">zmq_setsockopt(sub,ZMQ_IDENTITY,<span class="org-string">"luck"</span>,4);
 </pre>
 </div>
 <p>
@@ -882,12 +882,12 @@ subscriber在sub这端进行缓存。如果一旦disconnect掉subscriber的话�
 将部分拥塞部分结果放在磁盘上面，如果拥塞结果消息数量超过HWM的话
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">uint64_t hwm = 2;
-zmq_setsockopt (publisher, ZMQ_HWM, &amp;hwm, sizeof (hwm));
+<pre class="src src-C++"><span class="org-type">uint64_t</span> <span class="org-variable-name">hwm</span> = 2;
+zmq_setsockopt (publisher, ZMQ_HWM, &amp;hwm, <span class="org-keyword">sizeof</span> (hwm));
 
-// Specify swap space in bytes
-uint64_t swap = 25000000;
-zmq_setsockopt (publisher, ZMQ_SWAP, &amp;swap, sizeof (swap));
+<span class="org-comment-delimiter">// </span><span class="org-comment">Specify swap space in bytes</span>
+<span class="org-type">uint64_t</span> <span class="org-variable-name">swap</span> = 25000000;
+zmq_setsockopt (publisher, ZMQ_SWAP, &amp;swap, <span class="org-keyword">sizeof</span> (swap));
 </pre>
 </div>
 </div>
@@ -952,30 +952,30 @@ Here now is a more detailed explanation of the four socket types we use for requ
 如果消息流经多个ROUTER的话，那么会自动加上多个这样的东西。不过下面的实验证明，并不是每个消息都会生成UUID的，而是针对每个连接生成UUID.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">#include "zhelpers.h"
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">"zhelpers.h"</span>
 
-int main (void) {
-    void *context = zmq_init (1);
+<span class="org-type">int</span> <span class="org-function-name">main</span> (<span class="org-type">void</span>) {
+    <span class="org-type">void</span> *<span class="org-variable-name">context</span> = zmq_init (1);
 
-    void *sink = zmq_socket (context, ZMQ_ROUTER);
-    zmq_bind (sink, "inproc://example");
+    <span class="org-type">void</span> *<span class="org-variable-name">sink</span> = zmq_socket (context, ZMQ_ROUTER);
+    zmq_bind (sink, <span class="org-string">"inproc://example"</span>);
 
-    // First allow 0MQ to set the identity
-    void *anonymous = zmq_socket (context, ZMQ_DEALER);
-    zmq_connect (anonymous, "inproc://example");
-    s_send (anonymous, "ROUTER uses a generated UUID");
+    <span class="org-comment-delimiter">// </span><span class="org-comment">First allow 0MQ to set the identity</span>
+    <span class="org-type">void</span> *<span class="org-variable-name">anonymous</span> = zmq_socket (context, ZMQ_DEALER);
+    zmq_connect (anonymous, <span class="org-string">"inproc://example"</span>);
+    s_send (anonymous, <span class="org-string">"ROUTER uses a generated UUID"</span>);
     s_dump (sink);
-    s_send (anonymous, "ROUTER uses a generated UUID");
+    s_send (anonymous, <span class="org-string">"ROUTER uses a generated UUID"</span>);
     s_dump (sink);
 
     zmq_close (sink);
     zmq_close (anonymous);
     zmq_term (context);
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
-<pre class="example" id="orgf1a659a">
+<pre class="example" id="org5122c11">
 [zhangyan@tc-cm-et18.tc.baidu.com]$ ./env
 ----------------------------------------
 [017] 0011A54BD30A5A4FA589A7C2C2860926BA
@@ -1047,9 +1047,9 @@ The 0MQ lightweight messaging kernel is a library which extends the standard soc
 首先通过zmq_init来进行初始化
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">// The io_threads argument specifies the size of the 0MQ thread pool to handle I/O operations.
-// If your application is using only the inproc transport for messaging you may set this to zero, otherwise set it to at least one.
-void *zmq_init (int io_threads);
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">The io_threads argument specifies the size of the 0MQ thread pool to handle I/O operations.</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">If your application is using only the inproc transport for messaging you may set this to zero, otherwise set it to at least one.</span>
+<span class="org-type">void</span> *<span class="org-function-name">zmq_init</span> (<span class="org-type">int</span> <span class="org-variable-name">io_threads</span>);
 </pre>
 </div>
 <p>
@@ -1060,7 +1060,7 @@ void *zmq_init (int io_threads);
 然后在app销毁的时候调用zmq_term来销毁这个epoll线程句柄以及开辟的epoll线程。原型非常简单
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq_term (void *context);
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zmq_term</span> (<span class="org-type">void</span> *<span class="org-variable-name">context</span>);
 </pre>
 </div>
 <p>
@@ -1125,45 +1125,45 @@ Context termination is performed in the following steps:
 这个非常好理解，尤其是这个message是以一种异步的方式进行发送的，所以必须有引用计数才能够搞定这件事情。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq_msg_init_size (zmq_msg_t *msg_, size_t size_)
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zmq_msg_init_size</span> (<span class="org-type">zmq_msg_t</span> *<span class="org-variable-name">msg_</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size_</span>)
 {
-    if (size_ &lt;= ZMQ_MAX_VSM_SIZE) {
-        msg_-&gt;content = (zmq::msg_content_t*) ZMQ_VSM;
-        msg_-&gt;flags = (unsigned char) ~ZMQ_MSG_MASK;
-        msg_-&gt;vsm_size = (uint8_t) size_;
+    <span class="org-keyword">if</span> (size_ &lt;= ZMQ_MAX_VSM_SIZE) {
+        msg_-&gt;content = (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) ZMQ_VSM;
+        msg_-&gt;flags = (<span class="org-type">unsigned</span> <span class="org-type">char</span>) ~ZMQ_MSG_MASK;
+        msg_-&gt;vsm_size = (<span class="org-type">uint8_t</span>) size_;
     }
-    else {
+    <span class="org-keyword">else</span> {
         msg_-&gt;content =
-            (zmq::msg_content_t*) malloc (sizeof (zmq::msg_content_t) + size_);
-        if (!msg_-&gt;content) {
+            (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) malloc (<span class="org-keyword">sizeof</span> (<span class="org-constant">zmq</span>::msg_content_t) + size_);
+        <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>msg_-&gt;content) {
             errno = ENOMEM;
-            return -1;
+            <span class="org-keyword">return</span> -1;
         }
-        msg_-&gt;flags = (unsigned char) ~ZMQ_MSG_MASK;
+        msg_-&gt;flags = (<span class="org-type">unsigned</span> <span class="org-type">char</span>) ~ZMQ_MSG_MASK;
 
-        zmq::msg_content_t *content = (zmq::msg_content_t*) msg_-&gt;content;
-        content-&gt;data = (void*) (content + 1);
+        <span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span> *<span class="org-variable-name">content</span> = (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) msg_-&gt;content;
+        content-&gt;data = (<span class="org-type">void</span>*) (content + 1);
         content-&gt;size = size_;
-        content-&gt;ffn = NULL;
-        content-&gt;hint = NULL;
-        new (&amp;content-&gt;refcnt) zmq::atomic_counter_t ();
+        content-&gt;ffn = <span class="org-constant">NULL</span>;
+        content-&gt;hint = <span class="org-constant">NULL</span>;
+        <span class="org-keyword">new</span> (&amp;content-&gt;refcnt) <span class="org-constant">zmq</span>::<span class="org-type">atomic_counter_t</span> ();
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
-int zmq_msg_init_data (zmq_msg_t *msg_, void *data_, size_t size_,
-    zmq_free_fn *ffn_, void *hint_)
+<span class="org-type">int</span> <span class="org-function-name">zmq_msg_init_data</span> (<span class="org-type">zmq_msg_t</span> *<span class="org-variable-name">msg_</span>, <span class="org-type">void</span> *<span class="org-variable-name">data_</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size_</span>,
+    <span class="org-type">zmq_free_fn</span> *<span class="org-variable-name">ffn_</span>, <span class="org-type">void</span> *<span class="org-variable-name">hint_</span>)
 {
-    msg_-&gt;content = (zmq::msg_content_t*) malloc (sizeof (zmq::msg_content_t));
+    msg_-&gt;content = (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) malloc (<span class="org-keyword">sizeof</span> (<span class="org-constant">zmq</span>::msg_content_t));
     alloc_assert (msg_-&gt;content);
-    msg_-&gt;flags = (unsigned char) ~ZMQ_MSG_MASK;
-    zmq::msg_content_t *content = (zmq::msg_content_t*) msg_-&gt;content;
+    msg_-&gt;flags = (<span class="org-type">unsigned</span> <span class="org-type">char</span>) ~ZMQ_MSG_MASK;
+    <span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span> *<span class="org-variable-name">content</span> = (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) msg_-&gt;content;
     content-&gt;data = data_;
     content-&gt;size = size_;
     content-&gt;ffn = ffn_;
     content-&gt;hint = hint_;
-    new (&amp;content-&gt;refcnt) zmq::atomic_counter_t ();
-    return 0;
+    <span class="org-keyword">new</span> (&amp;content-&gt;refcnt) <span class="org-constant">zmq</span>::<span class="org-type">atomic_counter_t</span> ();
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -1172,39 +1172,39 @@ int zmq_msg_init_data (zmq_msg_t *msg_, void *data_, size_t size_,
 了解了初始化的逻辑之后，对于销毁逻辑就非常清楚了。但是我们最好看看这个实现
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq_msg_close (zmq_msg_t *msg_)
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zmq_msg_close</span> (<span class="org-type">zmq_msg_t</span> *<span class="org-variable-name">msg_</span>)
 {
-    // 这个地方是会检查标志的，这样可以放置多次释放造成错误的结果
-    //  Check the validity tag.
-    if (unlikely (msg_-&gt;flags | ZMQ_MSG_MASK) != 0xff) {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;&#22320;&#26041;&#26159;&#20250;&#26816;&#26597;&#26631;&#24535;&#30340;&#65292;&#36825;&#26679;&#21487;&#20197;&#25918;&#32622;&#22810;&#27425;&#37322;&#25918;&#36896;&#25104;&#38169;&#35823;&#30340;&#32467;&#26524;</span>
+    <span class="org-comment-delimiter">//  </span><span class="org-comment">Check the validity tag.</span>
+    <span class="org-keyword">if</span> (unlikely (msg_-&gt;flags | ZMQ_MSG_MASK) != 0xff) {
         errno = EFAULT;
-        return -1;
+        <span class="org-keyword">return</span> -1;
     }
-    // 如果里面需要进行释放的话
-    //  For VSMs and delimiters there are no resources to free.
-    if (msg_-&gt;content != (zmq::msg_content_t*) ZMQ_DELIMITER &amp;&amp;
-          msg_-&gt;content != (zmq::msg_content_t*) ZMQ_VSM) {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#37324;&#38754;&#38656;&#35201;&#36827;&#34892;&#37322;&#25918;&#30340;&#35805;</span>
+    <span class="org-comment-delimiter">//  </span><span class="org-comment">For VSMs and delimiters there are no resources to free.</span>
+    <span class="org-keyword">if</span> (msg_-&gt;content != (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) ZMQ_DELIMITER &amp;&amp;
+          msg_-&gt;content != (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) ZMQ_VSM) {
 
-        //  If the content is not shared, or if it is shared and the reference.
-        //  count has dropped to zero, deallocate it.
-        zmq::msg_content_t *content = (zmq::msg_content_t*) msg_-&gt;content;
-        // 那么会使用引用计数进行计算.
-        if (!(msg_-&gt;flags &amp; ZMQ_MSG_SHARED) || !content-&gt;refcnt.sub (1)) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">If the content is not shared, or if it is shared and the reference.</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">count has dropped to zero, deallocate it.</span>
+        <span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span> *<span class="org-variable-name">content</span> = (<span class="org-constant">zmq</span>::<span class="org-type">msg_content_t</span>*) msg_-&gt;content;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#37027;&#20040;&#20250;&#20351;&#29992;&#24341;&#29992;&#35745;&#25968;&#36827;&#34892;&#35745;&#31639;.</span>
+        <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>(msg_-&gt;flags &amp; ZMQ_MSG_SHARED) || <span class="org-negation-char">!</span>content-&gt;refcnt.sub (1)) {
 
-            //  We used "placement new" operator to initialize the reference.
-            //  counter so we call its destructor now.
+            <span class="org-comment-delimiter">//  </span><span class="org-comment">We used "placement new" operator to initialize the reference.</span>
+            <span class="org-comment-delimiter">//  </span><span class="org-comment">counter so we call its destructor now.</span>
             content-&gt;refcnt.~atomic_counter_t ();
-            // 释放自己内部的内存.
-            if (content-&gt;ffn)
+            <span class="org-comment-delimiter">// </span><span class="org-comment">&#37322;&#25918;&#33258;&#24049;&#20869;&#37096;&#30340;&#20869;&#23384;.</span>
+            <span class="org-keyword">if</span> (content-&gt;ffn)
                 content-&gt;ffn (content-&gt;data, content-&gt;hint);
             free (content);
         }
     }
-    // 然后底层会将这个flags清空.以防多次释放.
-    //  Remove the validity tag from the message.
+    <span class="org-comment-delimiter">// </span><span class="org-comment">&#28982;&#21518;&#24213;&#23618;&#20250;&#23558;&#36825;&#20010;flags&#28165;&#31354;.&#20197;&#38450;&#22810;&#27425;&#37322;&#25918;.</span>
+    <span class="org-comment-delimiter">//  </span><span class="org-comment">Remove the validity tag from the message.</span>
     msg_-&gt;flags = 0;
 
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -1229,16 +1229,16 @@ int zmq_msg_init_data (zmq_msg_t *msg_, void *data_, size_t size_,
 使用zmq_socket和zmq_close就可以创建和销毁socket.对于socket具体的类型的话可以参看文档，写得非常的详细。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">// 错误可能有下面这些
-// 1.EINVAL type不合法
-// 2.EFAULT context无效
-// 3.EMFILE 文件句柄不够
-// 4.ETERM context已经被zmq_term了.
-void *zmq_socket (void *context, int type);
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">&#38169;&#35823;&#21487;&#33021;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">1.EINVAL type&#19981;&#21512;&#27861;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">2.EFAULT context&#26080;&#25928;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">3.EMFILE &#25991;&#20214;&#21477;&#26564;&#19981;&#22815;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">4.ETERM context&#24050;&#32463;&#34987;zmq_term&#20102;.</span>
+<span class="org-type">void</span> *<span class="org-function-name">zmq_socket</span> (<span class="org-type">void</span> *<span class="org-variable-name">context</span>, <span class="org-type">int</span> <span class="org-variable-name">type</span>);
 
-// 错误可能有下面这些
-// 1.ENOTSOCk 这个socket不合法
-int zmq_close (void *socket);
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#38169;&#35823;&#21487;&#33021;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">1.ENOTSOCk &#36825;&#20010;socket&#19981;&#21512;&#27861;</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_close</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>);
 </pre>
 </div>
 <p>
@@ -1250,27 +1250,27 @@ int zmq_close (void *socket);
 就是connect本身也是一个异步过程。如果本次没有完成连接的话，那么下次隔断时间又会重新尝试发起连接。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">// 其中endpoint根据不同的transport表达方式不同.这个后面会提到
-// 可能的错误有下面这些
-// 1.EPROTONOSUPPORT endpoint的transport有问题
-// 2.ENOCOMPATPROTO  endpoint的transport和socket不兼容
-// 3.EADDRINUSE address already in use.
-// 4.EADDRNOTAVAIL address not available
-// 5.ENODEV address指定了一个不存在的device.
-// 6.ETERM context正在被销毁
-// 7.ENOTSOCK socket无效
-// 8.EMTHREAD 没有epoll IO线程完成这个task
-// 其实觉得大部分的错误我们是没有必要处理的,EADDRINUSE可能是错常见的错误了.
-int zmq_bind (void *socket, const char *endpoint);
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#20013;endpoint&#26681;&#25454;&#19981;&#21516;&#30340;transport&#34920;&#36798;&#26041;&#24335;&#19981;&#21516;.&#36825;&#20010;&#21518;&#38754;&#20250;&#25552;&#21040;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#33021;&#30340;&#38169;&#35823;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">1.EPROTONOSUPPORT endpoint&#30340;transport&#26377;&#38382;&#39064;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">2.ENOCOMPATPROTO  endpoint&#30340;transport&#21644;socket&#19981;&#20860;&#23481;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">3.EADDRINUSE address already in use.</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">4.EADDRNOTAVAIL address not available</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">5.ENODEV address&#25351;&#23450;&#20102;&#19968;&#20010;&#19981;&#23384;&#22312;&#30340;device.</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">6.ETERM context&#27491;&#22312;&#34987;&#38144;&#27585;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">7.ENOTSOCK socket&#26080;&#25928;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">8.EMTHREAD &#27809;&#26377;epoll IO&#32447;&#31243;&#23436;&#25104;&#36825;&#20010;task</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#23454;&#35273;&#24471;&#22823;&#37096;&#20998;&#30340;&#38169;&#35823;&#25105;&#20204;&#26159;&#27809;&#26377;&#24517;&#35201;&#22788;&#29702;&#30340;,EADDRINUSE&#21487;&#33021;&#26159;&#38169;&#24120;&#35265;&#30340;&#38169;&#35823;&#20102;.</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_bind</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">endpoint</span>);
 
-// 可能的错误有下面这些
-// EPROTONOSUPPORT endpoint的transport有问题
-// ENOCOMPATPROTO  endpoint的transport和socket不兼容
-// ETERM  context正在被销毁
-// ENOTSOCK  socket无效
-// EMTHREAD  没有epoll IO线程完成这个task
-// 所以这里的大部分错误都可以忽略的.
-int zmq_connect (void *socket, const char *endpoint);
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#33021;&#30340;&#38169;&#35823;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EPROTONOSUPPORT endpoint&#30340;transport&#26377;&#38382;&#39064;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOCOMPATPROTO  endpoint&#30340;transport&#21644;socket&#19981;&#20860;&#23481;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ETERM  context&#27491;&#22312;&#34987;&#38144;&#27585;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOTSOCK  socket&#26080;&#25928;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EMTHREAD  &#27809;&#26377;epoll IO&#32447;&#31243;&#23436;&#25104;&#36825;&#20010;task</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#20197;&#36825;&#37324;&#30340;&#22823;&#37096;&#20998;&#38169;&#35823;&#37117;&#21487;&#20197;&#24573;&#30053;&#30340;.</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_connect</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-keyword">const</span> <span class="org-type">char</span> *<span class="org-variable-name">endpoint</span>);
 </pre>
 </div>
 
@@ -1279,32 +1279,32 @@ int zmq_connect (void *socket, const char *endpoint);
 觉得multipart messages似乎没有什么太大的用途:(.因为两个接口面向对象都是message,对于十分简单
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">// 其中flags可以为ZMQ_NOBLOCK与ZMQ_SNDMORE(表示发送多消息，0表示结束)
-// 这里NOBLOCK的含义是，如果不能够理解丢入异步消息队列的话，那么就立刻返回
-// 可能的错误有下面这些
-// EAGAIN 异步队列已满
-// ENOTSUP socket不支持zmq_send
-// EFSM socket的状态机错误(因为每种类型的socket允许操作顺序是不同的)
-// ETERM context正在被销毁
-// ENOTSOCK 无效的socket
-// EINTR 被信号中断
-// EFAULT 无效的message
-// 事实上我们关注的可以很少，如果不用noblock的话，我们只需要关心EINTR.通常来说处理逻辑就是重新发起
-// 如果用noblock在关注EAGAIN这个错误.
-int zmq_send (void *socket, zmq_msg_t *msg, int flags);
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#20013;flags&#21487;&#20197;&#20026;ZMQ_NOBLOCK&#19982;ZMQ_SNDMORE(&#34920;&#31034;&#21457;&#36865;&#22810;&#28040;&#24687;&#65292;0&#34920;&#31034;&#32467;&#26463;)</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#37324;NOBLOCK&#30340;&#21547;&#20041;&#26159;&#65292;&#22914;&#26524;&#19981;&#33021;&#22815;&#29702;&#35299;&#20002;&#20837;&#24322;&#27493;&#28040;&#24687;&#38431;&#21015;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#31435;&#21051;&#36820;&#22238;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#33021;&#30340;&#38169;&#35823;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EAGAIN &#24322;&#27493;&#38431;&#21015;&#24050;&#28385;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOTSUP socket&#19981;&#25903;&#25345;zmq_send</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EFSM socket&#30340;&#29366;&#24577;&#26426;&#38169;&#35823;(&#22240;&#20026;&#27599;&#31181;&#31867;&#22411;&#30340;socket&#20801;&#35768;&#25805;&#20316;&#39034;&#24207;&#26159;&#19981;&#21516;&#30340;)</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ETERM context&#27491;&#22312;&#34987;&#38144;&#27585;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOTSOCK &#26080;&#25928;&#30340;socket</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EINTR &#34987;&#20449;&#21495;&#20013;&#26029;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EFAULT &#26080;&#25928;&#30340;message</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20107;&#23454;&#19978;&#25105;&#20204;&#20851;&#27880;&#30340;&#21487;&#20197;&#24456;&#23569;&#65292;&#22914;&#26524;&#19981;&#29992;noblock&#30340;&#35805;&#65292;&#25105;&#20204;&#21482;&#38656;&#35201;&#20851;&#24515;EINTR.&#36890;&#24120;&#26469;&#35828;&#22788;&#29702;&#36923;&#36753;&#23601;&#26159;&#37325;&#26032;&#21457;&#36215;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#29992;noblock&#22312;&#20851;&#27880;EAGAIN&#36825;&#20010;&#38169;&#35823;.</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_send</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">zmq_msg_t</span> *<span class="org-variable-name">msg</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);
 
-// 其中flags只允许是ZMQ_NOBLOCK.如果异步消息队列里面没有数据的话，那么就返回
-// 对于多条消息的话需要通过判断socket选项来决定是否还有更多消息(所以说麻烦).
-// 可能的错误有下面这些
-// EAGAIN 异步队列空
-// ENOTSUP socket不支持zmq_recv
-// EFSM 状态机存在问题
-// ETERM context正在被销毁
-// ENOTSOCK 无效socket
-// EINTR 被信号中断
-// EFAULT 无效的message
-// 和zmq_send一样，如果不用noblock的话，我们只需要关心EINTR。如果关注noblock的话就再处理EAGAIN这个错误。
-int zmq_recv (void *socket, zmq_msg_t *msg, int flags);
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#20854;&#20013;flags&#21482;&#20801;&#35768;&#26159;ZMQ_NOBLOCK.&#22914;&#26524;&#24322;&#27493;&#28040;&#24687;&#38431;&#21015;&#37324;&#38754;&#27809;&#26377;&#25968;&#25454;&#30340;&#35805;&#65292;&#37027;&#20040;&#23601;&#36820;&#22238;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#23545;&#20110;&#22810;&#26465;&#28040;&#24687;&#30340;&#35805;&#38656;&#35201;&#36890;&#36807;&#21028;&#26029;socket&#36873;&#39033;&#26469;&#20915;&#23450;&#26159;&#21542;&#36824;&#26377;&#26356;&#22810;&#28040;&#24687;(&#25152;&#20197;&#35828;&#40635;&#28902;).</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#33021;&#30340;&#38169;&#35823;&#26377;&#19979;&#38754;&#36825;&#20123;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EAGAIN &#24322;&#27493;&#38431;&#21015;&#31354;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOTSUP socket&#19981;&#25903;&#25345;zmq_recv</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EFSM &#29366;&#24577;&#26426;&#23384;&#22312;&#38382;&#39064;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ETERM context&#27491;&#22312;&#34987;&#38144;&#27585;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ENOTSOCK &#26080;&#25928;socket</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EINTR &#34987;&#20449;&#21495;&#20013;&#26029;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">EFAULT &#26080;&#25928;&#30340;message</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21644;zmq_send&#19968;&#26679;&#65292;&#22914;&#26524;&#19981;&#29992;noblock&#30340;&#35805;&#65292;&#25105;&#20204;&#21482;&#38656;&#35201;&#20851;&#24515;EINTR&#12290;&#22914;&#26524;&#20851;&#27880;noblock&#30340;&#35805;&#23601;&#20877;&#22788;&#29702;EAGAIN&#36825;&#20010;&#38169;&#35823;&#12290;</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_recv</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">zmq_msg_t</span> *<span class="org-variable-name">msg</span>, <span class="org-type">int</span> <span class="org-variable-name">flags</span>);
 </pre>
 </div>
 
@@ -1312,14 +1312,14 @@ int zmq_recv (void *socket, zmq_msg_t *msg, int flags);
 socket还允许使用poll来观察socket是否可读可写.zmq_poll提供的接口和poll非常相似
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">typedef struct
+<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">struct</span>
 {
-    void *socket; // 可以使用zmq_socket
-    int fd; // 也可以使用fd
-    short events;
-    short revents;
-} zmq_pollitem_t;
-int zmq_poll (zmq_pollitem_t *items, int nitems, long timeout); // -1表示没有超时
+    <span class="org-type">void</span> *<span class="org-variable-name">socket</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#20197;&#20351;&#29992;zmq_socket</span>
+    <span class="org-type">int</span> <span class="org-variable-name">fd</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#20063;&#21487;&#20197;&#20351;&#29992;fd</span>
+    <span class="org-type">short</span> <span class="org-variable-name">events</span>;
+    <span class="org-type">short</span> <span class="org-variable-name">revents</span>;
+} <span class="org-type">zmq_pollitem_t</span>;
+<span class="org-type">int</span> <span class="org-function-name">zmq_poll</span> (<span class="org-type">zmq_pollitem_t</span> *<span class="org-variable-name">items</span>, <span class="org-type">int</span> <span class="org-variable-name">nitems</span>, <span class="org-type">long</span> <span class="org-variable-name">timeout</span>); <span class="org-comment-delimiter">// </span><span class="org-comment">-1&#34920;&#31034;&#27809;&#26377;&#36229;&#26102;</span>
 </pre>
 </div>
 <p>
@@ -1352,8 +1352,8 @@ poll这个接口对于device需要.
 允许获取和设置的options并不是一样的，所以这里列出所有的options.获取的话标记R,设置的话标记W
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq_getsockopt (void *socket, int option_name, void *option_value, size_t *option_len);
-int zmq_setsockopt (void *socket, int option_name, const void *option_value, size_t option_len);
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zmq_getsockopt</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">int</span> <span class="org-variable-name">option_name</span>, <span class="org-type">void</span> *<span class="org-variable-name">option_value</span>, <span class="org-type">size_t</span> *<span class="org-variable-name">option_len</span>);
+<span class="org-type">int</span> <span class="org-function-name">zmq_setsockopt</span> (<span class="org-type">void</span> *<span class="org-variable-name">socket</span>, <span class="org-type">int</span> <span class="org-variable-name">option_name</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">option_value</span>, <span class="org-type">size_t</span> <span class="org-variable-name">option_len</span>);
 </pre>
 </div>
 <ul class="org-ul">
@@ -1410,7 +1410,7 @@ transport是指zeromq的传输层在载体，一共有下面4种.
 这里因为对于pgm不是很了解所以不做过多分析:)zeromq底层根据不同的传输层载体进行了封装，只需要在bind或者是connect替换endpoint即可。
 所以这里只是看看endpoint的表示方法并且看看一些可能的潜在问题。endpoint的表示方法如下
 </p>
-<pre class="example" id="org2b356ad">
+<pre class="example" id="orge86c76b">
 transport://endpoint
 </pre>
 
@@ -1454,10 +1454,10 @@ transport://endpoint
 关于Device的实现，虽然文档强调device必须配合frontend和backend，但是实际上代码只是使用一套。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">// ZMQ_QUEUE starts a queue device
-// ZMQ_FORWARDER starts a forwarder device
-// ZMQ_STREAMER starts a streamer device
-int zmq_device (int device, const void *frontend, const void *backend);
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">ZMQ_QUEUE starts a queue device</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ZMQ_FORWARDER starts a forwarder device</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">ZMQ_STREAMER starts a streamer device</span>
+<span class="org-type">int</span> <span class="org-function-name">zmq_device</span> (<span class="org-type">int</span> <span class="org-variable-name">device</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">frontend</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">backend</span>);
 </pre>
 </div>
 <p>
@@ -1465,20 +1465,20 @@ int zmq_device (int device, const void *frontend, const void *backend);
 如果我们希望在每次轮询的时候可以检测一下外部的标记的话，那么就不能够使用自带的zmq_device。但是可以基于现在device简单修改即可.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int zmq::device (class socket_base_t *insocket_,
-        class socket_base_t *outsocket_)
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-constant">zmq</span>::<span class="org-function-name">device</span> (<span class="org-keyword">class</span> <span class="org-type">socket_base_t</span> *<span class="org-variable-name">insocket_</span>,
+        <span class="org-keyword">class</span> <span class="org-type">socket_base_t</span> *<span class="org-variable-name">outsocket_</span>)
 {
-    zmq_msg_t msg;
-    int rc = zmq_msg_init (&amp;msg); // 仅仅初始化一次就可以，因为zmq_recv会自动帮我们close:).
+    <span class="org-type">zmq_msg_t</span> <span class="org-variable-name">msg</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">rc</span> = zmq_msg_init (&amp;msg); <span class="org-comment-delimiter">// </span><span class="org-comment">&#20165;&#20165;&#21021;&#22987;&#21270;&#19968;&#27425;&#23601;&#21487;&#20197;&#65292;&#22240;&#20026;zmq_recv&#20250;&#33258;&#21160;&#24110;&#25105;&#20204;close:).</span>
 
-    if (rc != 0) {
-        return -1;
+    <span class="org-keyword">if</span> (rc != 0) {
+        <span class="org-keyword">return</span> -1;
     }
 
-    int64_t more;
-    size_t moresz;
+    <span class="org-type">int64_t</span> <span class="org-variable-name">more</span>;
+    <span class="org-type">size_t</span> <span class="org-variable-name">moresz</span>;
 
-    zmq_pollitem_t items [2];
+    <span class="org-type">zmq_pollitem_t</span> <span class="org-variable-name">items</span> [2];
     items [0].socket = insocket_;
     items [0].fd = 0;
     items [0].events = ZMQ_POLLIN;
@@ -1488,74 +1488,74 @@ int zmq_device (int device, const void *frontend, const void *backend);
     items [1].events = ZMQ_POLLIN;
     items [1].revents = 0;
 
-    while (true) {
+    <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
-        //  Wait while there are either requests or replies to process.
-        rc = zmq_poll (&amp;items [0], 2, -1); // 这个地方我们可以设置一下poll的超时时间
-        // 如果没有任何内容的话，我们可以每隔一段时间判断一下外部标记
-        // 比如这里我们可以检测一下外部是否设置了exit的标记等。
-        if (unlikely (rc &lt; 0)) {
-            return -1;
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Wait while there are either requests or replies to process.</span>
+        rc = zmq_poll (&amp;items [0], 2, -1); <span class="org-comment-delimiter">// </span><span class="org-comment">&#36825;&#20010;&#22320;&#26041;&#25105;&#20204;&#21487;&#20197;&#35774;&#32622;&#19968;&#19979;poll&#30340;&#36229;&#26102;&#26102;&#38388;</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#22914;&#26524;&#27809;&#26377;&#20219;&#20309;&#20869;&#23481;&#30340;&#35805;&#65292;&#25105;&#20204;&#21487;&#20197;&#27599;&#38548;&#19968;&#27573;&#26102;&#38388;&#21028;&#26029;&#19968;&#19979;&#22806;&#37096;&#26631;&#35760;</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">&#27604;&#22914;&#36825;&#37324;&#25105;&#20204;&#21487;&#20197;&#26816;&#27979;&#19968;&#19979;&#22806;&#37096;&#26159;&#21542;&#35774;&#32622;&#20102;exit&#30340;&#26631;&#35760;&#31561;&#12290;</span>
+        <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+            <span class="org-keyword">return</span> -1;
         }
 
-        //  The algorithm below asumes ratio of request and replies processed
-        //  under full load to be 1:1. Although processing requests replies
-        //  first is tempting it is suspectible to DoS attacks (overloading
-        //  the system with unsolicited replies).
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">The algorithm below asumes ratio of request and replies processed</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">under full load to be 1:1. Although processing requests replies</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">first is tempting it is suspectible to DoS attacks (overloading</span>
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">the system with unsolicited replies).</span>
 
-        //  Process a request.
-        if (items [0].revents &amp; ZMQ_POLLIN) {
-            while (true) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Process a request.</span>
+        <span class="org-keyword">if</span> (items [0].revents &amp; ZMQ_POLLIN) {
+            <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
                 rc = insocket_-&gt;recv (&amp;msg, 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                moresz = sizeof (more);
+                moresz = <span class="org-keyword">sizeof</span> (more);
                 rc = insocket_-&gt;getsockopt (ZMQ_RCVMORE, &amp;more, &amp;moresz);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
                 rc = outsocket_-&gt;send (&amp;msg, more ? ZMQ_SNDMORE : 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                if (!more)
-                    break;
+                <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>more)
+                    <span class="org-keyword">break</span>;
             }
         }
 
-        //  Process a reply.
-        if (items [1].revents &amp; ZMQ_POLLIN) {
-            while (true) {
+        <span class="org-comment-delimiter">//  </span><span class="org-comment">Process a reply.</span>
+        <span class="org-keyword">if</span> (items [1].revents &amp; ZMQ_POLLIN) {
+            <span class="org-keyword">while</span> (<span class="org-constant">true</span>) {
 
                 rc = outsocket_-&gt;recv (&amp;msg, 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                moresz = sizeof (more);
+                moresz = <span class="org-keyword">sizeof</span> (more);
                 rc = outsocket_-&gt;getsockopt (ZMQ_RCVMORE, &amp;more, &amp;moresz);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
                 rc = insocket_-&gt;send (&amp;msg, more ? ZMQ_SNDMORE : 0);
-                if (unlikely (rc &lt; 0)) {
-                    return -1;
+                <span class="org-keyword">if</span> (unlikely (rc &lt; 0)) {
+                    <span class="org-keyword">return</span> -1;
                 }
 
-                if (!more)
-                    break;
+                <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>more)
+                    <span class="org-keyword">break</span>;
             }
         }
 
     }
 
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>

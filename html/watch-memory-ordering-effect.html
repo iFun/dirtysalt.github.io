@@ -34,7 +34,7 @@
 三个线程没有任何blocking的操作，所以可能会比较费CPU，使用率可能能到300%.
 </p>
 
-<pre class="example" id="org8bd8a9b">
+<pre class="example" id="orgefb7c02">
 doris-sandbox04 :: ~ » g++ WatchMemoryOrdering.cpp -O2 -lpthread
 doris-sandbox04 :: ~ » ./a.out
 1 reorders detected after 366 iterations
@@ -56,53 +56,53 @@ doris-sandbox04 :: ~ » time ./a.out
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;atomic&gt;
-#include &lt;condition_variable&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;functional&gt;
-#include &lt;iostream&gt;
-#include &lt;map&gt;
-#include &lt;memory&gt;
-#include &lt;mutex&gt;
-#include &lt;string&gt;
-#include &lt;thread&gt;
-#include &lt;vector&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;atomic&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;condition_variable&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;functional&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;iostream&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;map&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;memory&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;mutex&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;thread&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
 
-// https://preshing.com/20120515/memory-reordering-caught-in-the-act/
+<span class="org-comment-delimiter">// </span><span class="org-comment">https://preshing.com/20120515/memory-reordering-caught-in-the-act/</span>
 
-using namespace std;
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-atomic&lt;int&gt; t0, t1, ctl;
-int r0, r1;
-int X, Y;
-const int waiting = 20;
+<span class="org-type">atomic</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">t0</span>, <span class="org-variable-name">t1</span>, <span class="org-variable-name">ctl</span>;
+<span class="org-type">int</span> <span class="org-variable-name">r0</span>, <span class="org-variable-name">r1</span>;
+<span class="org-type">int</span> <span class="org-variable-name">X</span>, <span class="org-variable-name">Y</span>;
+<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">waiting</span> = 20;
 
-#define WAIT_AND_SET(t, exp, act)                     \
-    do {                                              \
-        for (;;) {                                    \
-            int _exp = exp;                           \
-            if (t.compare_exchange_strong(_exp, 0)) { \
-                break;                                \
+<span class="org-preprocessor">#define</span> <span class="org-function-name">WAIT_AND_SET</span>(<span class="org-variable-name">t</span>, <span class="org-variable-name">exp</span>, <span class="org-variable-name">act</span>)                     \
+    <span class="org-keyword">do</span> {                                              \
+        <span class="org-keyword">for</span> (;;) {                                    \
+            <span class="org-type">int</span> <span class="org-variable-name">_exp</span> = exp;                           \
+            <span class="org-keyword">if</span> (t.compare_exchange_strong(_exp, 0)) { \
+                <span class="org-keyword">break</span>;                                \
             }                                         \
         }                                             \
-    } while (0)
+    } <span class="org-keyword">while</span> (0)
 
-#ifdef USE_FENCE
-#define FENCE() atomic_thread_fence(memory_order_seq_cst)
-#else
-#define FENCE()
-#endif
+<span class="org-preprocessor">#ifdef</span> USE_FENCE
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FENCE</span>() atomic_thread_fence(memory_order_seq_cst)
+<span class="org-preprocessor">#else</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FENCE</span>()
+<span class="org-preprocessor">#endif</span>
 
-void thread0() {
-    for (;;) {
+<span class="org-type">void</span> <span class="org-function-name">thread0</span>() {
+    <span class="org-keyword">for</span> (;;) {
         WAIT_AND_SET(t0, 1, 0);
-        while ((rand() % waiting) != 0) {
+        <span class="org-keyword">while</span> ((rand() % waiting) != 0) {
         }
 
         X = 1;
@@ -113,10 +113,10 @@ void thread0() {
     }
 }
 
-void thread1() {
-    for (;;) {
+<span class="org-type">void</span> <span class="org-function-name">thread1</span>() {
+    <span class="org-keyword">for</span> (;;) {
         WAIT_AND_SET(t1, 1, 0);
-        while ((rand() % waiting) != 0) {
+        <span class="org-keyword">while</span> ((rand() % waiting) != 0) {
         }
 
         Y = 1;
@@ -127,11 +127,11 @@ void thread1() {
     }
 }
 
-void control() {
-    int detected = 0;
-    int iterations = 0;
+<span class="org-type">void</span> <span class="org-function-name">control</span>() {
+    <span class="org-type">int</span> <span class="org-variable-name">detected</span> = 0;
+    <span class="org-type">int</span> <span class="org-variable-name">iterations</span> = 0;
 
-    for (;;) {
+    <span class="org-keyword">for</span> (;;) {
         X = 0;
         Y = 0;
         iterations++;
@@ -139,16 +139,16 @@ void control() {
         t1.store(1);
 
         WAIT_AND_SET(ctl, 2, 0);
-        if (r1 == 0 &amp;&amp; r0 == 0) {
+        <span class="org-keyword">if</span> (r1 == 0 &amp;&amp; r0 == 0) {
             detected++;
-            printf("%d reorders detected after %d iterations\n", detected,
+            printf(<span class="org-string">"%d reorders detected after %d iterations\n"</span>, detected,
                    iterations);
         }
     }
 }
 
-int main() {
-    // initialization.
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">initialization.</span>
     r0 = 1;
     r1 = 1;
     t0 = 0;
@@ -156,14 +156,14 @@ int main() {
     ctl = 0;
     X = 0;
     Y = 0;
-    // start thread.
-    thread _t0(thread0);
-    thread _t1(thread1);
-    thread _ctl(control);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">start thread.</span>
+    <span class="org-type">thread</span> <span class="org-variable-name">_t0</span>(thread0);
+    <span class="org-type">thread</span> <span class="org-variable-name">_t1</span>(thread1);
+    <span class="org-type">thread</span> <span class="org-variable-name">_ctl</span>(control);
     _t0.join();
     _t1.join();
     _ctl.join();
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>

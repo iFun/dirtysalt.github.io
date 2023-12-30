@@ -187,7 +187,7 @@ Client Configuration Parameters
 <p>
 thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 端口可以通过-p选项来指定, 或是从环境变量METASTORE_PORT来获得(hive-env.sh里面可以设置).
 </p>
-<pre class="example" id="orgc046a6e">
+<pre class="example" id="org50631c1">
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Started the new metaserver on port [9083]...
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Options.minWorkerThreads = 200
 13/03/07 18:06:34 INFO metastore.HiveMetaStore: Options.maxWorkerThreads = 100000
@@ -197,7 +197,7 @@ thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 
 <p>
 配置文件如下
 </p>
-<pre class="example" id="org1cd5da8">
+<pre class="example" id="org6baa699">
 &lt;configuration&gt;
   &lt;property&gt;
     &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
@@ -247,7 +247,7 @@ thrift server 通过 hive &#x2013;service metastore 启动，port在9083上面. 
 数据默认是使用ctrl-a来做分割
 </p>
 
-<pre class="example" id="orgde3a5c6">
+<pre class="example" id="org9777d80">
 ➜  bin  hadoop fs -copyFromLocal ../examples/files/kv1.txt /tmp/
 13/03/07 14:34:40 INFO security.UserGroupInformation: JAAS Configuration already set up for Hadoop, not re-installing.
 ➜  bin  hive

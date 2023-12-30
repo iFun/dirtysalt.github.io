@@ -37,7 +37,7 @@
 </p>
 
 
-<div id="org2e4f530" class="figure">
+<div id="org49609c7" class="figure">
 <p><img src="../images/Pasted-Image-20231225104957.png" alt="Pasted-Image-20231225104957.png" />
 </p>
 </div>
@@ -46,7 +46,7 @@
 这个函数是KVM在处理page fault. <a href="https://terenceli.github.io/%E6%8A%80%E6%9C%AF/2019/03/24/kvm-async-page-fault">KVM async page fault</a> 因为整个dataset其实都是放在内存里面的，所以这些page fault都是minor page fault, 物理内存分配速度跟不上导致的。
 </p>
 
-<pre class="example" id="orgc581835">
+<pre class="example" id="org40493c9">
 sr@dla-cache01 ~]$ systemd-detect-virt
 kvm
 </pre>
@@ -134,7 +134,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="org08c62a5" class="figure">
+<div id="org09e05a5" class="figure">
 <p><img src="../images/Pasted-Image-20231225104950.png" alt="Pasted-Image-20231225104950.png" />
 </p>
 </div>
@@ -144,7 +144,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 </p>
 
 
-<div id="org854d9e2" class="figure">
+<div id="orgd599f7e" class="figure">
 <p><img src="../images/Pasted-Image-20231225104924.png" alt="Pasted-Image-20231225104924.png" />
 </p>
 </div>
@@ -163,7 +163,7 @@ export JEMALLOC_CONF="percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:50
 因为运行的时候没有办法确定cpu cores, 会出现如下错误：
 </p>
 
-<pre class="example" id="orgc181b6a">
+<pre class="example" id="orgd1e8d45">
 === jemalloc: percpu_arena:percpu,oversize_threshold:0,muzzy_decay_ms:5000,dirty_decay_ms:5000,metadata_thp:auto,background_thread:true ===
 &lt;jemalloc&gt;: Number of CPUs detected is not deterministic. Per-CPU arena disabled.
 </pre>
@@ -201,7 +201,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="orgd326651" class="figure">
+<div id="orga73a36f" class="figure">
 <p><img src="../images/Pasted-Image-20231225104932.png" alt="Pasted-Image-20231225104932.png" />
 </p>
 </div>
@@ -211,7 +211,7 @@ JEMALLOC_CONF="percpu_arena:disabled,narenas:64,oversize_threshold:0,muzzy_decay
 </p>
 
 
-<div id="org920ff66" class="figure">
+<div id="org1d8c40a" class="figure">
 <p><img src="../images/Pasted-Image-20231225105006.png" alt="Pasted-Image-20231225105006.png" />
 </p>
 </div>
@@ -222,7 +222,7 @@ UDPATE: 64线程下面增加mimalloc
 </p>
 
 
-<div id="orge006d99" class="figure">
+<div id="orge6fcea5" class="figure">
 <p><img src="../images/Pasted-Image-20231225105014.png" alt="Pasted-Image-20231225105014.png" />
 </p>
 </div>

@@ -41,8 +41,8 @@
 <h2 id="org34a3831"><span class="section-number-2">1.</span> 编译器内存屏障</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">// #define mfence_c() __asm__ __volatile__("": : :"memory")
-#define barrier() __asm__ __volatile__("": : :"memory")
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#define mfence_c() __asm__ __volatile__("": : :"memory")</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">barrier</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">""</span>: : :<span class="org-string">"memory"</span>)
 
 </pre>
 </div>
@@ -51,13 +51,13 @@
 这个内存屏障的意思是:在这个操作之后，所有的原来分配在寄存器里面的变量全部失效，需要重新进行一次寄存器的分配（相当于变量需要全部重新载入）。之所以需要有这个操作，可以考虑这么一个情况。假设有两个值a,分配的内存地址分别是0x12345.我们有下面这样的代码
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;cstdio&gt;
-int a=0;
-int main() {
-  printf("%p,%d\n",&amp;a,a);
-  *(int*)(0x5009ac)=1; // 我们知道&amp;a的地址就是0x5009ac
-  printf("%p,%d\n",&amp;a,a);
-  return 0;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-type">int</span> <span class="org-variable-name">a</span>=0;
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+  printf(<span class="org-string">"%p,%d\n"</span>,&amp;a,a);
+  *(<span class="org-type">int</span>*)(0x5009ac)=1; <span class="org-comment-delimiter">// </span><span class="org-comment">&#25105;&#20204;&#30693;&#36947;&amp;a&#30340;&#22320;&#22336;&#23601;&#26159;0x5009ac</span>
+  printf(<span class="org-string">"%p,%d\n"</span>,&amp;a,a);
+  <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -80,10 +80,10 @@ barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz�
 <h2 id="org398185a"><span class="section-number-2">2.</span> CPU内存屏障</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-Cpp">// #define mfence_x86() __asm__ __volatile__("mfence":::"memory")
-#define rmb() __asm__ __volatile__("lfence":::"memory")
-#define wmb() __asm__ __volatile__("sfence":::"memory")
-#define mb() __asm__ __volatile__("mfence":::"memory")
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">#define mfence_x86() __asm__ __volatile__("mfence":::"memory")</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">rmb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"lfence"</span>:::<span class="org-string">"memory"</span>)
+<span class="org-preprocessor">#define</span> <span class="org-function-name">wmb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"sfence"</span>:::<span class="org-string">"memory"</span>)
+<span class="org-preprocessor">#define</span> <span class="org-function-name">mb</span>() <span class="org-keyword">__asm__</span> __volatile__(<span class="org-string">"mfence"</span>:::<span class="org-string">"memory"</span>)
 
 </pre>
 </div>
@@ -182,7 +182,7 @@ barrier除了上面功能（强迫编译器刷新寄存器分配）之外，wyz�
 <p>
 对于perspective order这里想说一个哲学问题。其实对于user也不知道最终执行顺序是什么，而是根据内存的状态来推测最终执行顺序是什么。就好比下面这段代码，假设a=b=0
 </p>
-<pre class="example" id="org87b8a1c">
+<pre class="example" id="orga423f77">
 CPU0 a=1
 CPU1 b=a+1
 </pre>

@@ -109,54 +109,54 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">int search1(int* x, int n, int t) {
-    for (int i = 0; i &lt; n; i++) {
-        if (x[i] == t) {
-            return i;
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">search1</span>(<span class="org-type">int</span>* <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>, <span class="org-type">int</span> <span class="org-variable-name">t</span>) {
+    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; n; i++) {
+        <span class="org-keyword">if</span> (x[i] == t) {
+            <span class="org-keyword">return</span> i;
         }
     }
-    return -1;
+    <span class="org-keyword">return</span> -1;
 }
 
-// 相比search1而言，增加sentinel. 因为我们确定最终肯定会匹配上
-// 所以每次循环期间都可以少一次比较
-int search2(int* x, int n, int t) {
-    int tmp = x[n];
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#30456;&#27604;search1&#32780;&#35328;&#65292;&#22686;&#21152;sentinel. &#22240;&#20026;&#25105;&#20204;&#30830;&#23450;&#26368;&#32456;&#32943;&#23450;&#20250;&#21305;&#37197;&#19978;</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#25152;&#20197;&#27599;&#27425;&#24490;&#29615;&#26399;&#38388;&#37117;&#21487;&#20197;&#23569;&#19968;&#27425;&#27604;&#36739;</span>
+<span class="org-type">int</span> <span class="org-function-name">search2</span>(<span class="org-type">int</span>* <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>, <span class="org-type">int</span> <span class="org-variable-name">t</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">tmp</span> = x[n];
     x[n] = t;
-    int i = 0;
-    for (i = 0;; i++) {
-        if (x[i] == t) {
-            break;
+    <span class="org-type">int</span> <span class="org-variable-name">i</span> = 0;
+    <span class="org-keyword">for</span> (i = 0;; i++) {
+        <span class="org-keyword">if</span> (x[i] == t) {
+            <span class="org-keyword">break</span>;
         }
     }
     x[n] = tmp;
-    if (i == n) {
-        return -1;
+    <span class="org-keyword">if</span> (i == n) {
+        <span class="org-keyword">return</span> -1;
     }
-    return i;
+    <span class="org-keyword">return</span> i;
 }
 
-// 和search2相比就是把循环展开，但是从指令数量上看并没有减少
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#21644;search2&#30456;&#27604;&#23601;&#26159;&#25226;&#24490;&#29615;&#23637;&#24320;&#65292;&#20294;&#26159;&#20174;&#25351;&#20196;&#25968;&#37327;&#19978;&#30475;&#24182;&#27809;&#26377;&#20943;&#23569;</span>
 
-int search3(int* x, int n, int t) {
-    int tmp = x[n];
+<span class="org-type">int</span> <span class="org-function-name">search3</span>(<span class="org-type">int</span>* <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">n</span>, <span class="org-type">int</span> <span class="org-variable-name">t</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">tmp</span> = x[n];
     x[n] = t;
-    int i = 0;
-    for (i = 0;; i += 8) {
-        if (x[i] == t) { break; }
-        if (x[i + 1] == t) { i += 1; break; }
-        if (x[i + 2] == t) { i += 2; break; }
-        if (x[i + 3] == t) { i += 3; break; }
-        if (x[i + 4] == t) { i += 4; break; }
-        if (x[i + 5] == t) { i += 5; break; }
-        if (x[i + 6] == t) { i += 6; break; }
-        if (x[i + 7] == t) { i += 7; break; }
+    <span class="org-type">int</span> <span class="org-variable-name">i</span> = 0;
+    <span class="org-keyword">for</span> (i = 0;; i += 8) {
+        <span class="org-keyword">if</span> (x[i] == t) { <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 1] == t) { i += 1; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 2] == t) { i += 2; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 3] == t) { i += 3; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 4] == t) { i += 4; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 5] == t) { i += 5; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 6] == t) { i += 6; <span class="org-keyword">break</span>; }
+        <span class="org-keyword">if</span> (x[i + 7] == t) { i += 7; <span class="org-keyword">break</span>; }
     }
     x[n] = tmp;
-    if (i == n) {
-        return -1;
+    <span class="org-keyword">if</span> (i == n) {
+        <span class="org-keyword">return</span> -1;
     }
-    return i;
+    <span class="org-keyword">return</span> i;
 }
 </pre>
 </div>
@@ -183,7 +183,7 @@ int search3(int* x, int n, int t) {
 <p>
 先看-O0的效果，展开效果还是非常明显的，甚至比设置哨兵还要好。
 </p>
-<pre class="example" id="org751a5e9">
+<pre class="example" id="org36145ba">
 ➜  misc git:(master) ✗ g++ opt_linear_search.cc -O0 --std=c++0x
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 211.902 ms
@@ -196,7 +196,7 @@ int search3(int* x, int n, int t) {
 <p>
 然后看-O2的效果. 展开效果似乎就没有那么明显了，甚至还有副作用。相比展开步长8和16的情况，发现步长并不是越长越好。
 </p>
-<pre class="example" id="orge71b0ca">
+<pre class="example" id="orgb3ac506">
 ➜  misc git:(master) ✗ ./a.out
 [  search1]Wall clock time passed: 34.7623 ms
 [ search11]Wall clock time passed: 35.4613 ms
@@ -217,47 +217,47 @@ int search3(int* x, int n, int t) {
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">
-int bin_search(int* x, int t) {
-    int size = 512;
-    int l = -1;
-    if(x[511] &lt; t) {
+<pre class="src src-C++">
+<span class="org-type">int</span> <span class="org-function-name">bin_search</span>(<span class="org-type">int</span>* <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">t</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">size</span> = 512;
+    <span class="org-type">int</span> <span class="org-variable-name">l</span> = -1;
+    <span class="org-keyword">if</span>(x[511] &lt; t) {
         l = 1000 - 512;
     }
-    while (size!=1) {
+    <span class="org-keyword">while</span> (size!=1) {
         size = size / 2;
-        if (x[l+size] &lt; t) {
+        <span class="org-keyword">if</span> (x[l+size] &lt; t) {
             l = l + size;
         }
     }
-    int p = l + 1;
-    if (p &gt; 1000 || x[p] != t) {
-        return -1;
+    <span class="org-type">int</span> <span class="org-variable-name">p</span> = l + 1;
+    <span class="org-keyword">if</span> (p &gt; 1000 || x[p] != t) {
+        <span class="org-keyword">return</span> -1;
     }
-    return p;
+    <span class="org-keyword">return</span> p;
 }
 
 
-int bin_search_unroll(int* x, int t) {
-    int size = 512;
-    int l = -1;
-    if(x[511] &lt; t) {
+<span class="org-type">int</span> <span class="org-function-name">bin_search_unroll</span>(<span class="org-type">int</span>* <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">t</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">size</span> = 512;
+    <span class="org-type">int</span> <span class="org-variable-name">l</span> = -1;
+    <span class="org-keyword">if</span>(x[511] &lt; t) {
         l = 1000 - 512;
     }
-    if (x[l+256] &lt; t) {l += 256;}
-    if (x[l+128] &lt; t) {l += 128;}
-    if (x[l+64] &lt; t) {l += 64;}
-    if (x[l+32] &lt; t) {l += 32;}
-    if (x[l+16] &lt; t) {l += 16;}
-    if (x[l+8] &lt; t) {l += 8;}
-    if (x[l+4] &lt; t) {l += 4;}
-    if (x[l+2] &lt; t) {l += 2;}
-    if (x[l+1] &lt; t) {l+=1;}
-    int p = l + 1;
-    if (p &gt; 1000 || x[p] != t) {
-        return -1;
+    <span class="org-keyword">if</span> (x[l+256] &lt; t) {l += 256;}
+    <span class="org-keyword">if</span> (x[l+128] &lt; t) {l += 128;}
+    <span class="org-keyword">if</span> (x[l+64] &lt; t) {l += 64;}
+    <span class="org-keyword">if</span> (x[l+32] &lt; t) {l += 32;}
+    <span class="org-keyword">if</span> (x[l+16] &lt; t) {l += 16;}
+    <span class="org-keyword">if</span> (x[l+8] &lt; t) {l += 8;}
+    <span class="org-keyword">if</span> (x[l+4] &lt; t) {l += 4;}
+    <span class="org-keyword">if</span> (x[l+2] &lt; t) {l += 2;}
+    <span class="org-keyword">if</span> (x[l+1] &lt; t) {l+=1;}
+    <span class="org-type">int</span> <span class="org-variable-name">p</span> = l + 1;
+    <span class="org-keyword">if</span> (p &gt; 1000 || x[p] != t) {
+        <span class="org-keyword">return</span> -1;
     }
-    return p;
+    <span class="org-keyword">return</span> p;
 }
 </pre>
 </div>
@@ -280,25 +280,25 @@ int bin_search_unroll(int* x, int t) {
 我没有仔细阅读源代码，只是看了一下这个调用框架
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">template &lt;class RandomAccessIterator&gt;
-inline void sort(RandomAccessIterator first, RandomAccessIterator last) {
-    if (first != last) {
+<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">class</span> <span class="org-type">RandomAccessIterator</span>&gt;
+<span class="org-keyword">inline</span> <span class="org-type">void</span> <span class="org-function-name">sort</span>(<span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">first</span>, <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">last</span>) {
+    <span class="org-keyword">if</span> (first != last) {
         __introsort_loop(first, last, value_type(first), __lg(last - first) * 2);
         __final_insertion_sort(first, last);
     }
 }
 
-template &lt;class RandomAccessIterator, class T, class Size&gt;
-void __introsort_loop(RandomAccessIterator first,
-                      RandomAccessIterator last, T*,
-                      Size depth_limit) {
-    while (last - first &gt; __stl_threshold) {
-        if (depth_limit == 0) {
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">class</span> <span class="org-type">RandomAccessIterator</span>, <span class="org-keyword">class</span> <span class="org-type">T</span>, <span class="org-keyword">class</span> <span class="org-type">Size</span>&gt;
+<span class="org-type">void</span> <span class="org-function-name">__introsort_loop</span>(<span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">first</span>,
+                      <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">last</span>, <span class="org-type">T</span>*,
+                      <span class="org-type">Size</span> <span class="org-variable-name">depth_limit</span>) {
+    <span class="org-keyword">while</span> (last - first &gt; __stl_threshold) {
+        <span class="org-keyword">if</span> (depth_limit == 0) {
             partial_sort(first, last, last);
-            return;
+            <span class="org-keyword">return</span>;
         }
         --depth_limit;
-        RandomAccessIterator cut = __unguarded_partition
+        <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">cut</span> = __unguarded_partition
           (first, last, T(__median(*first, *(first + (last - first)/2),
                                    *(last - 1))));
         __introsort_loop(cut, last, value_type(first), depth_limit);
@@ -306,20 +306,20 @@ void __introsort_loop(RandomAccessIterator first,
     }
 }
 
-template &lt;class RandomAccessIterator, class T, class Compare&gt;
-void __partial_sort(RandomAccessIterator first, RandomAccessIterator middle,
-                    RandomAccessIterator last, T*, Compare comp) {
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">class</span> <span class="org-type">RandomAccessIterator</span>, <span class="org-keyword">class</span> <span class="org-type">T</span>, <span class="org-keyword">class</span> <span class="org-type">Compare</span>&gt;
+<span class="org-type">void</span> <span class="org-function-name">__partial_sort</span>(<span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">first</span>, <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">middle</span>,
+                    <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">last</span>, <span class="org-type">T</span>*, <span class="org-type">Compare</span> <span class="org-variable-name">comp</span>) {
     make_heap(first, middle, comp);
-    for (RandomAccessIterator i = middle; i &lt; last; ++i)
-        if (comp(*i, *first))
+    <span class="org-keyword">for</span> (<span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">i</span> = middle; i &lt; last; ++i)
+        <span class="org-keyword">if</span> (comp(*i, *first))
             __pop_heap(first, middle, i, T(*i), comp, distance_type(first));
     sort_heap(first, middle, comp);
 }
 
-template &lt;class RandomAccessIterator, class Compare&gt;
-inline void partial_sort(RandomAccessIterator first,
-                         RandomAccessIterator middle,
-                         RandomAccessIterator last, Compare comp) {
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">class</span> <span class="org-type">RandomAccessIterator</span>, <span class="org-keyword">class</span> <span class="org-type">Compare</span>&gt;
+<span class="org-keyword">inline</span> <span class="org-type">void</span> <span class="org-function-name">partial_sort</span>(<span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">first</span>,
+                         <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">middle</span>,
+                         <span class="org-type">RandomAccessIterator</span> <span class="org-variable-name">last</span>, <span class="org-type">Compare</span> <span class="org-variable-name">comp</span>) {
     __partial_sort(first, middle, last, value_type(first), comp);
 }
 </pre>
@@ -345,7 +345,7 @@ inline void partial_sort(RandomAccessIterator first,
 如果找到重复字符串可以使用后缀数组，比如 banana 可以保存每个字符串的后缀
 </p>
 
-<pre class="example" id="org06f8955">
+<pre class="example" id="org98afa54">
 banana
 anana
 nana
@@ -358,7 +358,7 @@ a
 然后我们排序然后比较相邻的后缀元素，就能找到ana. 第二长的是na
 </p>
 
-<pre class="example" id="org9bb9425">
+<pre class="example" id="org197f411">
 a
 ana
 anana

@@ -32,16 +32,16 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">template &lt;typename T&gt;
-inline uint32_t FixedLengthColumnBase&lt;T&gt;::serialize(size_t idx, uint8_t* pos) {
-    strings::memcpy_inlined(pos, &amp;_data[idx], sizeof(T));
-    return sizeof(T);
+<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt;
+<span class="org-keyword">inline</span> <span class="org-type">uint32_t</span> <span class="org-constant">FixedLengthColumnBase</span>&lt;<span class="org-type">T</span>&gt;::<span class="org-function-name">serialize</span>(<span class="org-type">size_t</span> <span class="org-variable-name">idx</span>, <span class="org-type">uint8_t</span>* <span class="org-variable-name">pos</span>) {
+    <span class="org-constant">strings</span>::memcpy_inlined(pos, &amp;_data[idx], <span class="org-keyword">sizeof</span>(T));
+    <span class="org-keyword">return</span> <span class="org-keyword">sizeof</span>(T);
 }
 
-template &lt;typename T&gt;
-void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, Buffer&lt;uint32_t&gt;&amp; slice_sizes, size_t chunk_size,
-                                               uint32_t max_one_row_size) {
-    for (size_t i = 0; i &lt; chunk_size; ++i) {
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt;
+<span class="org-type">void</span> <span class="org-constant">FixedLengthColumnBase</span>&lt;<span class="org-type">T</span>&gt;::<span class="org-function-name">serialize_batch</span>(<span class="org-type">uint8_t</span>* <span class="org-variable-name">__restrict__</span> dst, <span class="org-type">Buffer</span>&lt;<span class="org-type">uint32_t</span>&gt;&amp; <span class="org-variable-name">slice_sizes</span>, <span class="org-type">size_t</span> <span class="org-variable-name">chunk_size</span>,
+                                               <span class="org-type">uint32_t</span> <span class="org-variable-name">max_one_row_size</span>) {
+    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; chunk_size; ++i) {
         slice_sizes[i] += serialize(i, dst + i * max_one_row_size + slice_sizes[i]);
     }
 }
@@ -53,7 +53,7 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </p>
 
 
-<div id="org8a75642" class="figure">
+<div id="org15dd0ec" class="figure">
 <p><img src="../images/Pasted-Image-20231225104949.png" alt="Pasted-Image-20231225104949.png" />
 </p>
 </div>
@@ -68,17 +68,17 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">template &lt;typename T&gt;
-inline uint32_t FixedLengthColumnBase&lt;T&gt;::serialize(size_t idx, uint8_t* pos) {
-    strings::memcpy_inlined(pos, &amp;_data[idx], sizeof(T));
-    return sizeof(T);
+<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt;
+<span class="org-keyword">inline</span> <span class="org-type">uint32_t</span> <span class="org-constant">FixedLengthColumnBase</span>&lt;<span class="org-type">T</span>&gt;::<span class="org-function-name">serialize</span>(<span class="org-type">size_t</span> <span class="org-variable-name">idx</span>, <span class="org-type">uint8_t</span>* <span class="org-variable-name">pos</span>) {
+    <span class="org-constant">strings</span>::memcpy_inlined(pos, &amp;_data[idx], <span class="org-keyword">sizeof</span>(T));
+    <span class="org-keyword">return</span> <span class="org-keyword">sizeof</span>(T);
 }
 
-template &lt;typename T&gt;
-void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, Buffer&lt;uint32_t&gt;&amp; slice_sizes, size_t chunk_size,
-                                               uint32_t max_one_row_size) {
-    uint32_t* sizes = slice_sizes.data();
-    for (size_t i = 0; i &lt; chunk_size; ++i) {
+<span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt;
+<span class="org-type">void</span> <span class="org-constant">FixedLengthColumnBase</span>&lt;<span class="org-type">T</span>&gt;::<span class="org-function-name">serialize_batch</span>(<span class="org-type">uint8_t</span>* <span class="org-variable-name">__restrict__</span> dst, <span class="org-type">Buffer</span>&lt;<span class="org-type">uint32_t</span>&gt;&amp; <span class="org-variable-name">slice_sizes</span>, <span class="org-type">size_t</span> <span class="org-variable-name">chunk_size</span>,
+                                               <span class="org-type">uint32_t</span> <span class="org-variable-name">max_one_row_size</span>) {
+    <span class="org-type">uint32_t</span>* <span class="org-variable-name">sizes</span> = slice_sizes.data();
+    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; chunk_size; ++i) {
         sizes[i] += serialize(i, dst + i * max_one_row_size + sizes[i]);
     }
 }
@@ -86,7 +86,7 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </div>
 
 
-<div id="org364a48c" class="figure">
+<div id="org36152d2" class="figure">
 <p><img src="../images/Pasted-Image-20231225104949.png" alt="Pasted-Image-20231225104949.png" />
 </p>
 </div>
@@ -152,18 +152,18 @@ uint32_t FixedLengthColumnBase&lt;T&gt;::serialize_default(uint8_t* pos) {
 <h2 id="org21279e0"><span class="section-number-2">4.</span> 手工使用memcpy</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
-<pre class="src src-Cpp">template &lt;typename T&gt;
-void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, Buffer&lt;uint32_t&gt;&amp; slice_sizes,
-                                               size_t chunk_size, uint32_t max_one_row_size) {
-    uint32_t* sizes = slice_sizes.data();
-    T* __restrict__ src = _data.data();
+<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">T</span>&gt;
+<span class="org-type">void</span> <span class="org-constant">FixedLengthColumnBase</span>&lt;<span class="org-type">T</span>&gt;::<span class="org-function-name">serialize_batch</span>(<span class="org-type">uint8_t</span>* <span class="org-variable-name">__restrict__</span> dst, <span class="org-type">Buffer</span>&lt;<span class="org-type">uint32_t</span>&gt;&amp; <span class="org-variable-name">slice_sizes</span>,
+                                               <span class="org-type">size_t</span> <span class="org-variable-name">chunk_size</span>, <span class="org-type">uint32_t</span> <span class="org-variable-name">max_one_row_size</span>) {
+    <span class="org-type">uint32_t</span>* <span class="org-variable-name">sizes</span> = slice_sizes.data();
+    <span class="org-type">T</span>* <span class="org-variable-name">__restrict__</span> src = _data.data();
 
-    for (size_t i = 0; i &lt; chunk_size; ++i) {
-        memcpy(dst + i * max_one_row_size + sizes[i], src + i, sizeof(T));
+    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; chunk_size; ++i) {
+        memcpy(dst + i * max_one_row_size + sizes[i], src + i, <span class="org-keyword">sizeof</span>(T));
     }
 
-    for (size_t i = 0; i &lt; chunk_size; i++) {
-        sizes[i] += sizeof(T);
+    <span class="org-keyword">for</span> (<span class="org-type">size_t</span> <span class="org-variable-name">i</span> = 0; i &lt; chunk_size; i++) {
+        sizes[i] += <span class="org-keyword">sizeof</span>(T);
     }
 }
 </pre>
@@ -174,7 +174,7 @@ void FixedLengthColumnBase&lt;T&gt;::serialize_batch(uint8_t* __restrict__ dst, 
 </p>
 
 
-<div id="org0e07ef4" class="figure">
+<div id="org30d936e" class="figure">
 <p><img src="../images/Pasted-Image-20231225104933.png" alt="Pasted-Image-20231225104933.png" />
 </p>
 </div>

@@ -39,7 +39,7 @@
 </ul>
 
 
-<div id="org8bfd83f" class="figure">
+<div id="orgdee53e6" class="figure">
 <p><img src="../images/Pasted-Image-20231225105240.png" alt="Pasted-Image-20231225105240.png" />
 </p>
 </div>
@@ -102,7 +102,7 @@ order by
 Dremio运行时间在1756ms左右
 </p>
 
-<pre class="example" id="org674666e">
+<pre class="example" id="orgc076e9f">
 --&gt; 1671. avg = 1756
 --&gt; 1681. avg = 1756
 --&gt; 1778. avg = 1756
@@ -119,7 +119,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="orgffbdc80" class="figure">
+<div id="orgd3e1f98" class="figure">
 <p><img src="../images/Pasted-Image-20231225105253.png" alt="Pasted-Image-20231225105253.png" />
 </p>
 </div>
@@ -129,19 +129,19 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 </p>
 
 
-<div id="org29eb6c6" class="figure">
+<div id="orga69b44e" class="figure">
 <p><img src="../images/Pasted-Image-20231225105234.png" alt="Pasted-Image-20231225105234.png" />
 </p>
 </div>
 
 
-<div id="org62a087e" class="figure">
+<div id="orge8fd6f4" class="figure">
 <p><img src="../images/Pasted-Image-20231225105225.png" alt="Pasted-Image-20231225105225.png" />
 </p>
 </div>
 
 
-<div id="orgefac21d" class="figure">
+<div id="org538c7c2" class="figure">
 <p><img src="../images/Pasted-Image-20231225105155.png" alt="Pasted-Image-20231225105155.png" />
 </p>
 </div>
@@ -155,7 +155,7 @@ Dremio资源使用情况如下，CPU使用在60%上下，并且网卡持续有�
 Dremio可以选择将cache关闭。如果把cache关闭的话，那么这个查询的延迟会下降到11s上下
 </p>
 
-<pre class="example" id="org8115cd4">
+<pre class="example" id="orgb9af70a">
 running Q15-WITH-AS on dremio
 --&gt; 12238. avg = 12238
 --&gt; 11935. avg = 12086
@@ -170,7 +170,7 @@ running Q15-WITH-AS on dremio
 </pre>
 
 
-<div id="org227d7e9" class="figure">
+<div id="org42013e2" class="figure">
 <p><img src="../images/Pasted-Image-20231225105135.png" alt="Pasted-Image-20231225105135.png" />
 </p>
 </div>
@@ -180,7 +180,7 @@ running Q15-WITH-AS on dremio
 </p>
 
 
-<div id="org506f04e" class="figure">
+<div id="orga313c47" class="figure">
 <p><img src="../images/Pasted-Image-20231225105202.png" alt="Pasted-Image-20231225105202.png" />
 </p>
 </div>
@@ -203,7 +203,7 @@ running Q15-WITH-AS on dremio
 下面是一个dremio worker上的磁盘情况, 根目录是EBS, 而/mnt/c1和/mnt/c2则是本地盘。如果看<a href="https://docs.dremio.com/software/deployment/cloud-cache-config/">dremio.conf</a>, 的确是使用了这两个盘来做cache的。
 </p>
 
-<pre class="example" id="orgb4d64cf">
+<pre class="example" id="orgc9129f7">
 [ec2-user@ip-172-31-13-89 ~]$ df -h
 Filesystem      Size  Used Avail Use% Mounted on
 devtmpfs         63G     0   63G   0% /dev
@@ -259,7 +259,7 @@ services.executor.cache.pctquota.fs += "95"
 Dremio使用了EFS，但是似乎这上面只是存储了每个节点的日志信息，以及thirdparty估计是第三方库使用EFS来进行共享，EFS上并没有存储Cache
 </p>
 
-<pre class="example" id="org312f806">
+<pre class="example" id="org3c3e46b">
 [ec2-user@ip-172-31-10-156 ~]$ sudo mount -t efs -o tls fs-0719cd08e6a31df7b:/ efs
 /home/ec2-user/efs is already mounted, please run 'mount' command to verify
 [ec2-user@ip-172-31-10-156 ~]$ cd efs/
@@ -286,7 +286,7 @@ thirdparty/
 重启机器之后，可以看到存在大量磁盘读取
 </p>
 
-<pre class="example" id="orgfde994d">
+<pre class="example" id="org92304df">
 Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
 nvme1n1           0.00     0.00 1789.00    0.00 213612.00     0.00   238.81     0.31    0.23    0.23    0.00   0.06  11.20
 nvme2n1           0.00     0.00 1695.00    0.00 211096.00     0.00   249.08     0.48    0.33    0.33    0.00   0.06  10.00
@@ -319,7 +319,7 @@ nvme0n1           0.00     0.00    1.00    0.00     4.00     0.00     8.00     0
 </div>
 
 
-<div id="org0b44ad9" class="figure">
+<div id="orga08d08d" class="figure">
 <p><img src="../images/Pasted-Image-20231225105219.png" alt="Pasted-Image-20231225105219.png" />
 </p>
 </div>
@@ -355,7 +355,7 @@ order by
 运行时间在 255ms 上下
 </p>
 
-<pre class="example" id="org481766e">
+<pre class="example" id="org0a73278">
 running Q01 on dremio
 --&gt; 340. avg = 340
 --&gt; 251. avg = 295
@@ -374,13 +374,13 @@ running Q01 on dremio
 </p>
 
 
-<div id="org810d8d5" class="figure">
+<div id="org335de3b" class="figure">
 <p><img src="../images/Pasted-Image-20231225105131.png" alt="Pasted-Image-20231225105131.png" />
 </p>
 </div>
 
 
-<div id="org99c2a83" class="figure">
+<div id="orgbea31c4" class="figure">
 <p><img src="../images/Pasted-Image-20231225105121.png" alt="Pasted-Image-20231225105121.png" />
 </p>
 </div>

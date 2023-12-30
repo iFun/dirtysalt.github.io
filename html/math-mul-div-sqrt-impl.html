@@ -21,8 +21,8 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">function void init() {
-    let tt = Array.new(16);
+<pre class="src src-C++">function <span class="org-type">void</span> <span class="org-function-name">init</span>() {
+    <span class="org-type">let</span> <span class="org-variable-name">tt</span> = Array.<span class="org-keyword">new</span>(16);
     tt[0] = 1;
     tt[1] = 2;
     tt[2] = 4;
@@ -41,13 +41,13 @@
     tt[15] = 32768;
 }
 
-funcetion int multiply(int x, int y) {
-    int sum, shift, i;
-    let sum = 0;
-    let shift = x;
-    let i = 0;
-    while (i &lt; 16) {
-        if (bit(x, i)) {
+funcetion <span class="org-type">int</span> <span class="org-function-name">multiply</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>, <span class="org-type">int</span> <span class="org-variable-name">y</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">sum</span>, <span class="org-variable-name">shift</span>, <span class="org-variable-name">i</span>;
+    <span class="org-type">let</span> <span class="org-variable-name">sum</span> = 0;
+    <span class="org-type">let</span> <span class="org-variable-name">shift</span> = x;
+    <span class="org-type">let</span> <span class="org-variable-name">i</span> = 0;
+    <span class="org-keyword">while</span> (i &lt; 16) {
+        <span class="org-keyword">if</span> (bit(x, i)) {
             sum = sum + shift;
         }
         i = i + 1;

@@ -29,24 +29,24 @@ ORC文件使用了bit-packing技术来对整数进行编码 <a href="https://orc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// in: input
-// fb: fixed bit
-// data: output
-// nums: how many values to be unpacked.
-void bit_unpack_tail(const uint8_t* in, int fb, int64_t* data, int nums) {
-    if (nums == 0) return;
-    int64_t t = 0;
-    uint8_t c = 0;
-    int cb = 0;
-    for (int i = 0; i &lt; nums; i++) {
-        int bits = fb;
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">in: input</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">fb: fixed bit</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">data: output</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">nums: how many values to be unpacked.</span>
+<span class="org-type">void</span> <span class="org-function-name">bit_unpack_tail</span>(<span class="org-keyword">const</span> <span class="org-type">uint8_t</span>* <span class="org-variable-name">in</span>, <span class="org-type">int</span> <span class="org-variable-name">fb</span>, <span class="org-type">int64_t</span>* <span class="org-variable-name">data</span>, <span class="org-type">int</span> <span class="org-variable-name">nums</span>) {
+    <span class="org-keyword">if</span> (nums == 0) <span class="org-keyword">return</span>;
+    <span class="org-type">int64_t</span> <span class="org-variable-name">t</span> = 0;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">c</span> = 0;
+    <span class="org-type">int</span> <span class="org-variable-name">cb</span> = 0;
+    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; nums; i++) {
+        <span class="org-type">int</span> <span class="org-variable-name">bits</span> = fb;
         t = 0;
-        while (bits) {
-            if (cb == 0) {
+        <span class="org-keyword">while</span> (bits) {
+            <span class="org-keyword">if</span> (cb == 0) {
                 c = (*in++);
                 cb = 8;
             }
-            int lb = std::min(cb, bits);
+            <span class="org-type">int</span> <span class="org-variable-name">lb</span> = <span class="org-constant">std</span>::min(cb, bits);
             t = (t &lt;&lt; lb) | ((c &gt;&gt; (cb - lb)) &amp; ((1 &lt;&lt; lb) - 1));
             bits -= lb;
             cb -= lb;
@@ -138,7 +138,7 @@ def gen_unpack_driver():
 当然某些case可以继续手工优化。
 </p>
 
-<pre class="example" id="org64cb2f8">
+<pre class="example" id="org2fe9fe7">
 unpack fb: 1. fast = 63 ms, avg = 0.600815 ns. tail = 329 ms, avg = 3.13759 ns. speedup = 5.22222
 unpack fb: 2. fast = 63 ms, avg = 0.600815 ns. tail = 329 ms, avg = 3.13759 ns. speedup = 5.22222
 unpack fb: 3. fast = 55 ms, avg = 0.524521 ns. tail = 403 ms, avg = 3.84331 ns. speedup = 7.32727

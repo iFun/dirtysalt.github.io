@@ -53,16 +53,16 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">def fix(x, y):
-    t = x // y
-    while True:
-        z = x // t
+<pre class="src src-C++"><span class="org-type">def</span> <span class="org-function-name">fix</span>(x, y):
+    t = x <span class="org-comment-delimiter">// </span><span class="org-comment">y</span>
+    <span class="org-keyword">while</span> True:
+        z = x <span class="org-comment-delimiter">// </span><span class="org-comment">t</span>
         rem = x % t
         z2 = z
-        if rem:
+        <span class="org-keyword">if</span> rem:
             z2 += 1
-        if z2 &lt;= y:
-            return z, t - 1
+        <span class="org-keyword">if</span> z2 &lt;= y:
+            <span class="org-keyword">return</span> z, t - 1
         t += 1
 </pre>
 </div>

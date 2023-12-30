@@ -24,7 +24,7 @@
 <ul>
 <li><a href="#orgd259102">5.1. Message Passing</a></li>
 <li><a href="#orgb06204d">5.2. Combiners</a></li>
-<li><a href="#orgd059ccc">5.3. Aggregators</a></li>
+<li><a href="#org5d689e5">5.3. Aggregators</a></li>
 <li><a href="#org79ebc74">5.4. Topology Mutations</a></li>
 <li><a href="#org3992463">5.5. Input and Output</a></li>
 </ul>
@@ -35,7 +35,7 @@
 <li><a href="#orge034c97">6.2. Fault tolerance</a></li>
 <li><a href="#orgd48cf2d">6.3. Worker implementation</a></li>
 <li><a href="#orgc0f25a6">6.4. Master implementation</a></li>
-<li><a href="#org5d689e5">6.5. Aggregators</a></li>
+<li><a href="#orgb0a2858">6.5. Aggregators</a></li>
 </ul>
 </li>
 <li><a href="#orgd58a0e8">7. Applications</a>
@@ -135,20 +135,20 @@ The name honors Leonhard Euler. The Bridges of Konigsberg, which inspired his fa
 <h2 id="org913aecf"><span class="section-number-2">5.</span> The C++ API</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
-<pre class="src src-Cpp">template &lt;typename VertexValue,
-          typename EdgeValue,
-          typename MessageValue&gt;
-class Vertex {
- public:
-  virtual void Compute(MessageIterator* msgs) = 0; // 可以迭代发送给这个节点的消息
-  const string&amp; vertex_id() const; // 自身
-  int64 superstep() const; // 迭代次数
-  const VertexValue&amp; GetValue(); // 自身hold value，custom。
-  VertexValue* MutableValue();
-  OutEdgeIterator GetOutEdgeIterator(); // out going vertices。这个也算是vertex hold value，builtin。
-  void SendMessageTo(const string&amp; dest_vertex, // 给某个节点发送消息
-                     const MessageValue&amp; message);
-  void VoteToHalt(); // vote to halt
+<pre class="src src-C++"><span class="org-keyword">template</span> &lt;<span class="org-keyword">typename</span> <span class="org-type">VertexValue</span>,
+          <span class="org-keyword">typename</span> <span class="org-type">EdgeValue</span>,
+          <span class="org-keyword">typename</span> <span class="org-type">MessageValue</span>&gt;
+<span class="org-keyword">class</span> <span class="org-type">Vertex</span> {
+ <span class="org-keyword">public</span>:
+  <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">Compute</span>(<span class="org-type">MessageIterator</span>* <span class="org-variable-name">msgs</span>) = 0; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21487;&#20197;&#36845;&#20195;&#21457;&#36865;&#32473;&#36825;&#20010;&#33410;&#28857;&#30340;&#28040;&#24687;</span>
+  <span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-function-name">vertex_id</span>() <span class="org-keyword">const</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#33258;&#36523;</span>
+  <span class="org-type">int64</span> <span class="org-function-name">superstep</span>() <span class="org-keyword">const</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">&#36845;&#20195;&#27425;&#25968;</span>
+  <span class="org-keyword">const</span> <span class="org-type">VertexValue</span>&amp; <span class="org-function-name">GetValue</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">&#33258;&#36523;hold value&#65292;custom&#12290;</span>
+  <span class="org-type">VertexValue</span>* <span class="org-function-name">MutableValue</span>();
+  <span class="org-type">OutEdgeIterator</span> <span class="org-function-name">GetOutEdgeIterator</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">out going vertices&#12290;&#36825;&#20010;&#20063;&#31639;&#26159;vertex hold value&#65292;builtin&#12290;</span>
+  <span class="org-type">void</span> <span class="org-function-name">SendMessageTo</span>(<span class="org-keyword">const</span> <span class="org-type">string</span>&amp; <span class="org-variable-name">dest_vertex</span>, <span class="org-comment-delimiter">// </span><span class="org-comment">&#32473;&#26576;&#20010;&#33410;&#28857;&#21457;&#36865;&#28040;&#24687;</span>
+                     <span class="org-keyword">const</span> <span class="org-type">MessageValue</span>&amp; <span class="org-variable-name">message</span>);
+  <span class="org-type">void</span> <span class="org-function-name">VoteToHalt</span>(); <span class="org-comment-delimiter">// </span><span class="org-comment">vote to halt</span>
 };
 </pre>
 </div>
@@ -178,8 +178,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-orgd059ccc" class="outline-3">
-<h3 id="orgd059ccc"><span class="section-number-3">5.3.</span> Aggregators</h3>
+<div id="outline-container-org5d689e5" class="outline-3">
+<h3 id="org5d689e5"><span class="section-number-3">5.3.</span> Aggregators</h3>
 <div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>Pregel aggregators are a mechanism for global communica-tion, monitoring, and data. Each vertex can provide a value to an aggregator in superstep S, the system combines those values using a reduction operator, and the resulting value is made available to all vertices in superstep S + 1. （通过将S的所有节点数据全部聚合起来，然后在S+1散播给所有的节点）
@@ -298,8 +298,8 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 </div>
 </div>
 
-<div id="outline-container-org5d689e5" class="outline-3">
-<h3 id="org5d689e5"><span class="section-number-3">6.5.</span> Aggregators</h3>
+<div id="outline-container-orgb0a2858" class="outline-3">
+<h3 id="orgb0a2858"><span class="section-number-3">6.5.</span> Aggregators</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>Each worker maintains a collection of ag-gregator instances, identified by a type name and instance name. When a worker executes a superstep for any partition of the graph, the worker combines all of the values supplied to an aggregator instance into a single local value: an ag-gregator that is partially reduced over all of the worker’s vertices in the partition. （每个worker上面都会维护聚合操作实例。在一个superstep执行的时候会将节点的值进行聚合/考虑到不确定哪一个vertex先完成，因此聚合操作必须满足交换律。而最后聚合操作会聚合所有worker上的value，因此也必须满足结合律）</li>
@@ -318,21 +318,21 @@ When the destination vertex of any message does not ex-ist, we execute user-defi
 <h3 id="orgd28861c"><span class="section-number-3">7.1.</span> PageRank</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">class PageRankVertex
-    : public Vertex&lt;double, void, double&gt; {
- public:
-  virtual void Compute(MessageIterator* msgs) {
-    if (superstep() &gt;= 1) {
-      double sum = 0;
-      for (; !msgs-&gt;Done(); msgs-&gt;Next())
+<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">PageRankVertex</span>
+    : <span class="org-keyword">public</span> <span class="org-type">Vertex</span>&lt;<span class="org-type">double</span>, <span class="org-type">void</span>, <span class="org-type">double</span>&gt; {
+ <span class="org-keyword">public</span>:
+  <span class="org-keyword">virtual</span> <span class="org-type">void</span> <span class="org-function-name">Compute</span>(<span class="org-type">MessageIterator</span>* <span class="org-variable-name">msgs</span>) {
+    <span class="org-keyword">if</span> (superstep() &gt;= 1) {
+      <span class="org-type">double</span> <span class="org-variable-name">sum</span> = 0;
+      <span class="org-keyword">for</span> (; <span class="org-negation-char">!</span>msgs-&gt;Done(); msgs-&gt;Next())
         sum += msgs-&gt;Value();
       *MutableValue() =
           0.15 / NumVertices() + 0.85 * sum;
     }
-    if (superstep() &lt; 30) {
-      const int64 n = GetOutEdgeIterator().size();
+    <span class="org-keyword">if</span> (superstep() &lt; 30) {
+      <span class="org-keyword">const</span> <span class="org-type">int64</span> <span class="org-variable-name">n</span> = GetOutEdgeIterator().size();
       SendMessageToAllNeighbors(GetValue() / n);
-    } else {
+    } <span class="org-keyword">else</span> {
       VoteToHalt();
     }
   }

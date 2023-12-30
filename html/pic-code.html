@@ -40,17 +40,17 @@ pic的意思是position independent code(位置无关代码),就是指运行和�
 其实这里pic是一个相对意思，因为生成代码或多或少都使用了位置无关代码这个概念，就好比跳转指令：
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int main(int argc,char const* argv[]){
-    if(argc&gt;=2){
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span> <span class="org-keyword">const</span>* <span class="org-variable-name">argv</span>[]){
+    <span class="org-keyword">if</span>(argc&gt;=2){
         argc++;
-    }else{
+    }<span class="org-keyword">else</span>{
         argc+=2;
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
-<pre class="example" id="org3ebcb9a">
+<pre class="example" id="org737b1d3">
 08048434 &lt;main&gt;:
  8048434:       8d 4c 24 04             lea    0x4(%esp),%ecx
  8048438:       83 e4 f0                and    $0xfffffff0,%esp
@@ -109,17 +109,17 @@ UPDATE@201912：按照我粗浅的理解是
 汇编器不确定最终每个符号安排在什么位置上，所有从0x0这个地址开始依次安排每一个符号，不同的段是分开的：
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int global_variable_data=1;
-static int global_variable_bss;
-int echo(){
-    return 0;
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">global_variable_data</span>=1;
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable_bss</span>;
+<span class="org-type">int</span> <span class="org-function-name">echo</span>(){
+    <span class="org-keyword">return</span> 0;
 }
-int main(){
-    return 0;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
-<pre class="example" id="org7d5439a">
+<pre class="example" id="orge7ec1eb">
 //逻辑地址从0x0安排，存放在bss段
 00000000 b global_variable_bss
 //逻辑地址从0x0安排，存放在data段
@@ -136,7 +136,7 @@ int main(){
 表项里面只是存放字符串的指针，具体字符串内容是存放在一个strtab段里面的。当然一个库也需要暴露自己有哪些符号，
 那么这些符号都是定义在symtab段里面的。我们可以strings查看一下.o文件里面是有不少字符串信息的：
 </p>
-<pre class="example" id="org2ef2b41">
+<pre class="example" id="org44f8a34">
 /lib/ld-linux.so.2 //动态链接库载入器
 libstdc++.so.6 //listdc++
 __gmon_start__
@@ -172,7 +172,7 @@ GLIBC_2.0
 <p>
 可以看到每个符号是和对应的.so绑定起来的。我们在使用动态库的时候，有几种方法可以联编动态库：
 </p>
-<pre class="example" id="orgd61ce71">
+<pre class="example" id="org6ccfc69">
 g++ wrapper.o /home/dirlt/libmain.so
 g++ wrapper.o -L. -lmain
 g++ wrapper.o -L. -lmain -Xlinker -rpath .
@@ -203,7 +203,7 @@ g++ wrapper.o -L. -lmain -Xlinker -rpath .
 <p>
 为了证实链接器确实能够感知某个文件是目标文件还是动态链接库文件，可以使用readelf查看文件头部：
 </p>
-<pre class="example" id="orge192fa4">
+<pre class="example" id="org9ff4c54">
 [dirlt@localhost.localdomain]$ readelf -h echo.o
 ELF Header:
   Magic:   7f 45 4c 46 01 01 01 00 00 00 00 00 00 00 00 00
@@ -252,27 +252,27 @@ ELF Header:
 假设main.cc编译出main，里面调用echo函数定义在libecho.so里面。main.o不需要是位置无关代码，所以不用-fPIC编译。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//==============================main.cc==============================
-#include &lt;cstdio&gt;
-extern "C" int global_variable;
-extern "C" int echo();
-int global_variable=0;
-int main(){
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">==============================main.cc==============================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable</span>;
+<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-function-name">echo</span>();
+<span class="org-type">int</span> <span class="org-variable-name">global_variable</span>=0;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
     echo();
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
-//==============================echo.cc==============================
-#include &lt;cstdio&gt;
-extern "C" int global_variable;
-extern "C" int echo();
-int echo(){
-    printf("%d\n",global_variable);
-    return 0;
+<span class="org-comment-delimiter">//</span><span class="org-comment">==============================echo.cc==============================</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-variable-name">global_variable</span>;
+<span class="org-keyword">extern</span> <span class="org-string">"C"</span> <span class="org-type">int</span> <span class="org-function-name">echo</span>();
+<span class="org-type">int</span> <span class="org-function-name">echo</span>(){
+    printf(<span class="org-string">"%d\n"</span>,global_variable);
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
 
-<pre class="example" id="orge433808">
+<pre class="example" id="org90800a6">
 00000000 &lt;main&gt;:
    0:   8d 4c 24 04             lea    0x4(%esp),%ecx
    4:   83 e4 f0                and    $0xfffffff0,%esp
@@ -292,7 +292,7 @@ int echo(){
 <p>
 但是在链接完成之后，因为链接器可以知道链接的echo符号是来自于动态库的，所有使用plt来实现。
 </p>
-<pre class="example" id="org6f1c5bf">
+<pre class="example" id="org9bbd015">
 0804844c &lt;echo@plt&gt;:
  804844c:       ff 25 30 98 04 08       jmp    *0x8049830
  8048452:       68 08 00 00 00          push   $0x8
@@ -317,7 +317,7 @@ int echo(){
 <p>
 而如果编译出libecho.so的echo.o不使用-fPIC来编译的话，那么生成代码就是这样的：
 </p>
-<pre class="example" id="org19aa118">
+<pre class="example" id="orgd58d3af">
 00000000 &lt;echo2&gt;:
    0:   55                      push   %ebp
    1:   89 e5                   mov    %esp,%ebp
@@ -334,7 +334,7 @@ int echo(){
 <p>
 而在生成.so之后，因为没有经过最终链接步骤，使得这段call代码没有被重定位。call这个地址显然是一个无效地址。
 </p>
-<pre class="example" id="orge0d7536">
+<pre class="example" id="org3389793">
 000004fc &lt;echo2&gt;:
  4fc:   55                      push   %ebp
  4fd:   89 e5                   mov    %esp,%ebp
@@ -367,14 +367,14 @@ GOT是指全局偏移量表(global offset table).在数据引用里面的话，�
 然后我们将GOT放在data的固定位置比如头部。一旦模块载入的话，那么动态链接器就会解析GOT里面所有的条目，
 并且填写上对应的地址。如果查找不到的话，那么就会报告错误
 </p>
-<pre class="example" id="orgbc355b1">
+<pre class="example" id="org065481c">
 ./main: symbol lookup error: ./libecho.so: undefined symbol: global_variable
 </pre>
 
 <p>
 以上面一节代码为例，看看echo.cc是如何使用global_variable的：
 </p>
-<pre class="example" id="orgbe857d4">
+<pre class="example" id="orge013c87">
 000004f7 &lt;__i686.get_pc_thunk.bx&gt;:
  4f7:   8b 1c 24                mov    (%esp),%ebx
  4fa:   c3                      ret
@@ -478,11 +478,11 @@ PLT是指过程链接表(procedure linkage table).函数调用需要PLT和GOT配
 <p>
 为了验证0x15fc确实是.dynamic节的地址：
 </p>
-<pre class="example" id="orgdec9e0d">
+<pre class="example" id="org26f217e">
 [20] .dynamic          DYNAMIC         000015fc 0005fc 0000d8 08  WA  4   0  4
 </pre>
 
-<pre class="example" id="org0fafbab">
+<pre class="example" id="orgf4b1489">
 000003c8 &lt;__gmon_start__@plt-0x10&gt;:
  3c8:   ff b3 04 00 00 00       pushl  0x4(%ebx) //GOT[1]
  3ce:   ff a3 08 00 00 00       jmp    *0x8(%ebx) //GOT[2]

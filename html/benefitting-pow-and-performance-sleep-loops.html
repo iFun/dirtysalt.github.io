@@ -63,29 +63,29 @@ Skylake 140 140
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">ATTEMPT_AGAIN:
-  if (!acquire_lock())
+<pre class="src src-C++"><span class="org-constant">ATTEMPT_AGAIN</span>:
+  <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>acquire_lock())
   {
-    /* Spin on pause max_spin_count times before backing off to sleep */
-    for(int j = 0; j &lt; max_spin_count; ++j)
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Spin on pause max_spin_count times before backing off to sleep</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">j</span> = 0; j &lt; max_spin_count; ++j)
     {
-      /* pause intrinsic */
+      <span class="org-comment-delimiter">/* </span><span class="org-comment">pause intrinsic</span><span class="org-comment-delimiter"> */</span>
       _mm_pause();
-      if (read_volatile_lock())
+      <span class="org-keyword">if</span> (read_volatile_lock())
       {
-        if (acquire_lock())
+        <span class="org-keyword">if</span> (acquire_lock())
 
         {
-          goto PROTECTED_CODE;
+          <span class="org-keyword">goto</span> <span class="org-constant">PROTECTED_CODE</span>;
         }
       }
     }
 
-    /* Pause loop didn't work, sleep now */
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Pause loop didn't work, sleep now</span><span class="org-comment-delimiter"> */</span>
     Sleep(0);
-    goto ATTEMPT_AGAIN;
+    <span class="org-keyword">goto</span> <span class="org-constant">ATTEMPT_AGAIN</span>;
   }
-PROTECTED_CODE:
+<span class="org-constant">PROTECTED_CODE</span>:
   get_work();
   release_lock();
   do_work();

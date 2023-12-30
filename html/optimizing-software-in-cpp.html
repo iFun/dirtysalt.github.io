@@ -373,15 +373,15 @@ Obstacles to optimization by compiler
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// Example 8.21
-void Func1 (int a[], int * p) {
-  int i;
-  for (i = 0; i &lt; 100; i++) {
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">Example 8.21</span>
+<span class="org-type">void</span> <span class="org-function-name">Func1</span> (<span class="org-type">int</span> <span class="org-variable-name">a</span>[], <span class="org-type">int</span> * <span class="org-variable-name">p</span>) {
+  <span class="org-type">int</span> <span class="org-variable-name">i</span>;
+  <span class="org-keyword">for</span> (i = 0; i &lt; 100; i++) {
     a[i] = *p + 2;
   }
 }
-void Func2() {
-  int list[100];
+<span class="org-type">void</span> <span class="org-function-name">Func2</span>() {
+  <span class="org-type">int</span> <span class="org-variable-name">list</span>[100];
   Func1(list, &amp;list[8]);
 }
 </pre>
@@ -562,21 +562,21 @@ In 64-bit mode or when the SSE2 instruction set is enabled there is no differenc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// Example 14.19
-static inline int lrint (double const x) { // Round to nearest integer
-int n;
-#if defined(__unix__) || defined(__GNUC__)
-// 32-bit Linux, Gnu/AT&amp;T syntax:
-__asm ("fldl %1 \n fistpl %0 " : "=m"(n) : "m"(x) : "memory" ); #else
-// 32-bit Windows, Intel/MASM syntax: __asm fld qword ptr x;
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">Example 14.19</span>
+<span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">int</span> <span class="org-function-name">lrint</span> (<span class="org-type">double</span> <span class="org-keyword">const</span> <span class="org-variable-name">x</span>) { <span class="org-comment-delimiter">// </span><span class="org-comment">Round to nearest integer</span>
+<span class="org-type">int</span> <span class="org-variable-name">n</span>;
+<span class="org-preprocessor">#if</span> <span class="org-preprocessor">defined</span>(__unix__) || <span class="org-preprocessor">defined</span>(__GNUC__)
+<span class="org-comment-delimiter">// </span><span class="org-comment">32-bit Linux, Gnu/AT&amp;T syntax:</span>
+__asm (<span class="org-string">"fldl %1 \n fistpl %0 "</span> : <span class="org-string">"=m"</span>(n) : <span class="org-string">"m"</span>(x) : <span class="org-string">"memory"</span> ); #<span class="org-keyword">else</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">32-bit Windows, Intel/MASM syntax: __asm fld qword ptr x;</span>
 __asm fistp dword ptr n;
-    #endif
-       return n;
+<span class="org-preprocessor">    #endif</span>
+       <span class="org-keyword">return</span> n;
 }
 
-// Example 14.21. // Only for SSE2 or x64 #include &lt;emmintrin.h&gt;
-static inline int lrintf (float const x) { return _mm_cvtss_si32(_mm_load_ss(&amp;x));}
-static inline int lrint (double const x) { return _mm_cvtsd_si32(_mm_load_sd(&amp;x));}
+<span class="org-comment-delimiter">// </span><span class="org-comment">Example 14.21. // Only for SSE2 or x64 #include &lt;emmintrin.h&gt;</span>
+<span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">int</span> <span class="org-function-name">lrintf</span> (<span class="org-type">float</span> <span class="org-keyword">const</span> <span class="org-variable-name">x</span>) { <span class="org-keyword">return</span> _mm_cvtss_si32(_mm_load_ss(&amp;x));}
+<span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">int</span> <span class="org-function-name">lrint</span> (<span class="org-type">double</span> <span class="org-keyword">const</span> <span class="org-variable-name">x</span>) { <span class="org-keyword">return</span> _mm_cvtsd_si32(_mm_load_sd(&amp;x));}
 </pre>
 </div>
 

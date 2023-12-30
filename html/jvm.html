@@ -103,7 +103,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </ul>
 
 
-<div id="org195e58c" class="figure">
+<div id="org2665fc2" class="figure">
 <p><img src="../images/Pasted-Image-20231225104500.png" alt="Pasted-Image-20231225104500.png" />
 </p>
 </div>
@@ -304,7 +304,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 以下是一些配置参数：
 </p>
 
-<pre class="example" id="org5d236d1">
+<pre class="example" id="orgbdddecf">
 -XX:+UseSerialGC 年轻代和老年代都用串行收集器
 -XX:+UseParNewGC 年轻代使用 ParNew，老年代使用 Serial Old
 -XX:+UseParallelGC 年轻代使用 ParallerGC，老年代使用 Serial Old
@@ -315,7 +315,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 </pre>
 
 
-<div id="org625ca7e" class="figure">
+<div id="orgc3f83ba" class="figure">
 <p><img src="../images/Pasted-Image-20231225105340.png" alt="Pasted-Image-20231225105340.png" />
 </p>
 </div>
@@ -334,7 +334,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 线上使用最多的垃圾回收器，就有 CMS 和 G1，以及 Java8 默认的 Parallel Scavenge。
 </p>
 
-<pre class="example" id="org7f9a6fa">
+<pre class="example" id="org1408e1b">
 CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。

@@ -32,8 +32,8 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 普通实现版本如下：
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">for (auto i = start_offset; i &lt; to; ++i) {
-    if (f_data[i]) {
+<pre class="src src-C++"><span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">i</span> = start_offset; i &lt; to; ++i) {
+    <span class="org-keyword">if</span> (f_data[i]) {
         *(data + result_offset) = *(data + i);
         result_offset++;
     }
@@ -59,17 +59,17 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">        if (mask == 0) {
-            // all no hit, pass
-        } else if (mask == 0xffffffff) {
-            // all hit, copy all
+<pre class="src src-C++">        <span class="org-keyword">if</span> (mask == 0) {
+            <span class="org-comment-delimiter">// </span><span class="org-comment">all no hit, pass</span>
+        } <span class="org-keyword">else</span> <span class="org-keyword">if</span> (mask == 0xffffffff) {
+            <span class="org-comment-delimiter">// </span><span class="org-comment">all hit, copy all</span>
             memmove(data + result_offset, data + start_offset, kBatchNums * data_type_size);
             result_offset += kBatchNums;
-        } else {
-#define BITMASK_COPY(mask)                                            \
+        } <span class="org-keyword">else</span> {
+<span class="org-preprocessor">#define</span> <span class="org-function-name">BITMASK_COPY</span>(<span class="org-variable-name">mask</span>)                                            \
     {                                                                 \
-        phmap::priv::BitMask&lt;uint32_t, 32&gt; bitmask(mask);             \
-        for (auto idx : bitmask) {                                    \
+        <span class="org-constant">phmap</span>::<span class="org-constant">priv</span>::BitMask&lt;uint32_t, 32&gt; bitmask(mask);             \
+        <span class="org-keyword">for</span> (<span class="org-keyword">auto</span> <span class="org-variable-name">idx</span> : bitmask) {                                    \
             *(data + result_offset++) = *(data + start_offset + idx); \
         }                                                             \
     }
@@ -89,10 +89,10 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#define BRANCHLESS_COPY()                  \
+<pre class="src src-C++"><span class="org-preprocessor">#define</span> <span class="org-function-name">BRANCHLESS_COPY</span>()                  \
     {                                      \
-        int j = start_offset;              \
-        for (int i = 0; i &lt; 32; i++) {     \
+        <span class="org-type">int</span> <span class="org-variable-name">j</span> = start_offset;              \
+        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; 32; i++) {     \
             data[result_offset] = data[j]; \
             result_offset += f_data[j];    \
             j += 1;                        \
@@ -106,12 +106,12 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#define AVX512_COPY(SHIFT, MASK, WIDTH)                                         \
+<pre class="src src-C++"><span class="org-preprocessor">#define</span> <span class="org-function-name">AVX512_COPY</span>(<span class="org-variable-name">SHIFT</span>, <span class="org-variable-name">MASK</span>, <span class="org-variable-name">WIDTH</span>)                                         \
     {                                                                           \
-        auto m = (mask &gt;&gt; SHIFT) &amp; MASK;                                        \
-        if (m) {                                                                \
-            __m512i dst;                                                        \
-            __m512i src = _mm512_loadu_epi##WIDTH(data + start_offset + SHIFT); \
+        <span class="org-keyword">auto</span> <span class="org-variable-name">m</span> = (mask &gt;&gt; SHIFT) &amp; MASK;                                        \
+        <span class="org-keyword">if</span> (m) {                                                                \
+            <span class="org-type">__m512i</span> <span class="org-variable-name">dst</span>;                                                        \
+            <span class="org-type">__m512i</span> <span class="org-variable-name">src</span> = _mm512_loadu_epi##WIDTH(data + start_offset + SHIFT); \
             dst = _mm512_mask_compress_epi##WIDTH(dst, m, src);                 \
             _mm512_storeu_epi##WIDTH(data + result_offset, dst);                \
             result_offset += __builtin_popcount(m);                             \
@@ -125,21 +125,21 @@ benchmark代码放在 <a href="https://github.com/dirtysalt/codes/blob/master/cc
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#define AVX512_ASM_COPY(SHIFT, MASK, WIDTH, WIDTHX)               \
+<pre class="src src-C++"><span class="org-preprocessor">#define</span> <span class="org-function-name">AVX512_ASM_COPY</span>(<span class="org-variable-name">SHIFT</span>, <span class="org-variable-name">MASK</span>, <span class="org-variable-name">WIDTH</span>, <span class="org-variable-name">WIDTHX</span>)               \
     {                                                             \
-        auto m = (mask &gt;&gt; SHIFT) &amp; MASK;                          \
-        if (m) {                                                  \
-            T* src = data + start_offset + SHIFT;                 \
-            T* dst = data + result_offset;                        \
-            __asm__ volatile("vmovdqu" #WIDTH                     \
-                             " (%[s]), %%zmm1\n"                  \
-                             "kmovw %[mask], %%k1\n"              \
-                             "vpcompress" #WIDTHX                 \
-                             " %%zmm1, %%zmm0%{%%k1%}%{z%}\n"     \
-                             "vmovdqu" #WIDTH " %%zmm0, (%[d])\n" \
-                             : [ s ] "+r"(src), [ d ] "+r"(dst)   \
-                             : [ mask ] "r"(m)                    \
-                             : "zmm0", "zmm1", "memory");         \
+        <span class="org-keyword">auto</span> <span class="org-variable-name">m</span> = (mask &gt;&gt; SHIFT) &amp; MASK;                          \
+        <span class="org-keyword">if</span> (m) {                                                  \
+            <span class="org-type">T</span>* <span class="org-variable-name">src</span> = data + start_offset + SHIFT;                 \
+            <span class="org-type">T</span>* <span class="org-variable-name">dst</span> = data + result_offset;                        \
+            <span class="org-keyword">__asm__</span> <span class="org-keyword">volatile</span>(<span class="org-string">"vmovdqu"</span> #WIDTH                     \
+                             <span class="org-string">" (%[s]), %%zmm1\n"</span>                  \
+                             <span class="org-string">"kmovw %[mask], %%k1\n"</span>              \
+                             <span class="org-string">"vpcompress"</span> #WIDTHX                 \
+                             <span class="org-string">" %%zmm1, %%zmm0%{%%k1%}%{z%}\n"</span>     \
+                             <span class="org-string">"vmovdqu"</span> #WIDTH <span class="org-string">" %%zmm0, (%[d])\n"</span> \
+                             : [ <span class="org-constant">s</span> ] <span class="org-string">"+r"</span>(src), [ <span class="org-constant">d</span> ] <span class="org-string">"+r"</span>(dst)   \
+                             : [ <span class="org-constant">mask</span> ] <span class="org-string">"r"</span>(m)                    \
+                             : <span class="org-string">"zmm0"</span>, <span class="org-string">"zmm1"</span>, <span class="org-string">"memory"</span>);         \
             result_offset += __builtin_popcount(m);               \
         }                                                         \
     }
@@ -166,7 +166,7 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </ul>
 
 
-<div id="orga6ea77b" class="figure">
+<div id="org1d3f0c2" class="figure">
 <p><img src="../images/Pasted-Image-20231225105112.png" alt="Pasted-Image-20231225105112.png" />
 </p>
 </div>
@@ -181,13 +181,13 @@ benchmark里面，我根据期望生成了不同的filter. 比如 `branchless/16
 </ol>
 
 
-<div id="orgf710b90" class="figure">
+<div id="org2be7689" class="figure">
 <p><img src="../images/Pasted-Image-20231225105108.png" alt="Pasted-Image-20231225105108.png" />
 </p>
 </div>
 
 
-<div id="orge3e9e31" class="figure">
+<div id="orgb219356" class="figure">
 <p><img src="../images/Pasted-Image-20231225105124.png" alt="Pasted-Image-20231225105124.png" />
 </p>
 </div>

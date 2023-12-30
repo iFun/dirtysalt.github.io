@@ -106,8 +106,8 @@ for st in range(ST):
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">for (int t = can; t; t = (t-1)&amp;can) {
-    if (__builtin_popcount(t) &gt; k) continue;
+<pre class="src src-C++"><span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">t</span> = can; t; t = (t-1)&amp;can) {
+    <span class="org-keyword">if</span> (__builtin_popcount(t) &gt; k) <span class="org-keyword">continue</span>;
     f[s|t] = min(f[s|t], f[s]+1);
 }
 </pre>

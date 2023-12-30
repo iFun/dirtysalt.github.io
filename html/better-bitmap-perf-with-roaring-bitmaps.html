@@ -31,7 +31,7 @@ When compressing a sparse bitmap, e.g., corresponding to the set {0, 2(w − 1),
 </p>
 
 
-<div id="org516cac0" class="figure">
+<div id="org1cb0668" class="figure">
 <p><img src="../images/Pasted-Image-20231225104545.png" alt="Pasted-Image-20231225104545.png" />
 </p>
 </div>
@@ -41,7 +41,7 @@ When compressing a sparse bitmap, e.g., corresponding to the set {0, 2(w − 1),
 </p>
 
 
-<div id="org630c5a5" class="figure">
+<div id="orgc123f85" class="figure">
 <p><img src="../images/Pasted-Image-20231225103824.png" alt="Pasted-Image-20231225103824.png" />
 </p>
 </div>
@@ -51,17 +51,17 @@ When compressing a sparse bitmap, e.g., corresponding to the set {0, 2(w − 1),
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">void foo(int x) {
-    while (x) {
-        int t = x &amp; -x; // 只留下最低1位的1
-        printf("%d\n", __builtin_popcount(t-1));
-        x = x &amp; (x-1); // 清楚最低1位的1
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">foo</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>) {
+    <span class="org-keyword">while</span> (x) {
+        <span class="org-type">int</span> <span class="org-variable-name">t</span> = x &amp; -x; <span class="org-comment-delimiter">// </span><span class="org-comment">&#21482;&#30041;&#19979;&#26368;&#20302;1&#20301;&#30340;1</span>
+        printf(<span class="org-string">"%d\n"</span>, __builtin_popcount(t-1));
+        x = x &amp; (x-1); <span class="org-comment-delimiter">// </span><span class="org-comment">&#28165;&#26970;&#26368;&#20302;1&#20301;&#30340;1</span>
     }
 }
 
-void bar(int x) {
-    while (x) {
-        printf("%d\n", __builtin_ctz(x));
+<span class="org-type">void</span> <span class="org-function-name">bar</span>(<span class="org-type">int</span> <span class="org-variable-name">x</span>) {
+    <span class="org-keyword">while</span> (x) {
+        printf(<span class="org-string">"%d\n"</span>, __builtin_ctz(x));
         x = x &amp; (x-1);
     }
 }

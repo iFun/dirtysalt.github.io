@@ -20,7 +20,7 @@
 这题细想一下的话，可以知道是个矩阵运算。假设有4行的话，那么矩阵就是这样的：
 </p>
 
-<pre class="example" id="orgc685178">
+<pre class="example" id="org76bd037">
    0  1  2  3
 0  x  x  o  o
 1  x  x  x  o
@@ -62,54 +62,54 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">class Solution:
-    def electricityExperiment(self, row: int, col: int, position: List[List[int]]) -&gt; int:
+<pre class="src src-C++"><span class="org-keyword">class</span> <span class="org-type">Solution</span>:
+    <span class="org-type">def</span> electricityExperiment(self, row: <span class="org-type">int</span>, col: <span class="org-type">int</span>, position: List[List[<span class="org-type">int</span>]]) -&gt; <span class="org-type">int</span>:
         MOD = 10 ** 9 + 7
 
         def make_unit():
-            mat = [[0] * row for _ in range(row)]
-            for i in range(row):
-                if i &gt; 0:
+            mat = [[0] * row <span class="org-keyword">for</span> _ in range(row)]
+            <span class="org-keyword">for</span> i in range(row):
+                <span class="org-keyword">if</span> i &gt; 0:
                     mat[i][i - 1] = 1
                 mat[i][i] = 1
-                if (i + 1) &lt; row:
+                <span class="org-keyword">if</span> (i + 1) &lt; row:
                     mat[i][i + 1] = 1
-            return mat
+            <span class="org-keyword">return</span> mat
 
         def mat_mul(a, b):
             R, K, C = len(a), len(a[0]), len(b[0])
-            res = [[0] * C for _ in range(R)]
-            for k in range(K):
-                for i in range(R):
-                    for j in range(C):
+            res = [[0] * C <span class="org-keyword">for</span> _ in range(R)]
+            <span class="org-keyword">for</span> k in range(K):
+                <span class="org-keyword">for</span> i in range(R):
+                    <span class="org-keyword">for</span> j in range(C):
                         res[i][j] += (a[i][k] * b[k][j]) % MOD
                         res[i][j] %= MOD
-            return res
+            <span class="org-keyword">return</span> res
 
-        cache = [None] * 32
+        cache = [<span class="org-constant">None</span>] * 32
         cache[0] = make_unit()
-        for i in range(1, len(cache)):
+        <span class="org-keyword">for</span> i in range(1, len(cache)):
             cache[i] = mat_mul(cache[i - 1], cache[i - 1])
 
-        def solve(r0, r1, step):
-            b = [[0] * 1 for _ in range(row)]
+        <span class="org-type">def</span> <span class="org-function-name">solve</span>(r0, r1, step):
+            b = [[0] * 1 <span class="org-keyword">for</span> _ in range(row)]
             b[r0][0] = 1
-            for i in range(32):
-                if (step &gt;&gt; i) &amp; 0x1:
+            <span class="org-keyword">for</span> i in range(32):
+                <span class="org-keyword">if</span> (step &gt;&gt; i) &amp; 0x1:
                     b = mat_mul(cache[i], b)
-            return b[r1][0]
+            <span class="org-keyword">return</span> b[r1][0]
 
-        position = [(r, c) for (r, c) in position]
+        position = [(r, c) <span class="org-keyword">for</span> (r, c) <span class="org-type">in</span> <span class="org-variable-name">position</span>]
         position.sort(key=lambda x: x[1])
         ans = 1
-        for i in range(1, len(position)):
+        <span class="org-keyword">for</span> i in range(1, len(position)):
             r0, c0 = position[i - 1]
             r1, c1 = position[i]
             res = solve(r0, r1, c1 - c0)
             ans = (ans * res) % MOD
-            if ans == 0:
-                break
-        return ans
+            <span class="org-keyword">if</span> ans == 0:
+                <span class="org-keyword">break</span>
+        <span class="org-keyword">return</span> ans
 </pre>
 </div>
 </div>

@@ -640,18 +640,18 @@ Here’s why we strongly recommend that you tell your interviewer that you’ve 
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;vector&gt;
-using namespace std;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-class Solution {
-public:
-    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        vector&lt;vector&lt;int&gt;&gt;&amp; m = matrix;
-        int N = matrix.size();
-        for(int r = 0; r &lt; N/2; r++) {
-            int end = N - 1 - r;
-            for(int c = r; c &lt; end; c++) {
-                int tmp = m[r][c];
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">void</span> <span class="org-function-name">rotate</span>(<span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">matrix</span>) {
+        <span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">m</span> = matrix;
+        <span class="org-type">int</span> <span class="org-variable-name">N</span> = matrix.size();
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> = 0; r &lt; N/2; r++) {
+            <span class="org-type">int</span> <span class="org-variable-name">end</span> = N - 1 - r;
+            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">c</span> = r; c &lt; end; c++) {
+                <span class="org-type">int</span> <span class="org-variable-name">tmp</span> = m[r][c];
                 m[r][c] = m[N-1-c][r];
                 m[N-1-c][r] = m[N-1-r][N-1-c];
                 m[N-1-r][N-1-c] = m[c][N-1-r];
@@ -668,33 +668,33 @@ public:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;cstdio&gt;
-#include &lt;vector&gt;
-using namespace std;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-class Solution {
-public:
-    void setZeroes(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) {
-        int odd = 78392356;
-        for(int r = 0; r &lt; matrix.size(); r++) {
-            for (int c = 0; c &lt; matrix[r].size(); c++) {
-                if (matrix[r][c] == 0) {
-                    for(int k = 0; k &lt; matrix.size(); k++) {
-                        if(matrix[k][c] != 0) {
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">void</span> <span class="org-function-name">setZeroes</span>(<span class="org-type">vector</span>&lt;<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&gt;&amp; <span class="org-variable-name">matrix</span>) {
+        <span class="org-type">int</span> <span class="org-variable-name">odd</span> = 78392356;
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> = 0; r &lt; matrix.size(); r++) {
+            <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">c</span> = 0; c &lt; matrix[r].size(); c++) {
+                <span class="org-keyword">if</span> (matrix[r][c] == 0) {
+                    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 0; k &lt; matrix.size(); k++) {
+                        <span class="org-keyword">if</span>(matrix[k][c] != 0) {
                             matrix[k][c] = odd;
                         }
                     }
-                    for(int k = 0; k &lt; matrix[0].size();k++) {
-                        if (matrix[r][k] != 0) {
+                    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 0; k &lt; matrix[0].size();k++) {
+                        <span class="org-keyword">if</span> (matrix[r][k] != 0) {
                             matrix[r][k] = odd;
                         }
                     }
                 }
             }
         }
-        for(int r =0; r &lt; matrix.size(); r++) {
-            for(int c = 0; c &lt; matrix[r].size();c ++) {
-                if(matrix[r][c] == odd) {
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">r</span> =0; r &lt; matrix.size(); r++) {
+            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">c</span> = 0; c &lt; matrix[r].size();c ++) {
+                <span class="org-keyword">if</span>(matrix[r][c] == odd) {
                     matrix[r][c] = 0;
                 }
             }
@@ -739,37 +739,37 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;cstdio&gt;
-struct ListNode {
-    ListNode* next;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-keyword">struct</span> <span class="org-type">ListNode</span> {
+    <span class="org-type">ListNode</span>* <span class="org-variable-name">next</span>;
 };
 
-class Solution {
-public:
-    ListNode* detectCycle(ListNode* head) {
-        ListNode* p0 = head, *p1 = head;
-        bool cycle = false;
-        while(p0 != NULL &amp;&amp; p1 != NULL) {
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">ListNode</span>* <span class="org-function-name">detectCycle</span>(<span class="org-type">ListNode</span>* <span class="org-variable-name">head</span>) {
+        <span class="org-type">ListNode</span>* <span class="org-variable-name">p0</span> = head, *<span class="org-variable-name">p1</span> = head;
+        <span class="org-type">bool</span> <span class="org-variable-name">cycle</span> = <span class="org-constant">false</span>;
+        <span class="org-keyword">while</span>(p0 != <span class="org-constant">NULL</span> &amp;&amp; p1 != <span class="org-constant">NULL</span>) {
             p0 = p0-&gt;next;
             p1 = p1-&gt;next;
-            if (p1 == NULL) {
-                return NULL;
+            <span class="org-keyword">if</span> (p1 == <span class="org-constant">NULL</span>) {
+                <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
             }
             p1 = p1-&gt;next;
-            if (p0 == p1) {
-                cycle = true;
-                break;
+            <span class="org-keyword">if</span> (p0 == p1) {
+                cycle = <span class="org-constant">true</span>;
+                <span class="org-keyword">break</span>;
             }
         }
-        if(!cycle) {
-            return NULL;
+        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>cycle) {
+            <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
         }
         p0 = head;
-        while(p0 != p1) {
+        <span class="org-keyword">while</span>(p0 != p1) {
             p0 = p0-&gt;next;
             p1 = p1-&gt;next;
         }
-        return p1; // or p0
+        <span class="org-keyword">return</span> p1; <span class="org-comment-delimiter">// </span><span class="org-comment">or p0</span>
     }
 };
 </pre>
@@ -946,20 +946,20 @@ def checkBST(root):
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">
-boolean isValid(Node root) {
-    return isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+<pre class="src src-C++">
+<span class="org-type">boolean</span> <span class="org-function-name">isValid</span>(<span class="org-type">Node</span> <span class="org-variable-name">root</span>) {
+    <span class="org-keyword">return</span> isValidHelper(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
 }
-boolean isValidHelper(Node curr, int min, int max) {
-    if (curr.left != null) {
-        if (curr.left.value &lt; min || !isValidHelper(curr.left, min, curr.value))
-        return false;
+<span class="org-type">boolean</span> <span class="org-function-name">isValidHelper</span>(<span class="org-type">Node</span> <span class="org-variable-name">curr</span>, <span class="org-type">int</span> <span class="org-variable-name">min</span>, <span class="org-type">int</span> <span class="org-variable-name">max</span>) {
+    <span class="org-keyword">if</span> (curr.left != null) {
+        <span class="org-keyword">if</span> (curr.left.value &lt; min || <span class="org-negation-char">!</span>isValidHelper(curr.left, min, curr.value))
+        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
     }
-    if (curr.right != null) {
-        if (curr.right.value &gt; max || !isValidHelper(curr.right, curr.value, max))
-        return false;
+    <span class="org-keyword">if</span> (curr.right != null) {
+        <span class="org-keyword">if</span> (curr.right.value &gt; max || <span class="org-negation-char">!</span>isValidHelper(curr.right, curr.value, max))
+        <span class="org-keyword">return</span> <span class="org-constant">false</span>;
     }
-    return true;
+    <span class="org-keyword">return</span> <span class="org-constant">true</span>;
 }
 
 </pre>
@@ -972,42 +972,42 @@ boolean isValidHelper(Node curr, int min, int max) {
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;cstdio&gt;
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-keyword">struct</span> <span class="org-type">TreeNode</span> {
+    <span class="org-type">int</span> <span class="org-variable-name">val</span>;
+    <span class="org-type">TreeNode</span> *<span class="org-variable-name">left</span>;
+    <span class="org-type">TreeNode</span> *<span class="org-variable-name">right</span>;
 };
 
-class Solution {
-public:
-    TreeNode* find(TreeNode *root, TreeNode *p, TreeNode *q, int* covers) {
-        if (root == NULL) return NULL;
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">TreeNode</span>* <span class="org-function-name">find</span>(<span class="org-type">TreeNode</span> *<span class="org-variable-name">root</span>, <span class="org-type">TreeNode</span> *<span class="org-variable-name">p</span>, <span class="org-type">TreeNode</span> *<span class="org-variable-name">q</span>, <span class="org-type">int</span>* <span class="org-variable-name">covers</span>) {
+        <span class="org-keyword">if</span> (root == <span class="org-constant">NULL</span>) <span class="org-keyword">return</span> <span class="org-constant">NULL</span>;
 
-        int c = 0;
-        if((root == p) || (root == q))
+        <span class="org-type">int</span> <span class="org-variable-name">c</span> = 0;
+        <span class="org-keyword">if</span>((root == p) || (root == q))
             c += 1;
 
-        int c0 = 0, c1 = 0;
-        TreeNode *t0 = find(root-&gt;left, p, q, &amp;c0);
-        if (c0 == 2) {
+        <span class="org-type">int</span> <span class="org-variable-name">c0</span> = 0, <span class="org-variable-name">c1</span> = 0;
+        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t0</span> = find(root-&gt;left, p, q, &amp;c0);
+        <span class="org-keyword">if</span> (c0 == 2) {
             *covers = 2;
-            return t0;
+            <span class="org-keyword">return</span> t0;
         }
-        TreeNode *t1 = find(root-&gt;right, p, q, &amp;c1);
-        if (c1 == 2) {
+        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t1</span> = find(root-&gt;right, p, q, &amp;c1);
+        <span class="org-keyword">if</span> (c1 == 2) {
             *covers = 2;
-            return t1;
+            <span class="org-keyword">return</span> t1;
         }
         c += (c0 + c1);
         *covers = c;
-        return root;
+        <span class="org-keyword">return</span> root;
     }
 
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        int covers = 0;
-        TreeNode *t = find(root, p, q, &amp;covers);
-        return t;
+    <span class="org-type">TreeNode</span>* <span class="org-function-name">lowestCommonAncestor</span>(<span class="org-type">TreeNode</span>* <span class="org-variable-name">root</span>, <span class="org-type">TreeNode</span>* <span class="org-variable-name">p</span>, <span class="org-type">TreeNode</span>* <span class="org-variable-name">q</span>) {
+        <span class="org-type">int</span> <span class="org-variable-name">covers</span> = 0;
+        <span class="org-type">TreeNode</span> *<span class="org-variable-name">t</span> = find(root, p, q, &amp;covers);
+        <span class="org-keyword">return</span> t;
     }
 };
 </pre>
@@ -1019,7 +1019,7 @@ public:
 <h3 id="orgdf4bd70"><span class="section-number-3">7.5.</span> Bit Manipulation</h3>
 <div class="outline-text-3" id="text-7-5">
 
-<div id="org83cea9b" class="figure">
+<div id="orgb945b46" class="figure">
 <p><img src="../images/Pasted-Image-20231225104257.png" alt="Pasted-Image-20231225104257.png" />
 </p>
 </div>
@@ -1229,89 +1229,89 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;cstdio&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-using namespace std;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;algorithm&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-const int N = 100;
-const int R = 2;
-int dp[R][N+1][N+1];
+<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N</span> = 100;
+<span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">R</span> = 2;
+<span class="org-type">int</span> <span class="org-variable-name">dp</span>[R][N+1][N+1];
 
-int fill_dp(int t, int s, int e) {
-    if(s &gt; e) return 0;
-    if(dp[t][s][e] != 0) {
-        return dp[t][s][e];
+<span class="org-type">int</span> <span class="org-function-name">fill_dp</span>(<span class="org-type">int</span> <span class="org-variable-name">t</span>, <span class="org-type">int</span> <span class="org-variable-name">s</span>, <span class="org-type">int</span> <span class="org-variable-name">e</span>) {
+    <span class="org-keyword">if</span>(s &gt; e) <span class="org-keyword">return</span> 0;
+    <span class="org-keyword">if</span>(dp[t][s][e] != 0) {
+        <span class="org-keyword">return</span> dp[t][s][e];
     }
-    int v = -1;
-    for(int i = s; i &lt;= e; i++) {
-        int r = 1 + max(fill_dp(t, i + 1, e), dp[t-1][s][i-1]);
-        if(v == -1 || r &lt; v) {
+    <span class="org-type">int</span> <span class="org-variable-name">v</span> = -1;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = s; i &lt;= e; i++) {
+        <span class="org-type">int</span> <span class="org-variable-name">r</span> = 1 + max(fill_dp(t, i + 1, e), dp[t-1][s][i-1]);
+        <span class="org-keyword">if</span>(v == -1 || r &lt; v) {
             v = r;
         }
     }
     dp[t][s][e] = v;
-    return v;
+    <span class="org-keyword">return</span> v;
 }
 
-void solve() {
-    memset(dp, 0, sizeof(dp));
-    for(int i = 1; i &lt;= N; i++) {
-        for(int j = i; j &lt;= N; j++) {
+<span class="org-type">void</span> <span class="org-function-name">solve</span>() {
+    memset(dp, 0, <span class="org-keyword">sizeof</span>(dp));
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 1; i &lt;= N; i++) {
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">j</span> = i; j &lt;= N; j++) {
             dp[0][i][j] = (j - i + 1);
         }
     }
-    for(int t = 1; t &lt; R; t++) {
-        for(int s = 1; s &lt;= N; s++) {
-            for(int e = 1; e &lt;= N; e++) {
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">t</span> = 1; t &lt; R; t++) {
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">s</span> = 1; s &lt;= N; s++) {
+            <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">e</span> = 1; e &lt;= N; e++) {
                 fill_dp(t, s, e);
             }
         }
     }
 }
 
-void interpret() {
-    int t = R - 1;
-    int start = 1;
-    int end = N;
+<span class="org-type">void</span> <span class="org-function-name">interpret</span>() {
+    <span class="org-type">int</span> <span class="org-variable-name">t</span> = R - 1;
+    <span class="org-type">int</span> <span class="org-variable-name">start</span> = 1;
+    <span class="org-type">int</span> <span class="org-variable-name">end</span> = N;
 
-    int v = dp[t][start][end];
-    printf("at most %d\n", v);
+    <span class="org-type">int</span> <span class="org-variable-name">v</span> = dp[t][start][end];
+    printf(<span class="org-string">"at most %d\n"</span>, v);
 
-    vector&lt;int&gt; tries;
-    int s = start;
-    int c = 1;
+    <span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt; <span class="org-variable-name">tries</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">s</span> = start;
+    <span class="org-type">int</span> <span class="org-variable-name">c</span> = 1;
 
-    bool more = true;
-    while (more) {
-        more = false;
-        for(int i = s; i &lt;= end ; i++) {
-            // search first point that egg breaks.
-            // and to my intuition, there will be only one point.
-            if(v &lt;= (c + dp[t-1][s][i-1])) {
+    <span class="org-type">bool</span> <span class="org-variable-name">more</span> = <span class="org-constant">true</span>;
+    <span class="org-keyword">while</span> (more) {
+        more = <span class="org-constant">false</span>;
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = s; i &lt;= end ; i++) {
+            <span class="org-comment-delimiter">// </span><span class="org-comment">search first point that egg breaks.</span>
+            <span class="org-comment-delimiter">// </span><span class="org-comment">and to my intuition, there will be only one point.</span>
+            <span class="org-keyword">if</span>(v &lt;= (c + dp[t-1][s][i-1])) {
                 tries.push_back(i);
                 s = i + 1;
                 c++;
-                more = true;
-                break;
+                more = <span class="org-constant">true</span>;
+                <span class="org-keyword">break</span>;
             }
         }
     }
 
-    printf("tries are:\n");
-    for(int i = 0; i &lt; tries.size(); i++) {
-        printf("floor %d\n", tries[i]);
+    printf(<span class="org-string">"tries are:\n"</span>);
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; tries.size(); i++) {
+        printf(<span class="org-string">"floor %d\n"</span>, tries[i]);
     }
 }
 
-int main() {
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
     solve();
     interpret();
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -1379,39 +1379,39 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;vector&gt;
-using namespace std;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-class Solution {
-public:
-    void nextPermutation(vector&lt;int&gt;&amp; nums) {
-        if(nums.size() == 0) return;
-        // find swap position.
-        int i = nums.size() - 1;
-        for(;i &gt;= 1; i--) {
-            if(nums[i] &gt; nums[i-1]) {
-                break;
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">void</span> <span class="org-function-name">nextPermutation</span>(<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&amp; <span class="org-variable-name">nums</span>) {
+        <span class="org-keyword">if</span>(nums.size() == 0) <span class="org-keyword">return</span>;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">find swap position.</span>
+        <span class="org-type">int</span> <span class="org-variable-name">i</span> = nums.size() - 1;
+        <span class="org-keyword">for</span>(;i &gt;= 1; i--) {
+            <span class="org-keyword">if</span>(nums[i] &gt; nums[i-1]) {
+                <span class="org-keyword">break</span>;
             }
         }
-        if(i == 0) {
+        <span class="org-keyword">if</span>(i == 0) {
             sort(nums.begin(), nums.end());
-            return;
+            <span class="org-keyword">return</span>;
         }
-        // find another swap position.
-        int min_value = nums[i];
-        int min_index = i;
-        for (int j = i + 1; j &lt; nums.size(); j++) {
-            if (nums[j] &lt;= nums[i-1]) continue;
-            if (nums[j] &lt; min_value) {
+        <span class="org-comment-delimiter">// </span><span class="org-comment">find another swap position.</span>
+        <span class="org-type">int</span> <span class="org-variable-name">min_value</span> = nums[i];
+        <span class="org-type">int</span> <span class="org-variable-name">min_index</span> = i;
+        <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">j</span> = i + 1; j &lt; nums.size(); j++) {
+            <span class="org-keyword">if</span> (nums[j] &lt;= nums[i-1]) <span class="org-keyword">continue</span>;
+            <span class="org-keyword">if</span> (nums[j] &lt; min_value) {
                 min_value = nums[j];
                 min_index = j;
             }
         }
-        swap(nums[min_index], nums[i-1]);
+        swap(<span class="org-type">nums</span>[min_index], <span class="org-type">nums</span>[i-1]);
         sort(nums.begin() + i, nums.end());
     }
 };
@@ -1498,41 +1498,41 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">
-/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++">
+<span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;vector&gt;
-using namespace std;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-class Solution {
-public:
-    int search(vector&lt;int&gt;&amp; nums, int target) {
-        int size = nums.size();
-        int s = 0, e = size - 1;
-        while(s &lt;= e) {
-            int m = (s+e)/2;
-            if(nums[m] == target) return m;
-            if (target &gt; nums[m]) {
-                if (nums[m] &gt;= nums[s]) {
+<span class="org-keyword">class</span> <span class="org-type">Solution</span> {
+<span class="org-keyword">public</span>:
+    <span class="org-type">int</span> <span class="org-function-name">search</span>(<span class="org-type">vector</span>&lt;<span class="org-type">int</span>&gt;&amp; <span class="org-variable-name">nums</span>, <span class="org-type">int</span> <span class="org-variable-name">target</span>) {
+        <span class="org-type">int</span> <span class="org-variable-name">size</span> = nums.size();
+        <span class="org-type">int</span> <span class="org-variable-name">s</span> = 0, <span class="org-variable-name">e</span> = size - 1;
+        <span class="org-keyword">while</span>(s &lt;= e) {
+            <span class="org-type">int</span> <span class="org-variable-name">m</span> = (s+e)/2;
+            <span class="org-keyword">if</span>(nums[m] == target) <span class="org-keyword">return</span> m;
+            <span class="org-keyword">if</span> (target &gt; nums[m]) {
+                <span class="org-keyword">if</span> (nums[m] &gt;= nums[s]) {
                     s = m + 1;
-                } else if(target &gt;= nums[s]) {
+                } <span class="org-keyword">else</span> <span class="org-keyword">if</span>(target &gt;= nums[s]) {
                     e = m - 1;
-                } else {
+                } <span class="org-keyword">else</span> {
                     s = m + 1;
                 }
-            } else {
-                if (nums[m] &lt;= nums[s]) {
+            } <span class="org-keyword">else</span> {
+                <span class="org-keyword">if</span> (nums[m] &lt;= nums[s]) {
                     e = m - 1;
-                } else if(target &gt;= nums[s]) {
+                } <span class="org-keyword">else</span> <span class="org-keyword">if</span>(target &gt;= nums[s]) {
                     e = m - 1;
-                } else {
+                } <span class="org-keyword">else</span> {
                     s = m + 1;
                 }
             }
         }
-        return -1;
+        <span class="org-keyword">return</span> -1;
     }
 };
 </pre>
@@ -1737,47 +1737,47 @@ print('max size = {}'.format(max_size))
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;cstdio&gt;
-#include &lt;new&gt;
-#include &lt;vector&gt;
-using namespace std;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;new&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;vector&gt;</span>
+<span class="org-keyword">using</span> <span class="org-keyword">namespace</span> <span class="org-constant">std</span>;
 
-void* align_malloc(int size, int alignment) {
-    // sizeof(void*) + block(alignment-1) + block(size)
-    int extra_size = sizeof(void*) + alignment - 1;
-    void *p = malloc(extra_size);
-    // align
-    void *p1 = (void*)((size_t)p + extra_size);
-    void **p2 = (void**)((size_t)p1 &amp; (~(alignment - 1)));
-    // printf("p = %p, p1 = %p, p2 = %p\n", p, p1, p2);
+<span class="org-type">void</span>* <span class="org-function-name">align_malloc</span>(<span class="org-type">int</span> <span class="org-variable-name">size</span>, <span class="org-type">int</span> <span class="org-variable-name">alignment</span>) {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">sizeof(void*) + block(alignment-1) + block(size)</span>
+    <span class="org-type">int</span> <span class="org-variable-name">extra_size</span> = <span class="org-keyword">sizeof</span>(<span class="org-type">void</span>*) + alignment - 1;
+    <span class="org-type">void</span> *<span class="org-variable-name">p</span> = malloc(extra_size);
+    <span class="org-comment-delimiter">// </span><span class="org-comment">align</span>
+    <span class="org-type">void</span> *<span class="org-variable-name">p1</span> = (<span class="org-type">void</span>*)((<span class="org-type">size_t</span>)p + extra_size);
+    <span class="org-type">void</span> **<span class="org-variable-name">p2</span> = (<span class="org-type">void</span>**)((<span class="org-type">size_t</span>)p1 &amp; (~(alignment - 1)));
+    <span class="org-comment-delimiter">// </span><span class="org-comment">printf("p = %p, p1 = %p, p2 = %p\n", p, p1, p2);</span>
     p2[-1] = p;
-    return (void*)p2;
+    <span class="org-keyword">return</span> (<span class="org-type">void</span>*)p2;
 }
 
 
-void align_free(void *p) {
-    void **p1 = (void**)p;
+<span class="org-type">void</span> <span class="org-function-name">align_free</span>(<span class="org-type">void</span> *<span class="org-variable-name">p</span>) {
+    <span class="org-type">void</span> **<span class="org-variable-name">p1</span> = (<span class="org-type">void</span>**)p;
     free(p1[-1]);
 }
 
-int main() {
-    vector&lt;void*&gt; pts;
-    for(int size = 10; size &lt; 100; size += 5) {
-        for(int align = 16; align &lt;= 128; align *= 2) {
-            void *p = align_malloc(size, align);
-            size_t addr = (size_t)p;
-            if((addr % align) != 0) {
-                printf("!!! addr = %p, align = %d\n", p, align);
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    <span class="org-type">vector</span>&lt;<span class="org-type">void</span>*&gt; <span class="org-variable-name">pts</span>;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">size</span> = 10; size &lt; 100; size += 5) {
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">align</span> = 16; align &lt;= 128; align *= 2) {
+            <span class="org-type">void</span> *<span class="org-variable-name">p</span> = align_malloc(size, align);
+            <span class="org-type">size_t</span> <span class="org-variable-name">addr</span> = (<span class="org-type">size_t</span>)p;
+            <span class="org-keyword">if</span>((addr % align) != 0) {
+                printf(<span class="org-string">"!!! addr = %p, align = %d\n"</span>, p, align);
             }
             pts.push_back(p);
         }
     }
-    for(int i = 0; i &lt; pts.size(); i++) {
-        void* p = pts[i];
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; pts.size(); i++) {
+        <span class="org-type">void</span>* <span class="org-variable-name">p</span> = pts[i];
         align_free(p);
     }
 }
@@ -1856,12 +1856,12 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">int zeros(int n) {
-  int c = 0;
-  for(int k = 5; n &gt;= k; k *= 5) {
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-function-name">zeros</span>(<span class="org-type">int</span> <span class="org-variable-name">n</span>) {
+  <span class="org-type">int</span> <span class="org-variable-name">c</span> = 0;
+  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">k</span> = 5; n &gt;= k; k *= 5) {
     c += n / k;
   }
-  return c;
+  <span class="org-keyword">return</span> c;
 }
 </pre>
 </div>
@@ -1912,22 +1912,22 @@ Questions:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">/* coding:utf-8
- * Copyright (C) dirlt
- */
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">coding:utf-8</span>
+<span class="org-comment"> * Copyright (C) dirlt</span>
+<span class="org-comment-delimiter"> */</span>
 
-#include &lt;cstdio&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
 
-int add2(int a,int b) {
-    int sum = a ^ b;
-    int carry = (a &amp; b) &lt;&lt; 1;
-    if(carry == 0) return sum;
-    return add2(sum,carry);
+<span class="org-type">int</span> <span class="org-function-name">add2</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-type">int</span> <span class="org-variable-name">b</span>) {
+    <span class="org-type">int</span> <span class="org-variable-name">sum</span> = a ^ b;
+    <span class="org-type">int</span> <span class="org-variable-name">carry</span> = (a &amp; b) &lt;&lt; 1;
+    <span class="org-keyword">if</span>(carry == 0) <span class="org-keyword">return</span> sum;
+    <span class="org-keyword">return</span> add2(sum,carry);
 }
 
-int main() {
-    printf("%d\n",add2(190,70));
-    return 0;
+<span class="org-type">int</span> <span class="org-function-name">main</span>() {
+    printf(<span class="org-string">"%d\n"</span>,add2(190,70));
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -2070,32 +2070,32 @@ class MedianFinder:
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">int m[N][N];
-int dp[N][N]; // dp[s][e] = sum from (0,0) to (s,e).
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">m</span>[N][N];
+<span class="org-type">int</span> <span class="org-variable-name">dp</span>[N][N]; <span class="org-comment-delimiter">// </span><span class="org-comment">dp[s][e] = sum from (0,0) to (s,e).</span>
 
-int v = INT_MIN;
-for(int rs=0;rs&lt;N;rs++) {
-  for(int re=rs;re&lt;N;re++) {
-    for(int cs=0;cs&lt;N;cs++) {
-      for(int ce=0;ce&lt;N;ce++) {
-        int u = sum(rs,cs,re,ce);
-        if(u &gt; v) v = u;
+<span class="org-type">int</span> <span class="org-variable-name">v</span> = INT_MIN;
+<span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">rs</span>=0;rs&lt;N;rs++) {
+  <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">re</span>=rs;re&lt;N;re++) {
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">cs</span>=0;cs&lt;N;cs++) {
+      <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">ce</span>=0;ce&lt;N;ce++) {
+        <span class="org-type">int</span> <span class="org-variable-name">u</span> = sum(rs,cs,re,ce);
+        <span class="org-keyword">if</span>(u &gt; v) v = u;
       }
     }
   }
 }
 
-int X(int a,int b) {
-  if(a &lt; 0 || b &lt; 0) return 0;
-  return dp[a][b];
+<span class="org-type">int</span> <span class="org-function-name">X</span>(<span class="org-type">int</span> <span class="org-variable-name">a</span>,<span class="org-type">int</span> <span class="org-variable-name">b</span>) {
+  <span class="org-keyword">if</span>(a &lt; 0 || b &lt; 0) <span class="org-keyword">return</span> 0;
+  <span class="org-keyword">return</span> dp[a][b];
 }
 
-int sum(int rs,int cs,int re,int ce) {
-  int a = X(rs-1,cs-1);
-  int b = X(rs-1,ce) - X(rs-1,cs-1);
-  int c = X(re,cs-1) - X(rs-1,cs-1);
-  int d = X(re,ce);
-  return d - a - b - c;
+<span class="org-type">int</span> <span class="org-function-name">sum</span>(<span class="org-type">int</span> <span class="org-variable-name">rs</span>,<span class="org-type">int</span> <span class="org-variable-name">cs</span>,<span class="org-type">int</span> <span class="org-variable-name">re</span>,<span class="org-type">int</span> <span class="org-variable-name">ce</span>) {
+  <span class="org-type">int</span> <span class="org-variable-name">a</span> = X(rs-1,cs-1);
+  <span class="org-type">int</span> <span class="org-variable-name">b</span> = X(rs-1,ce) - X(rs-1,cs-1);
+  <span class="org-type">int</span> <span class="org-variable-name">c</span> = X(re,cs-1) - X(rs-1,cs-1);
+  <span class="org-type">int</span> <span class="org-variable-name">d</span> = X(re,ce);
+  <span class="org-keyword">return</span> d - a - b - c;
 }
 
 </pre>

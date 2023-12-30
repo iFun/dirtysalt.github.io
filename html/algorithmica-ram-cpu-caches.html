@@ -47,16 +47,16 @@ You can compare it with your own hardware by running dmidecode -t cache or lshw 
 </p>
 
 
-<div id="orgf3cb5e8" class="figure">
+<div id="orge6da1a8" class="figure">
 <p><img src="../images/Pasted-Image-20231225105245.png" alt="Pasted-Image-20231225105245.png" />
 </p>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">const __m256i zeros = _mm256_set1_epi32(0);
+<pre class="src src-C++"><span class="org-keyword">const</span> <span class="org-type">__m256i</span> <span class="org-variable-name">zeros</span> = _mm256_set1_epi32(0);
 
-for (int i = 0; i + 7 &lt; N; i += 8)
-    _mm256_stream_si256((__m256i*) &amp;a[i], zeros);
+<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i + 7 &lt; N; i += 8)
+    _mm256_stream_si256((<span class="org-type">__m256i</span>*) &amp;a[i], zeros);
 </pre>
 </div>
 
@@ -86,20 +86,20 @@ memory latency相对比较好测量，使用的技术可以是pointer-chasing技
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">int p[N], q[N];
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">p</span>[N], <span class="org-variable-name">q</span>[N];
 
-// generating a random permutation
+<span class="org-comment-delimiter">// </span><span class="org-comment">generating a random permutation</span>
 iota(p, p + N, 0);
 random_shuffle(p, p + N);
 
-// this permutation may contain multiple cycles,
-// so instead we use it to construct another permutation with a single cycle
-int k = p[N - 1];
-for (int i = 0; i &lt; N; i++)
+<span class="org-comment-delimiter">// </span><span class="org-comment">this permutation may contain multiple cycles,</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">so instead we use it to construct another permutation with a single cycle</span>
+<span class="org-type">int</span> <span class="org-variable-name">k</span> = p[N - 1];
+<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; i++)
     k = q[k] = p[i];
 
-for (int t = 0; t &lt; K; t++)
-    for (int i = 0; i &lt; N; i++)
+<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">t</span> = 0; t &lt; K; t++)
+    <span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; N; i++)
         k = q[k];
 </pre>
 </div>
@@ -114,13 +114,13 @@ for (int t = 0; t &lt; K; t++)
 </ol>
 
 
-<div id="org8c07a17" class="figure">
+<div id="orgce8e016" class="figure">
 <p><img src="../images/Pasted-Image-20231225105249.png" alt="Pasted-Image-20231225105249.png" />
 </p>
 </div>
 
 
-<div id="orgc0d5ec8" class="figure">
+<div id="org93798ed" class="figure">
 <p><img src="../images/Pasted-Image-20231225105231.png" alt="Pasted-Image-20231225105231.png" />
 </p>
 </div>
@@ -142,7 +142,7 @@ The important practical lesson when designing and analyzing memory-bound algorit
 </p>
 
 
-<div id="org3baf703" class="figure">
+<div id="org3be240b" class="figure">
 <p><img src="../images/Pasted-Image-20231225105227.png" alt="Pasted-Image-20231225105227.png" />
 </p>
 </div>
@@ -177,7 +177,7 @@ hardware prefetch几乎是没有性能回退的，因为它只有在memory/cache
 </p>
 
 
-<div id="org31fdf89" class="figure">
+<div id="orgfbcbc9c" class="figure">
 <p><img src="../images/Pasted-Image-20231225105149.png" alt="Pasted-Image-20231225105149.png" />
 </p>
 </div>
@@ -199,16 +199,16 @@ memory paging的page size对于TLB影响很大，通常有2级TLB分别是64, 20
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">const int N = (1 &lt;&lt; 13);
-int a[D * N];
+<pre class="src src-C++"><span class="org-keyword">const</span> <span class="org-type">int</span> <span class="org-variable-name">N</span> = (1 &lt;&lt; 13);
+<span class="org-type">int</span> <span class="org-variable-name">a</span>[D * N];
 
-for (int i = 0; i &lt; D * N; i += D)
+<span class="org-keyword">for</span> (<span class="org-type">int</span> <span class="org-variable-name">i</span> = 0; i &lt; D * N; i += D)
     a[i] += 1;
 </pre>
 </div>
 
 
-<div id="orgfdd2129" class="figure">
+<div id="org3d68e5a" class="figure">
 <p><img src="../images/Pasted-Image-20231225105139.png" alt="Pasted-Image-20231225105139.png" />
 </p>
 </div>
@@ -247,12 +247,12 @@ That said, you shouldn’t rely on huge pages if possible, as they aren’t alwa
 </blockquote>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// $ cat /sys/kernel/mm/transparent_hugepage/enabled
-// always [madvise] never
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">$ cat /sys/kernel/mm/transparent_hugepage/enabled</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">always [madvise] never</span>
 
-#include &lt;sys/mman.h&gt;
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/mman.h&gt;</span>
 
-void *ptr = std::aligned_alloc(page_size, array_size);
+<span class="org-type">void</span> *<span class="org-variable-name">ptr</span> = <span class="org-constant">std</span>::aligned_alloc(page_size, array_size);
 madvise(ptr, array_size, MADV_HUGEPAGE);
 </pre>
 </div>
@@ -264,7 +264,7 @@ madvise(ptr, array_size, MADV_HUGEPAGE);
 </p>
 
 
-<div id="org9663430" class="figure">
+<div id="org1243003" class="figure">
 <p><img src="../images/Pasted-Image-20231225105205.png" alt="Pasted-Image-20231225105205.png" />
 </p>
 </div>

@@ -46,8 +46,8 @@
 <li><a href="#orgc16dc9c">2.2. socket</a></li>
 <li><a href="#org07bed96">2.3. connect</a>
 <ul>
-<li><a href="#orgcb0cab3">2.3.1. 使用说明</a></li>
-<li><a href="#org91b7b71">2.3.2. 非阻塞</a></li>
+<li><a href="#orgc8c159c">2.3.1. 使用说明</a></li>
+<li><a href="#orgaeee8d5">2.3.2. 非阻塞</a></li>
 <li><a href="#orga86f333">2.3.3. 三次握手</a></li>
 <li><a href="#org5912a73">2.3.4. ETIMEOUT</a></li>
 <li><a href="#org94ddbbf">2.3.5. ECONNREFUSED</a></li>
@@ -58,15 +58,15 @@
 <li><a href="#org0f4797e">2.4. bind</a></li>
 <li><a href="#orgc34d7d1">2.5. listen</a>
 <ul>
-<li><a href="#orgf620762">2.5.1. 使用说明</a></li>
+<li><a href="#org9354335">2.5.1. 使用说明</a></li>
 <li><a href="#org3d13924">2.5.2. backlog</a></li>
 </ul>
 </li>
 <li><a href="#org4e1d165">2.6. accept</a>
 <ul>
-<li><a href="#orgf52a080">2.6.1. 使用说明</a></li>
+<li><a href="#org0d8731a">2.6.1. 使用说明</a></li>
 <li><a href="#org03fa602">2.6.2. 惊群效应(thundering herd)</a></li>
-<li><a href="#orgaeee8d5">2.6.3. 非阻塞</a></li>
+<li><a href="#orga2580db">2.6.3. 非阻塞</a></li>
 <li><a href="#orgd65d27c">2.6.4. ECONNABORTED/EPROTO</a></li>
 <li><a href="#orgc7c88a9">2.6.5. EPIPE</a></li>
 </ul>
@@ -100,7 +100,7 @@
 </li>
 <li><a href="#orgb9c8aaa">2.11. conversion</a>
 <ul>
-<li><a href="#orgc8c159c">2.11.1. 使用说明</a></li>
+<li><a href="#orgbb67380">2.11.1. 使用说明</a></li>
 <li><a href="#org1b5cd41">2.11.2. name2addr</a></li>
 <li><a href="#orgba48bf9">2.11.3. addr2name</a></li>
 </ul>
@@ -109,7 +109,7 @@
 </li>
 <li><a href="#org6f5ba65">3. TCP</a>
 <ul>
-<li><a href="#org7024a2e">3.1. 特点</a></li>
+<li><a href="#org61adf7f">3.1. 特点</a></li>
 <li><a href="#org6b67ba3">3.2. TCP首部</a>
 <ul>
 <li><a href="#org6921d43">3.2.1. RST分节</a></li>
@@ -142,21 +142,21 @@
 <li><a href="#org95c62a0">3.5.3. 保活定时器</a></li>
 </ul>
 </li>
-<li><a href="#org68c7072">3.6. 读写数据</a>
+<li><a href="#orgaaa0be4">3.6. 读写数据</a>
 <ul>
-<li><a href="#org2c2c361">3.6.1. 读数据</a></li>
-<li><a href="#orgbbd838a">3.6.2. 写数据</a></li>
+<li><a href="#orge0bb67d">3.6.1. 读数据</a></li>
+<li><a href="#org2e2d8c0">3.6.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a href="#org51150df">4. UDP</a>
 <ul>
-<li><a href="#org61adf7f">4.1. 特点</a></li>
-<li><a href="#orgaaa0be4">4.2. 读写数据</a>
+<li><a href="#org070a0c6">4.1. 特点</a></li>
+<li><a href="#orgf7ade29">4.2. 读写数据</a>
 <ul>
-<li><a href="#orge0bb67d">4.2.1. 读数据</a></li>
-<li><a href="#org2e2d8c0">4.2.2. 写数据</a></li>
+<li><a href="#org1a7bf67">4.2.1. 读数据</a></li>
+<li><a href="#org5250921">4.2.2. 写数据</a></li>
 </ul>
 </li>
 </ul>
@@ -438,38 +438,38 @@ TCP MSS(maximum segment size,最大分节大小),用于告诉TCP对端在每个�
 </table>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">//==============================
-//#include &lt;bits/sockaddr.h&gt;
-#define	__SOCKADDR_COMMON(sa_prefix) \
-  sa_family_t sa_prefix##family
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">==============================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/sockaddr.h&gt;</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">__SOCKADDR_COMMON</span>(<span class="org-variable-name">sa_prefix</span>) \
+  <span class="org-type">sa_family_t</span> <span class="org-variable-name">sa_prefix</span>##family
 
-#define __SOCKADDR_COMMON_SIZE	(sizeof (unsigned short int))
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">__SOCKADDR_COMMON_SIZE</span>  (<span class="org-keyword">sizeof</span> (<span class="org-type">unsigned</span> <span class="org-type">short</span> <span class="org-type">int</span>))
 
-//==============================
-//#include &lt;bits/socket.h&gt;
-/* Structure describing a generic socket address.  */
-struct sockaddr //老的通用套接字地址结构，对于比如Unix Domain Socket地址的话不能够容纳
+<span class="org-comment-delimiter">//</span><span class="org-comment">==============================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure describing a generic socket address.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span> <span class="org-comment-delimiter">//</span><span class="org-comment">&#32769;&#30340;&#36890;&#29992;&#22871;&#25509;&#23383;&#22320;&#22336;&#32467;&#26500;&#65292;&#23545;&#20110;&#27604;&#22914;Unix Domain Socket&#22320;&#22336;&#30340;&#35805;&#19981;&#33021;&#22815;&#23481;&#32435;</span>
   {
-    __SOCKADDR_COMMON (sa_);	/* Common data: address family and length.  */
-    char sa_data[14];		/* Address data.  */
+    __SOCKADDR_COMMON (sa_);    <span class="org-comment-delimiter">/* </span><span class="org-comment">Common data: address family and length.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">char</span> <span class="org-variable-name">sa_data</span>[14];       <span class="org-comment-delimiter">/* </span><span class="org-comment">Address data.</span><span class="org-comment-delimiter">  */</span>
   };
 
 
-/* Structure large enough to hold any socket address (with the historical
-   exception of AF_UNIX).  We reserve 128 bytes.  */
-#if ULONG_MAX &gt; 0xffffffff
-# define __ss_aligntype	__uint64_t
-#else
-# define __ss_aligntype	__uint32_t
-#endif
-#define _SS_SIZE	128
-#define _SS_PADSIZE	(_SS_SIZE - (2 * sizeof (__ss_aligntype)))
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure large enough to hold any socket address (with the historical</span>
+<span class="org-comment">   exception of AF_UNIX).  We reserve 128 bytes.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#if</span> ULONG_MAX &gt; 0xffffffff
+<span class="org-preprocessor"># define</span> <span class="org-variable-name">__ss_aligntype</span> __uint64_t
+<span class="org-preprocessor">#else</span>
+<span class="org-preprocessor"># define</span> <span class="org-variable-name">__ss_aligntype</span> __uint32_t
+<span class="org-preprocessor">#endif</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">_SS_SIZE</span>    128
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">_SS_PADSIZE</span> (_SS_SIZE - (2 * <span class="org-keyword">sizeof</span> (__ss_aligntype)))
 
-struct sockaddr_storage //新的通用套接字地址结构，能够容纳几乎所有的套接字结构地址。
+<span class="org-keyword">struct</span> <span class="org-type">sockaddr_storage</span> <span class="org-comment-delimiter">//</span><span class="org-comment">&#26032;&#30340;&#36890;&#29992;&#22871;&#25509;&#23383;&#22320;&#22336;&#32467;&#26500;&#65292;&#33021;&#22815;&#23481;&#32435;&#20960;&#20046;&#25152;&#26377;&#30340;&#22871;&#25509;&#23383;&#32467;&#26500;&#22320;&#22336;&#12290;</span>
   {
-    __SOCKADDR_COMMON (ss_);	/* Address family, etc.  */
-    __ss_aligntype __ss_align;	/* Force desired alignment.  */
-    char __ss_padding[_SS_PADSIZE];
+    __SOCKADDR_COMMON (ss_);    <span class="org-comment-delimiter">/* </span><span class="org-comment">Address family, etc.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">__ss_aligntype</span> <span class="org-variable-name">__ss_align</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">Force desired alignment.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">char</span> <span class="org-variable-name">__ss_padding</span>[_SS_PADSIZE];
   };
 </pre>
 </div>
@@ -486,24 +486,24 @@ struct sockaddr_storage //新的通用套接字地址结构，能够容纳几乎
 <h4 id="orgbd43133"><span class="section-number-4">2.1.2.</span> IPv4地址结构</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <div class="org-src-container">
-<pre class="src src-Cpp">//==============================
-//#include &lt;netinet/in.h&gt;
-struct in_addr
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">==============================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
+<span class="org-keyword">struct</span> <span class="org-type">in_addr</span>
   {
-    in_addr_t s_addr;
+    <span class="org-type">in_addr_t</span> <span class="org-variable-name">s_addr</span>;
   };
 
-struct sockaddr_in
+<span class="org-keyword">struct</span> <span class="org-type">sockaddr_in</span>
   {
-    __SOCKADDR_COMMON (sin_); //AF_INET
-    in_port_t sin_port;			/* Port number.  */
-    struct in_addr sin_addr;		/* Internet address.  */
+    __SOCKADDR_COMMON (sin_); <span class="org-comment-delimiter">//</span><span class="org-comment">AF_INET</span>
+    <span class="org-type">in_port_t</span> <span class="org-variable-name">sin_port</span>;         <span class="org-comment-delimiter">/* </span><span class="org-comment">Port number.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-keyword">struct</span> <span class="org-type">in_addr</span> <span class="org-variable-name">sin_addr</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">Internet address.</span><span class="org-comment-delimiter">  */</span>
 
-    /* Pad to size of `struct sockaddr'.  */
-    unsigned char sin_zero[sizeof (struct sockaddr) -
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Pad to size of `struct sockaddr'.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">unsigned</span> <span class="org-type">char</span> <span class="org-variable-name">sin_zero</span>[<span class="org-keyword">sizeof</span> (<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span>) -
                __SOCKADDR_COMMON_SIZE -
-               sizeof (in_port_t) -
-               sizeof (struct in_addr)];
+               <span class="org-keyword">sizeof</span> (<span class="org-type">in_port_t</span>) -
+               <span class="org-keyword">sizeof</span> (<span class="org-keyword">struct</span> <span class="org-type">in_addr</span>)];
   };
 </pre>
 </div>
@@ -514,30 +514,30 @@ struct sockaddr_in
 <h4 id="orgd7aa89c"><span class="section-number-4">2.1.3.</span> IPv6地址结构</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <div class="org-src-container">
-<pre class="src src-Cpp">//==============================
-//#include &lt;netinet/in.h&gt;
-/* IPv6 address */
-struct in6_addr
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">==============================</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">IPv6 address</span><span class="org-comment-delimiter"> */</span>
+<span class="org-keyword">struct</span> <span class="org-type">in6_addr</span>
   {
-    union
+    <span class="org-keyword">union</span>
       {
-    uint8_t	u6_addr8[16];
-    uint16_t u6_addr16[8];
-    uint32_t u6_addr32[4];
-      } in6_u;
-#define s6_addr			in6_u.u6_addr8
-#define s6_addr16		in6_u.u6_addr16
-#define s6_addr32		in6_u.u6_addr32
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">u6_addr8</span>[16];
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">u6_addr16</span>[8];
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">u6_addr32</span>[4];
+      } <span class="org-variable-name">in6_u</span>;
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">s6_addr</span>         in6_u.u6_addr8
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">s6_addr16</span>       in6_u.u6_addr16
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">s6_addr32</span>       in6_u.u6_addr32
   };
 
-/* Ditto, for IPv6.  */
-struct sockaddr_in6
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Ditto, for IPv6.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">sockaddr_in6</span>
   {
-    __SOCKADDR_COMMON (sin6_); //AF_INET6
-    in_port_t sin6_port;	/* Transport layer port # */
-    uint32_t sin6_flowinfo;	/* IPv6 flow information */
-    struct in6_addr sin6_addr;	/* IPv6 address */
-    uint32_t sin6_scope_id;	/* IPv6 scope-id */
+    __SOCKADDR_COMMON (sin6_); <span class="org-comment-delimiter">//</span><span class="org-comment">AF_INET6</span>
+    <span class="org-type">in_port_t</span> <span class="org-variable-name">sin6_port</span>;    <span class="org-comment-delimiter">/* </span><span class="org-comment">Transport layer port #</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">sin6_flowinfo</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">IPv6 flow information</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-keyword">struct</span> <span class="org-type">in6_addr</span> <span class="org-variable-name">sin6_addr</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">IPv6 address</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">sin6_scope_id</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">IPv6 scope-id</span><span class="org-comment-delimiter"> */</span>
   };
 
 </pre>
@@ -554,38 +554,38 @@ struct sockaddr_in6
 对于IPv4和IPv6的IP表示长度存在限制，如果提供的长度不足以表示的话那么会返回ENOSPC错误。但是幸运的是，系统提供了限制常数。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;arpa/inet.h&gt;
-/* Convert from presentation format of an Internet number in buffer
-   starting at CP to the binary network format and store result for
-   interface type AF in buffer starting at BUF.  */
-extern int inet_pton (int __af, __const char *__restrict __cp,
-              void *__restrict __buf) __THROW;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;arpa/inet.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Convert from presentation format of an Internet number in buffer</span>
+<span class="org-comment">   starting at CP to the binary network format and store result for</span>
+<span class="org-comment">   interface type AF in buffer starting at BUF.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">inet_pton</span> (<span class="org-type">int</span> <span class="org-variable-name">__af</span>, __const <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __cp,
+              <span class="org-type">void</span> *<span class="org-variable-name">__restrict</span> __buf) __THROW;
 
-/* Convert a Internet address in binary network format for interface
-   type AF in buffer starting at CP to presentation form and place
-   result in buffer of length LEN astarting at BUF.  */
-extern __const char *inet_ntop (int __af, __const void *__restrict __cp,
-                char *__restrict __buf, socklen_t __len)
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Convert a Internet address in binary network format for interface</span>
+<span class="org-comment">   type AF in buffer starting at CP to presentation form and place</span>
+<span class="org-comment">   result in buffer of length LEN astarting at BUF.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> __const <span class="org-type">char</span> *<span class="org-function-name">inet_ntop</span> (<span class="org-type">int</span> <span class="org-variable-name">__af</span>, __const <span class="org-type">void</span> *<span class="org-variable-name">__restrict</span> __cp,
+                <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __buf, <span class="org-type">socklen_t</span> <span class="org-variable-name">__len</span>)
      __THROW;
 
-//#include &lt;netinet/in.h&gt;
-#define INET_ADDRSTRLEN 16
-#define INET6_ADDRSTRLEN 46
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">INET_ADDRSTRLEN</span> 16
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">INET6_ADDRSTRLEN</span> 46
 </pre>
 </div>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;arpa/inet.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;cstdio&gt;
-int main(){
-    const char* ip="255.244.233.211";
-    char ip_dst[INET_ADDRSTRLEN];
-    sockaddr_in addr;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;arpa/inet.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">ip</span>=<span class="org-string">"255.244.233.211"</span>;
+    <span class="org-type">char</span> <span class="org-variable-name">ip_dst</span>[INET_ADDRSTRLEN];
+    <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
     inet_pton(AF_INET,ip,&amp;(addr.sin_addr));
-    inet_ntop(AF_INET,&amp;(addr.sin_addr),ip_dst,sizeof(ip_dst));
-    printf("%s\n",ip_dst);
-    return 0;
+    inet_ntop(AF_INET,&amp;(addr.sin_addr),ip_dst,<span class="org-keyword">sizeof</span>(ip_dst));
+    printf(<span class="org-string">"%s\n"</span>,ip_dst);
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -609,45 +609,45 @@ IP用于标识通讯的机器，而端口号用于标识通信的进程。IANA(t
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;netinet/in.h&gt;
-/* Standard well-known ports.  */
-enum
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Standard well-known ports.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">enum</span>
   {
-    IPPORT_ECHO = 7,		/* Echo service.  */
-    IPPORT_DISCARD = 9,		/* Discard transmissions service.  */
-    IPPORT_SYSTAT = 11,		/* System status service.  */
-    IPPORT_DAYTIME = 13,	/* Time of day service.  */
-    IPPORT_NETSTAT = 15,	/* Network status service.  */
-    IPPORT_FTP = 21,		/* File Transfer Protocol.  */
-    IPPORT_TELNET = 23,		/* Telnet protocol.  */
-    IPPORT_SMTP = 25,		/* Simple Mail Transfer Protocol.  */
-    IPPORT_TIMESERVER = 37,	/* Timeserver service.  */
-    IPPORT_NAMESERVER = 42,	/* Domain Name Service.  */
-    IPPORT_WHOIS = 43,		/* Internet Whois service.  */
-    IPPORT_MTP = 57,
+    <span class="org-variable-name">IPPORT_ECHO</span> = 7,        <span class="org-comment-delimiter">/* </span><span class="org-comment">Echo service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_DISCARD</span> = 9,     <span class="org-comment-delimiter">/* </span><span class="org-comment">Discard transmissions service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_SYSTAT</span> = 11,     <span class="org-comment-delimiter">/* </span><span class="org-comment">System status service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_DAYTIME</span> = 13,    <span class="org-comment-delimiter">/* </span><span class="org-comment">Time of day service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_NETSTAT</span> = 15,    <span class="org-comment-delimiter">/* </span><span class="org-comment">Network status service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_FTP</span> = 21,        <span class="org-comment-delimiter">/* </span><span class="org-comment">File Transfer Protocol.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_TELNET</span> = 23,     <span class="org-comment-delimiter">/* </span><span class="org-comment">Telnet protocol.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_SMTP</span> = 25,       <span class="org-comment-delimiter">/* </span><span class="org-comment">Simple Mail Transfer Protocol.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_TIMESERVER</span> = 37, <span class="org-comment-delimiter">/* </span><span class="org-comment">Timeserver service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_NAMESERVER</span> = 42, <span class="org-comment-delimiter">/* </span><span class="org-comment">Domain Name Service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_WHOIS</span> = 43,      <span class="org-comment-delimiter">/* </span><span class="org-comment">Internet Whois service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_MTP</span> = 57,
 
-    IPPORT_TFTP = 69,		/* Trivial File Transfer Protocol.  */
-    IPPORT_RJE = 77,
-    IPPORT_FINGER = 79,		/* Finger service.  */
-    IPPORT_TTYLINK = 87,
-    IPPORT_SUPDUP = 95,		/* SUPDUP protocol.  */
+    <span class="org-variable-name">IPPORT_TFTP</span> = 69,       <span class="org-comment-delimiter">/* </span><span class="org-comment">Trivial File Transfer Protocol.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_RJE</span> = 77,
+    <span class="org-variable-name">IPPORT_FINGER</span> = 79,     <span class="org-comment-delimiter">/* </span><span class="org-comment">Finger service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_TTYLINK</span> = 87,
+    <span class="org-variable-name">IPPORT_SUPDUP</span> = 95,     <span class="org-comment-delimiter">/* </span><span class="org-comment">SUPDUP protocol.</span><span class="org-comment-delimiter">  */</span>
 
 
-    IPPORT_EXECSERVER = 512,	/* execd service.  */
-    IPPORT_LOGINSERVER = 513,	/* rlogind service.  */
-    IPPORT_CMDSERVER = 514,
-    IPPORT_EFSSERVER = 520,
+    <span class="org-variable-name">IPPORT_EXECSERVER</span> = 512,    <span class="org-comment-delimiter">/* </span><span class="org-comment">execd service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_LOGINSERVER</span> = 513,   <span class="org-comment-delimiter">/* </span><span class="org-comment">rlogind service.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_CMDSERVER</span> = 514,
+    <span class="org-variable-name">IPPORT_EFSSERVER</span> = 520,
 
-    /* UDP ports.  */
-    IPPORT_BIFFUDP = 512,
-    IPPORT_WHOSERVER = 513,
-    IPPORT_ROUTESERVER = 520,
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">UDP ports.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_BIFFUDP</span> = 512,
+    <span class="org-variable-name">IPPORT_WHOSERVER</span> = 513,
+    <span class="org-variable-name">IPPORT_ROUTESERVER</span> = 520,
 
-    /* Ports less than this value are reserved for privileged processes.  */
-    IPPORT_RESERVED = 1024,
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Ports less than this value are reserved for privileged processes.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_RESERVED</span> = 1024,
 
-    /* Ports greater this value are reserved for (non-privileged) servers.  */
-    IPPORT_USERRESERVED = 5000
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Ports greater this value are reserved for (non-privileged) servers.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-variable-name">IPPORT_USERRESERVED</span> = 5000
   };
 </pre>
 </div>
@@ -657,25 +657,25 @@ enum
 系统提供了这样的转换函数
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;netinet/in.h&gt;
-extern uint32_t ntohl (uint32_t __netlong) __THROW __attribute__ ((__const__));
-extern uint16_t ntohs (uint16_t __netshort)  __THROW __attribute__ ((__const__));
-extern uint32_t htonl (uint32_t __hostlong)  __THROW __attribute__ ((__const__));
-extern uint16_t htons (uint16_t __hostshort)  __THROW __attribute__ ((__const__));
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
+<span class="org-keyword">extern</span> <span class="org-type">uint32_t</span> <span class="org-function-name">ntohl</span> (<span class="org-type">uint32_t</span> <span class="org-variable-name">__netlong</span>) __THROW <span class="org-keyword">__attribute__</span> ((__const__));
+<span class="org-keyword">extern</span> <span class="org-type">uint16_t</span> <span class="org-function-name">ntohs</span> (<span class="org-type">uint16_t</span> <span class="org-variable-name">__netshort</span>)  __THROW <span class="org-keyword">__attribute__</span> ((__const__));
+<span class="org-keyword">extern</span> <span class="org-type">uint32_t</span> <span class="org-function-name">htonl</span> (<span class="org-type">uint32_t</span> <span class="org-variable-name">__hostlong</span>)  __THROW <span class="org-keyword">__attribute__</span> ((__const__));
+<span class="org-keyword">extern</span> <span class="org-type">uint16_t</span> <span class="org-function-name">htons</span> (<span class="org-type">uint16_t</span> <span class="org-variable-name">__hostshort</span>)  __THROW <span class="org-keyword">__attribute__</span> ((__const__));
 </pre>
 </div>
 <p>
 其中n表示network,h表示host,而l表示long(32bit),s表示short(16bit).
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;netinet/in.h&gt;
-#include &lt;cstdio&gt;
-int main(){
-    sockaddr_in addr;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
     addr.sin_port=htons(12345);
-    in_port_t port=ntohs(addr.sin_port);
-    printf("%d\n",port);
-    return 0;
+    <span class="org-type">in_port_t</span> <span class="org-variable-name">port</span>=ntohs(addr.sin_port);
+    printf(<span class="org-string">"%d\n"</span>,port);
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>
@@ -690,11 +690,11 @@ int main(){
 获得操作网络IO的套接字文件描述符。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Create a new socket of type TYPE in domain DOMAIN, using
-   protocol PROTOCOL.  If PROTOCOL is zero, one is chosen automatically.
-   Returns a file descriptor for the new socket, or -1 for errors.  */
-extern int socket (int __domain, int __type, int __protocol) __THROW;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Create a new socket of type TYPE in domain DOMAIN, using</span>
+<span class="org-comment">   protocol PROTOCOL.  If PROTOCOL is zero, one is chosen automatically.</span>
+<span class="org-comment">   Returns a file descriptor for the new socket, or -1 for errors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">socket</span> (<span class="org-type">int</span> <span class="org-variable-name">__domain</span>, <span class="org-type">int</span> <span class="org-variable-name">__type</span>, <span class="org-type">int</span> <span class="org-variable-name">__protocol</span>) __THROW;
 </pre>
 </div>
 <p>
@@ -813,19 +813,19 @@ protocol取值有下面这些：
 建立客户端和服务端的连接。
 </p>
 </div>
-<div id="outline-container-orgcb0cab3" class="outline-4">
-<h4 id="orgcb0cab3"><span class="section-number-4">2.3.1.</span> 使用说明</h4>
+<div id="outline-container-orgc8c159c" class="outline-4">
+<h4 id="orgc8c159c"><span class="section-number-4">2.3.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Open a connection on socket FD to peer at ADDR (which LEN bytes long).
-   For connectionless socket types, just set the default address to send to
-   and the only address from which to accept transmissions.
-   Return 0 on success, -1 for errors.
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Open a connection on socket FD to peer at ADDR (which LEN bytes long).</span>
+<span class="org-comment">   For connectionless socket types, just set the default address to send to</span>
+<span class="org-comment">   and the only address from which to accept transmissions.</span>
+<span class="org-comment">   Return 0 on success, -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">connect</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">__CONST_SOCKADDR_ARG</span> <span class="org-variable-name">__addr</span>, <span class="org-type">socklen_t</span> <span class="org-variable-name">__len</span>);
 </pre>
 </div>
 <p>
@@ -840,8 +840,8 @@ extern int connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len);
 </div>
 </div>
 
-<div id="outline-container-org91b7b71" class="outline-4">
-<h4 id="org91b7b71"><span class="section-number-4">2.3.2.</span> 非阻塞</h4>
+<div id="outline-container-orgaeee8d5" class="outline-4">
+<h4 id="orgaeee8d5"><span class="section-number-4">2.3.2.</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 默认情况下connect是阻塞版本，直到对端的ACK响应之后才返回。但是如果客户端需要尝试多个连接的话并且顺序阻塞连接的话，
@@ -859,7 +859,7 @@ extern int connect (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len);
 <div id="outline-container-orga86f333" class="outline-4">
 <h4 id="orga86f333"><span class="section-number-4">2.3.3.</span> 三次握手</h4>
 <div class="outline-text-4" id="text-2-3-3">
-<pre class="example" id="orge52e1ae">
+<pre class="example" id="org7d8c8e7">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 61.135.169.105 80
 bind (0.0.0.0:44557)
 connect (61.135.169.105,80)...
@@ -868,7 +868,7 @@ connect succeed
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="org0c9a87b">
+<pre class="example" id="orgcb47743">
 //tcpdump tcp port 44567 -ttt
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 61.135.169.105.http: Flags [S], seq 4248773398, win 5840, options [mss 1460,sackOK,TS val 30454000 ecr 0,nop,wscale 4], length 0
 00:00:00.006770 IP 61.135.169.105.http &gt; 192.168.189.128.44567: Flags [S.], seq 127082468, ack 4248773399, win 64240, options [mss 1460], length 0
@@ -885,7 +885,7 @@ connect succeed
 <p>
 如果SYN分节发给一个在路由器中存在表项，但是已经没有运行主机的话，没有得到SYN的ACK分节，就会返回ETIMEOUT的错误。
 </p>
-<pre class="example" id="orgea0072c">
+<pre class="example" id="org971afc7">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 192.168.189.1 80
 bind (0.0.0.0:44567)
 connect (192.168.189.1,80)...
@@ -894,7 +894,7 @@ connect failed:Connection timed out
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="org396b814">
+<pre class="example" id="org6d7b652">
 //tcpdump tcp port 44567 -ttt
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 192.168.189.1.http: Flags [S], seq 342722628, win 5840, options [mss 1460,sackOK,TS val 30204841 ecr 0,nop,wscale 4], length 0
 00:00:03.000471 IP 192.168.189.128.44567 &gt; 192.168.189.1.http: Flags [S], seq 342722628, win 5840, options [mss 1460,sackOK,TS val 30207841 ecr 0,nop,wscale 4], length 0
@@ -916,7 +916,7 @@ connect failed:Connection timed out
 如果SYN分节发给一个在路由器中存在表项并且主机存在，但是主机端口并没有提供服务的话，返回RST分节，那么就会返回ECONNREFUSED的错误。
 我们这里使用本地主机ip,然后访问端口1，这个服务肯定是不存在的。
 </p>
-<pre class="example" id="org9c40109">
+<pre class="example" id="org43d8a52">
 [dirlt@localhost.localdomain]$  ./connect -b 44567 192.168.189.128 1
 bind (0.0.0.0:44567)
 connect (192.168.189.128,1)...
@@ -925,7 +925,7 @@ connect failed:Connection refused
 <p>
 使用tcpdump观察结果是
 </p>
-<pre class="example" id="org4d28148">
+<pre class="example" id="org98e5f6a">
 //tcpdump tcp port 44567 -ttt -i lo.因为这里走的是loopback接口
 00:00:00.000000 IP 192.168.189.128.44567 &gt; 192.168.189.128.tcpmux: Flags [S], seq 1074623492, win 32792, options [mss 16396,sackOK,TS val 36551959 ecr 0,nop,wscale 4], length 0
 00:00:00.000031 IP 192.168.189.128.tcpmux &gt; 192.168.189.128.44567: Flags [R.], seq 0, ack 1074623493, win 0, length 0
@@ -945,7 +945,7 @@ connect failed:Connection refused
 远程路径，那么久会直接返回错误，另外一种情况是connect不等待完成就返回。
 </p>
 
-<pre class="example" id="orga3139c5">
+<pre class="example" id="orgd1896ca">
 [dirlt@localhost.localdomain]$  ./connect -b 44567 192.168.189.0 1
 bind (0.0.0.0:44567)
 connect (192.168.189.0,1)...
@@ -954,7 +954,7 @@ connect failed:Network is unreachable
 <p>
 使用tcpdump没有任何结果，因为本地路由表没有这个路由表项
 </p>
-<pre class="example" id="org7552ea6">
+<pre class="example" id="org5120170">
 [root@localhost dirlt]# /sbin/route
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
@@ -995,9 +995,9 @@ Local address is already in use.
 将套接字和一个本地协议地址进行绑定。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Give the socket FD the local address ADDR (which is LEN bytes long).  */
-extern int bind (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Give the socket FD the local address ADDR (which is LEN bytes long).</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">bind</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">__CONST_SOCKADDR_ARG</span> <span class="org-variable-name">__addr</span>, <span class="org-type">socklen_t</span> <span class="org-variable-name">__len</span>)
      __THROW;
 </pre>
 </div>
@@ -1012,19 +1012,19 @@ extern int bind (int __fd, __CONST_SOCKADDR_ARG __addr, socklen_t __len)
 对于IP的通配地址，IPv4使用INADDR_ANY,而IPv6使用in6addr_any.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;netinet/in.h&gt;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netinet/in.h&gt;</span>
 
-/* Address to accept any incoming messages.  */
-#define	INADDR_ANY		((in_addr_t) 0x00000000)
-/* Address to loopback in software to local host.  */
-#ifndef INADDR_LOOPBACK
-# define INADDR_LOOPBACK	((in_addr_t) 0x7f000001) /* Inet 127.0.0.1.  */
-#endif
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Address to accept any incoming messages.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">INADDR_ANY</span>      ((<span class="org-type">in_addr_t</span>) 0x00000000)
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Address to loopback in software to local host.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> INADDR_LOOPBACK
+<span class="org-preprocessor"># define</span> <span class="org-variable-name">INADDR_LOOPBACK</span>    ((<span class="org-type">in_addr_t</span>) 0x7f000001) <span class="org-comment-delimiter">/* </span><span class="org-comment">Inet 127.0.0.1.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#endif</span>
 
-extern const struct in6_addr in6addr_any;        /* :: */
-extern const struct in6_addr in6addr_loopback;   /* ::1 */
-#define IN6ADDR_ANY_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
-#define IN6ADDR_LOOPBACK_INIT { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
+<span class="org-keyword">extern</span> <span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">in6_addr</span> <span class="org-variable-name">in6addr_any</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">::</span><span class="org-comment-delimiter"> */</span>
+<span class="org-keyword">extern</span> <span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">in6_addr</span> <span class="org-variable-name">in6addr_loopback</span>;   <span class="org-comment-delimiter">/* </span><span class="org-comment">::1</span><span class="org-comment-delimiter"> */</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">IN6ADDR_ANY_INIT</span> { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 } } }
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">IN6ADDR_LOOPBACK_INIT</span> { { { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1 } } }
 </pre>
 </div>
 </div>
@@ -1037,15 +1037,15 @@ extern const struct in6_addr in6addr_loopback;   /* ::1 */
 将主动套接字设置成为被动套接字。
 </p>
 </div>
-<div id="outline-container-orgf620762" class="outline-4">
-<h4 id="orgf620762"><span class="section-number-4">2.5.1.</span> 使用说明</h4>
+<div id="outline-container-org9354335" class="outline-4">
+<h4 id="org9354335"><span class="section-number-4">2.5.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Prepare to accept connections on socket FD.
-   N connection requests will be queued before further requests are refused.
-   Returns 0 on success, -1 for errors.  */
-extern int listen (int __fd, int __n) __THROW;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Prepare to accept connections on socket FD.</span>
+<span class="org-comment">   N connection requests will be queued before further requests are refused.</span>
+<span class="org-comment">   Returns 0 on success, -1 for errors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">listen</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">int</span> <span class="org-variable-name">__n</span>) __THROW;
 </pre>
 </div>
 <p>
@@ -1099,15 +1099,15 @@ RST分节还是不回复ACK分节，而让客户端进行重传。对于manpage�
 处理已经建立好的连接。
 </p>
 </div>
-<div id="outline-container-orgf52a080" class="outline-4">
-<h4 id="orgf52a080"><span class="section-number-4">2.6.1.</span> 使用说明</h4>
+<div id="outline-container-org0d8731a" class="outline-4">
+<h4 id="org0d8731a"><span class="section-number-4">2.6.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-   This function is a cancellation point and therefore not marked with
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+   This function is a <span class="org-type">cancellation</span> <span class="org-function-name">point</span> <span class="org-keyword">and</span> therefore <span class="org-keyword">not</span> marked with
    __THROW.  */
-extern int accept (int __fd, __SOCKADDR_ARG __addr,
-           socklen_t *__restrict __addr_len);
+<span class="org-keyword">extern</span> <span class="org-type">int</span> accept (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">__SOCKADDR_ARG</span> <span class="org-variable-name">__addr</span>,
+           <span class="org-type">socklen_t</span> *<span class="org-variable-name">__restrict</span> __addr_len);
 </pre>
 </div>
 <p>
@@ -1130,8 +1130,8 @@ extern int accept (int __fd, __SOCKADDR_ARG __addr,
 </div>
 </div>
 
-<div id="outline-container-orgaeee8d5" class="outline-4">
-<h4 id="orgaeee8d5"><span class="section-number-4">2.6.3.</span> 非阻塞</h4>
+<div id="outline-container-orga2580db" class="outline-4">
+<h4 id="orga2580db"><span class="section-number-4">2.6.3.</span> 非阻塞</h4>
 <div class="outline-text-4" id="text-2-6-3">
 <p>
 默认情况下面accept是阻塞版本，直到连接三次握手完成进入complete queue并且被取出才返回。如果我们使用非阻塞版本的话，
@@ -1151,7 +1151,7 @@ extern int accept (int __fd, __SOCKADDR_ARG __addr,
 在应用层上可以进行忽略然后进行下一次accept.我们可以模拟这个情况，如果设置了套接字SO_LINGER的话，并且linger_time为0的时候，
 那么在关闭时候并不会发送FIN分节而是直接发送RST分节。
 </p>
-<pre class="example" id="org21cc90a">
+<pre class="example" id="orgb14ba06">
 [dirlt@localhost.localdomain]$ ./connect -l -b 44568 127.0.0.1 44567
 setsockopt SO_LINGER
 bind (0.0.0.0:44568)
@@ -1159,7 +1159,7 @@ connect 127.0.0.1:44567 ...
 connect succeed
 </pre>
 
-<pre class="example" id="org1c87916">
+<pre class="example" id="org4698521">
 [dirlt@localhost.localdomain]$ ./server -d 10 44567
 bind (0.0.0.0:44567)
 listen 5
@@ -1171,7 +1171,7 @@ accept ...
 <p>
 似乎并没有返回ECONNABORTED的错误，而且这个连接正常返回了。然后我们看看tcpdump结果
 </p>
-<pre class="example" id="orgb05b518">
+<pre class="example" id="orgbac79fa">
 00:00:00.000000 IP localhost.localdomain.44568 &gt; localhost.localdomain.44567: Flags [S], seq 1612964784, win 32792, options [mss 16396,sackOK,TS val 86983449 ecr 0,nop,wscale 4], length 0
 00:00:00.000158 IP localhost.localdomain.44567 &gt; localhost.localdomain.44568: Flags [S.], seq 1610609404, ack 1612964785, win 32768, options [mss 16396,sackOK,TS val 86983449 ecr 86983449,nop,wscale 4], length 0
 00:00:00.000050 IP localhost.localdomain.44568 &gt; localhost.localdomain.44567: Flags [.], ack 1, win 2050, options [nop,nop,TS val 86983449 ecr 86983449], length 0
@@ -1189,7 +1189,7 @@ accept ...
 <p>
 我们继续从上面情况分析下来，假设连接已经断开，而如果我们读写的话那么会是什么情况呢？
 </p>
-<pre class="example" id="orge0bdfbf">
+<pre class="example" id="org4ce2e3f">
 [dirlt@localhost.localdomain]$ ./connect -l -b 44568 127.0.0.1 44567
 setsockopt SO_LINGER
 bind (0.0.0.0:44568)
@@ -1197,7 +1197,7 @@ connect 127.0.0.1:44567 ...
 connect succeed
 </pre>
 
-<pre class="example" id="org9c4e27b">
+<pre class="example" id="orgd5fc1e2">
 [dirlt@localhost.localdomain]$ ./server -d 10 -h 44567
 usage:./server [-r] [-d delay] [-b ip] [-c] port
 [dirlt@localhost.localdomain]$ ./server -c 44567
@@ -1226,21 +1226,21 @@ accept ...
 关闭建立好的连接
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;unistd.h&gt;
-/* Close the file descriptor FD.
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;unistd.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Close the file descriptor FD.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int close (int __fd);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">close</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>);
 
-//#include &lt;sys/socket.h&gt;
-/* Shut down all or part of the connection open on socket FD.
-   HOW determines what to shut down:
-     SHUT_RD   = No more receptions;
-     SHUT_WR   = No more transmissions;
-     SHUT_RDWR = No more receptions or transmissions.
-   Returns 0 on success, -1 for errors.  */
-extern int shutdown (int __fd, int __how) __THROW;
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Shut down all or part of the connection open on socket FD.</span>
+<span class="org-comment">   HOW determines what to shut down:</span>
+<span class="org-comment">     SHUT_RD   = No more receptions;</span>
+<span class="org-comment">     SHUT_WR   = No more transmissions;</span>
+<span class="org-comment">     SHUT_RDWR = No more receptions or transmissions.</span>
+<span class="org-comment">   Returns 0 on success, -1 for errors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">shutdown</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">int</span> <span class="org-variable-name">__how</span>) __THROW;
 </pre>
 </div>
 <p>
@@ -1254,7 +1254,7 @@ SHUT_RD能够关闭读半部，执行这个部分不会发送任何分节，而k
 而原来kernel内部维持的数据会首先全部发送出去，继续write这个fd的话会产生EPIPE错误。半关闭在有些情况下面是必要的，
 如果没有半关闭的话，那么应用层必须使用一些其他技术或者是协议来通知对端，自己已经将数据发送完毕。
 </p>
-<pre class="example" id="org49c93a8">
+<pre class="example" id="orga74819d">
 [dirlt@localhost.localdomain]$ ./connect -H -b 44567 119.75.218.45 80
 bind (0.0.0.0:44567)
 connect 119.75.218.45:80 ...
@@ -1294,19 +1294,19 @@ write failed:Broken pipe
 本节讨论的所有选项都是通过getsockopt/setsockopt来操作的，对于fcntl/ioctl会在其他地方进行讨论。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Put the current value for socket FD's option OPTNAME at protocol level LEVEL
-   into OPTVAL (which is *OPTLEN bytes long), and set *OPTLEN to the value's
-   actual length.  Returns 0 on success, -1 for errors.  */
-extern int getsockopt (int __fd, int __level, int __optname,
-               void *__restrict __optval,
-               socklen_t *__restrict __optlen) __THROW;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Put the current value for socket FD's option OPTNAME at protocol level LEVEL</span>
+<span class="org-comment">   into OPTVAL (which is *OPTLEN bytes long), and set *OPTLEN to the value's</span>
+<span class="org-comment">   actual length.  Returns 0 on success, -1 for errors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">getsockopt</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">int</span> <span class="org-variable-name">__level</span>, <span class="org-type">int</span> <span class="org-variable-name">__optname</span>,
+               <span class="org-type">void</span> *<span class="org-variable-name">__restrict</span> __optval,
+               <span class="org-type">socklen_t</span> *<span class="org-variable-name">__restrict</span> __optlen) __THROW;
 
-/* Set socket FD's option OPTNAME at protocol level LEVEL
-   to *OPTVAL (which is OPTLEN bytes long).
-   Returns 0 on success, -1 for errors.  */
-extern int setsockopt (int __fd, int __level, int __optname,
-               __const void *__optval, socklen_t __optlen) __THROW;
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Set socket FD's option OPTNAME at protocol level LEVEL</span>
+<span class="org-comment">   to *OPTVAL (which is OPTLEN bytes long).</span>
+<span class="org-comment">   Returns 0 on success, -1 for errors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">setsockopt</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">int</span> <span class="org-variable-name">__level</span>, <span class="org-type">int</span> <span class="org-variable-name">__optname</span>,
+               __const <span class="org-type">void</span> *<span class="org-variable-name">__optval</span>, <span class="org-type">socklen_t</span> <span class="org-variable-name">__optlen</span>) __THROW;
 </pre>
 </div>
 <p>
@@ -1435,7 +1435,7 @@ extern int setsockopt (int __fd, int __level, int __optname,
 <p>
 我们可以使用viewsockopt.cc来查看这些选项的默认值。
 </p>
-<pre class="example" id="orgc788834">
+<pre class="example" id="orga69dbc5">
 [dirlt@localhost.localdomain]$ ./viewsockopt
 SO_ERROR:0
 SO_KEEPALIVE:off
@@ -1504,12 +1504,12 @@ TCP_CORK:off
 SO_LINGER使用的值是下面这个类型，如果l_onoff=0的话，那么就是按照默认情况处理。下面我们讨论l_onoff=1的情况。
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;bits/socket.h&gt;
-/* Structure used to manipulate the SO_LINGER option.  */
-struct linger
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure used to manipulate the SO_LINGER option.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">linger</span>
   {
-    int l_onoff;		/* Nonzero to linger on close.  */
-    int l_linger;		/* Time to linger.  */
+    <span class="org-type">int</span> <span class="org-variable-name">l_onoff</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">Nonzero to linger on close.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">int</span> <span class="org-variable-name">l_linger</span>;       <span class="org-comment-delimiter">/* </span><span class="org-comment">Time to linger.</span><span class="org-comment-delimiter">  */</span>
   };
 </pre>
 </div>
@@ -1580,7 +1580,7 @@ struct linger
 使用SO_REUSEADDR选项的话那么允许监听(被动打开)的套接字绑定在一个正在被使用的端口上。使用这个选项必须在
 socket和bind之间调用。但是这里有一个问题，就是这个检查是在什么时候进行的。我们使用connect.cc进行两次正常连接：
 </p>
-<pre class="example" id="org358c444">
+<pre class="example" id="org4ad4287">
 [dirlt@localhost.localdomain]$ ./connect -b 44567 119.75.217.56 80
 bind (0.0.0.0:44567)
 connect 119.75.217.56:80 ...
@@ -1593,7 +1593,7 @@ bind failed:Address already in use
 可以看到在bind就出现错误。如果我们使用这个选项的话，在socket之后系统并不知道我们是被动打开的话，
 那么bind没有问题，但是在connect时候就会出现问题，因为这样会造成两个连接出现：
 </p>
-<pre class="example" id="org5b34f19">
+<pre class="example" id="orgdd50716">
 [dirlt@localhost.localdomain]$ ./connect -r -b 44568 119.75.217.56 80
 setsockopt SO_REUSEADDR
 bind (0.0.0.0:44568)
@@ -1617,7 +1617,7 @@ connect failed:Cannot assign requested address
 我们分别使用(x,z),(y,z)来启动两个服务器实例。但是需要注意的是，只要使用了任何一个可用ip的话那么就不允许使用
 通配地址，如果使用通配地址的话那么就不允许绑定特定ip.
 </p>
-<pre class="example" id="org326a74d">
+<pre class="example" id="org06e7c05">
 [dirlt@localhost.localdomain]$ ./server -b 127.0.0.1 44567
 bind (127.0.0.1:44567)
 listen 5
@@ -1635,7 +1635,7 @@ bind failed:Address already in use
 <p>
 如果我们首先绑定通配地址先的话
 </p>
-<pre class="example" id="org46ba0d9">
+<pre class="example" id="org5455923">
 [dirlt@localhost.localdomain]$ ./server 44567
 bind (0.0.0.0:44567)
 listen 5
@@ -1797,7 +1797,7 @@ quick ACK是相对于delay ACK来说的。delay ACK算法就是说，接收到�
 设置非阻塞IO的话可以使用如下代码：
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">int flags=fcntl(fd,F_GETFL,0);
+<pre class="src src-C++"><span class="org-type">int</span> <span class="org-variable-name">flags</span>=fcntl(fd,F_GETFL,0);
 flags |= O_NONBLOCK;
 fcntl(fd,F_SETFL,flags);
 </pre>
@@ -1820,60 +1820,60 @@ fcntl(fd,F_SETFL,flags);
 <li><a id="org581f8e3"></a>select/pselect<br />
 <div class="outline-text-5" id="text-2-10-3-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;bits/time.h&gt;
-/* A time value that is accurate to the nearest
-   microsecond but also has a range of years.  */
-struct timeval
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/time.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">A time value that is accurate to the nearest</span>
+<span class="org-comment">   microsecond but also has a range of years.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">timeval</span>
   {
-    __time_t tv_sec;		/* Seconds.  */
-    __suseconds_t tv_usec;	/* Microseconds.  */
+    <span class="org-type">__time_t</span> <span class="org-variable-name">tv_sec</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">Seconds.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">__suseconds_t</span> <span class="org-variable-name">tv_usec</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">Microseconds.</span><span class="org-comment-delimiter">  */</span>
   };
 
 
-//#include &lt;sys/select.h&gt;
-/* fd_set for select and pselect.  */
-typedef struct
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/select.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">fd_set for select and pselect.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">typedef</span> <span class="org-keyword">struct</span>
   {
-    /* XPG4.2 requires this member name.  Otherwise avoid the name
-       from the global namespace.  */
-#ifdef __USE_XOPEN
-    __fd_mask fds_bits[__FD_SETSIZE / __NFDBITS];
-# define __FDS_BITS(set) ((set)-&gt;fds_bits)
-#else
-    __fd_mask __fds_bits[__FD_SETSIZE / __NFDBITS];
-# define __FDS_BITS(set) ((set)-&gt;__fds_bits)
-#endif
-  } fd_set;
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">XPG4.2 requires this member name.  Otherwise avoid the name</span>
+<span class="org-comment">       from the global namespace.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#ifdef</span> __USE_XOPEN
+    <span class="org-type">__fd_mask</span> <span class="org-variable-name">fds_bits</span>[__FD_SETSIZE / __NFDBITS];
+<span class="org-preprocessor"># define</span> <span class="org-function-name">__FDS_BITS</span>(<span class="org-variable-name">set</span>) ((set)-&gt;fds_bits)
+<span class="org-preprocessor">#else</span>
+    <span class="org-type">__fd_mask</span> <span class="org-variable-name">__fds_bits</span>[__FD_SETSIZE / __NFDBITS];
+<span class="org-preprocessor"># define</span> <span class="org-function-name">__FDS_BITS</span>(<span class="org-variable-name">set</span>) ((set)-&gt;__fds_bits)
+<span class="org-preprocessor">#endif</span>
+  } <span class="org-type">fd_set</span>;
 
-/* Maximum number of file descriptors in `fd_set'.  */
-#define	FD_SETSIZE		__FD_SETSIZE
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Maximum number of file descriptors in `fd_set'.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">FD_SETSIZE</span>      __FD_SETSIZE
 
-/* Access macros for `fd_set'.  */
-#define	FD_SET(fd, fdsetp)	__FD_SET (fd, fdsetp)
-#define	FD_CLR(fd, fdsetp)	__FD_CLR (fd, fdsetp)
-#define	FD_ISSET(fd, fdsetp)	__FD_ISSET (fd, fdsetp)
-#define	FD_ZERO(fdsetp)		__FD_ZERO (fdsetp)
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Access macros for `fd_set'.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FD_SET</span>(<span class="org-variable-name">fd</span>, <span class="org-variable-name">fdsetp</span>)  __FD_SET (fd, fdsetp)
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FD_CLR</span>(<span class="org-variable-name">fd</span>, <span class="org-variable-name">fdsetp</span>)  __FD_CLR (fd, fdsetp)
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FD_ISSET</span>(<span class="org-variable-name">fd</span>, <span class="org-variable-name">fdsetp</span>)    __FD_ISSET (fd, fdsetp)
+<span class="org-preprocessor">#define</span> <span class="org-function-name">FD_ZERO</span>(<span class="org-variable-name">fdsetp</span>)     __FD_ZERO (fdsetp)
 
-/* Check the first NFDS descriptors each in READFDS (if not NULL) for read
-   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS
-   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out
-   after waiting the interval specified therein.  Returns the number of ready
-   descriptors, or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Check the first NFDS descriptors each in READFDS (if not NULL) for read</span>
+<span class="org-comment">   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS</span>
+<span class="org-comment">   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out</span>
+<span class="org-comment">   after waiting the interval specified therein.  Returns the number of ready</span>
+<span class="org-comment">   descriptors, or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">select</span> (<span class="org-type">int</span> <span class="org-variable-name">__nfds</span>, <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __readfds,
+           <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __writefds,
+           <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __exceptfds,
+           <span class="org-keyword">struct</span> <span class="org-type">timeval</span> *<span class="org-variable-name">__restrict</span> __timeout);
+
+   This function is a <span class="org-type">cancellation</span> <span class="org-function-name">point</span> <span class="org-keyword">and</span> therefore <span class="org-keyword">not</span> marked with
    __THROW.  */
-extern int select (int __nfds, fd_set *__restrict __readfds,
-           fd_set *__restrict __writefds,
-           fd_set *__restrict __exceptfds,
-           struct timeval *__restrict __timeout);
-
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int pselect (int __nfds, fd_set *__restrict __readfds,
-            fd_set *__restrict __writefds,
-            fd_set *__restrict __exceptfds,
-            const struct timespec *__restrict __timeout,
-            const __sigset_t *__restrict __sigmask);
+<span class="org-keyword">extern</span> <span class="org-type">int</span> pselect (<span class="org-type">int</span> <span class="org-variable-name">__nfds</span>, <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __readfds,
+            <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __writefds,
+            <span class="org-type">fd_set</span> *<span class="org-variable-name">__restrict</span> __exceptfds,
+            <span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">timespec</span> *<span class="org-variable-name">__restrict</span> __timeout,
+            <span class="org-keyword">const</span> <span class="org-type">__sigset_t</span> *<span class="org-variable-name">__restrict</span> __sigmask);
 </pre>
 </div>
 <p>
@@ -1989,38 +1989,38 @@ select存在限制，那就是FD_SETSIZE这个大小。通常来说这个值是1
 <li><a id="org075b6a3"></a>poll/ppoll<br />
 <div class="outline-text-5" id="text-2-10-3-2">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/poll.h&gt;
-/* Type used for the number of file descriptors.  */
-typedef unsigned long int nfds_t;
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/poll.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Type used for the number of file descriptors.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">typedef</span> <span class="org-type">unsigned</span> <span class="org-type">long</span> <span class="org-type">int</span> <span class="org-type">nfds_t</span>;
 
-/* Data structure describing a polling request.  */
-struct pollfd
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Data structure describing a polling request.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">pollfd</span>
   {
-    int fd;			/* File descriptor to poll.  */
-    short int events;		/* Types of events poller cares about.  */
-    short int revents;		/* Types of events that actually occurred.  */
+    <span class="org-type">int</span> <span class="org-variable-name">fd</span>;         <span class="org-comment-delimiter">/* </span><span class="org-comment">File descriptor to poll.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">short</span> <span class="org-type">int</span> <span class="org-variable-name">events</span>;       <span class="org-comment-delimiter">/* </span><span class="org-comment">Types of events poller cares about.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">short</span> <span class="org-type">int</span> <span class="org-variable-name">revents</span>;      <span class="org-comment-delimiter">/* </span><span class="org-comment">Types of events that actually occurred.</span><span class="org-comment-delimiter">  */</span>
   };
 
 
-/* Poll the file descriptors described by the NFDS structures starting at
-   FDS.  If TIMEOUT is nonzero and not -1, allow TIMEOUT milliseconds for
-   an event to occur; if TIMEOUT is -1, block until an event occurs.
-   Returns the number of file descriptors with events, zero if timed out,
-   or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Poll the file descriptors described by the NFDS structures starting at</span>
+<span class="org-comment">   FDS.  If TIMEOUT is nonzero and not -1, allow TIMEOUT milliseconds for</span>
+<span class="org-comment">   an event to occur; if TIMEOUT is -1, block until an event occurs.</span>
+<span class="org-comment">   Returns the number of file descriptors with events, zero if timed out,</span>
+<span class="org-comment">   or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int poll (struct pollfd *__fds, nfds_t __nfds, int __timeout);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">poll</span> (<span class="org-keyword">struct</span> <span class="org-type">pollfd</span> *<span class="org-variable-name">__fds</span>, <span class="org-type">nfds_t</span> <span class="org-variable-name">__nfds</span>, <span class="org-type">int</span> <span class="org-variable-name">__timeout</span>);
 
-/* Like poll, but before waiting the threads signal mask is replaced
-   with that specified in the fourth parameter.  For better usability,
-   the timeout value is specified using a TIMESPEC object.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Like poll, but before waiting the threads signal mask is replaced</span>
+<span class="org-comment">   with that specified in the fourth parameter.  For better usability,</span>
+<span class="org-comment">   the timeout value is specified using a TIMESPEC object.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern int ppoll (struct pollfd *__fds, nfds_t __nfds,
-          __const struct timespec *__timeout,
-          __const __sigset_t *__ss);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">ppoll</span> (<span class="org-keyword">struct</span> <span class="org-type">pollfd</span> *<span class="org-variable-name">__fds</span>, <span class="org-type">nfds_t</span> <span class="org-variable-name">__nfds</span>,
+          __const <span class="org-keyword">struct</span> <span class="org-type">timespec</span> *<span class="org-variable-name">__timeout</span>,
+          __const <span class="org-type">__sigset_t</span> *<span class="org-variable-name">__ss</span>);
 </pre>
 </div>
 <p>
@@ -2142,11 +2142,11 @@ poll的超时时间单位是ms如果为负值的话那么就是永久等待。po
 设置信号驱动IO的话可以使用如下代码：
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//首先设置信号驱动，这样准备好之后会发送SIGIO信号
-int flags=fcntl(fd,F_GETFL,0);
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">&#39318;&#20808;&#35774;&#32622;&#20449;&#21495;&#39537;&#21160;&#65292;&#36825;&#26679;&#20934;&#22791;&#22909;&#20043;&#21518;&#20250;&#21457;&#36865;SIGIO&#20449;&#21495;</span>
+<span class="org-type">int</span> <span class="org-variable-name">flags</span>=fcntl(fd,F_GETFL,0);
 flags |= O_ASYNC;
 fcntl(fd,F_SETFL,flags);
-//设置SIGIO信号属主
+<span class="org-comment-delimiter">//</span><span class="org-comment">&#35774;&#32622;SIGIO&#20449;&#21495;&#23646;&#20027;</span>
 fcntl(fd,F_SETOWN,getpid());
 </pre>
 </div>
@@ -2171,39 +2171,39 @@ fcntl(fd,F_SETOWN,getpid());
 <li><a id="orgfa429fd"></a>recv/send<br />
 <div class="outline-text-5" id="text-2-10-6-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;sys/socket.h&gt;
-/* Send N bytes of BUF to socket FD.  Returns the number sent or -1.
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Send N bytes of BUF to socket FD.  Returns the number sent or -1.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t send (int __fd, __const void *__buf, size_t __n, int __flags);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">send</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, __const <span class="org-type">void</span> *<span class="org-variable-name">__buf</span>, <span class="org-type">size_t</span> <span class="org-variable-name">__n</span>, <span class="org-type">int</span> <span class="org-variable-name">__flags</span>);
 
-/* Read N bytes into BUF from socket FD.
-   Returns the number read or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Read N bytes into BUF from socket FD.</span>
+<span class="org-comment">   Returns the number read or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t recv (int __fd, void *__buf, size_t __n, int __flags);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">recv</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">void</span> *<span class="org-variable-name">__buf</span>, <span class="org-type">size_t</span> <span class="org-variable-name">__n</span>, <span class="org-type">int</span> <span class="org-variable-name">__flags</span>);
 
-/* Send N bytes of BUF on socket FD to peer at address ADDR (which is
-   ADDR_LEN bytes long).  Returns the number sent, or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Send N bytes of BUF on socket FD to peer at address ADDR (which is</span>
+<span class="org-comment">   ADDR_LEN bytes long).  Returns the number sent, or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t sendto (int __fd, __const void *__buf, size_t __n,
-               int __flags, __CONST_SOCKADDR_ARG __addr,
-               socklen_t __addr_len);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">sendto</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, __const <span class="org-type">void</span> *<span class="org-variable-name">__buf</span>, <span class="org-type">size_t</span> <span class="org-variable-name">__n</span>,
+               <span class="org-type">int</span> <span class="org-variable-name">__flags</span>, <span class="org-type">__CONST_SOCKADDR_ARG</span> <span class="org-variable-name">__addr</span>,
+               <span class="org-type">socklen_t</span> <span class="org-variable-name">__addr_len</span>);
 
-/* Read N bytes into BUF through socket FD.
-   If ADDR is not NULL, fill in *ADDR_LEN bytes of it with tha address of
-   the sender, and store the actual size of the address in *ADDR_LEN.
-   Returns the number of bytes read or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Read N bytes into BUF through socket FD.</span>
+<span class="org-comment">   If ADDR is not NULL, fill in *ADDR_LEN bytes of it with tha address of</span>
+<span class="org-comment">   the sender, and store the actual size of the address in *ADDR_LEN.</span>
+<span class="org-comment">   Returns the number of bytes read or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t recvfrom (int __fd, void *__restrict __buf, size_t __n,
-             int __flags, __SOCKADDR_ARG __addr,
-             socklen_t *__restrict __addr_len);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">recvfrom</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-type">void</span> *<span class="org-variable-name">__restrict</span> __buf, <span class="org-type">size_t</span> <span class="org-variable-name">__n</span>,
+             <span class="org-type">int</span> <span class="org-variable-name">__flags</span>, <span class="org-type">__SOCKADDR_ARG</span> <span class="org-variable-name">__addr</span>,
+             <span class="org-type">socklen_t</span> *<span class="org-variable-name">__restrict</span> __addr_len);
 </pre>
 </div>
 <p>
@@ -2246,35 +2246,35 @@ recv/send界面上和write/read非常相似，不过多了一个flags参数。�
 <li><a id="org6c4c6b4"></a>readv/writev<br />
 <div class="outline-text-5" id="text-2-10-6-2">
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;bits/uio.h&gt;
-/* Structure for scatter/gather I/O.  */
-struct iovec
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/uio.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure for scatter/gather I/O.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">iovec</span>
   {
-    void *iov_base;	/* Pointer to data.  */
-    size_t iov_len;	/* Length of data.  */
+    <span class="org-type">void</span> *<span class="org-variable-name">iov_base</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">Pointer to data.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">size_t</span> <span class="org-variable-name">iov_len</span>; <span class="org-comment-delimiter">/* </span><span class="org-comment">Length of data.</span><span class="org-comment-delimiter">  */</span>
   };
 
 
-//#include &lt;sys/uio.h&gt;
-/* Read data from file descriptor FD, and put the result in the
-   buffers described by IOVEC, which is a vector of COUNT `struct iovec's.
-   The buffers are filled in the order specified.
-   Operates just like `read' (see &lt;unistd.h&gt;) except that data are
-   put in IOVEC instead of a contiguous buffer.
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/uio.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Read data from file descriptor FD, and put the result in the</span>
+<span class="org-comment">   buffers described by IOVEC, which is a vector of COUNT `struct iovec's.</span>
+<span class="org-comment">   The buffers are filled in the order specified.</span>
+<span class="org-comment">   Operates just like `read' (see &lt;unistd.h&gt;) except that data are</span>
+<span class="org-comment">   put in IOVEC instead of a contiguous buffer.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t readv (int __fd, __const struct iovec *__iovec, int __count);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">readv</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, __const <span class="org-keyword">struct</span> <span class="org-type">iovec</span> *<span class="org-variable-name">__iovec</span>, <span class="org-type">int</span> <span class="org-variable-name">__count</span>);
 
-/* Write data pointed by the buffers described by IOVEC, which
-   is a vector of COUNT `struct iovec's, to file descriptor FD.
-   The data is written in the order specified.
-   Operates just like `write' (see &lt;unistd.h&gt;) except that the data
-   are taken from IOVEC instead of a contiguous buffer.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Write data pointed by the buffers described by IOVEC, which</span>
+<span class="org-comment">   is a vector of COUNT `struct iovec's, to file descriptor FD.</span>
+<span class="org-comment">   The data is written in the order specified.</span>
+<span class="org-comment">   Operates just like `write' (see &lt;unistd.h&gt;) except that the data</span>
+<span class="org-comment">   are taken from IOVEC instead of a contiguous buffer.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t writev (int __fd, __const struct iovec *__iovec, int __count);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">writev</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, __const <span class="org-keyword">struct</span> <span class="org-type">iovec</span> *<span class="org-variable-name">__iovec</span>, <span class="org-type">int</span> <span class="org-variable-name">__count</span>);
 </pre>
 </div>
 <p>
@@ -2289,56 +2289,56 @@ extern ssize_t writev (int __fd, __const struct iovec *__iovec, int __count);
 这个函数可以说是最通用的IO函数了
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;bits/socket.h&gt;
-/* Structure describing messages sent by
-   `sendmsg' and received by `recvmsg'.  */
-struct msghdr
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;bits/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure describing messages sent by</span>
+<span class="org-comment">   `sendmsg' and received by `recvmsg'.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">msghdr</span>
   {
-    void *msg_name;		/* Address to send to/receive from.  */
-    socklen_t msg_namelen;	/* Length of address data.  */
+    <span class="org-type">void</span> *<span class="org-variable-name">msg_name</span>;     <span class="org-comment-delimiter">/* </span><span class="org-comment">Address to send to/receive from.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">socklen_t</span> <span class="org-variable-name">msg_namelen</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">Length of address data.</span><span class="org-comment-delimiter">  */</span>
 
-    struct iovec *msg_iov;	/* Vector of data to send/receive into.  */
-    size_t msg_iovlen;		/* Number of elements in the vector.  */
+    <span class="org-keyword">struct</span> <span class="org-type">iovec</span> *<span class="org-variable-name">msg_iov</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">Vector of data to send/receive into.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">size_t</span> <span class="org-variable-name">msg_iovlen</span>;      <span class="org-comment-delimiter">/* </span><span class="org-comment">Number of elements in the vector.</span><span class="org-comment-delimiter">  */</span>
 
-    void *msg_control;		/* Ancillary data (eg BSD filedesc passing). */
-    size_t msg_controllen;	/* Ancillary data buffer length.
-                   !! The type should be socklen_t but the
-                   definition of the kernel is incompatible
-                   with this.  */
+    <span class="org-type">void</span> *<span class="org-variable-name">msg_control</span>;      <span class="org-comment-delimiter">/* </span><span class="org-comment">Ancillary data (eg BSD filedesc passing).</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-type">size_t</span> <span class="org-variable-name">msg_controllen</span>;  <span class="org-comment-delimiter">/* </span><span class="org-comment">Ancillary data buffer length.</span>
+<span class="org-comment">                   !! The type should be socklen_t but the</span>
+<span class="org-comment">                   definition of the kernel is incompatible</span>
+<span class="org-comment">                   with this.</span><span class="org-comment-delimiter">  */</span>
 
-    int msg_flags;		/* Flags on received message.  */
+    <span class="org-type">int</span> <span class="org-variable-name">msg_flags</span>;      <span class="org-comment-delimiter">/* </span><span class="org-comment">Flags on received message.</span><span class="org-comment-delimiter">  */</span>
   };
 
-/* Structure used for storage of ancillary data object information.  */
-struct cmsghdr
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Structure used for storage of ancillary data object information.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">cmsghdr</span>
   {
-    size_t cmsg_len;		/* Length of data in cmsg_data plus length
-                   of cmsghdr structure.
-                   !! The type should be socklen_t but the
-                   definition of the kernel is incompatible
-                   with this.  */
-    int cmsg_level;		/* Originating protocol.  */
-    int cmsg_type;		/* Protocol specific type.  */
-#if (!defined __STRICT_ANSI__ &amp;&amp; __GNUC__ &gt;= 2) || __STDC_VERSION__ &gt;= 199901L
-    __extension__ unsigned char __cmsg_data __flexarr; /* Ancillary data.  */
-#endif
+    <span class="org-type">size_t</span> <span class="org-variable-name">cmsg_len</span>;        <span class="org-comment-delimiter">/* </span><span class="org-comment">Length of data in cmsg_data plus length</span>
+<span class="org-comment">                   of cmsghdr structure.</span>
+<span class="org-comment">                   !! The type should be socklen_t but the</span>
+<span class="org-comment">                   definition of the kernel is incompatible</span>
+<span class="org-comment">                   with this.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">int</span> <span class="org-variable-name">cmsg_level</span>;     <span class="org-comment-delimiter">/* </span><span class="org-comment">Originating protocol.</span><span class="org-comment-delimiter">  */</span>
+    <span class="org-type">int</span> <span class="org-variable-name">cmsg_type</span>;      <span class="org-comment-delimiter">/* </span><span class="org-comment">Protocol specific type.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#if</span> (<span class="org-negation-char">!</span><span class="org-preprocessor">defined</span> __STRICT_ANSI__ &amp;&amp; __GNUC__ &gt;= 2) || __STDC_VERSION__ &gt;= 199901L
+    __extension__ <span class="org-type">unsigned</span> <span class="org-type">char</span> <span class="org-variable-name">__cmsg_data</span> __flexarr; <span class="org-comment-delimiter">/* </span><span class="org-comment">Ancillary data.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#endif</span>
   };
 
-//#include &lt;sys/socket.h&gt;
-/* Send a message described MESSAGE on socket FD.
-   Returns the number of bytes sent, or -1 for errors.
+<span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;sys/socket.h&gt;</span>
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Send a message described MESSAGE on socket FD.</span>
+<span class="org-comment">   Returns the number of bytes sent, or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t sendmsg (int __fd, __const struct msghdr *__message,
-            int __flags);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">sendmsg</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, __const <span class="org-keyword">struct</span> <span class="org-type">msghdr</span> *<span class="org-variable-name">__message</span>,
+            <span class="org-type">int</span> <span class="org-variable-name">__flags</span>);
 
-/* Receive a message as described by MESSAGE from socket FD.
-   Returns the number of bytes read or -1 for errors.
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Receive a message as described by MESSAGE from socket FD.</span>
+<span class="org-comment">   Returns the number of bytes read or -1 for errors.</span>
 
-   This function is a cancellation point and therefore not marked with
-   __THROW.  */
-extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
+<span class="org-comment">   This function is a cancellation point and therefore not marked with</span>
+<span class="org-comment">   __THROW.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> <span class="org-type">ssize_t</span> <span class="org-function-name">recvmsg</span> (<span class="org-type">int</span> <span class="org-variable-name">__fd</span>, <span class="org-keyword">struct</span> <span class="org-type">msghdr</span> *<span class="org-variable-name">__message</span>, <span class="org-type">int</span> <span class="org-variable-name">__flags</span>);
 </pre>
 </div>
 <p>
@@ -2377,8 +2377,8 @@ extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
 <h3 id="orgb9c8aaa"><span class="section-number-3">2.11.</span> conversion</h3>
 <div class="outline-text-3" id="text-2-11">
 </div>
-<div id="outline-container-orgc8c159c" class="outline-4">
-<h4 id="orgc8c159c"><span class="section-number-4">2.11.1.</span> 使用说明</h4>
+<div id="outline-container-orgbb67380" class="outline-4">
+<h4 id="orgbb67380"><span class="section-number-4">2.11.1.</span> 使用说明</h4>
 <div class="outline-text-4" id="text-2-11-1">
 <p>
 关于名字与地址转换，我们这里只关注主机名和IP地址之间的转换接口。至于实现方面的话，大致有两种方式：
@@ -2392,28 +2392,28 @@ extern ssize_t recvmsg (int __fd, struct msghdr *__message, int __flags);
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">//#include &lt;netdb.h&gt;
-extern int gethostbyaddr_r (__const void *__restrict __addr, __socklen_t __len,
-                int __type,
-                struct hostent *__restrict __result_buf,
-                char *__restrict __buf, size_t __buflen,
-                struct hostent **__restrict __result,
-                int *__restrict __h_errnop);
+<pre class="src src-C++"><span class="org-comment-delimiter">//</span><span class="org-comment">#include &lt;netdb.h&gt;</span>
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">gethostbyaddr_r</span> (__const <span class="org-type">void</span> *<span class="org-variable-name">__restrict</span> __addr, <span class="org-type">__socklen_t</span> <span class="org-variable-name">__len</span>,
+                <span class="org-type">int</span> <span class="org-variable-name">__type</span>,
+                <span class="org-keyword">struct</span> <span class="org-type">hostent</span> *<span class="org-variable-name">__restrict</span> __result_buf,
+                <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __buf, <span class="org-type">size_t</span> <span class="org-variable-name">__buflen</span>,
+                <span class="org-keyword">struct</span> <span class="org-type">hostent</span> **<span class="org-variable-name">__restrict</span> __result,
+                <span class="org-type">int</span> *<span class="org-variable-name">__restrict</span> __h_errnop);
 
-extern int gethostbyname_r (__const char *__restrict __name,
-                struct hostent *__restrict __result_buf,
-                char *__restrict __buf, size_t __buflen,
-                struct hostent **__restrict __result,
-                int *__restrict __h_errnop);
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">gethostbyname_r</span> (__const <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __name,
+                <span class="org-keyword">struct</span> <span class="org-type">hostent</span> *<span class="org-variable-name">__restrict</span> __result_buf,
+                <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __buf, <span class="org-type">size_t</span> <span class="org-variable-name">__buflen</span>,
+                <span class="org-keyword">struct</span> <span class="org-type">hostent</span> **<span class="org-variable-name">__restrict</span> __result,
+                <span class="org-type">int</span> *<span class="org-variable-name">__restrict</span> __h_errnop);
 
-extern int gethostbyname2_r (__const char *__restrict __name, int __af,
-                 struct hostent *__restrict __result_buf,
-                 char *__restrict __buf, size_t __buflen,
-                 struct hostent **__restrict __result,
-                 int *__restrict __h_errnop);
+<span class="org-keyword">extern</span> <span class="org-type">int</span> <span class="org-function-name">gethostbyname2_r</span> (__const <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __name, <span class="org-type">int</span> <span class="org-variable-name">__af</span>,
+                 <span class="org-keyword">struct</span> <span class="org-type">hostent</span> *<span class="org-variable-name">__restrict</span> __result_buf,
+                 <span class="org-type">char</span> *<span class="org-variable-name">__restrict</span> __buf, <span class="org-type">size_t</span> <span class="org-variable-name">__buflen</span>,
+                 <span class="org-keyword">struct</span> <span class="org-type">hostent</span> **<span class="org-variable-name">__restrict</span> __result,
+                 <span class="org-type">int</span> *<span class="org-variable-name">__restrict</span> __h_errnop);
 
-/* Return string associated with error ERR_NUM.  */
-extern __const char *hstrerror (int __err_num) __THROW;
+<span class="org-comment-delimiter">/* </span><span class="org-comment">Return string associated with error ERR_NUM.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">extern</span> __const <span class="org-type">char</span> *<span class="org-function-name">hstrerror</span> (<span class="org-type">int</span> <span class="org-variable-name">__err_num</span>) __THROW;
 </pre>
 </div>
 <p>
@@ -2425,15 +2425,15 @@ extern __const char *hstrerror (int __err_num) __THROW;
 然后我们看看最主要的结构struct hostent.
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">/* Description of data base entry for a single host.  */
-struct hostent
+<pre class="src src-C++"><span class="org-comment-delimiter">/* </span><span class="org-comment">Description of data base entry for a single host.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-keyword">struct</span> <span class="org-type">hostent</span>
 {
-  char *h_name;			/* Official name of host.  */
-  char **h_aliases;		/* Alias list.  */
-  int h_addrtype;		/* Host address type.  */ //AF_INET or AF_INET6
-  int h_length;			/* Length of address.  */ //表示h_addr_list里面每个元素长度，IPv4为4，IPv6为16.
-  char **h_addr_list;		/* List of addresses from name server.  */
-#define	h_addr	h_addr_list[0]	/* Address, for backward compatibility.  */
+  <span class="org-type">char</span> *<span class="org-variable-name">h_name</span>;         <span class="org-comment-delimiter">/* </span><span class="org-comment">Official name of host.</span><span class="org-comment-delimiter">  */</span>
+  <span class="org-type">char</span> **<span class="org-variable-name">h_aliases</span>;     <span class="org-comment-delimiter">/* </span><span class="org-comment">Alias list.</span><span class="org-comment-delimiter">  */</span>
+  <span class="org-type">int</span> <span class="org-variable-name">h_addrtype</span>;       <span class="org-comment-delimiter">/* </span><span class="org-comment">Host address type.</span><span class="org-comment-delimiter">  */</span> <span class="org-comment-delimiter">//</span><span class="org-comment">AF_INET or AF_INET6</span>
+  <span class="org-type">int</span> <span class="org-variable-name">h_length</span>;         <span class="org-comment-delimiter">/* </span><span class="org-comment">Length of address.</span><span class="org-comment-delimiter">  */</span> <span class="org-comment-delimiter">//</span><span class="org-comment">&#34920;&#31034;h_addr_list&#37324;&#38754;&#27599;&#20010;&#20803;&#32032;&#38271;&#24230;&#65292;IPv4&#20026;4&#65292;IPv6&#20026;16.</span>
+  <span class="org-type">char</span> **<span class="org-variable-name">h_addr_list</span>;       <span class="org-comment-delimiter">/* </span><span class="org-comment">List of addresses from name server.</span><span class="org-comment-delimiter">  */</span>
+<span class="org-preprocessor">#define</span> <span class="org-variable-name">h_addr</span>  h_addr_list[0]  <span class="org-comment-delimiter">/* </span><span class="org-comment">Address, for backward compatibility.</span><span class="org-comment-delimiter">  */</span>
 };
 </pre>
 </div>
@@ -2448,7 +2448,7 @@ struct hostent
 <div id="outline-container-org1b5cd41" class="outline-4">
 <h4 id="org1b5cd41"><span class="section-number-4">2.11.2.</span> name2addr</h4>
 <div class="outline-text-4" id="text-2-11-2">
-<pre class="example" id="org1e5efe4">
+<pre class="example" id="org25d8920">
 //第一次请求
 [dirlt@localhost.localdomain]$ ./name2addr iptv.tsinghua.edu.cn
 ====================IPv4====================
@@ -2500,7 +2500,7 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 <div id="outline-container-orgba48bf9" class="outline-4">
 <h4 id="orgba48bf9"><span class="section-number-4">2.11.3.</span> addr2name</h4>
 <div class="outline-text-4" id="text-2-11-3">
-<pre class="example" id="org745bf6a">
+<pre class="example" id="orgeb224e3">
 //第一次请求
 [dirlt@localhost.localdomain]$ ./addr2name 127.0.0.1
 ====================IPv4====================
@@ -2552,8 +2552,8 @@ listening on eth0, link-type EN10MB (Ethernet), capture size 65535 bytes
 </p>
 </div>
 
-<div id="outline-container-org7024a2e" class="outline-3">
-<h3 id="org7024a2e"><span class="section-number-3">3.1.</span> 特点</h3>
+<div id="outline-container-org61adf7f" class="outline-3">
+<h3 id="org61adf7f"><span class="section-number-3">3.1.</span> 特点</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 TCP(Transmission Control Protocol,传输控制协议)相对于UDP来说更加复杂而功能也更加强大。首先TCP是面向连接的，
@@ -2585,23 +2585,23 @@ TCP(Transmission Control Protocol,传输控制协议)相对于UDP来说更加复
 TCP首部数据格式如下，如果不计可选字段的话占用20个字节（通常来说也就是占用20个字节）
 </p>
 <div class="org-src-container">
-<pre class="src src-Cpp">struct tcp_header_t{
-    uint16_t src_port;
-    uint16_t dst_port;
-    uint32_t seq;
-    uint32_t ack_seq; //ACK序号，确认需要是上次成功接收数据序号+1
-    uint8_t header_length:4; //给出的首部中32bit的数目，因为首部最大15*4byte=60byte.
-    uint8_t reserved:6;
-    uint8_t urg:1;
-    uint8_t ack:1;
-    uint8_t psh:1; //接收方应该尽快地将这个报文段交给应用层
-    uint8_t rst:1;
-    uint8_t syn:1;
-    uint8_t fin:1;
-    uint16_t win_size; //可以看到窗口大小65535字节
-    uint16_t checksum; //强制性字段，发送端进行计算和存储，接收端进行校验
-    uint16_t urg_ptr; //紧急指针当urg==1的时候才有效，+seq表示紧急数据最后一个字节的序号
-    uint8_t option[0]; //最常见可选字段是MSS
+<pre class="src src-C++"><span class="org-keyword">struct</span> <span class="org-type">tcp_header_t</span>{
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">src_port</span>;
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">dst_port</span>;
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">seq</span>;
+    <span class="org-type">uint32_t</span> <span class="org-variable-name">ack_seq</span>; <span class="org-comment-delimiter">//</span><span class="org-comment">ACK&#24207;&#21495;&#65292;&#30830;&#35748;&#38656;&#35201;&#26159;&#19978;&#27425;&#25104;&#21151;&#25509;&#25910;&#25968;&#25454;&#24207;&#21495;+1</span>
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">header_length</span>:4; <span class="org-comment-delimiter">//</span><span class="org-comment">&#32473;&#20986;&#30340;&#39318;&#37096;&#20013;32bit&#30340;&#25968;&#30446;&#65292;&#22240;&#20026;&#39318;&#37096;&#26368;&#22823;15*4byte=60byte.</span>
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">reserved</span>:6;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">urg</span>:1;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">ack</span>:1;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">psh</span>:1; <span class="org-comment-delimiter">//</span><span class="org-comment">&#25509;&#25910;&#26041;&#24212;&#35813;&#23613;&#24555;&#22320;&#23558;&#36825;&#20010;&#25253;&#25991;&#27573;&#20132;&#32473;&#24212;&#29992;&#23618;</span>
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">rst</span>:1;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">syn</span>:1;
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">fin</span>:1;
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">win_size</span>; <span class="org-comment-delimiter">//</span><span class="org-comment">&#21487;&#20197;&#30475;&#21040;&#31383;&#21475;&#22823;&#23567;65535&#23383;&#33410;</span>
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">checksum</span>; <span class="org-comment-delimiter">//</span><span class="org-comment">&#24378;&#21046;&#24615;&#23383;&#27573;&#65292;&#21457;&#36865;&#31471;&#36827;&#34892;&#35745;&#31639;&#21644;&#23384;&#20648;&#65292;&#25509;&#25910;&#31471;&#36827;&#34892;&#26657;&#39564;</span>
+    <span class="org-type">uint16_t</span> <span class="org-variable-name">urg_ptr</span>; <span class="org-comment-delimiter">//</span><span class="org-comment">&#32039;&#24613;&#25351;&#38024;&#24403;urg==1&#30340;&#26102;&#20505;&#25165;&#26377;&#25928;&#65292;+seq&#34920;&#31034;&#32039;&#24613;&#25968;&#25454;&#26368;&#21518;&#19968;&#20010;&#23383;&#33410;&#30340;&#24207;&#21495;</span>
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">option</span>[0]; <span class="org-comment-delimiter">//</span><span class="org-comment">&#26368;&#24120;&#35265;&#21487;&#36873;&#23383;&#27573;&#26159;MSS</span>
 };
 </pre>
 </div>
@@ -2652,7 +2652,7 @@ TCP首部数据格式如下，如果不计可选字段的话占用20个字节（
 <h3 id="org39e8546"><span class="section-number-3">3.3.</span> TCP状态</h3>
 <div class="outline-text-3" id="text-3-3">
 
-<div id="orgc88b4fa" class="figure">
+<div id="org5501583" class="figure">
 <p><img src="../images/Pasted-Image-20231225103615.png" alt="Pasted-Image-20231225103615.png" />
 </p>
 </div>
@@ -2682,7 +2682,7 @@ TCP首部数据格式如下，如果不计可选字段的话占用20个字节（
 <h4 id="orgc9185ed"><span class="section-number-4">3.3.1.</span> 连接的建立和终止</h4>
 <div class="outline-text-4" id="text-3-3-1">
 
-<div id="orgdac5055" class="figure">
+<div id="org0c80e6d" class="figure">
 <p><img src="../images/Pasted-Image-20231225104955.png" alt="Pasted-Image-20231225104955.png" />
 </p>
 </div>
@@ -3080,12 +3080,12 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-org68c7072" class="outline-3">
-<h3 id="org68c7072"><span class="section-number-3">3.6.</span> 读写数据</h3>
+<div id="outline-container-orgaaa0be4" class="outline-3">
+<h3 id="orgaaa0be4"><span class="section-number-3">3.6.</span> 读写数据</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-org2c2c361" class="outline-4">
-<h4 id="org2c2c361"><span class="section-number-4">3.6.1.</span> 读数据</h4>
+<div id="outline-container-orge0bb67d" class="outline-4">
+<h4 id="orge0bb67d"><span class="section-number-4">3.6.1.</span> 读数据</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <p>
 #todo:
@@ -3093,8 +3093,8 @@ RTO=R+4D
 </div>
 </div>
 
-<div id="outline-container-orgbbd838a" class="outline-4">
-<h4 id="orgbbd838a"><span class="section-number-4">3.6.2.</span> 写数据</h4>
+<div id="outline-container-org2e2d8c0" class="outline-4">
+<h4 id="org2e2d8c0"><span class="section-number-4">3.6.2.</span> 写数据</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <p>
 首先应用层只是调用write将应用层数据完全copy到内核的tcp send buffer上，至于这个tcp send buffer大小是SO_SNDBUF来控制的。
@@ -3121,8 +3121,8 @@ tcp send buffer不会被丢弃直到对端收到这块buffer所包含内容的�
 </p>
 </div>
 
-<div id="outline-container-org61adf7f" class="outline-3">
-<h3 id="org61adf7f"><span class="section-number-3">4.1.</span> 特点</h3>
+<div id="outline-container-org070a0c6" class="outline-3">
+<h3 id="org070a0c6"><span class="section-number-3">4.1.</span> 特点</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 UDP(User Datagram Procotol,数据报传输协议)是一个简单的传输层协议，在RFC768中有详细说明。
@@ -3143,12 +3143,12 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-orgaaa0be4" class="outline-3">
-<h3 id="orgaaa0be4"><span class="section-number-3">4.2.</span> 读写数据</h3>
+<div id="outline-container-orgf7ade29" class="outline-3">
+<h3 id="orgf7ade29"><span class="section-number-3">4.2.</span> 读写数据</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-orge0bb67d" class="outline-4">
-<h4 id="orge0bb67d"><span class="section-number-4">4.2.1.</span> 读数据</h4>
+<div id="outline-container-org1a7bf67" class="outline-4">
+<h4 id="org1a7bf67"><span class="section-number-4">4.2.1.</span> 读数据</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 #todo:
@@ -3156,8 +3156,8 @@ UDP可以是全双工的，只要在UDP层面上提供链接这样的概念。�
 </div>
 </div>
 
-<div id="outline-container-org2e2d8c0" class="outline-4">
-<h4 id="org2e2d8c0"><span class="section-number-4">4.2.2.</span> 写数据</h4>
+<div id="outline-container-org5250921" class="outline-4">
+<h4 id="org5250921"><span class="section-number-4">4.2.2.</span> 写数据</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <p>
 和TCP输出一样，UDP也维护着内核udp send buffer,大小可以通过SO_SNDBUF来控制，而这个参数控制着一次写UDP数据报的大小上限。
@@ -3192,139 +3192,139 @@ Unix domain socket走的是loopback接口。loopback接口是没有网卡流量�
 <h3 id="orgaddbb4c"><span class="section-number-3">6.1.</span> connect.cc</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;signal.h&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/socket.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;arpa/inet.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;signal.h&gt;</span>
 
-static const char* prog=0;
-static std::string connect_ip;
-static int connect_port=0;
-static int bind_port=0;
-static bool linger=false;
-static bool reuseaddr=false;
-static bool half_close=false;
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">prog</span>=0;
+<span class="org-keyword">static</span> <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">connect_ip</span>;
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">connect_port</span>=0;
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">bind_port</span>=0;
+<span class="org-keyword">static</span> <span class="org-type">bool</span> <span class="org-variable-name">linger</span>=<span class="org-constant">false</span>;
+<span class="org-keyword">static</span> <span class="org-type">bool</span> <span class="org-variable-name">reuseaddr</span>=<span class="org-constant">false</span>;
+<span class="org-keyword">static</span> <span class="org-type">bool</span> <span class="org-variable-name">half_close</span>=<span class="org-constant">false</span>;
 
-static void usage(){
-    fprintf(stderr,"usage:%s [-b port] [-l] [-r] [-H] ip port\n",prog);
+<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">usage</span>(){
+    fprintf(stderr,<span class="org-string">"usage:%s [-b port] [-l] [-r] [-H] ip port\n"</span>,prog);
 }
-static void signal_handler(int signo){
-    printf("caught signal:%s\n",strsignal(signo));
+<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">signal_handler</span>(<span class="org-type">int</span> <span class="org-variable-name">signo</span>){
+    printf(<span class="org-string">"caught signal:%s\n"</span>,strsignal(signo));
 }
 
-int main(int argc,char* const argv[]){
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span>* <span class="org-keyword">const</span> <span class="org-variable-name">argv</span>[]){
     prog=argv[0];
-    bool except=true;
-    for(int i=1;i&lt;argc;i++){
-        if(argv[i][0]=='-'){
-            switch(argv[i][1]){
-                case 'h':
+    <span class="org-type">bool</span> <span class="org-variable-name">except</span>=<span class="org-constant">true</span>;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=1;i&lt;argc;i++){
+        <span class="org-keyword">if</span>(argv[i][0]==<span class="org-string">'-'</span>){
+            <span class="org-keyword">switch</span>(argv[i][1]){
+                <span class="org-keyword">case</span> <span class="org-string">'h'</span>:
                     usage();
-                    return 0;
-                case 'b':
+                    <span class="org-keyword">return</span> 0;
+                <span class="org-keyword">case</span> <span class="org-string">'b'</span>:
                     bind_port=atoi(argv[i+1]);
                     i++;
-                    break;
-                case 'l':
-                    linger=true;
-                    break;
-                case 'r':
-                    reuseaddr=true;
-                    break;
-                case 'H':
-                    half_close=true;
-                    break;
-                default:
-                    fprintf(stderr,"%s:unknown option '%s'\n",prog,argv[i]);
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'l'</span>:
+                    linger=<span class="org-constant">true</span>;
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'r'</span>:
+                    reuseaddr=<span class="org-constant">true</span>;
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'H'</span>:
+                    half_close=<span class="org-constant">true</span>;
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">default</span>:
+                    fprintf(stderr,<span class="org-string">"%s:unknown option '%s'\n"</span>,prog,argv[i]);
                     usage();
-                    return -1;
+                    <span class="org-keyword">return</span> -1;
             }
-        }else{
+        }<span class="org-keyword">else</span>{
             connect_ip=argv[i];
             connect_port=atoi(argv[i+1]);
-            except=false;
-            break;
+            except=<span class="org-constant">false</span>;
+            <span class="org-keyword">break</span>;
         }
     }
-    if(except){
+    <span class="org-keyword">if</span>(except){
         usage();
-        return -1;
+        <span class="org-keyword">return</span> -1;
     }
-    int fd=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
-    if(fd==-1){
-        printf("socket failed:%m\n");
-        return -1;
+    <span class="org-type">int</span> <span class="org-variable-name">fd</span>=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+    <span class="org-keyword">if</span>(fd==-1){
+        printf(<span class="org-string">"socket failed:%m\n"</span>);
+        <span class="org-keyword">return</span> -1;
     }
-    if(reuseaddr){
-        int ok=1;
-        printf("setsockopt SO_REUSEADDR\n");
-        if(setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&amp;ok,sizeof(ok))==-1){
-            fprintf(stderr,"setsockopt SO_REUSEADDR failed:%m\n");
-            return -1;
+    <span class="org-keyword">if</span>(reuseaddr){
+        <span class="org-type">int</span> <span class="org-variable-name">ok</span>=1;
+        printf(<span class="org-string">"setsockopt SO_REUSEADDR\n"</span>);
+        <span class="org-keyword">if</span>(setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&amp;ok,<span class="org-keyword">sizeof</span>(ok))==-1){
+            fprintf(stderr,<span class="org-string">"setsockopt SO_REUSEADDR failed:%m\n"</span>);
+            <span class="org-keyword">return</span> -1;
         }
     }
-    if(linger){
-        struct linger val;
+    <span class="org-keyword">if</span>(linger){
+        <span class="org-keyword">struct</span> <span class="org-type">linger</span> <span class="org-variable-name">val</span>;
         val.l_onoff=1;
         val.l_linger=0;
-        printf("setsockopt SO_LINGER\n");
-        if(setsockopt(fd,SOL_SOCKET,SO_LINGER,&amp;val,sizeof(val))==-1){
-            fprintf(stderr,"setsockopt SO_LINGER failed:%m\n");
-            return -1;
+        printf(<span class="org-string">"setsockopt SO_LINGER\n"</span>);
+        <span class="org-keyword">if</span>(setsockopt(fd,SOL_SOCKET,SO_LINGER,&amp;val,<span class="org-keyword">sizeof</span>(val))==-1){
+            fprintf(stderr,<span class="org-string">"setsockopt SO_LINGER failed:%m\n"</span>);
+            <span class="org-keyword">return</span> -1;
         }
     }
-    if(bind_port){
-        sockaddr_in addr;
-        memset(&amp;addr,0,sizeof(addr));
+    <span class="org-keyword">if</span>(bind_port){
+        <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
+        memset(&amp;addr,0,<span class="org-keyword">sizeof</span>(addr));
         addr.sin_family=AF_INET;
         addr.sin_addr.s_addr=INADDR_ANY;
         addr.sin_port=htons(bind_port);
-        printf("bind (0.0.0.0:%d)\n",bind_port);
-        if(bind(fd,(struct sockaddr*)&amp;addr,sizeof(addr))==-1){
-            printf("bind failed:%m\n");
-            return -1;
+        printf(<span class="org-string">"bind (0.0.0.0:%d)\n"</span>,bind_port);
+        <span class="org-keyword">if</span>(bind(fd,(<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span>*)&amp;addr,<span class="org-keyword">sizeof</span>(addr))==-1){
+            printf(<span class="org-string">"bind failed:%m\n"</span>);
+            <span class="org-keyword">return</span> -1;
         }
     }
-    sockaddr_in addr;
-    memset(&amp;addr,0,sizeof(addr));
+    <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
+    memset(&amp;addr,0,<span class="org-keyword">sizeof</span>(addr));
     addr.sin_family=AF_INET;
     inet_pton(AF_INET,connect_ip.c_str(),&amp;(addr.sin_addr));
     addr.sin_port=htons(connect_port);
-    printf("connect %s:%d ...\n",connect_ip.c_str(),connect_port);
-    if(connect(fd,(struct sockaddr*)&amp;addr,sizeof(addr))==-1){
-        printf("connect failed:%m\n");
-        return -1;
-    }else{
-        printf("connect succeed\n");
+    printf(<span class="org-string">"connect %s:%d ...\n"</span>,connect_ip.c_str(),connect_port);
+    <span class="org-keyword">if</span>(connect(fd,(<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span>*)&amp;addr,<span class="org-keyword">sizeof</span>(addr))==-1){
+        printf(<span class="org-string">"connect failed:%m\n"</span>);
+        <span class="org-keyword">return</span> -1;
+    }<span class="org-keyword">else</span>{
+        printf(<span class="org-string">"connect succeed\n"</span>);
     }
 
     signal(SIGPIPE,signal_handler);
-    if(half_close){
-        char data[1];
-        int ret=0;
-        //SHUT_RD
+    <span class="org-keyword">if</span>(half_close){
+        <span class="org-type">char</span> <span class="org-variable-name">data</span>[1];
+        <span class="org-type">int</span> <span class="org-variable-name">ret</span>=0;
+        <span class="org-comment-delimiter">//</span><span class="org-comment">SHUT_RD</span>
         shutdown(fd,SHUT_RD);
-        ret=read(fd,data,sizeof(data));
-        if(ret==-1){
-            printf("read failed:%m\n");
-        }else{
-            printf("read succeed=%d\n",ret);
+        ret=read(fd,data,<span class="org-keyword">sizeof</span>(data));
+        <span class="org-keyword">if</span>(ret==-1){
+            printf(<span class="org-string">"read failed:%m\n"</span>);
+        }<span class="org-keyword">else</span>{
+            printf(<span class="org-string">"read succeed=%d\n"</span>,ret);
         }
-        //SHUT_WR
+        <span class="org-comment-delimiter">//</span><span class="org-comment">SHUT_WR</span>
         shutdown(fd,SHUT_WR);
-        ret=write(fd,data,sizeof(data));
-        if(ret==-1){
-            printf("write failed:%m\n");
-        }else{
-            printf("write succeed=%d\n",ret);
+        ret=write(fd,data,<span class="org-keyword">sizeof</span>(data));
+        <span class="org-keyword">if</span>(ret==-1){
+            printf(<span class="org-string">"write failed:%m\n"</span>);
+        }<span class="org-keyword">else</span>{
+            printf(<span class="org-string">"write succeed=%d\n"</span>,ret);
         }
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -3336,134 +3336,134 @@ int main(int argc,char* const argv[]){
 <h3 id="orgf3cb0f1"><span class="section-number-3">6.2.</span> server.cc</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cstring&gt;
-#include &lt;string&gt;
-#include &lt;signal.h&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/socket.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;arpa/inet.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdlib&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;string&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;signal.h&gt;</span>
 
-static const char* prog=0;
-static int delay_time=0;
-static std::string bind_ip;
-static int bind_port=0;
-static bool echo_char=false;
-static bool reuseaddr=false;
-static void usage(){
-    fprintf(stderr,"usage:%s [-r] [-d delay] [-b ip] [-c] port\n",prog);
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">prog</span>=0;
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">delay_time</span>=0;
+<span class="org-keyword">static</span> <span class="org-constant">std</span>::<span class="org-type">string</span> <span class="org-variable-name">bind_ip</span>;
+<span class="org-keyword">static</span> <span class="org-type">int</span> <span class="org-variable-name">bind_port</span>=0;
+<span class="org-keyword">static</span> <span class="org-type">bool</span> <span class="org-variable-name">echo_char</span>=<span class="org-constant">false</span>;
+<span class="org-keyword">static</span> <span class="org-type">bool</span> <span class="org-variable-name">reuseaddr</span>=<span class="org-constant">false</span>;
+<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">usage</span>(){
+    fprintf(stderr,<span class="org-string">"usage:%s [-r] [-d delay] [-b ip] [-c] port\n"</span>,prog);
 }
-void sig_handler(int signo){
-    printf("caught signal:%s\n",strsignal(signo));
+<span class="org-type">void</span> <span class="org-function-name">sig_handler</span>(<span class="org-type">int</span> <span class="org-variable-name">signo</span>){
+    printf(<span class="org-string">"caught signal:%s\n"</span>,strsignal(signo));
 }
 
-int main(int argc,char* const argv[]){
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span>* <span class="org-keyword">const</span> <span class="org-variable-name">argv</span>[]){
     prog=argv[0];
-    bool except=true;
-    for(int i=1;i&lt;argc;i++){
-        if(argv[i][0]=='-'){
-            switch(argv[i][1]){
-                case 'h':
+    <span class="org-type">bool</span> <span class="org-variable-name">except</span>=<span class="org-constant">true</span>;
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=1;i&lt;argc;i++){
+        <span class="org-keyword">if</span>(argv[i][0]==<span class="org-string">'-'</span>){
+            <span class="org-keyword">switch</span>(argv[i][1]){
+                <span class="org-keyword">case</span> <span class="org-string">'h'</span>:
                     usage();
-                    return 0;
-                case 'r':
-                    reuseaddr=true;
-                    break;
-                case 'b':
+                    <span class="org-keyword">return</span> 0;
+                <span class="org-keyword">case</span> <span class="org-string">'r'</span>:
+                    reuseaddr=<span class="org-constant">true</span>;
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'b'</span>:
                     bind_ip=argv[i+1];
                     i++;
-                    break;
-                case 'd':
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'d'</span>:
                     delay_time=atoi(argv[i+1]);
                     i++;
-                    break;
-                case 'c':
-                    echo_char=true;
-                    break;
-                default:
-                    fprintf(stderr,"%s:unknown option '%s'\n",prog,argv[i]);
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">case</span> <span class="org-string">'c'</span>:
+                    echo_char=<span class="org-constant">true</span>;
+                    <span class="org-keyword">break</span>;
+                <span class="org-keyword">default</span>:
+                    fprintf(stderr,<span class="org-string">"%s:unknown option '%s'\n"</span>,prog,argv[i]);
                     usage();
-                    return -1;
+                    <span class="org-keyword">return</span> -1;
             }
-        }else{
+        }<span class="org-keyword">else</span>{
             bind_port=atoi(argv[i]);
-            except=false;
-            break;
+            except=<span class="org-constant">false</span>;
+            <span class="org-keyword">break</span>;
         }
     }
-    if(except){
+    <span class="org-keyword">if</span>(except){
         usage();
-        return -1;
+        <span class="org-keyword">return</span> -1;
     }
-    int fd=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
-    if(fd==-1){
-        printf("socket failed:%m\n");
-        return -1;
+    <span class="org-type">int</span> <span class="org-variable-name">fd</span>=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
+    <span class="org-keyword">if</span>(fd==-1){
+        printf(<span class="org-string">"socket failed:%m\n"</span>);
+        <span class="org-keyword">return</span> -1;
     }
-    if(reuseaddr){
-        int ok=1;
-        printf("setsockopt SO_REUSEADDR\n");
-        if(setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&amp;ok,sizeof(ok))==-1){
-            fprintf(stderr,"setsockopt SO_REUSEADDR failed:%m\n");
-            return -1;
+    <span class="org-keyword">if</span>(reuseaddr){
+        <span class="org-type">int</span> <span class="org-variable-name">ok</span>=1;
+        printf(<span class="org-string">"setsockopt SO_REUSEADDR\n"</span>);
+        <span class="org-keyword">if</span>(setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&amp;ok,<span class="org-keyword">sizeof</span>(ok))==-1){
+            fprintf(stderr,<span class="org-string">"setsockopt SO_REUSEADDR failed:%m\n"</span>);
+            <span class="org-keyword">return</span> -1;
         }
     }
-    sockaddr_in addr;
-    memset(&amp;addr,0,sizeof(addr));
+    <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
+    memset(&amp;addr,0,<span class="org-keyword">sizeof</span>(addr));
     addr.sin_family=AF_INET;
     addr.sin_port=htons(bind_port);
-    if(bind_ip.size()){
+    <span class="org-keyword">if</span>(bind_ip.size()){
         inet_pton(AF_INET,bind_ip.c_str(),&amp;(addr.sin_addr));
-        printf("bind (%s:%d)\n",bind_ip.c_str(),bind_port);
-    }else{
+        printf(<span class="org-string">"bind (%s:%d)\n"</span>,bind_ip.c_str(),bind_port);
+    }<span class="org-keyword">else</span>{
         addr.sin_addr.s_addr=INADDR_ANY;
-        printf("bind (0.0.0.0:%d)\n",bind_port);
+        printf(<span class="org-string">"bind (0.0.0.0:%d)\n"</span>,bind_port);
     }
-    if(bind(fd,(struct sockaddr*)&amp;addr,sizeof(addr))==-1){
-        printf("bind failed:%m\n");
-        return -1;
+    <span class="org-keyword">if</span>(bind(fd,(<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span>*)&amp;addr,<span class="org-keyword">sizeof</span>(addr))==-1){
+        printf(<span class="org-string">"bind failed:%m\n"</span>);
+        <span class="org-keyword">return</span> -1;
     }
-    printf("listen 5\n");
-    if(listen(fd,5)==-1){
-        printf("listen failed:%m\n");
-        return -1;
+    printf(<span class="org-string">"listen 5\n"</span>);
+    <span class="org-keyword">if</span>(listen(fd,5)==-1){
+        printf(<span class="org-string">"listen failed:%m\n"</span>);
+        <span class="org-keyword">return</span> -1;
     }
-    if(delay_time){
+    <span class="org-keyword">if</span>(delay_time){
         sleep(delay_time);
     }
     signal(SIGPIPE,sig_handler);
-    while(1){
-        sockaddr_in cli_addr;
-        socklen_t cli_addr_size=sizeof(cli_addr);
-        printf("accept ...\n");
-        int conn_fd=accept(fd,(struct sockaddr*)&amp;cli_addr,&amp;cli_addr_size);
-        if(conn_fd==-1){
-            printf("accept failed:%m\n");
-            return -1;
+    <span class="org-keyword">while</span>(1){
+        <span class="org-type">sockaddr_in</span> <span class="org-variable-name">cli_addr</span>;
+        <span class="org-type">socklen_t</span> <span class="org-variable-name">cli_addr_size</span>=<span class="org-keyword">sizeof</span>(cli_addr);
+        printf(<span class="org-string">"accept ...\n"</span>);
+        <span class="org-type">int</span> <span class="org-variable-name">conn_fd</span>=accept(fd,(<span class="org-keyword">struct</span> <span class="org-type">sockaddr</span>*)&amp;cli_addr,&amp;cli_addr_size);
+        <span class="org-keyword">if</span>(conn_fd==-1){
+            printf(<span class="org-string">"accept failed:%m\n"</span>);
+            <span class="org-keyword">return</span> -1;
         }
-        char cli_ip[INET6_ADDRSTRLEN];
-        inet_ntop(AF_INET,&amp;(cli_addr.sin_addr),cli_ip,sizeof(cli_ip));
-        printf("client (%s:%d)\n",cli_ip,ntohs(cli_addr.sin_port));
-        if(echo_char){
-            char data[1];
-            int ret=read(conn_fd,data,sizeof(data));
-            if(ret==-1){
-                printf("read failed:%m\n");
-            }else{
-                printf("read succeed=%d\n",ret);
+        <span class="org-type">char</span> <span class="org-variable-name">cli_ip</span>[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET,&amp;(cli_addr.sin_addr),cli_ip,<span class="org-keyword">sizeof</span>(cli_ip));
+        printf(<span class="org-string">"client (%s:%d)\n"</span>,cli_ip,ntohs(cli_addr.sin_port));
+        <span class="org-keyword">if</span>(echo_char){
+            <span class="org-type">char</span> <span class="org-variable-name">data</span>[1];
+            <span class="org-type">int</span> <span class="org-variable-name">ret</span>=read(conn_fd,data,<span class="org-keyword">sizeof</span>(data));
+            <span class="org-keyword">if</span>(ret==-1){
+                printf(<span class="org-string">"read failed:%m\n"</span>);
+            }<span class="org-keyword">else</span>{
+                printf(<span class="org-string">"read succeed=%d\n"</span>,ret);
             }
-            ret=write(conn_fd,data,sizeof(data));
-            if(ret==-1){
-                printf("write failed:%m\n");
-            }else{
-                printf("write succeed=%d\n",ret);
+            ret=write(conn_fd,data,<span class="org-keyword">sizeof</span>(data));
+            <span class="org-keyword">if</span>(ret==-1){
+                printf(<span class="org-string">"write failed:%m\n"</span>);
+            }<span class="org-keyword">else</span>{
+                printf(<span class="org-string">"write succeed=%d\n"</span>,ret);
             }
         }
         close(conn_fd);
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -3475,89 +3475,89 @@ int main(int argc,char* const argv[]){
 <h3 id="org27cfec6"><span class="section-number-3">6.3.</span> viewsockopt.cc</h3>
 <div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;netinet/tcp.h&gt;
-#include &lt;sys/time.h&gt;
-#include &lt;cstdio&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;unistd.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/socket.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/in.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;netinet/tcp.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/time.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
 
-union val{
-    int i;
-    struct linger l;
-    struct timeval t;
+<span class="org-keyword">union</span> <span class="org-type">val</span>{
+    <span class="org-type">int</span> <span class="org-variable-name">i</span>;
+    <span class="org-keyword">struct</span> <span class="org-type">linger</span> <span class="org-variable-name">l</span>;
+    <span class="org-keyword">struct</span> <span class="org-type">timeval</span> <span class="org-variable-name">t</span>;
 };
 
-static const char* sock_str_flag(union val* v){
-    static char buf[1024];
-    snprintf(buf,sizeof(buf),"%s",v-&gt;i?"on":"off");
-    return buf;
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-function-name">sock_str_flag</span>(<span class="org-keyword">union</span> <span class="org-type">val</span>* <span class="org-variable-name">v</span>){
+    <span class="org-keyword">static</span> <span class="org-type">char</span> <span class="org-variable-name">buf</span>[1024];
+    snprintf(buf,<span class="org-keyword">sizeof</span>(buf),<span class="org-string">"%s"</span>,v-&gt;i?<span class="org-string">"on"</span>:<span class="org-string">"off"</span>);
+    <span class="org-keyword">return</span> buf;
 }
-static const char* sock_str_value(union val* v){
-    static char buf[1024];
-    snprintf(buf,sizeof(buf),"%d",v-&gt;i);
-    return buf;
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-function-name">sock_str_value</span>(<span class="org-keyword">union</span> <span class="org-type">val</span>* <span class="org-variable-name">v</span>){
+    <span class="org-keyword">static</span> <span class="org-type">char</span> <span class="org-variable-name">buf</span>[1024];
+    snprintf(buf,<span class="org-keyword">sizeof</span>(buf),<span class="org-string">"%d"</span>,v-&gt;i);
+    <span class="org-keyword">return</span> buf;
 }
-static const char* sock_str_linger(union val* v){
-    static char buf[1024];
-    snprintf(buf,sizeof(buf),"l_onoff=%s,l_linger=%d",
-             v-&gt;l.l_onoff?"on":"off",
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-function-name">sock_str_linger</span>(<span class="org-keyword">union</span> <span class="org-type">val</span>* <span class="org-variable-name">v</span>){
+    <span class="org-keyword">static</span> <span class="org-type">char</span> <span class="org-variable-name">buf</span>[1024];
+    snprintf(buf,<span class="org-keyword">sizeof</span>(buf),<span class="org-string">"l_onoff=%s,l_linger=%d"</span>,
+             v-&gt;l.l_onoff?<span class="org-string">"on"</span>:<span class="org-string">"off"</span>,
              v-&gt;l.l_linger);
-    return buf;
+    <span class="org-keyword">return</span> buf;
 }
-static const char* sock_str_timeval(union val* v){
-    static char buf[1024];
-    snprintf(buf,sizeof(buf),"(%d,%d)",
+<span class="org-keyword">static</span> <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-function-name">sock_str_timeval</span>(<span class="org-keyword">union</span> <span class="org-type">val</span>* <span class="org-variable-name">v</span>){
+    <span class="org-keyword">static</span> <span class="org-type">char</span> <span class="org-variable-name">buf</span>[1024];
+    snprintf(buf,<span class="org-keyword">sizeof</span>(buf),<span class="org-string">"(%d,%d)"</span>,
              v-&gt;t.tv_sec,
              v-&gt;t.tv_usec);
-    return buf;
+    <span class="org-keyword">return</span> buf;
 }
 
-static struct sock_opt{
-    const char* opt_str;
-    int opt_level;
-    int opt_name;
-    const char* (*func)(union val* v);
-} sock_opts[]={
-    {"SO_ERROR",SOL_SOCKET,SO_ERROR,sock_str_value},
-    {"SO_KEEPALIVE",SOL_SOCKET,SO_KEEPALIVE,sock_str_flag},
-    {"SO_LINGER",SOL_SOCKET,SO_LINGER,sock_str_linger},
-    {"SO_RCVBUF",SOL_SOCKET,SO_RCVBUF,sock_str_value},
-    {"SO_SNDBUF",SOL_SOCKET,SO_SNDBUF,sock_str_value},
-    {"SO_RCVLOWAT",SOL_SOCKET,SO_RCVLOWAT,sock_str_value},
-    {"SO_SNDLOWAT",SOL_SOCKET,SO_SNDLOWAT,sock_str_value},
-    {"SO_RCVTIMEO",SOL_SOCKET,SO_RCVTIMEO,sock_str_timeval},
-    {"SO_SNDTIMEO",SOL_SOCKET,SO_SNDTIMEO,sock_str_timeval},
-    {"SO_REUSEADDR",SOL_SOCKET,SO_REUSEADDR,sock_str_flag},
-    {"TCP_MAXSEG",IPPROTO_TCP,TCP_MAXSEG,sock_str_value},
-    {"TCP_NODELAY",IPPROTO_TCP,TCP_NODELAY,sock_str_flag},
-    {"TCP_QUICKACK",IPPROTO_TCP,TCP_QUICKACK,sock_str_flag},
-    {"TCP_CORK",IPPROTO_TCP,TCP_CORK,sock_str_flag},
-    {NULL,0,0,NULL}
+<span class="org-keyword">static</span> <span class="org-keyword">struct</span> <span class="org-type">sock_opt</span>{
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">opt_str</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">opt_level</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">opt_name</span>;
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* (*<span class="org-function-name">func</span>)(<span class="org-keyword">union</span> <span class="org-type">val</span>* <span class="org-variable-name">v</span>);
+} <span class="org-variable-name">sock_opts</span>[]={
+    {<span class="org-string">"SO_ERROR"</span>,SOL_SOCKET,SO_ERROR,sock_str_value},
+    {<span class="org-string">"SO_KEEPALIVE"</span>,SOL_SOCKET,SO_KEEPALIVE,sock_str_flag},
+    {<span class="org-string">"SO_LINGER"</span>,SOL_SOCKET,SO_LINGER,sock_str_linger},
+    {<span class="org-string">"SO_RCVBUF"</span>,SOL_SOCKET,SO_RCVBUF,sock_str_value},
+    {<span class="org-string">"SO_SNDBUF"</span>,SOL_SOCKET,SO_SNDBUF,sock_str_value},
+    {<span class="org-string">"SO_RCVLOWAT"</span>,SOL_SOCKET,SO_RCVLOWAT,sock_str_value},
+    {<span class="org-string">"SO_SNDLOWAT"</span>,SOL_SOCKET,SO_SNDLOWAT,sock_str_value},
+    {<span class="org-string">"SO_RCVTIMEO"</span>,SOL_SOCKET,SO_RCVTIMEO,sock_str_timeval},
+    {<span class="org-string">"SO_SNDTIMEO"</span>,SOL_SOCKET,SO_SNDTIMEO,sock_str_timeval},
+    {<span class="org-string">"SO_REUSEADDR"</span>,SOL_SOCKET,SO_REUSEADDR,sock_str_flag},
+    {<span class="org-string">"TCP_MAXSEG"</span>,IPPROTO_TCP,TCP_MAXSEG,sock_str_value},
+    {<span class="org-string">"TCP_NODELAY"</span>,IPPROTO_TCP,TCP_NODELAY,sock_str_flag},
+    {<span class="org-string">"TCP_QUICKACK"</span>,IPPROTO_TCP,TCP_QUICKACK,sock_str_flag},
+    {<span class="org-string">"TCP_CORK"</span>,IPPROTO_TCP,TCP_CORK,sock_str_flag},
+    {<span class="org-constant">NULL</span>,0,0,<span class="org-constant">NULL</span>}
 };
 
-int main(){
-    for(int i=0;sock_opts[i].opt_str;i++){
-        printf("%s:",sock_opts[i].opt_str);
-        int fd=-1;
-        switch(sock_opts[i].opt_level){
-            case SOL_SOCKET:
-            case IPPROTO_TCP:
+<span class="org-type">int</span> <span class="org-function-name">main</span>(){
+    <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;sock_opts[i].opt_str;i++){
+        printf(<span class="org-string">"%s:"</span>,sock_opts[i].opt_str);
+        <span class="org-type">int</span> <span class="org-variable-name">fd</span>=-1;
+        <span class="org-keyword">switch</span>(sock_opts[i].opt_level){
+            <span class="org-keyword">case</span> SOL_SOCKET:
+            <span class="org-keyword">case</span> IPPROTO_TCP:
                 fd=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
-                break;
-            default:
-                continue;
+                <span class="org-keyword">break</span>;
+            <span class="org-keyword">default</span>:
+                <span class="org-keyword">continue</span>;
         }
-        union val v;
-        socklen_t size=sizeof(v);
+        <span class="org-keyword">union</span> <span class="org-type">val</span> <span class="org-variable-name">v</span>;
+        <span class="org-type">socklen_t</span> <span class="org-variable-name">size</span>=<span class="org-keyword">sizeof</span>(v);
         getsockopt(fd,
                    sock_opts[i].opt_level,
                    sock_opts[i].opt_name,
                    &amp;v,&amp;size);
-        printf("%s\n",sock_opts[i].func(&amp;v));
+        printf(<span class="org-string">"%s\n"</span>,sock_opts[i].func(&amp;v));
         close(fd);
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -3569,67 +3569,67 @@ int main(){
 <h3 id="org49f7eb6"><span class="section-number-3">6.4.</span> name2addr.cc</h3>
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;netdb.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;cstdio&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;netdb.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/socket.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;arpa/inet.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
 
-static void print_hostent(const char* s,const struct hostent* p){
-    printf("====================%s====================\n",s);
-    if(p-&gt;h_name){
-        printf("hostname:%s\n",p-&gt;h_name);
+<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">print_hostent</span>(<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">s</span>,<span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">hostent</span>* <span class="org-variable-name">p</span>){
+    printf(<span class="org-string">"====================%s====================\n"</span>,s);
+    <span class="org-keyword">if</span>(p-&gt;h_name){
+        printf(<span class="org-string">"hostname:%s\n"</span>,p-&gt;h_name);
     }
-    if(p-&gt;h_aliases &amp;&amp; p-&gt;h_aliases[0]){
-        printf("alias:\n");
-        for(int i=0;p-&gt;h_aliases[i];i++){
-            printf("\t%s\n",p-&gt;h_aliases[i]);
+    <span class="org-keyword">if</span>(p-&gt;h_aliases &amp;&amp; p-&gt;h_aliases[0]){
+        printf(<span class="org-string">"alias:\n"</span>);
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;p-&gt;h_aliases[i];i++){
+            printf(<span class="org-string">"\t%s\n"</span>,p-&gt;h_aliases[i]);
         }
     }
-    if(p-&gt;h_addr_list &amp;&amp; p-&gt;h_addr_list[0]){
-        printf("ip:\n");
-        for(int i=0;p-&gt;h_addr_list[i];i++){
-            char ip[INET6_ADDRSTRLEN];
-            inet_ntop(p-&gt;h_addrtype,p-&gt;h_addr_list[i],ip,sizeof(ip));
-            printf("\t%s\n",ip);
+    <span class="org-keyword">if</span>(p-&gt;h_addr_list &amp;&amp; p-&gt;h_addr_list[0]){
+        printf(<span class="org-string">"ip:\n"</span>);
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;p-&gt;h_addr_list[i];i++){
+            <span class="org-type">char</span> <span class="org-variable-name">ip</span>[INET6_ADDRSTRLEN];
+            inet_ntop(p-&gt;h_addrtype,p-&gt;h_addr_list[i],ip,<span class="org-keyword">sizeof</span>(ip));
+            printf(<span class="org-string">"\t%s\n"</span>,ip);
         }
     }
 }
 
-int main(int argc,char* const argv[]){
-    if(argc!=2){
-        fprintf(stderr,"usage:%s hostname\n",argv[0]);
-        return -1;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span>* <span class="org-keyword">const</span> <span class="org-variable-name">argv</span>[]){
+    <span class="org-keyword">if</span>(argc!=2){
+        fprintf(stderr,<span class="org-string">"usage:%s hostname\n"</span>,argv[0]);
+        <span class="org-keyword">return</span> -1;
     }
-    const char* hostname=argv[1];
-    char buf[16*1024];
-    struct hostent ent;
-    struct hostent* entp;
-    int herrno=0;
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">hostname</span>=argv[1];
+    <span class="org-type">char</span> <span class="org-variable-name">buf</span>[16*1024];
+    <span class="org-keyword">struct</span> <span class="org-type">hostent</span> <span class="org-variable-name">ent</span>;
+    <span class="org-keyword">struct</span> <span class="org-type">hostent</span>* <span class="org-variable-name">entp</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">herrno</span>=0;
     {
-        //AF_INET
-        gethostbyname2_r(hostname,AF_INET,&amp;ent,buf,sizeof(buf),&amp;entp,&amp;herrno);
-        if(!entp){
-            fprintf(stderr,"gethostbyname2_r(%s,AF_INET) failed:%s\n",
+        <span class="org-comment-delimiter">//</span><span class="org-comment">AF_INET</span>
+        gethostbyname2_r(hostname,AF_INET,&amp;ent,buf,<span class="org-keyword">sizeof</span>(buf),&amp;entp,&amp;herrno);
+        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>entp){
+            fprintf(stderr,<span class="org-string">"gethostbyname2_r(%s,AF_INET) failed:%s\n"</span>,
                     hostname,hstrerror(herrno));
-            goto next1;
-        }else{
-            print_hostent("IPv4",entp);
+            <span class="org-keyword">goto</span> <span class="org-constant">next1</span>;
+        }<span class="org-keyword">else</span>{
+            print_hostent(<span class="org-string">"IPv4"</span>,entp);
         }
     }
-next1:
+<span class="org-constant">next1</span>:
     {
-        //AF_INET6
-        gethostbyname2_r(hostname,AF_INET6,&amp;ent,buf,sizeof(buf),&amp;entp,&amp;herrno);
-        if(!entp){
-            fprintf(stderr,"gethostbyname2_r(%s,AF_INET6) failed:%s\n",
+        <span class="org-comment-delimiter">//</span><span class="org-comment">AF_INET6</span>
+        gethostbyname2_r(hostname,AF_INET6,&amp;ent,buf,<span class="org-keyword">sizeof</span>(buf),&amp;entp,&amp;herrno);
+        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>entp){
+            fprintf(stderr,<span class="org-string">"gethostbyname2_r(%s,AF_INET6) failed:%s\n"</span>,
                     hostname,hstrerror(herrno));
-            goto next2;
-        }else{
-            print_hostent("IPv6",entp);
+            <span class="org-keyword">goto</span> <span class="org-constant">next2</span>;
+        }<span class="org-keyword">else</span>{
+            print_hostent(<span class="org-string">"IPv6"</span>,entp);
         }
     }
-next2:
-    return 0;
+<span class="org-constant">next2</span>:
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>
@@ -3641,69 +3641,69 @@ next2:
 <h3 id="org598626d"><span class="section-number-3">6.5.</span> addr2name.cc</h3>
 <div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
-<pre class="src src-Cpp">#include &lt;netdb.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;arpa/inet.h&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
+<pre class="src src-C++"><span class="org-preprocessor">#include</span> <span class="org-string">&lt;netdb.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;sys/socket.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;arpa/inet.h&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstdio&gt;</span>
+<span class="org-preprocessor">#include</span> <span class="org-string">&lt;cstring&gt;</span>
 
-static void print_hostent(const char* s,const struct hostent* p){
-    printf("====================%s====================\n",s);
-    if(p-&gt;h_name){
-        printf("hostname:%s\n",p-&gt;h_name);
+<span class="org-keyword">static</span> <span class="org-type">void</span> <span class="org-function-name">print_hostent</span>(<span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">s</span>,<span class="org-keyword">const</span> <span class="org-keyword">struct</span> <span class="org-type">hostent</span>* <span class="org-variable-name">p</span>){
+    printf(<span class="org-string">"====================%s====================\n"</span>,s);
+    <span class="org-keyword">if</span>(p-&gt;h_name){
+        printf(<span class="org-string">"hostname:%s\n"</span>,p-&gt;h_name);
     }
-    if(p-&gt;h_aliases &amp;&amp; p-&gt;h_aliases[0]){
-        printf("alias:\n");
-        for(int i=0;p-&gt;h_aliases[i];i++){
-            printf("\t%s\n",p-&gt;h_aliases[i]);
+    <span class="org-keyword">if</span>(p-&gt;h_aliases &amp;&amp; p-&gt;h_aliases[0]){
+        printf(<span class="org-string">"alias:\n"</span>);
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;p-&gt;h_aliases[i];i++){
+            printf(<span class="org-string">"\t%s\n"</span>,p-&gt;h_aliases[i]);
         }
     }
-    if(p-&gt;h_addr_list &amp;&amp; p-&gt;h_addr_list[0]){
-        printf("ip:\n");
-        for(int i=0;p-&gt;h_addr_list[i];i++){
-            char ip[INET6_ADDRSTRLEN];
-            inet_ntop(p-&gt;h_addrtype,p-&gt;h_addr_list[i],ip,sizeof(ip));
-            printf("\t%s\n",ip);
+    <span class="org-keyword">if</span>(p-&gt;h_addr_list &amp;&amp; p-&gt;h_addr_list[0]){
+        printf(<span class="org-string">"ip:\n"</span>);
+        <span class="org-keyword">for</span>(<span class="org-type">int</span> <span class="org-variable-name">i</span>=0;p-&gt;h_addr_list[i];i++){
+            <span class="org-type">char</span> <span class="org-variable-name">ip</span>[INET6_ADDRSTRLEN];
+            inet_ntop(p-&gt;h_addrtype,p-&gt;h_addr_list[i],ip,<span class="org-keyword">sizeof</span>(ip));
+            printf(<span class="org-string">"\t%s\n"</span>,ip);
         }
     }
 }
 
-int main(int argc,char* const argv[]){
-    if(argc!=2){
-        fprintf(stderr,"usage:%s ip\n",argv[0]);
-        return -1;
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">argc</span>,<span class="org-type">char</span>* <span class="org-keyword">const</span> <span class="org-variable-name">argv</span>[]){
+    <span class="org-keyword">if</span>(argc!=2){
+        fprintf(stderr,<span class="org-string">"usage:%s ip\n"</span>,argv[0]);
+        <span class="org-keyword">return</span> -1;
     }
-    const char* ip=argv[1];
-    char buf[16*1024];
-    struct hostent ent;
-    struct hostent* entp;
-    int herrno=0;
-    if(strchr(ip,':')){
-        //ipv6.
-        struct sockaddr_in6 addr;
+    <span class="org-keyword">const</span> <span class="org-type">char</span>* <span class="org-variable-name">ip</span>=argv[1];
+    <span class="org-type">char</span> <span class="org-variable-name">buf</span>[16*1024];
+    <span class="org-keyword">struct</span> <span class="org-type">hostent</span> <span class="org-variable-name">ent</span>;
+    <span class="org-keyword">struct</span> <span class="org-type">hostent</span>* <span class="org-variable-name">entp</span>;
+    <span class="org-type">int</span> <span class="org-variable-name">herrno</span>=0;
+    <span class="org-keyword">if</span>(strchr(ip,<span class="org-string">':'</span>)){
+        <span class="org-comment-delimiter">//</span><span class="org-comment">ipv6.</span>
+        <span class="org-keyword">struct</span> <span class="org-type">sockaddr_in6</span> <span class="org-variable-name">addr</span>;
         inet_pton(AF_INET6,ip,&amp;(addr.sin6_addr));
-        gethostbyaddr_r(&amp;(addr.sin6_addr),sizeof(addr.sin6_addr),AF_INET6,
-                        &amp;ent,buf,sizeof(buf),&amp;entp,&amp;herrno);
-        if(!entp){
-            fprintf(stderr,"gethostbyaddr_r(%s,AF_INET6) failed:%s\n",
+        gethostbyaddr_r(&amp;(addr.sin6_addr),<span class="org-keyword">sizeof</span>(addr.sin6_addr),AF_INET6,
+                        &amp;ent,buf,<span class="org-keyword">sizeof</span>(buf),&amp;entp,&amp;herrno);
+        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>entp){
+            fprintf(stderr,<span class="org-string">"gethostbyaddr_r(%s,AF_INET6) failed:%s\n"</span>,
                     ip,hstrerror(herrno));
-            return -1;
+            <span class="org-keyword">return</span> -1;
         }
-        print_hostent("IPv6",entp);
-    }else{
-        //ipv4.
-        struct sockaddr_in addr;
+        print_hostent(<span class="org-string">"IPv6"</span>,entp);
+    }<span class="org-keyword">else</span>{
+        <span class="org-comment-delimiter">//</span><span class="org-comment">ipv4.</span>
+        <span class="org-keyword">struct</span> <span class="org-type">sockaddr_in</span> <span class="org-variable-name">addr</span>;
         inet_pton(AF_INET,ip,&amp;(addr.sin_addr));
-        gethostbyaddr_r(&amp;(addr.sin_addr),sizeof(addr.sin_addr),AF_INET,
-                        &amp;ent,buf,sizeof(buf),&amp;entp,&amp;herrno);
-        if(!entp){
-            fprintf(stderr,"gethostbyaddr_r(%s,AF_INET) failed:%s\n",
+        gethostbyaddr_r(&amp;(addr.sin_addr),<span class="org-keyword">sizeof</span>(addr.sin_addr),AF_INET,
+                        &amp;ent,buf,<span class="org-keyword">sizeof</span>(buf),&amp;entp,&amp;herrno);
+        <span class="org-keyword">if</span>(<span class="org-negation-char">!</span>entp){
+            fprintf(stderr,<span class="org-string">"gethostbyaddr_r(%s,AF_INET) failed:%s\n"</span>,
                     ip,hstrerror(herrno));
-            return -1;
+            <span class="org-keyword">return</span> -1;
         }
-        print_hostent("IPv4",entp);
+        print_hostent(<span class="org-string">"IPv4"</span>,entp);
     }
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 
 </pre>

@@ -166,14 +166,14 @@ riscv64里面的中断例程大约就是这样的 (abstract-machine/am/src/riscv
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// abstract-machine/am/include/arch/riscv64-nemu.h
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">abstract-machine/am/include/arch/riscv64-nemu.h</span>
 
-struct Context {
-    // TODO: fix the order of these members to match trap.S
-    uintptr_t gpr[32], mcause, mstatus, mepc;
-    // TODO(yan): I don't know what's that for? what's dir?
-    // page table directory?
-    void* pdir;
+<span class="org-keyword">struct</span> <span class="org-type">Context</span> {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">TODO: fix the order of these members to match trap.S</span>
+    <span class="org-type">uintptr_t</span> <span class="org-variable-name">gpr</span>[32], <span class="org-variable-name">mcause</span>, <span class="org-variable-name">mstatus</span>, <span class="org-variable-name">mepc</span>;
+    <span class="org-comment-delimiter">// </span><span class="org-comment">TODO(yan): I don't know what's that for? what's dir?</span>
+    <span class="org-comment-delimiter">// </span><span class="org-comment">page table directory?</span>
+    <span class="org-type">void</span>* <span class="org-variable-name">pdir</span>;
 };
 
 </pre>
@@ -256,18 +256,18 @@ __am_asm_trap:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">typedef union {
-    uint8_t stack[STACK_SIZE] PG_ALIGN;
-    struct {
-        Context* cp;
-        // TODO(yan): to record user space stack end.
-        // so we can reuse user space stack.
-        void* user_stack_end;
-        AddrSpace as;
-        // we do not free memory, so use `max_brk' to determine when to call _map()
-        uintptr_t max_brk;
+<pre class="src src-C++"><span class="org-keyword">typedef</span> <span class="org-keyword">union</span> {
+    <span class="org-type">uint8_t</span> <span class="org-variable-name">stack</span>[STACK_SIZE] PG_ALIGN;
+    <span class="org-keyword">struct</span> {
+        <span class="org-type">Context</span>* <span class="org-variable-name">cp</span>;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">TODO(yan): to record user space stack end.</span>
+        <span class="org-comment-delimiter">// </span><span class="org-comment">so we can reuse user space stack.</span>
+        <span class="org-type">void</span>* <span class="org-variable-name">user_stack_end</span>;
+        <span class="org-type">AddrSpace</span> <span class="org-variable-name">as</span>;
+        <span class="org-comment-delimiter">// </span><span class="org-comment">we do not free memory, so use `max_brk' to determine when to call _map()</span>
+        <span class="org-type">uintptr_t</span> <span class="org-variable-name">max_brk</span>;
     };
-} PCB;
+} <span class="org-type">PCB</span>;
 </pre>
 </div>
 
@@ -282,7 +282,7 @@ __am_asm_trap:
 </ul>
 
 
-<div id="org4fecdbb" class="figure">
+<div id="org743c76c" class="figure">
 <p><img src="../images/Pasted-Image-20231225105241.png" alt="Pasted-Image-20231225105241.png" />
 </p>
 </div>

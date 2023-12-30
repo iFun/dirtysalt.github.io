@@ -40,37 +40,37 @@ github代码在这里 <a href="https://github.com/skywind3000/FastMemcpy">https:
 </ol>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">static INLINE void *memcpy_tiny(void *dst, const void *src, size_t size) {
-    unsigned char *dd = ((unsigned char*)dst) + size;
-    const unsigned char *ss = ((const unsigned char*)src) + size;
+<pre class="src src-C++"><span class="org-keyword">static</span> INLINE <span class="org-type">void</span> *<span class="org-function-name">memcpy_tiny</span>(<span class="org-type">void</span> *<span class="org-variable-name">dst</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
+    <span class="org-type">unsigned</span> <span class="org-type">char</span> *<span class="org-variable-name">dd</span> = ((<span class="org-type">unsigned</span> <span class="org-type">char</span>*)dst) + size;
+    <span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span> *<span class="org-variable-name">ss</span> = ((<span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>*)src) + size;
 
-    switch (size) {
-    case 64:
+    <span class="org-keyword">switch</span> (size) {
+    <span class="org-keyword">case</span> 64:
         memcpy_sse2_64(dd - 64, ss - 64);
-    case 0:
-        break;
+    <span class="org-keyword">case</span> 0:
+        <span class="org-keyword">break</span>;
 
-    case 65:
+    <span class="org-keyword">case</span> 65:
         memcpy_sse2_64(dd - 65, ss - 65);
-    case 1:
+    <span class="org-keyword">case</span> 1:
         dd[-1] = ss[-1];
-        break;
+        <span class="org-keyword">break</span>;
     ...
-    case 86:
+    <span class="org-keyword">case</span> 86:
         memcpy_sse2_64(dd - 86, ss - 86);
-    case 22:
+    <span class="org-keyword">case</span> 22:
         memcpy_sse2_16(dd - 22, ss - 22);
-        *((uint32_t*)(dd - 6)) = *((uint32_t*)(ss - 6));
-        *((uint16_t*)(dd - 2)) = *((uint16_t*)(ss - 2));
-        break;
+        *((<span class="org-type">uint32_t</span>*)(dd - 6)) = *((<span class="org-type">uint32_t</span>*)(ss - 6));
+        *((<span class="org-type">uint16_t</span>*)(dd - 2)) = *((<span class="org-type">uint16_t</span>*)(ss - 2));
+        <span class="org-keyword">break</span>;
    ...
 }
 
-static INLINE void memcpy_sse2_32(void *dst, const void *src) {
-    __m128i m0 = _mm_loadu_si128(((const __m128i*)src) + 0);
-    __m128i m1 = _mm_loadu_si128(((const __m128i*)src) + 1);
-    _mm_storeu_si128(((__m128i*)dst) + 0, m0);
-    _mm_storeu_si128(((__m128i*)dst) + 1, m1);
+<span class="org-keyword">static</span> INLINE <span class="org-type">void</span> <span class="org-variable-name">memcpy_sse2_32</span>(<span class="org-type">void</span> *dst, <span class="org-keyword">const</span> <span class="org-type">void</span> *src) {
+    <span class="org-type">__m128i</span> <span class="org-variable-name">m0</span> = _mm_loadu_si128(((<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*)src) + 0);
+    <span class="org-type">__m128i</span> <span class="org-variable-name">m1</span> = _mm_loadu_si128(((<span class="org-keyword">const</span> <span class="org-type">__m128i</span>*)src) + 1);
+    _mm_storeu_si128(((<span class="org-type">__m128i</span>*)dst) + 0, m0);
+    _mm_storeu_si128(((<span class="org-type">__m128i</span>*)dst) + 1, m1);
 }
 </pre>
 </div>
@@ -102,11 +102,11 @@ memcpy一个可能的改写（不一定是优化）是，比如对于47字节这
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">case 47:
+<pre class="src src-C++"><span class="org-keyword">case</span> 47:
         memcpy_sse2_32(dd - 47, ss - 47);
-        *((uint64_t*)(dd - 15)) = *((uint64_t*)(ss - 15));
-        *((uint64_t*)(dd - 8)) = *((uint64_t*)(ss - 8));
-        break;
+        *((<span class="org-type">uint64_t</span>*)(dd - 15)) = *((<span class="org-type">uint64_t</span>*)(ss - 15));
+        *((<span class="org-type">uint64_t</span>*)(dd - 8)) = *((<span class="org-type">uint64_t</span>*)(ss - 8));
+        <span class="org-keyword">break</span>;
 </pre>
 </div>
 
@@ -137,23 +137,23 @@ memcmp 我是从这个链接看来的 <a href="https://www.yuque.com/zzqcn/perf/
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">static inline int
-rte_cmp32(const void *src_1, const void *src_2)
+<pre class="src src-C++"><span class="org-keyword">static</span> <span class="org-keyword">inline</span> <span class="org-type">int</span>
+<span class="org-function-name">rte_cmp32</span>(<span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">src_1</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">src_2</span>)
 {
-    __m256i    ff = _mm256_set1_epi32(-1);
-    __m256i    idx = _mm256_setr_epi8(
+    <span class="org-type">__m256i</span>    <span class="org-variable-name">ff</span> = _mm256_set1_epi32(-1);
+    <span class="org-type">__m256i</span>    <span class="org-variable-name">idx</span> = _mm256_setr_epi8(
             15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0,
             15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0);
-    __m256i    sign = _mm256_set1_epi32(0x80000000);
-    __m256i    mm11, mm21;
-    __m256i    eq, gt0, gt1;
+    <span class="org-type">__m256i</span>    <span class="org-variable-name">sign</span> = _mm256_set1_epi32(0x80000000);
+    <span class="org-type">__m256i</span>    <span class="org-variable-name">mm11</span>, <span class="org-variable-name">mm21</span>;
+    <span class="org-type">__m256i</span>    <span class="org-variable-name">eq</span>, <span class="org-variable-name">gt0</span>, <span class="org-variable-name">gt1</span>;
 
-    mm11 = _mm256_lddqu_si256((const __m256i *)src_1);
-    mm21 = _mm256_lddqu_si256((const __m256i *)src_2);
+    mm11 = _mm256_lddqu_si256((<span class="org-keyword">const</span> <span class="org-type">__m256i</span> *)src_1);
+    mm21 = _mm256_lddqu_si256((<span class="org-keyword">const</span> <span class="org-type">__m256i</span> *)src_2);
 
     eq = _mm256_cmpeq_epi32(mm11, mm21);
-    /* Not equal */
-    if (!_mm256_testc_si256(eq, ff)) {
+    <span class="org-comment-delimiter">/* </span><span class="org-comment">Not equal</span><span class="org-comment-delimiter"> */</span>
+    <span class="org-keyword">if</span> (<span class="org-negation-char">!</span>_mm256_testc_si256(eq, ff)) {
         mm11 = _mm256_shuffle_epi8(mm11, idx);
         mm21 = _mm256_shuffle_epi8(mm21, idx);
 
@@ -164,10 +164,10 @@ rte_cmp32(const void *src_1, const void *src_2)
 
         gt0 = _mm256_cmpgt_epi32(mm11, mm21);
         gt1 = _mm256_cmpgt_epi32(mm21, mm11);
-        return _mm256_movemask_ps(_mm256_castsi256_ps(gt0)) - _mm256_movemask_ps(_mm256_castsi256_ps(gt1));
+        <span class="org-keyword">return</span> _mm256_movemask_ps(_mm256_castsi256_ps(gt0)) - _mm256_movemask_ps(_mm256_castsi256_ps(gt1));
     }
 
-    return 0;
+    <span class="org-keyword">return</span> 0;
 }
 </pre>
 </div>

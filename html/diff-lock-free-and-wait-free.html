@@ -21,24 +21,24 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-Cpp">// ==== lock-based ====
-std::mutex m;
-size_t count;
+<pre class="src src-C++"><span class="org-comment-delimiter">// </span><span class="org-comment">==== lock-based ====</span>
+<span class="org-constant">std</span>::<span class="org-type">mutex</span> <span class="org-variable-name">m</span>;
+<span class="org-type">size_t</span> <span class="org-variable-name">count</span>;
 {
-  std::lock_guard l(m);
+  <span class="org-constant">std</span>::<span class="org-type">lock_guard</span> <span class="org-variable-name">l</span>(m);
   ++count;
 }
 
-// ==== wait-free =====
-std::atomic&lt;size_t&gt; count;
-count.fetch_add(1, std::memory_order_relaxed);
+<span class="org-comment-delimiter">// </span><span class="org-comment">==== wait-free =====</span>
+<span class="org-constant">std</span>::<span class="org-type">atomic</span>&lt;<span class="org-type">size_t</span>&gt; <span class="org-variable-name">count</span>;
+count.fetch_add(1, <span class="org-constant">std</span>::memory_order_relaxed);
 
-// ==== lock-free =====
-std::atomic&lt;size_t&gt; count;
-size_t c = count.load(std::memory_order_relaxed);
+<span class="org-comment-delimiter">// </span><span class="org-comment">==== lock-free =====</span>
+<span class="org-constant">std</span>::<span class="org-type">atomic</span>&lt;<span class="org-type">size_t</span>&gt; <span class="org-variable-name">count</span>;
+<span class="org-type">size_t</span> <span class="org-variable-name">c</span> = count.load(<span class="org-constant">std</span>::memory_order_relaxed);
 
-while (!count.compare_exchange_strong(c, c + 1,
-     std::memory_order_relaxed, std::memory_order_relaxed)) {}
+<span class="org-keyword">while</span> (<span class="org-negation-char">!</span>count.compare_exchange_strong(c, c + 1,
+     <span class="org-constant">std</span>::memory_order_relaxed, <span class="org-constant">std</span>::memory_order_relaxed)) {}
 </pre>
 </div>
 

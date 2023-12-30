@@ -66,7 +66,7 @@ docker使用cs架构，所以即使在本地运行也需要启动一个daemon se
 <p>
 docker底层可以使用virtualbox(开销大，可以使用其他内核), 也可以使用lxc(轻量，必须使用本地内核). 如果使用lxc的话必须确保linux内核支持，使用下面命令来升级内核
 </p>
-<pre class="example" id="orgde0bda1">
+<pre class="example" id="orgf200fae">
 #安装内核
 sudo apt-get install linux-image-generic-lts-raring linux-headers-generic-lts-raring
 #重启
@@ -76,7 +76,7 @@ sudo reboot
 <p>
 然后用apt-get命令来安装docker
 </p>
-<pre class="example" id="orgb494bb3">
+<pre class="example" id="org1c0ee0f">
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 sudo sh -c "echo deb http://get.docker.io/ubuntu docker main &gt;/etc/apt/sources.list.d/docker.list"
 sudo apt-get update
@@ -95,7 +95,7 @@ Container format. Docker combines these components into a wrapper we call a cont
 <p>
 如果需要使用lxc作为container format的话必须修改配置文件/etc/default/docker.
 </p>
-<pre class="example" id="org8fe8698">
+<pre class="example" id="org5151928">
 DOCKER_OPTS="-e lxc"
 </pre>
 </div>
@@ -111,7 +111,7 @@ DOCKER_OPTS="-e lxc"
 <p>
 下面是docker client所有命令。大部分命令都是自描述的。
 </p>
-<pre class="example" id="org1089875">
+<pre class="example" id="orgfb324a7">
 ➜  docker  docker
 Usage: docker [OPTIONS] COMMAND [arg...]
 -H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use
@@ -158,7 +158,7 @@ Commands:
 <p>
 命令基本可以分为操作container和image两类。container可以通过ID, NAME来定位。image可以通过ID, REPOSITORY:TAG来定位。
 </p>
-<pre class="example" id="org9430d17">
+<pre class="example" id="org42528d6">
 ➜  wsrep-5.6  sudo docker ps -a
 [sudo] password for dirlt:
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
@@ -278,7 +278,7 @@ Run a process in a new container. docker run starts a process with its own file 
 <p>
 inspect可以看到container和image内部具体信息。下面是一个container inspection的输出
 </p>
-<pre class="example" id="org7c378e6">
+<pre class="example" id="org20f0abf">
 ➜  ~  sudo docker inspect 22b
 [{
     "Args": [],
@@ -362,7 +362,7 @@ inspect可以看到container和image内部具体信息。下面是一个containe
 <p>
 下面是一个image inspection的输出
 </p>
-<pre class="example" id="orgc311df1">
+<pre class="example" id="orge591844">
 ➜  ~  sudo docker inspect c4f
 [{
     "Architecture": "amd64",
@@ -456,7 +456,7 @@ inspect可以看到container和image内部具体信息。下面是一个containe
 data-container相对直接mount本地目录作为data-volume这种方式有两个好处：1. 数据可以作为独立的container分发以及部署. 2 解决本地目录权限问题
 </p>
 
-<pre class="example" id="org7fc2381">
+<pre class="example" id="orgac3554a">
 ➜  notes git:(master) ✗ dk run --name data-container -v /data-dir ubuntu:14.04 /bin/true
 ➜  notes git:(master) ✗ docker run --rm --volumes-from data-container ubuntu:14.04 sh -c "echo hello &gt; /data-dir/hello"
 ➜  notes git:(master) ✗ docker run --rm --volumes-from data-container ubuntu:14.04 sh -c "cat /data-dir/hello"
@@ -475,7 +475,7 @@ hello
 <p>
 Dockerfile格式很简单的:
 </p>
-<pre class="example" id="org92015cd">
+<pre class="example" id="org2d28bb6">
 # Comment
 指令 参数
 </pre>
@@ -530,7 +530,7 @@ Docker has two major components:
 </p>
 
 
-<div id="org428e229" class="figure">
+<div id="org77bc5c8" class="figure">
 <p><img src="../images/Pasted-Image-20231225105553.svg" alt="Pasted-Image-20231225105553.svg" class="org-svg" />
 </p>
 </div>
@@ -561,7 +561,7 @@ Docker usually gets these base images from <a href="https://hub.docker.com/">Doc
 </p>
 
 
-<div id="orgd111565" class="figure">
+<div id="org1eec12d" class="figure">
 <p><img src="../images/Pasted-Image-20231225103417.png" alt="Pasted-Image-20231225103417.png" />
 </p>
 </div>
@@ -581,7 +581,7 @@ A container consists of an operating system, user-added files, and meta-data. As
 <p>
 Either by using the docker binary or via the API, the Docker client tells the Docker daemon to run a container.
 </p>
-<pre class="example" id="org77dbde1">
+<pre class="example" id="orgacf28bf">
 $ docker run -i -t ubuntu /bin/bash
 </pre>
 <p>
@@ -620,7 +620,7 @@ Namespaces（名字空间）. Docker takes advantage of a technology called name
 </ul>
 
 
-<div id="org549d22b" class="figure">
+<div id="org580a24b" class="figure">
 <p><img src="../images/Pasted-Image-20231225104726.png" alt="Pasted-Image-20231225104726.png" />
 </p>
 </div>
@@ -653,7 +653,7 @@ Container format. Docker combines these components into a wrapper we call a cont
 <p>
 有个工具可以简化这个步骤 <a href="https://github.com/jpetazzo/pipework">https://github.com/jpetazzo/pipework</a>
 </p>
-<pre class="example" id="org017f50b">
+<pre class="example" id="orgb32d6f3">
 pipework br1 -i eth2 &lt;container&gt; 192.168.1.1/24
 </pre>
 <ul class="org-ul">
@@ -675,7 +675,7 @@ pipework br1 -i eth2 &lt;container&gt; 192.168.1.1/24
 <p>
 然后在docker启动时候添加如下参数
 </p>
-<pre class="example" id="org3271e93">
+<pre class="example" id="orgb526a74">
 --lxc-conf="lxc.network.type=veth" \
 --lxc-conf="lxc.network.name=eth1" \
 --lxc-conf="lxc.network.flags=up" \
