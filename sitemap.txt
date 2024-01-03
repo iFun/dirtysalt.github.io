@@ -1335,6 +1335,7 @@ https://dirtysalt.github.io/html/what-are-the-best-kept-secrets-of-great-program
 https://dirtysalt.github.io/html/what-can-i-do-when-old.html
 https://dirtysalt.github.io/html/what-does-big-data-mean.html
 https://dirtysalt.github.io/html/what-does-it-take-to-make-google-work-at-scale.html
+https://dirtysalt.github.io/html/what-every-developer-should-know-about-gpu-computing.html
 https://dirtysalt.github.io/html/what-every-eng-should-know-biggest-contributor-to-happiness.html
 https://dirtysalt.github.io/html/what-habits-make-a-programmer-great.html
 https://dirtysalt.github.io/html/what-happens-to-older-developers.html

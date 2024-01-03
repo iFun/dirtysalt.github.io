@@ -16,29 +16,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org137f6c8">1. Abstract</a></li>
-<li><a href="#org78b8af4">2. Introduction</a></li>
-<li><a href="#org0b71870">3. Related Work</a></li>
-<li><a href="#orgfd5ffc0">4. Project Voldemort</a></li>
-<li><a href="#org42827e2">5. Alternative Approaches</a>
+<li><a href="#org973bfe4">1. Abstract</a></li>
+<li><a href="#orgfc8dd5c">2. Introduction</a></li>
+<li><a href="#org7d461f9">3. Related Work</a></li>
+<li><a href="#org7caf9f4">4. Project Voldemort</a></li>
+<li><a href="#orgd48b9c6">5. Alternative Approaches</a>
 <ul>
-<li><a href="#org5d60fe0">5.1. Shortcomings of Alternative Approaches</a></li>
-<li><a href="#org26c6ccb">5.2. Requirements</a></li>
+<li><a href="#orge1ced6e">5.1. Shortcomings of Alternative Approaches</a></li>
+<li><a href="#orgb77d7e8">5.2. Requirements</a></li>
 </ul>
 </li>
-<li><a href="#orgc742478">6. Read-only Extensions</a>
+<li><a href="#orgf5c0209">6. Read-only Extensions</a>
 <ul>
-<li><a href="#org7c7c736">6.1. Storage Format</a></li>
-<li><a href="#org0be9c82">6.2. Chunk Set Generation</a></li>
-<li><a href="#orgdc5cd78">6.3. Data Versioning</a></li>
-<li><a href="#org4f39e7c">6.4. Data Load</a></li>
-<li><a href="#orgff25a93">6.5. Retrieval</a></li>
-<li><a href="#orga6f7e55">6.6. Schema Upgrades</a></li>
-<li><a href="#orgb9e67f7">6.7. Rebalancing</a></li>
+<li><a href="#org84002df">6.1. Storage Format</a></li>
+<li><a href="#org930bcc0">6.2. Chunk Set Generation</a></li>
+<li><a href="#orga9c9487">6.3. Data Versioning</a></li>
+<li><a href="#org5043727">6.4. Data Load</a></li>
+<li><a href="#orgecb88db">6.5. Retrieval</a></li>
+<li><a href="#org1ef087f">6.6. Schema Upgrades</a></li>
+<li><a href="#org19ac356">6.7. Rebalancing</a></li>
 </ul>
 </li>
-<li><a href="#orgc0e0179">7. Evaluation</a></li>
-<li><a href="#org23a41e2">8. Conclusion and Future Work</a></li>
+<li><a href="#orgc8fb1a6">7. Evaluation</a></li>
+<li><a href="#orgd9b4598">8. Conclusion and Future Work</a></li>
 </ul>
 </div>
 </div>
@@ -47,8 +47,8 @@
 <li><a href="http://static.usenix.org/events/fast/tech/full_papers/Sumbaly.pdf">http://static.usenix.org/events/fast/tech/full_papers/Sumbaly.pdf</a> @ 2012</li>
 </ul>
 
-<div id="outline-container-org137f6c8" class="outline-2">
-<h2 id="org137f6c8"><span class="section-number-2">1.</span> Abstract</h2>
+<div id="outline-container-org973bfe4" class="outline-2">
+<h2 id="org973bfe4"><span class="section-number-2">1.</span> Abstract</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>Current serving systems lack the ability to bulk load massive immutable data sets without affecting serving performance. The performance degradation is largely due to index creation and modification as CPU and memory resources are shared with request serving.（导入大规模数据主要问题还是这些数据集合的索引创建以及修改会影响到在线服务性能）</li>
@@ -58,8 +58,8 @@
 </div>
 </div>
 
-<div id="outline-container-org78b8af4" class="outline-2">
-<h2 id="org78b8af4"><span class="section-number-2">2.</span> Introduction</h2>
+<div id="outline-container-orgfc8dd5c" class="outline-2">
+<h2 id="orgfc8dd5c"><span class="section-number-2">2.</span> Introduction</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Our system leverages a Hadoop elastic batch computing infrastructure to build its index and data files, thereby supporting high throughput for batch refreshes. A custom read-only storage engine plugs into Voldemort’s extensible storage layer. The Voldemort infrastructure then provides excellent live serving perfor-mance for this batch output—even during data refreshes. Our system supports quick rollback, where data can be restored to a clean copy, minimizing the time in error if an algorithm should go awry. This helps support fast, iterative development necessary for new feature improve-ments. The storage data layout also provides the ability to grow horizontally by rebalancing existing data to new nodes without downtime. Our system supports twice the request throughput ver-sus MySQL while serving read requests with a median latency of less than 5 ms.（Hadoop来构建索引和数据文件，只读存储引擎，快速回滚数据，在线扩充存储节点）</li>
@@ -74,8 +74,8 @@
 </div>
 </div>
 
-<div id="outline-container-org0b71870" class="outline-2">
-<h2 id="org0b71870"><span class="section-number-2">3.</span> Related Work</h2>
+<div id="outline-container-org7d461f9" class="outline-2">
+<h2 id="org7d461f9"><span class="section-number-2">3.</span> Related Work</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>MySQL is a common serving system used in various companies. The two most commonly used MySQL stor-age engines, MyISAM and InnoDB, provide bulk load-ing capabilities into a live system with the LOAD DATA INFILE statement.
@@ -91,27 +91,27 @@
 </div>
 </div>
 
-<div id="outline-container-orgfd5ffc0" class="outline-2">
-<h2 id="orgfd5ffc0"><span class="section-number-2">4.</span> Project Voldemort</h2>
+<div id="outline-container-org7caf9f4" class="outline-2">
+<h2 id="org7caf9f4"><span class="section-number-2">4.</span> Project Voldemort</h2>
 <div class="outline-text-2" id="text-4">
 
-<div id="orgbbc538b" class="figure">
+<div id="org96ed2b6" class="figure">
 <p><img src="../images/Pasted-Image-20231225103211.png" alt="Pasted-Image-20231225103211.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org42827e2" class="outline-2">
-<h2 id="org42827e2"><span class="section-number-2">5.</span> Alternative Approaches</h2>
+<div id="outline-container-orgd48b9c6" class="outline-2">
+<h2 id="orgd48b9c6"><span class="section-number-2">5.</span> Alternative Approaches</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Before we started building our own custom storage engine, we decided to evaluate the existing read-write storage engines supported in Voldemort, namely, MySQL and Berkeley DB. Our criteria for success was the ability to bulk load massive data sets with minimal disk space overhead, while still serving live traffic.（MySQL和BDB在作为存储引擎上的问题）
 </p>
 </div>
 
-<div id="outline-container-org5d60fe0" class="outline-3">
-<h3 id="org5d60fe0"><span class="section-number-3">5.1.</span> Shortcomings of Alternative Approaches</h3>
+<div id="outline-container-orge1ced6e" class="outline-3">
+<h3 id="orge1ced6e"><span class="section-number-3">5.1.</span> Shortcomings of Alternative Approaches</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>The first approach we tried was to perform multiple put requests. This naive approach is problematic as every request results in an incremental change to the underly-ing index structure (in most cases, a B+ tree), which in turn, results in many disk seeks.（多次操作）</li>
@@ -141,8 +141,8 @@ Before we started building our own custom storage engine, we decided to evaluate
 </div>
 </div>
 
-<div id="outline-container-org26c6ccb" class="outline-3">
-<h3 id="org26c6ccb"><span class="section-number-3">5.2.</span> Requirements</h3>
+<div id="outline-container-orgb77d7e8" class="outline-3">
+<h3 id="orgb77d7e8"><span class="section-number-3">5.2.</span> Requirements</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The lack of off-the-shelf solutions, along with the in-efficiencies of the previous experiments, motivated the building of a new storage engine and deployment pipeline with the following properties.
@@ -157,18 +157,18 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </div>
 </div>
 
-<div id="outline-container-orgc742478" class="outline-2">
-<h2 id="orgc742478"><span class="section-number-2">6.</span> Read-only Extensions</h2>
+<div id="outline-container-orgf5c0209" class="outline-2">
+<h2 id="orgf5c0209"><span class="section-number-2">6.</span> Read-only Extensions</h2>
 <div class="outline-text-2" id="text-6">
 
-<div id="org6c3f012" class="figure">
+<div id="org8c283a4" class="figure">
 <p><img src="../images/Pasted-Image-20231225104059.png" alt="Pasted-Image-20231225104059.png" />
 </p>
 </div>
 </div>
 
-<div id="outline-container-org7c7c736" class="outline-3">
-<h3 id="org7c7c736"><span class="section-number-3">6.1.</span> Storage Format</h3>
+<div id="outline-container-org84002df" class="outline-3">
+<h3 id="org84002df"><span class="section-number-3">6.1.</span> Storage Format</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>Many storage formats try to build data structures that keep the data memory resident in the process’s address space, ignoring the effects of the operating system’s page cache. The several orders of magnitude latency gap be-tween page cache and disk means that most of the real performance benefit by maintaining our own structure is for elements already in the page cache. In fact, this cus-tom structure may even start taking memory away from the page cache. This potential interference motivated the need for our storage engine to exploit the page cache in-stead of maintaining our own complex heap-based data structure. Because our data is immutable, Voldemort memory maps the entire index into the address space. Ad-ditionally, because Voldemort is written in Java and runs on the JVM, delegating the memory management to the operating system eases garbage collection tuning.（充分利用os page cache一方面可以简化代码而不用自己去维护比较复杂的cache结构，另外一方面因为page cache不是通过JVM来管理的所以可以缓解JVM GC的压力来提高效率） #note: 用JVM编写的存储系统最好不要来自己管理cache，或者由上层来管理cache，或者由JNI来间接管理cache，因为cache对JVM GC的影响会非常大</li>
@@ -184,7 +184,7 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </ul>
 
 
-<div id="orgf48ee13" class="figure">
+<div id="orgc7a923a" class="figure">
 <p><img src="../images/Pasted-Image-20231225104119.png" alt="Pasted-Image-20231225104119.png" />
 </p>
 </div>
@@ -192,11 +192,11 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </div>
 
 
-<div id="outline-container-org0be9c82" class="outline-3">
-<h3 id="org0be9c82"><span class="section-number-3">6.2.</span> Chunk Set Generation</h3>
+<div id="outline-container-org930bcc0" class="outline-3">
+<h3 id="org930bcc0"><span class="section-number-3">6.2.</span> Chunk Set Generation</h3>
 </div>
-<div id="outline-container-orgdc5cd78" class="outline-3">
-<h3 id="orgdc5cd78"><span class="section-number-3">6.3.</span> Data Versioning</h3>
+<div id="outline-container-orga9c9487" class="outline-3">
+<h3 id="orga9c9487"><span class="section-number-3">6.3.</span> Data Versioning</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>Every store is represented by a directory, which in turn contains directories corresponding to “versions” of the data. A symbolic link per store is used to point to the current serving version directory. Because the data in all version directories except the serving one is inactive, we are not affecting page cache usage and latency. （通过目录来保存历史版本，软链接指向当前使用的版本。存储历史并不会影响到page cache以及latency）</li>
@@ -214,12 +214,12 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </div>
 </div>
 
-<div id="outline-container-org4f39e7c" class="outline-3">
-<h3 id="org4f39e7c"><span class="section-number-3">6.4.</span> Data Load</h3>
+<div id="outline-container-org5043727" class="outline-3">
+<h3 id="org5043727"><span class="section-number-3">6.4.</span> Data Load</h3>
 </div>
 
-<div id="outline-container-orgff25a93" class="outline-3">
-<h3 id="orgff25a93"><span class="section-number-3">6.5.</span> Retrieval</h3>
+<div id="outline-container-orgecb88db" class="outline-3">
+<h3 id="orgecb88db"><span class="section-number-3">6.5.</span> Retrieval</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li>The most time-consuming step is to search the index file. A binary search in an index of 1 million keys can result in around 20 key comparisons; if the index file is not cached, then 20 disk seeks are required to read one value. （检索最耗时的部分还是在查询index file上） #note: 用bloom filter屏蔽key不存在这种最坏情况。</li>
@@ -229,11 +229,11 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </div>
 </div>
 
-<div id="outline-container-orga6f7e55" class="outline-3">
-<h3 id="orga6f7e55"><span class="section-number-3">6.6.</span> Schema Upgrades</h3>
+<div id="outline-container-org1ef087f" class="outline-3">
+<h3 id="org1ef087f"><span class="section-number-3">6.6.</span> Schema Upgrades</h3>
 </div>
-<div id="outline-container-orgb9e67f7" class="outline-3">
-<h3 id="orgb9e67f7"><span class="section-number-3">6.7.</span> Rebalancing</h3>
+<div id="outline-container-org19ac356" class="outline-3">
+<h3 id="org19ac356"><span class="section-number-3">6.7.</span> Rebalancing</h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 因为Voldemort定位为只读数据库，所以在membership的变化下数据可以保持强一致性。而Dynamo这类读写数据库的话，在membership的变化数据只能够保持最终一致性。
@@ -259,11 +259,11 @@ The lack of off-the-shelf solutions, along with the in-efficiencies of the previ
 </div>
 </div>
 
-<div id="outline-container-orgc0e0179" class="outline-2">
-<h2 id="orgc0e0179"><span class="section-number-2">7.</span> Evaluation</h2>
+<div id="outline-container-orgc8fb1a6" class="outline-2">
+<h2 id="orgc8fb1a6"><span class="section-number-2">7.</span> Evaluation</h2>
 </div>
-<div id="outline-container-org23a41e2" class="outline-2">
-<h2 id="org23a41e2"><span class="section-number-2">8.</span> Conclusion and Future Work</h2>
+<div id="outline-container-orgd9b4598" class="outline-2">
+<h2 id="orgd9b4598"><span class="section-number-2">8.</span> Conclusion and Future Work</h2>
 </div>
 </div>
 <div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/voldemort.html';this.page.identifier = 'voldemort.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>

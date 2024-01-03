@@ -37,34 +37,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org12f3c9b">1. 单节点搭建</a></li>
-<li><a href="#org8488222">2. table configuration</a></li>
-<li><a href="#org42b6d0e">3. hbase shell</a></li>
-<li><a href="#org39e9732">4. hbase hbck</a></li>
-<li><a href="#orgb28a2fc">5. hbase increment</a></li>
-<li><a href="#org569e5eb">6. python client</a></li>
-<li><a href="#org8450c2d">7. 获取集群运行状况</a></li>
-<li><a href="#org197cb79">8. bulk load</a></li>
-<li><a href="#orgfdca3eb">9. hbase merge</a></li>
-<li><a href="#org23ee7b1">10. hbase export/import</a></li>
-<li><a href="#org145e4f2">11. region can't be assigned</a></li>
-<li><a href="#orgd5324bd">12. output error</a></li>
-<li><a href="#org25ceef4">13. zookeeper session expired</a></li>
-<li><a href="#org17181ec">14. lease expired exception</a></li>
-<li><a href="#org25b1e5f">15. filesystem not available</a></li>
-<li><a href="#org3420f86">16. error block recovery</a></li>
-<li><a href="#org56eb877">17. dyq's hbase representation</a></li>
-<li><a href="#org583ea96">18. put大小限制分析</a></li>
-<li><a href="#org8b8ef40">19. put过程代码分析</a></li>
-<li><a href="#org61c9807">20. asynchbase</a></li>
-<li><a href="#orge2af41b">21. clock skew</a></li>
-<li><a href="#org9c9cf46">22. hbase join</a></li>
+<li><a href="#org031b692">1. 单节点搭建</a></li>
+<li><a href="#org24e01c2">2. table configuration</a></li>
+<li><a href="#org97fea9b">3. hbase shell</a></li>
+<li><a href="#org831f9e4">4. hbase hbck</a></li>
+<li><a href="#org6ddf80d">5. hbase increment</a></li>
+<li><a href="#orgac501c8">6. python client</a></li>
+<li><a href="#orgbb57140">7. 获取集群运行状况</a></li>
+<li><a href="#orgbc10922">8. bulk load</a></li>
+<li><a href="#orgce19971">9. hbase merge</a></li>
+<li><a href="#org2560f33">10. hbase export/import</a></li>
+<li><a href="#org3efba8f">11. region can't be assigned</a></li>
+<li><a href="#orgaf0733b">12. output error</a></li>
+<li><a href="#org1f25b1c">13. zookeeper session expired</a></li>
+<li><a href="#orgae2b016">14. lease expired exception</a></li>
+<li><a href="#org6957a8b">15. filesystem not available</a></li>
+<li><a href="#orga24125a">16. error block recovery</a></li>
+<li><a href="#orgbbeff37">17. dyq's hbase representation</a></li>
+<li><a href="#org05bbc59">18. put大小限制分析</a></li>
+<li><a href="#orgad1a386">19. put过程代码分析</a></li>
+<li><a href="#org46dd899">20. asynchbase</a></li>
+<li><a href="#orgf6dfa57">21. clock skew</a></li>
+<li><a href="#org14d2a7c">22. hbase join</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org12f3c9b" class="outline-2">
-<h2 id="org12f3c9b"><span class="section-number-2">1.</span> 单节点搭建</h2>
+<div id="outline-container-org031b692" class="outline-2">
+<h2 id="org031b692"><span class="section-number-2">1.</span> 单节点搭建</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 修改conf/hbase-site.xml,增加选项
@@ -89,8 +89,8 @@
 </div>
 </div>
 
-<div id="outline-container-org8488222" class="outline-2">
-<h2 id="org8488222"><span class="section-number-2">2.</span> table configuration</h2>
+<div id="outline-container-org24e01c2" class="outline-2">
+<h2 id="org24e01c2"><span class="section-number-2">2.</span> table configuration</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>DATA_BLOCK_ENCODING =&gt; 'FAST_DIFF'(PREFIX,DIFF) # block压缩算法（偏向应用层）</li>
@@ -104,8 +104,8 @@
 </div>
 </div>
 
-<div id="outline-container-org42b6d0e" class="outline-2">
-<h2 id="org42b6d0e"><span class="section-number-2">3.</span> hbase shell</h2>
+<div id="outline-container-org97fea9b" class="outline-2">
+<h2 id="org97fea9b"><span class="section-number-2">3.</span> hbase shell</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>scan 'test'
@@ -143,8 +143,8 @@
 </div>
 </div>
 
-<div id="outline-container-org39e9732" class="outline-2">
-<h2 id="org39e9732"><span class="section-number-2">4.</span> hbase hbck</h2>
+<div id="outline-container-org831f9e4" class="outline-2">
+<h2 id="org831f9e4"><span class="section-number-2">4.</span> hbase hbck</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>默认检查hbase状态</li>
@@ -153,8 +153,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgb28a2fc" class="outline-2">
-<h2 id="orgb28a2fc"><span class="section-number-2">5.</span> hbase increment</h2>
+<div id="outline-container-org6ddf80d" class="outline-2">
+<h2 id="org6ddf80d"><span class="section-number-2">5.</span> hbase increment</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <a href="http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html">http://hbase.apache.org/apidocs/org/apache/hadoop/hbase/client/Increment.html</a>
@@ -166,8 +166,8 @@
 </div>
 </div>
 
-<div id="outline-container-org569e5eb" class="outline-2">
-<h2 id="org569e5eb"><span class="section-number-2">6.</span> python client</h2>
+<div id="outline-container-orgac501c8" class="outline-2">
+<h2 id="orgac501c8"><span class="section-number-2">6.</span> python client</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 使用python来访问hbase确实可以很大地提高开发效率，但是通过thrift server来进行中转的话对于性能还是存在影响的，因此比较适合测试。
@@ -191,7 +191,7 @@
 <p>
 #note: 发现还是存在一些不兼容的thrift协议，比如使用scan似乎就存在问题
 </p>
-<pre class="example" id="orgf528e3b">
+<pre class="example" id="org5cfde4b">
 Traceback (most recent call last):
   File "./hbase.py", line 20, in &lt;module&gt;
     for k,v in iters:
@@ -206,8 +206,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-org8450c2d" class="outline-2">
-<h2 id="org8450c2d"><span class="section-number-2">7.</span> 获取集群运行状况</h2>
+<div id="outline-container-orgbb57140" class="outline-2">
+<h2 id="orgbb57140"><span class="section-number-2">7.</span> 获取集群运行状况</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li><a href="https://github.com/dirtysalt/codes/tree/master/java/hbase/src/main/java/com/dirlt/java/hbase/ClusterSummary.java">code on github</a></li>
@@ -217,8 +217,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-org197cb79" class="outline-2">
-<h2 id="org197cb79"><span class="section-number-2">8.</span> bulk load</h2>
+<div id="outline-container-orgbc10922" class="outline-2">
+<h2 id="orgbc10922"><span class="section-number-2">8.</span> bulk load</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li><a href="http://hbase.apache.org/book/arch.bulk.load.html">http://hbase.apache.org/book/arch.bulk.load.html</a></li>
@@ -250,8 +250,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </div>
 </div>
 
-<div id="outline-container-orgfdca3eb" class="outline-2">
-<h2 id="orgfdca3eb"><span class="section-number-2">9.</span> hbase merge</h2>
+<div id="outline-container-orgce19971" class="outline-2">
+<h2 id="orgce19971"><span class="section-number-2">9.</span> hbase merge</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>#note: 需要停表或者是停集群</li>
@@ -267,8 +267,8 @@ thrift.Thrift.TApplicationException: Invalid method name: 'scannerOpenWithScan'
 </ul>
 </div>
 </div>
-<div id="outline-container-org23ee7b1" class="outline-2">
-<h2 id="org23ee7b1"><span class="section-number-2">10.</span> hbase export/import</h2>
+<div id="outline-container-org2560f33" class="outline-2">
+<h2 id="org2560f33"><span class="section-number-2">10.</span> hbase export/import</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 使用导出导入功能可以用来做数据迁移，这只是数据迁移的一种办法。这里介绍了许多办法 <a href="http://hbase.apache.org/book/ops.backup.html">http://hbase.apache.org/book/ops.backup.html</a> 包括
@@ -333,7 +333,7 @@ For performance consider the following options:
 <p>
 按照链接里面的命令执行，bin/hbase org.apache.hadoop.hbase.mapreduce.Export可能会出现下面的问题
 </p>
-<pre class="example" id="org6d2fc5a">
+<pre class="example" id="orgc8e17b6">
 13/12/17 16:38:47 ERROR security.UserGroupInformation: PriviledgedActionException as:dirlt (auth:SIMPLE) cause:java.io.IOException: Cannot initialize Cluster. Please check your configuration for mapreduce.framework.name and the correspond server addresses.
 Exception in thread "main" java.io.IOException: Cannot initialize Cluster. Please check your configuration for mapreduce.framework.name and the correspond server addresses.
         at org.apache.hadoop.mapreduce.Cluster.initialize(Cluster.java:121)
@@ -359,19 +359,19 @@ Exception in thread "main" java.io.IOException: Cannot initialize Cluster. Pleas
 <p>
 解决办法是使用hadoop来执行，而不要使用hbase来执行
 </p>
-<pre class="example" id="org427548f">
+<pre class="example" id="org9c49f79">
 hadoop jar ~/utils/hbase-0.94.6-cdh4.3.0/hbase-0.94.6-cdh4.3.0-security.jar export/import
 </pre>
 </div>
 </div>
 
-<div id="outline-container-org145e4f2" class="outline-2">
-<h2 id="org145e4f2"><span class="section-number-2">11.</span> region can't be assigned</h2>
+<div id="outline-container-org3efba8f" class="outline-2">
+<h2 id="org3efba8f"><span class="section-number-2">11.</span> region can't be assigned</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 region一直assign不上，观察曾经尝试被assigned的节点出现下面的错误
 </p>
-<pre class="example" id="org1c0e3cc">
+<pre class="example" id="org699a05c">
 java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File does not exist: /hbase/installhistory/2f1b909bb15ce5960d72a1773902085c/install/240086423354424bb32d647fab6f9b98
         at org.apache.hadoop.hdfs.server.namenode.INodeFile.valueOf(INodeFile.java:39)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.getBlockLocationsUpdateTimes(FSNamesystem.java:1341)
@@ -416,14 +416,14 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 </div>
 </div>
 
-<div id="outline-container-orgd5324bd" class="outline-2">
-<h2 id="orgd5324bd"><span class="section-number-2">12.</span> output error</h2>
+<div id="outline-container-orgaf0733b" class="outline-2">
+<h2 id="orgaf0733b"><span class="section-number-2">12.</span> output error</h2>
 <div class="outline-text-2" id="text-12">
 <p>
 2013.04.07 AttachAppkeyToDeviceInfo失败很多次，都是因为连接hbase很多次失败。观察发现每次task都是连接某一个regionserver失败。日志中出现很多下面这样的错误：
 </p>
 
-<pre class="example" id="orgdc7eb1b">
+<pre class="example" id="org8db2d4f">
 2013-04-12 06:02:25,978 WARN org.apache.hadoop.ipc.HBaseServer: IPC Server Responder, call multi(org.apache.hadoop.hbase.client.MultiAction@9c31dfd) from 10.11.0.13:25641: output error
 2013-04-12 06:02:25,987 WARN org.apache.hadoop.ipc.HBaseServer: IPC Server handler 18 on 60020 caught: java.nio.channels.ClosedChannelException
         at sun.nio.ch.SocketChannelImpl.ensureWriteOpen(SocketChannelImpl.java:133)
@@ -449,14 +449,14 @@ java.io.IOException: java.io.IOException: java.io.FileNotFoundException: File do
 </div>
 </div>
 
-<div id="outline-container-org25ceef4" class="outline-2">
-<h2 id="org25ceef4"><span class="section-number-2">13.</span> zookeeper session expired</h2>
+<div id="outline-container-org1f25b1c" class="outline-2">
+<h2 id="org1f25b1c"><span class="section-number-2">13.</span> zookeeper session expired</h2>
 <div class="outline-text-2" id="text-13">
 <p>
 HBase中出现如下FATAL信息。单独看这个日志只是知道zookeeper长时间没有汇报断开连接，但是具体是什么原因需要分析上下文
 </p>
 
-<pre class="example" id="orgd5e1df8">
+<pre class="example" id="orge49c514">
 2013-04-12 08:20:36,063 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp18.umeng.com,60020,1364871259512, load=(requests=14830, regions=211, used
 Heap=12618, maxHeap=13973): regionserver:60020-0x53c04ec6699f092 regionserver:60020-0x53c04ec6699f092 received expired from ZooKeeper, aborting
 org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = Session expired
@@ -469,7 +469,7 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 <p>
 常见的上下文如下。实际上这些INFO日志都有说明即将和zookeeper断开。 <b>主要是因为GC时间过长而不是网络partition(现在是在同机房)</b>
 </p>
-<pre class="example" id="org565c03e">
+<pre class="example" id="org229dedf">
 2013-04-12 08:20:35,545 INFO org.apache.zookeeper.ClientCnxn: Client session timed out, have not heard from server in 43293ms for sessionid 0x53c04ec6699f092, closing socket connection and at
 tempting reconnect
 2013-04-12 08:20:35,545 INFO org.apache.zookeeper.ClientCnxn: Client session timed out, have not heard from server in 45375ms for sessionid 0x53c04ec6699f093, closing socket connection and at
@@ -492,7 +492,7 @@ tion
 <p>
 <b>CPU开销比较大也是可能原因</b> ， @2013-05-16 01:53:46 dp48 也出现过这样的情况但是上下文里面没有显示是GC造成的开销，毕竟可以看到memory使用比较小
 </p>
-<pre class="example" id="org259624c">
+<pre class="example" id="org279d44b">
 2013-05-16 01:53:46,449 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp48.umops.us,60020,1368628743704, load=(requests=0, regions=5, usedHeap=108, maxHeap=13952): regionserver:60020-0x43e6d9fa1317bba-0x43e6d9fa1317bba regionserver:60020-0x43e6d9fa1317bba-0x43e6d9fa1317bba received expired from ZooKeeper, aborting
 org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = Session expired
         at org.apache.hadoop.hbase.zookeeper.ZooKeeperWatcher.connectionEvent(ZooKeeperWatcher.java:353)
@@ -505,17 +505,17 @@ org.apache.zookeeper.KeeperException$SessionExpiredException: KeeperErrorCode = 
 </p>
 
 
-<div id="orgcde9153" class="figure">
+<div id="org7a8f41d" class="figure">
 <p><img src="../images/Pasted-Image-20231225103704.png" alt="Pasted-Image-20231225103704.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org17181ec" class="outline-2">
-<h2 id="org17181ec"><span class="section-number-2">14.</span> lease expired exception</h2>
+<div id="outline-container-orgae2b016" class="outline-2">
+<h2 id="orgae2b016"><span class="section-number-2">14.</span> lease expired exception</h2>
 <div class="outline-text-2" id="text-14">
-<pre class="example" id="org69b5a51">
+<pre class="example" id="org30ac369">
 2013-04-11 08:07:34,121 ERROR org.apache.hadoop.hbase.regionserver.HRegionServer: Close and delete failed
 org.apache.hadoop.hdfs.server.namenode.LeaseExpiredException: org.apache.hadoop.hdfs.server.namenode.LeaseExpiredException: No lease on /hbase/.logs/dp22.umeng.com,60020,1365284229083/dp22.umeng.com%3A60020.1365638781277 File does
 not exist. [Lease.  Holder: DFSClient_hb_rs_dp22.umeng.com,60020,1365284229083_1365284230001, pendingcreates: 2]
@@ -551,8 +551,8 @@ not exist. [Lease.  Holder: DFSClient_hb_rs_dp22.umeng.com,60020,1365284229083_1
 </div>
 </div>
 
-<div id="outline-container-org25b1e5f" class="outline-2">
-<h2 id="org25b1e5f"><span class="section-number-2">15.</span> filesystem not available</h2>
+<div id="outline-container-org6957a8b" class="outline-2">
+<h2 id="org6957a8b"><span class="section-number-2">15.</span> filesystem not available</h2>
 <div class="outline-text-2" id="text-15">
 <p>
 hbase出现如下fatal日志，并且可以看到这个日志造成region server退出。
@@ -562,7 +562,7 @@ hbase出现如下fatal日志，并且可以看到这个日志造成region server
 #note: 个人觉得原因是namenode和datanode不能够支撑这些请求压力，可以适当调大处理线程数目。这种情况下面也会出现很多Failed to connect to datanode的情况
 </p>
 
-<pre class="example" id="org344c90f">
+<pre class="example" id="orgdafdd70">
 2013-05-13 04:10:11,256 FATAL org.apache.hadoop.hbase.regionserver.HRegionServer: ABORTING region server serverName=dp31.umeng.com,60020,1367978709152, load=(requests=55849, regions=158, usedHeap=6520, maxHeap=13962): File System not available
 java.io.IOException: File system is not available
         at org.apache.hadoop.hbase.util.FSUtils.checkFileSystemAvailable(FSUtils.java:135)
@@ -631,8 +631,8 @@ throws IOException {
 </div>
 </div>
 
-<div id="outline-container-org3420f86" class="outline-2">
-<h2 id="org3420f86"><span class="section-number-2">16.</span> error block recovery</h2>
+<div id="outline-container-orga24125a" class="outline-2">
+<h2 id="orga24125a"><span class="section-number-2">16.</span> error block recovery</h2>
 <div class="outline-text-2" id="text-16">
 <p>
 在dp47上面出现如下日志：
@@ -642,7 +642,7 @@ throws IOException {
 GS这里表示generation stamp, 对应的是creation time of file. 从日志里面分析应该是hdfs文件已经被修改过了，所以原来的datanode对应的block已经不存在了。
 </p>
 
-<pre class="example" id="org51ee5ee">
+<pre class="example" id="org681250f">
 2013-05-13 01:16:31,881 WARN org.apache.hadoop.hdfs.DFSClient: Error Recovery for block blk_-8113206033894163645_85507011 failed  because recovery from primary datanode 10.11.0.47:50010 failed 4 times.  Pipeline was 10.11.0.47:50010. Will retry...
 2013-05-13 01:16:32,900 WARN org.apache.hadoop.hdfs.DFSClient: Failed recovery attempt #4 from primary datanode 10.11.0.47:50010
 org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: java.io.IOException: blk_-8113206033894163645_85507011 has out of date GS 85507011 found 85507383, may already be committed
@@ -687,15 +687,15 @@ org.apache.hadoop.ipc.RemoteException: org.apache.hadoop.ipc.RemoteException: ja
 </div>
 </div>
 
-<div id="outline-container-org56eb877" class="outline-2">
-<h2 id="org56eb877"><span class="section-number-2">17.</span> dyq's hbase representation</h2>
+<div id="outline-container-orgbbeff37" class="outline-2">
+<h2 id="orgbbeff37"><span class="section-number-2">17.</span> dyq's hbase representation</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 @ 2012-08-16
 </p>
 
 
-<div id="orge1ff2fa" class="figure">
+<div id="orgb0c3a28" class="figure">
 <p><img src="../images/Pasted-Image-20231225104528.png" alt="Pasted-Image-20231225104528.png" />
 </p>
 </div>
@@ -739,8 +739,8 @@ scan过程大致是这样的：
 </div>
 </div>
 
-<div id="outline-container-org583ea96" class="outline-2">
-<h2 id="org583ea96"><span class="section-number-2">18.</span> put大小限制分析</h2>
+<div id="outline-container-org05bbc59" class="outline-2">
+<h2 id="org05bbc59"><span class="section-number-2">18.</span> put大小限制分析</h2>
 <div class="outline-text-2" id="text-18">
 <p>
 在HTable.validatePut对put大小进行了限制
@@ -795,8 +795,8 @@ private void validatePut(final Put put) throws IllegalArgumentException{
 </div>
 </div>
 
-<div id="outline-container-org8b8ef40" class="outline-2">
-<h2 id="org8b8ef40"><span class="section-number-2">19.</span> put过程代码分析</h2>
+<div id="outline-container-orgad1a386" class="outline-2">
+<h2 id="orgad1a386"><span class="section-number-2">19.</span> put过程代码分析</h2>
 <div class="outline-text-2" id="text-19">
 <p>
 最后都走到了下面这个方法，可以看到对于每次put并不是立即去写hbase的，除非有特殊开关autoFlush. writeBuffer是一个ArrayList用来hold住所有需要write的put.默认autoFlush=false，所以会缓存到writeBufferSize大小才会commit，而大小是通过heapSize来得到的。而writeBufferSize是通过hbase.client.write.buffer这个属性配置的，默认是2097152=2M
@@ -890,8 +890,8 @@ processBatch代码比较冗长，大致意思如下：
 </div>
 </div>
 
-<div id="outline-container-org61c9807" class="outline-2">
-<h2 id="org61c9807"><span class="section-number-2">20.</span> asynchbase</h2>
+<div id="outline-container-org46dd899" class="outline-2">
+<h2 id="org46dd899"><span class="section-number-2">20.</span> asynchbase</h2>
 <div class="outline-text-2" id="text-20">
 <p>
 <a href="https://github.com/stumbleupon/asynchbase">https://github.com/stumbleupon/asynchbase</a>
@@ -993,13 +993,13 @@ So everything is fine :)
 </div>
 </div>
 
-<div id="outline-container-orge2af41b" class="outline-2">
-<h2 id="orge2af41b"><span class="section-number-2">21.</span> clock skew</h2>
+<div id="outline-container-orgf6dfa57" class="outline-2">
+<h2 id="orgf6dfa57"><span class="section-number-2">21.</span> clock skew</h2>
 <div class="outline-text-2" id="text-21">
 <p>
 如果region server和master的时间偏差太大的话，会造成region server启动失败
 </p>
-<pre class="example" id="orga9df800">
+<pre class="example" id="org138c2f9">
 at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
         at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
         at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
@@ -1044,8 +1044,8 @@ rs2最近写入的数据是v2，而接下来如果从rs2查询"latest"的数据�
 </div>
 </div>
 
-<div id="outline-container-org9c9cf46" class="outline-2">
-<h2 id="org9c9cf46"><span class="section-number-2">22.</span> hbase join</h2>
+<div id="outline-container-org14d2a7c" class="outline-2">
+<h2 id="org14d2a7c"><span class="section-number-2">22.</span> hbase join</h2>
 <div class="outline-text-2" id="text-22">
 <p>
 <a href="http://stackoverflow.com/questions/11327316/how-to-join-tables-in-hbase">http://stackoverflow.com/questions/11327316/how-to-join-tables-in-hbase</a>

@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgcc93a08">1. BACKGROUND</a></li>
-<li><a href="#org39a1f02">2. HOW OPERATING SYSTEMS HANDLE NUMA MEMORY</a></li>
-<li><a href="#orgaaacaef">3. HOW DOES LINUX HANDLE NUMA?</a></li>
-<li><a href="#org95dfbd3">4. MEMORY POLICIES</a></li>
-<li><a href="#orgfa42936">5. BASIC OPERATIONS ON PROCESS STARTUP</a></li>
-<li><a href="#org3fd2a0a">6. RECLAIM</a></li>
-<li><a href="#orgd92cca4">7. BASIC NUMA COMMAND-LINE TOOLS</a></li>
-<li><a href="#org1bea896">8. FIRST-TOUCH POLICY</a></li>
-<li><a href="#org6e6992f">9. MOVING MEMORY</a></li>
-<li><a href="#orged7da74">10. NUMA SCHEDULING</a></li>
+<li><a href="#orgec6e9a9">1. BACKGROUND</a></li>
+<li><a href="#org9ffc8d7">2. HOW OPERATING SYSTEMS HANDLE NUMA MEMORY</a></li>
+<li><a href="#orgb3f675f">3. HOW DOES LINUX HANDLE NUMA?</a></li>
+<li><a href="#org1a9ab42">4. MEMORY POLICIES</a></li>
+<li><a href="#org0a603ba">5. BASIC OPERATIONS ON PROCESS STARTUP</a></li>
+<li><a href="#orgb1a4211">6. RECLAIM</a></li>
+<li><a href="#orgca790f2">7. BASIC NUMA COMMAND-LINE TOOLS</a></li>
+<li><a href="#org83b159a">8. FIRST-TOUCH POLICY</a></li>
+<li><a href="#org092835e">9. MOVING MEMORY</a></li>
+<li><a href="#org49aa4d9">10. NUMA SCHEDULING</a></li>
 </ul>
 </div>
 </div>
@@ -33,8 +33,8 @@
 <a href="http://queue.acm.org/detail.cfm?id=2513149">http://queue.acm.org/detail.cfm?id=2513149</a>
 </p>
 
-<div id="outline-container-orgcc93a08" class="outline-2">
-<h2 id="orgcc93a08"><span class="section-number-2">1.</span> BACKGROUND</h2>
+<div id="outline-container-orgec6e9a9" class="outline-2">
+<h2 id="orgec6e9a9"><span class="section-number-2">1.</span> BACKGROUND</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 NUMA (non-uniform memory access) is the phenomenon that memory at various points in the
@@ -89,15 +89,15 @@ ourselves here to the common cache-coherent NUMA systems.（进程决定如何�
 </p>
 
 
-<div id="orgf377370" class="figure">
+<div id="org1dfbf16" class="figure">
 <p><img src="../images/Pasted-Image-20231225103835.png" alt="Pasted-Image-20231225103835.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org39a1f02" class="outline-2">
-<h2 id="org39a1f02"><span class="section-number-2">2.</span> HOW OPERATING SYSTEMS HANDLE NUMA MEMORY</h2>
+<div id="outline-container-org9ffc8d7" class="outline-2">
+<h2 id="org9ffc8d7"><span class="section-number-2">2.</span> HOW OPERATING SYSTEMS HANDLE NUMA MEMORY</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 There are several broad categories in which modern production operating systems allow for the
@@ -140,8 +140,8 @@ Most Unix-style operating systems support this mode of operation. Notably, FreeB
 </div>
 </div>
 
-<div id="outline-container-orgaaacaef" class="outline-2">
-<h2 id="orgaaacaef"><span class="section-number-2">3.</span> HOW DOES LINUX HANDLE NUMA?</h2>
+<div id="outline-container-orgb3f675f" class="outline-2">
+<h2 id="orgb3f675f"><span class="section-number-2">3.</span> HOW DOES LINUX HANDLE NUMA?</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Linux manages memory in zones. In a non-NUMA Linux system, zones are used to describe memory
@@ -172,15 +172,15 @@ memory in a zone/node.（看上去每个zone都是独立管理内存区域）
 </p>
 
 
-<div id="org0f2a471" class="figure">
+<div id="orgc6d7b33" class="figure">
 <p><img src="../images/Pasted-Image-20231225104232.png" alt="Pasted-Image-20231225104232.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org95dfbd3" class="outline-2">
-<h2 id="org95dfbd3"><span class="section-number-2">4.</span> MEMORY POLICIES</h2>
+<div id="outline-container-org1a9ab42" class="outline-2">
+<h2 id="org1a9ab42"><span class="section-number-2">4.</span> MEMORY POLICIES</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 How memory is allocated under NUMA is determined by a memory policy. Policies can be specified
@@ -213,8 +213,8 @@ process id and then looking at the contents of /proc/&lt;pid&gt;/numa_maps.
 </div>
 </div>
 
-<div id="outline-container-orgfa42936" class="outline-2">
-<h2 id="orgfa42936"><span class="section-number-2">5.</span> BASIC OPERATIONS ON PROCESS STARTUP</h2>
+<div id="outline-container-org0a603ba" class="outline-2">
+<h2 id="org0a603ba"><span class="section-number-2">5.</span> BASIC OPERATIONS ON PROCESS STARTUP</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Processes inherit their memory policy from their parent. Most of the time the policy is left at the
@@ -248,8 +248,8 @@ Linux kernel mailing lists and in articles on lwn.net. （等NUMA node上内存�
 </div>
 </div>
 
-<div id="outline-container-org3fd2a0a" class="outline-2">
-<h2 id="org3fd2a0a"><span class="section-number-2">6.</span> RECLAIM</h2>
+<div id="outline-container-orgb1a4211" class="outline-2">
+<h2 id="orgb1a4211"><span class="section-number-2">6.</span> RECLAIM</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Linux typically allocates all available memory in order to cache data that may be used again later.
@@ -304,8 +304,8 @@ of anonymous pages, but in practice doing so has often resulted in significant p
 </div>
 </div>
 
-<div id="outline-container-orgd92cca4" class="outline-2">
-<h2 id="orgd92cca4"><span class="section-number-2">7.</span> BASIC NUMA COMMAND-LINE TOOLS</h2>
+<div id="outline-container-orgca790f2" class="outline-2">
+<h2 id="orgca790f2"><span class="section-number-2">7.</span> BASIC NUMA COMMAND-LINE TOOLS</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 The main tool used to set up the NUMA execution environment for a process is numactl. Numactl
@@ -330,7 +330,7 @@ meminfo is located. It is possible to compact memory, get distance tables, and m
 mlocked pages by inspecting and writing values to key files in that directory.
 </p>
 
-<pre class="example" id="org0cce298">
+<pre class="example" id="org80a3960">
 ➜  utils  numactl --hardware
 available: 1 nodes (0)
 node 0 cpus: 0 1 2 3 4 5 6 7
@@ -350,8 +350,8 @@ membind: 0
 </div>
 </div>
 
-<div id="outline-container-org1bea896" class="outline-2">
-<h2 id="org1bea896"><span class="section-number-2">8.</span> FIRST-TOUCH POLICY</h2>
+<div id="outline-container-org83b159a" class="outline-2">
+<h2 id="org83b159a"><span class="section-number-2">8.</span> FIRST-TOUCH POLICY</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 What matters, therefore, is the memory policy in effect when the allocation occurs. This is called
@@ -383,8 +383,8 @@ memory.
 </div>
 </div>
 
-<div id="outline-container-org6e6992f" class="outline-2">
-<h2 id="org6e6992f"><span class="section-number-2">9.</span> MOVING MEMORY</h2>
+<div id="outline-container-org092835e" class="outline-2">
+<h2 id="org092835e"><span class="section-number-2">9.</span> MOVING MEMORY</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 Linux has the capability to move memory. The virtual address of the memory in the process space
@@ -414,8 +414,8 @@ currently allocated on the source node. They will be moved to the destination no
 </div>
 </div>
 
-<div id="outline-container-orged7da74" class="outline-2">
-<h2 id="orged7da74"><span class="section-number-2">10.</span> NUMA SCHEDULING</h2>
+<div id="outline-container-org49aa4d9" class="outline-2">
+<h2 id="org49aa4d9"><span class="section-number-2">10.</span> NUMA SCHEDULING</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 The Linux scheduler had no notion of the page placement of memory in a process until Linux
