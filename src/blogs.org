@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202401 [[file:readings-at-202401.org][网络文章@202401]]
 - 202401 [[file:what-every-developer-should-know-about-gpu-computing.org][What Every Developer Should Know About GPU Computing]] GPU计算科普文章
 - 202401 [[file:lc-2983-palindrome-rearrangement-queries.org][LC 2983. 回文串重新排列查询]] 两个区间内字符串调整
 

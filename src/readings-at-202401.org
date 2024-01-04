@@ -1,0 +1,53 @@
+#+title: 网络文章@202401
+
+
+--------
+
+[[https://metebalci.com/blog/a-quick-tour-of-nvm-express-nvme/][A Quick Tour of NVM Express (NVMe)]]
+
+介绍NVMe的科普文章，后面都没有怎么看，就看了前面几个关于存储的概念。
+- 尺寸(form factor)分为 2.5/3.5/M.2/PCIe
+- 接口(interface, 主板)分为SATA, PCIe, SAS
+- 通信协议(protocol)分为ACHI, ATA, NVMe.
+
+存储设备几个因素：尺寸能不能放在主板上，主板是不是有对应接口插上这个设备，以及是否支持这个存储设备的协议。SSD还是可以走SATA/ACHI, 也可以放在PCIe/NVMe(速度更快).
+
+#+BEGIN_QUOTE
+**Form Factor vs. Interface vs. Protocol**
+
+Form Factor means the shape and the size of a device. Common form factors for storage devices are:
+
+- 2.5" or 3.5" Drive (defined in SFF standards)
+- M.2 and PCI Express (PCIe) (defined in PCI-SIG standards)
+
+Interface means how the device communicates with the computer. Common interfaces for storage devices are:
+
+- SATA interface, used by 2.5" and 3.5" hard drives and some M.2 attached devices.
+- PCI Express (PCIe) interface, used by M.2 attached and PCIe devices.
+- SAS (Serial Attached SCSI) and FC (Fibre Channel) interfaces, which are used exclusively in servers and data centers.
+
+PCIe is much faster than SATA. SATA III maximum speed is 6 Gb/s whereas M.2 connector using 4 PCIe v3 lane has a maximum speed of almost 4GB/s = 32 Gb/s.
+
+Protocol specifies how to manage and transfer data from/to device. Common protocols are:
+
+- AHCI and ATA for SATA interface. AHCI is a protocol to support SATA additional features on the controller.
+- NVMe for PCI Express interface.
+
+In order to understand better, we need to make an explicit distinction between the controller and the storage device. The storage device is the one actually keeps data, however, software does not communicate with the storage device directly. It communicates with the controller. So in SATA case, a storage device may use ATA commands, but controller is used with AHCI. In PCMe case, on the other hand, NVMe specifies both.
+
+So possible and common combinations are:
+
+- A 2.5" or 3.5" hard drive, connected to SATA port, using SATA interface and communicates with AHCI/ATA. These are the traditional rotating/magnetic hard drives.
+- A 2.5" SSD (Solid State Drive), connected to SATA port, using AHCI/ATA, just like a hard drive.
+- An M.2 SSD, connected to M.2 port, using SATA interface and communicates with AHCI/ATA.
+- An M.2 SSD, connected to M.2 port, using PCIe interface and communicates with NVMe.
+- A PCIe SSD device, connected to PCIe slot, using PCIe interface and communicates with NVMe.
+
+In this article, I will give examples using an M.2 SSD using PCIe interface.
+#+END_QUOTE
+
+---------
+
+[[https://metebalci.com/blog/a-minimum-complete-tutorial-of-linux-ext4-file-system/][A Minimum Complete Tutorial of Linux ext4 File System]]
+
+关于ext4 fs存储结构分析，作为入门学习文章挺好的。flex block group是为了改善大文件设计的，可以将连续的blocks放在一起管理，这样大文件就不用使用indirect blocks有多次访问跳转的问题了。另外就是里面的各种工具不错, debugfs, dumpefs啥的。
