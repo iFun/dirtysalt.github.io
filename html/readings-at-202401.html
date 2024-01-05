@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>网络文章@202401</title>
+<meta name="author" content="dirtysalt" />
+<meta name="generator" content="Org Mode" />
+<link rel="shortcut icon" href="/themes/favicon.ico" /><link rel="stylesheet" type="text/css" href="/themes/simple.css"/></head>
+<body>
+<div id="content" class="content">
+<h1 class="title">网络文章@202401</h1>
+<hr />
+
+<p>
+<a href="https://metebalci.com/blog/a-quick-tour-of-nvm-express-nvme/">A Quick Tour of NVM Express (NVMe)</a>
+</p>
+
+<p>
+介绍NVMe的科普文章，后面都没有怎么看，就看了前面几个关于存储的概念。
+</p>
+<ul class="org-ul">
+<li>尺寸(form factor)分为 2.5/3.5/M.2/PCIe</li>
+<li>接口(interface, 主板)分为SATA, PCIe, SAS</li>
+<li>通信协议(protocol)分为ACHI, ATA, NVMe.</li>
+</ul>
+
+<p>
+存储设备几个因素：尺寸能不能放在主板上，主板是不是有对应接口插上这个设备，以及是否支持这个存储设备的协议。SSD还是可以走SATA/ACHI, 也可以放在PCIe/NVMe(速度更快).
+</p>
+
+<blockquote>
+<p>
+<b><b>Form Factor vs. Interface vs. Protocol</b></b>
+</p>
+
+<p>
+Form Factor means the shape and the size of a device. Common form factors for storage devices are:
+</p>
+
+<ul class="org-ul">
+<li>2.5" or 3.5" Drive (defined in SFF standards)</li>
+<li>M.2 and PCI Express (PCIe) (defined in PCI-SIG standards)</li>
+</ul>
+
+<p>
+Interface means how the device communicates with the computer. Common interfaces for storage devices are:
+</p>
+
+<ul class="org-ul">
+<li>SATA interface, used by 2.5" and 3.5" hard drives and some M.2 attached devices.</li>
+<li>PCI Express (PCIe) interface, used by M.2 attached and PCIe devices.</li>
+<li>SAS (Serial Attached SCSI) and FC (Fibre Channel) interfaces, which are used exclusively in servers and data centers.</li>
+</ul>
+
+<p>
+PCIe is much faster than SATA. SATA III maximum speed is 6 Gb/s whereas M.2 connector using 4 PCIe v3 lane has a maximum speed of almost 4GB/s = 32 Gb/s.
+</p>
+
+<p>
+Protocol specifies how to manage and transfer data from/to device. Common protocols are:
+</p>
+
+<ul class="org-ul">
+<li>AHCI and ATA for SATA interface. AHCI is a protocol to support SATA additional features on the controller.</li>
+<li>NVMe for PCI Express interface.</li>
+</ul>
+
+<p>
+In order to understand better, we need to make an explicit distinction between the controller and the storage device. The storage device is the one actually keeps data, however, software does not communicate with the storage device directly. It communicates with the controller. So in SATA case, a storage device may use ATA commands, but controller is used with AHCI. In PCMe case, on the other hand, NVMe specifies both.
+</p>
+
+<p>
+So possible and common combinations are:
+</p>
+
+<ul class="org-ul">
+<li>A 2.5" or 3.5" hard drive, connected to SATA port, using SATA interface and communicates with AHCI/ATA. These are the traditional rotating/magnetic hard drives.</li>
+<li>A 2.5" SSD (Solid State Drive), connected to SATA port, using AHCI/ATA, just like a hard drive.</li>
+<li>An M.2 SSD, connected to M.2 port, using SATA interface and communicates with AHCI/ATA.</li>
+<li>An M.2 SSD, connected to M.2 port, using PCIe interface and communicates with NVMe.</li>
+<li>A PCIe SSD device, connected to PCIe slot, using PCIe interface and communicates with NVMe.</li>
+</ul>
+
+<p>
+In this article, I will give examples using an M.2 SSD using PCIe interface.
+</p>
+</blockquote>
+
+<hr />
+
+<p>
+<a href="https://metebalci.com/blog/a-minimum-complete-tutorial-of-linux-ext4-file-system/">A Minimum Complete Tutorial of Linux ext4 File System</a>
+</p>
+
+<p>
+关于ext4 fs存储结构分析，作为入门学习文章挺好的。flex block group是为了改善大文件设计的，可以将连续的blocks放在一起管理，这样大文件就不用使用indirect blocks有多次访问跳转的问题了。另外就是里面的各种工具不错, debugfs, dumpefs啥的。
+</p>
+</div>
+<div id="content"><!-- DISQUS BEGIN --><div id="disqus_thread"></div><script>/***  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/var disqus_config = function () {this.page.url = 'https://dirtysalt.github.io/html/readings-at-202401.html';this.page.identifier = 'readings-at-202401.html';};(function() {var d = document, s = d.createElement('script');s.src = 'https://dirlt.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script><noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><!-- DISQUS END --></div></body>
+</html>
