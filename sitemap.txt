@@ -670,6 +670,7 @@ https://dirtysalt.github.io/html/lc-2968-apply-operations-to-maximize-frequency-
 https://dirtysalt.github.io/html/lc-2972-count-the-number-of-incremovable-subarrays-ii.html
 https://dirtysalt.github.io/html/lc-2977-minimum-cost-to-convert-string-ii.html
 https://dirtysalt.github.io/html/lc-2983-palindrome-rearrangement-queries.html
+https://dirtysalt.github.io/html/lc-3012-minimize-length-of-array-using-operations.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html
