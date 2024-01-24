@@ -707,7 +707,6 @@
 - 201512 [[file:remove-the-stress-pick-a-deadline.org][Remove the stress, pick a deadline]]
 - 201512 [[file:the-secret-to-career-success.org][The Secret to Career Success]]
 - 201512 [[file:the-scientist.org][The Scientist]]
-- 201511 [[file:ios-device-and-screenshot-size.org][iOS设备与屏幕分辨率对应关系]]
 - 201511 [[file:a-note-of-nobel-winner.org][石墨烯教父: 从千年博后到物理诺奖的心路历程]]
 - 201511 [[file:why-i-stopped-paying-attention-to-industry-news.org][Why I stopped paying attention to industry news]]
 - 201510 [[file:learn-stop-using-shiny-new-things-and-love-mysql.org][Learn to stop using shiny new things and love MySQL]]
@@ -720,7 +719,7 @@
 - 201510 [[file:making-money-along-the-way.org][Making money along the way]]
 - 201510 [[file:staying-healthy-while-working-remotely.org][远程工作者如何保持健康]]
 - 201510 [[file:real-life-of-startup-with-baby.org][带着娃创业的真实一面]]
-- 201510 [[file:a-impl-of-my-dict-book.org][一个生词本的实现]]
+- 201510 [[file:my-toy-dict-book.org][简单生词本的实现]]
 - 201510 [[file:chasing-the-shiny-and-new.org][chasing the shiny and new (追逐时髦的技术)]]
 - 201510 [[file:why-cd-just-keeps-on-giving.org][Why Continuous Deployment just keeps on giving]]
 - 201510 [[file:how-to-get-a-job-like-mine-aaron-swartz.org][Aaron Swartz: How to Get a Job Like Mine]]
@@ -759,7 +758,7 @@
 - 201502 [[file:do-house-work-as-leisure.org][有空多干点家务活]]
 - 201502 [[file:you-cant-read-all-books.org][书是读不过来的]]
 - 201502 [[file:peter-thiel-on-competition-obsession.org][Peter Thiel 谈竞争沉迷]]
-- 201502 [[file:telstra-billboard-of-love.org][Telstra BB]]
+- 201502 [[file:telstra-billboard-of-love.org][Telstra Billboard]]
 
 ** <2015
 - 201412 [[file:the-golden-circle.org][The Golden Circle]]
