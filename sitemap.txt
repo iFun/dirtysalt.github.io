@@ -21,7 +21,6 @@ https://dirtysalt.github.io/html/a-deep-dive-into-common-open-formats-for-olap.h
 https://dirtysalt.github.io/html/a-few-days-at-village.html
 https://dirtysalt.github.io/html/a-great-developer-can-come-from-anywhere.html
 https://dirtysalt.github.io/html/a-guide-to-making-your-science-matter.html
-https://dirtysalt.github.io/html/a-impl-of-my-dict-book.html
 https://dirtysalt.github.io/html/a-little-architecture.html
 https://dirtysalt.github.io/html/a-love-for-legacy.html
 https://dirtysalt.github.io/html/a-man-for-all-markets.html
@@ -525,7 +524,6 @@ https://dirtysalt.github.io/html/introduction-to-computing-systems.html
 https://dirtysalt.github.io/html/introduction-to-http2.html
 https://dirtysalt.github.io/html/intrust-from-leadership.html
 https://dirtysalt.github.io/html/intuition-pumps-and-other-tools-for-thinking.html
-https://dirtysalt.github.io/html/ios-device-and-screenshot-size.html
 https://dirtysalt.github.io/html/iphone-charles-http-proxy-issue.html
 https://dirtysalt.github.io/html/is-hadoop-out-of-date.html
 https://dirtysalt.github.io/html/is-there-a-simple-algorithm-for-intelligence.html
@@ -850,6 +848,7 @@ https://dirtysalt.github.io/html/my-first-english-conversation.html
 https://dirtysalt.github.io/html/my-first-moxa-wool-moxibustion.html
 https://dirtysalt.github.io/html/my-iphone5s.html
 https://dirtysalt.github.io/html/my-thoughts-on-startup.html
+https://dirtysalt.github.io/html/my-toy-dict-book.html
 https://dirtysalt.github.io/html/my-without-wife-wedding.html
 https://dirtysalt.github.io/html/mysql.html
 https://dirtysalt.github.io/html/mysterious-memcpy-assembly-code.html
