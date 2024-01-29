@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202401 [[file:all-my-fav-tracing-tools.org][All my favorite tracing tools]] 作者收集了各种tracing工具，信息量挺大的（收藏）
 - 202401 [[file:lc-3012-minimize-length-of-array-using-operations.org][LC 3012. 通过操作使数组长度最小]] 数学推理
 - 202401 [[file:readings-at-202401.org][网络文章@202401]]
 - 202401 [[file:what-every-developer-should-know-about-gpu-computing.org][What Every Developer Should Know About GPU Computing]] GPU计算科普文章
