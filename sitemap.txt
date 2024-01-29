@@ -52,6 +52,7 @@ https://dirtysalt.github.io/html/algorithmica-compilation-profiling.html
 https://dirtysalt.github.io/html/algorithmica-ram-cpu-caches.html
 https://dirtysalt.github.io/html/algorithmica-simd.html
 https://dirtysalt.github.io/html/alibaba-hbase-practice.html
+https://dirtysalt.github.io/html/all-my-fav-tracing-tools.html
 https://dirtysalt.github.io/html/alleged-rc4.html
 https://dirtysalt.github.io/html/alpha-beta-pruning.html
 https://dirtysalt.github.io/html/always-measure-one-level-deeper.html
