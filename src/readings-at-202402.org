@@ -1,6 +1,106 @@
 #+title: 网络文章@202402
 
+-------------
 
+
+[[https://blog.samaltman.com/what-i-wish-someone-had-told-me][我希望有人告诉我的话 - 萨姆·奥尔特曼 --- What I Wish Someone Had Told Me - Sam Altman]]
+
+1. Optimism, obsession, self-belief, raw horsepower and personal connections are how things get started.
+    乐观、痴迷、自信、原始动力和人际关系是一切的开始。
+2. Cohesive teams, the right combination of calmness and urgency, and unreasonable commitment are how things get finished. Long-term orientation is in short supply; try not to worry about what people think in the short term, which will get easier over time.
+    具有凝聚力的团队、冷静与紧迫感的正确结合以及不合理的承诺是事情得以完成的方式。长期导向供不应求；尽量不要担心人们短期内的想法，随着时间的推移，这会变得更容易。
+3. It is easier for a team to do a hard thing that really matters than to do an easy thing that doesn’t really matter; audacious ideas motivate people.
+    对于团队来说，做一件真正重要的困难事情比做一件不重要的简单事情更容易；大胆的想法能够激励人们。
+4. Incentives are superpowers; set them carefully.
+    激励是超能力；仔细设置它们。
+5. Concentrate your resources on a small number of high-conviction bets; this is easy to say but evidently hard to do. You can delete more stuff than you think.
+    将您的资源集中在少量高可信度的赌注上；这说起来容易，但做起来显然很难。您可以删除的内容比您想象的还要多。
+6. Communicate clearly and concisely.
+    沟通清晰简洁。
+7. Fight bullshit and bureaucracy every time you see it and get other people to fight it too. Do not let the org chart get in the way of people working productively together.
+    每次看到废话和官僚主义时都要与它作斗争，并让其他人也与之作斗争。不要让组织结构图妨碍人们高效地合作。
+8. Outcomes are what count; don’t let good process excuse bad results.
+    结果才是最重要的；不要让好的过程成为不好的结果的借口。
+9. Spend more time recruiting. Take risks on high-potential people with a fast rate of improvement. Look for evidence of getting stuff done in addition to intelligence.
+    花更多的时间去招聘。为那些进步速度快的高潜力人才承担风险。除了智力之外，还要寻找完成任务的证据。
+10. Superstars are even more valuable than they seem, but you have to evaluate people on their net impact on the performance of the organization.
+    超级明星比他们看起来更有价值，但你必须根据他们对组织绩效的净影响来评估他们。
+11. Fast iteration can make up for a lot; it’s usually ok to be wrong if you iterate quickly. Plans should be measured in decades, execution should be measured in weeks.
+    快速迭代可以弥补很多；如果迭代速度很快，犯错通常是可以接受的。计划应该以几十年来衡量，执行应该以几周来衡量。
+12. Don’t fight the business equivalent of the laws of physics.
+    不要违背相当于物理定律的商业法则。
+13. Inspiration is perishable and life goes by fast. Inaction is a particularly insidious type of risk.
+    灵感易逝，生活过得很快。不作为是一种特别隐蔽的风险。
+14. Scale often has surprising emergent properties.
+    规模常常具有令人惊讶的突现特性。
+15. Compounding exponentials are magic. In particular, you really want to build a business that gets a compounding advantage with scale.
+    复利指数是神奇的。特别是，您确实希望建立一家能够通过规模获得复合优势的企业。
+16. Get back up and keep going.
+    重新站起来并继续前进。
+17. Working with great people is one of the best parts of life.
+    与优秀的人一起工作是生活中最美好的部分之一。
+
+-----------------
+
+
+[[https://mp.weixin.qq.com/s/2EiYgxCC9q6lCIz9V0ZhbA][创业7年复盘，中美企业服务市场差异浅析]]
+
+**一站式 vs 专业分工**
+
+这是感悟最深的一点。投资人经常问我们竞争对手是谁，或者对标美国哪个公司。过去我们一直说我们对标 Snowflake or Databricks，尤其是 Snowflake 上市后（大部分投资人无法判断技术，所以只能对标知名公司来理解）。而很多时候，客户的领导或者决策者，也往往是靠这样的对比，才能了解我们的能力和应用场景。但深入看一下，就知道我们不一样，更重要的是，中美客户的需求非常不一样。
+
+
+
+美国市场专业化分工非常细致且完善，ETL 是 ETL，DW 是 DW，BI 是 BI，基本上每个领域都有几个上市公司，大家只要有差异化，基本上都能赚钱，而且卖得不便宜。这就是为什么之前美国市场讲“现代数据栈”/Modern Data Stack 非常有用，一看就知道某个技术属于哪个部分，而且各层之间的接口都相对规范。但显然在国内这个行不通，技术栈的差异非常大还算好，碰到个魔改的环境对接起来苦不堪言，大量人力和时间被浪费掉。
+
+
+
+而中国客户，往往付一笔钱就想要全部，最近有个头部公司给我们提的需求，涵盖了 OLAP、ETL、联邦查询、实时查询等，但问愿意付多少钱的时候，却表示没多少钱——就如极客公园创始人张鹏之前说的：**“客户提的都是登月的需求，但愿意付的只是一个同城快递的钱”**——这是现状，我们需要的是去适应，而不是去改变（我们当然想去改变，但教育成本非常大，需要一个渐进的过程），当然我们也不是去妥协，而是要找到平衡。
+
+
+**管理 vs Operation**
+
+数据与分析，从更大范围来说，属于决策支持系统(DSS, Decision Support System)，来自维基百科的内容：Beginning in about 1990, data warehousing and on-line analytical processing (OLAP) began broadening the realm of DSS. (Decision support System, Wikipedia)。而决策支持系统，是帮助人类进行决策和管理的软件。
+
+
+**但软件仅仅只是工具，是术，这背后更重要的是管理的思想和方法论，这是道和法。而这，才是中美软件（至少是管理软件）最大的差异：不同的人文环境，不同的发展阶段造就了非常不同的管理理念和方法论**。 不管是生产系统的 ERP，还是销售营销的 CRM，再到基础的人力资源、薪资系统等等，都有着非常大的不同。咨询大咖陈果曾经写文章说过，他工作过的几家外企，人力和薪资软件的基本理念和操作都非常一致，即使是不同供应商提供的。据他总结是因为背后的管理理念一致，似乎更多是按照同一种方法/handbook 来运营组织（Operation）完成工作从而达到目标。类似于一个只要按照飞行手册，经过一定培训的飞行员就能驾驶飞机（下面的手册在美国沃尔玛都可以买到）。
+
+
+反观国内，在几个群里讨论过最多的一个结论就是：几乎每个稍微上点规模的公司都有着定制化 CRM 等各种软件的冲动（但从来不考虑是否要付钱），几乎每个老板、领导都有自己的“方法论”，极难说服他们按某个“理论”行事，而且都有着极强的管理欲望。
+
+
+一个粗浅的理解，是因为西方现代化公司运营已经近百年，大量的实践和长期的积累，已经逐渐形成体系，而且大量的商学院、培训机构、咨询公司等，在过去几十年改造了大量的公司，培养了大量的专业管理人才。久而久之，大家都习惯于使用一个体系的工具和流程来完成同样的工作，所以可以看到美国的软件业非常发达，几乎每一个细分的赛道，都有非常多的上市公司或者独角兽。而国内改革开放也就这几十年，整个社会和经济也还在剧烈的调整和变化中，**大量的企业业务虽然非常好，但管理本身，可能并是不特别出众，往往都是“人”的能力更突出**。故而对软件本身，背后的管理方法论，以及价值都非常模糊，甚至低估。这也是今天企业服务行业面临的挑战。
+
+国内的部署环境非常复杂，我们大量的成本花费在对接各种系统和测试上。在美国，基本上只有三家云基础设施，大部分创业公司在很长一段时间都只支持一朵云，例如 Snowflake 很长时间只支持 AWS；Databricks 是微软投资后花大力气帮助 Databricks 跑在 Azure 上。而国内我们要面对各种“稀奇古怪”的底座，最近有个客户的 Spark 还是 2.x 的版本，居然要我们修改我们的产品，还好最终客户被我们说服，把他们的 Spark 升级到 3.x 版本。如果每个这样的情况都需要定制、适配，势必是要耗费大量的人力和物力的。
+
+试想，如果客户直接在 SaaS 上试用，在 PaaS 中完成他们自己数据的 PoC，签订合同后再部署到生产环境，中间都用 ZenML 进行流转，这样的效率提升，不仅仅方便我们，也将大大降低客户的工作量，他们的工程师等会更愿意和我们合作。**注意，当我们强调“用户体验”的时候，不是只是 GUI、运维、命令行、导入导出、文档，甚至我们每个人的形象、态度、沟通和专业能力等等，对客户来说，都是一种“体验”。**
+
+-------------
+
+[[https://mp.weixin.qq.com/s/6S_BhjNNMpj-EWqFdUttVA][日本往事：决定国家命运的往往是SB]]
+
+原因说穿了也很简单，SB们敢“不怕牺牲，排除万难”地搞暗杀——哪个聪明的人不按照他们的想法来，他们就敢“灭了”他——刚开始日本还有一些聪明的杂音，甚至法院也判处SB暗杀有罪，但是架不住SB们人太多，前仆后继地扑过来——杀首相，杀大臣,杀知识分子、杀精英……甚至杀军中有异议的军官。卧槽，这种情况下，如果还有人跟SB抬杠的话，那就是最大的SB了。
+
+
+----------------
+
+[[https://mp.weixin.qq.com/s/r_tGDAomd0hr09OvYUBF2A][互联网公司管理神话的破灭]]
+
+站在这个时间点去回顾互联网公司曾经沉淀下的那些方法论，我们会发现无论是阿里巴巴、腾讯、字节跳动，还是 Google、Amazon 和 Netflix。他们的企业管理方法论可能都存在错误归因——低估自己所乘着的时代东风，高估了自身的努力（管理行为）。
+
+从社会学的角度讲，现代企业的本质是个体分工协作的产物。它的作用是将一群人以特定的社会关系结合在一起，实现一个人无法实现的伟业。这意味着巴别塔可以有很多种建成方式，只要没有上帝来捣乱，任何一种方式都可以通天，而“上帝来捣乱”的方法，就是让每个人都觉得自己的方法是对的。
+
+是因为各种眼花缭乱的在线文档不够“先进”吗？不，是因为太过先进了，与落后的现实世界并不匹配。
+
+除非你假定一个 35 岁全员退休的社会，否则向落后兼容，就是一个先进管理工具与生产力工具的最重要基础要素。
+
+这个事情在 SaaS 市场其实被反复验证，所有人都说中国的 SaaS 市场不好做，然后找了许多许多理由。但时至 2024 年，就没有几家企业开门做公司敢不买 Microsoft Office，连免费的 WPS 都是因为和 Microsoft Office 做的“一模一样”，才能抢到这部分市场。以至于我之前和@汐笺 聊 SaaS 的时候说：
+
+#+BEGIN_QUOTE
+你如果做了一个办公三件套，觉得自己很创新，和 Office 长得不像。那一定是你做错了，因为微软办公套件里的每个按钮都有一个你们整个团队那么多的产品和研发，还对应了 0.x%～x% 的市场份额。
+#+END_QUOTE
+
+不仅在工具层面如此，在管理工具层面也是如此，OKR 是一个所谓“面向创新”的管理工具。但即便是在人类密集创新的最近半个世纪里，创新也并非企业的常态。创新带来的是新增长点，但这个点一旦被创出来了，后面的增长工作无一例外是由海量的人与资金在枯燥的日常工作中驱动的。
 
 ------
 
