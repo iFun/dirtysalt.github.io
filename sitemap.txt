@@ -210,6 +210,7 @@ https://dirtysalt.github.io/html/cola-and-water.html
 https://dirtysalt.github.io/html/colleague-creates-spaghetti-code.html
 https://dirtysalt.github.io/html/column-stores-vs-row-stores-how-different.html
 https://dirtysalt.github.io/html/columnar-storage-optimization-and-caching-for-data-lakes.html
+https://dirtysalt.github.io/html/commit-to-competence-in-this-coming-year.html
 https://dirtysalt.github.io/html/comp-arch-readings-princeton-branch-pred-addr-trans-gpu.html
 https://dirtysalt.github.io/html/comp-arch-readings-princeton-review-superscalar-vliw.html
 https://dirtysalt.github.io/html/competitive-strategy.html
