@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202402 [[file:commit-to-competence-in-this-coming-year.org][Commit to competence in this coming year 致力于来年的能力]] by DHH
 - 202402 [[file:lc-3031-minimum-time-to-revert-word-to-initial-state-ii.org][LC 3031. 将单词恢复初始状态所需的最短时间 II]] 分组KMP
 - 202402 [[file:readings-at-202402.org][网络文章@202402]]
 - 202401 [[file:lc-3022-minimize-or-of-remaining-elements-using-operations.org][LC 3022. 给定操作次数内使剩余元素的或值最小]]
