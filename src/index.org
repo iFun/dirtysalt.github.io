@@ -483,6 +483,7 @@
 - 202312 [[file:sqlite-past-present-and-future.org][SQLite: Past, Present, and Future]]
 - 202312 [[file:singlestore-paper.org][Cloud-Native Transactions and Analytics in SingleStore]]
 - 202312 [[file:databricks-photon-paper.org][Photon: A Fast Query Engine for Lakehouse Systems]]
+- 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 
 ** 算法数据结构
 

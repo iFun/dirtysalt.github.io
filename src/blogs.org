@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 - 202402 [[file:aoc2023-day25-graph-min-cut-karger.org][AOC2023-Day25 求解图的最小割]]
 - 202402 [[file:commit-to-competence-in-this-coming-year.org][Commit to competence in this coming year 致力于来年的能力]] by DHH
 - 202402 [[file:lc-3031-minimum-time-to-revert-word-to-initial-state-ii.org][LC 3031. 将单词恢复初始状态所需的最短时间 II]] 分组KMP
