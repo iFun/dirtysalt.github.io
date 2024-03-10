@@ -325,6 +325,7 @@ https://dirtysalt.github.io/html/erlang.html
 https://dirtysalt.github.io/html/etsy-activity-feeds-architecture.html
 https://dirtysalt.github.io/html/euler-and-fermat-little-theorem.html
 https://dirtysalt.github.io/html/eureka-on-career.html
+https://dirtysalt.github.io/html/every-infrastructure-decision-i-endorse-or-regret-after-4-years-running-infrastructure-at-a-startup.html
 https://dirtysalt.github.io/html/excellent-advice-for-living-kevin-kelly.html
 https://dirtysalt.github.io/html/experience-of-research-from-outsider.html
 https://dirtysalt.github.io/html/experience-of-running-coffee-shop-for-40-years.html
