@@ -16,10 +16,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1ca3c16">1. 问题背景</a></li>
-<li><a href="#orgd76223e">2. 整体结构</a></li>
-<li><a href="#org1b32c44">3. 资源配置</a></li>
-<li><a href="#org0353fb4">4. 实现细节</a></li>
+<li><a href="#orgc28ee73">1. 问题背景</a></li>
+<li><a href="#org3facb6c">2. 整体结构</a></li>
+<li><a href="#orgf7a0052">3. 资源配置</a></li>
+<li><a href="#org186c83f">4. 实现细节</a></li>
 </ul>
 </div>
 </div>
@@ -35,8 +35,8 @@
 这篇文章不是发在SIGMOD而是OSDI上，所以设计目标是通用eph-storage服务。
 </p>
 
-<div id="outline-container-org1ca3c16" class="outline-2">
-<h2 id="org1ca3c16"><span class="section-number-2">1.</span> 问题背景</h2>
+<div id="outline-container-orgc28ee73" class="outline-2">
+<h2 id="orgc28ee73"><span class="section-number-2">1.</span> 问题背景</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 这篇文章的背景是，现在有各种serverless platform, 大家可以在上面写serverless function. 但是function之间如果先要交换数据的话，尤其是临时数据的话会很有问题，还有想比如MapReduce中间这个shuffle过程完全没有必要写在HDFS上。这些交换数据的特点是：
@@ -62,7 +62,7 @@ Ephemeral Storage Requirements
 </p>
 
 
-<div id="org5876edf" class="figure">
+<div id="org62ffa84" class="figure">
 <p><img src="../images/Pasted-Image-20231225104507.png" alt="Pasted-Image-20231225104507.png" />
 </p>
 </div>
@@ -72,15 +72,15 @@ Ephemeral Storage Requirements
 </p>
 
 
-<div id="org9942c47" class="figure">
+<div id="org144f476" class="figure">
 <p><img src="../images/Pasted-Image-20231225104442.png" alt="Pasted-Image-20231225104442.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgd76223e" class="outline-2">
-<h2 id="orgd76223e"><span class="section-number-2">2.</span> 整体结构</h2>
+<div id="outline-container-org3facb6c" class="outline-2">
+<h2 id="org3facb6c"><span class="section-number-2">2.</span> 整体结构</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 这个东西整个结构看上去和GFS/HDFS非常类似，只不过针对eph storage不用考虑storage server上面的高可用，然后在选择storage server上可以使用特定算法平衡吞吐和存储空间。整个系统架构如下：
@@ -108,15 +108,15 @@ Pocket offers high throughput and low latency for arbitrary size data sets, auto
 </ol>
 
 
-<div id="org47f9db4" class="figure">
+<div id="org9dbc3d6" class="figure">
 <p><img src="../images/Pasted-Image-20231225104344.png" alt="Pasted-Image-20231225104344.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org1b32c44" class="outline-2">
-<h2 id="org1b32c44"><span class="section-number-2">3.</span> 资源配置</h2>
+<div id="outline-container-orgf7a0052" class="outline-2">
+<h2 id="orgf7a0052"><span class="section-number-2">3.</span> 资源配置</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 文章里面叫做“Rightsizing Resouce Allocations”，其实包含几个问题：
@@ -159,15 +159,15 @@ controller并不主动做load balance. 对于已经分配的资源不做任何�
 </p>
 
 
-<div id="orgfdb158d" class="figure">
+<div id="org0618f71" class="figure">
 <p><img src="../images/Pasted-Image-20231225104408.png" alt="Pasted-Image-20231225104408.png" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0353fb4" class="outline-2">
-<h2 id="org0353fb4"><span class="section-number-2">4.</span> 实现细节</h2>
+<div id="outline-container-org186c83f" class="outline-2">
+<h2 id="org186c83f"><span class="section-number-2">4.</span> 实现细节</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 controller使用python编写，每个节点上的daemon也使用python使用，使用K8s Operations(kops)来启动虚拟机(metadata server/storage server).

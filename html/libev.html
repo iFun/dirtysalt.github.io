@@ -16,23 +16,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4167187">1. Overview</a></li>
-<li><a href="#org7265452">2. EventLoop</a></li>
-<li><a href="#org77b0366">3. Watcher</a></li>
-<li><a href="#orgb5e085e">4. How it works</a>
+<li><a href="#org4e1fa49">1. Overview</a></li>
+<li><a href="#org27402d3">2. EventLoop</a></li>
+<li><a href="#org217655b">3. Watcher</a></li>
+<li><a href="#org4b4952f">4. How it works</a>
 <ul>
-<li><a href="#orga4f4be9">4.1. ev_run</a></li>
-<li><a href="#org5fd35fb">4.2. fd_reify</a></li>
-<li><a href="#orgb60ddb1">4.3. backend_poll</a></li>
-<li><a href="#orgd7ee3df">4.4. timers_reify</a></li>
-<li><a href="#orgc816852">4.5. EV_INVOKE_PENDING</a></li>
+<li><a href="#org5f84f99">4.1. ev_run</a></li>
+<li><a href="#org82cd07f">4.2. fd_reify</a></li>
+<li><a href="#orgb5ae127">4.3. backend_poll</a></li>
+<li><a href="#orgc8b7e2a">4.4. timers_reify</a></li>
+<li><a href="#orga702c7c">4.5. EV_INVOKE_PENDING</a></li>
 </ul>
 </li>
-<li><a href="#org124b3ce">5. Example</a>
+<li><a href="#orgffb8d0f">5. Example</a>
 <ul>
-<li><a href="#orgbd4df99">5.1. common.h</a></li>
-<li><a href="#org1126dc0">5.2. echo-client.cc</a></li>
-<li><a href="#org2d53181">5.3. echo-server.cc</a></li>
+<li><a href="#orgf91a97d">5.1. common.h</a></li>
+<li><a href="#orgad4cc3c">5.2. echo-client.cc</a></li>
+<li><a href="#orgede408f">5.3. echo-server.cc</a></li>
 </ul>
 </li>
 </ul>
@@ -42,8 +42,8 @@
 <a href="http://software.schmorp.de/pkg/libev.html">http://software.schmorp.de/pkg/libev.html</a>
 </p>
 
-<div id="outline-container-org4167187" class="outline-2">
-<h2 id="org4167187"><span class="section-number-2">1.</span> Overview</h2>
+<div id="outline-container-org4e1fa49" class="outline-2">
+<h2 id="org4e1fa49"><span class="section-number-2">1.</span> Overview</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 libev所实现的功能就是一个强大的reactor, 可以notify的事件主要包括下面这些：
@@ -70,7 +70,7 @@ libev所实现的功能就是一个强大的reactor, 可以notify的事件主要
 猜想作者应该是为了方便的话使用了很多宏进行替换。允许使用多个event_loop的宏是EV_MULTIPLICITY.比如下面这段代码
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">noinline</span>
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-variable-name">noinline</span>
 ev_io_start (EV_P_ <span class="org-type">ev_io</span> *<span class="org-variable-name">w</span>)
 {
   <span class="org-type">int</span> <span class="org-variable-name">fd</span> = w-&gt;fd;
@@ -154,8 +154,8 @@ ev_io_start (EV_P_ <span class="org-type">ev_io</span> *<span class="org-variabl
 </div>
 </div>
 
-<div id="outline-container-org7265452" class="outline-2">
-<h2 id="org7265452"><span class="section-number-2">2.</span> EventLoop</h2>
+<div id="outline-container-org27402d3" class="outline-2">
+<h2 id="org27402d3"><span class="section-number-2">2.</span> EventLoop</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 首先我们关注一下reactor本身。在libev下面reactor对象称为event_loop.event_loop允许动态创建和销毁，并且允许绑定自定义数据
@@ -242,8 +242,8 @@ ev_io_start (EV_P_ <span class="org-type">ev_io</span> *<span class="org-variabl
 </div>
 </div>
 
-<div id="outline-container-org77b0366" class="outline-2">
-<h2 id="org77b0366"><span class="section-number-2">3.</span> Watcher</h2>
+<div id="outline-container-org217655b" class="outline-2">
+<h2 id="org217655b"><span class="section-number-2">3.</span> Watcher</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 然后我们关心一下EventHandler.在libev下面watcher相当于EventHandler这么一个概念，通常里面会绑定fd回调函数以及我们需要关注的事件。
@@ -280,12 +280,12 @@ wacther的状态有下面这么几种：
 </div>
 </div>
 
-<div id="outline-container-orgb5e085e" class="outline-2">
-<h2 id="orgb5e085e"><span class="section-number-2">4.</span> How it works</h2>
+<div id="outline-container-org4b4952f" class="outline-2">
+<h2 id="org4b4952f"><span class="section-number-2">4.</span> How it works</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orga4f4be9" class="outline-3">
-<h3 id="orga4f4be9"><span class="section-number-3">4.1.</span> ev_run</h3>
+<div id="outline-container-org5f84f99" class="outline-3">
+<h3 id="org5f84f99"><span class="section-number-3">4.1.</span> ev_run</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 最主要的还是看看ev_run这个部分代码。我们不打算仔细阅读只是看看梗概然后大体分析一下数据结构应该怎么样的
@@ -319,7 +319,7 @@ wacther的状态有下面这么几种：
         <span class="org-comment-delimiter">/* </span><span class="org-comment">update time to cancel out callback processing overhead</span><span class="org-comment-delimiter"> */</span>
         time_update (EV_A_ 1e100);
 
-        <span class="org-keyword">if</span> (expect_true (<span class="org-negation-char">!</span>(flags &amp; EVRUN_NOWAIT || idleall || <span class="org-negation-char">!</span>activecnt)))
+        <span class="org-keyword">if</span> (expect_true (<span class="org-negation-char">!</span>(<span class="org-type">flags</span> &amp; <span class="org-variable-name">EVRUN_NOWAIT</span> || idleall || <span class="org-negation-char">!</span>activecnt)))
           {
             waittime = MAX_BLOCKTIME;
 
@@ -350,11 +350,11 @@ wacther的状态有下面这么几种：
           }
 
         assert ((loop_done = EVBREAK_RECURSE, 1)); <span class="org-comment-delimiter">/* </span><span class="org-comment">assert for side effect</span><span class="org-comment-delimiter"> */</span>
-        backend_poll (<span class="org-type">EV_A_</span> <span class="org-variable-name">waittime</span>);
+        backend_poll (EV_A_ waittime);
         assert ((loop_done = EVBREAK_CANCEL, 1)); <span class="org-comment-delimiter">/* </span><span class="org-comment">assert for side effect</span><span class="org-comment-delimiter"> */</span>
 
         <span class="org-comment-delimiter">/* </span><span class="org-comment">update ev_rt_now, do magic</span><span class="org-comment-delimiter"> */</span>
-        time_update (<span class="org-type">EV_A_</span> <span class="org-variable-name">waittime</span> + sleeptime);
+        time_update (EV_A_ waittime + sleeptime);
       }
 
       <span class="org-comment-delimiter">/* </span><span class="org-comment">queue pending timers and reschedule them</span><span class="org-comment-delimiter"> */</span>
@@ -391,8 +391,8 @@ wacther的状态有下面这么几种：
 </div>
 </div>
 
-<div id="outline-container-org5fd35fb" class="outline-3">
-<h3 id="org5fd35fb"><span class="section-number-3">4.2.</span> fd_reify</h3>
+<div id="outline-container-org82cd07f" class="outline-3">
+<h3 id="org82cd07f"><span class="section-number-3">4.2.</span> fd_reify</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 下面是fd_reify代码片段.可以看出，这个部分就是在修改fd关注的events。
@@ -424,7 +424,7 @@ wacther的状态有下面这么几种：
             o_reify = EV__IOFDSET; <span class="org-comment-delimiter">/* </span><span class="org-comment">actually |=</span><span class="org-comment-delimiter"> */</span>
         }
 
-      <span class="org-keyword">if</span> (o_reify &amp; EV__IOFDSET)
+      <span class="org-keyword">if</span> (<span class="org-type">o_reify</span> &amp; <span class="org-variable-name">EV__IOFDSET</span>)
         backend_modify (<span class="org-type">EV_A_</span> <span class="org-variable-name">fd</span>, o_events, anfd-&gt;events);
     }
 
@@ -438,7 +438,7 @@ fd关注事件的话，我们必须显示地ev_io_stop掉然后修正之后重�
 数组fdchanges来保存发生events变动的fd.
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">noinline</span>
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-variable-name">noinline</span>
 ev_io_start (EV_P_ <span class="org-type">ev_io</span> *<span class="org-variable-name">w</span>)
 {
   <span class="org-type">int</span> <span class="org-variable-name">fd</span> = w-&gt;fd;
@@ -479,8 +479,8 @@ inline_size <span class="org-type">void</span>
 </div>
 </div>
 
-<div id="outline-container-orgb60ddb1" class="outline-3">
-<h3 id="orgb60ddb1"><span class="section-number-3">4.3.</span> backend_poll</h3>
+<div id="outline-container-orgb5ae127" class="outline-3">
+<h3 id="orgb5ae127"><span class="section-number-3">4.3.</span> backend_poll</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 backend_poll底层支持很多poll实现，我们这里仅仅看ev_epoll.c就可以.代码在这里面我们不列举了，
@@ -501,7 +501,7 @@ backend_poll底层支持很多poll实现，我们这里仅仅看ev_epoll.c就可
         ev_feed_event (EV_A_ (W)w, ev);
     }
 }
-<span class="org-type">void</span> <span class="org-function-name">noinline</span>
+<span class="org-type">void</span> <span class="org-variable-name">noinline</span>
 ev_feed_event (EV_P_ <span class="org-type">void</span> *<span class="org-variable-name">w</span>, <span class="org-type">int</span> <span class="org-variable-name">revents</span>)
 {
   <span class="org-type">W</span> <span class="org-variable-name">w_</span> = (<span class="org-type">W</span>)w;
@@ -527,8 +527,8 @@ ev_feed_event (EV_P_ <span class="org-type">void</span> *<span class="org-variab
 </div>
 </div>
 
-<div id="outline-container-orgd7ee3df" class="outline-3">
-<h3 id="orgd7ee3df"><span class="section-number-3">4.4.</span> timers_reify</h3>
+<div id="outline-container-orgc8b7e2a" class="outline-3">
+<h3 id="orgc8b7e2a"><span class="section-number-3">4.4.</span> timers_reify</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 其中HEAP0就是最小堆下标。如果repeat的话说明需要重复发生，那么就会重新调整时间戳，如果不是repeat的话，
@@ -562,14 +562,14 @@ ev_feed_event (EV_P_ <span class="org-type">void</span> *<span class="org-variab
               downheap (timers, timercnt, HEAP0);
             }
           <span class="org-keyword">else</span>
-            ev_timer_stop (<span class="org-type">EV_A_</span> <span class="org-variable-name">w</span>); <span class="org-comment-delimiter">/* </span><span class="org-comment">nonrepeating: stop timer</span><span class="org-comment-delimiter"> */</span>
+            ev_timer_stop (EV_A_ w); <span class="org-comment-delimiter">/* </span><span class="org-comment">nonrepeating: stop timer</span><span class="org-comment-delimiter"> */</span>
 
           EV_FREQUENT_CHECK;
           feed_reverse (EV_A_ (W)w);
         }
       <span class="org-keyword">while</span> (timercnt &amp;&amp; ANHE_at (timers [HEAP0]) &lt; mn_now);
 
-      feed_reverse_done (<span class="org-type">EV_A_</span> <span class="org-variable-name">EV_TIMER</span>);
+      feed_reverse_done (EV_A_ EV_TIMER);
     }
 }
 </pre>
@@ -577,14 +577,14 @@ ev_feed_event (EV_P_ <span class="org-type">void</span> *<span class="org-variab
 </div>
 </div>
 
-<div id="outline-container-orgc816852" class="outline-3">
-<h3 id="orgc816852"><span class="section-number-3">4.5.</span> EV_INVOKE_PENDING</h3>
+<div id="outline-container-orga702c7c" class="outline-3">
+<h3 id="orga702c7c"><span class="section-number-3">4.5.</span> EV_INVOKE_PENDING</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 这个宏最终调用的函数就是下面这个，遍历所有的pendings事件并且逐一触发。
 </p>
 <div class="org-src-container">
-<pre class="src src-C++"><span class="org-type">void</span> <span class="org-function-name">noinline</span>
+<pre class="src src-C++"><span class="org-type">void</span> <span class="org-variable-name">noinline</span>
 ev_invoke_pending (EV_P)
 {
   <span class="org-type">int</span> <span class="org-variable-name">pri</span>;
@@ -605,16 +605,16 @@ ev_invoke_pending (EV_P)
 </div>
 </div>
 
-<div id="outline-container-org124b3ce" class="outline-2">
-<h2 id="org124b3ce"><span class="section-number-2">5.</span> Example</h2>
+<div id="outline-container-orgffb8d0f" class="outline-2">
+<h2 id="orgffb8d0f"><span class="section-number-2">5.</span> Example</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 尝试编写一个简单的带有超时的echo-server和echo-client就发现其实还有非常多的其他的工作量，比如buffer的管理状态机实现等。
 所以我没有写出一个完整的example,只是简单地写了假设echo-client连接上server的话就简单地打印链接信息并且关闭。
 </p>
 </div>
-<div id="outline-container-orgbd4df99" class="outline-3">
-<h3 id="orgbd4df99"><span class="section-number-3">5.1.</span> common.h</h3>
+<div id="outline-container-orgf91a97d" class="outline-3">
+<h3 id="orgf91a97d"><span class="section-number-3">5.1.</span> common.h</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-C++"><span class="org-preprocessor">#if</span><span class="org-negation-char"><span class="org-preprocessor">n</span></span><span class="org-preprocessor">def</span> _COMMON_H_
@@ -694,8 +694,8 @@ ev_invoke_pending (EV_P)
 </div>
 </div>
 
-<div id="outline-container-org1126dc0" class="outline-3">
-<h3 id="org1126dc0"><span class="section-number-3">5.2.</span> echo-client.cc</h3>
+<div id="outline-container-orgad4cc3c" class="outline-3">
+<h3 id="orgad4cc3c"><span class="section-number-3">5.2.</span> echo-client.cc</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-C++">
@@ -724,8 +724,8 @@ ev_invoke_pending (EV_P)
 </div>
 </div>
 
-<div id="outline-container-org2d53181" class="outline-3">
-<h3 id="org2d53181"><span class="section-number-3">5.3.</span> echo-server.cc</h3>
+<div id="outline-container-orgede408f" class="outline-3">
+<h3 id="orgede408f"><span class="section-number-3">5.3.</span> echo-server.cc</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 <pre class="src src-C++">

@@ -566,6 +566,8 @@ https://dirtysalt.github.io/html/laws-of-performant-software.html
 https://dirtysalt.github.io/html/lc-100112-maximum-balanced-subsequence-sum.html
 https://dirtysalt.github.io/html/lc-100124-maximum-strong-pair-xor-ii.html
 https://dirtysalt.github.io/html/lc-100136-count-the-number-of-good-partitions.html
+https://dirtysalt.github.io/html/lc-100241-find-the-sum-of-the-power-of-all-subsequences.html
+https://dirtysalt.github.io/html/lc-100249-replace-question-marks-in-string-to-minimize-its-value.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
 https://dirtysalt.github.io/html/lc-1027-longest-arithmetic-sequence.html

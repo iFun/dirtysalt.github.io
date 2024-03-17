@@ -16,16 +16,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbbd7a0d">1. introduction</a></li>
-<li><a href="#org0149702">2. architecture</a></li>
-<li><a href="#org4daea6e">3. evolution on workloads &amp; hw</a>
+<li><a href="#org98eadd9">1. introduction</a></li>
+<li><a href="#org298ec6a">2. architecture</a></li>
+<li><a href="#orgf56d3ec">3. evolution on workloads &amp; hw</a>
 <ul>
-<li><a href="#orgb77ae43">3.1. hw advancements</a></li>
-<li><a href="#orgf072adc">3.2. workload changes</a></li>
-<li><a href="#orgc6c5dba">3.3. in modern world</a></li>
+<li><a href="#org6df0b41">3.1. hw advancements</a></li>
+<li><a href="#orgbc48697">3.2. workload changes</a></li>
+<li><a href="#org070017a">3.3. in modern world</a></li>
 </ul>
 </li>
-<li><a href="#org084a97b">4. evaluation</a></li>
+<li><a href="#orgcd6724f">4. evaluation</a></li>
 </ul>
 </div>
 </div>
@@ -38,8 +38,8 @@ ite: Past, Present, and Future
 <a href="https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf">https://www.vldb.org/pvldb/vol15/p3535-gaffney.pdf</a>
 </p>
 
-<div id="outline-container-orgbbd7a0d" class="outline-2">
-<h2 id="orgbbd7a0d"><span class="section-number-2">1.</span> introduction</h2>
+<div id="outline-container-org98eadd9" class="outline-2">
+<h2 id="org98eadd9"><span class="section-number-2">1.</span> introduction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 最开始是tcl语言扩展，所以target就是类似嵌入式的数据库。现在已经集成在浏览器，个人电脑，智能手机，PHP/Python语言里面，有差不多trillion级别的sqlite db在运行，可以想象这个稳定性特别好。
@@ -113,15 +113,15 @@ An embeddable data- base engine is better equipped to handle these workloads. Fo
 </div>
 </div>
 
-<div id="outline-container-org0149702" class="outline-2">
-<h2 id="org0149702"><span class="section-number-2">2.</span> architecture</h2>
+<div id="outline-container-org298ec6a" class="outline-2">
+<h2 id="org298ec6a"><span class="section-number-2">2.</span> architecture</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 sqlite设计上比较模块化
 </p>
 
 
-<div id="org36c30de" class="figure">
+<div id="orgee3e107" class="figure">
 <p><img src="../images/Pasted-Image-20231209143121.png" alt="Pasted-Image-20231209143121.png" />
 </p>
 </div>
@@ -156,12 +156,12 @@ txn有两种模式：undo(rollback mode, 实现上还有DELETE/TRUNCATE区分), 
 </div>
 </div>
 
-<div id="outline-container-org4daea6e" class="outline-2">
-<h2 id="org4daea6e"><span class="section-number-2">3.</span> evolution on workloads &amp; hw</h2>
+<div id="outline-container-orgf56d3ec" class="outline-2">
+<h2 id="orgf56d3ec"><span class="section-number-2">3.</span> evolution on workloads &amp; hw</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgb77ae43" class="outline-3">
-<h3 id="orgb77ae43"><span class="section-number-3">3.1.</span> hw advancements</h3>
+<div id="outline-container-org6df0b41" class="outline-3">
+<h3 id="org6df0b41"><span class="section-number-3">3.1.</span> hw advancements</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 从16MHz单核处理器扩展到了高频多核处理器
@@ -181,8 +181,8 @@ However, mobile compute has fundamentally changed since the early 2000s. For exa
 </div>
 </div>
 
-<div id="outline-container-orgf072adc" class="outline-3">
-<h3 id="orgf072adc"><span class="section-number-3">3.2.</span> workload changes</h3>
+<div id="outline-container-orgbc48697" class="outline-3">
+<h3 id="orgbc48697"><span class="section-number-3">3.2.</span> workload changes</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 从OLTP衍生到了各种场景, 目前来看这块还行。
@@ -196,8 +196,8 @@ In addition to the aforementioned hardware advancements, the software that uses 
 </div>
 </div>
 
-<div id="outline-container-orgc6c5dba" class="outline-3">
-<h3 id="orgc6c5dba"><span class="section-number-3">3.3.</span> in modern world</h3>
+<div id="outline-container-org070017a" class="outline-3">
+<h3 id="org070017a"><span class="section-number-3">3.3.</span> in modern world</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 硬件发展情况下，充分利用多核特性
@@ -222,8 +222,8 @@ Furthermore, SQLite’s row-oriented storage format and execution engine are sub
 </div>
 </div>
 
-<div id="outline-container-org084a97b" class="outline-2">
-<h2 id="org084a97b"><span class="section-number-2">4.</span> evaluation</h2>
+<div id="outline-container-orgcd6724f" class="outline-2">
+<h2 id="orgcd6724f"><span class="section-number-2">4.</span> evaluation</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 这节和DuckDB对比了一下SSB, 还和FS对比了一下blob operation.
@@ -242,7 +242,7 @@ sqlite resource footprint确实比较低，下面是和DuckDB相比：编译速�
 </p>
 
 
-<div id="org9a798cb" class="figure">
+<div id="org533d5a1" class="figure">
 <p><img src="../images/Pasted-Image-20231209145155.png" alt="Pasted-Image-20231209145155.png" />
 </p>
 </div>

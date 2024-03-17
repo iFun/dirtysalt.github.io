@@ -67,7 +67,7 @@ salt_table as (
 以tpch.nation来看，输出结果就是
 </p>
 
-<pre class="example" id="org13a5e7c">
+<pre class="example" id="orge61c857">
 +---------------+-----------+
 | salt_name     | salt_rand |
 +---------------+-----------+
@@ -117,7 +117,7 @@ right_table as (
 以tpch.nation来看，输出结果如下
 </p>
 
-<pre class="example" id="orgef5e192">
+<pre class="example" id="org991098b">
 +-------------+----------------+-------------+---------------+-----------+----------+
 | n_nationkey | n_name         | n_regionkey | salt_name     | salt_rand | rand_col |
 +-------------+----------------+-------------+---------------+-----------+----------+
@@ -184,7 +184,7 @@ select n_nationkey, n_name, n_regionkey, case when n_name in ('CHINA', 'UNITED S
 输出如下，因为CHINA和US只有一个所以只产生了一个值。如果有多个的话，那么rand_col是不同的。
 </p>
 
-<pre class="example" id="org9a15866">
+<pre class="example" id="org04944f7">
 +-------------+----------------+-------------+----------+
 | n_nationkey | n_name         | n_regionkey | rand_col |
 +-------------+----------------+-------------+----------+

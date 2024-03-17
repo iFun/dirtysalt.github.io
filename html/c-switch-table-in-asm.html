@@ -21,7 +21,7 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C"><span class="org-keyword">static</span> INLINE <span class="org-type">void</span> *<span class="org-function-name">memcpy_tiny</span>(<span class="org-type">void</span> *<span class="org-variable-name">dst</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">src</span>, <span class="org-type">size_t</span> <span class="org-variable-name">size</span>) {
+<pre class="src src-C"><span class="org-keyword">static</span> <span class="org-type">INLINE</span> <span class="org-type">void</span> *memcpy_tiny(<span class="org-type">void</span> *<span class="org-variable-name">dst</span>, <span class="org-keyword">const</span> <span class="org-type">void</span> *<span class="org-variable-name">src</span>, size_t size) {
     <span class="org-type">unsigned</span> <span class="org-type">char</span> *<span class="org-variable-name">dd</span> = ((<span class="org-type">unsigned</span> <span class="org-type">char</span>*)dst) + size;
     <span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span> *<span class="org-variable-name">ss</span> = ((<span class="org-keyword">const</span> <span class="org-type">unsigned</span> <span class="org-type">char</span>*)src) + size;
 
