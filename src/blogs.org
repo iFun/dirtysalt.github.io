@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202403 [[file:lc-100241-find-the-sum-of-the-power-of-all-subsequences.org][LC 100241. 求出所有子序列的能量和未命名]]
+- 202403 [[file:lc-100249-replace-question-marks-in-string-to-minimize-its-value.org][LC 100249. 替换字符串中的问号使分数最小]]
 - 202403 [[file:every-infrastructure-decision-i-endorse-or-regret-after-4-years-running-infrastructure-at-a-startup.org][(Almost) Every infrastructure decision I endorse or regret after 4 years running infrastructure at a startup]] 创业公司基础架构搭建指南
 - 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 - 202402 [[file:aoc2023-day25-graph-min-cut-karger.org][AOC2023-Day25 求解图的最小割]]
