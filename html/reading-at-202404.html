@@ -14,8 +14,52 @@
 <h1 class="title">网络文章@202404</h1>
 <hr />
 <p>
-<a href="https://jvns.ca/blog/2014/12/21/fear-makes-you-a-worse-programmer/">
-恐惧会让你成为更糟糕的程序员 &#x2014; Fear makes you a worse programmer</a>
+<a href="https://blog.det.life/i-spent-4-hours-figuring-out-how-bigquery-executes-the-sql-query-internally-heres-what-i-found-2b7faaaf607e">我花了 4 个小时弄清楚 BigQuery 如何在内部执行 SQL 查询。这是我发现的。 |作者：Vu Trinh | 2024 年 2 月 |数据工程师的事情 &#x2014; I spent 4 hours figuring out how BigQuery executes the SQL query internally. Here’s what I found. | by Vu Trinh | Feb, 2024 | Data Engineer Things</a>
+</p>
+
+<p>
+架构上有个scheduler在做task调度，每个stage以shuffle层作为临时存储节点，可以是内存也可以spill到磁盘上
+</p>
+
+
+<div id="orgdd4a604" class="figure">
+<p><img src="../images/Pasted-Image-20240414213135.png" alt="Pasted-Image-20240414213135.png" />
+</p>
+</div>
+
+<p>
+有了scheduler之后，以及类似这种stage-by-stage方案，中间还可以进行自适应增加和减少节点来应对data skew.
+</p>
+
+
+<div id="org92f77a3" class="figure">
+<p><img src="../images/Pasted-Image-20240414213329.png" alt="Pasted-Image-20240414213329.png" />
+</p>
+</div>
+
+<p>
+在进行元信息分析的时候也可以用dremel来加速，big metadata
+</p>
+
+<blockquote>
+<ul class="org-ul">
+<li>After having the information, the Query Master looks up the table’s metadata from the metadata server (Google using <a href="https://cloud.google.com/spanner?hl=en">Cloud Spanner</a> for metadata storage); if the partition pruning is applied, the metadata server will only return the file locations for the partitions that match the filter. (Query Master uses other Dremel jobs for the look-up process.)</li>
+</ul>
+</blockquote>
+<p>
+获得信息后，Query Master 从元数据服务器查找表的元数据（Google 使用 Cloud Spanner 进行元数据存储）；如果应用分区修剪，元数据服务器将仅返回与过滤器匹配的分区的文件位置。 （Query Master 使用其他 Dremel 作业进行查找过程。）
+</p>
+
+
+<div id="orgabb4be0" class="figure">
+<p><img src="../images/Pasted-Image-20240414213442.png" alt="Pasted-Image-20240414213442.png" />
+</p>
+</div>
+
+<hr />
+
+<p>
+<a href="https://jvns.ca/blog/2014/12/21/fear-makes-you-a-worse-programmer/">恐惧会让你成为更糟糕的程序员 &#x2014; Fear makes you a worse programmer</a>
 </p>
 
 <p>
