@@ -1,8 +1,29 @@
 #+title: 网络文章@202404
 
+
+--------
+[[https://blog.det.life/i-spent-4-hours-figuring-out-how-bigquery-executes-the-sql-query-internally-heres-what-i-found-2b7faaaf607e][我花了 4 个小时弄清楚 BigQuery 如何在内部执行 SQL 查询。这是我发现的。 |作者：Vu Trinh | 2024 年 2 月 |数据工程师的事情 --- I spent 4 hours figuring out how BigQuery executes the SQL query internally. Here’s what I found. | by Vu Trinh | Feb, 2024 | Data Engineer Things]]
+
+架构上有个scheduler在做task调度，每个stage以shuffle层作为临时存储节点，可以是内存也可以spill到磁盘上
+
+[[../images/Pasted-Image-20240414213135.png]]
+
+有了scheduler之后，以及类似这种stage-by-stage方案，中间还可以进行自适应增加和减少节点来应对data skew.
+
+[[../images/Pasted-Image-20240414213329.png]]
+
+在进行元信息分析的时候也可以用dremel来加速，big metadata
+
+#+BEGIN_QUOTE
+- After having the information, the Query Master looks up the table’s metadata from the metadata server (Google using [[https://cloud.google.com/spanner?hl=en][Cloud Spanner]] for metadata storage); if the partition pruning is applied, the metadata server will only return the file locations for the partitions that match the filter. (Query Master uses other Dremel jobs for the look-up process.)
+#+END_QUOTE
+    获得信息后，Query Master 从元数据服务器查找表的元数据（Google 使用 Cloud Spanner 进行元数据存储）；如果应用分区修剪，元数据服务器将仅返回与过滤器匹配的分区的文件位置。 （Query Master 使用其他 Dremel 作业进行查找过程。）
+
+[[../images/Pasted-Image-20240414213442.png]]
+
 -------
-[[https://jvns.ca/blog/2014/12/21/fear-makes-you-a-worse-programmer/][
-恐惧会让你成为更糟糕的程序员 --- Fear makes you a worse programmer]]
+
+[[https://jvns.ca/blog/2014/12/21/fear-makes-you-a-worse-programmer/][恐惧会让你成为更糟糕的程序员 --- Fear makes you a worse programmer]]
 
 Before I start, [[https://twitter.com/rckenned][Ryan Kennedy]] linked me to this slide deck of a presentation he gave called [[https://speakerdeck.com/ryankennedy/fear-driven-development][Fear Driven Development]] which I absolutely loved, and I think you should look at it. I think my favorite sentence from that presentation is **“Fear creates local maximums.”**
 
