@@ -423,6 +423,7 @@
   - 202103 [[file:cmudb-database-storage.org][CMU DB: Database Storage]]
   - 202103 [[file:cmudb-query-processing.org][CMU DB: Query Processing]]
   - 202103 [[file:cmudb-query-planning.org][CMU DB: Query Planning]]
+  - 202404 [[file:cmudb-talk-on-photon.org][CMUDB Talk on Photon]]
 
 - [[file:leveldb.org][leveldb]] Google的开源kv存储系统。
 - [[file:mongodb.org][mongodb]] 面向文档的分布式存储系统。

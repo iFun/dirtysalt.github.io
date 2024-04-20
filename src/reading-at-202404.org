@@ -1,5 +1,20 @@
 #+title: 网络文章@202404
 
+-------------
+
+[[https://zhuanlan.zhihu.com/p/599099903][意大利面拌42号混凝土真的会笑死我了 - 知乎]]
+
+----------
+
+[[https://medium.com/snowflake/automated-query-retries-improving-snowflakes-fault-tolerance-d502597a40a2][Automated Query Retries: Improving Snowflake’s fault tolerance | by Ata E Husain Bohra | Snowflake | Medium]]
+
+SF Query内部重试机制：
+- operator metadata要支持持久化
+- operator 可以判断自己是否可以重试
+- 重试流程如下：首先是更换节点，然后是更换到某个低版本
+
+[[../images/Pasted-Image-20240420105724.png]]
+
 
 --------
 [[https://blog.det.life/i-spent-4-hours-figuring-out-how-bigquery-executes-the-sql-query-internally-heres-what-i-found-2b7faaaf607e][我花了 4 个小时弄清楚 BigQuery 如何在内部执行 SQL 查询。这是我发现的。 |作者：Vu Trinh | 2024 年 2 月 |数据工程师的事情 --- I spent 4 hours figuring out how BigQuery executes the SQL query internally. Here’s what I found. | by Vu Trinh | Feb, 2024 | Data Engineer Things]]
