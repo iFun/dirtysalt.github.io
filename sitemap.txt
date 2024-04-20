@@ -199,6 +199,7 @@ https://dirtysalt.github.io/html/cmudb-mvcc.html
 https://dirtysalt.github.io/html/cmudb-query-planning.html
 https://dirtysalt.github.io/html/cmudb-query-processing.html
 https://dirtysalt.github.io/html/cmudb-sort-agg-join.html
+https://dirtysalt.github.io/html/cmudb-talk-on-photon.html
 https://dirtysalt.github.io/html/cmudb-tree-indexes.html
 https://dirtysalt.github.io/html/code-complete.html
 https://dirtysalt.github.io/html/code-in-space.html
