@@ -15,7 +15,41 @@
 <hr />
 
 <p>
+<a href="https://medium.com/snowflake/aggregation-placement-technical-deep-dive-and-road-to-production-19cbb8650b58#:~:text=The%20key%20differentiator%20of%20Snowflake's,query%20execution%20engine%20to%20adapt.">Aggregation Placement — Technical Deep-dive and Road to Production | by Bowei Chen | Snowflake | Medium</a>
+</p>
+
+<p>
+自适应Agg placement的实现，原理可能比较简单，最后面上生产过程比较值得学习。
+</p>
+
+<blockquote>
+<p>
+One of our first priorities is to “do no harm” to customer workloads. The performance degradation in the initial testing was because the overhead of the query rewrite was greater than expected and our runtime cost model was not able to identify these cases. We made improvements to address the issues and kicked off another run of the benchmark. The end result is that we don’t always get as much improvement as we could, but in exchange for that, we do no harm.
+</p>
+</blockquote>
+
+<p>
+如果发现某些case有回退情况的话，但是有些case可以改进很多的话，那么依然会舍弃这种改进。
+</p>
+
+<blockquote>
+<p>
+Aggregation placement gets applied for every 1 in 5 production queries. The rollout plan for aggregation placement was designed to limit the impact and blast radius of any potential problems in our production systems. Over the course of 3 months, we gradually enabled the feature every week for a new portion of our customer accounts. We built a dashboard to monitor the feature rollout, making sure it does not break important health metrics of the system. Finally, aggregation placement is enabled in all production accounts after a nearly half-year effort of thorough testing and delivery.
+</p>
+</blockquote>
+
+<p>
+即使在production test上面测试发现比较好的情况，依然需要做rollout。这个和on-prem数据库差异很大，因为一旦ship出去就没有办法evaluate了。
+</p>
+
+<hr />
+
+<p>
 <a href="https://zhuanlan.zhihu.com/p/599099903">意大利面拌42号混凝土真的会笑死我了 - 知乎</a>
+</p>
+
+<p>
+我个人认为， 这个意大利面就应该拌四十二号混凝土，因为这个螺丝钉的长度，很容易会直接影响到挖掘机的扭矩， 你知道吧， 你往里砸的时候， 一瞬间， 他就会产生大量的高能蛋白，俗称UFO，会严重影响经济的发展， 甚至对整个太平洋以及充电器， 都会造成一定的核污染，你知道吧，啊，再者说根据勾股定理， 你可以很容易的推断出， 人工饲养的东条鹰鸡， 它是可以捕获野生的三角函数的，所以说这个这个这个， 你不管秦始皇的切面是否具有放射性，特朗普的n次方，是否含有沉淀物，都不应影响这个这个沃尔玛跟维尔康在南极汇合。
 </p>
 
 <hr />
@@ -34,7 +68,7 @@ SF Query内部重试机制：
 </ul>
 
 
-<div id="orgc1d11de" class="figure">
+<div id="org32b3ef6" class="figure">
 <p><img src="../images/Pasted-Image-20240420105724.png" alt="Pasted-Image-20240420105724.png" />
 </p>
 </div>
@@ -50,7 +84,7 @@ SF Query内部重试机制：
 </p>
 
 
-<div id="orgb7f6d58" class="figure">
+<div id="org772db66" class="figure">
 <p><img src="../images/Pasted-Image-20240414213135.png" alt="Pasted-Image-20240414213135.png" />
 </p>
 </div>
@@ -60,7 +94,7 @@ SF Query内部重试机制：
 </p>
 
 
-<div id="orgb721703" class="figure">
+<div id="org09b6882" class="figure">
 <p><img src="../images/Pasted-Image-20240414213329.png" alt="Pasted-Image-20240414213329.png" />
 </p>
 </div>
@@ -79,7 +113,7 @@ SF Query内部重试机制：
 </p>
 
 
-<div id="org20fb864" class="figure">
+<div id="org96408d8" class="figure">
 <p><img src="../images/Pasted-Image-20240414213442.png" alt="Pasted-Image-20240414213442.png" />
 </p>
 </div>

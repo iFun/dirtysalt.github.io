@@ -260,6 +260,7 @@ https://dirtysalt.github.io/html/data-processing-at-the-speed-of-100gbps-using-a
 https://dirtysalt.github.io/html/data-structure-size-and-cache-line-accesses.html
 https://dirtysalt.github.io/html/data-structures-and-algorithms-for-big-databases.html
 https://dirtysalt.github.io/html/databricks-photon-paper.html
+https://dirtysalt.github.io/html/databricks-product-stack.html
 https://dirtysalt.github.io/html/david-and-goliath.html
 https://dirtysalt.github.io/html/dbms-impl.html
 https://dirtysalt.github.io/html/dbms-intro.html
