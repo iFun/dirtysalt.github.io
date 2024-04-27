@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202404 [[file:lc-100293-find-all-possible-stable-binary-arrays-ii.org][LC 100293. 找出所有稳定的二进制数组 II]] 二维前缀和不好维护 / 基于代码结构做优化
 - 202404 [[file:snowflake-product-stack.org][Snowflake产品堆栈]]
 - 202404 [[file:databricks-product-stack.org][DBX产品堆栈]]
 - 202404 [[file:cmudb-talk-on-photon.org][CMUDB Talk on Photon]]

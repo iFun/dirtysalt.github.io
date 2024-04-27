@@ -1,5 +1,35 @@
 #+title: 网络文章@202404
 
+-------------
+
+[[https://mp.weixin.qq.com/s/kE8G8qzs3KUU2tdH5EsgFg][在中国做To B生意真是太苦了]]
+
+
+#+BEGIN_QUOTE
+站在专业服务人员的角度，他们提供了如下几个视角：
+1. 中国绝大部分企业客户本来就没有什么购买力；极少数有购买力的企业，又往往不是依靠专业技术能力取胜的，所以对于通过信息技术提升生产力不太热衷。
+2. 因为企业自身的人力十分廉价、十分吃苦耐劳，所以它们对乙方也有类似的要求（甚至变本加厉）。企业客户对客服响应速度的要求，甚至比消费者还要高出几个重量级。
+3. 在乙方这边，由于太追求市场份额、太想通过价格战驱逐对手，所以极端没有原则。对于客户提出的降价甚至白嫖的无理要求，乙方往往照单全收甚至主动提供更好的条件，活生生把To B业务做成了Low B业务。
+#+END_QUOTE
+
+
+----------
+[[https://www.scylladb.com/2016/02/09/qualifying-filesystems/][Qualifying Filesystems for Seastar and ScyllaDB - ScyllaDB]]
+
+ScyllaDB 使用测试工具来发现FS是否支持AIO. 进行读写测试，然后检测期间的switch context.
+
+-------------
+
+[[https://dataturbo.medium.com/open-source-project-development-practice-1c0ff0eeab07][Open Source Project Development Practice | by Jinpeng Zhang | Apr, 2024 | Medium]]
+
+tikv同学写的管理好开源项目的实践
+
+------------
+
+[[https://buttondown.email/jaffray/archive/databases-have-a-lot-of-data/][数据库有大量数据 • 按钮 --- Databases Have a Lot of Data • Buttondown]]
+
+正向的期望并不一定就代表是好的选择。在数据库优化上，我们不知道这种正向优化和它带来的负面问题，覆盖范围到底是多少。编译优化器和查询优化器本质上是一样的东西，但是如果都是改进10%两者产生的impact可能是完全不同的。
+
 ---------
 
 [[https://medium.com/snowflake/aggregation-placement-technical-deep-dive-and-road-to-production-19cbb8650b58#:~:text=The%20key%20differentiator%20of%20Snowflake's,query%20execution%20engine%20to%20adapt.][Aggregation Placement — Technical Deep-dive and Road to Production | by Bowei Chen | Snowflake | Medium]]
