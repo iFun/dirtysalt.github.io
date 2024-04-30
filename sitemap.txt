@@ -1008,6 +1008,7 @@ https://dirtysalt.github.io/html/python-thread-safe-complaint.html
 https://dirtysalt.github.io/html/python-universal-feed-parser.html
 https://dirtysalt.github.io/html/python-weak-perf-matters.html
 https://dirtysalt.github.io/html/python.html
+https://dirtysalt.github.io/html/quality-questions-about-database-company.html
 https://dirtysalt.github.io/html/query-processing-opt-compressed-ht-and-ussr.html
 https://dirtysalt.github.io/html/questioning-the-lambda-architecture.html
 https://dirtysalt.github.io/html/raft.html
