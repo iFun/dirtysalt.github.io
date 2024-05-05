@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202405 [[file:integrating-deep-learning-frameworks-into-main-memory-databases.org][Integrating Deep Learning Frameworks into Main-Memory Databases]]
 - 202405 [[file:self-tuning-query-scheduling-for-analytical-workloads.org][Self-Tuning Query Scheduling for Analytical Workloads]]
 - 202405 [[file:readings-at-202405][网络文章@202405]]
 - 202404 [[file:quality-questions-about-database-company.org][数据库公司质量管理问题]]

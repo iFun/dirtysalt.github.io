@@ -486,6 +486,7 @@
 - 202312 [[file:databricks-photon-paper.org][Photon: A Fast Query Engine for Lakehouse Systems]]
 - 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 - 202405 [[file:self-tuning-query-scheduling-for-analytical-workloads.org][Self-Tuning Query Scheduling for Analytical Workloads]]
+- 202405 [[file:integrating-deep-learning-frameworks-into-main-memory-databases.org][Integrating Deep Learning Frameworks into Main-Memory Databases]]
 
 ** 算法数据结构
 
