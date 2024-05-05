@@ -20,6 +20,13 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
+echo "********** rename org images **********"
+python $HOME/.private/project/pyscript/utils/rename-org-images.py `pwd`/images
+if [ $? != 0 ]; then
+    echo "rename images failed"
+    exit 1
+fi
+
 echo "********** compress images **********"
 python $HOME/.private/project/pyscript/utils/compress-images.py `pwd`/images
 if [ $? != 0 ]; then
