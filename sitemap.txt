@@ -1091,6 +1091,7 @@ https://dirtysalt.github.io/html/sears-the-baby-book.html
 https://dirtysalt.github.io/html/segment-tree-for-rmq.html
 https://dirtysalt.github.io/html/seize-mind-and-market.html
 https://dirtysalt.github.io/html/selection-and-scenario-of-compression-algorithm.html
+https://dirtysalt.github.io/html/self-tuning-query-scheduling-for-analytical-workloads.html
 https://dirtysalt.github.io/html/serialization-and-design-tradeoff.html
 https://dirtysalt.github.io/html/service-disoriented-architecture.html
 https://dirtysalt.github.io/html/seven-concurrency-models-in-seven-weeks.html
