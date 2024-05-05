@@ -23,7 +23,7 @@ fi
 echo "********** rename org images **********"
 python $HOME/.private/project/pyscript/utils/rename-org-images.py `pwd`/images
 if [ $? != 0 ]; then
-    echo "rename images failed"
+    echo "rename org images failed"
     exit 1
 fi
 
