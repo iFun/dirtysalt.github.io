@@ -520,6 +520,7 @@ https://dirtysalt.github.io/html/instagram-under-the-hood.html
 https://dirtysalt.github.io/html/install-compiled-bcc-bpftrace.html
 https://dirtysalt.github.io/html/instruction-set-wants-to-be-free-riscv-case.html
 https://dirtysalt.github.io/html/integrating-compression-and-execution-in-cstore.html
+https://dirtysalt.github.io/html/integrating-deep-learning-frameworks-into-main-memory-databases.html
 https://dirtysalt.github.io/html/intentional-parenting.html
 https://dirtysalt.github.io/html/interview-psychological-tricks.html
 https://dirtysalt.github.io/html/interview-with-gmail-creator-and-y-combinator-partner-paul-buchheit.html
