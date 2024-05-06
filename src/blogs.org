@@ -7,7 +7,7 @@
 ** 2024
 - 202405 [[file:integrating-deep-learning-frameworks-into-main-memory-databases.org][Integrating Deep Learning Frameworks into Main-Memory Databases]]
 - 202405 [[file:self-tuning-query-scheduling-for-analytical-workloads.org][Self-Tuning Query Scheduling for Analytical Workloads]]
-- 202405 [[file:readings-at-202405][网络文章@202405]]
+- 202405 [[file:readings-at-202405.org][网络文章@202405]]
 - 202404 [[file:quality-questions-about-database-company.org][数据库公司质量管理问题]]
 - 202404 [[file:lc-100293-find-all-possible-stable-binary-arrays-ii.org][LC 100293. 找出所有稳定的二进制数组 II]] 二维前缀和不好维护 / 基于代码结构做优化
 - 202404 [[file:snowflake-product-stack.org][Snowflake产品堆栈]]
