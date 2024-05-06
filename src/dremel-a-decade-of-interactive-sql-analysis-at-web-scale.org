@@ -40,6 +40,7 @@ Disaggregation proved to be a major trend in data management, as it decouples pr
 
 #+BEGIN_QUOTE
 [!NOTE]
+
 Indeed, the data management community finds itself today in the middle of a transition from classical data warehouses to a data- lake-oriented architecture for analytics [1]. Three ingredients were called out as central to this transition: (a) consuming data from a variety of data sources, (b) eliminating traditional ETL-based data ingestion from an OLTP system to a data warehouse, and (c) en- abling a variety of compute engines to operate on the data. We have observed each part of this transition in Dremel’s decade-long history.
 
 There were, however, important drawbacks to Dremel’s in situ ap- proach. First, users do not always want to or have the capability to manage their own data safely and securely. While this extra com- plexity in data governance was acceptable to some degree inside Google, it was not tolerable for many external customers. Second, in situ analysis means there is no opportunity to either optimize storage layout or compute statistics in the general case. In fact, a large percentage of Dremel queries are run over data seen for the first time. This makes many standard optimizations impossible. It is also impractical to run DML updates and deletes or DDL schema changes on standalone files.
