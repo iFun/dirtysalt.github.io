@@ -725,6 +725,7 @@
 - 202203 [[file:delta-lake-paper.org][Delta Lake: High-Performance ACID Table Storage over Cloud Object Stores]] @ 2020
 - 202204 [[file:f1-query-declarative-quqey-at-scale.org][F1 Query: Declarative Querying at Scale]] @ 2018
 - 202312 [[file:google-the-dataflow-model-paper.org][The Dataflow Model: A Practical Approach to Balancing Correctness, Latency, and Cost in Massive-Scale, Unbounded, Out-of-Order Data Processing]] @ 2015
+- 202405 [[file:dremel-a-decade-of-interactive-sql-analysis-at-web-scale.org][Dremel A Decade of Interactive SQL Analysis at Web Scale]] @ 2020
 
 ** 程序设计语言
 语言无关：
