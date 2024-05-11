@@ -61,7 +61,7 @@ with open('./themes/%s-setup.txt' % setup_profile) as fh:
 
 # ========== BODY END: disqus page (deprecated) ==========
 
-BODY_END = """
+DISQUS_BODY_END = """
 <div id="content">
 <!-- DISQUS BEGIN -->
 <div id="disqus_thread"></div>
@@ -87,7 +87,7 @@ s.setAttribute('data-timestamp', +new Date());
 """.replace('\n','')
 
 # ========== BODY END: giscus ==========
-X_BODY_END = """
+GISGUS_BODY_END = """
 <script src="https://giscus.app/client.js"
         data-repo="dirtysalt/dirtysalt.github.io"
         data-repo-id="MDEwOlJlcG9zaXRvcnk3MjYxNjc3Mw=="
@@ -104,6 +104,8 @@ X_BODY_END = """
         async>
 </script>
 """.replace('\n', '')
+
+BODY_END = GISGUS_BODY_END
 
 # ============================================================
 def replace_codes_link(x):
