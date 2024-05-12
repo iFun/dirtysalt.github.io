@@ -1196,3 +1196,4 @@
 - 202404 [[file:lc-100259-minimum-sum-of-values-by-dividing-array.org][LC 100259. 划分数组得到最小的值之和]] And值可以考虑作为dp状态
 - 202404 [[file:lc-100267-kth-smallest-amount-with-single-denomination-combination.org][LC 100267. 单面值组合的第 K 小金额]] 组合数学中的计数问题
 - 202404 [[file:lc-100293-find-all-possible-stable-binary-arrays-ii.org][LC 100293. 找出所有稳定的二进制数组 II]] 二维前缀和不好维护 / 基于代码结构做优化
+- 202405 [[file:lc-100312-find-the-minimum-cost-array-permutation.org][LC 100312. 找出分数最低的排列]] TSP问题可以用动态规划求解
