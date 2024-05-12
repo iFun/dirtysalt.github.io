@@ -576,6 +576,7 @@ https://dirtysalt.github.io/html/lc-100249-replace-question-marks-in-string-to-m
 https://dirtysalt.github.io/html/lc-100259-minimum-sum-of-values-by-dividing-array.html
 https://dirtysalt.github.io/html/lc-100267-kth-smallest-amount-with-single-denomination-combination.html
 https://dirtysalt.github.io/html/lc-100293-find-all-possible-stable-binary-arrays-ii.html
+https://dirtysalt.github.io/html/lc-100312-find-the-minimum-cost-array-permutation.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
 https://dirtysalt.github.io/html/lc-1027-longest-arithmetic-sequence.html
@@ -1238,6 +1239,7 @@ https://dirtysalt.github.io/html/the-five-minute-rule-1987.html
 https://dirtysalt.github.io/html/the-five-minute-rule-1997.html
 https://dirtysalt.github.io/html/the-future-of-hongkong.html
 https://dirtysalt.github.io/html/the-future-of-programming.html
+https://dirtysalt.github.io/html/the-gluten-open-source-project.html
 https://dirtysalt.github.io/html/the-golden-circle.html
 https://dirtysalt.github.io/html/the-good-side-of-java-lang.html
 https://dirtysalt.github.io/html/the-great-game.html
