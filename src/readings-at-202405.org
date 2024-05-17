@@ -1,5 +1,83 @@
 #+title: 网络文章@202405
 
+
+-----------
+
+[[https://www.cockroachlabs.com/blog/sqlsmith-randomized-sql-testing/][SQLsmith: Randomized SQL testing in CockroachDB]]
+
+CockroachDB如何使用SQLSmith来做测试，根据语法文件来产生可能的SQL表达式。
+
+是不是可以在生成SQL表达式的时候，同时生成table定义；而不是先根据已有的table定义，去产生可以适配的SQL表达式。
+
+-----------
+
+[[https://facebookincubator.github.io/velox/develop/memory.html][Memory Management — Velox documentation]]
+
+velox 如何进行内存管理的，我觉得框架还是很不错的，几个概念很重要：
+- memory manager用来管理所有的内存申请
+- query pool 是给每个query分配的
+- 所以MM这里是可以看到每个query pool的使用的的(但是不一定看得到下面node pool/operator pool)
+- 如果MM这边内存不够的话，那么就会使用memory arb来决定那个query pool需要进行释放
+- query pool下面去寻找合适的operator pool去进行看那个operator可以spill出去
+
+
+[[../images/Pasted-Image-20240517155032.png]]
+
+只有其中某些operator可以进行spill操作
+
+#+BEGIN_QUOTE
+Only spillable operators override that method: _OrderBy_, _HashBuild_, _HashAggregation_, _RowNumber_, _TopNRowNumber_, _Window_ and _TableWriter_. As for now, we simply spill everything from the spillable operator’s row container to free up memory.
+#+END_QUOTE
+
+
+---------
+
+[[https://www.reddit.com/r/dataengineering/comments/1cpcx94/how_can_i_upskill_myself/][我如何提高自己的技能：r/dataengineering --- How can I upskill myself : r/dataengineering]]
+
+#+BEGIN_QUOTE
+Plus there are not a lot of Senior Data Engineer from whom I can learn anything. I mean there are many people senior than me but its just that they are not that great.
+另外，我能从中学到东西的高级数据工程师并不多。我的意思是，有很多人比我年长，但他们都没有那么伟大。
+#+END_QUOTE
+
+There is a really strong assumption that people become good from learning from other people. I think being able to teach yourself stuff is a far more important and valuable skill.
+有一个非常强烈的假设，即人们通过向他人学习而变得优秀。我认为能够自学是一项更重要、更有价值的技能。
+
+#+BEGIN_QUOTE
+I am really trying to move to a company where I can grow with time and learn things from experience
+我真的很想搬到一家可以随着时间成长并从经验中学习东西的公司
+#+END_QUOTE
+
+How often do you come up with new ideas which work and also benefit your current company? Asking because a lot of the time, people in a similar position to yourself will often say "I don't get to do anything exciting. I only get the boring jobs", expecting exciting work to come from up top. Interesting work is rarely handed out. In my experience, the limit really is down to how quickly and well an engineer/dev can complete their boring BAU work followed by their ability to create interesting solutions for problems.
+您多久会提出一些既有效又有益于当前公司的新想法？之所以这么问，是因为很多时候，与你处境相似的人经常会说“我无法做任何令人兴奋的事情。我只做无聊的工作”，期待令人兴奋的工作来自高层。有趣的作品很少被分发出去。根据我的经验，限制实际上取决于工程师/开发人员能够多快、多好地完成他们无聊的 BAU 工作，以及他们为问题创建有趣的解决方案的能力。
+
+#+BEGIN_QUOTE
+In all this scenario how can I make a plan for 3-5 months so that I might be able to clear interviews while also learning things on the side to constantly upskill myself.
+在这种情况下，我该如何制定3-5个月的计划，以便能够顺利通过面试，同时还能学习一些东西来不断提高自己的技能。
+#+END_QUOTE
+
+The assumption here is your problem is technical and you need guidance. Like most people who want to upskill, the problem is that all of this is in your head.
+这里的假设是您的问题是技术性的，您需要指导。像大多数想要提高技能的人一样，问题是所有这些都在你的脑海中
+
+==============
+
+I strongly suggest you focus on learning process oriented skills. For example: you may know how to create a data model but how to initiate that process, who will be the correct person to initiate the process, how to communicate with the business, proper documentation, governance. All these skills will help you get bigger roles.
+我强烈建议你专注于学习面向过程的技能。例如：您可能知道如何创建数据模型，但知道如何启动该流程、谁是启动该流程的正确人选、如何与业务部门沟通、适当的文档、治理。所有这些技能将帮助您获得更大的角色。
+
+Remember, the one who talks to the business will always get more money & power.
+请记住，与企业交谈的人总是会获得更多的金钱和权力。
+
+-----------
+
+[[https://duckdb.org/2023/10/27/csv-sniffer.html][DuckDB 的 CSV 嗅探器：自动检测类型和方言 – DuckDB --- DuckDB's CSV Sniffer: Automatic Detection of Types and Dialects – DuckDB]]
+
+这个检测过程写的挺清楚的。CSV自动探测的价值也非常高，因为用户去搞清楚这个csv schema通常也比较麻烦，倾向于先读取上来然后做些处理。
+
+---------
+
+[[https://duckdb.org/2024/03/29/external-aggregation.html][No Memory? No Problem. External Aggregation in DuckDB – DuckDB]]
+
+我的感觉就是整个memory chunk上粒度更小了，然后可以在更小的粒度上控制内存和磁盘交换。
+
 ---------
 
 《晚明》- 天命
