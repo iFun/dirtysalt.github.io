@@ -1,5 +1,83 @@
 #+title: 网络文章@202405
 
+------------
+
+[[https://blog.cloudflare.com/sandboxing-in-linux-with-zero-lines-of-code][零行代码的 Linux 沙箱 --- Sandboxing in Linux with zero lines of code]]
+
+挺好的科普文章，介绍了seccomp是如何工作的，另外就是提供了针对静态和动态链接库程序介入seccomp的方法。
+
+--------------
+
+[[https://world.hey.com/dhh/meta-is-shutting-down-workplace-3e24bca5][Meta 正在关闭 Workplace --- Meta is shutting down Workplace]]
+
+The saying "nobody ever got fired for buying IBM" is at its essence about risk management. The traditional wisdom goes that if you buy from a big company, you're going to be safe. It may be more expensive, but big companies project an image of stability and reliability, so buying their wares is seen as the prudent choice. Except, it isn't. Certainly not any more. [[https://www.fastcompany.com/91125164/meta-shuts-down-workplace-app-to-on-ai-and-metaverse][Meta killing Workplace]] is merely exhibit #49667.
+“没有人会因为购买 IBM 而被解雇”这句话的本质是风险管理。传统观点认为，如果你从大公司购买产品，你就会安全。它可能更贵，但大公司给人一种稳定可靠的形象，因此购买他们的产品被视为谨慎的选择。但事实并非如此。当然不再是了。元杀戮工作场所只是展览#49667。
+
+This, right here, is the risk of buying anything from big tech like Meta and Google. Their main ad-based cash cows are so fantastically profitable that whether it's the millions of paying accounts on Workplace or the millions of live websites [[https://9to5google.com/2023/06/15/google-domains-squarespace/][once hosted by Google Domains]], it all just pales in comparison, and is thus one strategy rotation away from being labeled "non-core" and killed off.
+这就是从 Meta 和 Google 等大型科技公司购买任何产品的风险。他们主要的基于广告的摇钱树利润如此之高，以至于无论是 Workplace 上数以百万计的付费账户，还是 Google Domains 托管的数百万个实时网站，相比之下都相形见绌，因此只需一次策略轮换就可以被贴上标签。 “非核心”并被消灭。
+
+
+Buying from big isn't the sure bet they want you to believe. Buy from someone who actually needs your business to make the wheels go round.
+从大公司购买并不是他们希望你相信的可靠赌注。从真正需要您的业务来运转的人那里购买。
+
+---------------
+
+[[https://world.hey.com/dhh/the-endangered-state-of-normality-d632a7fe][濒临常态化的状态 --- The endangered state of normality]]
+
+This is the natural consequence of "centering the margins". Of making it socially desirable to be not normal and low status to be regular. And it's happening across everything from gender expression to neurodiversity. There's cachet of cool to be had in identifying with some margin. Preferably one that can claim to be oppressed by society via heteronormativity or neurotypicality or other big words for "normal".
+这是“边缘居中”的自然结果。让不正常的人成为社会所希望的，让正常人的地位低下成为社会所希望的。从性别表达到神经多样性，这一切都在发生。与一些边缘的认同是有酷感的。最好是一个可以通过异性恋或神经典型性或其他“正常”的大词声称受到社会压迫的人。
+
+And, as Abigail Shrier documents in Bad Therapy, there's a large industry of therapists and other "mental health professionals" eager to accommodate this flight to the margins. Eager to supply the diagnosis, the pills, the reassurance of how every phase of experimentation or misbehavior can be explained by some big word of pathology.
+而且，正如阿比盖尔·施里尔（Abigail Shrier）在《糟糕的治疗》（Bad Therapy）中所记录的那样，有一个由治疗师和其他“心理健康专业人士”组成的庞大行业渴望适应这种边缘化的趋势。渴望提供诊断、药物、保证实验的每个阶段或不当行为都可以用一些病理学的大词来解释。
+
+---------------
+
+[[https://world.hey.com/dhh/open-source-is-neither-a-community-nor-a-democracy-606abdab][开源既不是社区也不是民主 --- Open source is neither a community nor a democracy]]
+
+That's good! Yes, elitism is good, when it comes to open source. You absolutely want projects to be driven by the people who show up to do the work, demonstrate their superior dedication and competence, and are thus responsible for keeping the gift factory churning out new updates, features, and releases. Productive effort is the correct moral basis of power in these projects.
+那挺好的！是的，在开源方面，精英主义是好的。您绝对希望项目由参与工作的人员来推动，展示他们卓越的奉献精神和能力，从而负责让礼品工厂不断推出新的更新、功能和版本。生产性努力是这些项目中权力的正确道德基础。
+
+
+But this elitism is also the root of entitlement tension. What makes you think you're better than Me/Us/The Community in setting the direction for this project?? Wouldn't it be more _fair_, if we ran this on democratic consensus?? And it's hard to answer these question in a polite way that doesn't aggravate the tension or offend liberal sensibilities (in the broad historic sense of that word -- not present political alignments).
+但这种精英主义也是权利紧张的根源。是什么让您认为您比我/我们/社区更好地为该项目设定方向？如果我们在民主共识的基础上进行这件事，不是更公平吗？很难以一种礼貌的方式回答这些问题，同时又不会加剧紧张局势或冒犯自由主义的情感（在这个词的广泛历史意义上——不存在政治结盟）。
+
+You can't solve that tension, only acknowledge it. I've dealt with it for literally twenty years with my work
+on Rails and a million other open source projects. There's an ever-latent instinct in a substantial subset of open source users who will continuously rear itself to question why it's the people who do the most work or deliver the most value or start the most projects that get to have the largest say.
+你无法解决这种紧张，只能承认它。我在 Rails 和其他一百万个开源项目中处理这个问题已经有二十年了。相当多的开源用户有一种潜在的本能，他们会不断地质疑为什么那些做最多工作、交付最多价值或启动最多项目的人拥有最大的发言权。
+
+
+And when people talk about open source burnout, it's often related to this entitlement syndrome. Although it's frequently misdiagnosed as a problem of compensation. As if begging for a few dollars would somehow make the entitlement problem bearable. I don't think it would. Programmers frequently turn to the joy of open source exactly because it exists outside [[https://world.hey.com/dhh/i-won-t-let-you-pay-me-for-my-open-source-d7cf4568][the normal employment dynamics of quid-pro-quo]]. That's the relief.
+当人们谈论开源倦怠时，通常与这种权利综合症有关。尽管它经常被误诊为补偿问题。好像乞讨几美元就能在某种程度上让权利问题变得可以忍受。我认为不会。程序员经常转向开源的乐趣，正是因为它存在于交换的正常就业动态之外。这就是解脱。
+
+-------------------
+
+[[https://world.hey.com/dhh/system-tests-have-failed-d90af718][系统测试失败 --- System tests have failed]]
+
+The stickiest point, however, is not testing business logic, which model and controller tests do better and cheaper, but testing UI logic. Which means testing JavaScript. And I'll say I'm not sure we're there yet on the automated front.
+然而，最棘手的一点不是测试业务逻辑，模型和控制器测试做得更好、更便宜，而是测试 UI 逻辑。这意味着测试 JavaScript。我想说的是，我不确定我们是否已经到达自动化前沿。
+
+
+The method that gives me the most confidence that my UI logic is good to go is not system tests, but human tests. Literally clicking around in a real browser by hand. Because half the time UI testing is not just about "does it work" but also "does it feel right". No automation can tell you that.
+让我最确信我的 UI 逻辑运行良好的方法不是系统测试，而是人工测试。从字面上看，是在真实的浏览器中手动单击。因为一半的时间 UI 测试不仅仅是“它是否有效”，而且是“它感觉是否正确”。没有自动化可以告诉你这一点。
+
+
+HEY today has some 300-odd system tests. We're going through a grand review to cut that number way down. The sunk cost fallacy has kept us running this brittle, cumbersome suite for too long. Time to cut our losses, reduce system tests to a much smaller part of the confidence equation, and [[https://signalvnoise.com/svn3/the-value-of-human-exploratory-testing/][embrace the human element of system testing]]. Maybe one day we can hand that task over to AI, but as of today, I think we're better off dropping the automation.
+嘿今天有大约 300 多个系统测试。我们正在进行一次重大审查，以减少这个数字。沉没成本谬论让我们长期运行这个脆弱、笨重的套件。是时候减少我们的损失，将系统测试减少到置信方程中更小的一部分，并接受系统测试的人为因素了。也许有一天我们可以将这项任务交给人工智能，但从今天开始，我认为我们最好放弃自动化。
+
+--------------------
+
+[[https://world.hey.com/dhh/beautiful-motivations-6fef7c73][美丽的动机 --- Beautiful motivations]]
+
+No, the primary reason I appreciate aesthetics so much is its power to motivate. And motivation is the rare fuel that powers all the big leaps I've ever taken in my career and with my projects and products. It's not time, it's even attention. It's motivation. And I've found that nothing quite motivates me like using and creating beautiful things.
+不，我如此欣赏美学的主要原因是它的激励力量。动力是一种稀有的燃料，它为我在职业生涯、项目和产品中所取得的所有重大飞跃提供动力。不是时间，甚至是注意力。这是动力。我发现没有什么比使用和创造美丽的东西更能激励我了。
+
+
+I don't think that would come as any surprise to people of the past. The history of creation is in part a tale of pursuing beautiful outcomes and rewards. But in our age, we've managed to deconstruct and problematize so much of what is self-evidently beautiful that it's harder to take the chase for granted.
+我认为这对于过去的人来说不会感到惊讶。创造的历史在某种程度上是一个追求美好结果和回报的故事。但在我们这个时代，我们已经成功地解构了许多不言而喻的美丽事物并提出了问题，因此很难将这种追逐视为理所当然。
+
+And beauty isn't binary. It's the journey of a thousand little decisions and investments in making something marginally prettier than it was before. To resist the urge to just make it work, and not stop until you make it shine. Not for anyone else, even, although others will undoubtedly appreciate your care. But for yourself, your own motivation, and your own mission.
+美并不是二元的。这是一个由一千个小决定和投资组成的旅程，目的是让东西比以前更漂亮。克制住让它发挥作用的冲动，不让它发光就不要停下来。甚至不适合其他任何人，尽管其他人无疑会感谢您的关心。但为了你自己，你自己的动力，你自己的使命。
+
 
 -----------
 
