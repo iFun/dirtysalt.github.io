@@ -1197,3 +1197,6 @@
 - 202404 [[file:lc-100267-kth-smallest-amount-with-single-denomination-combination.org][LC 100267. 单面值组合的第 K 小金额]] 组合数学中的计数问题
 - 202404 [[file:lc-100293-find-all-possible-stable-binary-arrays-ii.org][LC 100293. 找出所有稳定的二进制数组 II]] 二维前缀和不好维护 / 基于代码结构做优化
 - 202405 [[file:lc-100312-find-the-minimum-cost-array-permutation.org][LC 100312. 找出分数最低的排列]] TSP问题可以用动态规划求解
+- 202405 [[file:lc-100306-maximum-sum-of-subsequence-with-non-adjacent-elements.org][LC 100306. 不包含相邻元素的子序列的最大和]] 线段树
+- 202405 [[file:lc-100321-find-the-number-of-good-pairs-ii.org][LC 100321. 优质数对的总数 II]] 调和级数分析
+- 202405 [[file:lc-100314-block-placement-queries.org][LC 100314. 物块放置查询]] 线段树+辅助二叉树

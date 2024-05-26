@@ -5,6 +5,9 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202405 [[file:lc-100306-maximum-sum-of-subsequence-with-non-adjacent-elements.org][LC 100306. 不包含相邻元素的子序列的最大和]] 线段树
+- 202405 [[file:lc-100321-find-the-number-of-good-pairs-ii.org][LC 100321. 优质数对的总数 II]] 调和级数分析
+- 202405 [[file:lc-100314-block-placement-queries.org][LC 100314. 物块放置查询]] 线段树+辅助二叉树
 - 202405 [[file:lc-100312-find-the-minimum-cost-array-permutation.org][LC 100312. 找出分数最低的排列]] TSP问题可以用动态规划求解
 - 202405 [[file:the-gluten-open-source-project.org][The Gluten Open-Source Software Project]] @ 2023
 - 202405 [[file:dremel-a-decade-of-interactive-sql-analysis-at-web-scale.org][Dremel A Decade of Interactive SQL Analysis at Web Scale]] @ 2020
