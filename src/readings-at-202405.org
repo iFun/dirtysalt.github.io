@@ -1,5 +1,35 @@
 #+title: 网络文章@202405
 
+-----------
+
+
+[[https://www.jabperf.com/debunking-5-stubborn-systems-performance-myths/][揭穿 5 个顽固的系统性能神话 - JabPerf Corp --- Debunking 5 Stubborn Systems Performance Myths - JabPerf Corp]]
+
+- Myth #5: Tool Expertise == Performance Expertise
+- Myth #4: Memory Consumption Tracking Is Enough
+- Myth #3: Sampling Profilers Work Great for Multithreaded Apps
+- Myth #2: CPU Clock Speed Is Paramount
+- Myth #1: Big O Complexity == Performance
+
+-----------
+
+[[https://arpitbhayani.me/blogs/israeli-queues][以色列排队 --- Israeli Queues]]
+
+这个场景挺有意思的。
+
+#+BEGIN_EXAMPLE
+// Enqueues the element `e`, a friend of element `f`,
+// into the queue `q`.
+void enqueue(israeli_queue * q, element * e, element * f);
+#+END_EXAMPLE
+
+--------------------
+
+[[https://arpitbhayani.me/blogs/2q-cache/][用于磁盘支持数据库的 2Q 缓存算法 --- 2Q-cache algorithm for disk-backed databases]]
+
+2Q完整版比简化版，多出来了一个A1-out. 这个A1-out里面几乎不占用任何内存，只是为了用于记录引用。而A1-in既维护内存，也维护引用。
+
+
 ------------
 
 [[https://blog.cloudflare.com/sandboxing-in-linux-with-zero-lines-of-code][零行代码的 Linux 沙箱 --- Sandboxing in Linux with zero lines of code]]
