@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202406 [[file:lc-100327-find-the-maximum-length-of-a-good-subsequence-ii.org][LC 100327. 求出最长好子序列 II]]
 - 202406 [[file:lc-100320-maximum-total-reward-using-operations-ii.org][LC 100320. 执行操作可获得的最大总奖励 II]] python内置biset
 - 202406 [[file:brain-of-the-child.org][孩子的大脑]] by 阿尔瓦罗·毕尔巴鄂
 - 202405 [[file:lc-100306-maximum-sum-of-subsequence-with-non-adjacent-elements.org][LC 100306. 不包含相邻元素的子序列的最大和]] 线段树
