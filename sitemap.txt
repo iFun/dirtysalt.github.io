@@ -580,6 +580,7 @@ https://dirtysalt.github.io/html/lc-100293-find-all-possible-stable-binary-array
 https://dirtysalt.github.io/html/lc-100306-maximum-sum-of-subsequence-with-non-adjacent-elements.html
 https://dirtysalt.github.io/html/lc-100312-find-the-minimum-cost-array-permutation.html
 https://dirtysalt.github.io/html/lc-100314-block-placement-queries.html
+https://dirtysalt.github.io/html/lc-100320-maximum-total-reward-using-operations-ii.html
 https://dirtysalt.github.io/html/lc-100321-find-the-number-of-good-pairs-ii.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
