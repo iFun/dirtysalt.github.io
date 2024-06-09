@@ -582,6 +582,7 @@ https://dirtysalt.github.io/html/lc-100312-find-the-minimum-cost-array-permutati
 https://dirtysalt.github.io/html/lc-100314-block-placement-queries.html
 https://dirtysalt.github.io/html/lc-100320-maximum-total-reward-using-operations-ii.html
 https://dirtysalt.github.io/html/lc-100321-find-the-number-of-good-pairs-ii.html
+https://dirtysalt.github.io/html/lc-100327-find-the-maximum-length-of-a-good-subsequence-ii.html
 https://dirtysalt.github.io/html/lc-1014-best-sightseeing-pair.html
 https://dirtysalt.github.io/html/lc-1025-divisor-game.html
 https://dirtysalt.github.io/html/lc-1027-longest-arithmetic-sequence.html
