@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202406 [[file:readings-at-202406.org][网络文章@202406]]
 - 202406 [[file:lc-100333-count-the-number-of-inversions.org][LC 100333. 统计逆序对的数目]] 抽象地思考排列顺序
 - 202406 [[file:lc-100327-find-the-maximum-length-of-a-good-subsequence-ii.org][LC 100327. 求出最长好子序列 II]]
 - 202406 [[file:lc-100320-maximum-total-reward-using-operations-ii.org][LC 100320. 执行操作可获得的最大总奖励 II]] python内置biset
