@@ -1204,3 +1204,4 @@
 - 202406 [[file:lc-100320-maximum-total-reward-using-operations-ii.org][LC 100320. 执行操作可获得的最大总奖励 II]] python内置biset
 - 202406 [[file:lc-100327-find-the-maximum-length-of-a-good-subsequence-ii.org][LC 100327. 求出最长好子序列 II]]
 - 202406 [[file:lc-100333-count-the-number-of-inversions.org][LC 100333. 统计逆序对的数目]] 抽象地思考排列顺序
+- 202406 [[file:lc-100318-find-minimum-diameter-after-merging-two-trees.org][LC 100318. 合并两棵树后的最小直径]]
