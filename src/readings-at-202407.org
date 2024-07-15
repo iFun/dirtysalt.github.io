@@ -1,5 +1,20 @@
 #+title: 网络文章@202407
 
+
+---------------
+
+[[https://www.notion.so/blog/data-model-behind-notion][Notion 灵活性背后的数据模型 --- The data model behind Notion's flexibility]]
+
+notion笔记是如何组织起来的，笔记的数据模型是怎么样的。
+
+----------------------
+
+
+[[https://www.notion.so/blog/building-and-scaling-notions-data-lake][构建和扩展 Notion 数据湖 --- Building and scaling Notion’s data lake]]
+
+2022年从snowflake切换到hudi/spark/s3节省1M美金
+
+
 -------------------------
 
 [[https://brooker.co.za/blog/2024/06/04/scale][不仅仅是规模 - 马克的博客 --- Not Just Scale - Marc's Blog]]
