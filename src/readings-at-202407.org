@@ -1,6 +1,17 @@
 #+title: 网络文章@202407
 
 
+----------------
+
+[[https://world.hey.com/dhh/living-with-linux-and-android-after-two-decades-of-apple-4f730084][使用苹果二十年后，与 Linux 和安卓共存 --- Living with Linux and Android after two decades of Apple]]
+
+Linux is wonderful, is flawed, is messy, is beautiful, is nerdy, is different. Android is customizable, is open, is fragmented, is less polished, is experimental. All the pros and the cons are true at the same time.
+Linux 是美妙的、有缺陷的、混乱的、美丽的、书呆子的、与众不同的。安卓是可定制的、开放的、碎片化的、不那么完美的、实验性的。所有的优点和缺点都同时存在。
+
+
+And it's a compelling adventure to discover whether the trade-offs speak to you. Don't be afraid to take the trip, but give it at least two weeks (if not two months!), and don't think of the journey as a way to find the same home in a different place. Be open to a new home, in a new way, in a new place. You might just like it.
+这也是一次引人入胜的探险，让我们来看看这些取舍是否适合你。不要害怕去旅行，但至少要花两周时间（如果不是两个月的话！），不要把旅行当成在不同的地方寻找同一个家的方式。敞开心扉，以新的方式，在新的地方找到新的家。你可能会喜欢上它。
+
 ---------------
 
 [[https://www.notion.so/blog/data-model-behind-notion][Notion 灵活性背后的数据模型 --- The data model behind Notion's flexibility]]
