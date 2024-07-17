@@ -765,6 +765,7 @@ https://dirtysalt.github.io/html/lets-talk-locks.html
 https://dirtysalt.github.io/html/leveldb.html
 https://dirtysalt.github.io/html/libev.html
 https://dirtysalt.github.io/html/license.html
+https://dirtysalt.github.io/html/life-3.0.html
 https://dirtysalt.github.io/html/life-is-just-a-moment.html
 https://dirtysalt.github.io/html/life-is-not-easy-but-magical.html
 https://dirtysalt.github.io/html/lingaoqiming.html
