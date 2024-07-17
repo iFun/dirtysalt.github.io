@@ -77,6 +77,7 @@
 - 202308 [[file:the-essays-of-warren-buffett.org][巴菲特致股东的信(The Essays of Warren Buffett)]]
 - 202308 [[file:sapiens-a-brief-history-of-humankind.org][Sapiens: A Brief History of Humankind(人类简史)]]
 - 202312 [[file:the-infinite-game.org][无限的游戏(The Infinite Game)]] by Simon Sinek (see also "The Golden Circle")
+- 202407 [[file:life-3.0.org][生命3.0]] Max Tegmark
 
 *** 小说杂文
 - [[file:the-catcher-in-the-rye.org][麦田里的守望者(The Catcher in The Rye)]] by Jerome Salinger
