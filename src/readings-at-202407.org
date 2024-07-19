@@ -1,5 +1,15 @@
 #+title: 网络文章@202407
 
+----------
+
+[[https://www.dremio.com/blog/how-z-ordering-in-apache-iceberg-helps-improve-performance/][Apache Iceberg Z-Ordering: Performance Boost]]
+
+里面有个PPT解释关于空间填充曲线, z-order是一种SFC(space filling curve)实现
+
+https://tildesites.bowdoin.edu/~ltoma/teaching/cs3225-GIS/fall15/Lectures/gis_zorder.pdf
+
+[[https://www.youtube.com/watch?v=3s7h2MHQtxc][希尔伯特曲线：无限数学有用吗？ - YouTube]]
+
 ----------------------
 
 
