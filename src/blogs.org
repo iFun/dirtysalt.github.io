@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202407 [[file:efficiency-tips-for-engineers.org][Efficiency Tips for Engineers (From An AI Researcher + Stanford PhD)]]
 - 202407 [[file:life-3.0.org][生命3.0]] Max Tegmark
 - 202407 [[file:readings-at-202407.org][网络文章@202407]]
 - 202406 [[file:lc-100318-find-minimum-diameter-after-merging-two-trees.org][LC 100318. 合并两棵树后的最小直径]]
