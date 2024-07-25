@@ -213,3 +213,46 @@ Java 5 版本以后，JDK 有一个包叫做 instrument ，能够实现一些非
 
 
 jit配置 [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/23%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9AJIT%20%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%EF%BC%9F.md][23 动手实践：JIT 参数配置如何影响程序运行？.md]]
+
+* JVM PrintAssemblyCode
+
+需要反汇编插件，不然看到的就是二进制代码了。[[https://chriswhocodes.com/hsdis/][hsdis HotSpot Disassembly Plugin Downloads]]
+
+这篇文章值得参考一下[[https://jpbempel.github.io/2016/03/16/compilecommand-jvm-option.html][CompileCommand JVM option | It’s All Relative]]
+
+如果我想看trino package下面生成的汇编代码，可以在 `jvm.config` 里面配置
+- 允许对jvm进行diagnose
+- 对所有的package都不打印汇编代码，否则每个类/方法都会打印生成的汇编代码
+- 然后针对 `io/trino/sql` 这个package下面所有的类/方法打印汇编代码
+
+#+BEGIN_EXAMPLE
+-XX:+UnlockDiagnosticVMOptions
+-XX:-PrintAssembly
+-XX:CompileCommand=option,io.trino.sql.*::*,PrintAssembly,+
+#+END_EXAMPLE
+
+最后输出的结果是在 `log/var/log/launcher.log` 里面
+
+#+BEGIN_EXAMPLE
+============================= C2-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 29768 25579       4       io.trino.sql.gen.ExpressionProfiler::start (12 bytes)
+ total in heap  [0x00007fc978886590,0x00007fc978886880] = 752
+ relocation     [0x00007fc9788866e0,0x00007fc978886700] = 32
+ main code      [0x00007fc978886700,0x00007fc9788867d0] = 208
+ stub code      [0x00007fc9788867d0,0x00007fc9788867e8] = 24
+ oops           [0x00007fc9788867e8,0x00007fc9788867f0] = 8
+ metadata       [0x00007fc9788867f0,0x00007fc978886808] = 24
+ scopes data    [0x00007fc978886808,0x00007fc978886828] = 32
+ scopes pcs     [0x00007fc978886828,0x00007fc978886868] = 64
+ dependencies   [0x00007fc978886868,0x00007fc978886870] = 8
+ nul chk table  [0x00007fc978886870,0x00007fc978886880] = 16
+#+END_EXAMPLE
+
+如果加上下面两个选项, 可以在 `log/assembly.log` 里面得到比较详细的编译信息，这个日志可以喂给JITWatch来看。
+
+#+BEGIN_EXAMPLE
+-XX:+LogCompilation
+-XX:LogFile=assembly.log
+#+END_EXAMPLE

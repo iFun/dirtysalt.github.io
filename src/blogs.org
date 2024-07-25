@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202407 [[file:jvm-print-assembly-code.org][JVM print assembly code]]
 - 202407 [[file:efficiency-tips-for-engineers.org][Efficiency Tips for Engineers (From An AI Researcher + Stanford PhD)]]
 - 202407 [[file:life-3.0.org][生命3.0]] Max Tegmark
 - 202407 [[file:readings-at-202407.org][网络文章@202407]]
