@@ -20,6 +20,7 @@
 <li><a href="#orgd1a4328">2. Java Memory Model(JMM)</a></li>
 <li><a href="#org4724951">3. 几种Java GC算法介绍</a></li>
 <li><a href="#org0a80b6e">4. JVM 杂项内容</a></li>
+<li><a href="#org498538b">5. JVM PrintAssemblyCode</a></li>
 </ul>
 </div>
 </div>
@@ -106,7 +107,7 @@ Java平台对基本的标记清除方法进行了改进，采用“分代式垃�
 </ul>
 
 
-<div id="org8d929b6" class="figure">
+<div id="org4ac6431" class="figure">
 <p><img src="../images/Pasted-Image-20231225104500.png" alt="Pasted-Image-20231225104500.png" />
 </p>
 </div>
@@ -307,7 +308,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 以下是一些配置参数：
 </p>
 
-<pre class="example" id="orgb53f049">
+<pre class="example" id="org391f417">
 -XX:+UseSerialGC 年轻代和老年代都用串行收集器
 -XX:+UseParNewGC 年轻代使用 ParNew，老年代使用 Serial Old
 -XX:+UseParallelGC 年轻代使用 ParallerGC，老年代使用 Serial Old
@@ -318,7 +319,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 </pre>
 
 
-<div id="orgca3f72d" class="figure">
+<div id="org86f29b8" class="figure">
 <p><img src="../images/Pasted-Image-20231225105340.png" alt="Pasted-Image-20231225105340.png" />
 </p>
 </div>
@@ -337,7 +338,7 @@ Java HotSpot(TM) 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 线上使用最多的垃圾回收器，就有 CMS 和 G1，以及 Java8 默认的 Parallel Scavenge。
 </p>
 
-<pre class="example" id="orga9905ee">
+<pre class="example" id="org1c42e58">
 CMS 的设置参数：-XX:+UseConcMarkSweepGC。
 Java8 的默认参数：-XX:+UseParallelGC。
 Java13 的默认参数：-XX:+UseG1GC。
@@ -390,6 +391,64 @@ Java 5 版本以后，JDK 有一个包叫做 instrument ，能够实现一些非
 <p>
 jit配置 <a href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA%20Java%20%E8%99%9A%E6%8B%9F%E6%9C%BA-%E5%AE%8C/23%20%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5%EF%BC%9AJIT%20%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E5%A6%82%E4%BD%95%E5%BD%B1%E5%93%8D%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%EF%BC%9F.md">23 动手实践：JIT 参数配置如何影响程序运行？.md</a>
 </p>
+</div>
+</div>
+
+<div id="outline-container-org498538b" class="outline-2">
+<h2 id="org498538b"><span class="section-number-2">5.</span> JVM PrintAssemblyCode</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+需要反汇编插件，不然看到的就是二进制代码了。<a href="https://chriswhocodes.com/hsdis/">hsdis HotSpot Disassembly Plugin Downloads</a>
+</p>
+
+<p>
+这篇文章值得参考一下<a href="https://jpbempel.github.io/2016/03/16/compilecommand-jvm-option.html">CompileCommand JVM option | It’s All Relative</a>
+</p>
+
+<p>
+如果我想看trino package下面生成的汇编代码，可以在 `jvm.config` 里面配置
+</p>
+<ul class="org-ul">
+<li>允许对jvm进行diagnose</li>
+<li>对所有的package都不打印汇编代码，否则每个类/方法都会打印生成的汇编代码</li>
+<li>然后针对 `io/trino/sql` 这个package下面所有的类/方法打印汇编代码</li>
+</ul>
+
+<pre class="example" id="orgdc9656c">
+-XX:+UnlockDiagnosticVMOptions
+-XX:-PrintAssembly
+-XX:CompileCommand=option,io.trino.sql.*::*,PrintAssembly,+
+</pre>
+
+<p>
+最后输出的结果是在 `log/var/log/launcher.log` 里面
+</p>
+
+<pre class="example" id="orgdd5b5d1">
+============================= C2-compiled nmethod ==============================
+----------------------------------- Assembly -----------------------------------
+
+Compiled method (c2) 29768 25579       4       io.trino.sql.gen.ExpressionProfiler::start (12 bytes)
+ total in heap  [0x00007fc978886590,0x00007fc978886880] = 752
+ relocation     [0x00007fc9788866e0,0x00007fc978886700] = 32
+ main code      [0x00007fc978886700,0x00007fc9788867d0] = 208
+ stub code      [0x00007fc9788867d0,0x00007fc9788867e8] = 24
+ oops           [0x00007fc9788867e8,0x00007fc9788867f0] = 8
+ metadata       [0x00007fc9788867f0,0x00007fc978886808] = 24
+ scopes data    [0x00007fc978886808,0x00007fc978886828] = 32
+ scopes pcs     [0x00007fc978886828,0x00007fc978886868] = 64
+ dependencies   [0x00007fc978886868,0x00007fc978886870] = 8
+ nul chk table  [0x00007fc978886870,0x00007fc978886880] = 16
+</pre>
+
+<p>
+如果加上下面两个选项, 可以在 `log/assembly.log` 里面得到比较详细的编译信息，这个日志可以喂给JITWatch来看。
+</p>
+
+<pre class="example" id="org316beca">
+-XX:+LogCompilation
+-XX:LogFile=assembly.log
+</pre>
 </div>
 </div>
 </div>
