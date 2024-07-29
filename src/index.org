@@ -1206,3 +1206,5 @@
 - 202406 [[file:lc-100327-find-the-maximum-length-of-a-good-subsequence-ii.org][LC 100327. 求出最长好子序列 II]]
 - 202406 [[file:lc-100333-count-the-number-of-inversions.org][LC 100333. 统计逆序对的数目]] 抽象地思考排列顺序
 - 202406 [[file:lc-100318-find-minimum-diameter-after-merging-two-trees.org][LC 100318. 合并两棵树后的最小直径]]
+- 202407 [[file:lc-3235-check-if-the-rectangle-corner-is-reachable.org][LC 3235. 判断矩形的两个角落是否可达]] 使用圆来覆盖矩形
+- 202407 [[file:lc-3234-count-the-number-of-substrings-with-dominant-ones.org][LC 3234. 统计 1 显著的字符串的数量]] O(n * sqrt(n))的算法

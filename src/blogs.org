@@ -5,6 +5,8 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202407 [[file:lc-3235-check-if-the-rectangle-corner-is-reachable.org][LC 3235. 判断矩形的两个角落是否可达]] 使用圆来覆盖矩形
+- 202407 [[file:lc-3234-count-the-number-of-substrings-with-dominant-ones.org][LC 3234. 统计 1 显著的字符串的数量]] O(n * sqrt(n))的算法
 - 202407 [[file:jvm-print-assembly-code.org][JVM print assembly code]]
 - 202407 [[file:efficiency-tips-for-engineers.org][Efficiency Tips for Engineers (From An AI Researcher + Stanford PhD)]]
 - 202407 [[file:life-3.0.org][生命3.0]] Max Tegmark
