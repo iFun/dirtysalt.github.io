@@ -1226,6 +1226,7 @@ https://dirtysalt.github.io/html/tensorflow-neural-art.html
 https://dirtysalt.github.io/html/tenzing.html
 https://dirtysalt.github.io/html/test-aliyun-network-capacity.html
 https://dirtysalt.github.io/html/that-man-looks-like-a-dog.html
+https://dirtysalt.github.io/html/the-age-of-ai-eric-schdmit.html
 https://dirtysalt.github.io/html/the-algorithm-design-manual.html
 https://dirtysalt.github.io/html/the-almanack-of-naval-ravikant.html
 https://dirtysalt.github.io/html/the-american-trap-notes.html
