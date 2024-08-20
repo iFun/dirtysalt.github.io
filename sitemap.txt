@@ -700,6 +700,8 @@ https://dirtysalt.github.io/html/lc-3031-minimum-time-to-revert-word-to-initial-
 https://dirtysalt.github.io/html/lc-3108-minimum-cost-walk-in-weighted-graph.html
 https://dirtysalt.github.io/html/lc-3234-count-the-number-of-substrings-with-dominant-ones.html
 https://dirtysalt.github.io/html/lc-3235-check-if-the-rectangle-corner-is-reachable.html
+https://dirtysalt.github.io/html/lc-3257-maximum-value-sum-by-placing-three-rooks-ii.html
+https://dirtysalt.github.io/html/lc-3261-count-substrings-that-satisfy-k-constraint-ii.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html
