@@ -1210,3 +1210,7 @@
 - 202407 [[file:lc-3234-count-the-number-of-substrings-with-dominant-ones.org][LC 3234. 统计 1 显著的字符串的数量]] O(n * sqrt(n))的算法
 - 202408 [[file:lc-3257-maximum-value-sum-by-placing-three-rooks-ii.org][LC 3257. 放三个车的价值之和最大 II]] 3个点的枚举方法
 - 202408 [[file:lc-3261-count-substrings-that-satisfy-k-constraint-ii.org][LC 3261. 统计满足 K 约束的子字符串数量 II]]
+- 202409 [[file:lc-3277-maximum-xor-score-subarray-queries.org][LC 3277. 查询子数组最大异或值]] 多轮前缀和
+- 202409 [[file:lc-3276-select-cells-in-grid-with-maximum-score.org][LC 3276. 选择矩阵中单元格的最大得分]] 特定搜索顺序的dp
+- 202409 [[file:lc-3273-minimum-amount-of-damage-dealt-to-bob.org][LC 3273. 对 Bob 造成的最少伤害]] 启发式得到贪心排序特征
+- 202409 [[file:lc-3272-find-the-count-of-good-integers.org][LC 3272. 统计好整数的数目]] 抽取特征+组合计数
