@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202409 [[file:readings-at-202409.org][网络文章@202409]]
 - 202409 [[file:lc-3277-maximum-xor-score-subarray-queries.org][LC 3277. 查询子数组最大异或值]] 多轮前缀和
 - 202409 [[file:lc-3276-select-cells-in-grid-with-maximum-score.org][LC 3276. 选择矩阵中单元格的最大得分]] 特定搜索顺序的dp
 - 202409 [[file:lc-3273-minimum-amount-of-damage-dealt-to-bob.org][LC 3273. 对 Bob 造成的最少伤害]] 启发式得到贪心排序特征
@@ -808,7 +809,7 @@
 - 201502 [[file:peter-thiel-on-competition-obsession.org][Peter Thiel 谈竞争沉迷]]
 - 201502 [[file:telstra-billboard-of-love.org][Telstra Billboard]]
 
-** <2015
+** B.C.
 - 201412 [[file:the-golden-circle.org][The Golden Circle]]
 - 201412 [[file:about-dna-sequencing.org][DNA测序原理]]
 - 201412 [[file:beginning-of-a-hard-journey.org][苦旅的起点]]
