@@ -1,5 +1,33 @@
 #+title: 网络文章@202409
 
+
+-------------
+
+[[https://world.hey.com/dhh/optimize-for-bio-cores-first-silicon-cores-second-112a6c3f][首先优化生物核心，其次优化硅核心 --- Optimize for bio cores first, silicon cores second]]
+
+But many of these squishy, biological programming cores have a distinctly human sympathy for their silicon counterparts that overrides the math. They simply feel bad asking the silicon to do more work, if they could spend more of their own time to reduce the load by using less efficient for them / more efficient for silicon tools and techniques. For some, it seems to be damn near a moral duty to relieve the silicon of as many burdens they might believe they're able carry instead.
+
+但许多这些柔软的生物编程核心对其硅对应物有着明显的人类同情心，这种同情心超越了数学。如果他们可以花更多自己的时间通过使用效率较低/效率更高的芯片工具和技术来减少负载，他们只是对要求芯片做更多工作感到难过。对于一些人来说，减轻硅片的负担似乎是一种道德义务，因为他们认为自己能够承担尽可能多的负担。
+
+
+And I actually respect that from an artsy, spiritual perspective! There _is_ something beautifully wholesome about making computers do more with fewer resources. I still look oh-so-fondly back on the demo days of the Commodore 64 and Amiga. What those wizards were able to squeeze out of [[https://www.youtube.com/watch?v=wl6mXn_wHEw][a mere 4kb]] to make the computer dance in sound and picture was truly incredible.
+
+我实际上从艺术、精神的角度尊重这一点！让计算机用更少的资源做更多的事情_是_非常有益的。我仍然非常怀念 Commodore 64 和 Amiga 的演示日。这些奇才们能够从[[https://www.youtube.com/watch?v=wl6mXn_wHEw][区区 4kb 的内存]]中挤出来让计算机在声音和图像中翩翩起舞，这真是令人难以置信。
+
+
+It just doesn't make much economic sense, most of the time. Sure, there's still work at the vanguard of the computing threshold. Somebody's gotta squeeze the last drop of performance out of that NVIDIA 4090, such that our 3D engines can raytrace at 4K and 120FPS. But that's not the reality at most software businesses that are in the business of making business software (say that three times fast!). Computers have long since been way fast enough for that work to happen without heroic optimization efforts.
+
+大多数时候，它没有太大的经济意义。当然，在计算门槛的前沿仍然有工作要做。有人必须榨干 NVIDIA 4090 的最后一点性能，以便我们的 3D 引擎能够以 4K 和 120FPS 进行光线追踪。但对于大多数从事商业软件开发的软件企业来说，这并不是现实（假设速度快三倍！）。计算机的速度早已足够快，无需进行巨大的优化工作即可完成这项工作。
+
+So whenever you hear a discussion about computing efficiency, you should always have the squishy, biological cores in mind. Most software around the world is priced on their inputs, not on the silicon it requires. Meaning even small incremental improvements to bio core productivity is worth large additional expenditures on silicon chips. And every year, the ratio grows greater in favor of the bio cores.
+
+因此，每当您听到有关计算效率的讨论时，您应该始终牢记柔软的生物核心。世界上大多数软件都是根据其输入定价，而不是根据其所需的芯片定价。这意味着，即使是对生物核心生产力的微小增量改进也值得在硅芯片上进行大量额外支出。而且每年，这个比例都在增长，有利于生物核心。
+
+
+At least up until the point that we make them obsolete and welcome our AGI overlords! But nobody seems to know when or if that's going to happen, so best you deal in the economics of the present day, pick the most productive tool chain available to you, and bet that happy programmers will be the best bang for your buck.
+
+至少直到我们让它们过时并欢迎我们的 AGI 霸主为止！但似乎没有人知道这种情况何时或是否会发生，所以最好了解当今的经济学，选择可用的最高效的工具链，并打赌快乐的程序员将是最划算的。
+
 --------------------
 
 [[https://zhuanlan.zhihu.com/p/25099638][博士这五年 - 知乎]]
