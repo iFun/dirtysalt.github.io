@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202409 [[file:aliyun-singapore-region-fire-disaster.org][阿里云新加坡机房火灾]]
 - 202409 [[file:readings-at-202409.org][网络文章@202409]]
 - 202409 [[file:lc-3277-maximum-xor-score-subarray-queries.org][LC 3277. 查询子数组最大异或值]] 多轮前缀和
 - 202409 [[file:lc-3276-select-cells-in-grid-with-maximum-score.org][LC 3276. 选择矩阵中单元格的最大得分]] 特定搜索顺序的dp
