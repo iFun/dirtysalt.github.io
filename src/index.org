@@ -1214,3 +1214,4 @@
 - 202409 [[file:lc-3276-select-cells-in-grid-with-maximum-score.org][LC 3276. 选择矩阵中单元格的最大得分]] 特定搜索顺序的dp
 - 202409 [[file:lc-3273-minimum-amount-of-damage-dealt-to-bob.org][LC 3273. 对 Bob 造成的最少伤害]] 启发式得到贪心排序特征
 - 202409 [[file:lc-3272-find-the-count-of-good-integers.org][LC 3272. 统计好整数的数目]] 抽取特征+组合计数
+- 202409 [[file:lc-3292-minimum-number-of-valid-strings-to-form-target-ii.org][LC 3292. 形成目标字符串需要的最少字符串数 II]] AC自动机+DP
