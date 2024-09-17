@@ -707,6 +707,7 @@ https://dirtysalt.github.io/html/lc-3272-find-the-count-of-good-integers.html
 https://dirtysalt.github.io/html/lc-3273-minimum-amount-of-damage-dealt-to-bob.html
 https://dirtysalt.github.io/html/lc-3276-select-cells-in-grid-with-maximum-score.html
 https://dirtysalt.github.io/html/lc-3277-maximum-xor-score-subarray-queries.html
+https://dirtysalt.github.io/html/lc-3292-minimum-number-of-valid-strings-to-form-target-ii.html
 https://dirtysalt.github.io/html/lc-33-search-in-rotated-sorted-array.html
 https://dirtysalt.github.io/html/lc-407-trapping-rain-water-ii.html
 https://dirtysalt.github.io/html/lc-42-trapping-rain-water.html

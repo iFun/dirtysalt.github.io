@@ -14,6 +14,28 @@
 <h1 class="title">网络文章@202409</h1>
 <hr />
 
+
+<p>
+<a href="https://brooker.co.za/blog/2024/07/29/aurora-serverless">Aurora Serverless 中的资源管理 - Marc 的博客 &#x2014; Resource Management in Aurora Serverless - Marc's Blog</a>
+</p>
+
+<p>
+Cluster-level resource management is where the real cloud magic happens. With a large number of databases under our control, and a large fleet over which to place them, we can place workloads in a way that optimizes performance, cost, and utilization. When we first started this project, I borrowed the analogy of heart health<a href="https://brooker.co.za/blog/2024/07/29/aurora-serverless#foot4">4</a> to talk about the levels of control we have:
+集群级资源管理是真正的云魔法发生的地方。凭借我们控制的大量数据库以及放置它们的大量数据库，我们可以以优化性能、成本和利用率的方式放置工作负载。当我们刚开始这个项目的时候，我借用心脏健康<a href="https://brooker.co.za/blog/2024/07/29/aurora-serverless#foot4">4</a>的比喻来谈谈我们的控制水平：
+</p>
+
+<ul class="org-ul">
+<li><span class="underline">Diet and Exercise</span> We place workloads in a way that mixes workloads that are likely to grown and shrink at different times (_decorrelation_), provide a broad mix of behaviors and sizes (_diversity_), and mixes well-understood established workloads with a lot of scaling history with newer less-known ones. If we do this well enough, the job is almost done.
+_饮食和锻炼_我们以一种混合可能在不同时间增长和收缩的工作负载（_去相关_）的方式放置工作负载，提供广泛的行为和规模组合（_多样性_），并将易于理解的既定工作负载与大量扩展混合在一起历史与较新的鲜为人知的历史。如果我们做得足够好，那么工作就差不多完成了。</li>
+<li><span class="underline">Statins</span> When one host is running too hot, and its resources are too low to provide a great customer experience, we live migrate one or more workloads elsewhere in the fleet. Live migration is seamless from a customer perspective, but a lot of data motion, so we try avoid it when we can.
+_他汀类药物_当一台主机运行过热且其资源过低而无法提供良好的客户体验时，我们会将一个或多个工作负载实时迁移到机群中的其他位置。从客户的角度来看，实时迁移是无缝的，但有大量数据移动，因此我们会尽可能避免它。</li>
+<li><span class="underline">Surgery</span> When local resources are running low, <span class="underline">deciders</span> and <span class="underline">policy</span> may limit the growth of one or more workloads, ensuring stability for those workloads and the system overall. Surgery may be life-saving and necessary, but is a situation best avoided.
+当本地资源不足_时_，_决策者_和_策略_可能会限制一个或多个工作负载的增长，从而确保这些工作负载和整个系统的稳定性。手术可能可以挽救生命并且是必要的，但最好避免这种情况。</li>
+</ul>
+
+
+<hr />
+
 <p>
 <a href="https://www.youtube.com/watch?v=Unzc731iCUY">(14) How to Speak - YouTube</a>
 </p>
