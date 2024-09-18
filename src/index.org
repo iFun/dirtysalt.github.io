@@ -100,40 +100,40 @@
 - 202308 [[file:ending-of-ming-dynasty.org][晚明]] by 柯山梦
 
 *** 个人管理
-+ [[file:influence.org][影响力(Influence: The Psychology of Persuasion)]] by [美] 罗伯特·西奥迪尼
-+ [[file:principles.org][原则(Principles)]] by Ray Dalio
-+ [[file:black-swan.org][黑天鹅(Black Swan)]] by Nassim Nicolas Taleb
-+ [[file:the-bed-of-procrustes.org][随机生存的智慧: 黑天鹅语录(The Bed of Procrustes)]] by Nassim Nicholas Taleb
-+ [[file:antifragile.org][反脆弱: 从不确定性中获益(Antifragile: Things That Gain from Disorder)]] by Nassim Nicholas Taleb
-+ [[file:nnt-words-archive.org][NNT文字合集]] by NNT
-+ [[file:how-to-win-friends-and-influence-people.org][人性的弱点全集(How to win friends and influence people)]] by Dale Carnegie
-+ [[file:how-to-stop-worring-and-start-living.org][人性的优点全集(How to stop worring and start living)]] by Dale Carnegie
-+ [[file:hard-to-believe.org][万万没想到:用理工科思维理解世界]] by 万维刚
-+ [[file:so-good-they-can-not-ignore-you.org][优秀到不能被忽视(So Good they can not ignore you)]] by Cal Newport
-+ [[file:poor-charlie-almanack.org][穷查理宝典(Poor Charlie's Almanack)]] by Charles Munger(查理芒格)
-+ [[file:eureka-on-career.org][职场尤里卡]] by 科学家种太阳
-+ [[file:dark-time.org][暗时间(Dark Time)]] by 刘未鹏
-+ [[file:convict-conditioning.org][囚徒健身(Convict Conditioning)]] by Paul Wade
-+ [[file:thinking-fast-and-slow.org][思考,快与慢(Thinking, Fast and Slow)]] by Daniel Kahneman
-+ [[file:money-doggy.org][小狗钱钱(Money Doggy)]] by Bodo Schafer
-+ [[file:dear-andreas.org][亲爱的安德烈]] by 龙应台
-+ [[file:sears-the-baby-book.org][西尔斯育儿经]] by 威廉·西尔斯 玛莎·西尔斯
-+ [[file:five-years-phd.org][博士五年总结]] by 田渊栋
-+ [[file:outliers.org][异类: 不一样的成功启示录(Outliers: The Story of Success)]] by Malcolm Gladwell
-+ [[file:blink.org][眨眼之间: 不假思索的决断力(Blink: The Power of Thinking Without Thinking)]] by Malcolm Gladwell
-+ [[file:david-and-goliath.org][逆转: 弱者如何找到优势，反败为胜(David and Goliath: Underdogs, Misfits and the Art of Battling Giants)]] by Malcolm Gladwell
-+ [[file:what-the-dog-saw.org][大开眼界(What the Dog Saw: And Other Adventures)]] by Malcolm Gladwell
-+ [[file:superforecasting.org][超预测: 预见未来的艺术和科学(Superforecasting: The Art and Science of Prediction)]] by 泰洛克,加德纳
-+ [[file:the-tipping-point.org][引爆点：如何制造流行(The Tipping Point: How Little Things Can Make a Big Difference)]] by Malcolm Gladwell
-+ [[https://book.douban.com/subject/33438811/][为什么：关于因果关系的新科学（The Book of Why : The New Science of Cause and Effect）]] by Judea Pearl
-+ [[https://book.douban.com/subject/27200412/][Skin in the Game: Hidden Asymmetries in Daily Life(利益攸关)]] by NNT
-+ [[https://book.douban.com/subject/27199030/][Stealing Fire(盗火)]] by Steven Kotler and Jamie Wheal
-+ [[https://mitpress.mit.edu/books/plato-and-nerd][Plato and the Nerd: The Creative Partnership of Humans and Technology(柏拉图与书呆子)]] by Edward Ashford Lee
-+ [[https://book.douban.com/subject/25842216/][Trying Not to Try: The Art and Science of Spontaneity(无为)]] by Edward Slingerland
-+ [[https://book.douban.com/subject/27031860/][Why Buddhism is True: The Science and Philosophy of Meditation and Enlightenment(为什么佛学是真的)]] by Robert Wright
-+ [[file:tools-of-titans.org][Tools of Titans(巨人的工具)]] by Tim Ferriss
-+ [[file:intuition-pumps-and-other-tools-for-thinking.org][Intuition Pumps and Other Tools for Thinking(直觉泵和其他思考工具)]] by 丹尼尔 丹尼特 ( Daniel C. Dennett)
-+ [[file:sv-wangchuan-investguru-v1.org][硅谷王川电子书第一卷]] by 硅谷王川
+- [[file:influence.org][影响力(Influence: The Psychology of Persuasion)]] by [美] 罗伯特·西奥迪尼
+- [[file:principles.org][原则(Principles)]] by Ray Dalio
+- [[file:black-swan.org][黑天鹅(Black Swan)]] by Nassim Nicolas Taleb
+- [[file:the-bed-of-procrustes.org][随机生存的智慧: 黑天鹅语录(The Bed of Procrustes)]] by Nassim Nicholas Taleb
+- [[file:antifragile.org][反脆弱: 从不确定性中获益(Antifragile: Things That Gain from Disorder)]] by Nassim Nicholas Taleb
+- [[file:nnt-words-archive.org][NNT文字合集]] by NNT
+- [[file:how-to-win-friends-and-influence-people.org][人性的弱点全集(How to win friends and influence people)]] by Dale Carnegie
+- [[file:how-to-stop-worring-and-start-living.org][人性的优点全集(How to stop worring and start living)]] by Dale Carnegie
+- [[file:hard-to-believe.org][万万没想到:用理工科思维理解世界]] by 万维刚
+- [[file:so-good-they-can-not-ignore-you.org][优秀到不能被忽视(So Good they can not ignore you)]] by Cal Newport
+- [[file:poor-charlie-almanack.org][穷查理宝典(Poor Charlie's Almanack)]] by Charles Munger(查理芒格)
+- [[file:eureka-on-career.org][职场尤里卡]] by 科学家种太阳
+- [[file:dark-time.org][暗时间(Dark Time)]] by 刘未鹏
+- [[file:convict-conditioning.org][囚徒健身(Convict Conditioning)]] by Paul Wade
+- [[file:thinking-fast-and-slow.org][思考,快与慢(Thinking, Fast and Slow)]] by Daniel Kahneman
+- [[file:money-doggy.org][小狗钱钱(Money Doggy)]] by Bodo Schafer
+- [[file:dear-andreas.org][亲爱的安德烈]] by 龙应台
+- [[file:sears-the-baby-book.org][西尔斯育儿经]] by 威廉·西尔斯 玛莎·西尔斯
+- [[file:five-years-phd.org][博士五年总结]] by 田渊栋
+- [[file:outliers.org][异类: 不一样的成功启示录(Outliers: The Story of Success)]] by Malcolm Gladwell
+- [[file:blink.org][眨眼之间: 不假思索的决断力(Blink: The Power of Thinking Without Thinking)]] by Malcolm Gladwell
+- [[file:david-and-goliath.org][逆转: 弱者如何找到优势，反败为胜(David and Goliath: Underdogs, Misfits and the Art of Battling Giants)]] by Malcolm Gladwell
+- [[file:what-the-dog-saw.org][大开眼界(What the Dog Saw: And Other Adventures)]] by Malcolm Gladwell
+- [[file:superforecasting.org][超预测: 预见未来的艺术和科学(Superforecasting: The Art and Science of Prediction)]] by 泰洛克,加德纳
+- [[file:the-tipping-point.org][引爆点：如何制造流行(The Tipping Point: How Little Things Can Make a Big Difference)]] by Malcolm Gladwell
+- [[https://book.douban.com/subject/33438811/][为什么：关于因果关系的新科学（The Book of Why : The New Science of Cause and Effect）]] by Judea Pearl
+- [[https://book.douban.com/subject/27200412/][Skin in the Game: Hidden Asymmetries in Daily Life(利益攸关)]] by NNT
+- [[https://book.douban.com/subject/27199030/][Stealing Fire(盗火)]] by Steven Kotler and Jamie Wheal
+- [[https://mitpress.mit.edu/books/plato-and-nerd][Plato and the Nerd: The Creative Partnership of Humans and Technology(柏拉图与书呆子)]] by Edward Ashford Lee
+- [[https://book.douban.com/subject/25842216/][Trying Not to Try: The Art and Science of Spontaneity(无为)]] by Edward Slingerland
+- [[https://book.douban.com/subject/27031860/][Why Buddhism is True: The Science and Philosophy of Meditation and Enlightenment(为什么佛学是真的)]] by Robert Wright
+- [[file:tools-of-titans.org][Tools of Titans(巨人的工具)]] by Tim Ferriss
+- [[file:intuition-pumps-and-other-tools-for-thinking.org][Intuition Pumps and Other Tools for Thinking(直觉泵和其他思考工具)]] by 丹尼尔 丹尼特 ( Daniel C. Dennett)
+- [[file:sv-wangchuan-investguru-v1.org][硅谷王川电子书第一卷]] by 硅谷王川
 - 201809 [[file:know-how-to-show-weakness.org][学会示弱 - 职场和做人的道理]]
 - 202006 [[file:the-healthy-programmer.org][程序员健康指南(The Healthy Programmer)]] by Joe Kutner
 - 202011 [[file:zengguofan-six-rules.org][曾国藩的六戒！]]
@@ -215,7 +215,7 @@
 - [[file:review-2021.org][回顾2021]] - [[file:review-2022.org][回顾2022]] - [[file:review-2023.org][回顾2023]]
 
 ** 单机系统
-*** 基础知识
+*** 基础
 - [[file:computer-system-reading.org][Computer System Reading]] 单机系统方面的一些文章
 - [[https://nfil.es/w/FIhVEe/reading-list-in-computer-systems-area/][Reading List in Computer Systems Area - nFiles]]
 - [[http://pages.cs.wisc.edu/~remzi/OSTEP/][Operating Systems: Three Easy Pieces]]
@@ -290,7 +290,7 @@
 - 202311 [[file:amazon-firecracker.org][Firecracker: Lightweight Virtualization for Serverless Applications]]
 - 202312 [[file:producing-wrong-data-without-doing-anything-obviously-wrong.org][Producing Wrong Data Without Doing Anything Obviously Wrong!]]
 
-*** Linux系统
+*** linux
 - [[file:linux.org][linux]] Linux上的各种问题
 - [[file:linux-proc-fs.org][linux-proc-fs]] Linux /proc文件系统
 - [[file:linux-tools.org][linux-tools]] Linux系统下的一些常用工具
@@ -299,7 +299,7 @@
 - 202109 [[file:ccc-x86-64.org][The 64 bit x86 C Calling Convention]]
 - 202301 [[file:ebpf-rethinking-the-linux-kernel.org][eBPF - Rethinking the Linux Kernel]]
 
-*** Memory系统
+*** 内存
 - [[file:memory.org][memory]] 内存上的各种问题
 - [[file:numa.org][NUMA]] Non-Uniform Memory Access. 非一致性内存访问
 - [[file:numa-an-overview.org][NUMA An Overview]] 关于NUMA的介绍性文章
@@ -325,7 +325,7 @@
 - 202208 [[file:fizzbuzz-optimzied-program.org][FizzBuzz程序优化]]
 - 202208 [[file:optimize-linux-pipe-case.org][优化Linux Pipe案例分析]]
 
-*** 系统性能
+*** 性能
 - [[file:sysperf.org][system-performance]] 系统性能的各种问题
 - [[file:linux-perf.org][linux-perf]] Linux/Perf
 - [[file:vtune.org][Intel VTune]]
@@ -352,7 +352,7 @@
 - 202302 [[file:what-your-computer-does-while-you-wait.org][What Your Computer Does While You Wait]]
 - 202302 [[file:numbers-everyone-should-know.org][Numbers Everyone Should Know]]
 
-*** 并发系统
+*** 并发
 - [[file:concurrency.org][concurrency]] / [[file:coroutine.org][coroutine]] / [[file:lock.org][lock]]
 - [[../images/Pasted-Image-20231225105104.png][One picture explain Single-Thread, Multiple-Thread, Event-Driven]] 一张图看懂单线程，多线程和事件驱动
 - [[https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.html][Is Parallel Programming Hard, And, If So, What Can You Do About It?]]
@@ -366,19 +366,7 @@
 - 202202 [[file:cpp-atomics-basic-to-advanced.org][CppCon 2017: Fedor Pikus “C++ atomics, from basic to advanced. What do they really do?”]] by Fedor Pikus
 - 202203 [[file:go-scheduler-talk-dmitry-vyukov.org][Go Scheduler: Implementing language with lightweight concurrency]] @ 2019
 
-*** 单机软件
-- [[file:ubuntu.org][ubuntu]] 如何更好地使用Ubuntu. [[file:struggle-with-ubuntu.org][之前使用Ubuntu有段痛苦的经历]]。
-- [[file:mac.org][macosx]] 如何更好地使用Mac. 以前使用Windows，后来转向Ubuntu，再后来买了个MBA.
-- [[file:docker.org][docker]] 基于lxc(linux container)的分发应用工具。 ([[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%AE%B9%E5%99%A8%E5%AE%9E%E6%88%98%E9%AB%98%E6%89%8B%E8%AF%BE/][容器实战高手课]])
-- [[file:vagrant.org][vagrant]] 用来构件虚拟开发环境的工具，底层可以使用多种虚拟化技术。现在支持相对比较好的是VirtualBox
-- [[file:sphinx-search.org][sphinx]] C++实现的全文检索引擎，可以很容易地替换掉MySQL内置的全文检索(FTS)实现
-- [[file:graphite.org][graphite]] 和 [[file:opentsdb.org][OpenTSDB]] 类似, 时间序列(time series)数据库, 但是主要用于监控。
-- [[file:git.org][git]] 分布式版本控制系统. 最开始用于管理linux kernel, 现在许多开源软件托管在github上使用git管理。
-- [[file:elastic-search.org][ElasticSearch]] 分布式的搜索引擎，而且还有非常好的插件机制和生态系统比如ELK.
-- [[file:ffmpeg.org][ffmpeg]] 视频/音频处理的瑞士军刀.
-- 202212 [[file:inside-look-at-modern-web-browser.org][Inside look at modern web browser]] @ 2018
-
-** 网络系统
+*** 网络
 
 - [[file:unp.org][UNP]] Unix网络编程(Unix Network Programming), W. Richard Stevens的神作。包含了TCP Illustrated v1里面和TCP相关的部分章节内容。
 - [[file:codes/cc/itachi/][itachi]] 自己两天时间写完的异步网络编程框架内核。
@@ -396,8 +384,19 @@
 - [[file:gunicorn.org][gunicorn]] Python WSGI HTTP Server. green unicorn(Ruby实现)
 - 202206 [[file:introduction-to-http2.org][Introduction to HTTP/2]]
 - 202302 [[file:about-network-latency-and-bandwidth.org][对于网络延迟和带宽的理解]]
+- 202212 [[file:inside-look-at-modern-web-browser.org][Inside look at modern web browser]] @ 2018
+*** 软件
+- [[file:ubuntu.org][ubuntu]] 如何更好地使用Ubuntu. [[file:struggle-with-ubuntu.org][之前使用Ubuntu有段痛苦的经历]]。
+- [[file:mac.org][macosx]] 如何更好地使用Mac. 以前使用Windows，后来转向Ubuntu，再后来买了个MBA.
+- [[file:docker.org][docker]] 基于lxc(linux container)的分发应用工具。 ([[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/%E5%AE%B9%E5%99%A8%E5%AE%9E%E6%88%98%E9%AB%98%E6%89%8B%E8%AF%BE/][容器实战高手课]])
+- [[file:vagrant.org][vagrant]] 用来构件虚拟开发环境的工具，底层可以使用多种虚拟化技术。现在支持相对比较好的是VirtualBox
+- [[file:sphinx-search.org][sphinx]] C++实现的全文检索引擎，可以很容易地替换掉MySQL内置的全文检索(FTS)实现
+- [[file:graphite.org][graphite]] 和 [[file:opentsdb.org][OpenTSDB]] 类似, 时间序列(time series)数据库, 但是主要用于监控。
+- [[file:git.org][git]] 分布式版本控制系统. 最开始用于管理linux kernel, 现在许多开源软件托管在github上使用git管理。
+- [[file:elastic-search.org][ElasticSearch]] 分布式的搜索引擎，而且还有非常好的插件机制和生态系统比如ELK.
+- [[file:ffmpeg.org][ffmpeg]] 视频/音频处理的瑞士军刀.
 
-** 数据库和存储
+** 数据库存储
 
 - [[file:storage-system-reading.org][Storage System Reading]] 存储系统方面的一些文章
   - [[http://redbook.cs.berkeley.edu/][Readings in Database Systems]]
@@ -733,36 +732,19 @@
 - 202405 [[file:the-gluten-open-source-project.org][The Gluten Open-Source Software Project]] @ 2023
 
 ** 程序设计语言
-语言无关：
-- [[file:thoughts-on-prog-lang.org][thoughts on programming language]] 程序设计语言的思考和概念
-- compiler course [[../images/compiler-cs143.pdf][cs143]]
-- [[../images/coursera-fpps-2013.pdf][coursera: fp in scala]]
-- [[file:continuation.org][continuation]]
-- [[file:build-system.org][build-system]] 在实现Baidu in-house的构建工具 comake2 之前做的构建系统调研总结.
-- [[file:swig.org][swig]] C/C++多语言扩展接口生成器. 使用起来非常方便, 但是本身不太完善, 比较适合用于原型系统.
-- [[file:lua-prog-lang-book.org][Lua程序设计]] by Roberto 译 周惟迪
-- [[file:openresty-best-practices-lua.org][OpenResty最佳实践/Lua]]
-- [[file:virtual-machine-design-and-implementation-in-c-cpp.org][虚拟机设计与实现(Virtual Machine Design and Implementation in C/C++)]]
-- [[file:the-impl-lua5.org][The Implementation of Lua 5.0 中译]]
-- [[file:an-incremental-approach-to-compiler-construction.org][An Incremental Approach to Compiler Construction]] by Abdulaziz Ghuloum
-- 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
-- 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
-- 201907 [[file:lua-applicaiton-programming.org][Lua Application Programming]]
-- 201909 [[file:little-prolog-code.org][一些Prolog代码]]
-- 202006 [[file:spring-in-action-v3.org][Spring实战第三版]]
-- 202006 [[file:plai-notes.org][PLAI笔记]] Programming Langauge Application and Interpretation
-- 202106 [[file:notes-on-programming.org][Notes on Programming]] by Alexander Stepanov
-- 202204 [[file:talking-to-c-programmers-about-cpp-dan-saks.org][CppCon 2016: Dan Saks “extern c: Talking to C Programmers about C++”]]
-
 语言相关：
-- [[file:cpp.org][C/C++]]
+- [[file:cpp.org][C++]]
   - [[file:guide-to-advanced-programming-in-c.org][Guide to Advanced Programming in C]]
   - 202201 [[file:thriving-in-crowded-and-changing-world-cpp.org][现代C++白皮书(C++ 2006-2020)]]
+  - 202204 [[file:talking-to-c-programmers-about-cpp-dan-saks.org][CppCon 2016: Dan Saks “extern c: Talking to C Programmers about C++”]]
+
 - [[file:scheme.org][Scheme]]
   - [[file:the-little-schemer.org][The Little Schemer]]
   - [[file:the-seasoned-schemer.org][The Seasoned Schemer]]
   - [[file:sicp.org][SICP/Structure and Interpretation of Computer Programs]]
   - [[file:ansi-common-lisp.org][ANSI Common Lisp]]
+  - 202006 [[file:plai-notes.org][PLAI笔记]] Programming Langauge Application and Interpretation
+
 - [[file:java.org][Java]]
   - 专栏文章
     - [[https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/JVM%20%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%2032%20%E8%AE%B2%EF%BC%88%E5%AE%8C%EF%BC%89][JVM 核心技术 32 讲（完）]]
@@ -775,6 +757,7 @@
   - [[file:jni.org][JNI]] Java Native Interface
   - [[file:jvm.org][JVM]] Java Virtual Machine
   - 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
+  - 202006 [[file:spring-in-action-v3.org][Spring实战第三版]]
   - 202301 [[file:best-practices-for-using-the-jni.org][Best practices for using the Java Native Interface]]
   - 202311 [[file:use-byte-buddy-to-intercept-method-of-java-class.org][使用ByteBuddy来截获Java类实现]]
 
@@ -791,6 +774,25 @@
   - [[file:effective-scala.org][Effective Scala]]
 - [[file:erlang.org][Erlang]]
   - [[file:erlang-prog-lang-book.org][Erlang程序设计]] by Joe Armstrong
+- Lua
+  - [[file:lua-prog-lang-book.org][Lua程序设计]] by Roberto 译 周惟迪
+  - [[file:the-impl-lua5.org][The Implementation of Lua 5.0 中译]]
+  - [[file:openresty-best-practices-lua.org][OpenResty最佳实践/Lua]]
+  - 201907 [[file:lua-applicaiton-programming.org][Lua Application Programming]]
+- Javascript
+  - 201905 [[file:javascript-prototype-chain-tests.org][JavaScript原型链测试代码]]
+  - 201905 [[file:javascript-the-good-parts.org][JavaScript语言精粹]]
+
+语言无关：
+- [[file:thoughts-on-prog-lang.org][thoughts on programming language]] 程序设计语言的思考和概念
+- compiler course [[../images/compiler-cs143.pdf][cs143]]
+- [[../images/coursera-fpps-2013.pdf][coursera: fp in scala]]
+- [[file:continuation.org][continuation]]
+- [[file:build-system.org][build-system]] 在实现Baidu in-house的构建工具 comake2 之前做的构建系统调研总结.
+- [[file:swig.org][swig]] C/C++多语言扩展接口生成器. 使用起来非常方便, 但是本身不太完善, 比较适合用于原型系统.
+- [[file:virtual-machine-design-and-implementation-in-c-cpp.org][虚拟机设计与实现(Virtual Machine Design and Implementation in C/C++)]]
+- [[file:an-incremental-approach-to-compiler-construction.org][An Incremental Approach to Compiler Construction]] by Abdulaziz Ghuloum
+- 202106 [[file:notes-on-programming.org][Notes on Programming]] by Alexander Stepanov
 
 ** 软件设计
 

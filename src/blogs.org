@@ -479,7 +479,7 @@
 - 201911 [[file:the-good-side-of-java-lang.org][Java语言设计好的一面]]
 - 201910 [[file:tombkeeper-on-career.org][TK(tombkeeper)谈个人成长]]
 - 201910 [[file:did-you-ever-try-your-best.org][你尽力了吗？]]
-- 201909 [[file:little-prolog-code.org][一些Prolog代码]]
+- 201909 [[file:little-prolog-code.org][prolog for fun]]
 - 201909 [[file:true-quality-of-software.org][软件的真实质量]] by Joel Spolsky
 - 201909 [[file:how-to-build-good-software.org][How To Build Good Software]] by [[https://www.linkedin.com/in/hongyi-li-16183230/][Li HongYi]] 李鸿毅，李显龙的儿子
 - 201909 [[file:career-path-myth.org][Career Path(职业规划的迷思)]] by nullgate
