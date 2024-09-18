@@ -10,5 +10,8 @@ if [ "$cur_cmt" != "$last_cmt" ]; then
     bash ./scripts/publish.sh
     if [ $? != 0 ]; then
         echo "failed" > $f
+        exit 1
     fi
 fi
+cur_cmt=`git rev-parse HEAD`
+echo $cur_cmt > $f
