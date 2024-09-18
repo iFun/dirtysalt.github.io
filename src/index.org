@@ -489,6 +489,7 @@
 - 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 - 202405 [[file:self-tuning-query-scheduling-for-analytical-workloads.org][Self-Tuning Query Scheduling for Analytical Workloads]]
 - 202405 [[file:integrating-deep-learning-frameworks-into-main-memory-databases.org][Integrating Deep Learning Frameworks into Main-Memory Databases]]
+- 202409 [[file:boss-an-arch-for-db-kernel-composition.org][BOSS - An Architecture for Database Kernel Composition]] VLDB2024
 
 ** 算法数据结构
 
@@ -1013,6 +1014,8 @@
 *** Conferences
 - Strange Loop http://www.thestrangeloop.com/about.html
 - USENIX Conferences | USENIX https://www.usenix.org/conferences
+- VLDB [[https://www.vldb.org/pvldb/][Proceedings of the VLDB Endowment]]
+- SIGMOD [[https://sigmodrecord.org/sigmod-record-current-issue/][SIGMOD Record – Current Issue]]
 
 *** Articles
 - High Scalability - All Time Favorites : http://highscalability.com/all-time-favorites/

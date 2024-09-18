@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202409 [[file:boss-an-arch-for-db-kernel-composition.org][BOSS - An Architecture for Database Kernel Composition]] VLDB2024
 - 202409 [[file:lc-3292-minimum-number-of-valid-strings-to-form-target-ii.org][LC 3292. 形成目标字符串需要的最少字符串数 II]] AC自动机+DP
 - 202409 [[file:aliyun-singapore-region-fire-disaster.org][阿里云新加坡机房火灾]]
 - 202409 [[file:readings-at-202409.org][网络文章@202409]]
