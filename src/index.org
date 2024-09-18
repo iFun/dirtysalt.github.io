@@ -489,7 +489,8 @@
 - 202403 [[file:foudationdb-paper.org][FoundationDB: A Distributed Unbundled Transactional Key Value Store]] @ 2021
 - 202405 [[file:self-tuning-query-scheduling-for-analytical-workloads.org][Self-Tuning Query Scheduling for Analytical Workloads]]
 - 202405 [[file:integrating-deep-learning-frameworks-into-main-memory-databases.org][Integrating Deep Learning Frameworks into Main-Memory Databases]]
-- 202409 [[file:boss-an-arch-for-db-kernel-composition.org][BOSS - An Architecture for Database Kernel Composition]] VLDB2024
+- 202409 [[file:boss-an-arch-for-db-kernel-composition.org][BOSS - An Architecture for Database Kernel Composition]] vldb2024
+- 202409 [[file:adaptive-and-robust-query-execution-for-lakehouse-at-scale.org][Adaptive and Robust Query Execution for Lakehouses at Scale]] vldb2024
 
 ** 算法数据结构
 
