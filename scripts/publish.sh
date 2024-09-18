@@ -58,7 +58,7 @@ fi
 
 # post processing html files.
 echo "********** post publish  **********"
-python3 ./scripts/pp-html
+python3 ./scripts/pp-html.py
 
 echo "********** git push master  **********"
 git add .
