@@ -899,6 +899,7 @@ https://dirtysalt.github.io/html/nand2tetris-hardware-part.html
 https://dirtysalt.github.io/html/nand2tetris-software-part.html
 https://dirtysalt.github.io/html/narrow-python-build.html
 https://dirtysalt.github.io/html/negative-feedback-and-trap-in-real-life.html
+https://dirtysalt.github.io/html/neo-a-learned-query-optimizer.html
 https://dirtysalt.github.io/html/netty.html
 https://dirtysalt.github.io/html/neural-networks-and-deep-learning.html
 https://dirtysalt.github.io/html/neuralnets.html
