@@ -263,6 +263,7 @@ https://dirtysalt.github.io/html/data-infra-at-airbnb.html
 https://dirtysalt.github.io/html/data-processing-at-the-speed-of-100gbps-using-apache-crail.html
 https://dirtysalt.github.io/html/data-structure-size-and-cache-line-accesses.html
 https://dirtysalt.github.io/html/data-structures-and-algorithms-for-big-databases.html
+https://dirtysalt.github.io/html/database-unbound-querying-all-of-the-worlds-bytes-with-ai.html
 https://dirtysalt.github.io/html/databricks-photon-paper.html
 https://dirtysalt.github.io/html/databricks-product-stack.html
 https://dirtysalt.github.io/html/david-and-goliath.html
