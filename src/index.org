@@ -492,6 +492,7 @@
 - 202409 [[file:boss-an-arch-for-db-kernel-composition.org][BOSS - An Architecture for Database Kernel Composition]] vldb2024
 - 202409 [[file:adaptive-and-robust-query-execution-for-lakehouse-at-scale.org][Adaptive and Robust Query Execution for Lakehouses at Scale]] vldb2024
 - 202409 [[file:neo-a-learned-query-optimizer.org][Neo A Learned Query Optimizer]] vldb2019
+- 202409 [[file:lean-a-high-performance-storage-engine-for-nvme-ssds.org][LeanStore A High-Performance Storage Engine for NVMe SSDs]] vldb2024
 
 ** 算法数据结构
 
