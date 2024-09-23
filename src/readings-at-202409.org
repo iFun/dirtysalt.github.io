@@ -1,5 +1,13 @@
 #+title: 网络文章@202409
 
+-------------
+
+我们的使命很简单：就是解决其他人容易忽略的问题。
+
+詹姆斯·戴森 发明家兼工程师
+
+[[../images/Pasted-Image-20240923080701.png]]
+
 ----------
 
 [[https://matt.might.net/articles/grad-student-resolutions/][给研究生的12个决心 --- 12 resolutions for grad students]]
