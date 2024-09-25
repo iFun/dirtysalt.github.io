@@ -1120,6 +1120,7 @@ https://dirtysalt.github.io/html/scaling-the-gitlab-database.html
 https://dirtysalt.github.io/html/scaling-to-billions-on-top-of-digital-ocean.html
 https://dirtysalt.github.io/html/scaling-your-api-with-rate-limiters.html
 https://dirtysalt.github.io/html/scheme.html
+https://dirtysalt.github.io/html/scope-easy-and-efficient-prallel-processing-of-massive-data-sets.html
 https://dirtysalt.github.io/html/scylladb-new-io-scheduler-2021.html
 https://dirtysalt.github.io/html/search-at-slack.html
 https://dirtysalt.github.io/html/sears-the-baby-book.html
