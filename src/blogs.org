@@ -5,6 +5,7 @@
 - [[file:paste.org][网络剪切板]]
 
 ** 2024
+- 202409 [[file:ai-meets-database-ai4db-db4fi-tutorial-track-paper.org][AI Meets Database- AI4DB and DB4AI]] sigmod 2021
 - 202409 [[file:prestos-history-based-query-optimizer.org][Presto's History-based Query Optimizer]] vldb2024
 - 202409 [[file:two-birds-with-one-stone-designing-a-hybrid-cloud-storage-engine-for-htap.org][Two Birds With One Stone Designing a Hybrid Cloud Storage Engine for HTAP]] vldb2024
 - 202409 [[file:database-unbound-querying-all-of-the-worlds-bytes-with-ai.org][Databases Unbound Querying All of the World’s Bytes with AI]] vldb2024
