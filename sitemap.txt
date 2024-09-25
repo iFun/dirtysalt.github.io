@@ -46,6 +46,7 @@ https://dirtysalt.github.io/html/achieving-rapid-response-times-in-large-online-
 https://dirtysalt.github.io/html/adaptive-and-robust-query-execution-for-lakehouse-at-scale.html
 https://dirtysalt.github.io/html/adaptive-self-tunning-memory-in-db2.html
 https://dirtysalt.github.io/html/advice-for-ambitious-19-years-olds.html
+https://dirtysalt.github.io/html/ai-meets-database-ai4db-db4fi-tutorial-track-paper.html
 https://dirtysalt.github.io/html/albis-high-perf-file-format-for-big-data-sys.html
 https://dirtysalt.github.io/html/algorithm-design-steps-in-interview.html
 https://dirtysalt.github.io/html/algorithmica-comp-arch-and-language.html
